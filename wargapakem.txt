@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html lang="id">
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
     <meta charset='UTF-8'/>
     <!-- Google AdSense -->
-    <script async='async' crossorigin='anonymous' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2636322336243340'></script>
+    <script async='async' crossorigin='anonymous' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2636322336243340'/>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover' name='viewport'/>
-    <title>Admin Warga RT</title>
+    <title><data:view.title/></title>
 
     
     <!-- ===== PWA: Install to Homescreen ===== -->
@@ -108,7 +109,7 @@
     <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
     <link href='https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&amp;display=swap' rel='stylesheet'/>
     
-    <script src='https://cdn.tailwindcss.com'></script>
+    <script src='https://cdn.tailwindcss.com'/>
     <script>
     //<![CDATA[
         tailwind.config = {
@@ -130,11 +131,11 @@
     //]]>
     </script>
     
-    <script crossorigin='anonymous' src='https://unpkg.com/react@18.3.1/umd/react.production.min.js'></script>
-    <script crossorigin='anonymous' src='https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'></script>
-    <script src='https://unpkg.com/@babel/standalone@7.25.6/babel.min.js'></script>
+    <script crossorigin='anonymous' src='https://unpkg.com/react@18.3.1/umd/react.production.min.js'/>
+    <script crossorigin='anonymous' src='https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'/>
+    <script src='https://unpkg.com/@babel/standalone@7.25.6/babel.min.js'/>
 
-    <style>
+    <b:skin><![CDATA[
         body, html { background-color: #e2e8f0; color: #0f172a; margin: 0; padding: 0; min-height: 100vh; overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
         input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
@@ -189,8 +190,8 @@
         .admob-banner-container ins.adsbygoogle:not([data-ad-status]) { display: block !important; height: 50px !important; }
         /* Wrapper iklan: collapse jika kosong */
         .ad-wrapper-collapse { transition: height 0.3s ease; }
-    </style>
-    
+    ]]></b:skin>
+    <b:template-skin><![CDATA[]]></b:template-skin>
 
 
     <!-- Konstanta global aplikasi -->
@@ -235,8 +236,8 @@
     </script>
 </head>
 <body>
-    <div style='display:none;'></div>
-    <div id='root'></div>
+    <div style='display:none;'><b:section class='hidden' id='hidden-section' showaddelement='false'/></div>
+    <div id='root'/>
 
     <script type='text/babel'>
         //<![CDATA[
@@ -1124,7 +1125,7 @@
             const [meetingHistory, setMeetingHistory, l6] = useFirebaseSync('history', []);
             const [kasRtBalance, setKasRtBalance, l7] = useFirebaseSync('kas_rt_balance', 0);
             const [kasRtTransactions, setKasRtTransactions, l8] = useFirebaseSync('kas_rt_trx', []);
-            const [adminPin, setAdminPin, l9] = useFirebaseSync('admin_pin', '28111993');
+            const [adminPin, setAdminPin, l9] = useFirebaseSync('admin_pin', '123456');
             const [nominalArisan, setNominalArisan, l10] = useFirebaseSync('nominal_arisan', 10000);
             const [nominalJimpitan, setNominalJimpitan, l11] = useFirebaseSync('nominal_jimpitan', 10000);
             const [identity, setIdentity, l12] = useFirebaseSync('identity', { name: 'Aplikasi Arisan RT', subtitle: 'Wilayah Kependudukan Anda' });
@@ -1134,16 +1135,13 @@
             const [galeriData, setGaleriData, l17] = useFirebaseSync('galeri_warga', []);
             const [inventarisData, setInventarisData, l18] = useFirebaseSync('inventaris_rt', []);
             const [bannerImage, setBannerImage, l19] = useFirebaseSync('banner_image', '');
-            const [adsConfig, setAdsConfig, l20] = useFirebaseSync('ads_config', { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: 'laporan' });
-            const [pinjamData, setPinjamData, l21] = useFirebaseSync('pinjam_inventaris', []);
-            const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
-
-            // State khusus UI tambahan
-            const [showPwaGuide, setShowPwaGuide] = useState(false);
+        const [adsConfig, setAdsConfig, l20] = useFirebaseSync('ads_config', { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: 'laporan' });
+        const [pinjamData, setPinjamData, l21] = useFirebaseSync('pinjam_inventaris', []);
+        const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
 
             // Jika Firebase tidak tersedia (offline total / gagal init), anggap semua loaded
             const firebaseUnavailable = !window.firebaseDb;
-            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l9 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l20 && l21 && l22);
+            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l9 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19);
 
             useEffect(() => {
                 const handleOnline = () => setIsOffline(false);
@@ -1203,14 +1201,9 @@
             }
 
             if (!isLoggedIn) {
-                return (
-                    <>
-                        <LoginScreen onLogin={(role) => { 
-                            setIsLoggedIn(true); setUserRole(role); window.location.hash = 'menu';
-                        }} adminPin={adminPin} identity={identity} setShowPwaGuide={setShowPwaGuide} />
-                        {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
-                    </>
-                );
+                return <LoginScreen onLogin={(role) => { 
+                    setIsLoggedIn(true); setUserRole(role); window.location.hash = 'menu';
+                }} adminPin={adminPin} identity={identity} />;
             }
 
             const executeLogout = () => { setIsLoggedIn(false); setUserRole(null); setActiveTab('menu'); window.location.hash = ''; setShowLogoutModal(false); };
@@ -1236,7 +1229,7 @@
 
             const renderContent = () => {
                 switch(activeTab) {
-                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} adsConfig={adsConfig} setShowPwaGuide={setShowPwaGuide} />;
+                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} adsConfig={adsConfig} />;
                     case 'dashboard': return <Dashboard members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} currentRound={currentRound} setCurrentRound={setCurrentRound} userRole={userRole} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} changeTab={changeTab} arisanPeriod={arisanPeriod} />;
                     case 'informasi': return <Informasi data={informasi} setData={setInformasi} userRole={userRole} />;
                     case 'warga': return <WargaList members={members} setMembers={setMembers} userRole={userRole} identity={identity} cycleNumber={cycleNumber} currentRound={currentRound} arisanPeriod={arisanPeriod} />;
@@ -1304,8 +1297,6 @@
                     <PWAInstallBanner />
                     <ToastContainer />
 
-                    {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
-
                     {showLogoutModal && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print overflow-y-auto transition-opacity">
                             <div className="bg-white rounded-[32px] p-8 w-full max-w-sm text-center border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
@@ -1325,72 +1316,7 @@
 
         /* ================= COMPONENTS (VIEWS) ================= */
 
-        function PwaGuideModal({ onClose }) {
-            const [tab, setTab] = useState('android');
-            return (
-                <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4 sm:p-6 no-print overflow-y-auto transition-opacity">
-                    <div className="bg-white rounded-[32px] w-full max-w-xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-200" style={{ animation: 'slideUp 0.3s ease-out' }}>
-                        <div className="p-6 border-b-2 border-slate-200 flex justify-between items-center bg-slate-50 rounded-t-[30px]">
-                            <h3 className="text-xl font-extrabold text-google-text flex items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
-                            <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 text-slate-500 hover:bg-slate-300 hover:text-google-text transition-all active:scale-95"><Icon name="close" /></button>
-                        </div>
-                        <div className="p-6 overflow-y-auto flex-1">
-                            <p className="text-[14px] text-google-textVariant mb-6 font-medium">Aplikasi ini bisa diinstal langsung ke perangkat Anda (Android, iOS, maupun PC/Laptop) tanpa melalui App Store atau Play Store. Hemat memori dan cepat!</p>
-                            
-                            <div className="flex bg-slate-100 p-1.5 rounded-[16px] mb-6 border-2 border-slate-200 shadow-inner">
-                                <button onClick={() => setTab('android')} className={`flex-1 py-2.5 rounded-[12px] text-[13px] font-extrabold transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'android' ? 'bg-white text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 hover:bg-slate-200'}`}><Icon name="android" className="text-[18px]" /> Android</button>
-                                <button onClick={() => setTab('ios')} className={`flex-1 py-2.5 rounded-[12px] text-[13px] font-extrabold transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'ios' ? 'bg-white text-google-text border-2 border-slate-300 shadow-sm' : 'text-slate-500 hover:bg-slate-200'}`}><Icon name="apple" className="text-[18px]" /> iOS</button>
-                                <button onClick={() => setTab('pc')} className={`flex-1 py-2.5 rounded-[12px] text-[13px] font-extrabold transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'pc' ? 'bg-white text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 hover:bg-slate-200'}`}><Icon name="laptop_mac" className="text-[18px]" /> PC/Laptop</button>
-                            </div>
-
-                            {tab === 'android' && (
-                                <div className="space-y-4 animate-fadeIn">
-                                    <h4 className="font-extrabold text-google-text text-[15px]">Pengguna Google Chrome</h4>
-                                    <ol className="list-decimal pl-5 space-y-3 text-[14px] text-google-textVariant font-medium">
-                                        <li>Buka website ini di browser <b>Google Chrome</b>.</li>
-                                        <li>Tunggu beberapa detik, akan muncul banner <b>"Pasang Aplikasi Ini"</b> di bagian bawah layar. Klik tombol <b>Install</b>.</li>
-                                        <li>Atau, klik ikon <b>titik tiga</b> (⋮) di pojok kanan atas browser.</li>
-                                        <li>Pilih menu <b>"Tambahkan ke Layar Utama"</b> (Add to Home screen) atau <b>"Instal Aplikasi"</b>.</li>
-                                        <li>Klik <b>Instal</b> pada pop-up yang muncul. Aplikasi siap digunakan!</li>
-                                    </ol>
-                                </div>
-                            )}
-
-                            {tab === 'ios' && (
-                                <div className="space-y-4 animate-fadeIn">
-                                    <h4 className="font-extrabold text-google-text text-[15px]">Pengguna iPhone & iPad (Safari)</h4>
-                                    <ol className="list-decimal pl-5 space-y-3 text-[14px] text-google-textVariant font-medium">
-                                        <li>Buka website ini menggunakan browser <b>Safari</b> (wajib).</li>
-                                        <li>Ketuk ikon <b>Bagikan</b> <Icon name="ios_share" className="text-[16px] inline text-google-blue" /> (kotak dengan panah ke atas) di bagian bawah layar.</li>
-                                        <li>Geser menu ke atas atau ke samping, cari dan ketuk <b>"Tambah ke Layar Utama"</b> (Add to Home Screen) <Icon name="add_box" className="text-[16px] inline text-slate-500" />.</li>
-                                        <li>Ketuk tombol <b>Tambah</b> di pojok kanan atas.</li>
-                                        <li>Aplikasi kini ada di daftar aplikasi Anda dan siap digunakan!</li>
-                                    </ol>
-                                </div>
-                            )}
-
-                            {tab === 'pc' && (
-                                <div className="space-y-4 animate-fadeIn">
-                                    <h4 className="font-extrabold text-google-text text-[15px]">Pengguna PC/Laptop (Chrome / Edge)</h4>
-                                    <ol className="list-decimal pl-5 space-y-3 text-[14px] text-google-textVariant font-medium">
-                                        <li>Buka website ini di <b>Google Chrome</b> atau <b>Microsoft Edge</b>.</li>
-                                        <li>Perhatikan ujung kanan bilah alamat web (address bar).</li>
-                                        <li>Klik ikon <b>Install</b> <Icon name="install_desktop" className="text-[16px] inline text-google-blue" /> yang muncul di sana.</li>
-                                        <li>Pada Chrome, Anda juga bisa klik ikon <b>titik tiga</b> (⋮) -> <b>"Save and share"</b> -> <b>"Install page as app"</b>.</li>
-                                        <li>Aplikasi akan terinstal, dapat di-pin ke Taskbar, dan dibuka layaknya program desktop biasa.</li>
-                                    </ol>
-                                </div>
-                            )}
-                        </div>
-                        <div className="p-5 border-t-2 border-slate-200 bg-slate-50 rounded-b-[30px] flex justify-end">
-                            <button onClick={onClose} className="bg-google-blue text-white px-6 py-3 rounded-full font-extrabold text-[14px] shadow-md hover:bg-google-blueDark transition-all active:scale-95">Tutup Panduan</button>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        function LoginScreen({ onLogin, adminPin, identity, setShowPwaGuide }) {
+        function LoginScreen({ onLogin, adminPin, identity }) {
             const [pin, setPin] = useState('');
             const [mode, setMode] = useState('select'); 
             const [error, setError] = useState('');
@@ -1424,16 +1350,11 @@
                             </div>
                         )}
                     </div>
-                    
-                    {/* Tombol Panduan PWA di luar box login */}
-                    <button onClick={() => setShowPwaGuide(true)} className="mt-6 flex items-center justify-center gap-2 text-[13px] font-extrabold text-google-blue bg-white px-5 py-3 rounded-full border-2 border-google-blue/30 shadow-sm hover:bg-google-blueLight active:scale-95 transition-all">
-                        <Icon name="install_mobile" className="text-[18px]" /> Cara Install ke HP/Laptop
-                    </button>
                 </div>
             );
         }
 
-function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsConfig, setShowPwaGuide }) {
+function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsConfig }) {
             return (
                 <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto mt-2">
                     
@@ -1498,18 +1419,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             <AdSenseUnit slot={ADSENSE_SLOTS.autoRelaxed} format="autorelaxed" />
                         </div>
                     )}
-                    
-
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch mt-4">
-                        {userRole !== 'admin' && (
-                            <div className="bg-white p-4 rounded-[24px] text-center border-2 border-slate-200 shadow-sm flex-1 flex items-center justify-center">
-                                <p className="text-[13px] font-bold text-google-textVariant flex items-center justify-center gap-2"><Icon name="info" className="text-[18px]" /> Mode Warga (akses terbatas).</p>
-                            </div>
-                        )}
-                        <button onClick={() => setShowPwaGuide(true)} className="bg-white p-4 rounded-[24px] text-center border-2 border-google-blue/30 shadow-sm text-google-blue font-extrabold text-[13px] hover:bg-google-blueLight active:scale-95 transition-all flex items-center justify-center gap-2">
-                            <Icon name="install_mobile" className="text-[18px]" /> Panduan Install Aplikasi (PWA)
-                        </button>
-                    </div>
+                    {userRole !== 'admin' && <div className="bg-white p-5 rounded-[24px] text-center mt-4 border-2 border-slate-200 shadow-sm"><p className="text-[13px] font-bold text-google-textVariant flex items-center justify-center gap-2"><Icon name="info" className="text-[18px]" /> Mode Warga memiliki akses terbatas. Hubungi admin untuk perubahan data.</p></div>}
                 </div>
             );
         }
@@ -2198,23 +2108,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [showPayModal, setShowPayModal]   = useState(false);
             const [selectedRek, setSelectedRek]     = useState(0);
 
-            // Tambahan State Warga: Upload Bukti
-            const [buktiUrl, setBuktiUrl]           = useState('');
-            const [isUploadingBukti, setIsUploadingBukti] = useState(false);
-
             const NOMINAL_CEPAT = [10000, 25000, 50000, 100000, 250000, 500000];
-
-            // ---- Handler Warga: Upload Bukti ----
-            const handleBuktiUpload = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                if (file.size > 2 * 1024 * 1024) return showToast('Ukuran foto maks 2MB!', 'error');
-                setIsUploadingBukti(true);
-                const reader = new FileReader();
-                reader.onloadend = () => { setBuktiUrl(reader.result); setIsUploadingBukti(false); };
-                reader.onerror  = () => { showToast('Gagal membaca file.', 'error'); setIsUploadingBukti(false); };
-                reader.readAsDataURL(file);
-            };
 
             // ---- Handler Admin ----
             const handleImageUpload = (e) => {
@@ -2437,108 +2331,6 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             </div>
                         )}
 
-                        {/* Admin: Panel Approval Bukti Transfer */}
-                        {userRole === 'admin' && (prog.donasi || []).length > 0 && (
-                            <div className="bg-white rounded-[28px] border-2 border-google-yellow/30 shadow-sm p-6">
-                                <h3 className="text-[17px] font-extrabold text-google-text mb-4 flex items-center gap-2">
-                                    <Icon name="verified_user" className="text-[22px] text-google-yellow" fill="true" />Persetujuan Bukti Bayar
-                                </h3>
-                                <div className="space-y-4">
-                                    {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[20px] p-4 border border-slate-200 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-                                            <div className="flex items-center gap-4 flex-1 w-full">
-                                                {donasi.imageUrl ? (
-                                                    <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] overflow-hidden hover:opacity-80 transition-opacity">
-                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti Transfer" />
-                                                    </a>
-                                                ) : (
-                                                    <div className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] flex items-center justify-center">
-                                                        <Icon name="receipt" className="text-[24px] text-slate-400" />
-                                                    </div>
-                                                )}
-                                                <div className="flex-1 min-w-0">
-                                                    <p className="font-extrabold text-[15px] text-google-text truncate">{donasi.nama}</p>
-                                                    <p className="text-[14px] font-extrabold text-google-green">{formatRp(donasi.nominal)}</p>
-                                                    <p className="text-[11px] text-google-textVariant mt-0.5">{parseLocalDate(donasi.tanggal).toLocaleDateString('id-ID')}</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-center gap-2 w-full sm:w-auto shrink-0 justify-end">
-                                                {donasi.status === 'PENDING' ? (
-                                                    <>
-                                                        <button onClick={() => {
-                                                            const updatedDonasi = (prog.donasi || []).map(d => d.id === donasi.id ? {...d, status: 'APPROVED'} : d);
-                                                            const newDana = (prog.danaTerkumpul || 0) + donasi.nominal;
-                                                            const updatedProg = { ...prog, donasi: updatedDonasi, danaTerkumpul: newDana };
-                                                            setInfaqData(infaqData.map(i => i.id === prog.id ? updatedProg : i));
-                                                            setSelected(updatedProg);
-                                                            showToast('Bukti disetujui. Dana bertambah otomatis!');
-                                                        }} className="bg-google-green text-white px-4 py-2 rounded-full font-extrabold text-[12px] border-2 border-google-greenDark shadow-sm hover:bg-google-greenDark active:scale-95 transition-all flex items-center gap-1">
-                                                            <Icon name="check" className="text-[14px]"/>Setujui
-                                                        </button>
-                                                        <button onClick={() => {
-                                                            const updatedDonasi = (prog.donasi || []).map(d => d.id === donasi.id ? {...d, status: 'REJECTED'} : d);
-                                                            const updatedProg = { ...prog, donasi: updatedDonasi };
-                                                            setInfaqData(infaqData.map(i => i.id === prog.id ? updatedProg : i));
-                                                            setSelected(updatedProg);
-                                                            showToast('Bukti ditolak.', 'error');
-                                                        }} className="bg-white text-google-red px-4 py-2 rounded-full font-extrabold text-[12px] border-2 border-google-red/30 shadow-sm hover:bg-google-redLight active:scale-95 transition-all flex items-center gap-1">
-                                                            <Icon name="close" className="text-[14px]"/>Tolak
-                                                        </button>
-                                                    </>
-                                                ) : (
-                                                    <span className={`px-3 py-1.5 rounded-md text-[11px] font-extrabold uppercase tracking-widest ${
-                                                        donasi.status === 'APPROVED' ? 'bg-google-greenLight text-google-greenDark border border-google-green/30' :
-                                                        donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
-                                                        'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
-                                                    }`}>
-                                                        {donasi.status === 'APPROVED' ? '✅ Disetujui' : donasi.status === 'REJECTED' ? '❌ Ditolak' : '⏳ Menunggu'}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Riwayat Donasi — Tampil untuk SEMUA user (Warga & Admin) */}
-                        {(prog.donasi || []).length > 0 && userRole !== 'admin' && (
-                            <div className="bg-white rounded-[28px] border-2 border-slate-200 shadow-sm p-6">
-                                <h3 className="text-[17px] font-extrabold text-google-text mb-4 flex items-center gap-2">
-                                    <Icon name="receipt_long" className="text-[22px] text-google-blue" fill="true" />Riwayat Donasi Anda
-                                </h3>
-                                <div className="space-y-3">
-                                    {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[16px] p-4 border border-slate-200 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
-                                            <div className="flex items-center gap-3 flex-1 w-full">
-                                                {donasi.imageUrl ? (
-                                                    <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] overflow-hidden hover:opacity-80 transition-opacity">
-                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti" />
-                                                    </a>
-                                                ) : (
-                                                    <div className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] flex items-center justify-center">
-                                                        <Icon name="receipt" className="text-[20px] text-slate-400" />
-                                                    </div>
-                                                )}
-                                                <div className="flex-1 min-w-0">
-                                                    <p className="font-extrabold text-[14px] text-google-text truncate">{donasi.nama}</p>
-                                                    <p className="text-[13px] font-extrabold text-google-green">{formatRp(donasi.nominal)}</p>
-                                                    <p className="text-[11px] text-google-textVariant">{parseLocalDate(donasi.tanggal).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'})}</p>
-                                                </div>
-                                            </div>
-                                            <span className={`px-3 py-1.5 rounded-md text-[11px] font-extrabold uppercase tracking-widest shrink-0 ${
-                                                donasi.status === 'APPROVED' ? 'bg-google-greenLight text-google-greenDark border border-google-green/30' :
-                                                donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
-                                                'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
-                                            }`}>
-                                                {donasi.status === 'APPROVED' ? '✅ Disetujui' : donasi.status === 'REJECTED' ? '❌ Ditolak' : '⏳ Menunggu'}
-                                            </span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
                         {/* Tujuan & manfaat */}
                         {(prog.tujuan || prog.manfaat) && (
                             <div className="bg-white rounded-[28px] border-2 border-slate-200 shadow-sm p-6 space-y-4">
@@ -2672,56 +2464,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         );
                                     })()}
 
-                                        {/* Upload Bukti */}
-                                        <div className="mt-4 bg-slate-50 border-2 border-slate-200 rounded-[18px] p-4 text-center relative overflow-hidden transition-all focus-within:border-google-green group hover:border-google-green/40 cursor-pointer">
-                                            <p className="text-[12px] font-extrabold text-google-textVariant mb-2 uppercase tracking-wider">Upload Bukti Transfer</p>
-                                            <input type="file" accept="image/*" onChange={handleBuktiUpload} disabled={isUploadingBukti} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
-                                            {isUploadingBukti ? (
-                                                <div className="w-8 h-8 border-2 border-google-green border-t-transparent rounded-full animate-spin mx-auto my-3" />
-                                            ) : buktiUrl ? (
-                                                <div className="relative rounded-[12px] overflow-hidden border border-slate-200">
-                                                    <img src={buktiUrl} className="w-full h-32 object-cover" alt="Bukti Transfer" />
-                                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                        <span className="text-white font-bold text-[12px] flex items-center gap-1"><Icon name="edit" className="text-[16px]"/> Ganti Foto</span>
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <div className="py-2 flex flex-col items-center bg-white rounded-[12px] border border-slate-100 shadow-sm group-hover:bg-google-greenLight transition-colors">
-                                                    <Icon name="add_photo_alternate" className="text-[32px] text-slate-300 group-hover:text-google-green transition-colors" />
-                                                    <span className="text-[11px] text-google-textVariant mt-1">Ketuk untuk unggah (Maks 2MB)</span>
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        <div className="flex gap-2 mt-4">
-                                            <button onClick={() => { setShowPayModal(false); setBuktiUrl(''); }}
-                                                className="flex-1 bg-white text-google-text py-3.5 rounded-full font-extrabold text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">
-                                                Batal
-                                            </button>
-                                            <button onClick={() => { 
-                                                if (!buktiUrl) return showToast('Mohon unggah bukti transfer terlebih dahulu!', 'error');
-                                                const newDonasi = {
-                                                    id: Date.now(),
-                                                    nama: namaDisplay,
-                                                    nominal: safeNumber(nominalInput),
-                                                    imageUrl: buktiUrl,
-                                                    status: 'PENDING',
-                                                    tanggal: getLocalDate()
-                                                };
-                                                const updatedProg = {
-                                                    ...prog,
-                                                    donasi: [newDonasi, ...(prog.donasi || [])]
-                                                };
-                                                setInfaqData(infaqData.map(i => i.id === prog.id ? updatedProg : i));
-                                                setSelected(updatedProg); // update view detail
-                                                setShowPayModal(false);
-                                                setBuktiUrl('');
-                                                showToast('Terima kasih! Bukti transfer Anda telah dikirim dan menunggu verifikasi Admin.');
-                                            }}
-                                                className="flex-1 bg-google-green text-white py-3.5 rounded-full font-extrabold text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex items-center justify-center gap-1.5">
-                                                <Icon name="send" className="text-[18px]"/> Kirim Bukti
-                                            </button>
-                                        </div>
+                                    <button onClick={() => { setShowPayModal(false); showToast('Terima kasih! Infaq Anda dicatat. Semoga berkah.'); }}
+                                        className="w-full mt-4 bg-google-green text-white py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all">
+                                        ✅ Selesai & Tutup
+                                    </button>
                                 </div>
                             </div>
                         )}
