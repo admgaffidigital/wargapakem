@@ -707,7 +707,7 @@
         }
 
 
-        function RobotGuide({ userRole, nominalArisan, nominalJimpitan, identity, members, arisanPeriod, currentRound, cycleNumber, jimpitanBalance, kasRtBalance, meetingHistory }) {
+        function RobotGuide({ userRole, nominalArisan, nominalJimpitan, identity, members, arisanPeriod, currentRound, cycleNumber, jimpitanBalance, kasRtBalance, meetingHistory, inventarisData, pinjamData, infaqData }) {
             const [isOpen, setIsOpen] = useState(false);
             const [mode, setMode] = useState(userRole === 'admin' ? 'admin' : 'warga'); // 'admin' | 'warga'
             const [activeMenu, setActiveMenu] = useState(null);
@@ -792,6 +792,14 @@
                         { label: 'Koreksi Saldo Manual', answer: `Kas RT: perbedaan dicatat otomatis sebagai transaksi "Penyesuaian Saldo Awal" di Buku Kas.\nJimpitan: langsung ubah tanpa entry transaksi.\n\nGunakan jika ada perbedaan antara sistem dan uang fisik.` },
                         { label: 'Kalibrasi Putaran & Siklus', answer: `Koreksi nomor putaran dan siklus jika ada kesalahan (misal migrasi dari sistem lama).\n\nPutaran saat ini: ${currentRound||1} | Siklus: ${cycleNumber||1}.` },
                         { label: 'Factory Reset', answer: `Menghapus SEMUA data: warga, riwayat, saldo, iuran, galeri, inventaris.\n\nKetik "RESET" untuk konfirmasi. ⚠️ TIDAK BISA DIBATALKAN. PIN admin tetap tidak berubah agar admin masih bisa login setelah reset.` }
+                    ]
+                },
+                infaq_inventaris: {
+                    label: '📦 Infaq & Inventaris', icon: 'inventory_2',
+                    intro: 'Kelola data Infaq, barang inventaris, dan status peminjaman.',
+                    topics: [
+                        { label: 'Sistem Infaq Warga', answer: `Infaq dikelola terpisah dari Kas RT dan Jimpitan.\n\nSaat ini ada ${infaqData?.filter(i => i.status === 'PENDING').length || 0} donasi Infaq yang menunggu persetujuan (PENDING). Total donasi disetujui: Rp ${(infaqData?.filter(i => i.status === 'APPROVED').reduce((sum, i) => sum + parseInt(i.nominal || 0), 0) || 0).toLocaleString('id-ID')}.` },
+                        { label: 'Manajemen Inventaris', answer: `RT memiliki ${inventarisData?.length || 0} jenis barang inventaris.\n\nJika ada yang meminjam, gunakan menu "Pinjam Inventaris". Saat ini ada ${pinjamData?.filter(p => p.status === 'DIPINJAM').length || 0} transaksi barang yang sedang dipinjam warga.` }
                     ]
                 }
             };
@@ -938,11 +946,25 @@
                         },
                         {
                             label: 'Menu Inventaris',
-                            answer: `Inventaris RT adalah daftar barang-barang milik RT beserta jumlah dan fotonya.\n\nWarga bisa melihat barang apa saja yang dimiliki RT — kursi, tenda, sound system, dll. Ini bentuk transparansi aset bersama.`
+                            answer: `Inventaris RT adalah daftar barang-barang milik RT beserta jumlah dan fotonya.\n\nSaat ini ada ${inventarisData?.length || 0} barang milik RT. Warga bisa melihat barang apa saja yang dimiliki RT (kursi, tenda, sound system, dll) sebagai bentuk transparansi aset bersama.`
                         },
                         {
                             label: 'Menu Jadwal Kegiatan',
                             answer: `Menu "Jadwal" menampilkan informasi pertemuan berikutnya: tanggal, waktu, lokasi, dan keterangan tambahan.\n\nCek menu ini untuk tahu kapan arisan berikutnya. Admin akan selalu memperbarui jadwal setelah setiap pertemuan selesai.`
+                        }
+                    ]
+                },
+                infaq_pinjam: {
+                    label: '📦 Infaq & Pinjam', icon: 'volunteer_activism',
+                    intro: 'Panduan donasi Infaq sukarela dan tata cara meminjam inventaris RT.',
+                    topics: [
+                        {
+                            label: 'Bagaimana Cara Infaq?',
+                            answer: `Infaq adalah donasi sukarela untuk kegiatan sosial RT.\n\n1. Masuk menu "Infaq"\n2. Isi nominal dan upload foto bukti transfer\n3. Kirim!\n\nStatus akan "PENDING" sampai disetujui Admin. Anda bisa melihat riwayat infaq Anda sendiri secara transparan.`
+                        },
+                        {
+                            label: 'Bagaimana Cara Meminjam Barang RT?',
+                            answer: `Jika Anda butuh meminjam barang (misal: kursi untuk hajatan):\n\n1. Lihat ketersediaan barang di menu "Inventaris"\n2. Hubungi Admin RT untuk serah terima\n3. Admin akan mencatat pinjaman Anda di menu "Pinjam Inventaris"\n\nBarang harus dikembalikan dalam kondisi baik sesuai kesepakatan!`
                         }
                     ]
                 }
@@ -1300,7 +1322,7 @@
                     {adsConfig?.enabled && adsConfig?.interstitialAdId && (
                         <AdMobInterstitial adId={adsConfig.interstitialAdId} trigger={Array.isArray(adsConfig.interstitialTrigger) ? adsConfig.interstitialTrigger : [adsConfig.interstitialTrigger]} currentTab={activeTab} />
                     )}
-                    <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} />
+                    <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
                     <PWAInstallBanner />
                     <ToastContainer />
 
