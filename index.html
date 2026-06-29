@@ -1183,7 +1183,7 @@
                     const hash = window.location.hash.replace('#', '');
                     if (hash) setActiveTab(hash);
                     else setActiveTab('menu');
-                    window.scrollTo(0, 0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 };
                 window.addEventListener('hashchange', handleHashChange);
                 handleHashChange(); 
