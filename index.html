@@ -2951,8 +2951,8 @@ function Galeri({ data, setData, userRole }) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
                         {data.map(item => (
                             <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 flex flex-col group relative">
-                                <div className="w-full h-56 bg-slate-100 relative shrink-0 border-b-2 border-slate-200 overflow-hidden">
-                                    <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
+                                <div className="w-full h-56 bg-slate-100 relative shrink-0 border-b-2 border-slate-200 overflow-hidden flex items-center justify-center">
+                                    <img src={item.imageUrl} className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
                                 </div>
                                 <div className="p-5 flex-1 flex flex-col justify-between">
                                     <h3 className="text-[16px] font-extrabold text-google-text leading-snug mb-2 tracking-tight">{item.title}</h3>
@@ -3543,8 +3543,38 @@ function Galeri({ data, setData, userRole }) {
             const [isModalOpen, setIsModalOpen] = useState(false);
             const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
             const [transferAmount, setTransferAmount] = useState('');
-            const [formData, setFormData] = useState({ type: 'Pengeluaran', category: 'Pembelian Barang', description: '', amount: '', date: getLocalDate() });
+            const [formData, setFormData] = useState({ type: 'Pengeluaran', category: 'Pembelian Barang', description: '', amount: '', date: getLocalDate(), receiptUrl: null });
             const [errorMsg, setErrorMsg] = useState('');
+            const [isUploading, setIsUploading] = useState(false);
+
+            const handleImageUpload = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                if (file.size > 2 * 1024 * 1024) return setErrorMsg("Ukuran gambar maksimal 2MB!");
+
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const base64String = reader.result.split(',')[1];
+                    setIsUploading(true); setErrorMsg('');
+
+                    const gasUrl = window.GAS_DRIVE_URL; 
+                    fetch(gasUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: JSON.stringify({ base64: base64String, mimeType: file.type, filename: `bukukas-${Date.now()}-${file.name}` })
+                    })
+                    .then(res => res.json())
+                    .then(response => {
+                        setIsUploading(false);
+                        if (response.status === 'success') { setFormData(prev => ({ ...prev, receiptUrl: response.viewUrl })); } 
+                        else { setErrorMsg('Gagal mengunggah nota: ' + response.message); }
+                    })
+                    .catch(err => {
+                        setIsUploading(false); setErrorMsg('Terjadi kesalahan jaringan saat mengunggah nota.');
+                    });
+                };
+                reader.readAsDataURL(file);
+            };
 
             const handleSave = () => {
                 if (!formData.description) return setErrorMsg("Keterangan wajib diisi!");
@@ -3553,7 +3583,8 @@ function Galeri({ data, setData, userRole }) {
                 if (formData.type === 'Pengeluaran' && nominal > balance) return setErrorMsg(`Saldo tidak cukup! Saldo saat ini ${formatRp(balance)}`);
                 if (formData.type === 'Pemasukan') setBalance(prev => prev + nominal); else setBalance(prev => prev - nominal);
                 setTransactions([{ id: Date.now(), ...formData, amount: nominal }, ...transactions]);
-                setIsModalOpen(false); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate() });
+                setIsModalOpen(false); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null });
+                setIsUploading(false);
                 showToast(`Transaksi ${formData.type.toLowerCase()} berhasil dicatat.`);
             };
 
@@ -3606,11 +3637,11 @@ function Galeri({ data, setData, userRole }) {
 
                     {userRole === 'admin' && (
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 no-print">
-                            <button onClick={() => { setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate() }); setIsModalOpen(true); setErrorMsg(''); }} className="bg-white border-2 border-slate-200 p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/20"><Icon name="add" className="text-[28px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[15px] font-extrabold text-google-text">Catat Pemasukan</span>
                             </button>
-                            <button onClick={() => { setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate() }); setIsModalOpen(true); setErrorMsg(''); }} className="bg-white border-2 border-slate-200 p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/20"><Icon name="remove" className="text-[28px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[15px] font-extrabold text-google-text">Catat Pengeluaran</span>
                             </button>
@@ -3629,7 +3660,10 @@ function Galeri({ data, setData, userRole }) {
                                     <div className={`w-14 h-14 rounded-[20px] flex items-center justify-center shrink-0 border-2 transition-colors duration-300 ${t.type === 'Pemasukan' ? 'bg-google-greenLight text-google-greenDark border-google-green/30 group-hover:bg-google-green group-hover:text-white' : 'bg-google-redLight text-google-redDark border-google-red/30 group-hover:bg-google-red group-hover:text-white'}`}><Icon name={t.type === 'Pemasukan' ? "arrow_downward" : "arrow_upward"} className="text-[28px]" fill="true" /></div>
                                     <div className="flex-1 min-w-0">
                                         <p className="font-extrabold text-[16px] text-google-text truncate mb-1.5">{t.description}</p>
-                                        <p className="text-[12px] font-bold text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5"><Icon name="label" className="text-[14px]" /> {t.category} • {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <p className="text-[12px] font-bold text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5"><Icon name="label" className="text-[14px]" /> {t.category} • {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
+                                            {t.receiptUrl && <a href={t.receiptUrl} target="_blank" rel="noopener noreferrer" className="text-[12px] font-bold text-google-blue bg-google-blueLight border border-google-blue/20 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[14px]" /> Lihat Bukti</a>}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="text-left sm:text-right flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center border-t-2 sm:border-t-0 border-slate-100 pt-4 sm:pt-0 w-full sm:w-auto">
@@ -3662,11 +3696,32 @@ function Galeri({ data, setData, userRole }) {
                                     </div>
                                     <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Keterangan / Uraian</label><input type="text" value={formData.description} onChange={e => {setFormData({...formData, description: e.target.value}); setErrorMsg('');}} className={`w-full bg-slate-50 border-2 border-slate-200 p-4 text-[15px] font-bold outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md placeholder:text-slate-400 ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} placeholder="Misal: Beli Sapu Lidi" /></div>
                                     <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal (Rp)</label><input type="number" min="0" value={formData.amount} onChange={e => {setFormData({...formData, amount: safeNumber(e.target.value)}); setErrorMsg('');}} className={`w-full bg-slate-50 border-2 border-slate-200 p-4 text-[15px] font-bold outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md placeholder:text-slate-400 ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} placeholder="0" /></div>
+                                    
+                                    {formData.type === 'Pengeluaran' && (
+                                        <div>
+                                            <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Upload Bukti / Nota (Opsional)</label>
+                                            <div className={`flex items-center gap-4 bg-slate-50 border-2 ${isUploading ? 'border-google-red shadow-md' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-red transition-all`}>
+                                                <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
+                                                <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-100 text-google-textVariant relative z-0">
+                                                    {isUploading ? <div className="w-5 h-5 border-2 border-google-red border-t-transparent rounded-full animate-spin"></div> : <Icon name="receipt" className="text-[24px]" />}
+                                                </div>
+                                                <div className="relative z-0 flex-1 min-w-0">
+                                                    <p className="font-extrabold text-[14px] text-google-text truncate">{isUploading ? "Mengunggah..." : (formData.receiptUrl ? "Nota Siap" : "Pilih File Nota")}</p>
+                                                    <p className="text-[11px] text-google-textVariant truncate">{formData.receiptUrl ? "Klik untuk mengganti nota" : "Maksimal 2MB"}</p>
+                                                </div>
+                                                {formData.receiptUrl && !isUploading && (
+                                                    <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200 group">
+                                                        <img src={formData.receiptUrl} alt="Nota Preview" className="w-full h-full object-cover" />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-bold text-[13px] px-4 py-3.5 rounded-[16px] mt-6 flex items-center gap-2"><Icon name="error" className="text-[18px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex gap-3 mt-8 pt-6 border-t-2 border-slate-100">
-                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} className={`flex-1 text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-google-green border-google-greenDark hover:bg-google-greenDark' : 'bg-google-red border-google-redDark hover:bg-google-redDark'}`}>Simpan Data</button>
+                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className={`flex-1 text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-google-green border-google-greenDark hover:bg-google-greenDark' : 'bg-google-red border-google-redDark hover:bg-google-redDark'}`}>Simpan Data</button>
                                 </div>
                             </div>
                         </div>
