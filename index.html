@@ -1348,8 +1348,8 @@
                     {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
 
                     {showLogoutModal && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print  transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="logout" className="text-[40px] text-google-red" fill="true" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2">Keluar Sesi?</h3>
                                 <p className="text-[14px] text-google-textVariant mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
@@ -1369,7 +1369,7 @@
         function PwaGuideModal({ onClose }) {
             const [tab, setTab] = useState('android');
             return (
-                <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4 sm:p-6 no-print  transition-opacity">
+                <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
 <div className="bg-white rounded-[32px] w-full max-w-xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-200" style={{ animation: 'slideUp 0.3s ease-out' }}>
                         <div className="p-6 border-b-2 border-slate-200 flex justify-between items-center bg-slate-50 rounded-t-[30px]">
                             <h3 className="text-xl font-extrabold text-google-text flex items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
@@ -1629,7 +1629,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {showResetModal && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-left border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-left border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-blueLight w-16 h-16 rounded-full flex items-center justify-center border-2 border-google-blue/30"><Icon name="refresh" className="text-[32px] text-google-blue" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2">Mulai Siklus Baru?</h3>
                                 <div className="text-[14px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-5 rounded-[24px] border-2 border-slate-200"><p className="flex gap-2.5 items-start"><Icon name="check_circle" className="text-[18px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex gap-2.5 items-start"><Icon name="check_circle" className="text-[18px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
@@ -1822,7 +1822,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {/* Modal Form Tambah/Edit */}
                     {isFormOpen && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-2 border-slate-200 my-4">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-2 border-slate-200 my-4">
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">{editingId ? 'Edit Inventaris' : 'Tambah Inventaris'}</h3>
                                 <div className="space-y-5">
 
@@ -1880,7 +1880,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {/* Modal konfirmasi hapus */}
                     {deleteConfirmId && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Hapus Barang?</h3>
                                 <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Barang ini akan dihapus permanen dari daftar inventaris RT.</p>
@@ -2178,7 +2178,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {/* Modal konfirmasi kembali */}
                     {konfirmReturnId && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 {(() => { const p = pinjamData.find(x => x.id === konfirmReturnId); return p ? (<>
                                     <div className="mb-5 bg-google-greenLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="assignment_return" className="text-[40px] text-google-green" /></div>
                                     <h3 className="text-xl font-extrabold text-google-text mb-2">Konfirmasi Pengembalian</h3>
@@ -2196,7 +2196,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {/* Modal konfirmasi tolak */}
                     {konfirmRejectId && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="cancel" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-xl font-extrabold text-google-text mb-2">Tolak Pengajuan?</h3>
                                 <p className="text-[14px] text-google-textVariant mb-6">Pengajuan pinjam ini akan dihapus dari daftar.</p>
@@ -2391,7 +2391,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {/* Modal hapus */}
                     {deleteConfirmId && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30">
                                     <Icon name="delete" className="text-[40px] text-google-red" />
                                 </div>
@@ -2656,7 +2656,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         {/* Modal pembayaran */}
                         {showPayModal && (
                             <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 ">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[28px] p-6 w-full max-w-sm shadow-2xl border-2 border-slate-200 my-4">
+                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[28px] p-6 w-full max-w-sm shadow-2xl border-2 border-slate-200 my-4">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[18px] font-extrabold text-google-text">Cara Pembayaran</h3>
                                         <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border-2 border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
@@ -2972,7 +2972,7 @@ function Galeri({ data, setData, userRole }) {
 
                     {isFormOpen && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm shadow-2xl border-2 border-slate-200 flex flex-col transform scale-100 transition-transform">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm shadow-2xl border-2 border-slate-200 flex flex-col transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">Unggah Dokumentasi</h3>
                                 <div className="space-y-5">
                                     <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul / Kegiatan</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Contoh: Kerja Bakti 17an" /></div>
@@ -3008,7 +3008,7 @@ function Galeri({ data, setData, userRole }) {
                     
                     {deleteConfirmId && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Hapus Foto?</h3>
                                 <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Foto ini akan dihapus dari galeri warga.</p>
@@ -3160,8 +3160,8 @@ function Galeri({ data, setData, userRole }) {
                     )}
                     
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print  transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Hapus Informasi?</h3>
                                 <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Konten ini akan dihapus secara permanen dari layar warga.</p>
@@ -3259,7 +3259,7 @@ function Galeri({ data, setData, userRole }) {
 
                     {isFormOpen && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">{editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}</h3>
                                 <div className="space-y-5">
                                     <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
@@ -3284,8 +3284,8 @@ function Galeri({ data, setData, userRole }) {
                         </div>
                     )}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print  transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="person_remove" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Hapus Warga?</h3>
                                 <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Data warga dan riwayatnya akan dihapus permanen.</p>
@@ -3454,8 +3454,8 @@ function Galeri({ data, setData, userRole }) {
                         </div>
 
                         {isTransferModalOpen && (
-                            <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print  transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
+                            <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                     <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
                                     <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Setor ke Kas RT</h3>
                                     <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Mutasi dana fisik dari Iuran ke Saldo Buku Kas Utama.</p>
@@ -3525,7 +3525,7 @@ function Galeri({ data, setData, userRole }) {
                     {/* FIX: Modal konfirmasi hapus agenda */}
                     {deleteConfirmAgendaId && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Hapus Agenda?</h3>
                                 <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Agenda iuran beserta seluruh data pembayaran warga akan dihapus permanen.</p>
@@ -3714,7 +3714,7 @@ function Galeri({ data, setData, userRole }) {
 
                     {isModalOpen && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <div className={`mb-6 w-20 h-20 rounded-full flex items-center justify-center border-2 ${formData.type === 'Pemasukan' ? 'bg-google-greenLight text-google-green border-google-green/30' : 'bg-google-redLight text-google-red border-google-red/30'}`}><Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[36px]" fill="true" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">{editingId ? 'Edit' : 'Catat'} {formData.type}</h3>
                                 <div className="space-y-5">
@@ -3759,8 +3759,8 @@ function Galeri({ data, setData, userRole }) {
                     )}
 
                     {isTransferModalOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print  transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Pencairan Jimpitan</h3>
                                 <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Tarik dana dari kas Jimpitan Fisik ke Kas Utama RT.</p>
@@ -3989,8 +3989,8 @@ function Galeri({ data, setData, userRole }) {
                                 <div className="pt-8 flex justify-end no-print border-t-2 border-slate-100 mt-10"><button onClick={() => setStep(2)} className="bg-google-blue text-white px-10 py-4 rounded-full font-extrabold text-[15px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center gap-2">Lanjut Ke Rekapitulasi <Icon name="arrow_forward" className="text-[20px]"/></button></div>
                                 
                                 {showHolidayModal && (
-                                    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print  transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
+                                    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                                        <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
                                             <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="event_busy" className="text-[48px] text-google-yellowDark" /></div>
                                             <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Liburkan Bulan Ini?</h3>
                                             <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Periode <b className="text-google-text">{formatBulanTahun(arisanPeriod)}</b> akan ditandai sebagai bulan libur.</p>
@@ -4232,7 +4232,7 @@ function Galeri({ data, setData, userRole }) {
                     </div>
 
                     {editingHistoryId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print  transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
 <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left max-h-[90vh] flex flex-col border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-extrabold text-google-text mb-1 shrink-0 tracking-tight">Revisi Kehadiran</h3><p className="text-[14px] font-medium text-google-textVariant mb-6 shrink-0 leading-relaxed">Saldo akan disesuaikan otomatis mengikuti perubahan presensi ini.</p>
                                 <div className="overflow-y-auto space-y-4 flex-1 pb-4 pr-1 hide-scrollbar">
@@ -4548,7 +4548,7 @@ function Galeri({ data, setData, userRole }) {
 
                     {modalConfig && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <div className="mb-6 bg-google-greenLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="check_circle" className="text-[48px] text-google-green" fill="true" /></div>
                                 <p className="text-google-text text-[20px] font-extrabold mb-8 leading-snug tracking-tight">{modalConfig.message}</p>
                                 <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue text-white px-8 py-4 rounded-full font-extrabold text-[15px] border-2 border-google-blueDark hover:bg-google-blueDark active:scale-95 transition-all duration-300 shadow-md">Tutup Pesan</button>
@@ -4556,8 +4556,8 @@ function Galeri({ data, setData, userRole }) {
                         </div>
                     )}
                     {confirmResetModal && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print  transition-opacity">
-<div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <h3 className="text-3xl font-extrabold text-google-red mb-2 tracking-tight">Reset Total?</h3>
                                 <p className="text-[15px] font-medium text-google-textVariant mb-8 leading-relaxed">Tindakan ini permanen dan tidak bisa dibatalkan. Ketik kata <b className="text-google-red">RESET</b> di bawah ini.</p>
                                 <div className="bg-slate-50 rounded-[16px] px-5 py-4 border-2 border-google-red/40 focus-within:border-google-red focus-within:bg-white focus-within:shadow-md transition-all mb-8"><input type="text" value={resetPromptInput} onChange={e => setResetPromptInput(e.target.value)} className="w-full bg-transparent border-none text-[22px] outline-none p-0 text-google-redDark uppercase tracking-widest font-extrabold placeholder:text-google-red/30" placeholder="RESET" /></div>
