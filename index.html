@@ -3546,6 +3546,7 @@ function Galeri({ data, setData, userRole }) {
             const [formData, setFormData] = useState({ type: 'Pengeluaran', category: 'Pembelian Barang', description: '', amount: '', date: getLocalDate(), receiptUrl: null });
             const [errorMsg, setErrorMsg] = useState('');
             const [isUploading, setIsUploading] = useState(false);
+            const [editingId, setEditingId] = useState(null);
 
             const handleImageUpload = (e) => {
                 const file = e.target.files[0];
@@ -3580,12 +3581,31 @@ function Galeri({ data, setData, userRole }) {
                 if (!formData.description) return setErrorMsg("Keterangan wajib diisi!");
                 const nominal = safeNumber(formData.amount);
                 if (nominal <= 0) return setErrorMsg("Nominal harus lebih dari Rp 0!");
-                if (formData.type === 'Pengeluaran' && nominal > balance) return setErrorMsg(`Saldo tidak cukup! Saldo saat ini ${formatRp(balance)}`);
-                if (formData.type === 'Pemasukan') setBalance(prev => prev + nominal); else setBalance(prev => prev - nominal);
-                setTransactions([{ id: Date.now(), ...formData, amount: nominal }, ...transactions]);
+                
+                if (editingId) {
+                    const oldTx = transactions.find(t => t.id === editingId);
+                    let tempBalance = balance;
+                    if (oldTx.type === 'Pemasukan') tempBalance -= oldTx.amount;
+                    else tempBalance += oldTx.amount;
+                    
+                    if (formData.type === 'Pengeluaran' && nominal > tempBalance) return setErrorMsg(`Saldo tidak cukup! Saldo saat ini ${formatRp(tempBalance)}`);
+                    
+                    if (formData.type === 'Pemasukan') tempBalance += nominal;
+                    else tempBalance -= nominal;
+                    
+                    setBalance(tempBalance);
+                    setTransactions(transactions.map(t => t.id === editingId ? { ...formData, amount: nominal } : t));
+                    setEditingId(null);
+                    showToast(`Transaksi berhasil diperbarui.`);
+                } else {
+                    if (formData.type === 'Pengeluaran' && nominal > balance) return setErrorMsg(`Saldo tidak cukup! Saldo saat ini ${formatRp(balance)}`);
+                    if (formData.type === 'Pemasukan') setBalance(prev => prev + nominal); else setBalance(prev => prev - nominal);
+                    setTransactions([{ id: Date.now(), ...formData, amount: nominal }, ...transactions]);
+                    showToast(`Transaksi ${formData.type.toLowerCase()} berhasil dicatat.`);
+                }
+                
                 setIsModalOpen(false); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null });
                 setIsUploading(false);
-                showToast(`Transaksi ${formData.type.toLowerCase()} berhasil dicatat.`);
             };
 
             const handleTransferJimpitan = () => {
@@ -3637,11 +3657,11 @@ function Galeri({ data, setData, userRole }) {
 
                     {userRole === 'admin' && (
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 no-print">
-                            <button onClick={() => { setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/20"><Icon name="add" className="text-[28px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[15px] font-extrabold text-google-text">Catat Pemasukan</span>
                             </button>
-                            <button onClick={() => { setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/20"><Icon name="remove" className="text-[28px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[15px] font-extrabold text-google-text">Catat Pengeluaran</span>
                             </button>
@@ -3668,13 +3688,22 @@ function Galeri({ data, setData, userRole }) {
                                 </div>
                                 <div className="text-left sm:text-right flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center border-t-2 sm:border-t-0 border-slate-100 pt-4 sm:pt-0 w-full sm:w-auto">
                                     <span className={`font-extrabold text-[20px] ${t.type === 'Pemasukan' ? 'text-google-greenDark' : 'text-google-redDark'} tracking-tight`}>{t.type === 'Pemasukan' ? '+' : '-'}{formatRp(t.amount)}</span>
-                                    {userRole === 'admin' && t.category !== 'Saldo Awal' && <button onClick={() => { 
-                                        if (t.type === 'Pemasukan') setBalance(prev => prev - t.amount); 
-                                        else setBalance(prev => prev + t.amount);
-                                        // FIX KRITIS-2: Jika transaksi Mutasi Jimpitan dihapus, kembalikan ke jimpitan
-                                        if (t.category === 'Mutasi Jimpitan') setJimpitanBalance(prev => prev + t.amount);
-                                        setTransactions(transactions.filter(x => x.id !== t.id)); 
-                                    }} className="text-google-red bg-white hover:bg-google-redLight border-2 border-slate-200 hover:border-google-red/40 rounded-full mt-0 sm:mt-2 px-4 py-2 text-[11px] font-extrabold transition-all duration-300 active:scale-95 flex items-center gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 uppercase tracking-widest"><span className="hidden sm:inline">Hapus Data</span><Icon name="delete" className="text-[16px]" /></button>}
+                                    {userRole === 'admin' && t.category !== 'Saldo Awal' && (
+                                        <div className="flex gap-2 mt-0 sm:mt-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <button onClick={() => {
+                                                setEditingId(t.id);
+                                                setFormData(t);
+                                                setIsModalOpen(true);
+                                                setErrorMsg('');
+                                            }} className="text-google-blue bg-white hover:bg-google-blueLight border-2 border-slate-200 hover:border-google-blue/40 rounded-full px-3 py-1.5 text-[11px] font-extrabold transition-all duration-300 active:scale-95 flex items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[16px]" /><span className="hidden sm:inline">Edit</span></button>
+                                            <button onClick={() => { 
+                                                if (t.type === 'Pemasukan') setBalance(prev => prev - t.amount); 
+                                                else setBalance(prev => prev + t.amount);
+                                                if (t.category === 'Mutasi Jimpitan') setJimpitanBalance(prev => prev + t.amount);
+                                                setTransactions(transactions.filter(x => x.id !== t.id)); 
+                                            }} className="text-google-red bg-white hover:bg-google-redLight border-2 border-slate-200 hover:border-google-red/40 rounded-full px-3 py-1.5 text-[11px] font-extrabold transition-all duration-300 active:scale-95 flex items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[16px]" /><span className="hidden sm:inline">Hapus</span></button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         ))}
@@ -3685,7 +3714,7 @@ function Galeri({ data, setData, userRole }) {
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print overflow-y-auto">
                              <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <div className={`mb-6 w-20 h-20 rounded-full flex items-center justify-center border-2 ${formData.type === 'Pemasukan' ? 'bg-google-greenLight text-google-green border-google-green/30' : 'bg-google-redLight text-google-red border-google-red/30'}`}><Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[36px]" fill="true" /></div>
-                                <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">Catat {formData.type}</h3>
+                                <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">{editingId ? 'Edit' : 'Catat'} {formData.type}</h3>
                                 <div className="space-y-5">
                                     <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal Transaksi</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className={`w-full bg-slate-50 border-2 border-slate-200 p-4 text-[15px] font-bold outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} /></div>
                                     <div>
@@ -3720,7 +3749,7 @@ function Galeri({ data, setData, userRole }) {
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-bold text-[13px] px-4 py-3.5 rounded-[16px] mt-6 flex items-center gap-2"><Icon name="error" className="text-[18px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex gap-3 mt-8 pt-6 border-t-2 border-slate-100">
-                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className={`flex-1 text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-google-green border-google-greenDark hover:bg-google-greenDark' : 'bg-google-red border-google-redDark hover:bg-google-redDark'}`}>Simpan Data</button>
                                 </div>
                             </div>
