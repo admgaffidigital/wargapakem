@@ -1522,58 +1522,98 @@ Developer: NOVAN RESTU UTOMO
 
         function FlagWavingBackground() {
             return (
-                <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-slate-50/40 no-print">
+                <div className="fixed inset-0 -z-20 overflow-hidden pointer-events-none bg-slate-50 no-print">
                     <style>{`
-                        @keyframes waving-flag-motion {
-                            0% { transform: translate(0, 0) scale(1) skewX(0deg); }
-                            50% { transform: translate(-3%, -2%) scale(1.05) skewX(1deg); }
-                            100% { transform: translate(0, 0) scale(1) skewX(0deg); }
-                        }
-                        @keyframes waving-flag-shadows {
-                            0% { opacity: 0.35; transform: scale(1) translate(0px, 0px); }
-                            50% { opacity: 0.55; transform: scale(1.06) translate(-15px, -10px); }
-                            100% { opacity: 0.35; transform: scale(1) translate(0px, 0px); }
-                        }
-                        .flag-wave-stripe-red {
+                        .flag-container {
                             position: absolute;
-                            width: 250%;
-                            height: 120%;
-                            top: -65%;
-                            left: -50%;
-                            background: linear-gradient(180deg, rgba(239, 68, 68, 0.09) 0%, rgba(220, 38, 38, 0.13) 50%, rgba(185, 28, 28, 0.05) 100%);
-                            transform-origin: center center;
-                            filter: blur(40px);
-                            animation: waving-flag-motion 14s infinite ease-in-out;
+                            inset: 0;
+                            width: 100%;
+                            height: 100%;
+                            opacity: 0.18;
+                            display: flex;
+                            flex-direction: column;
+                            filter: contrast(1.15) saturate(1.25);
                         }
-                        .flag-wave-stripe-white {
-                            position: absolute;
-                            width: 250%;
-                            height: 120%;
-                            top: 15%;
-                            left: -50%;
-                            background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.7) 50%, rgba(255, 255, 255, 0) 100%);
-                            transform-origin: center center;
-                            filter: blur(45px);
-                            animation: waving-flag-motion 18s infinite ease-in-out -4s;
+                        .flag-red {
+                            height: 50vh;
+                            width: 100%;
+                            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+                            position: relative;
+                            overflow: hidden;
                         }
-                        .flag-wave-fold-shadow {
+                        .flag-white {
+                            height: 50vh;
+                            width: 100%;
+                            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+                            position: relative;
+                            overflow: hidden;
+                        }
+                        /* Efek tiupan angin pada serat kain */
+                        .flag-wind-overlay {
                             position: absolute;
-                            inset: -50%;
+                            inset: -100px;
                             background: repeating-linear-gradient(
-                                125deg,
-                                transparent 0px,
-                                transparent 100px,
-                                rgba(0, 0, 0, 0.015) 200px,
-                                rgba(255, 255, 255, 0.22) 300px,
-                                transparent 400px
+                                135deg,
+                                rgba(0, 0, 0, 0.04) 0px,
+                                rgba(0, 0, 0, 0.04) 40px,
+                                rgba(255, 255, 255, 0.15) 80px,
+                                rgba(255, 255, 255, 0.15) 120px,
+                                rgba(0, 0, 0, 0) 160px,
+                                rgba(0, 0, 0, 0.06) 200px
                             );
                             filter: blur(35px);
-                            animation: waving-flag-shadows 11s infinite ease-in-out;
+                            mix-blend-mode: overlay;
+                            animation: wind-wave 12s infinite linear;
+                        }
+                        /* Riak lipatan kain bendera 3D */
+                        .flag-fabric-folds {
+                            position: absolute;
+                            inset: 0;
+                            background: radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.28) 0%, transparent 60%),
+                                        radial-gradient(circle at 85% 75%, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+                            mix-blend-mode: multiply;
+                            animation: fold-shift 15s infinite ease-in-out;
+                        }
+                        @keyframes wind-wave {
+                            0% { transform: translate(0, 0) rotate(0deg); }
+                            100% { transform: translate(-300px, 300px) rotate(0deg); }
+                        }
+                        @keyframes fold-shift {
+                            0%, 100% { transform: scale(1) translate(0px, 0px); }
+                            50% { transform: scale(1.08) translate(-15px, 10px); }
+                        }
+                        /* Pembatas bergelombang dinamis (efek bendera berkibar) */
+                        .flag-wave-divider {
+                            position: absolute;
+                            top: 50vh;
+                            left: 0;
+                            width: 200%;
+                            height: 120px;
+                            margin-top: -60px;
+                            z-index: 10;
+                            fill: #ffffff;
+                            animation: wave-divider-move 8s infinite linear;
+                        }
+                        @keyframes wave-divider-move {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(-50%); }
                         }
                     `}</style>
-                    <div className="flag-wave-stripe-red"></div>
-                    <div className="flag-wave-stripe-white"></div>
-                    <div className="flag-wave-fold-shadow"></div>
+                    <div className="flag-container">
+                        <div className="flag-red">
+                            <div className="flag-wind-overlay"></div>
+                            <div className="flag-fabric-folds"></div>
+                        </div>
+                        <div className="flag-white">
+                            <div className="flag-wind-overlay"></div>
+                            <div className="flag-fabric-folds"></div>
+                        </div>
+                        {/* Pembatas lekukan kibaran bendera */}
+                        <svg className="flag-wave-divider" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z" fill="#ffffff" />
+                            <path d="M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z" fill="#f1f5f9" opacity="0.6" transform="translate(15, 6)" />
+                        </svg>
+                    </div>
                 </div>
             );
         }
