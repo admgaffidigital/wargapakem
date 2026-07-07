@@ -11,7 +11,7 @@ Developer: NOVAN RESTU UTOMO
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-2636322336243340">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover' name='viewport'/>
-    <title>Admin Warga RT</title>
+    <title>Portal Warga RT - PAKEM | Banyuanyar Gurah Kediri</title>
 
     
     <!-- ===== PWA: Install to Homescreen ===== -->
@@ -2141,7 +2141,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
         }
 
 
-                function Inventaris({ data, setData, userRole, pinjamData }) {
+        function Inventaris({ data, setData, userRole, pinjamData }) {
             // formData kini punya kondisi per tipe: qty_baru, qty_bekas, qty_rusak
             const [formData, setFormData] = useState({ name: '', kondisi: { baru: 0, bekas: 0, rusak: 0 }, imageUrl: '' });
             const [editingId, setEditingId] = useState(null);
@@ -3388,7 +3388,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
         }
 
 
-function Galeri({ data, setData, userRole }) {
+        function Galeri({ data, setData, userRole }) {
             const [isFormOpen, setIsFormOpen] = useState(false);
             const [editingId, setEditingId] = useState(null);
             const [formData, setFormData] = useState({ title: '', date: getLocalDate(), imageUrl: '', description: '' });
