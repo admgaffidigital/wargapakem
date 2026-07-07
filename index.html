@@ -273,6 +273,9 @@ Developer: NOVAN RESTU UTOMO
         }
         //]]>
     </script>
+    <!-- Leaflet Map CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
     <div style='display:none;'></div>
@@ -1308,6 +1311,7 @@ Developer: NOVAN RESTU UTOMO
                 { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
                 { id: 'kegiatan', icon: 'event', label: 'Jadwal', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
                 { id: 'kalender', icon: 'calendar_month', label: 'Kalender', bg: 'bg-google-redLight', color: 'text-google-redDark border-2 border-google-red' },
+                { id: 'peta', icon: 'map', label: 'Peta Desa', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-300' },
                 ...(userRole === 'admin' ? [
                     { id: 'pertemuan', icon: 'checklist', label: 'Absen Arisan', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                     { id: 'pengaturan', icon: 'settings', label: 'Setelan Admin', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-300' }
@@ -1332,6 +1336,7 @@ Developer: NOVAN RESTU UTOMO
                     case 'pemenang': return <Pemenang members={members} />;
                     case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} setNextMeeting={setNextMeeting} userRole={userRole} />;
                     case 'kalender': return <Kalender />;
+                    case 'peta': return <PetaDesa />;
                     default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} />;
                 }
             };
@@ -5366,6 +5371,177 @@ function Galeri({ data, setData, userRole }) {
                                         </button>
                                     );
                                 })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function PetaDesa() {
+            useEffect(() => {
+                const map = L.map('village-map', {
+                    scrollWheelZoom: false
+                }).setView([-7.8172, 112.0832], 15);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+                const redIcon = L.icon({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                });
+
+                const blueIcon = L.icon({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                });
+
+                const balaiDesa = L.marker([-7.8164, 112.0818], { icon: redIcon }).addTo(map);
+                balaiDesa.bindPopup(`
+                    <div style="font-family: 'Outfit', sans-serif; text-align: center;">
+                        <h4 style="margin: 0 0 5px; font-weight: 800; color: #b91c1c;">Kantor Balai Desa Banyuanyar</h4>
+                        <p style="margin: 0; font-size: 11px; font-weight: bold; color: #475569;">Pusat Administrasi & Layanan Publik Desa</p>
+                    </div>
+                `).openPopup();
+
+                const markers = [
+                    { coords: [-7.8185, 112.0850], title: 'Pos Keamanan RT 01', desc: 'Wilayah RW 02 - Desa Banyuanyar' },
+                    { coords: [-7.8155, 112.0842], title: 'Pos Keamanan RT 02', desc: 'Wilayah RW 02 - Desa Banyuanyar' },
+                    { coords: [-7.8192, 112.0805], title: 'Batas Wilayah Barat (RT 03)', desc: 'Pintu Masuk Barat Desa' },
+                    { coords: [-7.8140, 112.0820], title: 'Batas Wilayah Utara (RT 04)', desc: 'Arah Menuju Adan-adan' }
+                ];
+
+                markers.forEach(m => {
+                    L.marker(m.coords, { icon: blueIcon }).addTo(map)
+                        .bindPopup(`
+                            <div style="font-family: 'Outfit', sans-serif;">
+                                <h5 style="margin: 0 0 4px; font-weight: 800; color: #1e3a8a;">${m.title}</h5>
+                                <p style="margin: 0; font-size: 11px; font-weight: bold; color: #64748b;">${m.desc}</p>
+                            </div>
+                        `);
+                });
+
+                const banyuanyarBoundary = [
+                    [-7.8120, 112.0780],
+                    [-7.8125, 112.0880],
+                    [-7.8220, 112.0890],
+                    [-7.8230, 112.0790]
+                ];
+
+                const boundaryPolygon = L.polygon(banyuanyarBoundary, {
+                    color: '#dc2626',
+                    fillColor: '#ef4444',
+                    fillOpacity: 0.1,
+                    weight: 3,
+                    dashArray: '6, 8'
+                }).addTo(map);
+
+                boundaryPolygon.bindPopup(`
+                    <div style="font-family: 'Outfit', sans-serif; text-align: center;">
+                        <h4 style="margin: 0 0 4px; font-weight: 800; color: #dc2626;">Batas Wilayah Desa Banyuanyar</h4>
+                        <p style="margin: 0; font-size: 11px; font-weight: bold; color: #64748b;">Kec. Gurah, Kab. Kediri, Jawa Timur</p>
+                    </div>
+                `);
+
+                return () => {
+                    map.remove();
+                };
+            }, []);
+
+            return (
+                <div className="space-y-6 max-w-5xl mx-auto animate-tabFadeIn">
+                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
+                        <div className="text-center md:text-left">
+                            <h2 className="text-2xl font-extrabold text-google-text tracking-tight flex items-center gap-2 justify-center md:justify-start">
+                                <Icon name="map" className="text-[28px] text-red-600"/>
+                                Area Cakupan Desa Banyuanyar
+                            </h2>
+                            <p className="text-[14px] font-medium text-google-textVariant mt-1.5">Peta interaktif wilayah Desa Banyuanyar, Kecamatan Gurah, Kabupaten Kediri.</p>
+                        </div>
+                        <div className="flex items-center gap-2 bg-red-50 border border-red-500/20 px-4 py-2.5 rounded-[20px] shadow-sm">
+                            <Icon name="explore" className="text-[20px] text-red-600" fill="true"/>
+                            <div className="text-[12.5px] font-extrabold text-red-800">
+                                Kode Pos: 64181
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-[32px] p-4 border-2 border-slate-200 shadow-sm overflow-hidden">
+                        <div id="village-map" className="h-[450px] w-full rounded-[24px] z-10 border border-slate-200/80"></div>
+                        <p className="text-[11px] font-bold text-center text-google-textVariant mt-3 flex items-center justify-center gap-1"><Icon name="info" className="text-[14px]" /> Klik marker peta untuk rincian lokasi atau gerakkan peta secara interaktif.</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-white rounded-[32px] p-6 border-2 border-slate-200 shadow-sm">
+                            <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+                                <Icon name="border_outer" className="text-[18px] text-red-600" />
+                                Batas Administrasi Desa
+                            </h3>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="bg-slate-50 p-4 rounded-[20px] border border-slate-200/50">
+                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Utara</p>
+                                    <p className="font-extrabold text-[14px] text-google-text">Desa Adan-adan</p>
+                                </div>
+                                <div className="bg-slate-50 p-4 rounded-[20px] border border-slate-200/50">
+                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Selatan</p>
+                                    <p className="font-extrabold text-[14px] text-google-text">Desa Gurah</p>
+                                </div>
+                                <div className="bg-slate-50 p-4 rounded-[20px] border border-slate-200/50">
+                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Timur</p>
+                                    <p className="font-extrabold text-[14px] text-google-text">Desa Tumpang</p>
+                                </div>
+                                <div className="bg-slate-50 p-4 rounded-[20px] border border-slate-200/50">
+                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Barat</p>
+                                    <p className="font-extrabold text-[14px] text-google-text">Desa Sukorejo</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white rounded-[32px] p-6 border-2 border-slate-200 shadow-sm">
+                            <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+                                <Icon name="contact_phone" className="text-[18px] text-red-600" />
+                                Kontak Penting Layanan Desa
+                            </h3>
+                            <div className="space-y-3">
+                                <div className="flex justify-between items-center bg-red-50/50 border border-red-500/10 px-4 py-3 rounded-[16px]">
+                                    <div className="flex items-center gap-2.5">
+                                        <Icon name="local_hospital" className="text-[18px] text-red-600" fill="true"/>
+                                        <span className="text-[13px] font-bold text-red-800">Ambulans Siaga Desa</span>
+                                    </div>
+                                    <span className="text-[13px] font-black text-red-700">0812-3456-7890</span>
+                                </div>
+                                <div className="flex justify-between items-center bg-slate-50 border border-slate-200/50 px-4 py-3 rounded-[16px]">
+                                    <div className="flex items-center gap-2.5">
+                                        <Icon name="business" className="text-[18px] text-slate-500" fill="true"/>
+                                        <span className="text-[13px] font-bold text-google-text">Kantor Balai Desa</span>
+                                    </div>
+                                    <span className="text-[13px] font-black text-google-textVariant">(0354) 689123</span>
+                                </div>
+                                <div className="flex justify-between items-center bg-slate-50 border border-slate-200/50 px-4 py-3 rounded-[16px]">
+                                    <div className="flex items-center gap-2.5">
+                                        <Icon name="shield" className="text-[18px] text-blue-600" fill="true"/>
+                                        <span className="text-[13px] font-bold text-google-text">Bhabinkamtibmas</span>
+                                    </div>
+                                    <span className="text-[13px] font-black text-google-textVariant">0821-4455-6677</span>
+                                </div>
+                                <div className="flex justify-between items-center bg-slate-50 border border-slate-200/50 px-4 py-3 rounded-[16px]">
+                                    <div className="flex items-center gap-2.5">
+                                        <Icon name="military_tech" className="text-[18px] text-emerald-600" fill="true"/>
+                                        <span className="text-[13px] font-bold text-google-text">Babinsa Desa</span>
+                                    </div>
+                                    <span className="text-[13px] font-black text-google-textVariant">0857-8899-0011</span>
+                                </div>
                             </div>
                         </div>
                     </div>
