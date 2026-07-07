@@ -113,6 +113,8 @@ Developer: NOVAN RESTU UTOMO
     <script crossorigin='anonymous' src='https://unpkg.com/react@18.3.1/umd/react.production.min.js'></script>
     <script crossorigin='anonymous' src='https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'></script>
     <script src='https://unpkg.com/@babel/standalone@7.25.6/babel.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQmJb18xW40rQ/O3n5jB1/R3zK4w4/S20nS4kS4Z4A5R18z3e2E18X0z/Z/Kx/s1O4Q64W2z4g9hZ0aEcwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-q/T3Q6V1p1Xz/V9A3c6V5x5w9u5zH4v1Q6W1g1z4W2O9C1z4f6H5Q4b0O3V6g9H1W9A4K0c1F2f9O5Q7V8e2zQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
         /* Prevent Material Symbols from flashing raw text names before loading */
@@ -197,6 +199,30 @@ Developer: NOVAN RESTU UTOMO
             .ttd-box { width: 220px; text-align: center; font-size: 11pt; font-weight: bold; } .ttd-space { height: 80px; }
             .ttd-name { font-weight: bold; text-decoration: underline; margin-bottom: 2px; }
         }
+
+        /* PREVIEW MODE (MIMICS PRINT) */
+        body.preview-mode { background-color: #f1f5f9 !important; color: black !important; font-family: 'Times New Roman', Times, serif !important; padding: 80px 20px 20px 20px; min-height: 100vh; overflow-y: auto; }
+        body.preview-mode .no-print { display: none !important; }
+        body.preview-mode .print-only { 
+            display: block !important; 
+            background: white; 
+            max-width: 21cm; /* A4 width */
+            margin: 0 auto; 
+            padding: 2cm; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            min-height: 29.7cm; /* A4 height */
+        }
+        body.preview-mode * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body.preview-mode .print-table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 20px; font-size: 11pt; }
+        body.preview-mode .print-table th, body.preview-mode .print-table td { border: 2px solid black !important; padding: 8px; text-align: left; }
+        body.preview-mode .print-table th { background-color: #cbd5e1 !important; font-weight: bold; text-align: center; }
+        body.preview-mode .text-right { text-align: right !important; } body.preview-mode .text-center { text-align: center !important; }
+        body.preview-mode .kop-surat { text-align: center; border-bottom: 4px solid black; padding-bottom: 12px; margin-bottom: 20px; }
+        body.preview-mode .kop-surat h1 { font-size: 16pt; font-weight: bold; margin: 0; text-transform: uppercase; color: black !important; }
+        body.preview-mode .kop-surat p { font-size: 11pt; margin: 4px 0 0 0; color: black !important; font-weight: bold; }
+        body.preview-mode .ttd-container { margin-top: 40px; display: flex; justify-content: space-between; }
+        body.preview-mode .ttd-box { width: 220px; text-align: center; font-size: 11pt; font-weight: bold; } body.preview-mode .ttd-space { height: 80px; }
+        body.preview-mode .ttd-name { font-weight: bold; text-decoration: underline; margin-bottom: 2px; }
 
         /* ===== Google AdSense: Sembunyikan slot kosong yang belum diisi ===== */
         /* ins yang belum mendapat iklan dari Google tidak boleh menempati ruang */
@@ -1186,6 +1212,91 @@ Developer: NOVAN RESTU UTOMO
                 </div>
             );
         }
+        function PrintPreviewToolbar({ onCancel }) {
+            const handlePrintNative = () => {
+                window.print();
+            };
+
+            const handleDownloadImage = async () => {
+                try {
+                    const content = document.body;
+                    const toolbar = document.getElementById('print-preview-toolbar');
+                    if (toolbar) toolbar.style.display = 'none';
+
+                    const canvas = await html2canvas(content, {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: '#ffffff'
+                    });
+                    
+                    if (toolbar) toolbar.style.display = 'flex';
+
+                    const link = document.createElement('a');
+                    link.download = `Dokumen-RT-${new Date().getTime()}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                } catch (err) {
+                    console.error("Gagal membuat gambar", err);
+                    alert("Gagal menyimpan gambar.");
+                }
+            };
+
+            const handleDownloadPDF = async () => {
+                try {
+                    const content = document.body;
+                    const toolbar = document.getElementById('print-preview-toolbar');
+                    if (toolbar) toolbar.style.display = 'none';
+
+                    const canvas = await html2canvas(content, {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: '#ffffff'
+                    });
+                    
+                    if (toolbar) toolbar.style.display = 'flex';
+
+                    const imgData = canvas.toDataURL('image/png');
+                    const { jsPDF } = window.jspdf;
+                    
+                    const pdf = new jsPDF({
+                        orientation: 'portrait',
+                        unit: 'mm',
+                        format: 'a4'
+                    });
+
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                    
+                    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.save(`Dokumen-RT-${new Date().getTime()}.pdf`);
+                } catch (err) {
+                    console.error("Gagal membuat PDF", err);
+                    alert("Gagal menyimpan PDF.");
+                }
+            };
+
+            return (
+                <div id="print-preview-toolbar" className="fixed top-0 left-0 right-0 bg-slate-800 text-white p-4 flex flex-wrap items-center justify-between z-[99999] shadow-lg no-print no-capture gap-3">
+                    <div className="flex items-center gap-3">
+                        <button onClick={onCancel} className="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors">
+                            <Icon name="close" /> Batal
+                        </button>
+                        <span className="font-bold hidden sm:inline">Pratinjau Cetak</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <button onClick={handleDownloadImage} className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors">
+                            <Icon name="image" /> Gambar
+                        </button>
+                        <button onClick={handleDownloadPDF} className="bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors">
+                            <Icon name="picture_as_pdf" /> PDF
+                        </button>
+                        <button onClick={handlePrintNative} className="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors">
+                            <Icon name="print" /> Cetak
+                        </button>
+                    </div>
+                </div>
+            );
+        }
 
 
         function App() {
@@ -1219,6 +1330,16 @@ Developer: NOVAN RESTU UTOMO
 
             // State khusus UI tambahan
             const [showPwaGuide, setShowPwaGuide] = useState(false);
+            const [isPreviewMode, setIsPreviewMode] = useState(false);
+
+            useEffect(() => {
+                window.handlePrintPreview = () => setIsPreviewMode(true);
+                if (isPreviewMode) {
+                    document.body.classList.add('preview-mode');
+                } else {
+                    document.body.classList.remove('preview-mode');
+                }
+            }, [isPreviewMode]);
 
             // Jika Firebase tidak tersedia (offline total / gagal init), anggap semua loaded
             const firebaseUnavailable = !window.firebaseDb;
@@ -1363,6 +1484,7 @@ Developer: NOVAN RESTU UTOMO
 
             return (
                 <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
+                    {isPreviewMode && <PrintPreviewToolbar onCancel={() => setIsPreviewMode(false)} />}
                     <FlagWavingBackground />
                     <div className="sticky top-0 z-40 no-print w-full">
                         {isOffline && (
@@ -3850,7 +3972,7 @@ function Galeri({ data, setData, userRole }) {
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Buku Induk Warga</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Total <span className="font-extrabold text-google-blue">{members.length} Warga</span> Terdaftar</p></div>
                         <div className="flex gap-3 w-full sm:w-auto overflow-x-auto hide-scrollbar pb-1 sm:pb-0">
-                            <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex items-center justify-center gap-2"><Icon name="print" className="text-[18px]" /><span>Cetak Form</span></button>
+                            <button onClick={() => window.handlePrintPreview()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex items-center justify-center gap-2"><Icon name="print" className="text-[18px]" /><span>Cetak Form</span></button>
                             {userRole === 'admin' && <button onClick={() => { setFormData({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 shrink-0 flex items-center justify-center gap-2"><Icon name="person_add" className="text-[20px]" /><span>Tambah Data</span></button>}
                         </div>
                     </div>
@@ -4022,7 +4144,7 @@ function Galeri({ data, setData, userRole }) {
                     <div className="space-y-6 max-w-5xl mx-auto">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm">
                             <div className="flex items-center gap-5"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[20px] font-extrabold text-google-text" /></button><div><h2 className="text-[22px] sm:text-[24px] font-extrabold text-google-text leading-tight tracking-tight">{selectedAgenda.title}</h2><p className="text-[14px] font-medium text-google-textVariant mt-1">Kelola Penyetoran Warga</p></div></div>
-                            {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"><Icon name="print" className="text-[18px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
+                            {userRole === 'admin' && <button onClick={() => window.handlePrintPreview()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"><Icon name="print" className="text-[18px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
                         </div>
 
                         <div className="hidden print-only">
@@ -4269,7 +4391,7 @@ function Galeri({ data, setData, userRole }) {
                 <div className="space-y-6 print:p-0">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Buku Kas Utama</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Catatan riwayat transaksi operasional RT.</p></div>
-                        <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold flex items-center gap-2 text-[14px] border-2 border-slate-200 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[18px]" /> <span>Cetak Laporan</span></button>
+                        <button onClick={() => window.handlePrintPreview()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold flex items-center gap-2 text-[14px] border-2 border-slate-200 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[18px]" /> <span>Cetak Laporan</span></button>
                     </div>
 
                     <div className="hidden print-only">
@@ -4560,7 +4682,7 @@ function Galeri({ data, setData, userRole }) {
                                     </div>
                                     <div className="flex flex-wrap gap-3 w-full lg:w-auto mt-2 lg:mt-0">
                                         <button onClick={() => setShowHolidayModal(true)} className="flex-1 sm:flex-none shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-full font-extrabold flex items-center justify-center gap-2 text-[14px] border-2 border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[20px]" /><span>Bulan Libur</span></button>
-                                        <button onClick={() => window.print()} className="flex-1 sm:flex-none shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold flex items-center justify-center gap-2 text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[20px]" /><span>Cetak Blanko Absen</span></button>
+                                        <button onClick={() => window.handlePrintPreview()} className="flex-1 sm:flex-none shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold flex items-center justify-center gap-2 text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[20px]" /><span>Cetak Blanko Absen</span></button>
                                     </div>
                                 </div>
                                 <div className="hidden print-only">
@@ -4800,7 +4922,7 @@ function Galeri({ data, setData, userRole }) {
                 <div className="space-y-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 no-print shadow-sm">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Riwayat Pertemuan Arisan</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Arsip resmi presensi dan sirkulasi dana bulanan.</p></div>
-                        <button onClick={() => window.print()} className="bg-white border-2 border-slate-200 text-google-text px-8 py-3.5 rounded-full font-extrabold flex items-center gap-2 text-[14px] hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[18px]" /><span>Cetak Arsip</span></button>
+                        <button onClick={() => window.handlePrintPreview()} className="bg-white border-2 border-slate-200 text-google-text px-8 py-3.5 rounded-full font-extrabold flex items-center gap-2 text-[14px] hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[18px]" /><span>Cetak Arsip</span></button>
                     </div>
 
                     {history.length > 0 && (
