@@ -43,14 +43,14 @@ Developer: NOVAN RESTU UTOMO
     // Generate ikon PWA secara dinamis via Canvas — menggunakan Garuda Pancasila
     // Setup PWA Icons menggunakan SVG asli
     (function() {
-        const GARUDA_URL = './National_emblem_of_Indonesia_Garuda_Pancasila.svg';
+        const baseUrl = window.location.origin + window.location.pathname.replace(/\/$/, '') + '/';
+        const GARUDA_URL = baseUrl + 'National_emblem_of_Indonesia_Garuda_Pancasila.svg';
         
         document.getElementById('apple-touch-icon').href = GARUDA_URL;
         document.getElementById('pwa-icon-192').href = GARUDA_URL;
         document.getElementById('pwa-icon-512').href = GARUDA_URL;
         document.getElementById('pwa-icon-fallback').href = GARUDA_URL;
 
-        const baseUrl = window.location.origin + window.location.pathname;
         const manifest = {
             id: '/portal-warga-rt',
             name: 'Portal Warga RT - PAKEM',
@@ -113,8 +113,8 @@ Developer: NOVAN RESTU UTOMO
     <script crossorigin='anonymous' src='https://unpkg.com/react@18.3.1/umd/react.production.min.js'></script>
     <script crossorigin='anonymous' src='https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'></script>
     <script src='https://unpkg.com/@babel/standalone@7.25.6/babel.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQmJb18xW40rQ/O3n5jB1/R3zK4w4/S20nS4kS4Z4A5R18z3e2E18X0z/Z/Kx/s1O4Q64W2z4g9hZ0aEcwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-q/T3Q6V1p1Xz/V9A3c6V5x5w9u5zH4v1Q6W1g1z4W2O9C1z4f6H5Q4b0O3V6g9H1W9A4K0c1F2f9O5Q7V8e2zQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
         /* Prevent Material Symbols from flashing raw text names before loading */
