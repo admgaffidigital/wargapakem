@@ -1372,7 +1372,8 @@ Developer: NOVAN RESTU UTOMO
             const activeTabTitle = NavItems.find(i => i.id === activeTab)?.label || identity.name;
 
             return (
-                <div className="min-h-screen bg-google-surface print:bg-white font-sans text-google-text flex flex-col relative">
+                <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
+                    <FlagWavingBackground />
                     <div className="sticky top-0 z-40 no-print w-full">
                         {isOffline && (
                             <div className="bg-google-redDark text-white text-center py-2.5 px-4 text-[13px] font-bold flex items-center justify-center gap-2 w-full shadow-md">
@@ -1519,6 +1520,64 @@ Developer: NOVAN RESTU UTOMO
             );
         }
 
+        function FlagWavingBackground() {
+            return (
+                <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-slate-50/40 no-print">
+                    <style>{`
+                        @keyframes waving-flag-motion {
+                            0% { transform: translate(0, 0) scale(1) skewX(0deg); }
+                            50% { transform: translate(-3%, -2%) scale(1.05) skewX(1deg); }
+                            100% { transform: translate(0, 0) scale(1) skewX(0deg); }
+                        }
+                        @keyframes waving-flag-shadows {
+                            0% { opacity: 0.35; transform: scale(1) translate(0px, 0px); }
+                            50% { opacity: 0.55; transform: scale(1.06) translate(-15px, -10px); }
+                            100% { opacity: 0.35; transform: scale(1) translate(0px, 0px); }
+                        }
+                        .flag-wave-stripe-red {
+                            position: absolute;
+                            width: 250%;
+                            height: 120%;
+                            top: -65%;
+                            left: -50%;
+                            background: linear-gradient(180deg, rgba(239, 68, 68, 0.09) 0%, rgba(220, 38, 38, 0.13) 50%, rgba(185, 28, 28, 0.05) 100%);
+                            transform-origin: center center;
+                            filter: blur(40px);
+                            animation: waving-flag-motion 14s infinite ease-in-out;
+                        }
+                        .flag-wave-stripe-white {
+                            position: absolute;
+                            width: 250%;
+                            height: 120%;
+                            top: 15%;
+                            left: -50%;
+                            background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.7) 50%, rgba(255, 255, 255, 0) 100%);
+                            transform-origin: center center;
+                            filter: blur(45px);
+                            animation: waving-flag-motion 18s infinite ease-in-out -4s;
+                        }
+                        .flag-wave-fold-shadow {
+                            position: absolute;
+                            inset: -50%;
+                            background: repeating-linear-gradient(
+                                125deg,
+                                transparent 0px,
+                                transparent 100px,
+                                rgba(0, 0, 0, 0.015) 200px,
+                                rgba(255, 255, 255, 0.22) 300px,
+                                transparent 400px
+                            );
+                            filter: blur(35px);
+                            animation: waving-flag-shadows 11s infinite ease-in-out;
+                        }
+                    `}</style>
+                    <div className="flag-wave-stripe-red"></div>
+                    <div className="flag-wave-stripe-white"></div>
+                    <div className="flag-wave-fold-shadow"></div>
+                </div>
+            );
+        }
+
         function LoginScreen({ onLogin, identity, setShowPwaGuide }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
@@ -1546,57 +1605,8 @@ Developer: NOVAN RESTU UTOMO
             };
             
             return (
-                <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 bg-gradient-to-tr from-slate-50 via-rose-50/20 to-slate-100 relative overflow-hidden">
-                    {/* Animated background elements (Red and White theme) */}
-                    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                        {/* Soft red/rose organic animated blobs */}
-                        <div className="absolute top-[-15%] left-[-10%] w-[60vw] h-[60vw] sm:w-[45vw] sm:h-[45vw] bg-red-500/10 rounded-full blur-[100px] animate-blob"></div>
-                        <div className="absolute bottom-[-15%] right-[-10%] w-[70vw] h-[70vw] sm:w-[50vw] sm:h-[50vw] bg-rose-500/10 rounded-full blur-[120px] animate-blob" style={{ animationDelay: '-6s', animationDuration: '26s' }}></div>
-                        <div className="absolute top-[35%] right-[-5%] w-[45vw] h-[45vw] sm:w-[35vw] sm:h-[35vw] bg-red-600/8 rounded-full blur-[90px] animate-blob" style={{ animationDelay: '-12s', animationDuration: '18s' }}></div>
-                        <div className="absolute bottom-[20%] left-[-5%] w-[40vw] h-[40vw] sm:w-[30vw] sm:h-[30vw] bg-rose-400/8 rounded-full blur-[80px] animate-blob" style={{ animationDelay: '-18s', animationDuration: '24s' }}></div>
-                        
-                        {/* Floating red leaves/floral elements */}
-                        <div className="absolute top-[12%] left-[15%] opacity-30 animate-float pointer-events-none" style={{ animationDelay: '0s', animationDuration: '14s' }}>
-                            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 0 9.5a7 7 0 0 1-8 8.5z"></path>
-                                <path d="M19 2c-2.26 4.33-5.27 7.14-8 8"></path>
-                            </svg>
-                        </div>
-                        <div className="absolute bottom-[22%] left-[8%] opacity-25 animate-float pointer-events-none" style={{ animationDelay: '-3s', animationDuration: '20s' }}>
-                            <svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 0 9.5a7 7 0 0 1-8 8.5z"></path>
-                                <path d="M19 2c-2.26 4.33-5.27 7.14-8 8"></path>
-                            </svg>
-                        </div>
-                        <div className="absolute top-[25%] right-[10%] opacity-30 animate-float pointer-events-none" style={{ animationDelay: '-6s', animationDuration: '16s' }}>
-                            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 0 9.5a7 7 0 0 1-8 8.5z"></path>
-                                <path d="M19 2c-2.26 4.33-5.27 7.14-8 8"></path>
-                            </svg>
-                        </div>
-                        <div className="absolute bottom-[10%] right-[18%] opacity-25 animate-float pointer-events-none" style={{ animationDelay: '-9s', animationDuration: '18s' }}>
-                            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 0 9.5a7 7 0 0 1-8 8.5z"></path>
-                                <path d="M19 2c-2.26 4.33-5.27 7.14-8 8"></path>
-                            </svg>
-                        </div>
-                        <div className="absolute top-[45%] left-[5%] opacity-20 animate-float pointer-events-none" style={{ animationDelay: '-12s', animationDuration: '22s' }}>
-                            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 0 9.5a7 7 0 0 1-8 8.5z"></path>
-                                <path d="M19 2c-2.26 4.33-5.27 7.14-8 8"></path>
-                            </svg>
-                        </div>
-
-                        {/* Floating red glowing sparks/particles */}
-                        <div className="absolute w-3 h-3 bg-red-400/20 rounded-full blur-[1px] animate-particle top-[85%] left-[20%]" style={{ animationDelay: '0s', animationDuration: '12s' }}></div>
-                        <div className="absolute w-2.5 h-2.5 bg-rose-400/30 rounded-full blur-[1px] animate-particle top-[65%] left-[45%]" style={{ animationDelay: '-2.5s', animationDuration: '10s' }}></div>
-                        <div className="absolute w-4 h-4 bg-red-400/15 rounded-full blur-[2px] animate-particle top-[75%] left-[75%]" style={{ animationDelay: '-5s', animationDuration: '15s' }}></div>
-                        <div className="absolute w-2 h-2 bg-rose-300/40 rounded-full blur-[1px] animate-particle top-[45%] left-[80%]" style={{ animationDelay: '-7.5s', animationDuration: '9s' }}></div>
-                        <div className="absolute w-3.5 h-3.5 bg-red-300/25 rounded-full blur-[1.5px] animate-particle top-[88%] left-[62%]" style={{ animationDelay: '-10s', animationDuration: '13s' }}></div>
-                        <div className="absolute w-3 h-3 bg-rose-300/30 rounded-full blur-[1px] animate-particle top-[35%] left-[14%]" style={{ animationDelay: '-4s', animationDuration: '11s' }}></div>
-                        <div className="absolute w-2 h-2 bg-red-400/35 rounded-full blur-[1px] animate-particle top-[55%] left-[28%]" style={{ animationDelay: '-8s', animationDuration: '8s' }}></div>
-                        <div className="absolute w-3 h-3 bg-rose-400/20 rounded-full blur-[1.5px] animate-particle top-[25%] left-[85%]" style={{ animationDelay: '-11s', animationDuration: '14s' }}></div>
-                    </div>
+                <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 bg-transparent relative overflow-hidden">
+                    <FlagWavingBackground />
 
                     <div className="relative overflow-hidden bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-[32px] w-full max-w-sm text-center shadow-[0_20px_50px_rgba(239,68,68,0.08)] border-2 border-red-500/10 z-10 hover:border-red-500/30 hover:shadow-[0_20px_50px_rgba(239,68,68,0.15)] transition-all duration-500">
                         <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>
