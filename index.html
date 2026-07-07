@@ -185,6 +185,7 @@ Developer: NOVAN RESTU UTOMO
             @page { size: A4; margin: 1.5cm 2cm; }
             body { background-color: white !important; color: black !important; font-family: 'Times New Roman', Times, serif !important; display: block !important; margin: 0; padding: 0; }
             .no-print { display: none !important; }
+            #print-preview-toolbar { display: none !important; }
             .print-only { display: block !important; }
             * { box-shadow: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .print-table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 20px; font-size: 11pt; page-break-inside: auto; }
@@ -1276,7 +1277,7 @@ Developer: NOVAN RESTU UTOMO
             };
 
             return (
-                <div id="print-preview-toolbar" className="fixed top-0 left-0 right-0 bg-slate-800 text-white p-4 flex flex-wrap items-center justify-between z-[99999] shadow-lg no-print no-capture gap-3">
+                <div id="print-preview-toolbar" className="fixed top-0 left-0 right-0 bg-slate-800 text-white p-4 flex flex-wrap items-center justify-between z-[99999] shadow-lg no-capture gap-3">
                     <div className="flex items-center gap-3">
                         <button onClick={onCancel} className="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors">
                             <Icon name="close" /> Batal
