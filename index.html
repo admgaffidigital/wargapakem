@@ -20,14 +20,14 @@ Developer: NOVAN RESTU UTOMO
     
     <!-- iOS / Safari PWA tags -->
     <meta content='yes' name='apple-mobile-web-app-capable'/>
-    <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'/>
-    <meta content='Admin Warga RT' name='apple-mobile-web-app-title'/>
+    <meta content='default' name='apple-mobile-web-app-status-bar-style'/>
+    <meta content='Portal Warga RT - PAKEM' name='apple-mobile-web-app-title'/>
     
     <!-- Android / Chrome PWA tags -->
     <meta content='yes' name='mobile-web-app-capable'/>
-    <meta content='Admin Warga RT' name='application-name'/>
-    <meta content='#1a73e8' name='theme-color'/>
-    <meta content='#e2e8f0' name='background-color'/>
+    <meta content='Portal Warga RT - PAKEM' name='application-name'/>
+    <meta content='#dc2626' name='theme-color'/>
+    <meta content='#dc2626' name='background-color'/>
     <link id='pwa-icon-fallback' rel='icon'/>
     
     <!-- Apple Touch Icon (SVG inline &#8594; base64 via script) -->
@@ -54,16 +54,19 @@ Developer: NOVAN RESTU UTOMO
             ctx.lineTo(0, r); ctx.quadraticCurveTo(0, 0, r, 0);
             ctx.closePath();
             const grad = ctx.createLinearGradient(0, 0, size, size);
-            grad.addColorStop(0, '#1a73e8');
-            grad.addColorStop(1, '#0d47a1');
+            grad.addColorStop(0, '#ef4444');
+            grad.addColorStop(1, '#991b1b');
             ctx.fillStyle = grad;
             ctx.fill();
+            // Simbol bendera merah-putih: garis horizontal di tengah
+            ctx.fillStyle = 'rgba(255,255,255,0.25)';
+            ctx.fillRect(0, size * 0.5, size, size * 0.5);
             // Teks "RT" di tengah
             ctx.fillStyle = '#ffffff';
-            ctx.font = `bold ${size * 0.38}px "Outfit", "Roboto", sans-serif`;
+            ctx.font = `bold ${size * 0.36}px "Outfit", "Roboto", sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText('RT', size / 2, size / 2);
+            ctx.fillText('RT', size / 2, size * 0.34);
             return c.toDataURL('image/png');
         }
         window._pwaIcon192 = makeIcon(192);
@@ -78,17 +81,17 @@ Developer: NOVAN RESTU UTOMO
         // Buat & pasang Web App Manifest via data URI
         const baseUrl = window.location.origin + window.location.pathname;
         const manifest = {
-            id: '/admin-warga-rt',
-            name: 'Admin Warga RT',
-            short_name: 'Admin RT',
-            description: 'Aplikasi pengelolaan arisan & keuangan RT',
+            id: '/portal-warga-rt',
+            name: 'Portal Warga RT - PAKEM',
+            short_name: 'Warga RT',
+            description: 'Portal digital warga RT — arisan, keuangan, galeri, dan informasi lingkungan Pakem Banyuanyar',
             start_url: baseUrl + '#menu',
             scope: baseUrl,
             display: 'standalone',
             display_override: ['standalone', 'minimal-ui'],
             orientation: 'portrait',
-            theme_color: '#1a73e8',
-            background_color: '#e2e8f0',
+            theme_color: '#dc2626',
+            background_color: '#dc2626',
             lang: 'id',
             dir: 'ltr',
             categories: ['finance', 'utilities', 'productivity'],
