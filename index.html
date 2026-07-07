@@ -1268,10 +1268,21 @@ Developer: NOVAN RESTU UTOMO
                         scale: 2,
                         useCORS: true,
                         backgroundColor: '#ffffff'
+                    const toolbar = document.getElementById('print-preview-header');
+                    const footer = document.getElementById('print-preview-footer');
+                    if (toolbar) toolbar.style.display = 'none';
+                    if (footer) footer.style.display = 'none';
+                    document.body.classList.add('capture-active'); // Bypass zoom
+
+                    const canvas = await html2canvas(content, {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: '#ffffff'
                     });
                     
                     document.body.classList.remove('capture-active');
                     if (toolbar) toolbar.style.display = 'flex';
+                    if (footer) footer.style.display = 'flex';
 
                     const link = document.createElement('a');
                     link.download = `Dokumen-RT-${new Date().getTime()}.png`;
@@ -1286,8 +1297,10 @@ Developer: NOVAN RESTU UTOMO
             const handleDownloadPDF = async () => {
                 try {
                     const content = document.body;
-                    const toolbar = document.getElementById('print-preview-toolbar');
+                    const toolbar = document.getElementById('print-preview-header');
+                    const footer = document.getElementById('print-preview-footer');
                     if (toolbar) toolbar.style.display = 'none';
+                    if (footer) footer.style.display = 'none';
                     document.body.classList.add('capture-active'); // Bypass zoom
 
                     const canvas = await html2canvas(content, {
@@ -1298,6 +1311,7 @@ Developer: NOVAN RESTU UTOMO
                     
                     document.body.classList.remove('capture-active');
                     if (toolbar) toolbar.style.display = 'flex';
+                    if (footer) footer.style.display = 'flex';
 
                     const imgData = canvas.toDataURL('image/png');
                     const { jsPDF } = window.jspdf;
@@ -1320,31 +1334,35 @@ Developer: NOVAN RESTU UTOMO
             };
 
             return (
-                <div id="print-preview-toolbar" className="fixed inset-0 z-[99999] pointer-events-none flex flex-col justify-between no-capture lg:py-6">
+                <>
                     {/* Header */}
-                    <div className="bg-white px-5 sm:px-8 py-4 sm:py-5 flex justify-between items-center pointer-events-auto w-full max-w-[1024px] mx-auto lg:rounded-t-[32px] shadow-sm z-10 shrink-0">
-                        <div className="flex flex-col">
-                            <h2 className="text-[18px] sm:text-[22px] font-extrabold text-slate-800 tracking-tight">Preview Dokumen</h2>
-                            <p className="text-[11px] sm:text-[13px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Format Kertas Standar A4</p>
+                    <div id="print-preview-header" className="fixed top-0 left-0 right-0 z-[99999] pointer-events-none flex justify-center no-capture lg:py-6">
+                        <div className="bg-white px-5 sm:px-8 py-4 sm:py-5 flex justify-between items-center pointer-events-auto w-full max-w-[1024px] lg:rounded-t-[32px] shadow-sm border-b border-slate-100/50">
+                            <div className="flex flex-col">
+                                <h2 className="text-[18px] sm:text-[22px] font-extrabold text-slate-800 tracking-tight">Preview Dokumen</h2>
+                                <p className="text-[11px] sm:text-[13px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Format Kertas Standar A4</p>
+                            </div>
+                            <button onClick={onCancel} className="bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 p-2 sm:p-3 rounded-full transition-colors active:scale-95 flex items-center justify-center">
+                                <Icon name="close" className="text-[20px] sm:text-[24px]" />
+                            </button>
                         </div>
-                        <button onClick={onCancel} className="bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 p-2 sm:p-3 rounded-full transition-colors active:scale-95 flex items-center justify-center">
-                            <Icon name="close" className="text-[20px] sm:text-[24px]" />
-                        </button>
                     </div>
 
                     {/* Footer */}
-                    <div className="bg-white p-4 sm:p-6 flex gap-3 sm:gap-5 pointer-events-auto w-full max-w-[1024px] mx-auto lg:rounded-b-[32px] shadow-[0_-10px_20px_rgba(0,0,0,0.03)] z-10 shrink-0 border-t border-slate-100">
-                        <button onClick={handleDownloadImage} className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 sm:py-4 rounded-[14px] sm:rounded-2xl font-extrabold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 transition-all active:scale-95 shadow-[0_8px_16px_rgba(37,99,235,0.25)] hover:shadow-[0_10px_20px_rgba(37,99,235,0.35)]">
-                            <Icon name="image" className="text-[20px] sm:text-[24px]" /> <span className="text-[12px] sm:text-[15px]">Simpan Gambar</span>
-                        </button>
-                        <button onClick={handleDownloadPDF} className="flex-1 bg-rose-600 hover:bg-rose-700 text-white py-3 sm:py-4 rounded-[14px] sm:rounded-2xl font-extrabold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 transition-all active:scale-95 shadow-[0_8px_16px_rgba(225,29,72,0.25)] hover:shadow-[0_10px_20px_rgba(225,29,72,0.35)]">
-                            <Icon name="picture_as_pdf" className="text-[20px] sm:text-[24px]" /> <span className="text-[12px] sm:text-[15px]">Cetak PDF</span>
-                        </button>
-                        <button onClick={handlePrintNative} className="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-3 sm:py-4 rounded-[14px] sm:rounded-2xl font-extrabold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 transition-all active:scale-95 shadow-[0_8px_16px_rgba(245,158,11,0.25)] hover:shadow-[0_10px_20px_rgba(245,158,11,0.35)]">
-                            <Icon name="print" className="text-[20px] sm:text-[24px]" /> <span className="text-[12px] sm:text-[15px]">Print Langsung</span>
-                        </button>
+                    <div id="print-preview-footer" className="fixed bottom-0 left-0 right-0 z-[99999] pointer-events-none flex justify-center no-capture lg:py-6">
+                        <div className="bg-white p-4 sm:p-6 flex gap-3 sm:gap-5 pointer-events-auto w-full max-w-[1024px] lg:rounded-b-[32px] shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-slate-100">
+                            <button onClick={handleDownloadImage} className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 sm:py-4 rounded-[14px] sm:rounded-2xl font-extrabold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 transition-all active:scale-95 shadow-[0_8px_16px_rgba(37,99,235,0.25)] hover:shadow-[0_10px_20px_rgba(37,99,235,0.35)]">
+                                <Icon name="image" className="text-[20px] sm:text-[24px]" /> <span className="text-[12px] sm:text-[15px]">Simpan Gambar</span>
+                            </button>
+                            <button onClick={handleDownloadPDF} className="flex-1 bg-rose-600 hover:bg-rose-700 text-white py-3 sm:py-4 rounded-[14px] sm:rounded-2xl font-extrabold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 transition-all active:scale-95 shadow-[0_8px_16px_rgba(225,29,72,0.25)] hover:shadow-[0_10px_20px_rgba(225,29,72,0.35)]">
+                                <Icon name="picture_as_pdf" className="text-[20px] sm:text-[24px]" /> <span className="text-[12px] sm:text-[15px]">Cetak PDF</span>
+                            </button>
+                            <button onClick={handlePrintNative} className="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-3 sm:py-4 rounded-[14px] sm:rounded-2xl font-extrabold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 transition-all active:scale-95 shadow-[0_8px_16px_rgba(245,158,11,0.25)] hover:shadow-[0_10px_20px_rgba(245,158,11,0.35)]">
+                                <Icon name="print" className="text-[20px] sm:text-[24px]" /> <span className="text-[12px] sm:text-[15px]">Print Langsung</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </>
             );
         }
 
