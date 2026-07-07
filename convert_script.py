@@ -35,8 +35,9 @@ def convert():
     content = re.sub(r'<script(.*?)\s*/>', r'<script\1></script>', content)
 
     # 7. Write to index.html
+    theme_header = "<!--\nTheme Name: WP LINGKUNGAN\nDeveloper: NOVAN RESTU UTOMO\n-->\n"
     with open('index.html', 'w', encoding='utf-8') as f:
-        f.write(content.strip())
+        f.write(theme_header + content.strip())
         
     print("Successfully converted wargapakem.txt to index.html!")
 

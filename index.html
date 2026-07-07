@@ -1,3 +1,7 @@
+<!--
+Theme Name: WP LINGKUNGAN
+Developer: NOVAN RESTU UTOMO
+-->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -1330,6 +1334,13 @@
                             {renderContent()}
                         </div>
                     </main>
+
+                    <footer className="w-full text-center py-6 no-print border-t border-slate-200 bg-white/50 text-[12px] font-bold text-google-textVariant">
+                        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+                            <p>© {new Date().getFullYear()} WP LINGKUNGAN. All rights reserved.</p>
+                            <p className="flex items-center justify-center gap-1">Developed by <span className="text-google-blue font-extrabold">NOVAN RESTU UTOMO</span></p>
+                        </div>
+                    </footer>
 
                     {/* Sticky Bottom Banner Ad - compact 50px, safe-area aware */}
                     {adsConfig?.enabled && (
