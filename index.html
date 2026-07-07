@@ -1345,19 +1345,22 @@ Developer: NOVAN RESTU UTOMO
                             </div>
                         )}
 
-                        <header className="bg-white/90 backdrop-blur-md text-google-text py-3 sm:py-4 px-4 sm:px-6 w-full border-b border-slate-200 shadow-sm">
+                        <header className="bg-white/80 backdrop-blur-md text-google-text py-3 sm:py-4 px-4 sm:px-6 w-full border-b border-emerald-500/10 shadow-[0_4px_30px_rgba(16,185,129,0.03)]">
                             <div className="max-w-5xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center space-x-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
-                                        <div className="bg-google-blue text-white w-10 h-10 rounded-full shrink-0 flex justify-center items-center shadow-md border-2 border-google-blueDark"><Icon name="home" className="text-[20px]" fill="true" /></div>
+                                        <div className="bg-gradient-to-tr from-emerald-500 to-green-600 text-white w-10 h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(16,185,129,0.2)] border border-emerald-400/40"><Icon name="home" className="text-[20px]" fill="true" /></div>
                                     ) : (
-                                        <button onClick={() => changeTab('menu')} className="w-10 h-10 bg-white text-google-text border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[20px]" /></button>
+                                        <button onClick={() => changeTab('menu')} className="w-10 h-10 bg-white text-google-text border-2 border-slate-200 hover:text-emerald-600 hover:border-emerald-500/30 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[20px]" /></button>
                                     )}
-                                    <h1 className="text-[16px] sm:text-[18px] font-extrabold truncate leading-tight tracking-tight">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
+                                    <div className="flex items-center gap-2 min-w-0">
+                                        <h1 className="text-[16px] sm:text-[18px] font-extrabold truncate leading-tight tracking-tight text-slate-800">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
+                                        {activeTab === 'menu' && <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shrink-0"></span>}
+                                    </div>
                                 </div>
                                 <div className="flex items-center space-x-3 shrink-0 pl-2">
-                                    <span className={`text-[10px] font-extrabold px-3 py-1.5 rounded-md uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-google-blueLight text-google-blueDark border-google-blue/30' : 'bg-slate-100 text-google-textVariant border-slate-200'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
-                                    <button onClick={() => setShowLogoutModal(true)} className="w-10 h-10 bg-google-redLight hover:bg-google-red text-google-redDark hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border-2 border-google-red/30 shadow-sm"><Icon name="logout" className="text-[18px]" /></button>
+                                    <span className={`text-[10px] font-extrabold px-3 py-1.5 rounded-md uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-emerald-50 text-emerald-700 border-emerald-500/20' : 'bg-slate-50 text-slate-600 border-slate-200'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
+                                    <button onClick={() => setShowLogoutModal(true)} className="w-10 h-10 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-red-500/20 shadow-sm"><Icon name="logout" className="text-[18px]" /></button>
                                 </div>
                             </div>
                         </header>
@@ -1369,10 +1372,15 @@ Developer: NOVAN RESTU UTOMO
                         </div>
                     </main>
 
-                    <footer className="w-full text-center py-6 no-print border-t border-slate-200 bg-white/50 text-[12px] font-bold text-google-textVariant">
-                        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2.5">
-                            <p>© {new Date().getFullYear()} WP LINGKUNGAN. All rights reserved.</p>
-                            <p className="flex items-center justify-center gap-1">Developed by <span className="text-google-blue font-extrabold">NOVAN RESTU UTOMO</span></p>
+                    <footer className="w-full text-center py-8 no-print border-t border-emerald-500/10 bg-gradient-to-b from-white/10 to-white/90 text-[12.5px] font-bold text-slate-500">
+                        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
+                            <p className="flex items-center gap-1.5 justify-center">
+                                <Icon name="eco" className="text-emerald-500 text-[16px] animate-pulse" fill="true" />
+                                © {new Date().getFullYear()} <span className="text-emerald-700 font-extrabold">WP LINGKUNGAN</span>. All rights reserved.
+                            </p>
+                            <p className="flex items-center justify-center gap-1.5">
+                                Developed by <span className="bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-transparent font-extrabold tracking-wide uppercase">NOVAN RESTU UTOMO</span>
+                            </p>
                         </div>
                     </footer>
 
