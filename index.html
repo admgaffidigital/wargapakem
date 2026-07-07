@@ -202,16 +202,17 @@ Developer: NOVAN RESTU UTOMO
         }
 
         /* PREVIEW MODE (MIMICS PRINT) */
-        body.preview-mode { background-color: #f1f5f9 !important; color: black !important; font-family: 'Times New Roman', Times, serif !important; padding: 80px 10px 20px 10px; min-height: 100vh; overflow: auto; }
+        body.preview-mode { background-color: rgba(15, 23, 42, 0.95) !important; color: black !important; font-family: 'Times New Roman', Times, serif !important; padding: 1px 10px; min-height: 100vh; overflow: auto; }
         body.preview-mode .no-print { display: none !important; }
         body.preview-mode .print-only { 
             display: block !important; 
             background: white; 
             width: 800px; /* Lebar presisi A4 */
-            margin: 0 auto; 
+            margin: 40px auto 140px auto; /* Memberi ruang untuk toolbar di bawah */
             padding: 40px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8); 
             min-height: 1123px; /* Tinggi presisi A4 */
+            border-radius: 8px; /* Efek kertas di layar */
         }
         @media (max-width: 850px) { body.preview-mode .print-only { zoom: 0.9; } }
         @media (max-width: 750px) { body.preview-mode .print-only { zoom: 0.8; } }
@@ -219,7 +220,8 @@ Developer: NOVAN RESTU UTOMO
         @media (max-width: 550px) { body.preview-mode .print-only { zoom: 0.6; } }
         @media (max-width: 450px) { body.preview-mode .print-only { zoom: 0.5; } }
         @media (max-width: 380px) { body.preview-mode .print-only { zoom: 0.43; } }
-        body.capture-active .print-only { zoom: 1 !important; transform: none !important; }
+        body.capture-active { background-color: white !important; }
+        body.capture-active .print-only { zoom: 1 !important; transform: none !important; margin: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
         body.preview-mode * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         body.preview-mode .print-table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 20px; font-size: 11pt; }
         body.preview-mode .print-table th, body.preview-mode .print-table td { border: 2px solid black !important; padding: 8px; text-align: left; }
@@ -1288,22 +1290,22 @@ Developer: NOVAN RESTU UTOMO
             };
 
             return (
-                <div id="print-preview-toolbar" className="fixed top-0 left-0 right-0 bg-slate-800 text-white p-4 flex flex-wrap items-center justify-between z-[99999] shadow-lg no-capture gap-3">
-                    <div className="flex items-center gap-3">
-                        <button onClick={onCancel} className="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors">
-                            <Icon name="close" /> Batal
+                <div id="print-preview-toolbar" className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 p-4 sm:p-5 flex flex-wrap items-center justify-center sm:justify-between z-[99999] shadow-[0_-10px_30px_rgba(0,0,0,0.1)] no-capture gap-4">
+                    <div className="flex items-center gap-3 w-full sm:w-auto justify-center">
+                        <button onClick={onCancel} className="bg-slate-100 text-slate-700 hover:bg-slate-200 px-6 py-3 rounded-full font-extrabold flex items-center gap-2 transition-all active:scale-95 border-2 border-slate-200">
+                            <Icon name="close" className="text-[20px]" /> Batal
                         </button>
-                        <span className="font-bold hidden sm:inline">Pratinjau Cetak</span>
+                        <span className="font-extrabold text-google-text text-[15px] hidden sm:inline ml-2">Pratinjau Cetak</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                        <button onClick={handleDownloadImage} className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors">
-                            <Icon name="image" /> Gambar
+                    <div className="flex items-center justify-center gap-3 w-full sm:w-auto flex-wrap">
+                        <button onClick={handleDownloadImage} className="bg-white text-google-blue border-2 border-google-blue hover:bg-google-blueLight/10 px-5 py-3 rounded-full font-extrabold flex items-center gap-2 transition-all active:scale-95 flex-1 sm:flex-none justify-center shadow-sm">
+                            <Icon name="image" className="text-[20px]" /> <span className="hidden sm:inline">Simpan</span> Gambar
                         </button>
-                        <button onClick={handleDownloadPDF} className="bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors">
-                            <Icon name="picture_as_pdf" /> PDF
+                        <button onClick={handleDownloadPDF} className="bg-white text-google-red border-2 border-google-red hover:bg-google-redLight/10 px-5 py-3 rounded-full font-extrabold flex items-center gap-2 transition-all active:scale-95 flex-1 sm:flex-none justify-center shadow-sm">
+                            <Icon name="picture_as_pdf" className="text-[20px]" /> <span className="hidden sm:inline">Simpan</span> PDF
                         </button>
-                        <button onClick={handlePrintNative} className="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition-colors">
-                            <Icon name="print" /> Cetak
+                        <button onClick={handlePrintNative} className="bg-google-blue text-white hover:bg-google-blueDark border-2 border-google-blueDark px-6 py-3 rounded-full font-extrabold flex items-center gap-2 transition-all active:scale-95 w-full sm:w-auto justify-center shadow-md">
+                            <Icon name="print" className="text-[20px]" /> Cetak Langsung
                         </button>
                     </div>
                 </div>
