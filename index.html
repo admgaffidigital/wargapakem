@@ -1175,15 +1175,9 @@ Developer: NOVAN RESTU UTOMO
         }
 
         /* ================= FLOATING MUSIC PLAYER (WARGA ONLY) ================= */
+        /* ================= BACKGROUND MUSIC PLAYER (WARGA ONLY - INVISIBLE) ================= */
         function FloatingMusicPlayer({ musicData }) {
             const audioRef = useRef(null);
-            const [isPlaying, setIsPlaying] = useState(false);
-            const [volume, setVolume] = useState(0.6);
-            const [currentTime, setCurrentTime] = useState(0);
-            const [duration, setDuration] = useState(0);
-            const [isMinimized, setIsMinimized] = useState(false);
-            const [showTip, setShowTip] = useState(true);
-            const [loadError, setLoadError] = useState(false);
 
             const streamUrl = normalizeAudioUrl(musicData?.url);
 
@@ -1192,167 +1186,41 @@ Developer: NOVAN RESTU UTOMO
                 const audio = audioRef.current;
                 if (!audio) return;
 
-                setLoadError(false);
-                audio.volume = volume;
+                audio.volume = 0.6;
                 audio.loop = true;
 
                 const attemptPlay = () => {
-                    audio.play().then(() => {
-                        setIsPlaying(true);
-                        setShowTip(false);
-                    }).catch(() => {
-                        setIsPlaying(false);
+                    audio.play().catch(() => {
+                        // Browser blokir autoplay — tunggu interaksi user
                     });
                 };
 
-                // Coba autoplay setelah audio siap
-                const handleCanPlay = () => { attemptPlay(); };
-                const handleError = () => { setLoadError(true); setIsPlaying(false); };
-                const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
-                const handleDurationChange = () => { if (!isNaN(audio.duration)) setDuration(audio.duration); };
-                const handlePlay = () => setIsPlaying(true);
-                const handlePause = () => setIsPlaying(false);
-
-                audio.addEventListener('canplay', handleCanPlay);
-                audio.addEventListener('error', handleError);
-                audio.addEventListener('timeupdate', handleTimeUpdate);
-                audio.addEventListener('durationchange', handleDurationChange);
-                audio.addEventListener('play', handlePlay);
-                audio.addEventListener('pause', handlePause);
-
-                // Trigger load
+                // Coba autoplay saat audio siap
+                audio.addEventListener('canplay', attemptPlay, { once: true });
                 audio.load();
 
-                // Fallback: coba play setelah interaksi user
-                const handleInteraction = () => {
-                    if (!isPlaying && !loadError) attemptPlay();
-                    document.removeEventListener('click', handleInteraction);
-                    document.removeEventListener('touchstart', handleInteraction);
+                // Fallback: langsung play saat user pertama kali klik/tap layar
+                const handleFirstInteraction = () => {
+                    if (audio.paused) audio.play().catch(() => {});
+                    document.removeEventListener('click', handleFirstInteraction, true);
+                    document.removeEventListener('touchstart', handleFirstInteraction, true);
                 };
-                document.addEventListener('click', handleInteraction);
-                document.addEventListener('touchstart', handleInteraction);
+                document.addEventListener('click', handleFirstInteraction, true);
+                document.addEventListener('touchstart', handleFirstInteraction, true);
 
-                const tipTimer = setTimeout(() => setShowTip(false), 6000);
-
+                // Cleanup: hentikan musik saat warga logout (komponen di-unmount)
                 return () => {
-                    audio.removeEventListener('canplay', handleCanPlay);
-                    audio.removeEventListener('error', handleError);
-                    audio.removeEventListener('timeupdate', handleTimeUpdate);
-                    audio.removeEventListener('durationchange', handleDurationChange);
-                    audio.removeEventListener('play', handlePlay);
-                    audio.removeEventListener('pause', handlePause);
-                    document.removeEventListener('click', handleInteraction);
-                    document.removeEventListener('touchstart', handleInteraction);
-                    clearTimeout(tipTimer);
                     audio.pause();
+                    audio.src = '';
+                    document.removeEventListener('click', handleFirstInteraction, true);
+                    document.removeEventListener('touchstart', handleFirstInteraction, true);
                 };
             }, [streamUrl]);
 
-            const togglePlay = () => {
-                const audio = audioRef.current;
-                if (!audio) return;
-                if (isPlaying) { audio.pause(); } else { audio.play().catch(() => {}); }
-            };
-
-            const handleVolumeChange = (e) => {
-                const v = parseFloat(e.target.value);
-                setVolume(v);
-                if (audioRef.current) audioRef.current.volume = v;
-            };
-
-            const formatTime = (s) => {
-                if (!s || isNaN(s)) return '0:00';
-                const m = Math.floor(s / 60);
-                const sec = Math.floor(s % 60);
-                return `${m}:${sec.toString().padStart(2, '0')}`;
-            };
-
-            const progressPercent = duration > 0 ? Math.min((currentTime / duration) * 100, 100) : 0;
-
-            return (
-                <div className="fixed z-[90] no-print"
-                     style={{ bottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))', left: '1rem' }}>
-                    <audio ref={audioRef} src={streamUrl} preload="auto" />
-
-                    {/* Tip bubble */}
-                    {showTip && !isPlaying && !loadError && (
-                        <div className="mb-2 bg-google-green text-white text-[11px] font-extrabold px-3 py-2 rounded-[12px] shadow-xl flex items-center gap-1.5 animate-fadeIn"
-                             style={{ maxWidth: '200px' }}>
-                            <Icon name="touch_app" className="text-[14px] shrink-0" />
-                            Tap layar untuk putar musik!
-                        </div>
-                    )}
-
-                    {isMinimized ? (
-                        /* Minimized FAB */
-                        <button onClick={() => setIsMinimized(false)}
-                                className={`relative w-14 h-14 rounded-full shadow-2xl flex items-center justify-center border-[3px] border-white transition-all active:scale-95 ${loadError ? 'bg-google-red' : isPlaying ? 'bg-google-green' : 'bg-slate-500'}`}
-                                style={{ boxShadow: isPlaying ? '0 8px 32px rgba(52,168,83,0.6)' : '0 4px 20px rgba(0,0,0,0.2)' }}>
-                            <Icon name={loadError ? 'music_off' : 'music_note'} className="text-white text-[24px]" fill="true" />
-                            {isPlaying && <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse" />}
-                        </button>
-                    ) : (
-                        /* Full Player Card */
-                        <div className="bg-white rounded-[24px] shadow-2xl border-2 border-slate-200 overflow-hidden w-[265px]"
-                             style={{ animation: 'slideUp 0.35s cubic-bezier(0.16,1,0.3,1)' }}>
-                            {/* Progress Bar */}
-                            <div className="h-1 bg-slate-100">
-                                <div className="h-full bg-gradient-to-r from-google-green to-emerald-400 transition-all duration-500"
-                                     style={{ width: `${progressPercent}%` }} />
-                            </div>
-
-                            {/* Header */}
-                            <div className={`px-4 py-3 flex items-center justify-between ${loadError ? 'bg-google-red' : 'bg-gradient-to-r from-google-green to-emerald-500'}`}>
-                                <div className="flex items-center gap-2 min-w-0">
-                                    <div className={`w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0 ${isPlaying ? 'animate-spin' : ''}`}
-                                         style={{ animationDuration: '5s' }}>
-                                        <Icon name={loadError ? 'warning' : 'music_note'} className="text-white text-[15px]" fill="true" />
-                                    </div>
-                                    <div className="min-w-0">
-                                        <p className="text-white text-[10px] font-extrabold uppercase tracking-widest leading-none">
-                                            {loadError ? '⚠ Gagal Memuat' : isPlaying ? '♪ Sedang Memutar' : '♪ Musik RT'}
-                                        </p>
-                                        <p className="text-white/90 text-[12px] font-bold truncate mt-0.5">{musicData?.name || 'Musik RT'}</p>
-                                    </div>
-                                </div>
-                                <button onClick={() => setIsMinimized(true)}
-                                        className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center active:scale-95 transition-all shrink-0">
-                                    <Icon name="expand_more" className="text-white text-[18px]" />
-                                </button>
-                            </div>
-
-                            {/* Controls */}
-                            <div className="px-4 pt-3 pb-4 bg-white">
-                                {loadError ? (
-                                    <p className="text-[11px] font-bold text-google-red text-center py-2">URL audio tidak dapat diputar.<br/>Hubungi admin untuk update musik.</p>
-                                ) : (
-                                    <>
-                                        {/* Time */}
-                                        <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-2">
-                                            <span>{formatTime(currentTime)}</span>
-                                            <span>{formatTime(duration)}</span>
-                                        </div>
-                                        {/* Play/Pause */}
-                                        <div className="flex items-center justify-center mb-3">
-                                            <button onClick={togglePlay}
-                                                    className={`w-12 h-12 rounded-full text-white flex items-center justify-center shadow-md active:scale-95 transition-all border-2 ${isPlaying ? 'bg-google-green border-google-greenDark' : 'bg-slate-500 border-slate-600'}`}>
-                                                <Icon name={isPlaying ? 'pause' : 'play_arrow'} className="text-[26px]" fill="true" />
-                                            </button>
-                                        </div>
-                                        {/* Volume */}
-                                        <div className="flex items-center gap-2">
-                                            <Icon name={volume === 0 ? 'volume_off' : volume < 0.5 ? 'volume_down' : 'volume_up'} className="text-slate-400 text-[15px] shrink-0" />
-                                            <input type="range" min="0" max="1" step="0.05" value={volume} onChange={handleVolumeChange}
-                                                   className="flex-1 h-1.5 rounded-full accent-green-500 cursor-pointer" />
-                                        </div>
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                    )}
-                </div>
-            );
+            // Render hanya elemen audio tersembunyi — tidak ada UI yang terlihat
+            return <audio ref={audioRef} src={streamUrl} preload="auto" style={{ display: 'none' }} />;
         }
+
 
         /* ================= MUSIC ADMIN (ADMIN ONLY) ================= */
         function MusicAdmin({ musicData, setMusicData }) {
