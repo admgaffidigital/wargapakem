@@ -1142,7 +1142,403 @@ Developer: NOVAN RESTU UTOMO
         }
 
 
+
+        /* ================= FLOATING MUSIC PLAYER (WARGA ONLY) ================= */
+        function FloatingMusicPlayer({ musicData }) {
+            const audioRef = useRef(null);
+            const [isPlaying, setIsPlaying] = useState(false);
+            const [volume, setVolume] = useState(0.5);
+            const [currentTime, setCurrentTime] = useState(0);
+            const [duration, setDuration] = useState(0);
+            const [isMinimized, setIsMinimized] = useState(false);
+            const [hasInteracted, setHasInteracted] = useState(false);
+            const [showTip, setShowTip] = useState(true);
+
+            useEffect(() => {
+                const audio = audioRef.current;
+                if (!audio) return;
+
+                audio.volume = volume;
+                audio.loop = true;
+
+                const tryAutoplay = () => {
+                    audio.play().then(() => {
+                        setIsPlaying(true);
+                        setHasInteracted(true);
+                    }).catch(() => {
+                        // Autoplay diblokir browser — tampilkan tip
+                        setIsPlaying(false);
+                    });
+                };
+
+                // Coba autoplay segera
+                tryAutoplay();
+
+                // Jika gagal, coba setelah interaksi user pertama
+                const handleFirstInteraction = () => {
+                    if (!isPlaying) tryAutoplay();
+                    setHasInteracted(true);
+                    document.removeEventListener('click', handleFirstInteraction);
+                    document.removeEventListener('touchstart', handleFirstInteraction);
+                };
+                document.addEventListener('click', handleFirstInteraction);
+                document.addEventListener('touchstart', handleFirstInteraction);
+
+                const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
+                const handleDurationChange = () => setDuration(audio.duration);
+                const handlePlay = () => setIsPlaying(true);
+                const handlePause = () => setIsPlaying(false);
+
+                audio.addEventListener('timeupdate', handleTimeUpdate);
+                audio.addEventListener('durationchange', handleDurationChange);
+                audio.addEventListener('play', handlePlay);
+                audio.addEventListener('pause', handlePause);
+
+                // Sembunyikan tip setelah 5 detik
+                const tipTimer = setTimeout(() => setShowTip(false), 5000);
+
+                return () => {
+                    audio.removeEventListener('timeupdate', handleTimeUpdate);
+                    audio.removeEventListener('durationchange', handleDurationChange);
+                    audio.removeEventListener('play', handlePlay);
+                    audio.removeEventListener('pause', handlePause);
+                    document.removeEventListener('click', handleFirstInteraction);
+                    document.removeEventListener('touchstart', handleFirstInteraction);
+                    clearTimeout(tipTimer);
+                };
+            }, [musicData.url]);
+
+            const togglePlay = () => {
+                const audio = audioRef.current;
+                if (!audio) return;
+                if (isPlaying) { audio.pause(); } else { audio.play(); }
+            };
+
+            const handleVolumeChange = (e) => {
+                const v = parseFloat(e.target.value);
+                setVolume(v);
+                if (audioRef.current) audioRef.current.volume = v;
+            };
+
+            const formatTime = (s) => {
+                if (isNaN(s)) return '0:00';
+                const m = Math.floor(s / 60);
+                const sec = Math.floor(s % 60);
+                return `${m}:${sec.toString().padStart(2, '0')}`;
+            };
+
+            const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
+
+            return (
+                <div className="fixed z-[90] no-print transition-all duration-300"
+                     style={{ bottom: 'calc(1rem + env(safe-area-inset-bottom, 0px))', left: '1rem' }}>
+                    <audio ref={audioRef} src={musicData.url} preload="auto" />
+
+                    {/* Tip bubble */}
+                    {showTip && !isPlaying && (
+                        <div className="mb-2 bg-google-green text-white text-[11px] font-extrabold px-3 py-2 rounded-[12px] shadow-xl flex items-center gap-1.5 animate-fadeIn"
+                             style={{ maxWidth: '200px' }}>
+                            <Icon name="touch_app" className="text-[14px] shrink-0" />
+                            Tap untuk putar musik!
+                        </div>
+                    )}
+
+                    {isMinimized ? (
+                        /* Minimized FAB */
+                        <button onClick={() => setIsMinimized(false)}
+                                className={`w-14 h-14 rounded-full shadow-2xl flex items-center justify-center border-[3px] border-white transition-all active:scale-95 ${isPlaying ? 'bg-google-green' : 'bg-slate-400'}`}
+                                style={{ boxShadow: isPlaying ? '0 8px 32px rgba(52,168,83,0.6)' : '0 8px 32px rgba(0,0,0,0.2)' }}>
+                            <Icon name="music_note" className="text-white text-[24px]" fill="true" />
+                            {isPlaying && (
+                                <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse" />
+                            )}
+                        </button>
+                    ) : (
+                        /* Full Player Card */
+                        <div className="bg-white rounded-[24px] shadow-2xl border-2 border-slate-200 overflow-hidden w-[260px] sm:w-[290px]"
+                             style={{ animation: 'slideUp 0.35s cubic-bezier(0.16,1,0.3,1)' }}>
+                            {/* Progress Bar */}
+                            <div className="h-1.5 bg-slate-100">
+                                <div className="h-full bg-gradient-to-r from-google-green to-emerald-400 transition-all duration-300"
+                                     style={{ width: `${progressPercent}%` }} />
+                            </div>
+
+                            {/* Header */}
+                            <div className="bg-gradient-to-r from-google-green to-emerald-500 px-4 py-3 flex items-center justify-between">
+                                <div className="flex items-center gap-2 min-w-0">
+                                    <div className={`w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0 ${isPlaying ? 'animate-spin' : ''}`}
+                                         style={{ animationDuration: '4s' }}>
+                                        <Icon name="music_note" className="text-white text-[16px]" fill="true" />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <p className="text-white text-[11px] font-extrabold uppercase tracking-widest leading-none">♪ Sedang Memutar</p>
+                                        <p className="text-white/90 text-[12px] font-bold truncate mt-0.5 leading-tight">{musicData.name || 'Musik RT'}</p>
+                                    </div>
+                                </div>
+                                <button onClick={() => setIsMinimized(true)}
+                                        className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center active:scale-95 transition-all shrink-0">
+                                    <Icon name="expand_more" className="text-white text-[18px]" />
+                                </button>
+                            </div>
+
+                            {/* Controls */}
+                            <div className="px-4 py-3 bg-white">
+                                {/* Time */}
+                                <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-2">
+                                    <span>{formatTime(currentTime)}</span>
+                                    <span>{formatTime(duration)}</span>
+                                </div>
+
+                                {/* Play / Pause button */}
+                                <div className="flex items-center justify-center gap-3 mb-3">
+                                    <button onClick={togglePlay}
+                                            className={`w-12 h-12 rounded-full text-white flex items-center justify-center shadow-md active:scale-95 transition-all border-2 ${isPlaying ? 'bg-google-green border-google-greenDark' : 'bg-slate-400 border-slate-500'}`}>
+                                        <Icon name={isPlaying ? 'pause' : 'play_arrow'} className="text-[26px]" fill="true" />
+                                    </button>
+                                </div>
+
+                                {/* Volume */}
+                                <div className="flex items-center gap-2">
+                                    <Icon name={volume === 0 ? 'volume_off' : volume < 0.5 ? 'volume_down' : 'volume_up'} className="text-slate-400 text-[16px] shrink-0" />
+                                    <input type="range" min="0" max="1" step="0.05" value={volume} onChange={handleVolumeChange}
+                                           className="flex-1 h-1.5 rounded-full accent-green-500 cursor-pointer" />
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        /* ================= MUSIC ADMIN (ADMIN ONLY) ================= */
+        function MusicAdmin({ musicData, setMusicData }) {
+            const [isUploading, setIsUploading] = useState(false);
+            const [urlInput, setUrlInput] = useState('');
+            const [nameInput, setNameInput] = useState('');
+            const [errorMsg, setErrorMsg] = useState('');
+            const [uploadMode, setUploadMode] = useState('url'); // 'url' | 'file'
+            const fileInputRef = useRef(null);
+
+            const currentUrl = musicData?.url || '';
+            const currentName = musicData?.name || '';
+            const isEnabled = musicData?.enabled !== false;
+
+            const handleSaveUrl = () => {
+                if (!urlInput.trim()) return setErrorMsg('URL musik tidak boleh kosong.');
+                if (!urlInput.startsWith('http')) return setErrorMsg('URL harus dimulai dengan http:// atau https://');
+                setMusicData({ url: urlInput.trim(), name: nameInput.trim() || 'Musik RT', enabled: true });
+                setUrlInput('');
+                setNameInput('');
+                setErrorMsg('');
+                showToast('Musik berhasil disimpan!');
+            };
+
+            const handleFileUpload = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const allowedTypes = ['audio/mpeg', 'audio/mp3', 'audio/ogg', 'audio/wav', 'audio/aac', 'audio/m4a'];
+                if (!allowedTypes.includes(file.type) && !file.name.match(/\.(mp3|ogg|wav|aac|m4a)$/i)) {
+                    setErrorMsg('Format file tidak didukung. Gunakan MP3, OGG, WAV, AAC, atau M4A.');
+                    return;
+                }
+                if (file.size > 20 * 1024 * 1024) {
+                    setErrorMsg('Ukuran file maksimal 20MB.');
+                    return;
+                }
+
+                const gasUrl = window.GAS_DRIVE_URL;
+                if (!gasUrl) {
+                    setErrorMsg('URL Google Apps Script belum dikonfigurasi.');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const base64String = reader.result.split(',')[1];
+                    setIsUploading(true);
+                    setErrorMsg('');
+
+                    fetch(gasUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: JSON.stringify({
+                            base64: base64String,
+                            mimeType: file.type || 'audio/mpeg',
+                            filename: `musik-rt-${Date.now()}-${file.name}`
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(response => {
+                        setIsUploading(false);
+                        if (response.status === 'success') {
+                            const audioName = nameInput.trim() || file.name.replace(/\.[^/.]+$/, '');
+                            setMusicData({ url: response.viewUrl, name: audioName, enabled: true });
+                            setNameInput('');
+                            setErrorMsg('');
+                            showToast('Musik berhasil diunggah!');
+                        } else {
+                            setErrorMsg('Gagal mengunggah: ' + (response.message || 'Error tidak diketahui'));
+                        }
+                    })
+                    .catch(err => {
+                        setIsUploading(false);
+                        setErrorMsg('Terjadi kesalahan jaringan saat mengunggah.');
+                        console.error('Music upload error:', err);
+                    });
+                };
+                reader.readAsDataURL(file);
+            };
+
+            const handleDeleteMusic = () => {
+                setMusicData({ url: '', name: '', enabled: false });
+                showToast('Musik berhasil dihapus.', 'error');
+            };
+
+            const handleToggleEnabled = () => {
+                setMusicData({ ...musicData, enabled: !isEnabled });
+                showToast(isEnabled ? 'Musik dinonaktifkan.' : 'Musik diaktifkan.');
+            };
+
+            return (
+                <div className="space-y-6 max-w-2xl mx-auto">
+                    {/* Header */}
+                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm">
+                        <div className="flex items-center gap-4 mb-1">
+                            <div className="w-14 h-14 rounded-[20px] bg-google-yellowLight flex items-center justify-center border-2 border-google-yellow/40">
+                                <Icon name="music_note" className="text-[32px] text-google-yellowDark" fill="true" />
+                            </div>
+                            <div>
+                                <h2 className="text-2xl font-extrabold text-google-text tracking-tight">Manajemen Musik Warga</h2>
+                                <p className="text-[14px] font-medium text-google-textVariant mt-0.5">Upload, atur, dan nonaktifkan musik latar untuk pengunjung warga.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Status Musik Aktif */}
+                    {currentUrl ? (
+                        <div className={`rounded-[28px] p-6 border-2 ${isEnabled ? 'bg-google-greenLight border-google-green/40' : 'bg-slate-50 border-slate-200'}`}>
+                            <div className="flex items-center justify-between gap-4 flex-wrap">
+                                <div className="flex items-center gap-4 flex-1 min-w-0">
+                                    <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${isEnabled ? 'bg-google-green border-google-greenDark' : 'bg-slate-300 border-slate-400'}`}>
+                                        <Icon name={isEnabled ? 'graphic_eq' : 'music_off'} className="text-white text-[22px]" fill="true" />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <p className="text-[11px] font-extrabold uppercase tracking-widest text-google-textVariant mb-0.5">{isEnabled ? '🎵 Musik Aktif' : '🔇 Musik Nonaktif'}</p>
+                                        <p className="font-extrabold text-[15px] text-google-text truncate">{currentName || 'Musik RT'}</p>
+                                        <a href={currentUrl} target="_blank" rel="noreferrer" className="text-[11px] font-bold text-google-blue underline truncate block max-w-[220px]">Buka URL Sumber ↗</a>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-2 shrink-0">
+                                    <button onClick={handleToggleEnabled}
+                                            className={`px-4 py-2.5 rounded-full font-extrabold text-[12px] border-2 transition-all active:scale-95 ${isEnabled ? 'bg-white text-google-greenDark border-google-green/40 hover:bg-google-greenLight' : 'bg-google-green text-white border-google-greenDark hover:bg-google-greenDark'}`}>
+                                        {isEnabled ? 'Nonaktifkan' : 'Aktifkan'}
+                                    </button>
+                                    <button onClick={handleDeleteMusic}
+                                            className="px-4 py-2.5 rounded-full font-extrabold text-[12px] bg-google-redLight text-google-redDark border-2 border-google-red/40 hover:bg-google-red hover:text-white active:scale-95 transition-all flex items-center gap-1.5">
+                                        <Icon name="delete" className="text-[14px]" /> Hapus
+                                    </button>
+                                </div>
+                            </div>
+                            {/* Mini preview */}
+                            {isEnabled && (
+                                <div className="mt-4 bg-white/70 rounded-[16px] p-3 border border-google-green/20">
+                                    <p className="text-[11px] font-extrabold text-google-greenDark mb-2 uppercase tracking-widest">Preview Musik</p>
+                                    <audio controls src={currentUrl} className="w-full h-9" style={{ borderRadius: '12px' }} />
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="bg-slate-50 rounded-[28px] p-8 border-2 border-dashed border-slate-300 text-center">
+                            <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Icon name="music_off" className="text-[32px] text-slate-400" />
+                            </div>
+                            <p className="font-extrabold text-[16px] text-slate-500">Belum Ada Musik</p>
+                            <p className="text-[13px] font-medium text-slate-400 mt-1">Upload atau masukkan URL musik di bawah ini.</p>
+                        </div>
+                    )}
+
+                    {/* Upload / URL Input Form */}
+                    <div className="bg-white rounded-[32px] border-2 border-slate-200 shadow-sm overflow-hidden">
+                        {/* Tab selector */}
+                        <div className="flex border-b-2 border-slate-100">
+                            <button onClick={() => setUploadMode('url')}
+                                    className={`flex-1 py-4 text-[13px] font-extrabold flex items-center justify-center gap-2 transition-all ${uploadMode === 'url' ? 'text-google-blueDark bg-google-blueLight border-b-2 border-google-blue' : 'text-slate-400 hover:bg-slate-50'}`}>
+                                <Icon name="link" className="text-[18px]" /> Dari URL
+                            </button>
+                            <button onClick={() => setUploadMode('file')}
+                                    className={`flex-1 py-4 text-[13px] font-extrabold flex items-center justify-center gap-2 transition-all ${uploadMode === 'file' ? 'text-google-blueDark bg-google-blueLight border-b-2 border-google-blue' : 'text-slate-400 hover:bg-slate-50'}`}>
+                                <Icon name="upload_file" className="text-[18px]" /> Upload File
+                            </button>
+                        </div>
+
+                        <div className="p-6 space-y-4">
+                            {/* Nama Lagu */}
+                            <div>
+                                <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lagu / Judul</label>
+                                <input type="text" value={nameInput} onChange={e => setNameInput(e.target.value)}
+                                       placeholder="Contoh: Garuda Pancasila Instrumental"
+                                       className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md text-google-text rounded-[16px] px-5 py-3.5 text-[14px] font-medium outline-none transition-all placeholder:text-slate-400" />
+                            </div>
+
+                            {uploadMode === 'url' ? (
+                                <div>
+                                    <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">URL Audio Langsung (MP3 / OGG / WAV)</label>
+                                    <input type="url" value={urlInput} onChange={e => setUrlInput(e.target.value)}
+                                           placeholder="https://example.com/lagu.mp3"
+                                           className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md text-google-text rounded-[16px] px-5 py-3.5 text-[14px] font-medium outline-none transition-all placeholder:text-slate-400" />
+                                    <p className="text-[11px] font-medium text-slate-400 mt-2 ml-1">Pastikan URL mengarah langsung ke file audio (bukan halaman web). Gunakan Google Drive atau hosting lainnya.</p>
+                                    <button onClick={handleSaveUrl}
+                                            className="mt-4 w-full bg-google-blue text-white py-3.5 rounded-[16px] font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all flex items-center justify-center gap-2">
+                                        <Icon name="save" className="text-[20px]" /> Simpan URL Musik
+                                    </button>
+                                </div>
+                            ) : (
+                                <div>
+                                    <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Upload File Audio (Maks. 20MB)</label>
+                                    <div onClick={() => fileInputRef.current?.click()}
+                                         className="border-2 border-dashed border-google-blue/40 bg-google-blueLight/30 rounded-[16px] p-8 text-center cursor-pointer hover:bg-google-blueLight/50 hover:border-google-blue active:scale-[0.99] transition-all">
+                                        <Icon name="audio_file" className="text-[40px] text-google-blue mb-3" />
+                                        <p className="font-extrabold text-[14px] text-google-blueDark">Klik untuk pilih file audio</p>
+                                        <p className="text-[12px] font-medium text-slate-500 mt-1">MP3, OGG, WAV, AAC, M4A — maks 20MB</p>
+                                    </div>
+                                    <input ref={fileInputRef} type="file" accept="audio/*,.mp3,.ogg,.wav,.aac,.m4a" onChange={handleFileUpload} className="hidden" />
+                                    {isUploading && (
+                                        <div className="mt-4 flex items-center justify-center gap-3 bg-google-blueLight rounded-[14px] py-3 border-2 border-google-blue/30">
+                                            <div className="w-4 h-4 border-2 border-google-blue border-t-transparent rounded-full animate-spin" />
+                                            <p className="text-[13px] font-extrabold text-google-blueDark">Mengunggah musik ke server...</p>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {errorMsg && (
+                                <div className="flex items-center gap-2 bg-google-redLight text-google-redDark px-4 py-3 rounded-[14px] font-extrabold text-[12px] border-2 border-google-red/30">
+                                    <Icon name="error" className="text-[16px]" fill="true" /> {errorMsg}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Info Box */}
+                    <div className="bg-google-yellowLight rounded-[24px] p-5 border-2 border-google-yellow/40 flex items-start gap-4">
+                        <Icon name="info" className="text-[22px] text-google-yellowDark shrink-0 mt-0.5" fill="true" />
+                        <div>
+                            <p className="font-extrabold text-[13px] text-google-yellowDark mb-1">Catatan Penting</p>
+                            <ul className="text-[12px] font-medium text-google-yellowDark/90 space-y-1 list-disc list-inside">
+                                <li>Musik <strong>hanya memutar otomatis</strong> untuk pengunjung yang login sebagai <strong>Warga</strong>.</li>
+                                <li>Admin tidak akan mendengar musik saat login sebagai Admin.</li>
+                                <li>Beberapa browser memblokir autoplay — warga perlu tap layar sekali agar musik mulai.</li>
+                                <li>Gunakan lagu-lagu yang bebas hak cipta atau milik sendiri.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
         function App() {
+
             const [isLoggedIn, setIsLoggedIn] = useState(false);
             const [userRole, setUserRole] = useState(null); 
             const [activeTab, setActiveTab] = useState('menu'); 
@@ -1170,13 +1566,14 @@ Developer: NOVAN RESTU UTOMO
             const [adsConfig, setAdsConfig, l20] = useFirebaseSync('ads_config', { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: 'laporan' });
             const [pinjamData, setPinjamData, l21] = useFirebaseSync('pinjam_inventaris', []);
             const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
+            const [musicData, setMusicData, l23] = useFirebaseSync('music_config', { url: '', name: '', enabled: true });
 
             // State khusus UI tambahan
             const [showPwaGuide, setShowPwaGuide] = useState(false);
 
             // Jika Firebase tidak tersedia (offline total / gagal init), anggap semua loaded
             const firebaseUnavailable = !window.firebaseDb;
-            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l20 && l21 && l22);
+            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l20 && l21 && l22 && l23);
 
             useEffect(() => {
                 if (window.firebaseAuth && window.onAuthStateChanged) {
@@ -1286,6 +1683,7 @@ Developer: NOVAN RESTU UTOMO
                 { id: 'peta', icon: 'map', label: 'Peta Desa', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-300' },
                 ...(userRole === 'admin' ? [
                     { id: 'pertemuan', icon: 'checklist', label: 'Absen Arisan', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
+                    { id: 'musik', icon: 'music_note', label: 'Musik Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
                     { id: 'pengaturan', icon: 'settings', label: 'Setelan Admin', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-300' }
                 ] : [])
             ];
@@ -1309,6 +1707,7 @@ Developer: NOVAN RESTU UTOMO
                     case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} setNextMeeting={setNextMeeting} userRole={userRole} />;
                     case 'kalender': return <Kalender />;
                     case 'peta': return <PetaDesa />;
+                    case 'musik': return userRole === 'admin' ? <MusicAdmin musicData={musicData} setMusicData={setMusicData} /> : null;
                     default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} />;
                 }
             };
@@ -1377,6 +1776,8 @@ Developer: NOVAN RESTU UTOMO
                     <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
                     <PWAInstallBanner />
                     <ToastContainer />
+                    {/* Floating Music Player - hanya untuk warga */}
+                    {userRole === 'warga' && musicData?.url && musicData?.enabled && <FloatingMusicPlayer musicData={musicData} />}
 
                     {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
 
