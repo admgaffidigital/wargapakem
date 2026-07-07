@@ -202,17 +202,24 @@ Developer: NOVAN RESTU UTOMO
         }
 
         /* PREVIEW MODE (MIMICS PRINT) */
-        body.preview-mode { background-color: #f1f5f9 !important; color: black !important; font-family: 'Times New Roman', Times, serif !important; padding: 80px 20px 20px 20px; min-height: 100vh; overflow-y: auto; }
+        body.preview-mode { background-color: #f1f5f9 !important; color: black !important; font-family: 'Times New Roman', Times, serif !important; padding: 80px 10px 20px 10px; min-height: 100vh; overflow: auto; }
         body.preview-mode .no-print { display: none !important; }
         body.preview-mode .print-only { 
             display: block !important; 
             background: white; 
-            max-width: 21cm; /* A4 width */
+            width: 800px; /* Lebar presisi A4 */
             margin: 0 auto; 
-            padding: 2cm; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            min-height: 29.7cm; /* A4 height */
+            padding: 40px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
+            min-height: 1123px; /* Tinggi presisi A4 */
         }
+        @media (max-width: 850px) { body.preview-mode .print-only { zoom: 0.9; } }
+        @media (max-width: 750px) { body.preview-mode .print-only { zoom: 0.8; } }
+        @media (max-width: 650px) { body.preview-mode .print-only { zoom: 0.7; } }
+        @media (max-width: 550px) { body.preview-mode .print-only { zoom: 0.6; } }
+        @media (max-width: 450px) { body.preview-mode .print-only { zoom: 0.5; } }
+        @media (max-width: 380px) { body.preview-mode .print-only { zoom: 0.43; } }
+        body.capture-active .print-only { zoom: 1 !important; transform: none !important; }
         body.preview-mode * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         body.preview-mode .print-table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 20px; font-size: 11pt; }
         body.preview-mode .print-table th, body.preview-mode .print-table td { border: 2px solid black !important; padding: 8px; text-align: left; }
@@ -1223,6 +1230,7 @@ Developer: NOVAN RESTU UTOMO
                     const content = document.body;
                     const toolbar = document.getElementById('print-preview-toolbar');
                     if (toolbar) toolbar.style.display = 'none';
+                    document.body.classList.add('capture-active'); // Bypass zoom
 
                     const canvas = await html2canvas(content, {
                         scale: 2,
@@ -1230,6 +1238,7 @@ Developer: NOVAN RESTU UTOMO
                         backgroundColor: '#ffffff'
                     });
                     
+                    document.body.classList.remove('capture-active');
                     if (toolbar) toolbar.style.display = 'flex';
 
                     const link = document.createElement('a');
@@ -1247,6 +1256,7 @@ Developer: NOVAN RESTU UTOMO
                     const content = document.body;
                     const toolbar = document.getElementById('print-preview-toolbar');
                     if (toolbar) toolbar.style.display = 'none';
+                    document.body.classList.add('capture-active'); // Bypass zoom
 
                     const canvas = await html2canvas(content, {
                         scale: 2,
@@ -1254,6 +1264,7 @@ Developer: NOVAN RESTU UTOMO
                         backgroundColor: '#ffffff'
                     });
                     
+                    document.body.classList.remove('capture-active');
                     if (toolbar) toolbar.style.display = 'flex';
 
                     const imgData = canvas.toDataURL('image/png');
