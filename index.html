@@ -3384,16 +3384,37 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
 function Galeri({ data, setData, userRole }) {
             const [isFormOpen, setIsFormOpen] = useState(false);
-            const [formData, setFormData] = useState({ title: '', date: getLocalDate(), imageUrl: '' });
+            const [editingId, setEditingId] = useState(null);
+            const [formData, setFormData] = useState({ title: '', date: getLocalDate(), imageUrl: '', description: '' });
             const [errorMsg, setErrorMsg] = useState('');
             const [isUploading, setIsUploading] = useState(false);
             const [deleteConfirmId, setDeleteConfirmId] = useState(null);
+            const [selectedPhoto, setSelectedPhoto] = useState(null); // Lightbox viewer state
 
             const handleSave = () => {
                 if (!formData.title || !formData.imageUrl) return setErrorMsg("Judul dan Foto wajib diisi!");
-                setData([{ id: Date.now(), ...formData }, ...data]);
+                if (editingId) {
+                    setData(data.map(item => item.id === editingId ? { ...item, ...formData } : item));
+                    showToast('Dokumentasi berhasil diperbarui.');
+                } else {
+                    setData([{ id: Date.now(), ...formData }, ...data]);
+                    showToast('Foto berhasil ditambahkan ke galeri.');
+                }
                 setIsFormOpen(false);
-                showToast('Foto berhasil ditambahkan ke galeri.');
+                setEditingId(null);
+            };
+
+            const handleEdit = (item) => {
+                setFormData({
+                    title: item.title,
+                    date: item.date || getLocalDate(),
+                    imageUrl: item.imageUrl,
+                    description: item.description || ''
+                });
+                setEditingId(item.id);
+                setErrorMsg('');
+                setIsUploading(false);
+                setIsFormOpen(true);
             };
 
             const handleImageUpload = (e) => {
@@ -3406,7 +3427,6 @@ function Galeri({ data, setData, userRole }) {
                     const base64String = reader.result.split(',')[1];
                     setIsUploading(true); setErrorMsg('');
 
-                    // Menggunakan URL GAS yang sama dengan Informasi
                     const gasUrl = window.GAS_DRIVE_URL; 
 
                     fetch(gasUrl, {
@@ -3430,40 +3450,128 @@ function Galeri({ data, setData, userRole }) {
             return (
                 <div className="space-y-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
-                        <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Galeri Dokumentasi</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Kumpulan foto-foto kegiatan warga lingkungan kita.</p></div>
-                        {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '' }); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2"><Icon name="add_a_photo" className="text-[20px]" /><span>Unggah Foto</span></button>}
+                        <div>
+                            <h2 className="text-2xl font-extrabold text-google-text tracking-tight flex items-center gap-2">
+                                <Icon name="photo_library" className="text-[28px] text-red-600"/>
+                                Galeri Lingkungan
+                            </h2>
+                            <p className="text-[14px] font-medium text-google-textVariant mt-1.5">Album dokumentasi digital dan catatan kegiatan warga.</p>
+                        </div>
+                        {userRole === 'admin' && (
+                            <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue border-2 border-google-blueDark text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2">
+                                <Icon name="add_a_photo" className="text-[20px]" />
+                                <span>Unggah Foto</span>
+                            </button>
+                        )}
                     </div>
                     
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {data.map(item => (
-                            <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 flex flex-col group relative">
-                                <div className="w-full h-56 bg-slate-100 relative shrink-0 border-b-2 border-slate-200 overflow-hidden flex items-center justify-center">
-                                    <img src={item.imageUrl} className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
+                            <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border-2 border-slate-200/80 shadow-sm hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 hover:border-red-500/20 transition-all duration-300 flex flex-col group relative">
+                                <div onClick={() => setSelectedPhoto(item)} className="w-full aspect-[4/3] bg-slate-100 relative shrink-0 border-b border-slate-100 overflow-hidden flex items-center justify-center cursor-zoom-in">
+                                    <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
+                                    <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                        <div className="bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                            <Icon name="zoom_in" className="text-slate-800 text-[20px]"/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="p-5 flex-1 flex flex-col justify-between">
-                                    <h3 className="text-[16px] font-extrabold text-google-text leading-snug mb-2 tracking-tight">{item.title}</h3>
-                                    <div className="flex justify-between items-center mt-2">
-                                        <span className="text-[11px] font-extrabold text-google-textVariant bg-slate-50 px-3 py-1.5 rounded-md border border-slate-200"><Icon name="event" className="text-[12px] inline mr-1" />{parseLocalDate(item.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</span>
-                                        {userRole === 'admin' && (
-                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red w-8 h-8 rounded-full font-extrabold flex items-center justify-center hover:bg-google-redLight border border-slate-200 hover:border-google-red/30 transition-all duration-300"><Icon name="delete" className="text-[16px]" /></button>
-                                        )}
+                                    <div>
+                                        <div className="flex justify-between items-start gap-2 mb-1.5">
+                                            <span className="text-[10px] font-extrabold text-red-600 bg-red-50 border border-red-500/15 px-2.5 py-1 rounded-md uppercase tracking-wider">
+                                                {parseLocalDate(item.date).toLocaleDateString('id-ID', {month: 'long', year:'numeric'})}
+                                            </span>
+                                            <span className="text-[11px] font-bold text-google-textVariant flex items-center gap-0.5">
+                                                <Icon name="event" className="text-[13px]" />
+                                                {parseLocalDate(item.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short'})}
+                                            </span>
+                                        </div>
+                                        <h3 onClick={() => setSelectedPhoto(item)} className="text-[16px] font-extrabold text-google-text leading-snug tracking-tight mb-2 group-hover:text-red-600 transition-colors cursor-pointer line-clamp-1">{item.title}</h3>
+                                        <p className="text-[12.5px] font-medium text-google-textVariant leading-relaxed line-clamp-2 mb-4 bg-slate-50 p-2.5 rounded-[14px] border border-slate-100">
+                                            {item.description || 'Tidak ada deskripsi.'}
+                                        </p>
                                     </div>
+                                    {userRole === 'admin' && (
+                                        <div className="flex justify-end gap-2 border-t border-slate-100 pt-3">
+                                            <button onClick={() => handleEdit(item)} className="bg-white text-google-blue w-9 h-9 rounded-full font-extrabold flex items-center justify-center hover:bg-google-blueLight border border-slate-200 hover:border-google-blue/30 transition-all duration-300">
+                                                <Icon name="edit" className="text-[16px]" />
+                                            </button>
+                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red w-9 h-9 rounded-full font-extrabold flex items-center justify-center hover:bg-google-redLight border border-slate-200 hover:border-google-red/30 transition-all duration-300">
+                                                <Icon name="delete" className="text-[16px]" />
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         ))}
                     </div>
-                    {data.length === 0 && <div className="bg-white rounded-[32px] border-2 border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border-2 border-slate-200"><Icon name="photo_library" className="text-[48px] text-slate-400" fill="true" /></div><h3 className="font-extrabold text-[20px] mb-2 text-google-text">Belum Ada Foto</h3><p className="text-google-textVariant font-medium text-[15px]">Album dokumentasi warga masih kosong.</p></div>}
+                    {data.length === 0 && (
+                        <div className="bg-white rounded-[32px] border-2 border-slate-200 p-12 text-center shadow-sm">
+                            <div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border-2 border-slate-200">
+                                <Icon name="photo_library" className="text-[48px] text-slate-400" fill="true" />
+                            </div>
+                            <h3 className="font-extrabold text-[20px] mb-2 text-google-text">Belum Ada Foto</h3>
+                            <p className="text-google-textVariant font-medium text-[15px]">Album dokumentasi warga masih kosong.</p>
+                        </div>
+                    )}
 
+                    {/* Lightbox / Detail Viewer Modal */}
+                    {selectedPhoto && (
+                        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 no-print">
+                            <div className="bg-white rounded-[32px] w-full max-w-2xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-200 overflow-hidden" style={{ animation: 'slideUp 0.3s ease-out' }}>
+                                <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 shrink-0">
+                                    <div className="flex items-center gap-2">
+                                        <Icon name="image" className="text-red-600" />
+                                        <span className="text-[13px] font-extrabold text-google-text">Detail Dokumentasi</span>
+                                    </div>
+                                    <button onClick={() => setSelectedPhoto(null)} className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-200 text-slate-500 hover:bg-slate-300 transition-all active:scale-95">
+                                        <Icon name="close" />
+                                    </button>
+                                </div>
+                                <div className="overflow-y-auto flex-1 hide-scrollbar">
+                                    <div className="w-full bg-slate-900 aspect-video flex items-center justify-center relative">
+                                        <img src={selectedPhoto.imageUrl} alt={selectedPhoto.title} className="w-full h-full object-contain" />
+                                    </div>
+                                    <div className="p-6 sm:p-8 space-y-4">
+                                        <div className="flex flex-wrap items-center gap-3">
+                                            <span className="text-[11px] font-extrabold text-red-700 bg-red-50 border border-red-500/15 px-3 py-1.5 rounded-full flex items-center gap-1">
+                                                <Icon name="event" className="text-[14px]" />
+                                                {parseLocalDate(selectedPhoto.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-2xl font-black text-google-text leading-tight tracking-tight">{selectedPhoto.title}</h3>
+                                        <div className="bg-slate-50 border border-slate-200/60 p-5 rounded-[22px] text-google-textVariant text-[14px] leading-relaxed font-medium whitespace-pre-line">
+                                            {selectedPhoto.description || 'Tidak ada deskripsi rinci untuk kegiatan ini.'}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Upload / Edit Form Modal */}
                     {isFormOpen && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm shadow-2xl border-2 border-slate-200 flex flex-col transform scale-100 transition-transform">
-                                <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">Unggah Dokumentasi</h3>
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-2 border-slate-200 flex flex-col transform scale-100 transition-transform">
+                                <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">
+                                    {editingId ? 'Edit Dokumentasi' : 'Unggah Dokumentasi'}
+                                </h3>
                                 <div className="space-y-5">
-                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul / Kegiatan</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Contoh: Kerja Bakti 17an" /></div>
-                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text" /></div>
-                                    
                                     <div>
-                                        <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Upload File Foto</label>
+                                        <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul / Kegiatan</label>
+                                        <input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Contoh: Kerja Bakti 17an" />
+                                    </div>
+                                    <div>
+                                        <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal</label>
+                                        <input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text" />
+                                    </div>
+                                    <div>
+                                        <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Deskripsi Rinci</label>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 text-[14px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Tuliskan keterangan lengkap kegiatan di sini..."></textarea>
+                                    </div>
+                                    <div>
+                                        <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">File Foto</label>
                                         <div className={`flex items-center gap-4 bg-slate-50 border-2 ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                             <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-100 text-google-textVariant relative z-0">
@@ -3474,7 +3582,7 @@ function Galeri({ data, setData, userRole }) {
                                                 <p className="text-[11px] text-google-textVariant truncate">{formData.imageUrl ? "Klik untuk mengganti foto" : "Maksimal 2MB"}</p>
                                             </div>
                                             {formData.imageUrl && !isUploading && (
-                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200 group">
+                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200">
                                                     <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
                                                 </div>
                                             )}
@@ -3483,8 +3591,10 @@ function Galeri({ data, setData, userRole }) {
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-extrabold text-[13px] px-4 py-3.5 rounded-[16px] mt-4 flex items-center gap-2"><Icon name="error" className="text-[18px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex gap-3 mt-8 pt-6 border-t-2 border-slate-100">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2">Unggah</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2">
+                                        {editingId ? 'Simpan' : 'Unggah'}
+                                    </button>
                                 </div>
                             </div>
                         </div>
