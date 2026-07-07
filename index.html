@@ -244,6 +244,7 @@ Developer: NOVAN RESTU UTOMO
         //<![CDATA[
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
         try {
             const firebaseConfig = {
@@ -263,6 +264,10 @@ Developer: NOVAN RESTU UTOMO
             window.firebaseDb = initializeFirestore(app, {
                 localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
             });
+            window.firebaseAuth = getAuth(app);
+            window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+            window.signOut = signOut;
+            window.onAuthStateChanged = onAuthStateChanged;
             window.firebaseDoc = doc;
             window.firebaseOnSnapshot = onSnapshot;
             window.firebaseSetDoc = setDoc;
@@ -1206,7 +1211,6 @@ Developer: NOVAN RESTU UTOMO
             const [meetingHistory, setMeetingHistory, l6] = useFirebaseSync('history', []);
             const [kasRtBalance, setKasRtBalance, l7] = useFirebaseSync('kas_rt_balance', 0);
             const [kasRtTransactions, setKasRtTransactions, l8] = useFirebaseSync('kas_rt_trx', []);
-            const [adminPin, setAdminPin, l9] = useFirebaseSync('admin_pin', '28111993');
             const [nominalArisan, setNominalArisan, l10] = useFirebaseSync('nominal_arisan', 10000);
             const [nominalJimpitan, setNominalJimpitan, l11] = useFirebaseSync('nominal_jimpitan', 10000);
             const [identity, setIdentity, l12] = useFirebaseSync('identity', { name: 'Aplikasi Arisan RT', subtitle: 'Wilayah Kependudukan Anda' });
@@ -1225,7 +1229,20 @@ Developer: NOVAN RESTU UTOMO
 
             // Jika Firebase tidak tersedia (offline total / gagal init), anggap semua loaded
             const firebaseUnavailable = !window.firebaseDb;
-            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l9 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l20 && l21 && l22);
+            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l20 && l21 && l22);
+
+            useEffect(() => {
+                if (window.firebaseAuth && window.onAuthStateChanged) {
+                    const unsubscribe = window.onAuthStateChanged(window.firebaseAuth, (user) => {
+                        if (user && user.uid === '7kGABJkj7APXHPtyVQUHQeoz0Cy1') {
+                            setUserRole('admin');
+                            setIsLoggedIn(true);
+                            if (window.location.hash === '') window.location.hash = 'menu';
+                        }
+                    });
+                    return () => unsubscribe();
+                }
+            }, []);
 
             useEffect(() => {
                 const handleOnline = () => setIsOffline(false);
@@ -1289,13 +1306,21 @@ Developer: NOVAN RESTU UTOMO
                     <>
                         <LoginScreen onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); window.location.hash = 'menu';
-                        }} adminPin={adminPin} identity={identity} setShowPwaGuide={setShowPwaGuide} />
+                        }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
                     </>
                 );
             }
 
-            const executeLogout = () => { setIsLoggedIn(false); setUserRole(null); setActiveTab('menu'); window.location.hash = ''; setShowLogoutModal(false); };
+            const executeLogout = () => {
+                if (window.firebaseAuth && window.signOut && userRole === 'admin') {
+                    window.signOut(window.firebaseAuth).then(() => {
+                        setIsLoggedIn(false); setUserRole(null); setActiveTab('menu'); window.location.hash = ''; setShowLogoutModal(false);
+                    }).catch(console.error);
+                } else {
+                    setIsLoggedIn(false); setUserRole(null); setActiveTab('menu'); window.location.hash = ''; setShowLogoutModal(false);
+                }
+            };
 
             const NavItems = [
                 { id: 'dashboard', icon: 'dashboard', label: 'Ringkasan', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
@@ -1331,7 +1356,7 @@ Developer: NOVAN RESTU UTOMO
                     case 'kas': return <BukuKas balance={kasRtBalance} setBalance={setKasRtBalance} transactions={kasRtTransactions} setTransactions={setKasRtTransactions} userRole={userRole} identity={identity} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} />;
                     case 'laporan': return <Laporan history={meetingHistory} setMeetingHistory={setMeetingHistory} members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} cycleNumber={cycleNumber} identity={identity} userRole={userRole} />;
                     case 'pertemuan': return userRole === 'admin' ? <Pertemuan members={members} setMembers={setMembers} currentRound={currentRound} setCurrentRound={setCurrentRound} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} setMeetingHistory={setMeetingHistory} onFinish={() => changeTab('menu')} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} identity={identity} cycleNumber={cycleNumber} /> : null;
-                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan adminPin={adminPin} setAdminPin={setAdminPin} nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} /> : null;
+                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} /> : null;
                     case 'infaq': return <Infaq infaqData={infaqData} setInfaqData={setInfaqData} userRole={userRole} identity={identity} />;
                     case 'pemenang': return <Pemenang members={members} />;
                     case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} setNextMeeting={setNextMeeting} userRole={userRole} />;
@@ -1491,12 +1516,31 @@ Developer: NOVAN RESTU UTOMO
             );
         }
 
-        function LoginScreen({ onLogin, adminPin, identity, setShowPwaGuide }) {
-            const [pin, setPin] = useState('');
+        function LoginScreen({ onLogin, identity, setShowPwaGuide }) {
+            const [email, setEmail] = useState('');
+            const [password, setPassword] = useState('');
+            const [isLoading, setIsLoading] = useState(false);
             const [mode, setMode] = useState('select'); 
             const [error, setError] = useState('');
             
-            const handleAdminLogin = () => { if (pin === adminPin) onLogin('admin'); else setError('PIN Salah. Coba lagi.'); };
+            const handleAdminLogin = async () => {
+                if (!email || !password) return setError('Email dan Password wajib diisi.');
+                setIsLoading(true); setError('');
+                try {
+                    const userCredential = await window.signInWithEmailAndPassword(window.firebaseAuth, email, password);
+                    if (userCredential.user.uid === '7kGABJkj7APXHPtyVQUHQeoz0Cy1') {
+                        onLogin('admin');
+                    } else {
+                        await window.signOut(window.firebaseAuth);
+                        setError('Akses ditolak. UID tidak sesuai.');
+                    }
+                } catch (err) {
+                    setError('Login gagal. Periksa kembali email dan password Anda.');
+                    console.error(err);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
             
             return (
                 <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 bg-gradient-to-tr from-slate-50 via-rose-50/20 to-slate-100 relative overflow-hidden">
@@ -1563,15 +1607,19 @@ Developer: NOVAN RESTU UTOMO
                                 <button onClick={() => setMode('admin_login')} className="w-full bg-google-blue text-white font-extrabold py-3.5 rounded-full flex justify-center items-center gap-2 text-[14px] border-2 border-google-blueDark shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all duration-300 active:scale-95"><Icon name="lock" className="text-[20px]" /><span>Otorisasi Admin</span></button>
                             </div>
                         ) : (
-                            <div className="space-y-6">
-                                <div>
-                                    <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 text-left ml-2 uppercase tracking-widest">Kode Keamanan</label>
-                                    <input type="password" placeholder="••••••" value={pin} onChange={(e) => { setPin(e.target.value); setError(''); }} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md text-google-text rounded-[16px] px-5 py-4 text-center text-[24px] tracking-[0.5em] font-extrabold outline-none transition-all placeholder:tracking-normal placeholder:text-[14px] placeholder:font-medium placeholder:text-slate-400" />
+                            <div className="space-y-4">
+                                <div className="text-left">
+                                    <label className="text-[11px] font-extrabold text-google-textVariant block mb-1.5 ml-2 uppercase tracking-widest">Email Admin</label>
+                                    <input type="email" placeholder="Email Firebase Anda" value={email} onChange={(e) => { setEmail(e.target.value); setError(''); }} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md text-google-text rounded-[16px] px-5 py-3.5 text-[15px] font-bold outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
                                 </div>
-                                {error && <p className="text-[12px] text-google-redDark font-extrabold bg-google-redLight py-3 rounded-[12px] border-2 border-google-red/30 shadow-sm flex items-center justify-center gap-1.5"><Icon name="error" className="text-[16px]"/> {error}</p>}
-                                <div className="flex gap-3 pt-2">
-                                    <button onClick={() => {setMode('select'); setError(''); setPin('');}} className="flex-1 bg-white border-2 border-slate-200 text-google-text py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Kembali</button>
-                                    <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center">Verifikasi</button>
+                                <div className="text-left">
+                                    <label className="text-[11px] font-extrabold text-google-textVariant block mb-1.5 ml-2 uppercase tracking-widest">Kata Sandi</label>
+                                    <input type="password" placeholder="Kata Sandi Firebase" value={password} onChange={(e) => { setPassword(e.target.value); setError(''); }} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md text-google-text rounded-[16px] px-5 py-3.5 text-[15px] font-bold outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
+                                </div>
+                                {error && <p className="text-[12px] text-google-redDark font-extrabold bg-google-redLight py-3 rounded-[12px] border-2 border-google-red/30 shadow-sm flex items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[16px]"/> {error}</p>}
+                                <div className="flex gap-3 pt-4">
+                                    <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-200 text-google-text py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
+                                    <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
                                 </div>
                             </div>
                         )}
@@ -4694,7 +4742,7 @@ function Galeri({ data, setData, userRole }) {
                     )}
                 </div>
             );
-        }
+}
 
         function PengaturanSection({ title, onSave, children }) {
             return (
@@ -4707,7 +4755,7 @@ function Galeri({ data, setData, userRole }) {
         }
 
         function Pengaturan(props) {
-            const { adminPin, setAdminPin, nominalArisan, setNominalArisan, nominalJimpitan, setNominalJimpitan, identity, setIdentity, setMembers, setMeetingHistory, currentRound, setCurrentRound, cycleNumber, setCycleNumber, jimpitanBalance, setJimpitanBalance, kasRtBalance, setKasRtBalance, kasRtTransactions, setKasRtTransactions, arisanPeriod, setArisanPeriod, bannerImage, setBannerImage,
+            const { nominalArisan, setNominalArisan, nominalJimpitan, setNominalJimpitan, identity, setIdentity, setMembers, setMeetingHistory, currentRound, setCurrentRound, cycleNumber, setCycleNumber, jimpitanBalance, setJimpitanBalance, kasRtBalance, setKasRtBalance, kasRtTransactions, setKasRtTransactions, arisanPeriod, setArisanPeriod, bannerImage, setBannerImage,
             // State tambahan untuk reset menyeluruh (diteruskan dari App)
             setIuranData, setGaleriData, setInventarisData, setInformasi, setNextMeeting, adsConfig, setAdsConfig } = props;
             
@@ -4716,7 +4764,6 @@ function Galeri({ data, setData, userRole }) {
             useEffect(() => { setFormAds(adsConfig || { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: ['laporan'] }); }, [adsConfig]);
             const [formNominal, setFormNominal] = useState({ arisan: nominalArisan, jimpitan: nominalJimpitan });
             const [formPeriod, setFormPeriod] = useState(arisanPeriod);
-            const [passwordForm, setPasswordForm] = useState({ current: '', new: '', confirm: '' });
             const [formSaldo, setFormSaldo] = useState({ jimpitan: jimpitanBalance, kasRt: kasRtBalance });
             const [formRound, setFormRound] = useState({ round: currentRound, cycle: cycleNumber });
             const [modalConfig, setModalConfig] = useState(null); 
@@ -4756,12 +4803,6 @@ function Galeri({ data, setData, userRole }) {
                 }
                 if(type === 'banner') { setBannerImage(formBanner); }
                 if(type === 'ads') { setAdsConfig({...formAds}); }
-                if(type === 'pin') {
-                    if (passwordForm.current !== adminPin) return showAlert("PIN lama salah!");
-                    if (passwordForm.new.length < 4) return showAlert("PIN baru minimal 4 karakter!");
-                    if (passwordForm.new !== passwordForm.confirm) return showAlert("Konfirmasi PIN tidak cocok!");
-                    setAdminPin(passwordForm.new); setPasswordForm({ current: '', new: '', confirm: '' });
-                }
                 showAlert("Perubahan berhasil disimpan.");
             };
 
@@ -4844,11 +4885,6 @@ function Galeri({ data, setData, userRole }) {
                         <PengaturanSection title="Koreksi Saldo Manual" onSave={() => handleSaveAll('saldo')}>
                             <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Kas RT Utama (Rp)</label><input type="number" min="0" value={formSaldo.kasRt} onChange={e => setFormSaldo({...formSaldo, kasRt: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
                             <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Jimpitan Berjalan (Rp)</label><input type="number" min="0" value={formSaldo.jimpitan} onChange={e => setFormSaldo({...formSaldo, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                        </PengaturanSection>
-                        <PengaturanSection title="Ganti PIN Akses Admin" onSave={() => handleSaveAll('pin')}>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-4 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><input type="password" placeholder="Masukkan PIN Lama Anda" value={passwordForm.current} onChange={e => setPasswordForm({...passwordForm, current: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text tracking-[0.2em] placeholder:tracking-normal placeholder:font-medium placeholder:text-slate-400" /></div>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-4 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><input type="password" placeholder="PIN Baru (Min 4 Angka)" value={passwordForm.new} onChange={e => setPasswordForm({...passwordForm, new: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text tracking-[0.2em] placeholder:tracking-normal placeholder:font-medium placeholder:text-slate-400" /></div>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-4 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><input type="password" placeholder="Konfirmasi Ulang PIN Baru" value={passwordForm.confirm} onChange={e => setPasswordForm({...passwordForm, confirm: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text tracking-[0.2em] placeholder:tracking-normal placeholder:font-medium placeholder:text-slate-400" /></div>
                         </PengaturanSection>
 
 <PengaturanSection title="Gambar Latar Banner (Menu Utama)" onSave={() => handleSaveAll('banner')}>
