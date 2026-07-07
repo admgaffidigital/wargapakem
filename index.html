@@ -1618,8 +1618,6 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     </div>
                     {/* --- AKHIR AREA BANNER --- */}
 
-                    <WaktuSholatWidget />
-
                     {/* AREA GRID MENU */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5">
                         {NavItems.map((item, idx) => (
@@ -2001,7 +1999,6 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
             return (
                 <div className="space-y-5 sm:space-y-6">
-                    <WaktuSholatWidget />
                     <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-2 border-slate-200 shadow-sm hover:shadow-lg transition-shadow">
                         <div>
                             <span className="inline-flex items-center px-3.5 py-1.5 rounded-md text-[10px] font-extrabold uppercase tracking-widest bg-google-blueLight text-google-blueDark mb-3 border border-google-blue/30">Siklus {cycleNumber}</span>
@@ -5066,6 +5063,8 @@ function Galeri({ data, setData, userRole }) {
                             </div>
                         </div>
                     )}
+
+                    <WaktuSholatWidget />
                 </div>
             );
         }
