@@ -1657,8 +1657,18 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
         }
 
         function WaktuSholatWidget() {
-            const [city, setCity] = useState(() => localStorage.getItem('sholat_city_name') || 'Sleman');
-            const [cityId, setCityId] = useState(() => localStorage.getItem('sholat_city_id') || '1609');
+            const DEFAULT_LAT = -7.8246;
+            const DEFAULT_LNG = 112.0792;
+            const DEFAULT_CITY = 'Gurah, Kediri';
+
+            const [city, setCity] = useState(() => localStorage.getItem('sholat_city_name') || DEFAULT_CITY);
+            const [coords, setCoords] = useState(() => {
+                const lat = localStorage.getItem('sholat_lat');
+                const lng = localStorage.getItem('sholat_lng');
+                return lat && lng ? { lat: parseFloat(lat), lng: parseFloat(lng) } : { lat: DEFAULT_LAT, lng: DEFAULT_LNG };
+            });
+            const [isGPS, setIsGPS] = useState(() => localStorage.getItem('sholat_is_gps') === 'true');
+
             const [schedule, setSchedule] = useState(() => {
                 try {
                     const cached = localStorage.getItem('sholat_schedule_today');
@@ -1672,7 +1682,38 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [nextPrayer, setNextPrayer] = useState(null);
             const [timeRemaining, setTimeRemaining] = useState('');
 
-            const fetchSchedule = useCallback(async (cId) => {
+            const fetchByCoords = useCallback(async (lat, lng) => {
+                setLoading(true);
+                const now = new Date();
+                const d = String(now.getDate()).padStart(2, '0');
+                const m = String(now.getMonth() + 1).padStart(2, '0');
+                const y = now.getFullYear();
+
+                try {
+                    const res = await fetch(`https://api.aladhan.com/v1/timings/${d}-${m}-${y}?latitude=${lat}&longitude=${lng}&method=11`);
+                    const data = await res.json();
+                    if (data && data.code === 200 && data.data && data.data.timings) {
+                        const t = data.data.timings;
+                        const todayJadwal = {
+                            tanggal: `${d}/${m}/${y}`,
+                            imsak: t.Imsak,
+                            subuh: t.Fajr,
+                            dzuhur: t.Dhuhr,
+                            ashar: t.Asr,
+                            maghrib: t.Maghrib,
+                            isya: t.Isha
+                        };
+                        setSchedule(todayJadwal);
+                        localStorage.setItem('sholat_schedule_today', JSON.stringify(todayJadwal));
+                    }
+                } catch (e) {
+                    console.warn("Gagal mengambil jadwal sholat Aladhan:", e);
+                } finally {
+                    setLoading(false);
+                }
+            }, []);
+
+            const fetchByCityId = useCallback(async (cId) => {
                 setLoading(true);
                 const now = new Date();
                 const y = now.getFullYear();
@@ -1688,11 +1729,40 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         localStorage.setItem('sholat_schedule_today', JSON.stringify(todayJadwal));
                     }
                 } catch (e) {
-                    console.warn("Gagal mengambil jadwal sholat dari API:", e);
+                    console.warn("Gagal mengambil jadwal sholat Kemenag:", e);
                 } finally {
                     setLoading(false);
                 }
             }, []);
+
+            const handleGPSDetection = () => {
+                if (!navigator.geolocation) {
+                    showToast('Geolokasi tidak didukung oleh browser Anda.', 'error');
+                    return;
+                }
+                setLoading(true);
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        setCoords({ lat, lng });
+                        setIsGPS(true);
+                        setCity('Lokasi GPS Aktif');
+                        localStorage.setItem('sholat_lat', lat);
+                        localStorage.setItem('sholat_lng', lng);
+                        localStorage.setItem('sholat_is_gps', 'true');
+                        localStorage.setItem('sholat_city_name', 'Lokasi GPS Aktif');
+                        fetchByCoords(lat, lng);
+                        showToast('Berhasil mendeteksi lokasi GPS perangkat.');
+                    },
+                    (error) => {
+                        console.error(error);
+                        showToast('Gagal mengakses GPS. Pastikan izin lokasi aktif.', 'error');
+                        setLoading(false);
+                    },
+                    { enableHighAccuracy: true, timeout: 10000 }
+                );
+            };
 
             const handleSearchCity = async (e) => {
                 e.preventDefault();
@@ -1716,17 +1786,28 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
             const selectCity = (selectedCity) => {
                 setCity(selectedCity.lokasi);
-                setCityId(selectedCity.id);
+                setIsGPS(false);
                 localStorage.setItem('sholat_city_name', selectedCity.lokasi);
-                localStorage.setItem('sholat_city_id', selectedCity.id);
+                localStorage.setItem('sholat_is_gps', 'false');
+                localStorage.removeItem('sholat_lat');
+                localStorage.removeItem('sholat_lng');
                 setSearchResults([]);
                 setSearchQuery('');
-                fetchSchedule(selectedCity.id);
+                fetchByCityId(selectedCity.id);
             };
 
             useEffect(() => {
-                fetchSchedule(cityId);
-            }, [cityId, fetchSchedule]);
+                if (isGPS) {
+                    fetchByCoords(coords.lat, coords.lng);
+                } else {
+                    if (city === DEFAULT_CITY) {
+                        fetchByCoords(DEFAULT_LAT, DEFAULT_LNG);
+                    } else {
+                        const savedCityId = localStorage.getItem('sholat_city_id') || '1609';
+                        fetchByCityId(savedCityId);
+                    }
+                }
+            }, [isGPS, coords, fetchByCoords, fetchByCityId, city]);
 
             useEffect(() => {
                 if (!schedule) return;
@@ -1803,30 +1884,48 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
             return (
                 <div className="bg-white rounded-[32px] p-6 sm:p-8 border-2 border-slate-200 shadow-sm space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <div className="flex items-center gap-2">
                                 <Icon name="mosque" className="text-red-600 text-[24px]" fill="true"/>
-                                <h3 className="text-[18px] font-extrabold text-google-text tracking-tight">Jadwal Sholat {city}</h3>
+                                <h3 className="text-[18px] font-extrabold text-google-text tracking-tight flex items-center gap-2">
+                                    Jadwal Sholat {city}
+                                    {isGPS && <span className="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-extrabold border border-red-200">GPS</span>}
+                                </h3>
                             </div>
                             <p className="text-[12px] font-bold text-google-textVariant mt-0.5">Metode Kemenag RI • Hari ini: {schedule.tanggal}</p>
                         </div>
 
-                        <form onSubmit={handleSearchCity} className="w-full sm:w-auto flex items-center gap-2">
-                            <div className="bg-slate-50 border-2 border-slate-200 focus-within:border-red-500 rounded-full px-4 py-1.5 flex items-center gap-2 w-full sm:w-56 shadow-sm">
-                                <Icon name="search" className="text-[16px] text-slate-400" />
-                                <input 
-                                    type="text" 
-                                    value={searchQuery}
-                                    onChange={e => setSearchQuery(e.target.value)}
-                                    placeholder="Cari Kabupaten/Kota..."
-                                    className="bg-transparent border-none outline-none text-[12.5px] font-bold w-full text-google-text placeholder:text-slate-400 placeholder:font-medium"
-                                />
-                            </div>
-                            <button type="submit" disabled={isSearching} className="bg-red-600 text-white font-extrabold text-[12px] px-5 py-2.5 rounded-full border border-red-700 hover:bg-red-700 shadow-sm active:scale-95 transition-all">
-                                {isSearching ? '...' : 'Cari'}
+                        <div className="w-full md:w-auto flex flex-wrap items-center gap-2">
+                            <button 
+                                type="button" 
+                                onClick={handleGPSDetection}
+                                className={`flex items-center gap-1.5 font-extrabold text-[12px] px-5 py-2.5 rounded-full border transition-all active:scale-95 ${
+                                    isGPS 
+                                        ? 'bg-red-50 text-red-600 border-red-500/30' 
+                                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                                }`}
+                            >
+                                <Icon name="my_location" className="text-[16px]"/>
+                                {loading ? 'GPS...' : 'Gunakan GPS'}
                             </button>
-                        </form>
+
+                            <form onSubmit={handleSearchCity} className="flex items-center gap-2 flex-1 md:flex-initial">
+                                <div className="bg-slate-50 border-2 border-slate-200 focus-within:border-red-500 rounded-full px-4 py-1.5 flex items-center gap-2 flex-1 md:w-56 shadow-sm">
+                                    <Icon name="search" className="text-[16px] text-slate-400" />
+                                    <input 
+                                        type="text" 
+                                        value={searchQuery}
+                                        onChange={e => setSearchQuery(e.target.value)}
+                                        placeholder="Cari Kota..."
+                                        className="bg-transparent border-none outline-none text-[12.5px] font-bold w-full text-google-text placeholder:text-slate-400"
+                                    />
+                                </div>
+                                <button type="submit" disabled={isSearching} className="bg-red-600 text-white font-extrabold text-[12px] px-5 py-2.5 rounded-full border border-red-700 hover:bg-red-700 shadow-sm active:scale-95 transition-all">
+                                    {isSearching ? '...' : 'Cari'}
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
                     {searchResults.length > 0 && (
