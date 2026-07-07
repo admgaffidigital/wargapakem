@@ -1561,16 +1561,13 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     )}
                     
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch mt-4">
-                        {userRole !== 'admin' && (
-                            <div className="bg-white p-4 rounded-[24px] text-center border-2 border-slate-200 shadow-sm flex-1 flex items-center justify-center">
+                    {userRole !== 'admin' && (
+                        <div className="flex justify-center mt-4">
+                            <div className="bg-white p-4 rounded-[24px] text-center border-2 border-slate-200 shadow-sm flex items-center justify-center">
                                 <p className="text-[13px] font-bold text-google-textVariant flex items-center justify-center gap-2"><Icon name="info" className="text-[18px]" /> Mode Warga (akses terbatas).</p>
                             </div>
-                        )}
-                        <button onClick={() => setShowPwaGuide(true)} className="bg-white p-4 rounded-[24px] text-center border-2 border-google-blue/30 shadow-sm text-google-blue font-extrabold text-[13px] hover:bg-google-blueLight active:scale-95 transition-all flex items-center justify-center gap-2">
-                            <Icon name="install_mobile" className="text-[18px]" /> Panduan Install Aplikasi (PWA)
-                        </button>
-                    </div>
+                        </div>
+                    )}
                 </div>
             );
         }
