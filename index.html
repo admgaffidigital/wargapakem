@@ -1260,14 +1260,6 @@ Developer: NOVAN RESTU UTOMO
             const handleDownloadImage = async () => {
                 try {
                     const content = document.body;
-                    const toolbar = document.getElementById('print-preview-toolbar');
-                    if (toolbar) toolbar.style.display = 'none';
-                    document.body.classList.add('capture-active'); // Bypass zoom
-
-                    const canvas = await html2canvas(content, {
-                        scale: 2,
-                        useCORS: true,
-                        backgroundColor: '#ffffff'
                     const toolbar = document.getElementById('print-preview-header');
                     const footer = document.getElementById('print-preview-footer');
                     if (toolbar) toolbar.style.display = 'none';
