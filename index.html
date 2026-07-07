@@ -112,7 +112,7 @@ Developer: NOVAN RESTU UTOMO
     <link href='https://fonts.googleapis.com' rel='preconnect'/>
     <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
     <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
-    <link href='https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&amp;display=swap' rel='stylesheet'/>
+    <link href='https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&amp;display=block' rel='stylesheet'/>
     
     <script src='https://cdn.tailwindcss.com'></script>
     <script>
@@ -141,6 +141,15 @@ Developer: NOVAN RESTU UTOMO
     <script src='https://unpkg.com/@babel/standalone@7.25.6/babel.min.js'></script>
 
     <style>
+        /* Prevent Material Symbols from flashing raw text names before loading */
+        .material-symbols-rounded {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            word-wrap: normal;
+        }
         body, html { background-color: #e2e8f0; color: #0f172a; margin: 0; padding: 0; min-height: 100vh; overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
         input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
