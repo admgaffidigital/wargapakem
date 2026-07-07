@@ -41,116 +41,43 @@ Developer: NOVAN RESTU UTOMO
     <script>
     //<![CDATA[
     // Generate ikon PWA secara dinamis via Canvas — menggunakan Garuda Pancasila
+    // Setup PWA Icons menggunakan SVG asli
     (function() {
         const GARUDA_URL = './National_emblem_of_Indonesia_Garuda_Pancasila.svg';
+        
+        document.getElementById('apple-touch-icon').href = GARUDA_URL;
+        document.getElementById('pwa-icon-192').href = GARUDA_URL;
+        document.getElementById('pwa-icon-512').href = GARUDA_URL;
+        document.getElementById('pwa-icon-fallback').href = GARUDA_URL;
 
-        function makeIconWithGaruda(size, garudaImg) {
-            const c = document.createElement('canvas');
-            c.width = c.height = size;
-            const ctx = c.getContext('2d');
-            const r = size * 0.20;
-
-            // Background: rounded rect merah gradient
-            ctx.beginPath();
-            ctx.moveTo(r, 0); ctx.lineTo(size - r, 0);
-            ctx.quadraticCurveTo(size, 0, size, r);
-            ctx.lineTo(size, size - r);
-            ctx.quadraticCurveTo(size, size, size - r, size);
-            ctx.lineTo(r, size); ctx.quadraticCurveTo(0, size, 0, size - r);
-            ctx.lineTo(0, r); ctx.quadraticCurveTo(0, 0, r, 0);
-            ctx.closePath();
-            const grad = ctx.createLinearGradient(0, 0, size, size);
-            grad.addColorStop(0, '#dc2626');
-            grad.addColorStop(1, '#7f1d1d');
-            ctx.fillStyle = grad;
-            ctx.fill();
-
-            // Gambar Garuda di tengah dengan padding
-            const pad = size * 0.10;
-            const imgSize = size - pad * 2;
-            ctx.drawImage(garudaImg, pad, pad, imgSize, imgSize);
-
-            return c.toDataURL('image/png');
-        }
-
-        function makeFallbackIcon(size) {
-            // Fallback jika gambar gagal load
-            const c = document.createElement('canvas');
-            c.width = c.height = size;
-            const ctx = c.getContext('2d');
-            const r = size * 0.20;
-            ctx.beginPath();
-            ctx.moveTo(r, 0); ctx.lineTo(size - r, 0);
-            ctx.quadraticCurveTo(size, 0, size, r);
-            ctx.lineTo(size, size - r);
-            ctx.quadraticCurveTo(size, size, size - r, size);
-            ctx.lineTo(r, size); ctx.quadraticCurveTo(0, size, 0, size - r);
-            ctx.lineTo(0, r); ctx.quadraticCurveTo(0, 0, r, 0);
-            ctx.closePath();
-            const grad = ctx.createLinearGradient(0, 0, size, size);
-            grad.addColorStop(0, '#dc2626');
-            grad.addColorStop(1, '#7f1d1d');
-            ctx.fillStyle = grad;
-            ctx.fill();
-            ctx.fillStyle = 'rgba(255,255,255,0.20)';
-            ctx.fillRect(0, size * 0.5, size, size * 0.5);
-            ctx.fillStyle = '#ffffff';
-            ctx.font = `bold ${size * 0.32}px sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('RT', size / 2, size * 0.32);
-            return c.toDataURL('image/png');
-        }
-
-        function applyIcons(icon192, icon512) {
-            window._pwaIcon192 = icon192;
-            window._pwaIcon512 = icon512;
-            document.getElementById('apple-touch-icon').href = icon192;
-            document.getElementById('pwa-icon-192').href = icon192;
-            document.getElementById('pwa-icon-512').href = icon512;
-            document.getElementById('pwa-icon-fallback').href = icon192;
-
-            const baseUrl = window.location.origin + window.location.pathname;
-            const manifest = {
-                id: '/portal-warga-rt',
-                name: 'Portal Warga RT - PAKEM',
-                short_name: 'Warga RT',
-                description: 'Portal digital warga RT — arisan, keuangan, galeri, dan informasi lingkungan Pakem Banyuanyar',
-                start_url: baseUrl + '#menu',
-                scope: baseUrl,
-                display: 'standalone',
-                display_override: ['standalone', 'minimal-ui'],
-                orientation: 'portrait',
-                theme_color: '#dc2626',
-                background_color: '#dc2626',
-                lang: 'id',
-                dir: 'ltr',
-                categories: ['finance', 'utilities', 'productivity'],
-                icons: [
-                    { src: icon192, sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
-                    { src: icon512, sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
-                ],
-                shortcuts: [
-                    { name: 'Ringkasan Arisan', short_name: 'Ringkasan', url: baseUrl + '#dashboard', icons: [{ src: icon192, sizes: '192x192' }] },
-                    { name: 'Kas RT', short_name: 'Kas RT', url: baseUrl + '#kas', icons: [{ src: icon192, sizes: '192x192' }] },
-                    { name: 'Buku Warga', short_name: 'Warga', url: baseUrl + '#warga', icons: [{ src: icon192, sizes: '192x192' }] }
-                ]
-            };
-            const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-            document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
-        }
-
-        // Load Garuda image, fallback ke text icon jika gagal
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.onload = function() {
-            applyIcons(makeIconWithGaruda(192, img), makeIconWithGaruda(512, img));
+        const baseUrl = window.location.origin + window.location.pathname;
+        const manifest = {
+            id: '/portal-warga-rt',
+            name: 'Portal Warga RT - PAKEM',
+            short_name: 'Warga RT',
+            description: 'Portal digital warga RT — arisan, keuangan, galeri, dan informasi lingkungan Pakem Banyuanyar',
+            start_url: baseUrl + '#menu',
+            scope: baseUrl,
+            display: 'standalone',
+            display_override: ['standalone', 'minimal-ui'],
+            orientation: 'portrait',
+            theme_color: '#dc2626',
+            background_color: '#dc2626',
+            lang: 'id',
+            dir: 'ltr',
+            categories: ['finance', 'utilities', 'productivity'],
+            icons: [
+                { src: GARUDA_URL, sizes: '192x192', type: 'image/svg+xml', purpose: 'any maskable' },
+                { src: GARUDA_URL, sizes: '512x512', type: 'image/svg+xml', purpose: 'any maskable' }
+            ],
+            shortcuts: [
+                { name: 'Ringkasan Arisan', short_name: 'Ringkasan', url: baseUrl + '#dashboard', icons: [{ src: GARUDA_URL, sizes: '192x192', type: 'image/svg+xml' }] },
+                { name: 'Kas RT', short_name: 'Kas RT', url: baseUrl + '#kas', icons: [{ src: GARUDA_URL, sizes: '192x192', type: 'image/svg+xml' }] },
+                { name: 'Buku Warga', short_name: 'Warga', url: baseUrl + '#warga', icons: [{ src: GARUDA_URL, sizes: '192x192', type: 'image/svg+xml' }] }
+            ]
         };
-        img.onerror = function() {
-            console.warn('Garuda image failed to load, using fallback icon.');
-            applyIcons(makeFallbackIcon(192), makeFallbackIcon(512));
-        };
-        img.src = GARUDA_URL;
+        const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+        document.getElementById('pwa-manifest').href = URL.createObjectURL(blob);
     })();
     //]]>
     </script>
