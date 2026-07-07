@@ -175,7 +175,7 @@ Developer: NOVAN RESTU UTOMO
             50% { transform: translateY(-120px) translateX(20px) scale(1.3); opacity: 0.6; }
             100% { transform: translateY(-240px) translateX(-10px) scale(0.7); opacity: 0; }
         }
-        body, html { background-color: #f8fafc; color: #0f172a; margin: 0; padding: 0; min-height: 100vh; overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+        body, html { background-color: transparent; color: #0f172a; margin: 0; padding: 0; min-height: 100vh; overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
         input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -1521,100 +1521,92 @@ Developer: NOVAN RESTU UTOMO
         }
 
         function FlagWavingBackground() {
+            const canvasRef = React.useRef(null);
+            React.useEffect(() => {
+                const canvas = canvasRef.current;
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let animFrame;
+                let t = 0;
+
+                function resize() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                function draw() {
+                    const W = canvas.width;
+                    const H = canvas.height;
+                    ctx.clearRect(0, 0, W, H);
+
+                    // Gambar bendera berkibar menggunakan strip horizontal
+                    const strips = 80;
+                    const stripH = H / strips;
+                    const waveAmp = W * 0.025;
+                    const waveFreq = 4;
+                    const waveSpeed = 0.04;
+
+                    for (let i = 0; i < strips; i++) {
+                        const y = i * stripH;
+                        const progress = i / strips;
+
+                        // Gelombang: setiap strip bergeser secara sinusoidal
+                        const waveX = Math.sin(progress * waveFreq * Math.PI + t) * waveAmp;
+                        const shadowFactor = Math.cos(progress * waveFreq * Math.PI + t) * 0.25;
+
+                        // Warna: merah di atas, putih di bawah
+                        let r, g, b;
+                        if (progress < 0.5) {
+                            // Zona merah — bendera Indonesia bagian atas
+                            r = Math.round(200 + shadowFactor * 30);
+                            g = Math.round(20 + shadowFactor * 10);
+                            b = Math.round(30 + shadowFactor * 10);
+                        } else {
+                            // Zona putih — bendera Indonesia bagian bawah
+                            const shade = Math.round(245 + shadowFactor * 10);
+                            r = shade; g = shade; b = shade;
+                        }
+
+                        // Clip brightness
+                        r = Math.max(0, Math.min(255, r));
+                        g = Math.max(0, Math.min(255, g));
+                        b = Math.max(0, Math.min(255, b));
+
+                        // Gambar strip dengan offset gelombang
+                        ctx.save();
+                        ctx.translate(waveX, 0);
+                        ctx.fillStyle = `rgba(${r},${g},${b}, 0.92)`;
+                        ctx.fillRect(-waveAmp * 2, y, W + waveAmp * 4, stripH + 1);
+                        ctx.restore();
+                    }
+
+                    // Efek kilau kain — cahaya bergerak
+                    const shimmerX = (Math.sin(t * 0.5) * 0.3 + 0.5) * W;
+                    const shimmerGrad = ctx.createRadialGradient(shimmerX, H * 0.3, 0, shimmerX, H * 0.3, W * 0.5);
+                    shimmerGrad.addColorStop(0, 'rgba(255,255,255,0.12)');
+                    shimmerGrad.addColorStop(1, 'rgba(255,255,255,0)');
+                    ctx.fillStyle = shimmerGrad;
+                    ctx.fillRect(0, 0, W, H);
+
+                    t += waveSpeed;
+                    animFrame = requestAnimationFrame(draw);
+                }
+
+                draw();
+                return () => {
+                    cancelAnimationFrame(animFrame);
+                    window.removeEventListener('resize', resize);
+                };
+            }, []);
+
             return (
-                <div className="fixed inset-0 -z-20 overflow-hidden pointer-events-none bg-slate-50 no-print">
-                    <style>{`
-                        .flag-container {
-                            position: absolute;
-                            inset: 0;
-                            width: 100%;
-                            height: 100%;
-                            opacity: 0.18;
-                            display: flex;
-                            flex-direction: column;
-                            filter: contrast(1.15) saturate(1.25);
-                        }
-                        .flag-red {
-                            height: 50vh;
-                            width: 100%;
-                            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
-                            position: relative;
-                            overflow: hidden;
-                        }
-                        .flag-white {
-                            height: 50vh;
-                            width: 100%;
-                            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-                            position: relative;
-                            overflow: hidden;
-                        }
-                        /* Efek tiupan angin pada serat kain */
-                        .flag-wind-overlay {
-                            position: absolute;
-                            inset: -100px;
-                            background: repeating-linear-gradient(
-                                135deg,
-                                rgba(0, 0, 0, 0.04) 0px,
-                                rgba(0, 0, 0, 0.04) 40px,
-                                rgba(255, 255, 255, 0.15) 80px,
-                                rgba(255, 255, 255, 0.15) 120px,
-                                rgba(0, 0, 0, 0) 160px,
-                                rgba(0, 0, 0, 0.06) 200px
-                            );
-                            filter: blur(35px);
-                            mix-blend-mode: overlay;
-                            animation: wind-wave 12s infinite linear;
-                        }
-                        /* Riak lipatan kain bendera 3D */
-                        .flag-fabric-folds {
-                            position: absolute;
-                            inset: 0;
-                            background: radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.28) 0%, transparent 60%),
-                                        radial-gradient(circle at 85% 75%, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
-                            mix-blend-mode: multiply;
-                            animation: fold-shift 15s infinite ease-in-out;
-                        }
-                        @keyframes wind-wave {
-                            0% { transform: translate(0, 0) rotate(0deg); }
-                            100% { transform: translate(-300px, 300px) rotate(0deg); }
-                        }
-                        @keyframes fold-shift {
-                            0%, 100% { transform: scale(1) translate(0px, 0px); }
-                            50% { transform: scale(1.08) translate(-15px, 10px); }
-                        }
-                        /* Pembatas bergelombang dinamis (efek bendera berkibar) */
-                        .flag-wave-divider {
-                            position: absolute;
-                            top: 50vh;
-                            left: 0;
-                            width: 200%;
-                            height: 120px;
-                            margin-top: -60px;
-                            z-index: 10;
-                            fill: #ffffff;
-                            animation: wave-divider-move 8s infinite linear;
-                        }
-                        @keyframes wave-divider-move {
-                            0% { transform: translateX(0); }
-                            100% { transform: translateX(-50%); }
-                        }
-                    `}</style>
-                    <div className="flag-container">
-                        <div className="flag-red">
-                            <div className="flag-wind-overlay"></div>
-                            <div className="flag-fabric-folds"></div>
-                        </div>
-                        <div className="flag-white">
-                            <div className="flag-wind-overlay"></div>
-                            <div className="flag-fabric-folds"></div>
-                        </div>
-                        {/* Pembatas lekukan kibaran bendera */}
-                        <svg className="flag-wave-divider" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z" fill="#ffffff" />
-                            <path d="M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z" fill="#f1f5f9" opacity="0.6" transform="translate(15, 6)" />
-                        </svg>
-                    </div>
-                </div>
+                <canvas
+                    ref={canvasRef}
+                    className="fixed inset-0 pointer-events-none no-print"
+                    style={{ zIndex: -1, width: '100%', height: '100%' }}
+                />
             );
         }
 
