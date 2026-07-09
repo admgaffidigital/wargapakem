@@ -2024,7 +2024,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 mb-4">Sponsored By</p>
                             <div className="flex flex-wrap items-center justify-center gap-6">
                                 {sponsorsData.sponsors.map((s, i) => (
-                                    <img key={i} src={getDirectImgUrl(s.url)} alt={s.name} className="h-10 sm:h-12 max-w-[120px] object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300" title={s.name} />
+                                    <img key={i} src={s.url} alt={s.name} className="h-10 sm:h-12 max-w-[120px] object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300" title={s.name} />
                                 ))}
                             </div>
                         </div>
@@ -5195,39 +5195,34 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [previewUrl, setPreviewUrl] = useState('');
             const [uploadError, setUploadError] = useState('');
 
-            const IMGBB_API_KEY = '2e48dea70e8a76b68e67a5a41f6ee75a';
-
-            const uploadLogoToImgBB = (file) => {
+            // Gunakan GAS yang sama seperti Galeri, Inventaris, dll
+            const uploadLogo = (file) => {
                 if (!file) return;
-                if (file.size > 4 * 1024 * 1024) { showAlert('Gagal: Ukuran gambar maksimal 4MB!'); return; }
+                if (file.size > 2 * 1024 * 1024) { showAlert('Gagal: Ukuran gambar maksimal 2MB!'); return; }
                 const reader = new FileReader();
                 reader.onloadend = () => {
                     const base64String = reader.result.split(',')[1];
-                    setIsUploading(true);
-                    setUploadError('');
-                    const formData = new FormData();
-                    formData.append('image', base64String);
-                    formData.append('name', `sponsor-${Date.now()}`);
-                    fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                    setIsUploading(true); setUploadError('');
+                    fetch(window.GAS_DRIVE_URL, {
                         method: 'POST',
-                        body: formData
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: JSON.stringify({ base64: base64String, mimeType: file.type, filename: `sponsor-${Date.now()}-${file.name}` })
                     })
                     .then(res => res.json())
                     .then(response => {
                         setIsUploading(false);
-                        if (response.success) {
-                            const imgUrl = response.data.display_url;
-                            setNewUrl(imgUrl);
-                            setPreviewUrl(imgUrl);
+                        if (response.status === 'success') {
+                            setNewUrl(response.viewUrl);
+                            setPreviewUrl(response.viewUrl);
                             setUploadError('');
                         } else {
-                            setUploadError('Gagal upload ke ImgBB. Coba lagi atau masukkan URL manual.');
-                            showAlert('Gagal mengunggah logo ke ImgBB.');
+                            setUploadError('Gagal mengunggah: ' + response.message);
+                            showAlert('Gagal mengunggah logo.');
                         }
                     })
                     .catch(() => {
                         setIsUploading(false);
-                        setUploadError('Terjadi kesalahan jaringan. Gunakan URL manual di bawah.');
+                        setUploadError('Terjadi kesalahan jaringan.');
                         showAlert('Terjadi kesalahan jaringan saat mengunggah logo.');
                     });
                 };
@@ -5293,7 +5288,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         <div>
                         <p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest mb-2">Logo / Gambar Sponsor</p>
                         <label className={`relative w-full h-16 bg-white border-2 ${isUploading ? 'border-google-blue bg-google-blueLight/20' : 'border-slate-200 hover:border-google-blue/50'} rounded-[14px] flex items-center justify-center px-4 cursor-pointer transition-all duration-200 overflow-hidden`}>
-                            <input type="file" accept="image/*" onChange={e => uploadLogoToImgBB(e.target.files[0])} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" />
+                            <input type="file" accept="image/*" onChange={e => uploadLogo(e.target.files[0])} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" />
                             {isUploading ? (
                             <div className="flex items-center gap-3 pointer-events-none">
                                 <div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin shrink-0"></div>
@@ -5305,8 +5300,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 <Icon name="add_photo_alternate" className="text-google-blue text-[20px]" />
                                 </div>
                                 <div>
-                                <p className="font-extrabold text-[13px] text-google-text">{previewUrl ? 'Ganti Gambar Logo' : 'Pilih File Logo (Maks 4MB)'}</p>
-                                <p className="text-[11px] text-google-textVariant font-medium">PNG, JPG, SVG, WEBP — upload otomatis ke cloud</p>
+                                <p className="font-extrabold text-[13px] text-google-text">{previewUrl ? 'Ganti Gambar Logo' : 'Pilih File Logo (Maks 2MB)'}</p>
+                                <p className="text-[11px] text-google-textVariant font-medium">PNG, JPG, SVG, WEBP — upload ke Google Drive</p>
                                 </div>
                             </div>
                             )}
