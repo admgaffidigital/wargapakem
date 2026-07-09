@@ -1468,6 +1468,7 @@ Developer: NOVAN RESTU UTOMO
             const [pinjamData, setPinjamData, l21] = useFirebaseSync('pinjam_inventaris', []);
             const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
             const [musicData, setMusicData, l23] = useFirebaseSync('music_config', { url: '', name: '', enabled: true });
+            const [sponsorsData, setSponsorsData, l24] = useFirebaseSync('sponsors_data', { enabled: false, sponsors: [] });
 
             // State khusus UI tambahan
             const [showPwaGuide, setShowPwaGuide] = useState(false);
@@ -1591,7 +1592,7 @@ Developer: NOVAN RESTU UTOMO
 
             const renderContent = () => {
                 switch(activeTab) {
-                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} adsConfig={adsConfig} setShowPwaGuide={setShowPwaGuide} />;
+                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} adsConfig={adsConfig} setShowPwaGuide={setShowPwaGuide} sponsorsData={sponsorsData} />;
                     case 'dashboard': return <Dashboard members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} currentRound={currentRound} setCurrentRound={setCurrentRound} userRole={userRole} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} changeTab={changeTab} arisanPeriod={arisanPeriod} />;
                     case 'informasi': return <Informasi data={informasi} setData={setInformasi} userRole={userRole} />;
                     case 'warga': return <WargaList members={members} setMembers={setMembers} userRole={userRole} identity={identity} cycleNumber={cycleNumber} currentRound={currentRound} arisanPeriod={arisanPeriod} />;
@@ -1609,7 +1610,7 @@ Developer: NOVAN RESTU UTOMO
                     case 'kalender': return <Kalender />;
                     case 'peta': return <PetaDesa />;
                     case 'musik': return userRole === 'admin' ? <MusicAdmin musicData={musicData} setMusicData={setMusicData} /> : null;
-                    default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} />;
+                    default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} sponsorsData={sponsorsData} />;
                 }
             };
 
@@ -1940,7 +1941,7 @@ Developer: NOVAN RESTU UTOMO
             );
         }
 
-function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsConfig, setShowPwaGuide }) {
+function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsConfig, setShowPwaGuide, sponsorsData }) {
             return (
                 <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto mt-2">
                     
@@ -2007,6 +2008,19 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     )}
                     
 
+                    
+                    {/* SPONSORED BY */}
+                    {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
+                        <div className="flex flex-col items-center justify-center mt-12 mb-8 animate-fadeIn">
+                            <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 mb-4">Sponsored By</p>
+                            <div className="flex flex-wrap items-center justify-center gap-6">
+                                {sponsorsData.sponsors.map((s, i) => (
+                                    <img key={i} src={s.url} alt={s.name} className="h-10 sm:h-12 max-w-[120px] object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300" title={s.name} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+    
                     {userRole !== 'admin' && (
                         <div className="flex justify-center mt-4">
                             <div className="bg-white p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[24px] text-center border-2 border-slate-200 shadow-sm flex items-center justify-center">
