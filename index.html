@@ -1076,7 +1076,7 @@ Developer: NOVAN RESTU UTOMO
                             </div>
 
                             {/* Chat area */}
-                            <div className="flex-1 overflow-y-auto p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 space-y-3 bg-slate-50 hide-scrollbar border-y border-slate-100" style={{fontSize:'13px'}}>
+                            <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-3 bg-slate-50 hide-scrollbar border-y border-slate-100" style={{fontSize:'13px'}}>
                                 {messages.map((msg, i) => (
                                     <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                                         {msg.sender === 'robot' && (
@@ -1304,7 +1304,7 @@ Developer: NOVAN RESTU UTOMO
                     {currentUrl ? (
                         <div className={`rounded-[28px] p-6 border-2 ${isEnabled ? 'bg-google-greenLight border-google-green/40' : 'bg-slate-50 border-slate-200'}`}>
                             <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
-                                <div className="flex flex-wrap items-center gap-3 flex flex-wrap-1 min-w-0">
+                                <div className="flex flex-wrap items-center gap-3 flex flex-1 min-w-0">
                                     <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border-2 ${isEnabled ? 'bg-google-green border-google-greenDark' : 'bg-slate-300 border-slate-400'}`}>
                                         <Icon name={isEnabled ? 'graphic_eq' : 'music_off'} className="text-white text-[20px]" fill="true" />
                                     </div>
@@ -1424,7 +1424,7 @@ Developer: NOVAN RESTU UTOMO
                     </div>
 
                     {/* Info */}
-                    <div className="bg-google-yellowLight rounded-[24px] p-5 sm:p-4 sm:p-6 md:p-8 border-2 border-google-yellow/40 flex flex-wrap items-start gap-3">
+                    <div className="bg-google-yellowLight rounded-[24px] p-5 sm:p-6 md:p-8 border-2 border-google-yellow/40 flex flex-wrap items-start gap-3">
                         <Icon name="info" className="text-[20px] text-google-yellowDark shrink-0 mt-0.5" fill="true" />
                         <ul className="text-[12px] font-medium text-google-yellowDark/90 space-y-1 list-disc list-inside">
                             <li>Musik <strong>hanya memutar</strong> untuk pengguna login sebagai <strong>Warga</strong>.</li>
@@ -1759,7 +1759,7 @@ Developer: NOVAN RESTU UTOMO
                                 </div>
                             )}
                         </div>
-                        <div className="p-5 sm:p-4 sm:p-6 md:p-8 border-t-2 border-slate-200 bg-slate-50 rounded-b-[30px] flex justify-end">
+                        <div className="p-5 sm:p-6 md:p-8 border-t-2 border-slate-200 bg-slate-50 rounded-b-[30px] flex justify-end">
                             <button onClick={onClose} className="bg-google-blue text-white px-6 py-3 rounded-full font-extrabold text-[14px] shadow-md hover:bg-google-blueDark transition-all active:scale-95">Tutup Panduan</button>
                         </div>
                     </div>
@@ -1902,7 +1902,7 @@ Developer: NOVAN RESTU UTOMO
             };
             
             return (
-                <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 bg-transparent relative overflow-hidden">
+                <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 bg-transparent relative overflow-hidden">
                     <FlagWavingBackground />
 
                     <div className="relative overflow-hidden bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-[32px] w-full max-w-sm text-center shadow-[0_20px_50px_rgba(239,68,68,0.08)] border-2 border-red-500/10 z-10 hover:border-red-500/30 hover:shadow-[0_20px_50px_rgba(239,68,68,0.15)] transition-all duration-500">
@@ -2023,7 +2023,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
     
                     {userRole !== 'admin' && (
                         <div className="flex justify-center mt-4">
-                            <div className="bg-white p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[24px] text-center border-2 border-slate-200 shadow-sm flex items-center justify-center">
+                            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[24px] text-center border-2 border-slate-200 shadow-sm flex items-center justify-center">
                                 <p className="text-[13px] font-bold text-google-textVariant flex flex-wrap items-center justify-center gap-2"><Icon name="info" className="text-[18px]" /> Mode Warga (akses terbatas).</p>
                             </div>
                         </div>
@@ -2286,8 +2286,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 {loading ? 'GPS...' : 'Gunakan GPS'}
                             </button>
 
-                            <form onSubmit={handleSearchCity} className="flex flex-wrap items-center gap-2 flex flex-wrap-1 md:flex flex-wrap-initial">
-                                <div className="bg-slate-50 border-2 border-slate-200 focus-within:border-red-500 rounded-full px-4 py-1.5 flex flex-wrap items-center gap-2 flex flex-wrap-1 md:w-56 shadow-sm">
+                            <form onSubmit={handleSearchCity} className="flex flex-wrap items-center gap-2 flex flex-1 md:flex flex-wrap-initial">
+                                <div className="bg-slate-50 border-2 border-slate-200 focus-within:border-red-500 rounded-full px-4 py-1.5 flex flex-wrap items-center gap-2 flex flex-1 md:w-56 shadow-sm">
                                     <Icon name="search" className="text-[16px] text-slate-400" />
                                     <input 
                                         type="text" 
@@ -2321,7 +2321,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     )}
 
                     {nextPrayer && (
-                        <div className="bg-red-50/70 border border-red-500/20 p-5 sm:p-4 sm:p-6 md:p-8 rounded-[24px] flex flex-col sm:flex-row justify-between items-center gap-4 shadow-sm">
+                        <div className="bg-red-50/70 border border-red-500/20 p-5 sm:p-6 md:p-8 rounded-[24px] flex flex-col sm:flex-row justify-between items-center gap-4 shadow-sm">
                             <div className="flex flex-wrap items-center gap-3">
                                 <div className="w-11 h-11 bg-red-600 text-white rounded-full flex items-center justify-center shadow-md"><Icon name="alarm" className="text-[22px]"/></div>
                                 <div>
@@ -2434,11 +2434,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     )}
 
                     {showResetModal && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-left border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-blueLight w-16 h-16 rounded-full flex items-center justify-center border-2 border-google-blue/30"><Icon name="refresh" className="text-[32px] text-google-blue" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2">Mulai Siklus Baru?</h3>
-                                <div className="text-[14px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-5 sm:p-4 sm:p-6 md:p-8 rounded-[24px] border-2 border-slate-200"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[18px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[18px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
+                                <div className="text-[14px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-5 sm:p-6 md:p-8 rounded-[24px] border-2 border-slate-200"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[18px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[18px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
                                 <div className="flex flex-wrap gap-3">
                                     <button onClick={() => setShowResetModal(false)} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                     <button onClick={() => { 
@@ -2577,7 +2577,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     </div>
 
                                     {/* Info */}
-                                    <div className="p-5 sm:p-4 sm:p-6 md:p-8 flex-1 flex flex-col gap-3">
+                                    <div className="p-5 sm:p-6 md:p-8 flex-1 flex flex-col gap-3">
                                         <h3 className="text-[17px] font-extrabold text-google-text leading-snug tracking-tight group-hover:text-google-yellowDark transition-colors">{item.name}</h3>
 
                                         {/* Kondisi chips */}
@@ -2627,7 +2627,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {/* Modal Form Tambah/Edit */}
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-2 border-slate-200 my-4">
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">{editingId ? 'Edit Inventaris' : 'Tambah Inventaris'}</h3>
                                 <div className="space-y-5">
@@ -2635,7 +2635,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     {/* Nama barang */}
                                     <div>
                                         <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 uppercase tracking-widest">Nama Barang *</label>
-                                        <input type="text" value={formData.name} onChange={e => { setFormData({...formData, name: e.target.value}); setErrorMsg(''); }} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Contoh: Speaker Aktif, Tenda Hajatan..." />
+                                        <input type="text" value={formData.name} onChange={e => { setFormData({...formData, name: e.target.value}); setErrorMsg(''); }} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Contoh: Speaker Aktif, Tenda Hajatan..." />
                                     </div>
 
                                     {/* Kondisi barang */}
@@ -2877,7 +2877,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             {errorMsg && <div className="mt-4 bg-google-redLight border border-google-red/30 text-google-redDark px-4 py-3 rounded-[14px] text-[13px] font-bold flex flex-wrap items-center gap-2"><Icon name="error" className="text-[18px]" />{errorMsg}</div>}
                             <div className="flex flex-wrap gap-3 mt-6">
                                 <button onClick={() => { setView('list'); setErrorMsg(''); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                                <button onClick={handleSubmitPinjam} className="flex flex-wrap-1 bg-google-green text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2"><Icon name="send" className="text-[18px]" />Kirim Pengajuan</button>
+                                <button onClick={handleSubmitPinjam} className="flex flex-wrap bg-google-green text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2"><Icon name="send" className="text-[18px]" />Kirim Pengajuan</button>
                             </div>
                         </div>
                     )}
@@ -2891,7 +2891,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2"><Icon name="pending" className="text-[20px] text-google-yellow" />Menunggu Persetujuan ({pendingList.length})</h3>
                                     <div className="space-y-3">
                                         {pendingList.map(p => (
-                                            <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-yellowLight/40 border border-google-yellow/40 rounded-[20px] p-5 sm:p-4 sm:p-6 md:p-8">
+                                            <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-yellowLight/40 border border-google-yellow/40 rounded-[20px] p-5 sm:p-6 md:p-8">
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-extrabold text-[15px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[13px] font-bold text-google-yellowDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[14px]" />{p.namaBarang} <span className="ml-1 bg-google-yellow/20 text-google-yellowDark border border-google-yellow/40 px-2 py-0.5 rounded-full font-extrabold text-[11px]">{p.qty || 1} unit</span></p>
@@ -2914,7 +2914,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2"><Icon name="handshake" className="text-[20px] text-google-blue" />Sedang Dipinjam ({approvedList.length})</h3>
                                     <div className="space-y-3">
                                         {approvedList.map(p => (
-                                            <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-blueLight/30 border border-google-blue/30 rounded-[20px] p-5 sm:p-4 sm:p-6 md:p-8">
+                                            <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-blueLight/30 border border-google-blue/30 rounded-[20px] p-5 sm:p-6 md:p-8">
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-extrabold text-[15px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[13px] font-bold text-google-blueDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[14px]" />{p.namaBarang} <span className="ml-1 bg-google-blue/10 text-google-blueDark border border-google-blue/30 px-2 py-0.5 rounded-full font-extrabold text-[11px]">{p.qty || 1} unit</span></p>
@@ -2983,7 +2983,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {/* Modal konfirmasi kembali */}
                     {konfirmReturnId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 {(() => { const p = pinjamData.find(x => x.id === konfirmReturnId); return p ? (<>
                                     <div className="mb-5 bg-google-greenLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="assignment_return" className="text-[40px] text-google-green" /></div>
@@ -3001,7 +3001,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {/* Modal konfirmasi tolak */}
                     {konfirmRejectId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="cancel" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-xl font-extrabold text-google-text mb-2">Tolak Pengajuan?</h3>
@@ -3149,7 +3149,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         }
                                     </div>
                                     {/* Info */}
-                                    <div className="p-5 sm:p-4 sm:p-6 md:p-8 flex-1 flex flex-col gap-3">
+                                    <div className="p-5 sm:p-6 md:p-8 flex-1 flex flex-col gap-3">
                                         <h3 className="text-[17px] font-extrabold text-google-text leading-snug tracking-tight group-hover:text-google-greenDark transition-colors">{item.judul}</h3>
                                         <p className="text-[13px] text-google-textVariant font-medium leading-relaxed line-clamp-2">{item.deskripsi}</p>
                                         {/* Dana progress */}
@@ -3172,11 +3172,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         {userRole === 'admin' && (
                                             <div className="flex flex-wrap gap-2 pt-3 border-t-2 border-slate-100 mt-1" onClick={e => e.stopPropagation()}>
                                                 <button onClick={() => { setForm({...item}); setEditingId(item.id); setErrorMsg(''); setView('form'); }}
-                                                    className="flex flex-wrap-1 text-[12px] font-extrabold bg-slate-50 text-google-text border-2 border-slate-200 hover:border-google-blue hover:text-google-blue rounded-full py-2 flex flex-wrap items-center justify-center gap-1 active:scale-95 transition-all">
+                                                    className="flex flex-wrap text-[12px] font-extrabold bg-slate-50 text-google-text border-2 border-slate-200 hover:border-google-blue hover:text-google-blue rounded-full py-2 flex flex-wrap items-center justify-center gap-1 active:scale-95 transition-all">
                                                     <Icon name="edit" className="text-[14px]" />Edit
                                                 </button>
                                                 <button onClick={() => setDeleteConfirmId(item.id)}
-                                                    className="flex flex-wrap-1 text-[12px] font-extrabold bg-slate-50 text-google-red border-2 border-slate-200 hover:border-google-red/40 rounded-full py-2 flex flex-wrap items-center justify-center gap-1 active:scale-95 transition-all">
+                                                    className="flex flex-wrap text-[12px] font-extrabold bg-slate-50 text-google-red border-2 border-slate-200 hover:border-google-red/40 rounded-full py-2 flex flex-wrap items-center justify-center gap-1 active:scale-95 transition-all">
                                                     <Icon name="delete" className="text-[14px]" />Hapus
                                                 </button>
                                             </div>
@@ -3196,7 +3196,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {/* Modal hapus */}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30">
                                     <Icon name="delete" className="text-[40px] text-google-red" />
@@ -3237,7 +3237,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             <h2 className="text-[22px] font-extrabold text-google-text mb-2 tracking-tight">{prog.judul}</h2>
                             <p className="text-[14px] text-google-textVariant font-medium leading-relaxed mb-4">{prog.deskripsi}</p>
                             {/* Progress dana */}
-                            <div className="bg-google-greenLight/50 border border-google-green/30 rounded-[20px] p-5 sm:p-4 sm:p-6 md:p-8">
+                            <div className="bg-google-greenLight/50 border border-google-green/30 rounded-[20px] p-5 sm:p-6 md:p-8">
                                 <div className="flex justify-between items-end mb-2">
                                     <div>
                                         <p className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-wider">Dana Terkumpul</p>
@@ -3292,8 +3292,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 </h3>
                                 <div className="space-y-4">
                                     {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[20px] p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 border border-slate-200 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-                                            <div className="flex flex-wrap items-center gap-4 flex flex-wrap-1 w-full">
+                                        <div key={donasi.id} className="bg-slate-50 rounded-[20px] p-4 sm:p-6 md:p-8 border border-slate-200 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+                                            <div className="flex flex-wrap items-center gap-4 flex flex-1 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] overflow-hidden hover:opacity-80 transition-opacity">
                                                         <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti Transfer" />
@@ -3356,8 +3356,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 </h3>
                                 <div className="space-y-3">
                                     {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[16px] p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 border border-slate-200 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
-                                            <div className="flex flex-wrap items-center gap-3 flex flex-wrap-1 w-full">
+                                        <div key={donasi.id} className="bg-slate-50 rounded-[16px] p-4 sm:p-6 md:p-8 border border-slate-200 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
+                                            <div className="flex flex-wrap items-center gap-3 flex flex-1 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] overflow-hidden hover:opacity-80 transition-opacity">
                                                         <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti" />
@@ -3461,7 +3461,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                         {/* Modal pembayaran */}
                         {showPayModal && (
-                            <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 ">
+                            <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
                                 <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[28px] p-4 sm:p-6 md:p-8 w-full max-w-sm shadow-2xl border-2 border-slate-200 my-4">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[18px] font-extrabold text-google-text">Cara Pembayaran</h3>
@@ -3471,7 +3471,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     </div>
 
                                     {/* Ringkasan */}
-                                    <div className="bg-google-greenLight border border-google-green/30 rounded-[16px] p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 mb-4">
+                                    <div className="bg-google-greenLight border border-google-green/30 rounded-[16px] p-4 sm:p-6 md:p-8 mb-4">
                                         <p className="text-[12px] font-bold text-google-textVariant">Nominal Infaq</p>
                                         <p className="text-[22px] font-extrabold text-google-green">{formatRp(safeNumber(nominalInput))}</p>
                                         <p className="text-[12px] font-bold text-google-textVariant mt-1">Atas nama: <span className="text-google-greenDark font-extrabold">{namaDisplay}</span></p>
@@ -3493,7 +3493,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     {(prog.rekening || []).length > 0 && (() => {
                                         const r = prog.rekening[selectedRek] || prog.rekening[0];
                                         return (
-                                            <div className="bg-slate-50 border-2 border-slate-200 rounded-[18px] p-5 sm:p-4 sm:p-6 md:p-8 space-y-3.5">
+                                            <div className="bg-slate-50 border-2 border-slate-200 rounded-[18px] p-5 sm:p-6 md:p-8 space-y-3.5">
                                                 <div className="flex flex-wrap items-center gap-3">
                                                     <div className="w-10 h-10 bg-google-blueLight rounded-[12px] flex items-center justify-center border border-google-blue/20 shrink-0">
                                                         <Icon name="account_balance" className="text-[20px] text-google-blue" />
@@ -3520,7 +3520,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     })()}
 
                                         {/* Upload Bukti */}
-                                        <div className="mt-4 bg-slate-50 border-2 border-slate-200 rounded-[18px] p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-center relative overflow-hidden transition-all focus-within:border-google-green group hover:border-google-green/40 cursor-pointer">
+                                        <div className="mt-4 bg-slate-50 border-2 border-slate-200 rounded-[18px] p-4 sm:p-6 md:p-8 text-center relative overflow-hidden transition-all focus-within:border-google-green group hover:border-google-green/40 cursor-pointer">
                                             <p className="text-[12px] font-extrabold text-google-textVariant mb-2 uppercase tracking-wider">Upload Bukti Transfer</p>
                                             <input type="file" accept="image/*" onChange={handleBuktiUpload} disabled={isUploadingBukti} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                             {isUploadingBukti ? (
@@ -3565,7 +3565,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 setBuktiUrl('');
                                                 showToast('Terima kasih! Bukti transfer Anda telah dikirim dan menunggu verifikasi Admin.');
                                             }}
-                                                className="flex flex-wrap-1 bg-google-green text-white py-3.5 rounded-full font-extrabold text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-1.5">
+                                                className="flex flex-wrap bg-google-green text-white py-3.5 rounded-full font-extrabold text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-1.5">
                                                 <Icon name="send" className="text-[18px]"/> Kirim Bukti
                                             </button>
                                         </div>
@@ -3661,7 +3661,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 </div>
                                 <div className="space-y-3">
                                     {form.rekening.map((r, i) => (
-                                        <div key={i} className="bg-slate-50 border-2 border-slate-200 rounded-[18px] p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 space-y-3">
+                                        <div key={i} className="bg-slate-50 border-2 border-slate-200 rounded-[18px] p-4 sm:p-6 md:p-8 space-y-3">
                                             <div className="flex items-center justify-between">
                                                 <p className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-wider">Rekening {i+1}</p>
                                                 {form.rekening.length > 1 && (
@@ -3798,7 +3798,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-5 sm:p-4 sm:p-6 md:p-8 flex-1 flex flex-col justify-between">
+                                <div className="p-5 sm:p-6 md:p-8 flex-1 flex flex-col justify-between">
                                     <div>
                                         <div className="flex flex-wrap justify-between items-start gap-2 mb-1.5">
                                             <span className="text-[10px] font-extrabold text-red-600 bg-red-50 border border-red-500/15 px-2.5 py-1 rounded-md uppercase tracking-wider">
@@ -3842,7 +3842,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {selectedPhoto && (
                         <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="bg-white rounded-[32px] w-full max-w-2xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-200 overflow-hidden" style={{ animation: 'slideUp 0.3s ease-out' }}>
-                                <div className="p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 border-b border-slate-100 flex justify-between items-center bg-slate-50 shrink-0">
+                                <div className="p-4 sm:p-6 md:p-8 border-b border-slate-100 flex justify-between items-center bg-slate-50 shrink-0">
                                     <div className="flex flex-wrap items-center gap-2">
                                         <Icon name="image" className="text-red-600" />
                                         <span className="text-[13px] font-extrabold text-google-text">Detail Dokumentasi</span>
@@ -3863,7 +3863,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             </span>
                                         </div>
                                         <h3 className="text-2xl font-black text-google-text leading-tight tracking-tight">{selectedPhoto.title}</h3>
-                                        <div className="bg-slate-50 border border-slate-200/60 p-5 sm:p-4 sm:p-6 md:p-8 rounded-[22px] text-google-textVariant text-[14px] leading-relaxed font-medium whitespace-pre-line">
+                                        <div className="bg-slate-50 border border-slate-200/60 p-5 sm:p-6 md:p-8 rounded-[22px] text-google-textVariant text-[14px] leading-relaxed font-medium whitespace-pre-line">
                                             {selectedPhoto.description || 'Tidak ada deskripsi rinci untuk kegiatan ini.'}
                                         </div>
                                     </div>
@@ -3874,7 +3874,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {/* Upload / Edit Form Modal */}
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-2 border-slate-200 flex flex-col transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">
                                     {editingId ? 'Edit Dokumentasi' : 'Unggah Dokumentasi'}
@@ -3882,15 +3882,15 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 <div className="space-y-5">
                                     <div>
                                         <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul / Kegiatan</label>
-                                        <input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Contoh: Kerja Bakti 17an" />
+                                        <input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Contoh: Kerja Bakti 17an" />
                                     </div>
                                     <div>
                                         <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal</label>
-                                        <input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text" />
+                                        <input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text" />
                                     </div>
                                     <div>
                                         <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Deskripsi Rinci</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[14px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Tuliskan keterangan lengkap kegiatan di sini..."></textarea>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[14px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Tuliskan keterangan lengkap kegiatan di sini..."></textarea>
                                     </div>
                                     <div>
                                         <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">File Foto</label>
@@ -3914,7 +3914,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-extrabold text-[13px] px-4 py-3.5 rounded-[16px] mt-4 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[18px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-100">
                                     <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap-1 bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex flex-wrap items-center justify-center gap-2">
+                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex flex-wrap items-center justify-center gap-2">
                                         {editingId ? 'Simpan' : 'Unggah'}
                                     </button>
                                 </div>
@@ -4036,12 +4036,12 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {data.length === 0 && <div className="bg-white rounded-[32px] border-2 border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border-2 border-slate-200"><Icon name="campaign" className="text-[48px] text-slate-400" fill="true" /></div><h3 className="font-extrabold text-[20px] mb-2 text-google-text">Belum Ada Informasi</h3><p className="text-google-textVariant font-medium text-[15px]">Papan informasi warga masih kosong saat ini.</p></div>}
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
 <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl border-2 border-slate-200 flex flex-col max-h-[90vh] transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 shrink-0 tracking-tight">{editingId ? 'Edit Info Kegiatan' : 'Buat Info Baru'}</h3>
                                 <div className="space-y-5 overflow-y-auto pr-2 pb-2 hide-scrollbar">
-                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan judul..." /></div>
-                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text" /></div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan judul..." /></div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text" /></div>
                                     
                                     <div>
                                         <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Gambar Banner (Upload ke GDrive)</label>
@@ -4064,12 +4064,12 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         <input type="url" value={formData.imageUrl} onChange={e => setFormData({...formData, imageUrl: e.target.value})} className="mt-2 w-full bg-transparent border-b-2 border-slate-200 focus:border-google-blue p-2 text-[12px] font-medium outline-none transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Atau paste URL gambar manual secara langsung di sini..." />
                                     </div>
 
-                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Deskripsi Lengkap</label><textarea value={formData.description} onChange={e => {setFormData({...formData, description: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-medium outline-none rounded-[16px] min-h-[160px] resize-none transition-all duration-300 text-google-text leading-relaxed placeholder:text-slate-400" placeholder="Tuliskan detail informasi di sini..."></textarea></div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Deskripsi Lengkap</label><textarea value={formData.description} onChange={e => {setFormData({...formData, description: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-medium outline-none rounded-[16px] min-h-[160px] resize-none transition-all duration-300 text-google-text leading-relaxed placeholder:text-slate-400" placeholder="Tuliskan detail informasi di sini..."></textarea></div>
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-extrabold text-[13px] px-4 py-3.5 rounded-[16px] mt-4 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[18px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-100 shrink-0">
                                     <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap-1 bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">Publikasikan</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">Publikasikan</button>
                                 </div>
                             </div>
                         </div>
@@ -4083,7 +4083,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Konten ini akan dihapus secara permanen dari layar warga.</p>
                                 <div className="flex flex-wrap gap-3">
                                     <button onClick={() => setDeleteConfirmId(null)} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Informasi berhasil dihapus.'); }} className="flex flex-wrap-1 bg-google-red text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
+                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Informasi berhasil dihapus.'); }} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4151,7 +4151,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     <div className="space-y-4 no-print">
                         {members.map((member) => (
                             <div key={member.id} className="bg-white rounded-[24px] p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between border-2 border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/40 transition-all duration-300 gap-5 group">
-                                <div className="flex flex-wrap items-center gap-5 flex flex-wrap-1">
+                                <div className="flex flex-wrap items-center gap-5 flex flex-1">
                                     <div className={`w-16 h-16 rounded-[20px] flex items-center justify-center font-extrabold text-[24px] shrink-0 border-2 transition-colors duration-300 ${isNonaktif(member) ? 'bg-slate-50 text-slate-400 border-slate-200' : 'bg-google-blueLight text-google-blueDark border-google-blue/30 group-hover:bg-google-blue group-hover:text-white group-hover:border-google-blueDark'}`}>{member.name.charAt(0).toUpperCase()}</div>
                                     <div className="flex-1 min-w-0">
                                         <h3 className={`font-extrabold text-[18px] truncate transition-colors tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text group-hover:text-google-blueDark'}`}>{member.name} {isNonaktif(member) && <span className="text-[10px] uppercase tracking-wider bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md ml-2 font-extrabold border-2 border-slate-200 align-middle">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</h3>
@@ -4174,27 +4174,27 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     </div>
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">{editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}</h3>
                                 <div className="space-y-5">
-                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
-                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Program Keikutsertaan</label><select value={formData.program || 'Arisan'} onChange={e => setFormData({...formData, program: e.target.value, hasWon: false, wonRound: ''})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Arisan">Full (Arisan &amp; Iuran)</option><option value="IuranOnly">Hanya Iuran Umum Saja</option></select></div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Program Keikutsertaan</label><select value={formData.program || 'Arisan'} onChange={e => setFormData({...formData, program: e.target.value, hasWon: false, wonRound: ''})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Arisan">Full (Arisan &amp; Iuran)</option><option value="IuranOnly">Hanya Iuran Umum Saja</option></select></div>
                                     <div className="flex flex-wrap gap-5">
-                                        <div className="flex-1"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Status</label><select value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Normal">Aktif</option><option value="Meninggal">Meninggal / Wafat</option><option value="Nonaktif">Nonaktif / Pindah</option></select></div>
-                                        <div className="flex-1"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tunggakan (Rp)</label><input type="number" min="0" value={formData.debt} onChange={e => {setFormData({...formData, debt: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
+                                        <div className="flex-1"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Status</label><select value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Normal">Aktif</option><option value="Meninggal">Meninggal / Wafat</option><option value="Nonaktif">Nonaktif / Pindah</option></select></div>
+                                        <div className="flex-1"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tunggakan (Rp)</label><input type="number" min="0" value={formData.debt} onChange={e => {setFormData({...formData, debt: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                     </div>
                                     {formData.program !== 'IuranOnly' && (
                                         <div className="pt-5 border-t-2 border-slate-100">
                                             <label className="flex flex-wrap items-center gap-3 mb-5 cursor-pointer group"><div className="relative flex items-center justify-center"><input type="checkbox" checked={formData.hasWon} onChange={e => setFormData({...formData, hasWon: e.target.checked})} className="peer appearance-none w-6 h-6 border-2 border-slate-300 rounded-lg checked:bg-google-blue checked:border-google-blue transition-colors cursor-pointer" /><Icon name="check" className="absolute text-white text-[16px] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" strokeWidth="4"/></div><span className="text-[14px] font-extrabold text-google-text group-hover:text-google-blue transition-colors">Warga Sudah Menang Arisan</span></label>
-                                            {formData.hasWon && <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Di Putaran Ke-</label><input type="number" min="1" value={formData.wonRound} onChange={e => {setFormData({...formData, wonRound: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: 3" /></div>}
+                                            {formData.hasWon && <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Di Putaran Ke-</label><input type="number" min="1" value={formData.wonRound} onChange={e => {setFormData({...formData, wonRound: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: 3" /></div>}
                                         </div>
                                     )}
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-extrabold text-[13px] px-4 py-3.5 rounded-[16px] mt-5 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[18px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-100">
                                     <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} className="flex flex-wrap-1 bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Simpan</button>
+                                    <button onClick={handleSave} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -4207,7 +4207,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Data warga dan riwayatnya akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
                                     <button onClick={() => setDeleteConfirmId(null)} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={executeDelete} className="flex flex-wrap-1 bg-google-red text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
+                                    <button onClick={executeDelete} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4268,10 +4268,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     <div className="bg-white p-6 sm:p-10 rounded-[32px] border-2 border-slate-200 max-w-2xl mx-auto shadow-xl">
                         <div className="flex flex-wrap items-center gap-5 mb-8 border-b-2 border-slate-100 pb-6"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[20px] font-extrabold text-google-text" /></button><h2 className="text-[22px] sm:text-[24px] font-extrabold text-google-text leading-tight tracking-tight">{selectedAgenda ? 'Edit Agenda' : 'Buat Agenda Iuran'}</h2></div>
                         <div className="space-y-6">
-                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama / Keperluan Iuran</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Dana 17 Agustus" /></div>
+                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama / Keperluan Iuran</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Dana 17 Agustus" /></div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Batas Akhir Waktu</label><input type="date" value={formData.dueDate} onChange={e => setFormData({...formData, dueDate: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer" /></div>
-                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tarif Minimal (Rp)</label><input type="number" min="0" value={formData.minAmount} onChange={e => {setFormData({...formData, minAmount: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
+                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Batas Akhir Waktu</label><input type="date" value={formData.dueDate} onChange={e => setFormData({...formData, dueDate: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer" /></div>
+                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tarif Minimal (Rp)</label><input type="number" min="0" value={formData.minAmount} onChange={e => {setFormData({...formData, minAmount: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                             </div>
                         </div>
                         {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-bold text-[13px] px-4 py-3.5 rounded-[16px] mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[18px] shrink-0"/><span>{errorMsg}</span></div>}
@@ -4378,13 +4378,13 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     
                                     <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[24px] mb-8 border-2 border-slate-200 shadow-sm"><p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-2">Batas Maksimal Tarik</p><p className="text-[28px] font-extrabold text-google-text tracking-tight">{formatRp(sisa)}</p></div>
                                     
-                                    <div className="text-left mb-8"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[18px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
+                                    <div className="text-left mb-8"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[18px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                     
                                     {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-bold text-[13px] px-4 py-3.5 rounded-[16px] mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[18px] shrink-0"/><span>{errorMsg}</span></div>}
                                     
                                     <div className="flex flex-wrap gap-3">
                                         <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                        <button onClick={executeTransferToKas} className="flex flex-wrap-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Setor Dana</button>
+                                        <button onClick={executeTransferToKas} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Setor Dana</button>
                                     </div>
                                 </div>
                             </div>
@@ -4412,8 +4412,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <div>
                                         <h3 className="text-[24px] font-extrabold text-google-text leading-snug mb-6 group-hover:text-google-blue transition-colors tracking-tight">{agenda.title}</h3>
                                         <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                                            <div className="flex flex-wrap-1 flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] border-2 border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-blueLight flex items-center justify-center text-google-blue border border-google-blue/20"><Icon name="event" className="text-[24px]" fill="true"/></div><div><p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest mb-1">Batas Akhir</p><p className="text-[14px] font-bold text-google-text">{parseLocalDate(agenda.dueDate).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p></div></div>
-                                            <div className="flex flex-wrap-1 flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] border-2 border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-greenLight flex items-center justify-center text-google-green border border-google-green/20"><Icon name="payments" className="text-[24px]" fill="true"/></div><div><p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest mb-1">Target Minimal</p><p className="text-[15px] font-extrabold text-google-text">{formatRp(agenda.minAmount)}</p></div></div>
+                                            <div className="flex flex-wrap flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border-2 border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-blueLight flex items-center justify-center text-google-blue border border-google-blue/20"><Icon name="event" className="text-[24px]" fill="true"/></div><div><p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest mb-1">Batas Akhir</p><p className="text-[14px] font-bold text-google-text">{parseLocalDate(agenda.dueDate).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p></div></div>
+                                            <div className="flex flex-wrap flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border-2 border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-greenLight flex items-center justify-center text-google-green border border-google-green/20"><Icon name="payments" className="text-[24px]" fill="true"/></div><div><p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest mb-1">Target Minimal</p><p className="text-[15px] font-extrabold text-google-text">{formatRp(agenda.minAmount)}</p></div></div>
                                         </div>
                                         <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[24px] border-2 border-slate-200 mb-8 shadow-sm">
                                             <div className="flex justify-between items-end mb-4"><span className="text-[13px] font-bold text-google-textVariant">Progres Warga Lunas</span><span className="text-[18px] font-extrabold text-google-blueDark leading-none">{lunasCount} <span className="text-[13px] text-google-textVariant">/ {activeMembers.length}</span></span></div>
@@ -4629,7 +4629,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     </div>
 
                     {isModalOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print ">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <div className={`mb-6 w-20 h-20 rounded-full flex items-center justify-center border-2 ${formData.type === 'Pemasukan' ? 'bg-google-greenLight text-google-green border-google-green/30' : 'bg-google-redLight text-google-red border-google-red/30'}`}><Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[36px]" fill="true" /></div>
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">{editingId ? 'Edit' : 'Catat'} {formData.type}</h3>
@@ -4683,13 +4683,13 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 
                                 <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[24px] mb-8 border-2 border-slate-200 shadow-sm"><p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-2">Saldo Jimpitan Saat Ini</p><p className="text-[28px] font-extrabold text-google-text tracking-tight">{formatRp(jimpitanBalance)}</p></div>
                                 
-                                <div className="text-left mb-8"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[18px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
+                                <div className="text-left mb-8"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[18px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                 
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-bold text-[13px] px-4 py-3.5 rounded-[16px] mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[18px] shrink-0"/><span>{errorMsg}</span></div>}
                                 
                                 <div className="flex flex-wrap gap-3 pt-2">
                                     <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleTransferJimpitan} className="flex flex-wrap-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border-2 border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
+                                    <button onClick={handleTransferJimpitan} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border-2 border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
                                 </div>
                             </div>
                         </div>
@@ -4829,8 +4829,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         </div>
                                     </div>
                                     <div className="flex flex-wrap gap-3 w-full lg:w-auto mt-2 lg:mt-0">
-                                        <button onClick={() => setShowHolidayModal(true)} className="flex flex-wrap-1 sm:flex flex-wrap-none shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[20px]" /><span>Bulan Libur</span></button>
-                                        <button onClick={() => window.print()} className="flex flex-wrap-1 sm:flex flex-wrap-none shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[20px]" /><span>Cetak Blanko Absen</span></button>
+                                        <button onClick={() => setShowHolidayModal(true)} className="flex flex-wrap sm:flex flex-wrap-none shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[20px]" /><span>Bulan Libur</span></button>
+                                        <button onClick={() => window.print()} className="flex flex-wrap sm:flex flex-wrap-none shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[20px]" /><span>Cetak Blanko Absen</span></button>
                                     </div>
                                 </div>
                                 <div className="hidden print-only">
@@ -4938,7 +4938,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         <div className="flex justify-between text-[15px] font-bold"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="remove_circle" className="text-[20px] text-google-red"/> Talangan (Keluar)</span><span className="text-google-redDark font-extrabold">-{formatRp(calculations.talanganJimpitan)}</span></div>
                                         <div className="flex justify-between text-[15px] font-bold"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="info" className="text-[20px] text-google-yellowDark"/> Tunggakan Baru</span><span className="text-google-redDark font-extrabold">+{formatRp(calculations.tunggakanBaru)}</span></div>
                                         <div className="w-full h-px bg-slate-200 my-5"></div>
-                                        <div className="flex justify-between items-center font-extrabold text-[18px] bg-slate-50 p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200 shadow-sm"><span className="text-[14px] uppercase tracking-widest text-google-textVariant">Saldo Tunai Berjalan</span><span className="text-[22px] text-google-blueDark tracking-tight">{formatRp(projectedJimpitanCash)}</span></div>
+                                        <div className="flex justify-between items-center font-extrabold text-[18px] bg-slate-50 p-5 sm:p-6 md:p-8 rounded-[20px] border border-slate-200 shadow-sm"><span className="text-[14px] uppercase tracking-widest text-google-textVariant">Saldo Tunai Berjalan</span><span className="text-[22px] text-google-blueDark tracking-tight">{formatRp(projectedJimpitanCash)}</span></div>
                                     </div>
                                 </div>
                                 <div className="pt-8 flex flex-col sm:flex-row justify-between border-t-2 border-slate-100 mt-10 gap-4">
@@ -4965,7 +4965,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     ) : (
                                         <div className="text-left bg-white rounded-[24px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 focus-within:border-google-blue focus-within:shadow-lg transition-all max-w-sm mx-auto relative z-10 shadow-md">
                                             <label className="text-[11px] font-extrabold text-google-textVariant block mb-3 uppercase tracking-widest text-center">Pilih Warga Pemenang</label>
-                                            <select className="w-full bg-slate-50 rounded-[16px] border-2 border-slate-200 text-[18px] font-extrabold outline-none p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-google-blueDark cursor-pointer focus:bg-white transition-colors" value={selectedWinnerId} onChange={(e) => {setSelectedWinnerId(e.target.value); setErrorMsg('');}}>
+                                            <select className="w-full bg-slate-50 rounded-[16px] border-2 border-slate-200 text-[18px] font-extrabold outline-none p-4 sm:p-6 md:p-8 text-google-blueDark cursor-pointer focus:bg-white transition-colors" value={selectedWinnerId} onChange={(e) => {setSelectedWinnerId(e.target.value); setErrorMsg('');}}>
                                                 <option value="" disabled>-- Klik untuk memilih --</option>
                                                 {eligibleWinners.map(m => ( <option key={m.id} value={m.id}>{m.name}</option> ))}
                                             </select>
@@ -5579,7 +5579,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                             {/* Preview */}
                             {formAds.enabled && formAds.bannerAdId && (
-                                <div className="bg-google-blueLight border-2 border-google-blue/30 rounded-[16px] p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8">
+                                <div className="bg-google-blueLight border-2 border-google-blue/30 rounded-[16px] p-4 sm:p-6 md:p-8">
                                     <p className="text-[12px] font-extrabold text-google-blueDark mb-2 flex flex-wrap items-center gap-1.5"><Icon name="preview" className="text-[16px]"/>Preview Banner:</p>
                                     <AdMobBanner adId={formAds.bannerAdId} />
                                 </div>
@@ -5616,7 +5616,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 <h3 className="text-3xl font-extrabold text-google-red mb-2 tracking-tight">Reset Total?</h3>
                                 <p className="text-[15px] font-medium text-google-textVariant mb-8 leading-relaxed">Tindakan ini permanen dan tidak bisa dibatalkan. Ketik kata <b className="text-google-red">RESET</b> di bawah ini.</p>
                                 <div className="bg-slate-50 rounded-[16px] px-5 py-4 border-2 border-google-red/40 focus-within:border-google-red focus-within:bg-white focus-within:shadow-md transition-all mb-8"><input type="text" value={resetPromptInput} onChange={e => setResetPromptInput(e.target.value)} className="w-full bg-transparent border-none text-[22px] outline-none p-0 text-google-redDark uppercase tracking-widest font-extrabold placeholder:text-google-red/30" placeholder="RESET" /></div>
-                                <div className="flex flex-wrap gap-3"><button onClick={() => {setConfirmResetModal(false); setResetPromptInput('');}} className="flex-1 bg-white text-google-text py-4 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={executeFactoryReset} className="flex flex-wrap-1 bg-google-red text-white border-2 border-google-redDark py-4 rounded-full font-extrabold text-[14px] shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Eksekusi</button></div>
+                                <div className="flex flex-wrap gap-3"><button onClick={() => {setConfirmResetModal(false); setResetPromptInput('');}} className="flex-1 bg-white text-google-text py-4 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={executeFactoryReset} className="flex flex-wrap bg-google-red text-white border-2 border-google-redDark py-4 rounded-full font-extrabold text-[14px] shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Eksekusi</button></div>
                             </div>
                         </div>
                     )}
@@ -5663,14 +5663,14 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {isEditing ? (
                         <div className="bg-white rounded-[32px] p-6 sm:p-10 space-y-6 border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Hari &amp; Tanggal</label><input type="text" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Sabtu, 10 Agustus 2026"/></div>
-                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Jam Pelaksanaan</label><input type="text" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: 19.30 WIB - Selesai"/></div>
+                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Hari &amp; Tanggal</label><input type="text" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Sabtu, 10 Agustus 2026"/></div>
+                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Jam Pelaksanaan</label><input type="text" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: 19.30 WIB - Selesai"/></div>
                             </div>
-                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
-                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 text-[15px] font-medium outline-none rounded-[16px] resize-none min-h-[140px] leading-relaxed transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
+                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
+                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-medium outline-none rounded-[16px] resize-none min-h-[140px] leading-relaxed transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
                             <div className="flex flex-wrap gap-3 pt-8 mt-6 border-t-2 border-slate-100">
                                 <button onClick={() => setIsEditing(false)} className="flex-1 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex flex-wrap-1 bg-google-blue border-2 border-google-blueDark text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[18px]"/> Simpan Jadwal</button>
+                                <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex flex-wrap bg-google-blue border-2 border-google-blueDark text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[18px]"/> Simpan Jadwal</button>
                             </div>
                         </div>
                     ) : (
@@ -5861,13 +5861,13 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     Detail Tanggal
                                 </h3>
                                 <div className="space-y-4 relative z-10">
-                                    <div className="bg-slate-50 border border-slate-200/60 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] shadow-sm">
+                                    <div className="bg-slate-50 border border-slate-200/60 p-4 sm:p-6 md:p-8 rounded-[20px] shadow-sm">
                                         <p className="text-[10px] uppercase tracking-widest font-extrabold text-google-textVariant mb-1">Masehi / Nasional</p>
                                         <p className="font-extrabold text-[16px] text-google-text">
                                             {selectedDate.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
                                         </p>
                                     </div>
-                                    <div className="bg-red-50/50 border border-red-500/10 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] shadow-sm">
+                                    <div className="bg-red-50/50 border border-red-500/10 p-4 sm:p-6 md:p-8 rounded-[20px] shadow-sm">
                                         <p className="text-[10px] uppercase tracking-widest font-extrabold text-red-800 mb-1">Jawa / Pasaran</p>
                                         <p className="font-extrabold text-[16px] text-red-700">
                                             {selectedDetails.jawa}
@@ -5876,7 +5876,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             Weton: <span className="underline decoration-dotted">{selectedDetails.jawaDay} {selectedDetails.pasaran}</span>
                                         </p>
                                     </div>
-                                    <div className="bg-slate-50 border border-slate-200/60 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] shadow-sm">
+                                    <div className="bg-slate-50 border border-slate-200/60 p-4 sm:p-6 md:p-8 rounded-[20px] shadow-sm">
                                         <p className="text-[10px] uppercase tracking-widest font-extrabold text-google-textVariant mb-1">Hijriah / Kalender Islam</p>
                                         <p className="font-extrabold text-[16px] text-google-text">
                                             {selectedDetails.hijri}
@@ -5903,7 +5903,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 </form>
 
                                 {checkResult && (
-                                    <div className="mt-5 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] bg-red-50 border border-red-500/20 space-y-2.5 tab-fade-in">
+                                    <div className="mt-5 p-4 sm:p-6 md:p-8 rounded-[20px] bg-red-50 border border-red-500/20 space-y-2.5 tab-fade-in">
                                         <div>
                                             <p className="text-[9px] uppercase tracking-widest font-extrabold text-red-800">Hasil Analisis</p>
                                             <p className="text-[12px] font-bold text-slate-600 mt-1">Masehi: {checkResult.gregorian}</p>
@@ -6103,7 +6103,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-[32px] p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm overflow-hidden">
+                    <div className="bg-white rounded-[32px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm overflow-hidden">
                         <div id="village-map" className="h-[450px] w-full rounded-[24px] z-10 border border-slate-200/80"></div>
                         <p className="text-[11px] font-bold text-center text-google-textVariant mt-3 flex flex-wrap items-center justify-center gap-1"><Icon name="info" className="text-[14px]" /> Klik marker peta untuk rincian lokasi atau gerakkan peta secara interaktif.</p>
                     </div>
@@ -6115,19 +6115,19 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 Batas Administrasi Desa
                             </h3>
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-slate-50 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
+                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
                                     <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Utara</p>
                                     <p className="font-extrabold text-[14px] text-google-text">Desa Adan-adan</p>
                                 </div>
-                                <div className="bg-slate-50 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
+                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
                                     <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Selatan</p>
                                     <p className="font-extrabold text-[14px] text-google-text">Desa Gurah</p>
                                 </div>
-                                <div className="bg-slate-50 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
+                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
                                     <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Timur</p>
                                     <p className="font-extrabold text-[14px] text-google-text">Desa Tumpang</p>
                                 </div>
-                                <div className="bg-slate-50 p-4 sm:p-5 sm:p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
+                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
                                     <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Barat</p>
                                     <p className="font-extrabold text-[14px] text-google-text">Desa Sukorejo</p>
                                 </div>
