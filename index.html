@@ -5232,9 +5232,13 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const handleAdd = () => {
                 if (!newName.trim()) { showAlert('Nama sponsor harus diisi!'); return; }
                 if (!newUrl.trim()) { showAlert('Logo harus diunggah atau URL dimasukkan!'); return; }
-                const currentSponsors = sponsorsData?.sponsors || [];
-                const updated = {...sponsorsData, sponsors: [...currentSponsors, { name: newName.trim(), url: newUrl.trim() }]};
-                setSponsorsData(updated);
+                const nameToSave = newName.trim();
+                const urlToSave = newUrl.trim();
+                // Gunakan functional update agar tidak terkena stale closure saat onSnapshot Firebase tiba
+                setSponsorsData(prev => {
+                    const current = prev?.sponsors || [];
+                    return { ...prev, sponsors: [...current, { name: nameToSave, url: urlToSave }] };
+                });
                 setNewName(''); setNewUrl(''); setPreviewUrl(''); setUploadError('');
                 showAlert('Sponsor berhasil ditambahkan dan disimpan!');
             };
@@ -5248,7 +5252,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     <p className="text-[12px] text-google-textVariant font-medium mt-0.5">Tampilkan logo-logo sponsor di halaman utama</p>
                     </div>
                     <div className="relative">
-                    <input type="checkbox" className="sr-only peer" checked={sponsorsData?.enabled || false} onChange={e => setSponsorsData({...sponsorsData, enabled: e.target.checked})} />
+                    <input type="checkbox" className="sr-only peer" checked={sponsorsData?.enabled || false} onChange={e => {
+                        const checked = e.target.checked;
+                        // Functional update agar enabled tidak hilang saat onSnapshot tiba
+                        setSponsorsData(prev => ({ ...prev, enabled: checked }));
+                    }} />
                     <div className="w-12 h-6 bg-slate-200 peer-checked:bg-google-blue rounded-full transition-colors peer"></div>
                     <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-6 peer"></div>
                     </div>
@@ -5266,8 +5274,12 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 <span className="text-[13px] font-bold text-google-text truncate">{s.name}</span>
                             </div>
                             <button onClick={() => {
-                                const ns = [...sponsorsData.sponsors]; ns.splice(i, 1);
-                                setSponsorsData({...sponsorsData, sponsors: ns});
+                                const idx = i;
+                                // Functional update agar hapus tidak terkena stale closure
+                                setSponsorsData(prev => {
+                                    const ns = [...(prev?.sponsors || [])]; ns.splice(idx, 1);
+                                    return { ...prev, sponsors: ns };
+                                });
                             }} className="text-google-red hover:bg-red-50 p-2 rounded-full transition-colors shrink-0"><Icon name="delete" className="text-[20px]" /></button>
                             </div>
                         ))}
