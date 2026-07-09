@@ -5489,7 +5489,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             useEffect(() => { if (!isEditing) setFormData(nextMeeting); }, [nextMeeting, isEditing]);
             
             return (
-                <div className="space-y-6 max-w-3xl mx-auto">
+                <div className="space-y-6 tab-fade-in">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Jadwal Pertemuan</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Informasi resmi kegiatan RT untuk bulan selanjutnya.</p></div>
                         {userRole === 'admin' && !isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-200 text-google-text px-8 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[18px]" /><span>Ubah Jadwal</span></button>}
