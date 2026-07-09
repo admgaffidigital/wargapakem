@@ -1603,7 +1603,7 @@ Developer: NOVAN RESTU UTOMO
                     case 'kas': return <BukuKas balance={kasRtBalance} setBalance={setKasRtBalance} transactions={kasRtTransactions} setTransactions={setKasRtTransactions} userRole={userRole} identity={identity} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} />;
                     case 'laporan': return <Laporan history={meetingHistory} setMeetingHistory={setMeetingHistory} members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} cycleNumber={cycleNumber} identity={identity} userRole={userRole} />;
                     case 'pertemuan': return userRole === 'admin' ? <Pertemuan members={members} setMembers={setMembers} currentRound={currentRound} setCurrentRound={setCurrentRound} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} setMeetingHistory={setMeetingHistory} onFinish={() => changeTab('menu')} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} identity={identity} cycleNumber={cycleNumber} /> : null;
-                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} /> : null;
+                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} /> : null;
                     case 'infaq': return <Infaq infaqData={infaqData} setInfaqData={setInfaqData} userRole={userRole} identity={identity} />;
                     case 'pemenang': return <Pemenang members={members} />;
                     case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} setNextMeeting={setNextMeeting} userRole={userRole} />;
@@ -5440,6 +5440,74 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     </PengaturanSection>
 
                     </div>
+
+                    {/* ===== SECTION: Manajemen Sponsor ===== */}
+                    <PengaturanSection title="Manajemen Sponsor" onSave={() => showAlert('Pengaturan Sponsor berhasil disimpan.')}>
+                        <div className="space-y-4">
+                            <label className="flex items-center justify-between bg-slate-50 border-2 border-slate-200 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/30 transition-colors group">
+                                <div>
+                                    <p className="text-[14px] font-extrabold text-google-text">Aktifkan Tampilan Sponsor</p>
+                                    <p className="text-[12px] text-google-textVariant font-medium mt-0.5">Tampilkan logo-logo sponsor di halaman utama</p>
+                                </div>
+                                <div className="relative">
+                                    <input type="checkbox" className="sr-only peer" checked={props.sponsorsData?.enabled || false} onChange={e => props.setSponsorsData({...props.sponsorsData, enabled: e.target.checked})} />
+                                    <div className="w-12 h-6 bg-slate-200 peer-checked:bg-google-blue rounded-full transition-colors peer"></div>
+                                    <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-6 peer"></div>
+                                </div>
+                            </label>
+
+                            {props.sponsorsData?.enabled && (
+                                <div className="mt-2 p-4 border-2 border-slate-100 rounded-[16px] bg-slate-50 space-y-4">
+                                    <p className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-widest">Daftar Sponsor</p>
+                                    <div className="space-y-2">
+                                        {props.sponsorsData?.sponsors?.map((s, i) => (
+                                            <div key={i} className="flex items-center justify-between bg-white p-3 rounded-[12px] shadow-sm border border-slate-100 gap-3">
+                                                <div className="flex items-center gap-3 overflow-hidden">
+                                                    <img src={s.url} alt={s.name} className="h-8 max-w-[64px] object-contain shrink-0 rounded" onError={e => { e.target.style.display='none'; }} />
+                                                    <span className="text-[13px] font-bold text-google-text truncate">{s.name}</span>
+                                                </div>
+                                                <button onClick={() => {
+                                                    const newSponsors = [...props.sponsorsData.sponsors];
+                                                    newSponsors.splice(i, 1);
+                                                    props.setSponsorsData({...props.sponsorsData, sponsors: newSponsors});
+                                                }} className="text-google-red hover:bg-red-50 p-2 rounded-full transition-colors shrink-0"><Icon name="delete" className="text-[20px]" /></button>
+                                            </div>
+                                        ))}
+                                        {(!props.sponsorsData?.sponsors || props.sponsorsData?.sponsors.length === 0) && (
+                                            <p className="text-[12px] italic text-slate-400 text-center py-2">Belum ada sponsor yang ditambahkan.</p>
+                                        )}
+                                    </div>
+
+                                    <div className="pt-4 border-t-2 border-slate-200 space-y-3">
+                                        <p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest">Tambah Sponsor Baru</p>
+                                        <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all">
+                                            <label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Nama Sponsor</label>
+                                            <input type="text" id="newSponsorName" placeholder="Misal: Bank BRI Cabang Pakem" className="w-full bg-transparent border-none text-[14px] font-bold outline-none p-0 text-google-text placeholder:text-slate-400" />
+                                        </div>
+                                        <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all">
+                                            <label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">URL Gambar / Logo (PNG, JPG, SVG)</label>
+                                            <input type="text" id="newSponsorUrl" placeholder="https://contoh.com/logo.png" className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text placeholder:text-slate-400 font-mono" />
+                                        </div>
+                                        <button onClick={() => {
+                                            const name = document.getElementById('newSponsorName').value.trim();
+                                            const url = document.getElementById('newSponsorUrl').value.trim();
+                                            if(name && url) {
+                                                const currentSponsors = props.sponsorsData?.sponsors || [];
+                                                props.setSponsorsData({...props.sponsorsData, sponsors: [...currentSponsors, {name, url}]});
+                                                document.getElementById('newSponsorName').value = '';
+                                                document.getElementById('newSponsorUrl').value = '';
+                                                showAlert('Sponsor berhasil ditambahkan!');
+                                            } else {
+                                                showAlert('Nama dan URL Sponsor harus diisi!');
+                                            }
+                                        }} className="w-full bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-full font-extrabold text-[14px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md flex items-center justify-center gap-2">
+                                            <Icon name="add_circle" className="text-[20px]" />Tambah Sponsor
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </PengaturanSection>
 
                     <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-8 sm:p-10 rounded-[32px] border-2 border-google-redDark shadow-xl relative overflow-hidden group">
                         <Icon name="warning" className="absolute -right-5 -top-5 text-[160px] text-white opacity-10 group-hover:scale-110 transition-transform duration-700" fill="true" />
