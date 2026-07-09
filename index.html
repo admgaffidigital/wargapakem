@@ -1617,7 +1617,7 @@ Developer: NOVAN RESTU UTOMO
             const activeTabTitle = NavItems.find(i => i.id === activeTab)?.label || identity.name;
 
             return (
-                <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
+                <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex-col relative">
                     <FlagWavingBackground />
                     <div className="sticky top-0 z-40 no-print w-full">
                         {isOffline && (
@@ -1634,7 +1634,7 @@ Developer: NOVAN RESTU UTOMO
                                     ) : (
                                         <button onClick={() => changeTab('menu')} className="w-10 h-10 bg-white text-google-text border-2 border-slate-200 hover:text-red-600 hover:border-red-500/30 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[20px]" /></button>
                                     )}
-                                    <div className="flex flex-wrap items-center gap-2 min-w-0">
+                                    <div className="flex-wrap items-center gap-2 min-w-0">
                                         <h1 className="text-[16px] sm:text-[18px] font-extrabold truncate leading-tight tracking-tight text-slate-800">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
                                         {activeTab === 'menu' && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse shrink-0"></span>}
                                     </div>
@@ -1654,12 +1654,12 @@ Developer: NOVAN RESTU UTOMO
                     </main>
 
                     <footer className="w-full text-center py-8 no-print border-t border-red-500/10 bg-gradient-to-b from-white/10 to-white/90 text-[12.5px] font-bold text-slate-500">
-                        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
-                            <p className="flex flex-wrap items-center gap-1.5 justify-center">
+                        <div className="max-w-5xl mx-auto px-4 flex-col sm:flex-row items-center justify-between gap-3.5">
+                            <p className="flex-wrap items-center gap-1.5 justify-center">
                                 <Icon name="flag" className="text-red-500 text-[16px] animate-pulse" fill="true" />
                                 © {new Date().getFullYear()} <span className="text-red-600 font-extrabold">WP LINGKUNGAN</span>. All rights reserved.
                             </p>
-                            <p className="flex flex-wrap items-center justify-center gap-1.5">
+                            <p className="flex-wrap items-center justify-center gap-1.5">
                                 Developed by <span className="bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent font-extrabold tracking-wide uppercase">NOVAN RESTU UTOMO</span>
                             </p>
                         </div>
@@ -1902,7 +1902,7 @@ Developer: NOVAN RESTU UTOMO
             };
             
             return (
-                <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 bg-transparent relative overflow-hidden">
+                <div className="w-full min-h-screen flex-col justify-center items-center p-4 sm:p-6 md:p-8 bg-transparent relative overflow-hidden">
                     <FlagWavingBackground />
 
                     <div className="relative overflow-hidden bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-[32px] w-full max-w-sm text-center shadow-[0_20px_50px_rgba(239,68,68,0.08)] border-2 border-red-500/10 z-10 hover:border-red-500/30 hover:shadow-[0_20px_50px_rgba(239,68,68,0.15)] transition-all duration-500">
@@ -1915,8 +1915,8 @@ Developer: NOVAN RESTU UTOMO
                         
                         {mode === 'select' ? (
                             <div className="space-y-4">
-                                <button onClick={() => onLogin('warga')} className="w-full bg-white text-google-text font-extrabold py-3.5 rounded-full flex flex-wrap justify-center items-center gap-2 border-2 border-slate-200 text-[14px] hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 active:scale-95 shadow-sm"><Icon name="person" className="text-[20px] text-google-textVariant" /><span>Masuk sebagai Warga</span></button>
-                                <button onClick={() => setMode('admin_login')} className="w-full bg-google-blue text-white font-extrabold py-3.5 rounded-full flex flex-wrap justify-center items-center gap-2 text-[14px] border-2 border-google-blueDark shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all duration-300 active:scale-95"><Icon name="lock" className="text-[20px]" /><span>Otorisasi Admin</span></button>
+                                <button onClick={() => onLogin('warga')} className="w-full bg-white text-google-text font-extrabold py-3.5 rounded-full flex-wrap justify-center items-center gap-2 border-2 border-slate-200 text-[14px] hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 active:scale-95 shadow-sm"><Icon name="person" className="text-[20px] text-google-textVariant" /><span>Masuk sebagai Warga</span></button>
+                                <button onClick={() => setMode('admin_login')} className="w-full bg-google-blue text-white font-extrabold py-3.5 rounded-full flex-wrap justify-center items-center gap-2 text-[14px] border-2 border-google-blueDark shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all duration-300 active:scale-95"><Icon name="lock" className="text-[20px]" /><span>Otorisasi Admin</span></button>
                             </div>
                         ) : (
                             <div className="space-y-4">
@@ -1928,8 +1928,8 @@ Developer: NOVAN RESTU UTOMO
                                     <label className="text-[11px] font-extrabold text-google-textVariant block mb-1.5 ml-2 uppercase tracking-widest">Kata Sandi</label>
                                     <input type="password" placeholder="Kata Sandi Firebase" value={password} onChange={(e) => { setPassword(e.target.value); setError(''); }} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md text-google-text rounded-[16px] px-5 py-3.5 text-[15px] font-bold outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
                                 </div>
-                                {error && <p className="text-[12px] text-google-redDark font-extrabold bg-google-redLight py-3 rounded-[12px] border-2 border-google-red/30 shadow-sm flex flex-wrap items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[16px]"/> {error}</p>}
-                                <div className="flex flex-wrap gap-3 pt-4">
+                                {error && <p className="text-[12px] text-google-redDark font-extrabold bg-google-redLight py-3 rounded-[12px] border-2 border-google-red/30 shadow-sm flex-wrap items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[16px]"/> {error}</p>}
+                                <div className="flex-wrap gap-3 pt-4">
                                     <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-200 text-google-text py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
                                     <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
                                 </div>
