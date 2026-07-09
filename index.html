@@ -236,6 +236,15 @@ Developer: NOVAN RESTU UTOMO
     <script type='text/babel'>
         //<![CDATA[
         const { useState, useEffect, useMemo, useRef, useCallback } = React;
+
+        const getDirectImgUrl = (url) => {
+            if (!url) return '';
+            const driveMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (driveMatch) {
+                return `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+            }
+            return url;
+        };
         
         const getLocalDate = () => { const offset = new Date().getTimezoneOffset() * 60000; return new Date(Date.now() - offset).toISOString().split('T')[0]; };
         
