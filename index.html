@@ -5910,7 +5910,12 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     </div>
                 `);
 
+                const timer = setTimeout(() => {
+                    map.invalidateSize();
+                }, 400);
+
                 return () => {
+                    clearTimeout(timer);
                     map.remove();
                 };
             }, []);
