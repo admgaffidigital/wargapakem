@@ -3815,7 +3815,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between">
+                                <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between flex-1">
                                     <div>
                                         <div className="flex flex-wrap justify-between items-start gap-2 mb-1.5">
                                             <span className="text-[10px] font-extrabold text-red-600 bg-red-50 border border-red-500/15 px-2.5 py-1 rounded-md uppercase tracking-wider">
@@ -3827,9 +3827,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             </span>
                                         </div>
                                         <h3 onClick={() => setSelectedPhoto(item)} className="text-[16px] font-extrabold text-google-text leading-snug tracking-tight mb-2 group-hover:text-red-600 transition-colors cursor-pointer line-clamp-1">{item.title}</h3>
-                                        <p className="text-[12.5px] font-medium text-google-textVariant leading-relaxed line-clamp-2 mb-4 bg-slate-50 p-2.5 rounded-[14px] border border-slate-100">
-                                            {item.description || 'Tidak ada deskripsi.'}
-                                        </p>
+                                        <div className="bg-slate-50 p-3 rounded-[14px] border border-slate-100 mb-4">
+                                            <p className="text-[12.5px] font-medium text-google-textVariant leading-relaxed line-clamp-3">
+                                                {item.description || 'Tidak ada deskripsi.'}
+                                            </p>
+                                        </div>
                                     </div>
                                     {userRole === 'admin' && (
                                         <div className="flex flex-wrap justify-end gap-2 border-t border-slate-100 pt-3">
