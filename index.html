@@ -2029,7 +2029,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     
                     {/* SPONSORED BY */}
                     {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
-                        <div className="flex flex-col items-center justify-center mt-12 mb-8 animate-fadeIn">
+                        <div className="flex flex-col items-center justify-center mt-20 mb-8 animate-fadeIn">
                             <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 mb-4">Sponsored By</p>
                             <div className="flex flex-wrap items-center justify-center gap-6">
                                 {sponsorsData.sponsors.map((s, i) => (
@@ -2040,9 +2040,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     )}
     
                     {userRole !== 'admin' && (
-                        <div className="flex justify-center mt-4">
-                            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[24px] text-center border-2 border-slate-200 shadow-sm flex items-center justify-center">
-                                <p className="text-[13px] font-bold text-google-textVariant flex flex-wrap items-center justify-center gap-2"><Icon name="info" className="text-[18px]" /> Mode Warga (akses terbatas).</p>
+                        <div className="flex justify-center mt-16 mb-4">
+                            <div className="bg-white py-2 px-4 rounded-full text-center border-2 border-slate-200 shadow-sm flex items-center justify-center">
+                                <p className="text-[11px] font-bold text-google-textVariant flex flex-wrap items-center justify-center gap-1.5"><Icon name="info" className="text-[15px]" /> Mode Warga (akses terbatas).</p>
                             </div>
                         </div>
                     )}
