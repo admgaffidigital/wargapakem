@@ -192,9 +192,23 @@ Developer: NOVAN RESTU UTOMO
             // Offline persistence: data tersimpan di IndexedDB perangkat,
             // sehingga aplikasi tetap bisa dibuka & dibaca walau tanpa koneksi internet,
             // dan otomatis sinkron kembali saat online.
-            window.firebaseDb = initializeFirestore(app, {
-                localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
-            });
+            try {
+                window.firebaseDb = initializeFirestore(app, {
+                    localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
+                });
+                console.log("[Sistem] Database berhasil diinisialisasi (offline persistence aktif).");
+            } catch(offlineError) {
+                console.warn("[Sistem] Offline persistence gagal (mungkin diblokir browser), mencoba tanpa offline cache...", offlineError.message);
+                try {
+                    // Fallback: Firestore tanpa offline persistence (data tetap tersimpan ke server)
+                    window.firebaseDb = initializeFirestore(app, {});
+                    console.log("[Sistem] Database berhasil diinisialisasi (mode online-only).");
+                } catch(onlineError) {
+                    console.error("[Sistem Error] Gagal menghubungkan ke Firebase:", onlineError);
+                    window.firebaseLoadFailed = true;
+                }
+                }
+            }
             window.firebaseAuth = getAuth(app);
             window.signInWithEmailAndPassword = signInWithEmailAndPassword;
             window.signOut = signOut;
@@ -202,7 +216,6 @@ Developer: NOVAN RESTU UTOMO
             window.firebaseDoc = doc;
             window.firebaseOnSnapshot = onSnapshot;
             window.firebaseSetDoc = setDoc;
-            console.log("[Sistem] Database berhasil diinisialisasi (offline persistence aktif).");
         } catch (error) {
             console.error("[Sistem Error] Gagal menghubungkan ke Firebase:", error);
             window.firebaseLoadFailed = true;
@@ -5195,36 +5208,22 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [previewUrl, setPreviewUrl] = useState('');
             const [uploadError, setUploadError] = useState('');
 
-            // Gunakan GAS yang sama seperti Galeri, Inventaris, dll
+            // Gunakan base64 FileReader langsung seperti pada Galeri
             const uploadLogo = (file) => {
                 if (!file) return;
                 if (file.size > 2 * 1024 * 1024) { showAlert('Gagal: Ukuran gambar maksimal 2MB!'); return; }
+                setIsUploading(true); setUploadError('');
                 const reader = new FileReader();
                 reader.onloadend = () => {
-                    const base64String = reader.result.split(',')[1];
-                    setIsUploading(true); setUploadError('');
-                    fetch(window.GAS_DRIVE_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({ base64: base64String, mimeType: file.type, filename: `sponsor-${Date.now()}-${file.name}` })
-                    })
-                    .then(res => res.json())
-                    .then(response => {
-                        setIsUploading(false);
-                        if (response.status === 'success') {
-                            setNewUrl(response.viewUrl);
-                            setPreviewUrl(response.viewUrl);
-                            setUploadError('');
-                        } else {
-                            setUploadError('Gagal mengunggah: ' + response.message);
-                            showAlert('Gagal mengunggah logo.');
-                        }
-                    })
-                    .catch(() => {
-                        setIsUploading(false);
-                        setUploadError('Terjadi kesalahan jaringan.');
-                        showAlert('Terjadi kesalahan jaringan saat mengunggah logo.');
-                    });
+                    setNewUrl(reader.result);
+                    setPreviewUrl(reader.result);
+                    setUploadError('');
+                    setIsUploading(false);
+                };
+                reader.onerror = () => {
+                    setUploadError('Gagal membaca file.');
+                    showAlert('Gagal membaca file logo.');
+                    setIsUploading(false);
                 };
                 reader.readAsDataURL(file);
             };
