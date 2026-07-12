@@ -2010,7 +2010,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
                         <div className="bg-red-50 border-2 border-red-200 text-red-800 rounded-full px-4 py-2 flex items-center gap-3 overflow-hidden shadow-sm mt-4">
                             <Icon name="campaign" className="text-red-600 shrink-0 animate-pulse text-[20px]" />
-                            <marquee className="text-[13px] font-bold tracking-wide whitespace-nowrap">
+                            <marquee className="text-[13px] font-bold tracking-wide whitespace-nowrap uppercase">
                                 Info Agenda Mendatang: <span className="font-extrabold text-red-700">{nextMeeting.date}</span> jam <span className="font-extrabold text-red-700">{nextMeeting.time}</span> di <span className="font-extrabold text-red-700">{nextMeeting.location}</span>. Agenda: {nextMeeting.notes}
                             </marquee>
                         </div>
