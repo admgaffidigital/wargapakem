@@ -2484,6 +2484,21 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-gradient-to-r from-google-blue to-google-blueDark h-full rounded-full transition-all duration-1000" style={{ width: `${(winnersCount / (arisanMembers.length || 1)) * 100}%` }}></div></div>
                         </div>
                     </div>
+
+                    {userRole === 'admin' && (
+                        <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-[32px] p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 border-2 border-slate-700 relative overflow-hidden group cursor-default">
+                            <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-google-blue opacity-20 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
+                            <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-google-green opacity-20 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000 delay-100"></div>
+
+                            <div className="relative z-10 w-full text-center sm:text-left">
+                                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-[10px] font-extrabold uppercase tracking-widest bg-white/10 text-slate-200 mb-3 border border-white/10 shadow-sm">
+                                    <Icon name="account_balance_wallet" className="text-[14px]" /> Total Dana Kelolaan Global
+                                </span>
+                                <p className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight drop-shadow-md">{formatRp((kasRtBalance || 0) + (jimpitanBalance || 0))}</p>
+                                <p className="text-[13px] text-slate-400 font-medium mt-2">Gabungan Total Saldo Aktif Kas Utama RT + Kas Jimpitan Tunai.</p>
+                            </div>
+                        </div>
+                    )}
                     
                     {isCycleComplete && userRole === 'admin' && (
                         <div className="bg-gradient-to-r from-google-blueLight to-blue-50 p-6 sm:p-8 rounded-[32px] flex flex-col sm:flex-row items-center sm:text-left text-center gap-6 border-2 border-google-blue shadow-sm">
