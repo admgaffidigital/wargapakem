@@ -1620,7 +1620,7 @@ Developer: NOVAN RESTU UTOMO
 
             const renderContent = () => {
                 switch(activeTab) {
-                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} adsConfig={adsConfig} setShowPwaGuide={setShowPwaGuide} sponsorsData={sponsorsData} />;
+                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} adsConfig={adsConfig} setShowPwaGuide={setShowPwaGuide} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
                     case 'dashboard': return <Dashboard members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} currentRound={currentRound} setCurrentRound={setCurrentRound} userRole={userRole} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} changeTab={changeTab} arisanPeriod={arisanPeriod} />;
                     case 'informasi': return <Informasi data={informasi} setData={setInformasi} userRole={userRole} />;
                     case 'warga': return <WargaList members={members} setMembers={setMembers} userRole={userRole} identity={identity} cycleNumber={cycleNumber} currentRound={currentRound} arisanPeriod={arisanPeriod} />;
@@ -1634,11 +1634,11 @@ Developer: NOVAN RESTU UTOMO
                     case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} /> : null;
                     case 'infaq': return <Infaq infaqData={infaqData} setInfaqData={setInfaqData} userRole={userRole} identity={identity} />;
                     case 'pemenang': return <Pemenang members={members} />;
-                    case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} setNextMeeting={setNextMeeting} userRole={userRole} />;
+                    case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} />;
                     case 'kalender': return <Kalender />;
                     case 'peta': return <PetaDesa />;
                     case 'musik': return userRole === 'admin' ? <MusicAdmin musicData={musicData} setMusicData={setMusicData} /> : null;
-                    default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} sponsorsData={sponsorsData} />;
+                    default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
                 }
             };
 
@@ -2005,6 +2005,16 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         </div>
                     </div>
                     {/* --- AKHIR AREA BANNER --- */}
+
+                    {/* --- AREA RUNNING TEXT AGENDA --- */}
+                    {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
+                        <div className="bg-red-50 border-2 border-red-200 text-red-800 rounded-full px-4 py-2 flex items-center gap-3 overflow-hidden shadow-sm mt-4">
+                            <Icon name="campaign" className="text-red-600 shrink-0 animate-pulse text-[20px]" />
+                            <marquee className="text-[13px] font-bold tracking-wide whitespace-nowrap">
+                                Info Agenda Mendatang: <span className="font-extrabold text-red-700">{nextMeeting.date}</span> jam <span className="font-extrabold text-red-700">{nextMeeting.time}</span> di <span className="font-extrabold text-red-700">{nextMeeting.location}</span>. Agenda: {nextMeeting.notes}
+                            </marquee>
+                        </div>
+                    )}
 
                     {/* AREA GRID MENU */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5">
@@ -5744,39 +5754,31 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
         function Kegiatan({ nextMeeting, setNextMeeting, userRole }) {
             const [isEditing, setIsEditing] = useState(false);
             const [formData, setFormData] = useState(nextMeeting);
-            // FIX MINOR-1: Sync formData saat nextMeeting berubah dari Firebase (tapi hanya jika tidak sedang edit)
             useEffect(() => { if (!isEditing) setFormData(nextMeeting); }, [nextMeeting, isEditing]);
             
             return (
                 <div className="space-y-6 tab-fade-in">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm">
-                        <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Jadwal Pertemuan</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Informasi resmi kegiatan RT untuk bulan selanjutnya.</p></div>
-                        {userRole === 'admin' && !isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-200 text-google-text px-8 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[18px]" /><span>Ubah Jadwal</span></button>}
-                    </div>
+                    {userRole === 'admin' && (
+                        <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm">
+                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5">
+                                <div><h2 className="text-xl font-extrabold text-google-text tracking-tight">Pengaturan Agenda</h2><p className="text-[13px] font-medium text-google-textVariant mt-1">Agenda tampil sebagai teks berjalan (marquee) di Halaman Utama.</p></div>
+                                {!isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-200 text-google-text px-6 py-2.5 rounded-full font-extrabold flex items-center justify-center gap-2 text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[16px]" /><span>Ubah Agenda</span></button>}
+                            </div>
 
-                    {isEditing ? (
-                        <div className="bg-white rounded-[32px] p-6 sm:p-10 space-y-6 border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Hari &amp; Tanggal</label><input type="text" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Sabtu, 10 Agustus 2026"/></div>
-                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Jam Pelaksanaan</label><input type="text" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: 19.30 WIB - Selesai"/></div>
-                            </div>
-                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
-                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-medium outline-none rounded-[16px] resize-none min-h-[140px] leading-relaxed transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
-                            <div className="flex flex-wrap gap-3 pt-8 mt-6 border-t-2 border-slate-100">
-                                <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex flex-wrap bg-google-blue border-2 border-google-blueDark text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[18px]"/> Simpan Jadwal</button>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="bg-white rounded-[32px] p-6 sm:p-10 text-google-text border-2 border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300 relative overflow-hidden group">
-                            <div className="absolute -right-10 -top-10 w-64 max-w-full h-64 bg-google-blueLight opacity-30 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
-                            
-                            <div className="mb-10 relative z-10"><Icon name="event" className="text-[56px] text-google-blue mb-5 group-hover:scale-110 transition-transform duration-300 origin-left" fill="true" /><h3 className="text-4xl sm:text-5xl font-extrabold leading-tight text-google-blueDark tracking-tight">{nextMeeting.date}</h3><div className="inline-flex items-center gap-2.5 mt-5 bg-google-blueLight/50 px-5 py-2.5 rounded-[16px] border-2 border-google-blue/20 shadow-sm"><Icon name="schedule" className="text-[20px] text-google-blueDark"/><p className="text-[15px] font-extrabold text-google-blueDark uppercase tracking-widest">{nextMeeting.time}</p></div></div>
-                            <div className="space-y-5 bg-slate-50 border-2 border-slate-200 p-8 rounded-[24px] relative z-10 shadow-sm">
-                                <div className="flex flex-wrap gap-5"><div className="bg-white w-12 h-12 rounded-[16px] flex items-center justify-center shrink-0 shadow-sm border-2 border-slate-100"><Icon name="location_on" className="text-[24px] text-google-red" fill="true"/></div><div><p className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant mb-1.5">Lokasi</p><p className="font-extrabold text-[16px] text-google-text">{nextMeeting.location}</p></div></div>
-                                <div className="w-full h-px bg-slate-200 my-3"></div>
-                                <div className="flex flex-wrap gap-5"><div className="bg-white w-12 h-12 rounded-[16px] flex items-center justify-center shrink-0 shadow-sm border-2 border-slate-100"><Icon name="description" className="text-[24px] text-google-yellowDark" fill="true" /></div><div><p className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant mb-1.5">Agenda</p><p className="font-medium text-[15px] leading-relaxed text-google-text">{nextMeeting.notes}</p></div></div>
-                            </div>
+                            {isEditing && (
+                                <div className="mt-6 pt-6 border-t-2 border-slate-100 space-y-6">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Hari &amp; Tanggal</label><input type="text" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[14px] font-bold outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Sabtu, 10 Agustus 2026"/></div>
+                                        <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Jam Pelaksanaan</label><input type="text" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[14px] font-bold outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: 19.30 WIB - Selesai"/></div>
+                                    </div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[14px] font-bold outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[14px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
+                                    <div className="flex flex-wrap gap-3 pt-6 mt-6 border-t-2 border-slate-100">
+                                        <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3 rounded-full font-extrabold text-[13px] hover:bg-slate-50 border-2 border-slate-200 active:scale-95 transition-all shadow-sm flex items-center justify-center">Batal</button>
+                                        <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex bg-google-blue border-2 border-google-blueDark text-white px-6 py-3 rounded-full font-extrabold text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Agenda</button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     )}
 
