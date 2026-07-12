@@ -2085,6 +2085,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [loading, setLoading] = useState(false);
             const [nextPrayer, setNextPrayer] = useState(null);
             const [timeRemaining, setTimeRemaining] = useState('');
+            const [adzanEnabled, setAdzanEnabled] = useState(() => localStorage.getItem('sholat_adzan_enabled') === 'true');
+            const lastAdzanPlayed = React.useRef(null);
 
             const fetchByCoords = useCallback(async (lat, lng) => {
                 setLoading(true);
@@ -2261,6 +2263,31 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     
                     const timeStr = `${hrs > 0 ? hrs + 'j ' : ''}${mins}m ${secs}s`;
                     setTimeRemaining(timeStr);
+
+                    // Cek Notifikasi Adzan
+                    const nowTimeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                    const currentPrayer = prayerTimes.find(p => p.time === nowTimeStr && p.name !== 'Imsak');
+                    if (currentPrayer) {
+                        const adzanKey = `${schedule.tanggal}-${currentPrayer.name}`;
+                        if (lastAdzanPlayed.current !== adzanKey) {
+                            lastAdzanPlayed.current = adzanKey;
+                            const isAdzanActive = localStorage.getItem('sholat_adzan_enabled') === 'true';
+                            if (isAdzanActive) {
+                                try {
+                                    const audio = new Audio('https://www.islamcan.com/audio/adhan/azan1.mp3');
+                                    audio.play().catch(e => console.warn("Auto-play Adzan diblokir browser:", e));
+                                    
+                                    if ("Notification" in window && Notification.permission === "granted") {
+                                        new Notification("Waktu Sholat", {
+                                            body: `Telah masuk waktu sholat ${currentPrayer.name} untuk wilayah ${city}`
+                                        });
+                                    }
+                                } catch(err) {
+                                    console.error("Gagal memutar adzan:", err);
+                                }
+                            }
+                        }
+                    }
                 }, 1000);
 
                 return () => clearInterval(timer);
@@ -2301,6 +2328,36 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         </div>
 
                         <div className="w-full md:w-auto flex flex-wrap items-center gap-2">
+                            <button 
+                                type="button"
+                                onClick={() => {
+                                    const newVal = !adzanEnabled;
+                                    setAdzanEnabled(newVal);
+                                    localStorage.setItem('sholat_adzan_enabled', newVal ? 'true' : 'false');
+                                    if (newVal) {
+                                        if ("Notification" in window && Notification.permission !== "granted") {
+                                            Notification.requestPermission();
+                                        }
+                                        // window.showToast defined globally? The component uses showToast
+                                        if (typeof showToast === 'function') {
+                                            showToast('Notifikasi & Suara Adzan diaktifkan');
+                                        }
+                                    } else {
+                                        if (typeof showToast === 'function') {
+                                            showToast('Notifikasi Adzan dinonaktifkan');
+                                        }
+                                    }
+                                }}
+                                className={`flex items-center gap-1.5 font-extrabold text-[12px] px-5 py-2.5 rounded-full border transition-all active:scale-95 ${
+                                    adzanEnabled 
+                                        ? 'bg-emerald-50 text-emerald-600 border-emerald-500/30' 
+                                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                                }`}
+                            >
+                                <Icon name={adzanEnabled ? "notifications_active" : "notifications_off"} className="text-[16px]"/>
+                                {adzanEnabled ? 'Adzan Aktif' : 'Adzan Mati'}
+                            </button>
+
                             <button 
                                 type="button" 
                                 onClick={handleGPSDetection}
