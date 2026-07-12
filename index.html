@@ -67,6 +67,8 @@ Developer: NOVAN RESTU UTOMO
     <script crossorigin='anonymous' src='https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js'></script>
     <script crossorigin='anonymous' src='https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@babel/standalone@7.25.6/babel.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
 
     <style>
         /* Prevent Material Symbols from flashing raw text names before loading and fix iOS text rendering */
@@ -4170,6 +4172,20 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [deleteConfirmId, setDeleteConfirmId] = useState(null);
             const [formData, setFormData] = useState({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' });
             const [errorMsg, setErrorMsg] = useState('');
+            const [printMode, setPrintMode] = useState('buku');
+            
+            const handlePrintBarcode = () => {
+                setPrintMode('barcode');
+                setTimeout(() => {
+                    if (window.JsBarcode) {
+                        window.JsBarcode(".barcode-element").init();
+                    }
+                    setTimeout(() => {
+                        window.print();
+                        setTimeout(() => setPrintMode('buku'), 1000);
+                    }, 200);
+                }, 200);
+            };
             
             const handleSave = () => {
                 const trimmedName = formData.name ? formData.name.trim() : '';
@@ -4192,33 +4208,52 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Buku Induk Warga</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Total <span className="font-extrabold text-google-blue">{members.length} Warga</span> Terdaftar</p></div>
                         <div className="flex gap-3 w-full sm:w-auto overflow-x-auto hide-scrollbar pb-1 sm:pb-0">
-                            <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[18px]" /><span>Cetak Form</span></button>
+                            <button onClick={() => { setPrintMode('buku'); setTimeout(() => window.print(), 100); }} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[18px]" /><span>Cetak Form</span></button>
+                            {userRole === 'admin' && <button onClick={handlePrintBarcode} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="qr_code_scanner" className="text-[18px]" /><span>Cetak Barcode</span></button>}
                             {userRole === 'admin' && <button onClick={() => { setFormData({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="person_add" className="text-[20px]" /><span>Tambah Data</span></button>}
                         </div>
                     </div>
 
-                    <div className="hidden print-only">
-                        <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1><p>{identity?.subtitle || ''}</p></div>
-                        <div className="text-center mb-6"><h2 className="text-[14pt] font-bold underline uppercase mb-1">Buku Induk &amp; Evaluasi Warga</h2><p className="text-[11pt]">Siklus Ke-{cycleNumber || 1} | Putaran Ke-{currentRound} | Periode: {formatBulanTahun(arisanPeriod)}</p></div>
-                        <table className="print-table">
-                            <thead><tr><th width="5%">No</th><th width="30%">Nama Warga</th><th width="15%">Program</th><th width="15%">Status Arisan</th><th width="15%">Tunggakan</th><th width="20%">Keterangan</th></tr></thead>
-                            <tbody>
-                                {members.length === 0 ? <tr><td colSpan="6" className="text-center font-bold">Belum ada data.</td></tr> : members.map((m, idx) => (
-                                    <tr key={m.id}>
-                                        <td className="text-center font-bold">{idx + 1}</td>
-                                        <td className="font-bold">{m.name} {m.status === 'Meninggal' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Wafat</span>}{m.status === 'Nonaktif' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Nonaktif</span>}</td>
-                                        <td className="text-center font-bold">{m.program === 'IuranOnly' ? 'Iuran Saja' : 'Arisan + Iuran'}</td>
-                                        <td className="text-center font-bold">{m.program === 'IuranOnly' ? '-' : (m.hasWon ? `Menang (Put.${m.wonRound})` : 'Belum')}</td>
-                                        <td className="text-right font-bold">{m.debt > 0 ? formatRp(m.debt) : '-'}</td><td></td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <div className="ttd-container">
-                            <div className="ttd-box"><p>Mengetahui,</p><p>Ketua RT</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
-                            <div className="ttd-box"><p>Dibuat Oleh,</p><p>Sekretaris / Admin</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
+                    {printMode === 'buku' && (
+                        <div className="hidden print-only">
+                            <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1><p>{identity?.subtitle || ''}</p></div>
+                            <div className="text-center mb-6"><h2 className="text-[14pt] font-bold underline uppercase mb-1">Buku Induk &amp; Evaluasi Warga</h2><p className="text-[11pt]">Siklus Ke-{cycleNumber || 1} | Putaran Ke-{currentRound} | Periode: {formatBulanTahun(arisanPeriod)}</p></div>
+                            <table className="print-table">
+                                <thead><tr><th width="5%">No</th><th width="30%">Nama Warga</th><th width="15%">Program</th><th width="15%">Status Arisan</th><th width="15%">Tunggakan</th><th width="20%">Keterangan</th></tr></thead>
+                                <tbody>
+                                    {members.length === 0 ? <tr><td colSpan="6" className="text-center font-bold">Belum ada data.</td></tr> : members.map((m, idx) => (
+                                        <tr key={m.id}>
+                                            <td className="text-center font-bold">{idx + 1}</td>
+                                            <td className="font-bold">{m.name} {m.status === 'Meninggal' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Wafat</span>}{m.status === 'Nonaktif' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Nonaktif</span>}</td>
+                                            <td className="text-center font-bold">{m.program === 'IuranOnly' ? 'Iuran Saja' : 'Arisan + Iuran'}</td>
+                                            <td className="text-center font-bold">{m.program === 'IuranOnly' ? '-' : (m.hasWon ? `Menang (Put.${m.wonRound})` : 'Belum')}</td>
+                                            <td className="text-right font-bold">{m.debt > 0 ? formatRp(m.debt) : '-'}</td><td></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            <div className="ttd-container">
+                                <div className="ttd-box"><p>Mengetahui,</p><p>Ketua RT</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
+                                <div className="ttd-box"><p>Dibuat Oleh,</p><p>Sekretaris / Admin</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
+                            </div>
                         </div>
-                    </div>
+                    )}
+                    
+                    {printMode === 'barcode' && (
+                        <div className="hidden print-only">
+                            <div className="text-center mb-8"><h2 className="text-[18pt] font-extrabold uppercase mb-1">Kartu Barcode Warga</h2><p className="text-[12pt]">{identity?.name || 'Aplikasi Arisan'}</p></div>
+                            <div className="grid grid-cols-2 gap-8" style={{ pageBreakInside: 'avoid' }}>
+                                {members.map(m => (
+                                    <div key={m.id} className="border-2 border-black p-6 rounded-2xl flex flex-col items-center justify-center text-center" style={{ pageBreakInside: 'avoid' }}>
+                                        <h3 className="font-extrabold text-[12pt] mb-2 uppercase">{identity?.name || 'RT/RW'}</h3>
+                                        <p className="font-extrabold text-[16pt] uppercase mb-1 leading-tight">{m.name}</p>
+                                        <p className="font-bold text-[11pt] mb-4 text-gray-700">No. Anggota: M-{m.id}</p>
+                                        <svg className="barcode-element" data-value={`M-${m.id}`} data-text={`M-${m.id}`} data-height="50" data-width="1.8" data-fontSize="14"></svg>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
                     <div className="space-y-4 no-print">
                         {members.map((member) => (
@@ -4795,6 +4830,68 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     return updated;
                 });
             }, [arisanMembers]);
+
+            const [isScannerOpen, setIsScannerOpen] = useState(false);
+            const [scannedMember, setScannedMember] = useState(null);
+            const [cashReceived, setCashReceived] = useState('');
+            const [cashierStatus, setCashierStatus] = useState('Hadir');
+            const scannerRef = useRef(null);
+
+            useEffect(() => {
+                if (isScannerOpen) {
+                    if (!scannerRef.current && window.Html5QrcodeScanner) {
+                        scannerRef.current = new window.Html5QrcodeScanner("reader", { fps: 10, qrbox: {width: 250, height: 150} }, false);
+                        scannerRef.current.render((decodedText) => {
+                            const memberIdStr = decodedText.replace('M-', '');
+                            const m = arisanMembers.find(x => x.id.toString() === memberIdStr);
+                            if (m) {
+                                setScannedMember(m);
+                                setCashierStatus(attendance[m.id]?.status || 'Hadir');
+                                setCashReceived('');
+                                if (scannerRef.current) {
+                                    scannerRef.current.clear();
+                                    scannerRef.current = null;
+                                }
+                                setIsScannerOpen(false);
+                            } else {
+                                showToast('Warga tidak ditemukan!');
+                            }
+                        }, (error) => {});
+                    }
+                } else {
+                    if (scannerRef.current) {
+                        scannerRef.current.clear().catch(e => console.error(e));
+                        scannerRef.current = null;
+                    }
+                }
+                return () => {
+                    if (scannerRef.current) {
+                        scannerRef.current.clear().catch(e => console.error(e));
+                        scannerRef.current = null;
+                    }
+                };
+            }, [isScannerOpen, arisanMembers, attendance]);
+
+            const handleCashierSave = () => {
+                if (!scannedMember) return;
+                const tagihanBulanIni = (scannedMember.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan;
+                const totalTagihan = tagihanBulanIni + (scannedMember.debt || 0);
+                const received = safeNumber(cashReceived);
+                const payDebt = (received >= totalTagihan && scannedMember.debt > 0);
+
+                setAttendance(prev => ({
+                    ...prev,
+                    [scannedMember.id]: {
+                        status: cashierStatus,
+                        payDebt: (cashierStatus === 'Hadir' && payDebt)
+                    }
+                }));
+                showToast(`Presensi ${scannedMember.name} disimpan!`);
+                setScannedMember(null);
+                
+                // Automatically restart scanner if they want to scan next person
+                setTimeout(() => setIsScannerOpen(true), 300);
+            };
             const [selectedWinnerId, setSelectedWinnerId] = useState('');
             const [errorMsg, setErrorMsg] = useState('');
             
@@ -4901,6 +4998,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         </div>
                                     </div>
                                     <div className="flex flex-wrap gap-3 w-full lg:w-auto mt-2 lg:mt-0">
+                                        <button onClick={() => setIsScannerOpen(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300"><Icon name="qr_code_scanner" className="text-[20px]" /><span>Kasir Scan</span></button>
                                         <button onClick={() => setShowHolidayModal(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[20px]" /><span>Bulan Libur</span></button>
                                         <button onClick={() => window.print()} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[20px]" /><span>Cetak Blanko Absen</span></button>
                                     </div>
@@ -4986,6 +5084,69 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             <div className="flex flex-wrap gap-3">
                                                 <button onClick={() => setShowHolidayModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                                 <button onClick={handleSetHoliday} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300">Setuju, Libur</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {isScannerOpen && (
+                                    <div className="fixed inset-0 bg-slate-900/90 z-50 flex flex-col p-6 no-print">
+                                        <div className="flex justify-between items-center mb-6">
+                                            <h3 className="text-white font-extrabold text-2xl">Scan Barcode Warga</h3>
+                                            <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white p-2 rounded-full hover:bg-white/40"><Icon name="close" className="text-[24px]" /></button>
+                                        </div>
+                                        <div className="flex-1 flex justify-center items-start pt-10">
+                                            <div id="reader" className="w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl"></div>
+                                        </div>
+                                        <p className="text-white/60 text-center font-medium mt-6">Arahkan kamera ke barcode warga untuk memindai.</p>
+                                    </div>
+                                )}
+                                
+                                {scannedMember && (
+                                    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+                                        <div className="bg-white rounded-[32px] p-6 w-full max-w-sm shadow-2xl border-2 border-slate-200">
+                                            <h3 className="text-xl font-extrabold text-google-text mb-4 text-center">Kasir Presensi</h3>
+                                            <div className="text-center mb-4">
+                                                <p className="text-[18px] font-extrabold text-google-text">{scannedMember.name}</p>
+                                                <p className="text-[14px] text-google-textVariant font-bold">M-{scannedMember.id}</p>
+                                            </div>
+                                            
+                                            <div className="bg-slate-50 p-4 rounded-2xl mb-4 border-2 border-slate-200">
+                                                <div className="flex justify-between text-[14px] mb-1"><span className="text-google-textVariant font-bold">Tagihan Bulan Ini</span><span className="font-extrabold text-google-text">{formatRp((scannedMember.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan)}</span></div>
+                                                {scannedMember.debt > 0 && <div className="flex justify-between text-[14px] mb-1"><span className="text-google-red font-bold">Tunggakan</span><span className="font-extrabold text-google-red">{formatRp(scannedMember.debt)}</span></div>}
+                                                <div className="border-t-2 border-slate-200 my-2"></div>
+                                                <div className="flex justify-between text-[16px]"><span className="font-extrabold text-google-text">Total Harus Dibayar</span><span className="font-extrabold text-google-blue">{formatRp(((scannedMember.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan) + (scannedMember.debt || 0))}</span></div>
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant block mb-2">Status Kehadiran</label>
+                                                <div className="flex gap-2">
+                                                    {['Hadir', 'Musibah', 'Alfa'].map(stat => (
+                                                        <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[12px] font-extrabold uppercase tracking-widest rounded-xl border-2 transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-200 hover:bg-slate-50'}`}>{stat}</button>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant block mb-2">Uang Diterima (Rp)</label>
+                                                <input type="number" min="0" value={cashReceived} onChange={e => setCashReceived(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[18px] font-bold outline-none rounded-2xl text-google-text placeholder:text-slate-300 transition-all" placeholder="0" />
+                                            </div>
+
+                                            {(() => {
+                                                const tagihan = ((scannedMember.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan) + (scannedMember.debt || 0);
+                                                const received = safeNumber(cashReceived);
+                                                const kembalian = received - tagihan;
+                                                return received > 0 ? (
+                                                    <div className={`p-4 rounded-2xl mb-4 border-2 shadow-sm ${kembalian >= 0 ? 'bg-google-greenLight border-google-green/40 text-google-greenDark' : 'bg-google-redLight border-google-red/40 text-google-redDark'}`}>
+                                                        <p className="text-[11px] font-extrabold uppercase tracking-widest mb-1">{kembalian >= 0 ? 'Kembalian' : 'Status'}</p>
+                                                        <p className="text-[20px] font-extrabold">{kembalian >= 0 ? formatRp(kembalian) : 'Uang Kurang!'}</p>
+                                                    </div>
+                                                ) : null;
+                                            })()}
+
+                                            <div className="flex gap-3 mt-6">
+                                                <button onClick={() => setScannedMember(null)} className="flex-1 bg-white border-2 border-slate-200 text-google-text font-extrabold py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-300 transition-all text-[14px]">Batal</button>
+                                                <button onClick={handleCashierSave} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white font-extrabold py-3.5 rounded-full hover:bg-google-blueDark hover:shadow-md transition-all text-[14px] flex justify-center items-center gap-2"><Icon name="save" className="text-[18px]" />Simpan</button>
                                             </div>
                                         </div>
                                     </div>
