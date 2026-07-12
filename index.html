@@ -4832,10 +4832,14 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             }, [arisanMembers]);
 
             const [isScannerOpen, setIsScannerOpen] = useState(false);
-            const [scannedMember, setScannedMember] = useState(null);
+            const [scannedMembers, setScannedMembers] = useState([]);
             const [cashReceived, setCashReceived] = useState('');
             const [cashierStatus, setCashierStatus] = useState('Hadir');
+            const [showCashierModal, setShowCashierModal] = useState(false);
             const scannerRef = useRef(null);
+            
+            const scannedMembersRef = useRef(scannedMembers);
+            useEffect(() => { scannedMembersRef.current = scannedMembers; }, [scannedMembers]);
 
             useEffect(() => {
                 if (isScannerOpen) {
@@ -4845,14 +4849,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             const memberIdStr = decodedText.replace('M-', '');
                             const m = arisanMembers.find(x => x.id.toString() === memberIdStr);
                             if (m) {
-                                setScannedMember(m);
-                                setCashierStatus(attendance[m.id]?.status || 'Hadir');
-                                setCashReceived('');
-                                if (scannerRef.current) {
-                                    scannerRef.current.clear();
-                                    scannerRef.current = null;
+                                if (!scannedMembersRef.current.some(x => x.id === m.id)) {
+                                    setScannedMembers(prev => [...prev, m]);
+                                    showToast(`${m.name} masuk keranjang!`);
                                 }
-                                setIsScannerOpen(false);
                             } else {
                                 showToast('Warga tidak ditemukan!');
                             }
@@ -4870,26 +4870,43 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         scannerRef.current = null;
                     }
                 };
-            }, [isScannerOpen, arisanMembers, attendance]);
+            }, [isScannerOpen, arisanMembers]);
+            
+            const handleOpenCashier = () => {
+                if (scannedMembers.length === 0) return;
+                setIsScannerOpen(false);
+                setShowCashierModal(true);
+                setCashReceived('');
+                setCashierStatus('Hadir');
+            };
 
             const handleCashierSave = () => {
-                if (!scannedMember) return;
-                const tagihanBulanIni = (scannedMember.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan;
-                const totalTagihan = tagihanBulanIni + (scannedMember.debt || 0);
-                const received = safeNumber(cashReceived);
-                const payDebt = (received >= totalTagihan && scannedMember.debt > 0);
-
-                setAttendance(prev => ({
-                    ...prev,
-                    [scannedMember.id]: {
-                        status: cashierStatus,
-                        payDebt: (cashierStatus === 'Hadir' && payDebt)
-                    }
-                }));
-                showToast(`Presensi ${scannedMember.name} disimpan!`);
-                setScannedMember(null);
+                if (scannedMembers.length === 0) return;
                 
-                // Automatically restart scanner if they want to scan next person
+                let totalTagihanGabungan = 0;
+                scannedMembers.forEach(m => {
+                    const tagihanBulanIni = (m.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan;
+                    totalTagihanGabungan += tagihanBulanIni + (m.debt || 0);
+                });
+                
+                const received = safeNumber(cashReceived);
+                const isPaidFull = received >= totalTagihanGabungan;
+
+                setAttendance(prev => {
+                    const updated = { ...prev };
+                    scannedMembers.forEach(m => {
+                        updated[m.id] = {
+                            status: cashierStatus,
+                            payDebt: (cashierStatus === 'Hadir' && isPaidFull && m.debt > 0)
+                        };
+                    });
+                    return updated;
+                });
+
+                showToast(`Presensi ${scannedMembers.length} warga disimpan!`);
+                setShowCashierModal(false);
+                setScannedMembers([]);
+                
                 setTimeout(() => setIsScannerOpen(true), 300);
             };
             const [selectedWinnerId, setSelectedWinnerId] = useState('');
@@ -5095,57 +5112,87 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             <h3 className="text-white font-extrabold text-2xl">Scan Barcode Warga</h3>
                                             <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white p-2 rounded-full hover:bg-white/40"><Icon name="close" className="text-[24px]" /></button>
                                         </div>
-                                        <div className="flex-1 flex justify-center items-start pt-10">
+                                        <div className="flex-1 flex flex-col justify-center items-center pt-4">
                                             <div id="reader" className="w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl"></div>
+                                            
+                                            {scannedMembers.length > 0 && (
+                                                <div className="mt-8 w-full max-w-md bg-white rounded-[24px] p-5 shadow-2xl border-2 border-google-blue">
+                                                    <h4 className="font-extrabold text-google-text mb-3 text-[14px] uppercase tracking-widest">Keranjang Scan ({scannedMembers.length} Warga)</h4>
+                                                    <div className="flex flex-wrap gap-2 mb-4 max-h-[120px] overflow-y-auto">
+                                                        {scannedMembers.map(m => (
+                                                            <span key={m.id} className="bg-google-blueLight text-google-blueDark px-3 py-1.5 rounded-full text-[13px] font-bold border border-google-blue/30">{m.name}</span>
+                                                        ))}
+                                                    </div>
+                                                    <button onClick={handleOpenCashier} className="w-full bg-google-blue text-white py-3.5 rounded-xl font-extrabold flex items-center justify-center gap-2 hover:bg-google-blueDark transition-colors shadow-md">Proses Pembayaran <Icon name="arrow_forward" className="text-[18px]" /></button>
+                                                </div>
+                                            )}
                                         </div>
-                                        <p className="text-white/60 text-center font-medium mt-6">Arahkan kamera ke barcode warga untuk memindai.</p>
+                                        {scannedMembers.length === 0 && <p className="text-white/60 text-center font-medium mt-6">Arahkan kamera ke barcode warga untuk memindai.</p>}
                                     </div>
                                 )}
                                 
-                                {scannedMember && (
+                                {showCashierModal && scannedMembers.length > 0 && (
                                     <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
-                                        <div className="bg-white rounded-[32px] p-6 w-full max-w-sm shadow-2xl border-2 border-slate-200">
-                                            <h3 className="text-xl font-extrabold text-google-text mb-4 text-center">Kasir Presensi</h3>
+                                        <div className="bg-white rounded-[32px] p-6 w-full max-w-sm shadow-2xl border-2 border-slate-200 max-h-[95vh] flex flex-col">
+                                            <h3 className="text-xl font-extrabold text-google-text mb-2 text-center">Kasir Pembayaran</h3>
                                             <div className="text-center mb-4">
-                                                <p className="text-[18px] font-extrabold text-google-text">{scannedMember.name}</p>
-                                                <p className="text-[14px] text-google-textVariant font-bold">M-{scannedMember.id}</p>
+                                                <p className="text-[14px] text-google-textVariant font-bold">{scannedMembers.length} Warga (Gandengan)</p>
+                                                <p className="text-[14px] font-extrabold text-google-text truncate">{scannedMembers.map(m => m.name).join(', ')}</p>
                                             </div>
                                             
-                                            <div className="bg-slate-50 p-4 rounded-2xl mb-4 border-2 border-slate-200">
-                                                <div className="flex justify-between text-[14px] mb-1"><span className="text-google-textVariant font-bold">Tagihan Bulan Ini</span><span className="font-extrabold text-google-text">{formatRp((scannedMember.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan)}</span></div>
-                                                {scannedMember.debt > 0 && <div className="flex justify-between text-[14px] mb-1"><span className="text-google-red font-bold">Tunggakan</span><span className="font-extrabold text-google-red">{formatRp(scannedMember.debt)}</span></div>}
-                                                <div className="border-t-2 border-slate-200 my-2"></div>
-                                                <div className="flex justify-between text-[16px]"><span className="font-extrabold text-google-text">Total Harus Dibayar</span><span className="font-extrabold text-google-blue">{formatRp(((scannedMember.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan) + (scannedMember.debt || 0))}</span></div>
-                                            </div>
-
-                                            <div className="mb-4">
-                                                <label className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant block mb-2">Status Kehadiran</label>
-                                                <div className="flex gap-2">
-                                                    {['Hadir', 'Musibah', 'Alfa'].map(stat => (
-                                                        <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[12px] font-extrabold uppercase tracking-widest rounded-xl border-2 transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-200 hover:bg-slate-50'}`}>{stat}</button>
-                                                    ))}
+                                            <div className="overflow-y-auto hide-scrollbar flex-1 mb-4">
+                                                <div className="bg-slate-50 p-4 rounded-2xl border-2 border-slate-200">
+                                                    {(() => {
+                                                        let totalTagihanBulanIni = 0;
+                                                        let totalTunggakan = 0;
+                                                        scannedMembers.forEach(m => {
+                                                            totalTagihanBulanIni += (m.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan;
+                                                            totalTunggakan += (m.debt || 0);
+                                                        });
+                                                        const totalGabungan = totalTagihanBulanIni + totalTunggakan;
+                                                        return (
+                                                            <>
+                                                                <div className="flex justify-between text-[14px] mb-1"><span className="text-google-textVariant font-bold">Total Tagihan Bulan Ini</span><span className="font-extrabold text-google-text">{formatRp(totalTagihanBulanIni)}</span></div>
+                                                                {totalTunggakan > 0 && <div className="flex justify-between text-[14px] mb-1"><span className="text-google-red font-bold">Total Tunggakan</span><span className="font-extrabold text-google-red">{formatRp(totalTunggakan)}</span></div>}
+                                                                <div className="border-t-2 border-slate-200 my-2"></div>
+                                                                <div className="flex justify-between text-[16px]"><span className="font-extrabold text-google-text">Total Harus Dibayar</span><span className="font-extrabold text-google-blue">{formatRp(totalGabungan)}</span></div>
+                                                            </>
+                                                        )
+                                                    })()}
                                                 </div>
-                                            </div>
 
-                                            <div className="mb-4">
-                                                <label className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant block mb-2">Uang Diterima (Rp)</label>
-                                                <input type="number" min="0" value={cashReceived} onChange={e => setCashReceived(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[18px] font-bold outline-none rounded-2xl text-google-text placeholder:text-slate-300 transition-all" placeholder="0" />
-                                            </div>
-
-                                            {(() => {
-                                                const tagihan = ((scannedMember.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan) + (scannedMember.debt || 0);
-                                                const received = safeNumber(cashReceived);
-                                                const kembalian = received - tagihan;
-                                                return received > 0 ? (
-                                                    <div className={`p-4 rounded-2xl mb-4 border-2 shadow-sm ${kembalian >= 0 ? 'bg-google-greenLight border-google-green/40 text-google-greenDark' : 'bg-google-redLight border-google-red/40 text-google-redDark'}`}>
-                                                        <p className="text-[11px] font-extrabold uppercase tracking-widest mb-1">{kembalian >= 0 ? 'Kembalian' : 'Status'}</p>
-                                                        <p className="text-[20px] font-extrabold">{kembalian >= 0 ? formatRp(kembalian) : 'Uang Kurang!'}</p>
+                                                <div className="mb-4 mt-4">
+                                                    <label className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant block mb-2">Status Kehadiran (Semua Warga)</label>
+                                                    <div className="flex gap-2">
+                                                        {['Hadir', 'Musibah', 'Alfa'].map(stat => (
+                                                            <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[12px] font-extrabold uppercase tracking-widest rounded-xl border-2 transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-200 hover:bg-slate-50'}`}>{stat}</button>
+                                                        ))}
                                                     </div>
-                                                ) : null;
-                                            })()}
+                                                </div>
 
-                                            <div className="flex gap-3 mt-6">
-                                                <button onClick={() => setScannedMember(null)} className="flex-1 bg-white border-2 border-slate-200 text-google-text font-extrabold py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-300 transition-all text-[14px]">Batal</button>
+                                                <div className="mb-4">
+                                                    <label className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant block mb-2">Uang Diterima (Rp)</label>
+                                                    <input type="number" min="0" value={cashReceived} onChange={e => setCashReceived(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[18px] font-bold outline-none rounded-2xl text-google-text placeholder:text-slate-300 transition-all" placeholder="0" />
+                                                </div>
+
+                                                {(() => {
+                                                    let totalGabungan = 0;
+                                                    scannedMembers.forEach(m => {
+                                                        totalGabungan += (m.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan + (m.debt || 0);
+                                                    });
+                                                    const received = safeNumber(cashReceived);
+                                                    const kembalian = received - totalGabungan;
+                                                    return received > 0 ? (
+                                                        <div className={`p-4 rounded-2xl border-2 shadow-sm ${kembalian >= 0 ? 'bg-google-greenLight border-google-green/40 text-google-greenDark' : 'bg-google-redLight border-google-red/40 text-google-redDark'}`}>
+                                                            <p className="text-[11px] font-extrabold uppercase tracking-widest mb-1">{kembalian >= 0 ? 'Kembalian' : 'Status'}</p>
+                                                            <p className="text-[20px] font-extrabold">{kembalian >= 0 ? formatRp(kembalian) : 'Uang Kurang!'}</p>
+                                                        </div>
+                                                    ) : null;
+                                                })()}
+                                            </div>
+
+                                            <div className="flex gap-3 mt-auto shrink-0 pt-2 border-t-2 border-slate-100">
+                                                <button onClick={() => { setShowCashierModal(false); setScannedMembers([]); setTimeout(() => setIsScannerOpen(true), 300); }} className="flex-1 bg-white border-2 border-slate-200 text-google-text font-extrabold py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-300 transition-all text-[14px]">Batal</button>
                                                 <button onClick={handleCashierSave} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white font-extrabold py-3.5 rounded-full hover:bg-google-blueDark hover:shadow-md transition-all text-[14px] flex justify-center items-center gap-2"><Icon name="save" className="text-[18px]" />Simpan</button>
                                             </div>
                                         </div>
