@@ -1667,20 +1667,27 @@ Developer: NOVAN RESTU UTOMO
                             </div>
                         )}
 
-                        <header className="bg-white/85 backdrop-blur-lg text-google-text py-4 px-5 sm:px-8 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-3xl border border-red-500/10 shadow-[0_10px_30px_rgba(239,68,68,0.04)]">
-                            <div className="max-w-5xl mx-auto flex items-center justify-between">
-                                <div className="flex items-center space-x-3 overflow-hidden">
+                        <header className="bg-white/95 text-google-text py-4 px-5 sm:px-8 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/10 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative">
+                            <div className="max-w-5xl mx-auto flex items-center justify-between relative">
+                                {/* Kiri: Tombol Back/Home */}
+                                <div className="flex items-center space-x-3 z-10">
                                     {activeTab === 'menu' ? (
                                         <div className="bg-gradient-to-tr from-red-500 to-rose-600 text-white w-10 h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40"><Icon name="home" className="text-[20px]" fill="true" /></div>
                                     ) : (
                                         <button onClick={() => changeTab('menu')} className="w-10 h-10 bg-white text-google-text border-2 border-slate-200 hover:text-red-600 hover:border-red-500/30 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[20px]" /></button>
                                     )}
-                                    <div className="flex flex-wrap items-center gap-2 min-w-0">
-                                        <h1 className="text-[16px] sm:text-[18px] font-extrabold truncate leading-tight tracking-tight text-slate-800">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
+                                </div>
+                                
+                                {/* Tengah: Judul (Centered) */}
+                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-14 sm:px-20">
+                                    <div className="flex items-center gap-2 max-w-full">
+                                        <h1 className="text-[16px] sm:text-[18px] font-extrabold truncate leading-tight tracking-tight text-slate-800 pointer-events-auto text-center">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
                                         {activeTab === 'menu' && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse shrink-0"></span>}
                                     </div>
                                 </div>
-                                <div className="flex items-center space-x-3 shrink-0 pl-2">
+
+                                {/* Kanan: Profil/Logout */}
+                                <div className="flex items-center space-x-2 sm:space-x-3 shrink-0 z-10">
                                     <span className={`text-[10px] font-extrabold px-3 py-1.5 rounded-md uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/20' : 'bg-slate-50 text-slate-600 border-slate-200'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
                                     <button onClick={() => setShowLogoutModal(true)} className="w-10 h-10 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-red-500/20 shadow-sm"><Icon name="logout" className="text-[18px]" /></button>
                                 </div>
