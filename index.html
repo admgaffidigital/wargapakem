@@ -5878,15 +5878,15 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const [activeMenu, setActiveMenu] = useState(null);
             
             const pengaturanMenus = [
-                { id: 'profil', title: 'Profil Aplikasi', icon: 'badge', color: 'blue', desc: 'Nama & Kop Surat Aplikasi' },
-                { id: 'nominal', title: 'Iuran Wajib', icon: 'payments', color: 'emerald', desc: 'Besaran Arisan & Jimpitan' },
-                { id: 'kalibrasi', title: 'Kalibrasi Siklus', icon: 'build', color: 'orange', desc: 'Atur Putaran & Siklus' },
-                { id: 'saldo', title: 'Koreksi Saldo', icon: 'account_balance_wallet', color: 'indigo', desc: 'Edit Saldo Kas Utama' },
-                { id: 'banner', title: 'Banner Utama', icon: 'image', color: 'purple', desc: 'Gambar Latar Halaman Depan' },
-                { id: 'ads', title: 'AdSense', icon: 'ad_units', color: 'amber', desc: 'Kelola Iklan Google' },
-                { id: 'sponsor', title: 'Sponsor', icon: 'handshake', color: 'teal', desc: 'Logo Sponsor RT' },
-                { id: 'infodesa', title: 'Info Desa', icon: 'map', color: 'rose', desc: 'Kontak & Batas Wilayah' },
-                { id: 'reset', title: 'Reset Sistem', icon: 'warning', color: 'red', desc: 'Hapus Semua Data' }
+                { id: 'profil', title: 'Profil Aplikasi', icon: 'badge', bg: 'bg-blue-100', text: 'text-blue-600', border: 'border-blue-200', hoverBorder: 'hover:border-blue-500', groupHoverBg: 'group-hover:bg-blue-500', groupHoverText: 'group-hover:text-blue-600', desc: 'Nama & Kop Surat Aplikasi' },
+                { id: 'nominal', title: 'Iuran Wajib', icon: 'payments', bg: 'bg-emerald-100', text: 'text-emerald-600', border: 'border-emerald-200', hoverBorder: 'hover:border-emerald-500', groupHoverBg: 'group-hover:bg-emerald-500', groupHoverText: 'group-hover:text-emerald-600', desc: 'Besaran Arisan & Jimpitan' },
+                { id: 'kalibrasi', title: 'Kalibrasi Siklus', icon: 'build', bg: 'bg-orange-100', text: 'text-orange-600', border: 'border-orange-200', hoverBorder: 'hover:border-orange-500', groupHoverBg: 'group-hover:bg-orange-500', groupHoverText: 'group-hover:text-orange-600', desc: 'Atur Putaran & Siklus' },
+                { id: 'saldo', title: 'Koreksi Saldo', icon: 'account_balance_wallet', bg: 'bg-indigo-100', text: 'text-indigo-600', border: 'border-indigo-200', hoverBorder: 'hover:border-indigo-500', groupHoverBg: 'group-hover:bg-indigo-500', groupHoverText: 'group-hover:text-indigo-600', desc: 'Edit Saldo Kas Utama' },
+                { id: 'banner', title: 'Banner Utama', icon: 'image', bg: 'bg-purple-100', text: 'text-purple-600', border: 'border-purple-200', hoverBorder: 'hover:border-purple-500', groupHoverBg: 'group-hover:bg-purple-500', groupHoverText: 'group-hover:text-purple-600', desc: 'Gambar Latar Halaman Depan' },
+                { id: 'ads', title: 'AdSense', icon: 'ad_units', bg: 'bg-amber-100', text: 'text-amber-600', border: 'border-amber-200', hoverBorder: 'hover:border-amber-500', groupHoverBg: 'group-hover:bg-amber-500', groupHoverText: 'group-hover:text-amber-600', desc: 'Kelola Iklan Google' },
+                { id: 'sponsor', title: 'Sponsor', icon: 'handshake', bg: 'bg-teal-100', text: 'text-teal-600', border: 'border-teal-200', hoverBorder: 'hover:border-teal-500', groupHoverBg: 'group-hover:bg-teal-500', groupHoverText: 'group-hover:text-teal-600', desc: 'Logo Sponsor RT' },
+                { id: 'infodesa', title: 'Info Desa', icon: 'map', bg: 'bg-rose-100', text: 'text-rose-600', border: 'border-rose-200', hoverBorder: 'hover:border-rose-500', groupHoverBg: 'group-hover:bg-rose-500', groupHoverText: 'group-hover:text-rose-600', desc: 'Kontak & Batas Wilayah' },
+                { id: 'reset', title: 'Reset Sistem', icon: 'warning', bg: 'bg-red-100', text: 'text-red-600', border: 'border-red-200', hoverBorder: 'hover:border-red-500', groupHoverBg: 'group-hover:bg-red-500', groupHoverText: 'group-hover:text-red-600', desc: 'Hapus Semua Data' }
             ];
 
             useEffect(() => { setFormSaldo({ jimpitan: jimpitanBalance, kasRt: kasRtBalance }); }, [jimpitanBalance, kasRtBalance]);
@@ -5979,12 +5979,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const renderGridMenu = () => (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {pengaturanMenus.map(menu => (
-                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white rounded-[24px] p-5 sm:p-6 border-2 border-slate-200 shadow-sm hover:border-google-${menu.color} hover:shadow-lg cursor-pointer transition-all duration-300 group flex flex-col gap-4`}>
-                            <div className={`w-14 h-14 bg-google-${menu.color}Light text-google-${menu.color}Dark rounded-[16px] flex items-center justify-center border-2 border-google-${menu.color}/20 group-hover:scale-110 group-hover:bg-google-${menu.color} group-hover:text-white transition-all duration-300`}>
+                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white rounded-[24px] p-5 sm:p-6 border-2 border-slate-200 shadow-sm ${menu.hoverBorder} hover:shadow-lg cursor-pointer transition-all duration-300 group flex flex-col gap-4`}>
+                            <div className={`w-14 h-14 ${menu.bg} ${menu.text} rounded-[16px] flex items-center justify-center border-2 ${menu.border} group-hover:scale-110 ${menu.groupHoverBg} group-hover:text-white transition-all duration-300`}>
                                 <Icon name={menu.icon} className="text-[28px]" fill="true" />
                             </div>
                             <div>
-                                <h3 className={`font-extrabold text-[16px] text-google-text tracking-tight group-hover:text-google-${menu.color}Dark transition-colors`}>{menu.title}</h3>
+                                <h3 className={`font-extrabold text-[16px] text-google-text tracking-tight ${menu.groupHoverText} transition-colors`}>{menu.title}</h3>
                                 <p className="text-[12px] font-medium text-google-textVariant mt-1">{menu.desc}</p>
                             </div>
                         </div>
@@ -5999,7 +5999,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <button onClick={() => setActiveMenu(null)} className="w-12 h-12 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all text-google-textVariant shrink-0 shadow-sm hover:shadow-md">
                             <Icon name="arrow_back" className="text-[24px]" />
                         </button>
-                        <div className={`w-12 h-12 bg-google-${menu.color}Light text-google-${menu.color}Dark rounded-full flex items-center justify-center border border-google-${menu.color}/20 shrink-0`}>
+                        <div className={`w-12 h-12 ${menu.bg} ${menu.text} rounded-full flex items-center justify-center border ${menu.border} shrink-0`}>
                             <Icon name={menu.icon} className="text-[24px]" fill="true" />
                         </div>
                         <h2 className="text-[20px] font-extrabold text-google-text tracking-tight">{menu.title}</h2>
