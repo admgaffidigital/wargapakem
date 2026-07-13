@@ -5595,17 +5595,17 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 }));
             };
 
-            const removeKontak = (id) => {
+            const removeKontak = (index) => {
                 setLocalInfo(prev => ({
                     ...prev,
-                    kontak: prev.kontak.filter(k => (k.id || k.nama) !== id)
+                    kontak: prev.kontak.filter((k, i) => i !== index)
                 }));
             };
 
-            const updateKontak = (id, field, val) => {
+            const updateKontak = (index, field, val) => {
                 setLocalInfo(prev => ({
                     ...prev,
-                    kontak: prev.kontak.map(k => (k.id || k.nama) === id ? { ...k, [field]: val } : k)
+                    kontak: prev.kontak.map((k, i) => i === index ? { ...k, [field]: val } : k)
                 }));
             };
 
