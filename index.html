@@ -4205,6 +4205,18 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     window.JsBarcode("#preview-barcode", `M-${previewMember.id}`, { width: 2, height: 60, fontSize: 16 });
                 }
             }, [previewMember]);
+
+            const handleDownloadBarcode = () => {
+                const canvas = document.getElementById("preview-barcode");
+                if (!canvas) return;
+                const url = canvas.toDataURL("image/png");
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = `Barcode_${previewMember.name.replace(/\s+/g, '_')}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
             
             const handlePrintBarcode = () => {
                 setPrintMode('barcode');
@@ -4385,9 +4397,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     )}
                                 </div>
                                 
-                                <div className="border-2 border-dashed border-slate-300 rounded-[24px] p-5 bg-white mb-2">
+                                <div className="border-2 border-dashed border-slate-300 rounded-[24px] p-5 bg-white mb-2 relative">
                                     <p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-3">Barcode Resmi</p>
-                                    <svg id="preview-barcode" className="mx-auto w-full max-w-[200px]"></svg>
+                                    <canvas id="preview-barcode" className="mx-auto w-full max-w-[200px]"></canvas>
+                                    <button onClick={handleDownloadBarcode} className="mt-4 bg-slate-100 hover:bg-slate-200 text-google-text font-extrabold text-[12px] px-4 py-2 rounded-full transition-all flex items-center justify-center gap-1 mx-auto border-2 border-slate-200 active:scale-95"><Icon name="download" className="text-[16px]"/> Simpan Gambar (PNG)</button>
                                 </div>
                                 <p className="text-[11px] font-medium text-slate-400 mt-4">Tunjukkan barcode ini kepada petugas jika diperlukan.</p>
                             </div>
