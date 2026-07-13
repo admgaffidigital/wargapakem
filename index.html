@@ -1500,13 +1500,23 @@ Developer: NOVAN RESTU UTOMO
             const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
             const [musicData, setMusicData, l23] = useFirebaseSync('music_config', { url: '', name: '', enabled: true });
             const [sponsorsData, setSponsorsData, l24] = useFirebaseSync('sponsors_data', { enabled: false, sponsors: [] });
+            const [infoDesa, setInfoDesa, l25] = useFirebaseSync('info_desa', {
+                enabled: true,
+                batas: { utara: 'Desa Adan-adan', selatan: 'Desa Gurah', timur: 'Desa Tumpang', barat: 'Desa Sukorejo' },
+                kontak: [
+                    { id: 1, nama: 'Ambulans Siaga Desa', telepon: '0812-3456-7890', icon: 'local_hospital', color: 'red' },
+                    { id: 2, nama: 'Kantor Balai Desa', telepon: '(0354) 689123', icon: 'business', color: 'slate' },
+                    { id: 3, nama: 'Bhabinkamtibmas', telepon: '0821-4455-6677', icon: 'security', color: 'blue' },
+                    { id: 4, nama: 'Babinsa Desa', telepon: '0857-8899-0011', icon: 'military_tech', color: 'green' }
+                ]
+            });
 
             // State khusus UI tambahan
             const [showPwaGuide, setShowPwaGuide] = useState(false);
 
             // Jika Firebase tidak tersedia (offline total / gagal init), anggap semua loaded
             const firebaseUnavailable = !window.firebaseDb;
-            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l20 && l21 && l22 && l23);
+            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l20 && l21 && l22 && l23 && l24 && l25);
 
             useEffect(() => {
                 if (window.firebaseAuth && window.onAuthStateChanged) {
@@ -1634,12 +1644,12 @@ Developer: NOVAN RESTU UTOMO
                     case 'kas': return <BukuKas balance={kasRtBalance} setBalance={setKasRtBalance} transactions={kasRtTransactions} setTransactions={setKasRtTransactions} userRole={userRole} identity={identity} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} />;
                     case 'laporan': return <Laporan history={meetingHistory} setMeetingHistory={setMeetingHistory} members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} cycleNumber={cycleNumber} identity={identity} userRole={userRole} />;
                     case 'pertemuan': return userRole === 'admin' ? <Pertemuan members={members} setMembers={setMembers} currentRound={currentRound} setCurrentRound={setCurrentRound} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} setMeetingHistory={setMeetingHistory} onFinish={() => changeTab('menu')} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} identity={identity} cycleNumber={cycleNumber} /> : null;
-                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} /> : null;
+                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} /> : null;
                     case 'infaq': return <Infaq infaqData={infaqData} setInfaqData={setInfaqData} userRole={userRole} identity={identity} />;
                     case 'pemenang': return <Pemenang members={members} />;
                     case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} />;
                     case 'kalender': return <Kalender />;
-                    case 'peta': return <PetaDesa />;
+                    case 'peta': return <PetaDesa infoDesa={infoDesa} />;
                     case 'musik': return userRole === 'admin' ? <MusicAdmin musicData={musicData} setMusicData={setMusicData} /> : null;
                     default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
                 }
@@ -5558,6 +5568,106 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             );
         }
 
+
+        function InfoDesaSection({ infoDesa, setInfoDesa, showAlert }) {
+            const [localInfo, setLocalInfo] = useState(infoDesa || { enabled: true, batas: {}, kontak: [] });
+            
+            useEffect(() => {
+                if (infoDesa) setLocalInfo(infoDesa);
+            }, [infoDesa]);
+
+            const handleSave = () => {
+                setInfoDesa(localInfo);
+                showAlert('Pengaturan Info Desa berhasil disimpan.');
+            };
+
+            const updateBatas = (arah, val) => {
+                setLocalInfo(prev => ({
+                    ...prev,
+                    batas: { ...prev.batas, [arah]: val }
+                }));
+            };
+
+            const addKontak = () => {
+                setLocalInfo(prev => ({
+                    ...prev,
+                    kontak: [...(prev.kontak || []), { id: Date.now(), nama: 'Kontak Baru', telepon: '0800-0000-0000', icon: 'contact_phone', color: 'slate' }]
+                }));
+            };
+
+            const removeKontak = (id) => {
+                setLocalInfo(prev => ({
+                    ...prev,
+                    kontak: prev.kontak.filter(k => (k.id || k.nama) !== id)
+                }));
+            };
+
+            const updateKontak = (id, field, val) => {
+                setLocalInfo(prev => ({
+                    ...prev,
+                    kontak: prev.kontak.map(k => (k.id || k.nama) === id ? { ...k, [field]: val } : k)
+                }));
+            };
+
+            return (
+                <PengaturanSection title="Manajemen Info Layanan Desa" onSave={handleSave}>
+                    <div className="space-y-6">
+                        {/* Toggle Aktif */}
+                        <label className="flex items-center justify-between bg-slate-50 border-2 border-slate-200 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 transition-all duration-200">
+                            <div>
+                                <p className="text-[14px] font-extrabold text-google-text">Aktifkan Info Desa</p>
+                                <p className="text-[12px] text-google-textVariant font-medium mt-0.5">Tampilkan bagian batas & kontak di Peta Desa</p>
+                            </div>
+                            <div className="relative">
+                                <input type="checkbox" className="sr-only peer" checked={localInfo.enabled} onChange={e => setLocalInfo({...localInfo, enabled: e.target.checked})} />
+                                <div className="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-google-blue after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                            </div>
+                        </label>
+
+                        {localInfo.enabled && (
+                            <>
+                                {/* Batas Administrasi */}
+                                <div className="p-4 bg-slate-50 border-2 border-slate-200 rounded-[20px]">
+                                    <h4 className="font-extrabold text-[14px] text-google-text mb-4">Batas Administrasi</h4>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        {['utara', 'selatan', 'timur', 'barat'].map(arah => (
+                                            <div key={arah} className="bg-white rounded-[12px] px-4 py-2 border-2 border-slate-200 focus-within:border-google-blue transition-all">
+                                                <label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">{arah}</label>
+                                                <input type="text" value={localInfo.batas?.[arah] || ''} onChange={e => updateBatas(arah, e.target.value)} className="w-full bg-transparent border-none text-[13px] font-bold outline-none p-0 text-google-text" placeholder={`Batas ${arah}`} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Kontak Penting */}
+                                <div className="p-4 bg-slate-50 border-2 border-slate-200 rounded-[20px]">
+                                    <h4 className="font-extrabold text-[14px] text-google-text mb-4">Kontak Penting</h4>
+                                    <div className="space-y-3 mb-4">
+                                        {localInfo.kontak?.map((k, idx) => {
+                                            const idKey = k.id || k.nama;
+                                            return (
+                                            <div key={idKey} className="flex flex-col sm:flex-row gap-3 bg-white p-3 rounded-[12px] border-2 border-slate-200 relative group">
+                                                <div className="flex-1">
+                                                    <input type="text" value={k.nama} onChange={e => updateKontak(idKey, 'nama', e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-[8px] px-3 py-2 text-[13px] font-bold outline-none focus:border-google-blue text-google-text mb-2" placeholder="Nama Layanan" />
+                                                    <input type="text" value={k.telepon} onChange={e => updateKontak(idKey, 'telepon', e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-[8px] px-3 py-2 text-[13px] font-bold outline-none focus:border-google-blue text-google-text" placeholder="Nomor Telepon" />
+                                                </div>
+                                                <button onClick={() => removeKontak(idKey)} className="self-end sm:self-center bg-red-50 text-red-600 p-2 rounded-[8px] hover:bg-red-100 transition-colors">
+                                                    <Icon name="delete" className="text-[20px]" />
+                                                </button>
+                                            </div>
+                                        )})}
+                                    </div>
+                                    <button onClick={addKontak} className="w-full py-3 border-2 border-dashed border-slate-300 rounded-[12px] text-google-textVariant font-bold text-[13px] hover:bg-slate-100 hover:text-google-blue hover:border-google-blue transition-all flex items-center justify-center gap-2">
+                                        <Icon name="add" className="text-[18px]" /> Tambah Kontak
+                                    </button>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                </PengaturanSection>
+            );
+        }
+
         function SponsorSection({ sponsorsData, setSponsorsData, showAlert }) {
             const [newName, setNewName] = useState('');
             const [newUrl, setNewUrl] = useState('');
@@ -5751,7 +5861,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
         function Pengaturan(props) {
             const { nominalArisan, setNominalArisan, nominalJimpitan, setNominalJimpitan, identity, setIdentity, setMembers, setMeetingHistory, currentRound, setCurrentRound, cycleNumber, setCycleNumber, jimpitanBalance, setJimpitanBalance, kasRtBalance, setKasRtBalance, kasRtTransactions, setKasRtTransactions, arisanPeriod, setArisanPeriod, bannerImage, setBannerImage,
             // State tambahan untuk reset menyeluruh (diteruskan dari App)
-            setIuranData, setGaleriData, setInventarisData, setInformasi, setNextMeeting, adsConfig, setAdsConfig } = props;
+            setIuranData, setGaleriData, setInventarisData, setInformasi, setNextMeeting, adsConfig, setAdsConfig, infoDesa, setInfoDesa } = props;
             
             const [formIdentity, setFormIdentity] = useState(identity);
             const [formAds, setFormAds] = useState(adsConfig || { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: ['laporan'] });
@@ -5999,6 +6109,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     </PengaturanSection>
 
                     </div>
+
+                    {/* ===== SECTION: Manajemen Info Layanan Desa ===== */}
+                    <InfoDesaSection infoDesa={props.infoDesa} setInfoDesa={props.setInfoDesa} showAlert={showAlert} />
 
                     {/* ===== SECTION: Manajemen Sponsor ===== */}
                     <SponsorSection sponsorsData={props.sponsorsData} setSponsorsData={props.setSponsorsData} showAlert={showAlert} />
@@ -6402,7 +6515,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             );
         }
 
-        function PetaDesa() {
+        function PetaDesa({ infoDesa }) {
 
             return (
                 <div className="space-y-6 max-w-5xl mx-auto tab-fade-in">
@@ -6427,6 +6540,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <p className="text-[11px] font-bold text-center text-google-textVariant mt-3 flex flex-wrap items-center justify-center gap-1"><Icon name="info" className="text-[14px]" /> Peta interaktif dari Google Maps.</p>
                     </div>
 
+                    {infoDesa?.enabled && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="bg-white rounded-[32px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm">
                             <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-100 pb-3">
@@ -6434,22 +6548,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 Batas Administrasi Desa
                             </h3>
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
-                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Utara</p>
-                                    <p className="font-extrabold text-[14px] text-google-text">Desa Adan-adan</p>
-                                </div>
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
-                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Selatan</p>
-                                    <p className="font-extrabold text-[14px] text-google-text">Desa Gurah</p>
-                                </div>
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
-                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Timur</p>
-                                    <p className="font-extrabold text-[14px] text-google-text">Desa Tumpang</p>
-                                </div>
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
-                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Barat</p>
-                                    <p className="font-extrabold text-[14px] text-google-text">Desa Sukorejo</p>
-                                </div>
+                                {['utara', 'selatan', 'timur', 'barat'].map(arah => (
+                                    <div key={arah} className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
+                                        <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">{arah}</p>
+                                        <p className="font-extrabold text-[14px] text-google-text">{infoDesa.batas?.[arah] || '-'}</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
@@ -6459,36 +6563,22 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 Kontak Penting Layanan Desa
                             </h3>
                             <div className="space-y-3">
-                                <div className="flex justify-between items-center bg-red-50/50 border border-red-500/10 px-4 py-3 rounded-[16px]">
-                                    <div className="flex flex-wrap items-center gap-2.5">
-                                        <Icon name="local_hospital" className="text-[18px] text-red-600" fill="true"/>
-                                        <span className="text-[13px] font-bold text-red-800">Ambulans Siaga Desa</span>
+                                {infoDesa.kontak?.map((k, i) => (
+                                    <div key={k.id || i} className={`flex justify-between items-center bg-${k.color}-50/50 border border-${k.color}-500/10 px-4 py-3 rounded-[16px]`}>
+                                        <div className="flex flex-wrap items-center gap-2.5">
+                                            <Icon name={k.icon || 'contact_phone'} className={`text-[18px] text-${k.color}-600`} fill="true"/>
+                                            <span className={`text-[13px] font-bold text-${k.color}-800`}>{k.nama}</span>
+                                        </div>
+                                        <span className={`text-[13px] font-black text-${k.color}-700`}>{k.telepon}</span>
                                     </div>
-                                    <span className="text-[13px] font-black text-red-700">0812-3456-7890</span>
-                                </div>
-                                <div className="flex justify-between items-center bg-slate-50 border border-slate-200/50 px-4 py-3 rounded-[16px]">
-                                    <div className="flex flex-wrap items-center gap-2.5">
-                                        <Icon name="business" className="text-[18px] text-slate-500" fill="true"/>
-                                        <span className="text-[13px] font-bold text-google-text">Kantor Balai Desa</span>
-                                    </div>
-                                    <span className="text-[13px] font-black text-google-textVariant">(0354) 689123</span>
-                                </div>
-                                <div className="flex justify-between items-center bg-slate-50 border border-slate-200/50 px-4 py-3 rounded-[16px]">
-                                    <div className="flex flex-wrap items-center gap-2.5">
-                                        <Icon name="shield" className="text-[18px] text-blue-600" fill="true"/>
-                                        <span className="text-[13px] font-bold text-google-text">Bhabinkamtibmas</span>
-                                    </div>
-                                    <span className="text-[13px] font-black text-google-textVariant">0821-4455-6677</span>
-                                </div>
-                                <div className="flex justify-between items-center bg-slate-50 border border-slate-200/50 px-4 py-3 rounded-[16px]">
-                                    <div className="flex flex-wrap items-center gap-2.5">
-                                        <Icon name="military_tech" className="text-[18px] text-emerald-600" fill="true"/>
-                                        <span className="text-[13px] font-bold text-google-text">Babinsa Desa</span>
-                                    </div>
-                                    <span className="text-[13px] font-black text-google-textVariant">0857-8899-0011</span>
-                                </div>
+                                ))}
+                                {(!infoDesa.kontak || infoDesa.kontak.length === 0) && (
+                                    <div className="text-center p-4 text-slate-500 text-sm">Belum ada kontak penting</div>
+                                )}
                             </div>
                         </div>
+                    </div>
+                    )}
                     </div>
                 </div>
             );
