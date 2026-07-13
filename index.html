@@ -1667,27 +1667,20 @@ Developer: NOVAN RESTU UTOMO
                             </div>
                         )}
 
-                        <header className="bg-white/95 text-google-text py-4 px-5 sm:px-8 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/10 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative">
-                            <div className="max-w-5xl mx-auto flex items-center justify-between relative">
-                                {/* Kiri: Tombol Back/Home */}
-                                <div className="flex items-center space-x-3 z-10">
+                        <header className="bg-white/95 text-google-text py-4 px-5 sm:px-8 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/10 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
+                            <div className="max-w-5xl mx-auto flex items-center justify-between">
+                                <div className="flex items-center space-x-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
                                         <div className="bg-gradient-to-tr from-red-500 to-rose-600 text-white w-10 h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40"><Icon name="home" className="text-[20px]" fill="true" /></div>
                                     ) : (
                                         <button onClick={() => changeTab('menu')} className="w-10 h-10 bg-white text-google-text border-2 border-slate-200 hover:text-red-600 hover:border-red-500/30 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[20px]" /></button>
                                     )}
-                                </div>
-                                
-                                {/* Tengah: Judul (Centered) */}
-                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-14 sm:px-20">
-                                    <div className="flex items-center gap-2 max-w-full">
-                                        <h1 className="text-[16px] sm:text-[18px] font-extrabold truncate leading-tight tracking-tight text-slate-800 pointer-events-auto text-center">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
+                                    <div className="flex flex-wrap items-center gap-2 min-w-0">
+                                        <h1 className="text-[16px] sm:text-[18px] font-extrabold truncate leading-tight tracking-tight text-slate-800">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
                                         {activeTab === 'menu' && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse shrink-0"></span>}
                                     </div>
                                 </div>
-
-                                {/* Kanan: Profil/Logout */}
-                                <div className="flex items-center space-x-2 sm:space-x-3 shrink-0 z-10">
+                                <div className="flex items-center space-x-3 shrink-0 pl-2">
                                     <span className={`text-[10px] font-extrabold px-3 py-1.5 rounded-md uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/20' : 'bg-slate-50 text-slate-600 border-slate-200'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
                                     <button onClick={() => setShowLogoutModal(true)} className="w-10 h-10 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-red-500/20 shadow-sm"><Icon name="logout" className="text-[18px]" /></button>
                                 </div>
@@ -6049,7 +6042,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const renderGridMenu = () => (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {pengaturanMenus.map(menu => (
-                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white rounded-[24px] p-5 sm:p-6 border-2 border-slate-200 shadow-sm ${menu.hoverBorder} hover:shadow-lg cursor-pointer transition-all duration-300 group flex flex-col gap-4`}>
+                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white rounded-[24px] p-5 sm:p-6 border-2 border-slate-200 shadow-sm ${menu.hoverBorder} hover:shadow-lg cursor-pointer transition-all duration-300 group flex flex-col items-center text-center gap-4`}>
                             <div className={`w-14 h-14 ${menu.bg} ${menu.text} rounded-[16px] flex items-center justify-center border-2 ${menu.border} group-hover:scale-110 ${menu.groupHoverBg} group-hover:text-white transition-all duration-300`}>
                                 <Icon name={menu.icon} className="text-[28px]" fill="true" />
                             </div>
