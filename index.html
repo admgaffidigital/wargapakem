@@ -4307,7 +4307,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     <div className="space-y-4 no-print">
                         {(() => {
-                            const filteredMembers = members.filter(m => m.name.toLowerCase().includes(searchQuery.toLowerCase()));
+                            const filteredMembers = members.filter(m => (m.name || '').toLowerCase().includes((searchQuery || '').toLowerCase()));
                             return (
                                 <>
                                     {filteredMembers.map((member) => (
@@ -6057,6 +6057,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             const renderHeader = (menuId) => {
                 const menu = pengaturanMenus.find(m => m.id === menuId);
+                if (!menu) return null;
                 return (
                     <div className="flex flex-wrap items-center gap-4 mb-6">
                         <button onClick={() => setActiveMenu(null)} className="w-12 h-12 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all text-google-textVariant shrink-0 shadow-sm hover:shadow-md">
