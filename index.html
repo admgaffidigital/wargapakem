@@ -5875,6 +5875,19 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const [resetPromptInput, setResetPromptInput] = useState('');
             const [formBanner, setFormBanner] = useState(bannerImage || '');
             const [isUploadingBanner, setIsUploadingBanner] = useState(false);
+            const [activeMenu, setActiveMenu] = useState(null);
+            
+            const pengaturanMenus = [
+                { id: 'profil', title: 'Profil Aplikasi', icon: 'badge', color: 'blue', desc: 'Nama & Kop Surat Aplikasi' },
+                { id: 'nominal', title: 'Iuran Wajib', icon: 'payments', color: 'emerald', desc: 'Besaran Arisan & Jimpitan' },
+                { id: 'kalibrasi', title: 'Kalibrasi Siklus', icon: 'build', color: 'orange', desc: 'Atur Putaran & Siklus' },
+                { id: 'saldo', title: 'Koreksi Saldo', icon: 'account_balance_wallet', color: 'indigo', desc: 'Edit Saldo Kas Utama' },
+                { id: 'banner', title: 'Banner Utama', icon: 'image', color: 'purple', desc: 'Gambar Latar Halaman Depan' },
+                { id: 'ads', title: 'AdSense', icon: 'ad_units', color: 'amber', desc: 'Kelola Iklan Google' },
+                { id: 'sponsor', title: 'Sponsor', icon: 'handshake', color: 'teal', desc: 'Logo Sponsor RT' },
+                { id: 'infodesa', title: 'Info Desa', icon: 'map', color: 'rose', desc: 'Kontak & Batas Wilayah' },
+                { id: 'reset', title: 'Reset Sistem', icon: 'warning', color: 'red', desc: 'Hapus Semua Data' }
+            ];
 
             useEffect(() => { setFormSaldo({ jimpitan: jimpitanBalance, kasRt: kasRtBalance }); }, [jimpitanBalance, kasRtBalance]);
             useEffect(() => { setFormRound({ round: currentRound, cycle: cycleNumber }); setFormPeriod(arisanPeriod); }, [currentRound, cycleNumber, arisanPeriod]);
@@ -5963,167 +5976,194 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 reader.onerror = () => { showAlert('Gagal membaca file gambar banner.'); setIsUploadingBanner(false); };
                 reader.readAsDataURL(file);
             };
-            return (
-                <div className="space-y-6">
-                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-wrap items-center gap-5">
-                        <div className="bg-google-blueLight text-google-blue w-16 h-16 rounded-[20px] flex items-center justify-center border-2 border-google-blue/30 shrink-0"><Icon name="admin_panel_settings" className="text-[32px]" fill="true"/></div>
-                        <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Setelan Portal Admin</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Ubah konfigurasi fundamental aplikasi RT.</p></div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-                        <PengaturanSection title="Profil Utama Aplikasi" onSave={() => handleSaveAll('id')}>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Kop Surat (Baris 1)</label><input type="text" value={formIdentity.name} onChange={e => setFormIdentity({...formIdentity, name: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Sub Judul (Baris 2)</label><input type="text" value={formIdentity.subtitle} onChange={e => setFormIdentity({...formIdentity, subtitle: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                        </PengaturanSection>
-                        <PengaturanSection title="Iuran Arisan Wajib" onSave={() => handleSaveAll('nominal')}>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Arisan (Rp)</label><input type="number" min="0" value={formNominal.arisan} onChange={e => setFormNominal({...formNominal, arisan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Jimpitan (Rp)</label><input type="number" min="0" value={formNominal.jimpitan} onChange={e => setFormNominal({...formNominal, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                        </PengaturanSection>
-                        <PengaturanSection title="Kalibrasi Siklus &amp; Bulan" onSave={() => handleSaveAll('kalibrasi')}>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Bulan &amp; Tahun Arisan</label><input type="month" value={formPeriod} onChange={e => setFormPeriod(e.target.value)} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text cursor-pointer" /></div>
-                            <div className="flex flex-wrap gap-4">
-                                <div className="flex-1 bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Putaran Ke-</label><input type="number" min="1" value={formRound.round} onChange={e => setFormRound({...formRound, round: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                                <div className="flex-1 bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Siklus Ke-</label><input type="number" min="1" value={formRound.cycle} onChange={e => setFormRound({...formRound, cycle: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+            const renderGridMenu = () => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    {pengaturanMenus.map(menu => (
+                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white rounded-[24px] p-5 sm:p-6 border-2 border-slate-200 shadow-sm hover:border-google-${menu.color} hover:shadow-lg cursor-pointer transition-all duration-300 group flex flex-col gap-4`}>
+                            <div className={`w-14 h-14 bg-google-${menu.color}Light text-google-${menu.color}Dark rounded-[16px] flex items-center justify-center border-2 border-google-${menu.color}/20 group-hover:scale-110 group-hover:bg-google-${menu.color} group-hover:text-white transition-all duration-300`}>
+                                <Icon name={menu.icon} className="text-[28px]" fill="true" />
                             </div>
-                        </PengaturanSection>
-                        <PengaturanSection title="Koreksi Saldo Manual" onSave={() => handleSaveAll('saldo')}>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Kas RT Utama (Rp)</label><input type="number" min="0" value={formSaldo.kasRt} onChange={e => setFormSaldo({...formSaldo, kasRt: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Jimpitan Berjalan (Rp)</label><input type="number" min="0" value={formSaldo.jimpitan} onChange={e => setFormSaldo({...formSaldo, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                        </PengaturanSection>
+                            <div>
+                                <h3 className={`font-extrabold text-[16px] text-google-text tracking-tight group-hover:text-google-${menu.color}Dark transition-colors`}>{menu.title}</h3>
+                                <p className="text-[12px] font-medium text-google-textVariant mt-1">{menu.desc}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            );
 
-<PengaturanSection title="Gambar Latar Banner (Menu Utama)" onSave={() => handleSaveAll('banner')}>
-                            <div className={`flex flex-col gap-4 bg-slate-50 border-2 ${isUploadingBanner ? 'border-google-blue shadow-md' : 'border-slate-200'} p-4 rounded-[16px] transition-all`}>
-                                <label className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest">Unggah Foto (Orientasi Lebar/Landscape direkomendasikan)</label>
-                                <div className="relative overflow-hidden w-full h-14 bg-white border-2 border-slate-200 rounded-[12px] flex items-center px-4 hover:border-google-blue transition-colors cursor-pointer">
-                                    <input type="file" accept="image/*" onChange={handleBannerUpload} disabled={isUploadingBanner} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
-                                    {isUploadingBanner ? (
-                                        <div className="flex flex-wrap items-center gap-3"><div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div><span className="font-extrabold text-[13px] text-google-blue">Mengunggah ke Drive...</span></div>
-                                    ) : (
-                                        <div className="flex flex-wrap items-center gap-3"><Icon name="add_photo_alternate" className="text-google-textVariant text-[24px]" /><span className="font-extrabold text-[13px] text-google-text">{formBanner ? "Ganti Gambar Baru" : "Pilih File Gambar (Maks 2MB)"}</span></div>
-                                    )}
-                                </div>
-                                {formBanner && !isUploadingBanner && (
-                                    <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border-2 border-slate-200 group">
-                                        <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover" />
-                                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                            <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[12px] font-extrabold px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[16px]"/> Hapus</button>
+            const renderHeader = (menuId) => {
+                const menu = pengaturanMenus.find(m => m.id === menuId);
+                return (
+                    <div className="flex flex-wrap items-center gap-4 mb-6">
+                        <button onClick={() => setActiveMenu(null)} className="w-12 h-12 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all text-google-textVariant shrink-0 shadow-sm hover:shadow-md">
+                            <Icon name="arrow_back" className="text-[24px]" />
+                        </button>
+                        <div className={`w-12 h-12 bg-google-${menu.color}Light text-google-${menu.color}Dark rounded-full flex items-center justify-center border border-google-${menu.color}/20 shrink-0`}>
+                            <Icon name={menu.icon} className="text-[24px]" fill="true" />
+                        </div>
+                        <h2 className="text-[20px] font-extrabold text-google-text tracking-tight">{menu.title}</h2>
+                    </div>
+                );
+            };
+
+            return (
+                <div className="space-y-6 tab-fade-in">
+                    {activeMenu === null && (
+                        <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-wrap items-center gap-5">
+                            <div className="bg-google-blueLight text-google-blue w-16 h-16 rounded-[20px] flex items-center justify-center border-2 border-google-blue/30 shrink-0"><Icon name="admin_panel_settings" className="text-[32px]" fill="true"/></div>
+                            <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Setelan Portal Admin</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Ubah konfigurasi fundamental aplikasi RT.</p></div>
+                        </div>
+                    )}
+
+                    {activeMenu === null ? renderGridMenu() : (
+                        <div className="bg-white/40 border-2 border-slate-100 rounded-[32px] p-4 sm:p-6 md:p-8">
+                            {renderHeader(activeMenu)}
+                            
+                            {activeMenu === 'profil' && (
+                                <PengaturanSection title="Profil Utama Aplikasi" onSave={() => handleSaveAll('id')}>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Kop Surat (Baris 1)</label><input type="text" value={formIdentity.name} onChange={e => setFormIdentity({...formIdentity, name: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Sub Judul (Baris 2)</label><input type="text" value={formIdentity.subtitle} onChange={e => setFormIdentity({...formIdentity, subtitle: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'nominal' && (
+                                <PengaturanSection title="Iuran Wajib" onSave={() => handleSaveAll('nominal')}>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Arisan (Rp)</label><input type="number" min="0" value={formNominal.arisan} onChange={e => setFormNominal({...formNominal, arisan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Jimpitan (Rp)</label><input type="number" min="0" value={formNominal.jimpitan} onChange={e => setFormNominal({...formNominal, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'kalibrasi' && (
+                                <PengaturanSection title="Kalibrasi Siklus & Bulan" onSave={() => handleSaveAll('kalibrasi')}>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Bulan & Tahun Arisan</label><input type="month" value={formPeriod} onChange={e => setFormPeriod(e.target.value)} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text cursor-pointer" /></div>
+                                    <div className="flex flex-wrap gap-4">
+                                        <div className="flex-1 bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Putaran Ke-</label><input type="number" min="1" value={formRound.round} onChange={e => setFormRound({...formRound, round: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                        <div className="flex-1 bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Siklus Ke-</label><input type="number" min="1" value={formRound.cycle} onChange={e => setFormRound({...formRound, cycle: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                    </div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'saldo' && (
+                                <PengaturanSection title="Koreksi Saldo Manual" onSave={() => handleSaveAll('saldo')}>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Kas RT Utama (Rp)</label><input type="number" min="0" value={formSaldo.kasRt} onChange={e => setFormSaldo({...formSaldo, kasRt: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Jimpitan Berjalan (Rp)</label><input type="number" min="0" value={formSaldo.jimpitan} onChange={e => setFormSaldo({...formSaldo, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'banner' && (
+                                <PengaturanSection title="Gambar Latar Banner Utama" onSave={() => handleSaveAll('banner')}>
+                                    <div className={`flex flex-col gap-4 bg-white border-2 ${isUploadingBanner ? 'border-google-blue shadow-md' : 'border-slate-200'} p-4 rounded-[16px] transition-all`}>
+                                        <label className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest">Unggah Foto (Orientasi Lebar/Landscape direkomendasikan)</label>
+                                        <div className="relative overflow-hidden w-full h-14 bg-slate-50 border-2 border-slate-200 rounded-[12px] flex items-center px-4 hover:border-google-blue transition-colors cursor-pointer">
+                                            <input type="file" accept="image/*" onChange={handleBannerUpload} disabled={isUploadingBanner} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
+                                            {isUploadingBanner ? (
+                                                <div className="flex flex-wrap items-center gap-3"><div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div><span className="font-extrabold text-[13px] text-google-blue">Mengunggah...</span></div>
+                                            ) : (
+                                                <div className="flex flex-wrap items-center gap-3"><Icon name="add_photo_alternate" className="text-google-textVariant text-[24px]" /><span className="font-extrabold text-[13px] text-google-text">{formBanner ? "Ganti Gambar Baru" : "Pilih File Gambar (Maks 2MB)"}</span></div>
+                                            )}
+                                        </div>
+                                        {formBanner && !isUploadingBanner && (
+                                            <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border-2 border-slate-200 group">
+                                                <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover" />
+                                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                                    <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[12px] font-extrabold px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[16px]"/> Hapus</button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'ads' && (
+                                <PengaturanSection title="Kelola Iklan Google AdSense" onSave={() => handleSaveAll('ads')}>
+                                    <div className="flex flex-col gap-5">
+                                        <label className="flex items-center justify-between bg-white border-2 border-slate-200 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/30 transition-colors group shadow-sm">
+                                            <div>
+                                                <p className="text-[14px] font-extrabold text-google-text">Aktifkan Iklan AdSense</p>
+                                                <p className="text-[12px] text-google-textVariant font-medium mt-0.5">Tampilkan iklan Google AdSense untuk warga</p>
+                                                <p className="text-[10px] text-google-blue font-bold mt-1 font-mono">Publisher: ca-pub-2636322336243340</p>
+                                            </div>
+                                            <div className="relative">
+                                                <input type="checkbox" className="sr-only peer" checked={formAds.enabled} onChange={e => setFormAds(p => ({...p, enabled: e.target.checked}))} />
+                                                <div className="w-12 h-6 bg-slate-200 peer-checked:bg-google-blue rounded-full transition-colors peer"></div>
+                                                <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-6 peer"></div>
+                                            </div>
+                                        </label>
+
+                                        <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
+                                            <div className="flex flex-wrap items-center gap-2 mb-1">
+                                                <div className="w-8 h-8 bg-google-blueLight rounded-xl flex items-center justify-center border border-google-blue/20">
+                                                    <Icon name="ad_units" className="text-google-blue text-[18px]" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-[13px] font-extrabold text-google-text">Banner Ad</p>
+                                                    <p className="text-[11px] text-google-textVariant font-medium">Iklan strip sticky bawah layar</p>
+                                                    <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 4610725620</p>
+                                                </div>
+                                            </div>
+                                            <input type="text" value={formAds.bannerAdId} onChange={e => { const v = e.target.value.trim(); setFormAds(p => ({...p, bannerAdId: v})); }} placeholder="Kosongkan = pakai slot default 4610725620" className="w-full bg-white shadow-sm border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors" />
+                                            <div className="flex flex-wrap gap-2">
+                                                <button type="button" onClick={() => setFormAds(p => ({...p, bannerAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
+                                            </div>
+                                        </div>
+
+                                        <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
+                                            <div className="flex flex-wrap items-center gap-2 mb-1">
+                                                <div className="w-8 h-8 bg-google-yellowLight rounded-xl flex items-center justify-center border border-google-yellow/20">
+                                                    <Icon name="fullscreen" className="text-google-yellowDark text-[18px]" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-[13px] font-extrabold text-google-text">Interstitial Ad</p>
+                                                    <p className="text-[11px] text-google-textVariant font-medium">Iklan layar penuh saat buka halaman tertentu</p>
+                                                    <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 8219064079</p>
+                                                </div>
+                                            </div>
+                                            <input type="text" value={formAds.interstitialAdId} onChange={e => { const v = e.target.value.trim(); setFormAds(p => ({...p, interstitialAdId: v})); }} placeholder="Kosongkan = pakai slot default 8219064079" className="w-full bg-white shadow-sm border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors" />
+                                            <div className="flex flex-wrap gap-2">
+                                                <button type="button" onClick={() => setFormAds(p => ({...p, interstitialAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
+                                            </div>
+                                            
+                                            <div>
+                                                <p className="text-[12px] font-extrabold text-google-textVariant mb-2 uppercase tracking-wider">Tampil saat warga buka:</p>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {[{id:'laporan',label:'Arsip Riwayat'},{id:'warga',label:'Buku Warga'},{id:'pemenang',label:'Pemenang'},{id:'iuran',label:'Iuran Umum'},{id:'kas',label:'Kas RT'}].map(opt => (
+                                                        <label key={opt.id} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2 cursor-pointer text-[12px] font-bold transition-all ${formAds.interstitialTrigger?.includes(opt.id) ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-200 hover:border-google-blue/50'}`}>
+                                                            <input type="checkbox" className="hidden" checked={formAds.interstitialTrigger?.includes(opt.id) || false} onChange={e => {
+                                                                const current = formAds.interstitialTrigger || [];
+                                                                const arr = typeof current === 'string' ? [current] : current;
+                                                                setFormAds(p => ({...p, interstitialTrigger: e.target.checked ? [...arr.filter(x=>x!==opt.id), opt.id] : arr.filter(x=>x!==opt.id)}));
+                                                            }} />
+                                                            {opt.label}
+                                                        </label>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                )}
-                            </div>
-                        </PengaturanSection>
+                                </PengaturanSection>
+                            )}
 
-                    {/* ===== SECTION: Kelola Iklan AdMob ===== */}
-                    <PengaturanSection title="📢 Kelola Iklan Google AdSense" onSave={() => handleSaveAll('ads')}>
-                        <div className="flex flex-col gap-5">
-                            {/* Toggle aktif/nonaktif */}
-                            <label className="flex items-center justify-between bg-slate-50 border-2 border-slate-200 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/30 transition-colors group">
-                                <div>
-                                    <p className="text-[14px] font-extrabold text-google-text">Aktifkan Iklan AdSense</p>
-                                    <p className="text-[12px] text-google-textVariant font-medium mt-0.5">Tampilkan iklan Google AdSense untuk warga</p>
-                                    <p className="text-[10px] text-google-blue font-bold mt-1 font-mono">Publisher: ca-pub-2636322336243340</p>
-                                </div>
-                                <div className="relative">
-                                    <input type="checkbox" className="sr-only peer" checked={formAds.enabled} onChange={e => setFormAds(p => ({...p, enabled: e.target.checked}))} />
-                                    <div className="w-12 h-6 bg-slate-200 peer-checked:bg-google-blue rounded-full transition-colors peer"></div>
-                                    <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-6 peer"></div>
-                                </div>
-                            </label>
+                            {activeMenu === 'sponsor' && (
+                                <SponsorSection sponsorsData={props.sponsorsData} setSponsorsData={props.setSponsorsData} showAlert={showAlert} />
+                            )}
+                            
+                            {activeMenu === 'infodesa' && (
+                                <InfoDesaSection infoDesa={props.infoDesa} setInfoDesa={props.setInfoDesa} showAlert={showAlert} />
+                            )}
 
-                            {/* Banner Ad */}
-                            <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
-                                <div className="flex flex-wrap items-center gap-2 mb-1">
-                                    <div className="w-8 h-8 bg-google-blueLight rounded-xl flex items-center justify-center border border-google-blue/20">
-                                        <Icon name="ad_units" className="text-google-blue text-[18px]" />
+                            {activeMenu === 'reset' && (
+                                <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-8 sm:p-10 rounded-[32px] border-2 border-google-redDark shadow-xl relative overflow-hidden group">
+                                    <Icon name="warning" className="absolute -right-5 -top-5 text-[160px] text-white opacity-10 group-hover:scale-110 transition-transform duration-700" fill="true" />
+                                    <div className="relative z-10">
+                                        <div className="flex items-center space-x-3 mb-4"><Icon name="report" className="text-[36px] text-white" fill="true" /><h3 className="font-extrabold text-[24px] tracking-tight">Bahaya: Hapus Semua Database</h3></div>
+                                        <p className="text-[15px] font-medium mb-8 text-white/90 max-w-xl leading-relaxed">Tindakan ini akan menghapus seluruh data warga, riwayat keuangan, tunggakan, dan mengembalikan saldo kas menjadi nol kembali seperti baru (Setelan Pabrik).</p>
+                                        <button onClick={() => setConfirmResetModal(true)} className="bg-white text-google-redDark px-8 py-4 rounded-full font-extrabold text-[15px] shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto hover:bg-slate-50 border-2 border-transparent hover:border-google-red"><Icon name="delete_forever" className="text-[20px]"/> Format Database Sekarang</button>
                                     </div>
-                                    <div>
-                                        <p className="text-[13px] font-extrabold text-google-text">Banner Ad</p>
-                                        <p className="text-[11px] text-google-textVariant font-medium">Iklan strip sticky bawah layar</p>
-                                        <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 4610725620 (sudah terpasang)</p>
-                                    </div>
-                                </div>
-                                <input
-                                    type="text"
-                                    value={formAds.bannerAdId}
-                                    onChange={e => { const v = e.target.value.trim(); if (v && v.startsWith('ca-app-pub')) { setErrorMsg('Format salah! Gunakan ca-pub-..., bukan ca-app-pub-... (itu AdMob App)'); return; } setFormAds(p => ({...p, bannerAdId: v})); }}
-                                    placeholder="Kosongkan = pakai slot default 4610725620"
-                                    className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors"
-                                />
-                                {formAds.bannerAdId && <p className="text-[11px] text-google-green font-bold flex flex-wrap items-center gap-1"><Icon name="check_circle" className="text-[14px]"/>ID Banner tersimpan</p>}
-                                <div className="flex flex-wrap gap-2">
-                                    <button type="button" onClick={() => setFormAds(p => ({...p, bannerAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full hover:bg-google-red hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
-                                    <button type="button" onClick={() => { setFormAds(p => ({...p, bannerAdId: ''})); }} className="text-[11px] font-extrabold text-google-green bg-google-greenLight border border-google-green/30 px-4 py-2 rounded-full hover:bg-google-green hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1"><Icon name="restart_alt" className="text-[13px]"/>Pakai Default</button>
-                                </div>
-                            </div>
-
-                            {/* Interstitial Ad */}
-                            <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
-                                <div className="flex flex-wrap items-center gap-2 mb-1">
-                                    <div className="w-8 h-8 bg-google-yellowLight rounded-xl flex items-center justify-center border border-google-yellow/20">
-                                        <Icon name="fullscreen" className="text-google-yellowDark text-[18px]" />
-                                    </div>
-                                    <div>
-                                        <p className="text-[13px] font-extrabold text-google-text">Interstitial Ad</p>
-                                        <p className="text-[11px] text-google-textVariant font-medium">Iklan layar penuh saat buka halaman tertentu</p>
-                                        <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 8219064079 (sudah terpasang)</p>
-                                    </div>
-                                </div>
-                                <input
-                                    type="text"
-                                    value={formAds.interstitialAdId}
-                                    onChange={e => { const v = e.target.value.trim(); if (v && v.startsWith('ca-app-pub')) { setErrorMsg('Format salah! Gunakan ca-pub-..., bukan ca-app-pub-... (itu AdMob App)'); return; } setFormAds(p => ({...p, interstitialAdId: v})); }}
-                                    placeholder="Kosongkan = pakai slot default 8219064079"
-                                    className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors"
-                                />
-                                {formAds.interstitialAdId && <p className="text-[11px] text-google-green font-bold flex flex-wrap items-center gap-1"><Icon name="check_circle" className="text-[14px]"/>ID Interstitial tersimpan</p>}
-                                <div className="flex flex-wrap gap-2">
-                                    <button type="button" onClick={() => setFormAds(p => ({...p, interstitialAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full hover:bg-google-red hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
-                                    <button type="button" onClick={() => { setFormAds(p => ({...p, interstitialAdId: ''})); }} className="text-[11px] font-extrabold text-google-green bg-google-greenLight border border-google-green/30 px-4 py-2 rounded-full hover:bg-google-green hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1"><Icon name="restart_alt" className="text-[13px]"/>Pakai Default</button>
-                                </div>
-                                {/* Pilih trigger halaman */}
-                                <div>
-                                    <p className="text-[12px] font-extrabold text-google-textVariant mb-2 uppercase tracking-wider">Tampil saat warga buka:</p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {[{id:'laporan',label:'Arsip Riwayat'},{id:'warga',label:'Buku Warga'},{id:'pemenang',label:'Pemenang'},{id:'iuran',label:'Iuran Umum'},{id:'kas',label:'Kas RT'}].map(opt => (
-                                            <label key={opt.id} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2 cursor-pointer text-[12px] font-bold transition-all ${formAds.interstitialTrigger?.includes(opt.id) ? 'bg-google-blue text-white border-google-blueDark' : 'bg-slate-50 text-google-text border-slate-200 hover:border-google-blue/50'}`}>
-                                                <input type="checkbox" className="hidden" checked={formAds.interstitialTrigger?.includes(opt.id) || false} onChange={e => {
-                                                    const current = formAds.interstitialTrigger || [];
-                                                    const arr = typeof current === 'string' ? [current] : current;
-                                                    setFormAds(p => ({...p, interstitialTrigger: e.target.checked ? [...arr.filter(x=>x!==opt.id), opt.id] : arr.filter(x=>x!==opt.id)}));
-                                                }} />
-                                                {opt.label}
-                                            </label>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Preview */}
-                            {formAds.enabled && formAds.bannerAdId && (
-                                <div className="bg-google-blueLight border-2 border-google-blue/30 rounded-[16px] p-4 sm:p-6 md:p-8">
-                                    <p className="text-[12px] font-extrabold text-google-blueDark mb-2 flex flex-wrap items-center gap-1.5"><Icon name="preview" className="text-[16px]"/>Preview Banner:</p>
-                                    <AdMobBanner adId={formAds.bannerAdId} />
                                 </div>
                             )}
                         </div>
-                    </PengaturanSection>
-
-                    </div>
-
-                    {/* ===== SECTION: Manajemen Info Layanan Desa ===== */}
-                    <InfoDesaSection infoDesa={props.infoDesa} setInfoDesa={props.setInfoDesa} showAlert={showAlert} />
-
-                    {/* ===== SECTION: Manajemen Sponsor ===== */}
-                    <SponsorSection sponsorsData={props.sponsorsData} setSponsorsData={props.setSponsorsData} showAlert={showAlert} />
-
-                    <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-8 sm:p-10 rounded-[32px] border-2 border-google-redDark shadow-xl relative overflow-hidden group">
-                        <Icon name="warning" className="absolute -right-5 -top-5 text-[160px] text-white opacity-10 group-hover:scale-110 transition-transform duration-700" fill="true" />
-                        <div className="relative z-10">
-                            <div className="flex items-center space-x-3 mb-4"><Icon name="report" className="text-[36px] text-white" fill="true" /><h3 className="font-extrabold text-[24px] tracking-tight">Bahaya: Hapus Semua Database</h3></div>
-                            <p className="text-[15px] font-medium mb-8 text-white/90 max-w-xl leading-relaxed">Tindakan ini akan menghapus seluruh data warga, riwayat keuangan, tunggakan, dan mengembalikan saldo kas menjadi nol kembali seperti baru (Setelan Pabrik).</p>
-                            <button onClick={() => setConfirmResetModal(true)} className="bg-white text-google-redDark px-8 py-4 rounded-full font-extrabold text-[15px] shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto hover:bg-slate-50 border-2 border-transparent hover:border-google-red"><Icon name="delete_forever" className="text-[20px]"/> Format Database Sekarang</button>
-                        </div>
-                    </div>
+                    )}
 
                     {modalConfig && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
@@ -6147,6 +6187,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 </div>
             );
         }
+
 
         function Pemenang({ members }) {
             const winners = members.filter(m => m.hasWon).sort((a, b) => a.wonRound - b.wonRound);
