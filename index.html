@@ -6403,90 +6403,6 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
         }
 
         function PetaDesa() {
-            useEffect(() => {
-                const map = L.map('village-map', {
-                    scrollWheelZoom: false
-                }).setView([-7.8172, 112.0832], 15);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '© OpenStreetMap contributors'
-                }).addTo(map);
-
-                const redIcon = L.icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                });
-
-                const blueIcon = L.icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                });
-
-                const balaiDesa = L.marker([-7.8164, 112.0818], { icon: redIcon }).addTo(map);
-                balaiDesa.bindPopup(`
-                    <div style="font-family: 'Outfit', sans-serif; text-align: center;">
-                        <h4 style="margin: 0 0 5px; font-weight: 800; color: #b91c1c;">Kantor Balai Desa Banyuanyar</h4>
-                        <p style="margin: 0; font-size: 11px; font-weight: bold; color: #475569;">Pusat Administrasi & Layanan Publik Desa</p>
-                    </div>
-                `).openPopup();
-
-                const markers = [
-                    { coords: [-7.8185, 112.0850], title: 'Pos Keamanan RT 01', desc: 'Wilayah RW 02 - Desa Banyuanyar' },
-                    { coords: [-7.8155, 112.0842], title: 'Pos Keamanan RT 02', desc: 'Wilayah RW 02 - Desa Banyuanyar' },
-                    { coords: [-7.8192, 112.0805], title: 'Batas Wilayah Barat (RT 03)', desc: 'Pintu Masuk Barat Desa' },
-                    { coords: [-7.8140, 112.0820], title: 'Batas Wilayah Utara (RT 04)', desc: 'Arah Menuju Adan-adan' }
-                ];
-
-                markers.forEach(m => {
-                    L.marker(m.coords, { icon: blueIcon }).addTo(map)
-                        .bindPopup(`
-                            <div style="font-family: 'Outfit', sans-serif;">
-                                <h5 style="margin: 0 0 4px; font-weight: 800; color: #1e3a8a;">${m.title}</h5>
-                                <p style="margin: 0; font-size: 11px; font-weight: bold; color: #64748b;">${m.desc}</p>
-                            </div>
-                        `);
-                });
-
-                const banyuanyarBoundary = [
-                    [-7.8120, 112.0780],
-                    [-7.8125, 112.0880],
-                    [-7.8220, 112.0890],
-                    [-7.8230, 112.0790]
-                ];
-
-                const boundaryPolygon = L.polygon(banyuanyarBoundary, {
-                    color: '#dc2626',
-                    fillColor: '#ef4444',
-                    fillOpacity: 0.1,
-                    weight: 3,
-                    dashArray: '6, 8'
-                }).addTo(map);
-
-                boundaryPolygon.bindPopup(`
-                    <div style="font-family: 'Outfit', sans-serif; text-align: center;">
-                        <h4 style="margin: 0 0 4px; font-weight: 800; color: #dc2626;">Batas Wilayah Desa Banyuanyar</h4>
-                        <p style="margin: 0; font-size: 11px; font-weight: bold; color: #64748b;">Kec. Gurah, Kab. Kediri, Jawa Timur</p>
-                    </div>
-                `);
-
-                const timer = setTimeout(() => {
-                    map.invalidateSize();
-                }, 400);
-
-                return () => {
-                    clearTimeout(timer);
-                    map.remove();
-                };
-            }, []);
 
             return (
                 <div className="space-y-6 max-w-5xl mx-auto tab-fade-in">
@@ -6507,8 +6423,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     </div>
 
                     <div className="bg-white rounded-[32px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm overflow-hidden">
-                        <div id="village-map" className="h-[450px] w-full rounded-[24px] z-10 border border-slate-200/80"></div>
-                        <p className="text-[11px] font-bold text-center text-google-textVariant mt-3 flex flex-wrap items-center justify-center gap-1"><Icon name="info" className="text-[14px]" /> Klik marker peta untuk rincian lokasi atau gerakkan peta secara interaktif.</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[450px] rounded-[24px] z-10 border border-slate-200/80" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
+                        <p className="text-[11px] font-bold text-center text-google-textVariant mt-3 flex flex-wrap items-center justify-center gap-1"><Icon name="info" className="text-[14px]" /> Peta interaktif dari Google Maps.</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
