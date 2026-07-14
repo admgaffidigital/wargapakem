@@ -24,7 +24,7 @@
             "src": "National_emblem_of_Indonesia_Garuda_Pancasila.svg",
             "sizes": "512x512",
             "type": "image/svg+xml",
-            "purpose": "maskable"
+            "purpose": "any"
         }
     ],
     "shortcuts": [
@@ -48,3 +48,4 @@
         }
     ]
 }
+
