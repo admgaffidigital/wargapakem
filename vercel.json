@@ -1,4 +1,10 @@
 {
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ],
     "headers": [
         {
             "source": "/sw.js",
@@ -18,6 +24,12 @@
             "source": "/National_emblem_of_Indonesia_Garuda_Pancasila.svg",
             "headers": [
                 { "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }
+            ]
+        },
+        {
+            "source": "/assets/(.*)",
+            "headers": [
+                { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
             ]
         },
         {
