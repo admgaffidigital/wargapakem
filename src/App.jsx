@@ -1893,6 +1893,27 @@ const getDirectImgUrl = (url) => {
                             setIsLoggedIn(true); setUserRole(role); window.location.hash = 'menu';
                         }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
+                        {showLegalModal && (
+                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4 animate-fade-in">
+                            <div className="bg-white rounded-[32px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-100/50 max-h-[80vh]">
+                                <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between shrink-0">
+                                    <h3 className="text-[16px] font-black text-slate-800 flex items-center gap-2">
+                                        <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
+                                        {showLegalModal === 'terms' ? 'Syarat & Ketentuan' : 'Kebijakan Privasi'}
+                                    </h3>
+                                    <button onClick={() => setShowLegalModal(null)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-200 text-slate-500"><Icon name="close" /></button>
+                                </div>
+                                <div className="p-6 overflow-y-auto custom-scrollbar">
+                                    <div className="prose prose-sm text-slate-600 text-justify leading-relaxed whitespace-pre-wrap">
+                                        {showLegalModal === 'terms' ? legalData?.terms : legalData?.privacy}
+                                    </div>
+                                </div>
+                                <div className="p-4 border-t border-slate-100 shrink-0">
+                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-xl font-extrabold text-[14px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     </>
                 );
             }
@@ -6643,6 +6664,43 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <SponsorSection sponsorsData={props.sponsorsData} setSponsorsData={props.setSponsorsData} showAlert={showAlert} />
                             )}
                             
+                            {activeMenu === 'legal' && (
+                                <div className="bg-white p-6 md:p-8 rounded-[32px] border-2 border-slate-100/50 shadow-sm relative overflow-hidden animate-fade-in">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10"></div>
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 border border-slate-200"><Icon name="gavel" className="text-[24px]" /></div>
+                                        <div>
+                                            <h2 className="text-[18px] md:text-[20px] font-black text-slate-800 tracking-tight">Hukum & Kebijakan</h2>
+                                            <p className="text-[13px] text-slate-500 font-medium">Syarat & Ketentuan serta Privasi</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-6">
+                                        <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border-2 border-slate-100">
+                                            <div>
+                                                <p className="text-[14px] font-extrabold text-slate-800">Aktifkan Halaman Kebijakan</p>
+                                                <p className="text-[12px] text-slate-500">Tampilkan link di menu dan layar login</p>
+                                            </div>
+                                            <button onClick={() => props.setLegalData(p => ({...p, enabled: !p?.enabled}))} className={`w-14 h-8 flex items-center rounded-full p-1 transition-colors duration-300 ease-in-out shadow-inner ${props.legalData?.enabled ? 'bg-google-green' : 'bg-slate-300'}`}>
+                                                <div className={`bg-white w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${props.legalData?.enabled ? 'translate-x-6' : 'translate-x-0'}`}></div>
+                                            </button>
+                                        </div>
+
+                                        {props.legalData?.enabled && (
+                                            <div className="space-y-6 animate-fade-in">
+                                                <div>
+                                                    <label className="text-[12px] font-extrabold text-slate-500 block mb-2 ml-1 uppercase tracking-widest">Syarat & Ketentuan</label>
+                                                    <textarea value={props.legalData?.terms || ''} onChange={(e) => props.setLegalData(p => ({...p, terms: e.target.value}))} rows="6" className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white text-slate-700 rounded-2xl px-5 py-4 text-[14px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Syarat dan Ketentuan..."></textarea>
+                                                </div>
+                                                <div>
+                                                    <label className="text-[12px] font-extrabold text-slate-500 block mb-2 ml-1 uppercase tracking-widest">Kebijakan Privasi</label>
+                                                    <textarea value={props.legalData?.privacy || ''} onChange={(e) => props.setLegalData(p => ({...p, privacy: e.target.value}))} rows="6" className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white text-slate-700 rounded-2xl px-5 py-4 text-[14px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Kebijakan Privasi..."></textarea>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
                             {activeMenu === 'infodesa' && (
                                 <InfoDesaSection infoDesa={props.infoDesa} setInfoDesa={props.setInfoDesa} showAlert={showAlert} />
                             )}
