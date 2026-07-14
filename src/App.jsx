@@ -7,22 +7,7 @@ import {
     db, auth, doc, onSnapshot, setDoc,
     signInWithEmailAndPassword, signOut, onAuthStateChanged
 } from './firebase.js';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import Chart from 'chart.js/auto';
-import JsBarcode from 'jsbarcode';
-import { Html5QrcodeScanner } from 'html5-qrcode';
 
-// Fix Leaflet default icon untuk Vite/webpack bundler
-import iconUrl from 'leaflet/dist/images/marker-icon.png';
-import icon2xUrl from 'leaflet/dist/images/marker-icon-2x.png';
-import iconShadowUrl from 'leaflet/dist/images/marker-shadow.png';
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconUrl: iconUrl,
-    iconRetinaUrl: icon2xUrl,
-    shadowUrl: iconShadowUrl,
-});
 const getDirectImgUrl = (url) => {
             if (!url) return '';
             const driveMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
@@ -251,16 +236,16 @@ const getDirectImgUrl = (url) => {
         // ADMOB: Komponen Banner dan Interstitial
         // =====================================================
         // =====================================================
-        // Google AdSense GÇö Publisher ID & Slot IDs
+        // Google AdSense G Publisher ID & Slot IDs
         // =====================================================
         const ADSENSE_CLIENT = 'ca-pub-2636322336243340';
         const ADSENSE_SLOTS = {
-            banner:      '4610725620',   // Banner responsive GåÆ sticky bottom
-            inArticle:   '8219064079',   // In-article fluid GåÆ antara konten
-            autoRelaxed: '2966737393',   // Autorelaxed GåÆ bawah halaman
+            banner:      '4610725620',   // Banner responsive G sticky bottom
+            inArticle:   '8219064079',   // In-article fluid G antara konten
+            autoRelaxed: '2966737393',   // Autorelaxed G bawah halaman
         };
 
-        // Helper push iklan GÇö cek data-ad-status di elemen ins itu sendiri
+        // Helper push iklan G cek data-ad-status di elemen ins itu sendiri
         // Google AdSense set attribute ini setelah slot berhasil diinisialisasi
         function initAdSlot(insEl) {
             if (!insEl) return;
@@ -275,7 +260,7 @@ const getDirectImgUrl = (url) => {
         }
 
         // =====================================================
-        // AdSenseUnit GÇö unit iklan fleksibel dengan auto-collapse
+        // AdSenseUnit G unit iklan fleksibel dengan auto-collapse
         // Jika iklan kosong/unfilled: wrapper otomatis collapse (height:0)
         // =====================================================
         function AdSenseUnit({ slot, format, layout, wrapClass }) {
@@ -301,7 +286,7 @@ const getDirectImgUrl = (url) => {
                         wrap.style.margin    = '0';
                         wrap.style.padding   = '0';
                     } else if (status === 'filled') {
-                        // Iklan berhasil load GÇö tampilkan dengan animasi
+                        // Iklan berhasil load G tampilkan dengan animasi
                         wrap.style.height   = '';
                         wrap.style.overflow = '';
                         wrap.style.opacity  = '0';
@@ -346,7 +331,7 @@ const getDirectImgUrl = (url) => {
         }
 
         // =====================================================
-        // AdMobBanner GÇö sticky bottom, dengan auto-collapse jika unfilled
+        // AdMobBanner G sticky bottom, dengan auto-collapse jika unfilled
         // =====================================================
         function AdMobBanner({ adId }) {
             const wrapRef = useRef(null);
@@ -407,7 +392,7 @@ const getDirectImgUrl = (url) => {
         }
 
         // =====================================================
-        // AdMobInterstitial GÇö iklan layar penuh saat buka halaman tertentu
+        // AdMobInterstitial G iklan layar penuh saat buka halaman tertentu
         // =====================================================
         function AdMobInterstitial({ adId, trigger, currentTab }) {
             const shownRef = useRef(new Set());
@@ -454,7 +439,7 @@ const getDirectImgUrl = (url) => {
                 countdown.textContent = 'Tutup dalam 5 detik...';
 
                 const closeBtn = document.createElement('button');
-                closeBtn.textContent = 'G£ò Tutup';
+                closeBtn.textContent = 'G Tutup';
                 closeBtn.style.cssText = 'background:#94a3b8;color:#fff;border:none;border-radius:50px;padding:8px 20px;font-weight:800;font-size:12px;cursor:not-allowed;transition:all 0.3s;';
                 closeBtn.disabled = true;
 
@@ -478,7 +463,7 @@ const getDirectImgUrl = (url) => {
                     if (secs <= 0) {
                         clearInterval(timer);
                         countdown.textContent = 'Iklan selesai';
-                        closeBtn.textContent = 'G£ò Tutup';
+                        closeBtn.textContent = 'G Tutup';
                         closeBtn.disabled = false;
                         closeBtn.style.cssText = 'background:#10b981;color:#fff;border:none;border-radius:50px;padding:8px 20px;font-weight:800;font-size:12px;cursor:pointer;transition:all 0.3s;';
                     } else {
@@ -504,8 +489,8 @@ const getDirectImgUrl = (url) => {
             const [messages, setMessages] = useState([{
                 sender: 'robot',
                 text: userRole === 'admin'
-                    ? `Halo Admin! =ƒæï Saya Asisten Pintar ${identity?.name || 'Arisan RT'}.\n\nSaya memahami semua fitur, logika, dan kalkulasi sistem. Pilih mode panduan yang Anda butuhkan:`
-                    : `Halo Warga ${identity?.name || 'RT'}! =ƒæï\n\nSaya siap menjelaskan cara membaca data arisan, iuran, kas, dan semua informasi di aplikasi ini dengan bahasa yang mudah dipahami. Silakan pilih topik:`
+                    ? `Halo Admin! = Saya Asisten Pintar ${identity?.name || 'Arisan RT'}.\n\nSaya memahami semua fitur, logika, dan kalkulasi sistem. Pilih mode panduan yang Anda butuhkan:`
+                    : `Halo Warga ${identity?.name || 'RT'}! =\n\nSaya siap menjelaskan cara membaca data arisan, iuran, kas, dan semua informasi di aplikasi ini dengan bahasa yang mudah dipahami. Silakan pilih topik:`
             }]);
             const messagesEndRef = useRef(null);
             const [inputText, setInputText] = useState('');
@@ -532,77 +517,77 @@ const getDirectImgUrl = (url) => {
             };
 
             // ================================================================
-            // KNOWLEDGE BASE ADMIN GÇö teknis, fitur, kalkulasi sistem
+            // KNOWLEDGE BASE ADMIN G teknis, fitur, kalkulasi sistem
             // ================================================================
             const kbAdmin = {
                 warga: {
-                    label: '=ƒæÑ Menu Warga', icon: 'group',
-                    intro: 'Menu Warga adalah pusat data seluruh anggota GÇö nama, program, status, dan tunggakan.',
+                    label: '= Menu Warga', icon: 'group',
+                    intro: 'Menu Warga adalah pusat data seluruh anggota G nama, program, status, dan tunggakan.',
                     topics: [
-                        { label: 'Program Keikutsertaan', answer: `Ada 2 jenis program warga:\n\n1n+ÅGâú Full (Arisan & Iuran) GÇö ikut arisan bulanan DAN iuran umum. Muncul di Absen Arisan.\n\n2n+ÅGâú Hanya Iuran Umum GÇö tidak ikut arisan, tapi tetap kena tagihan Iuran Umum.\n\nPilih sesuai kesepakatan saat mendaftar.` },
-                        { label: 'Status Warga (3 jenis)', answer: `=ƒƒó Aktif GÇö ikut semua kewajiban.\n\nGÜ½ Meninggal / Wafat GÇö bebas arisan, TETAP wajib jimpitan Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}. Kartu di Absen otomatis abu-abu.\n\n=ƒöÿ Nonaktif / Pindah GÇö sama seperti Meninggal, bebas arisan.\n\nUbah status lewat tombol Edit di daftar warga.` },
+                        { label: 'Program Keikutsertaan', answer: `Ada 2 jenis program warga:\n\n1n+G Full (Arisan & Iuran) G ikut arisan bulanan DAN iuran umum. Muncul di Absen Arisan.\n\n2n+G Hanya Iuran Umum G tidak ikut arisan, tapi tetap kena tagihan Iuran Umum.\n\nPilih sesuai kesepakatan saat mendaftar.` },
+                        { label: 'Status Warga (3 jenis)', answer: `= Aktif G ikut semua kewajiban.\n\nGÜ½ Meninggal / Wafat G bebas arisan, TETAP wajib jimpitan Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}. Kartu di Absen otomatis abu-abu.\n\n= Nonaktif / Pindah G sama seperti Meninggal, bebas arisan.\n\nUbah status lewat tombol Edit di daftar warga.` },
                         { label: 'Tunggakan Warga', answer: `Tunggakan timbul otomatis saat warga Alfa atau Musibah.\n\nBesaran = Arisan + Jimpitan = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} per bulan absen.\n\nLunas saat warga hadir + centang "Lunasi Tunggakan?" di form Absen.` },
-                        { label: 'Rapor Merah vs Musibah', answer: `=ƒö¦ Rapor Merah (Alfa) GÇö tidak hadir tanpa alasan. Dapat tanda merah di dashboard.\n\n=ƒƒí Musibah GÇö berhalangan karena alasan valid (sakit, musibah). Punya tunggakan tapi TIDAK dapat rapor merah.\n\nMusibah = toleransi, Alfa = peringatan.` },
-                        { label: 'Tambah / Edit / Hapus Warga', answer: `GPò Tambah GÇö isi nama, program, status. Nama harus unik karena jadi identifikasi di absensi.\n\nG£Ån+Å Edit GÇö ubah data termasuk status dan koreksi tunggakan manual.\n\n=ƒùæn+Å Hapus GÇö ada konfirmasi. Tidak bisa dipulihkan.` }
+                        { label: 'Rapor Merah vs Musibah', answer: `= Rapor Merah (Alfa) G tidak hadir tanpa alasan. Dapat tanda merah di dashboard.\n\n= Musibah G berhalangan karena alasan valid (sakit, musibah). Punya tunggakan tapi TIDAK dapat rapor merah.\n\nMusibah = toleransi, Alfa = peringatan.` },
+                        { label: 'Tambah / Edit / Hapus Warga', answer: `GP Tambah G isi nama, program, status. Nama harus unik karena jadi identifikasi di absensi.\n\nGn+ Edit G ubah data termasuk status dan koreksi tunggakan manual.\n\n=n+ Hapus G ada konfirmasi. Tidak bisa dipulihkan.` }
                     ]
                 },
                 pertemuan: {
-                    label: '=ƒùôn+Å Absen Arisan', icon: 'how_to_reg',
-                    intro: 'Form absen 3 langkah: konfirmasi periode GåÆ catat kehadiran GåÆ pilih pemenang.',
+                    label: '=n+ Absen Arisan', icon: 'how_to_reg',
+                    intro: 'Form absen 3 langkah: konfirmasi periode G catat kehadiran G pilih pemenang.',
                     topics: [
-                        { label: 'Alur 3 Langkah', answer: `Step 1 GÇö Konfirmasi periode & tanggal.\nStep 2 GÇö Klik status tiap warga: Hadir / Musibah / Alfa. Warga Meninggal/Nonaktif otomatis abu-abu.\nStep 3 GÇö Pilih pemenang dari daftar eligible (belum pernah menang siklus ini).` },
-                        { label: 'Kalkulasi Kas Arisan', answer: `Kas Arisan = (Jumlah Hadir +ù Rp ${(nominalArisan||10000).toLocaleString('id-ID')}) GêÆ 1 nominal pemenang (karena pemenang tidak bayar ke diri sendiri).\n\nContoh 10 orang hadir: Rp ${(10*(nominalArisan||10000)).toLocaleString('id-ID')} GêÆ Rp ${(nominalArisan||10000).toLocaleString('id-ID')} = Rp ${(9*(nominalArisan||10000)).toLocaleString('id-ID')} diserahkan ke pemenang.` },
+                        { label: 'Alur 3 Langkah', answer: `Step 1 G Konfirmasi periode & tanggal.\nStep 2 G Klik status tiap warga: Hadir / Musibah / Alfa. Warga Meninggal/Nonaktif otomatis abu-abu.\nStep 3 G Pilih pemenang dari daftar eligible (belum pernah menang siklus ini).` },
+                        { label: 'Kalkulasi Kas Arisan', answer: `Kas Arisan = (Jumlah Hadir + Rp ${(nominalArisan||10000).toLocaleString('id-ID')}) G 1 nominal pemenang (karena pemenang tidak bayar ke diri sendiri).\n\nContoh 10 orang hadir: Rp ${(10*(nominalArisan||10000)).toLocaleString('id-ID')} G Rp ${(nominalArisan||10000).toLocaleString('id-ID')} = Rp ${(9*(nominalArisan||10000)).toLocaleString('id-ID')} diserahkan ke pemenang.` },
                         { label: 'Kalkulasi Kas Jimpitan', answer: `Hadir = +Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} masuk jimpitan.\nAlfa/Musibah = warga tidak setor, tapi kekurangan untuk pemenang ditalangi dari jimpitan.\nMeninggal/Nonaktif hadir = +Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} jimpitan saja.` },
-                        { label: 'Sistem Talangan', answer: `Warga Alfa/Musibah GåÆ uang arisan untuk pemenang tetap full, ditambal dari Kas Jimpitan sementara.\nWarga tercatat tunggakan Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')}.\nSaat hadir + centang lunasi GåÆ tunggakan terhapus, kas jimpitan dipulihkan.` },
-                        { label: 'Libur & Siklus Baru', answer: `Libur: klik "Tandai Libur" di Step 1 GåÆ periode lanjut, putaran tidak berubah.\n\nSiklus Baru: semua warga sudah pernah menang GåÆ muncul opsi reset. Siklus ke-${cycleNumber||1} saat ini, putaran ke-${currentRound||1}.` }
+                        { label: 'Sistem Talangan', answer: `Warga Alfa/Musibah G uang arisan untuk pemenang tetap full, ditambal dari Kas Jimpitan sementara.\nWarga tercatat tunggakan Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')}.\nSaat hadir + centang lunasi G tunggakan terhapus, kas jimpitan dipulihkan.` },
+                        { label: 'Libur & Siklus Baru', answer: `Libur: klik "Tandai Libur" di Step 1 G periode lanjut, putaran tidak berubah.\n\nSiklus Baru: semua warga sudah pernah menang G muncul opsi reset. Siklus ke-${cycleNumber||1} saat ini, putaran ke-${currentRound||1}.` }
                     ]
                 },
                 kas: {
-                    label: '=ƒÆ¦ Buku Kas RT', icon: 'account_balance_wallet',
+                    label: '=Æ¦ Buku Kas RT', icon: 'account_balance_wallet',
                     intro: 'Catatan keuangan Kas RT Utama. Terpisah dari Kas Jimpitan.',
                     topics: [
-                        { label: 'Kategori Transaksi', answer: `=ƒôÑ Pemasukan: Iuran Opsional, Donasi, Pemasukan Jasa, Lain-lain.\n=ƒôñ Pengeluaran: Belanja Barang/Alat, Honor Jasa, Konsumsi, Bantuan Sosial, Lain-lain.\n\nSetiap transaksi wajib ada keterangan agar mudah diaudit.` },
+                        { label: 'Kategori Transaksi', answer: `= Pemasukan: Iuran Opsional, Donasi, Pemasukan Jasa, Lain-lain.\n= Pengeluaran: Belanja Barang/Alat, Honor Jasa, Konsumsi, Bantuan Sosial, Lain-lain.\n\nSetiap transaksi wajib ada keterangan agar mudah diaudit.` },
                         { label: 'Tarik Kas Jimpitan', answer: `Dana jimpitan bisa dicairkan ke Kas RT via tombol "Tarik Kas Jimpitan".\n\nMaksimal tarik = saldo jimpitan saat ini: Rp ${(jimpitanBalance||0).toLocaleString('id-ID')}.\n\nJika transaksi ini dihapus, saldo jimpitan otomatis dikembalikan.` },
                         { label: 'Guard Saldo Negatif', answer: `Sistem TIDAK mengizinkan pengeluaran melebihi saldo kas.\n\nJika nominal > saldo, muncul pesan error dan transaksi dibatalkan. Saldo RT saat ini: Rp ${(kasRtBalance||0).toLocaleString('id-ID')}.` }
                     ]
                 },
                 iuran: {
-                    label: '=ƒñ¥ Iuran Umum', icon: 'volunteer_activism',
-                    intro: 'Tagihan khusus di luar arisan GÇö dana kemerdekaan, pembangunan, dll.',
+                    label: '= Iuran Umum', icon: 'volunteer_activism',
+                    intro: 'Tagihan khusus di luar arisan G dana kemerdekaan, pembangunan, dll.',
                     topics: [
-                        { label: 'Cara Kerja Iuran', answer: `Admin buat agenda GåÆ isi nominal yang dibayar tiap warga GåÆ warga hanya lihat LUNAS/BELUM LUNAS (nominal privat).\n\nSetelah rekap tersimpan, admin bisa setor ke Kas RT Utama.` },
+                        { label: 'Cara Kerja Iuran', answer: `Admin buat agenda G isi nominal yang dibayar tiap warga G warga hanya lihat LUNAS/BELUM LUNAS (nominal privat).\n\nSetelah rekap tersimpan, admin bisa setor ke Kas RT Utama.` },
                         { label: 'Validasi Sebelum Setor', answer: `Tombol "Setor ke Kas" akan diblokir jika admin belum klik "Simpan Rekap Warga" dulu.\n\nIni mencegah perbedaan antara data yang tampil dan yang benar-benar disetor.` },
                         { label: 'Hapus Agenda', answer: `Ada dialog konfirmasi 2 langkah sebelum hapus.\n\nSemua data pembayaran warga ikut terhapus. Dana yang sudah disetor ke kas TETAP ada di Buku Kas.` }
                     ]
                 },
                 laporan: {
-                    label: '=ƒôï Laporan & Revisi', icon: 'analytics',
-                    intro: 'Riwayat historis semua pertemuan arisan GÇö kas, talangan, saldo per bulan.',
+                    label: '= Laporan & Revisi', icon: 'analytics',
+                    intro: 'Riwayat historis semua pertemuan arisan G kas, talangan, saldo per bulan.',
                     topics: [
                         { label: 'Kolom Laporan', answer: `Setiap baris laporan menampilkan: Periode, Putaran, Pemenang, Kas Arisan Terkumpul, Kas Jimpitan Masuk, Talangan, Tunggakan Baru, Total Tunggakan Akhir, dan Saldo Akhir Jimpitan.` },
-                        { label: 'Revisi Absensi', answer: `Klik ikon Edit di baris laporan GåÆ ubah status warga GåÆ Simpan.\n\nSistem otomatis hitung ulang: saldo jimpitan, tunggakan warga, kasArisan (jika pemenang berubah), dan saldoAkhirJimpitan di record tersebut.\n\nWarga Meninggal/Nonaktif tidak bisa diubah statusnya.` }
+                        { label: 'Revisi Absensi', answer: `Klik ikon Edit di baris laporan G ubah status warga G Simpan.\n\nSistem otomatis hitung ulang: saldo jimpitan, tunggakan warga, kasArisan (jika pemenang berubah), dan saldoAkhirJimpitan di record tersebut.\n\nWarga Meninggal/Nonaktif tidak bisa diubah statusnya.` }
                     ]
                 },
                 dashboard: {
-                    label: '=ƒôè Dashboard', icon: 'dashboard',
-                    intro: 'Ringkasan kondisi arisan RT GÇö saldo, tunggakan, putaran saat ini.',
+                    label: '= Dashboard', icon: 'dashboard',
+                    intro: 'Ringkasan kondisi arisan RT G saldo, tunggakan, putaran saat ini.',
                     topics: [
                         { label: 'Saldo Efektif Jimpitan', answer: `Saldo Efektif = Saldo Tunai + Total Piutang (tunggakan seluruh warga).\n\nIni menggambarkan total aset jimpitan secara riil. Saldo tunai jimpitan saat ini: Rp ${(jimpitanBalance||0).toLocaleString('id-ID')}.` },
                         { label: 'Rapor Merah di Dashboard', answer: `Badge merah menunjukkan jumlah warga yang punya tunggakan dari status Alfa (absen tanpa alasan).\n\nMusibah tidak ikut hitungan rapor merah meski ada tunggakan.` }
                     ]
                 },
                 pengaturan: {
-                    label: 'GÜÖn+Å Pengaturan', icon: 'settings',
+                    label: 'Gn+ Pengaturan', icon: 'settings',
                     intro: 'Konfigurasi sistem: nominal, identitas, koreksi saldo, PIN, reset.',
                     topics: [
                         { label: 'Nominal Arisan & Jimpitan', answer: `Arisan: Rp ${(nominalArisan||10000).toLocaleString('id-ID')} | Jimpitan: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}.\n\nPerubahan berlaku mulai pertemuan berikutnya. Riwayat lama tetap memakai nominal lama.` },
                         { label: 'Koreksi Saldo Manual', answer: `Kas RT: perbedaan dicatat otomatis sebagai transaksi "Penyesuaian Saldo Awal" di Buku Kas.\nJimpitan: langsung ubah tanpa entry transaksi.\n\nGunakan jika ada perbedaan antara sistem dan uang fisik.` },
                         { label: 'Kalibrasi Putaran & Siklus', answer: `Koreksi nomor putaran dan siklus jika ada kesalahan (misal migrasi dari sistem lama).\n\nPutaran saat ini: ${currentRound||1} | Siklus: ${cycleNumber||1}.` },
-                        { label: 'Factory Reset', answer: `Menghapus SEMUA data: warga, riwayat, saldo, iuran, galeri, inventaris.\n\nKetik "RESET" untuk konfirmasi. GÜán+Å TIDAK BISA DIBATALKAN. PIN admin tetap tidak berubah agar admin masih bisa login setelah reset.` }
+                        { label: 'Factory Reset', answer: `Menghapus SEMUA data: warga, riwayat, saldo, iuran, galeri, inventaris.\n\nKetik "RESET" untuk konfirmasi. Gn+ TIDAK BISA DIBATALKAN. PIN admin tetap tidak berubah agar admin masih bisa login setelah reset.` }
                     ]
                 },
                 infaq_inventaris: {
-                    label: '=ƒôª Infaq & Inventaris', icon: 'inventory_2',
+                    label: '= Infaq & Inventaris', icon: 'inventory_2',
                     intro: 'Kelola data Infaq, barang inventaris, dan status peminjaman.',
                     topics: [
                         { label: 'Sistem Infaq Warga', answer: `Infaq dikelola terpisah dari Kas RT dan Jimpitan.\n\nSaat ini ada ${infaqData?.filter(i => i.status === 'PENDING').length || 0} donasi Infaq yang menunggu persetujuan (PENDING). Total donasi disetujui: Rp ${(infaqData?.filter(i => i.status === 'APPROVED').reduce((sum, i) => sum + parseInt(i.nominal || 0), 0) || 0).toLocaleString('id-ID')}.` },
@@ -612,140 +597,140 @@ const getDirectImgUrl = (url) => {
             };
 
             // ================================================================
-            // KNOWLEDGE BASE WARGA GÇö bahasa awam, cara baca data
+            // KNOWLEDGE BASE WARGA G bahasa awam, cara baca data
             // ================================================================
             const kbWarga = {
                 arisan: {
-                    label: '=ƒÅå Cara Baca Arisan', icon: 'emoji_events',
+                    label: '= Cara Baca Arisan', icon: 'emoji_events',
                     intro: 'Penjelasan lengkap tentang sistem arisan, bagaimana uang dihitung, dan apa artinya setiap data yang tampil.',
                     topics: [
                         {
                             label: 'Apa itu Arisan RT ini?',
-                            answer: `Arisan RT adalah kegiatan kumpul-kumpul uang rutin setiap bulan. Setiap anggota membayar iuran arisan sebesar Rp ${(nominalArisan||10000).toLocaleString('id-ID')} per pertemuan.\n\nUang dari semua anggota dikumpulkan, lalu diundi GÇö satu orang beruntung mendapatkan semua uang tersebut bulan itu.\n\nSetiap orang akan mendapat giliran menang TEPAT 1 kali per siklus, jadi tidak ada yang dirugikan. Setelah semua mendapat giliran, siklus baru dimulai lagi dari awal.`
+                            answer: `Arisan RT adalah kegiatan kumpul-kumpul uang rutin setiap bulan. Setiap anggota membayar iuran arisan sebesar Rp ${(nominalArisan||10000).toLocaleString('id-ID')} per pertemuan.\n\nUang dari semua anggota dikumpulkan, lalu diundi G satu orang beruntung mendapatkan semua uang tersebut bulan itu.\n\nSetiap orang akan mendapat giliran menang TEPAT 1 kali per siklus, jadi tidak ada yang dirugikan. Setelah semua mendapat giliran, siklus baru dimulai lagi dari awal.`
                         },
                         {
                             label: 'Berapa uang yang diterima pemenang?',
-                            answer: `Pemenang menerima uang dari semua anggota yang hadir, MINUS bagian dirinya sendiri GÇö karena tidak masuk akal seseorang membayar ke dirinya sendiri.\n\nContoh mudah:\nGÇó Ada 10 anggota hadir, iuran Rp ${(nominalArisan||10000).toLocaleString('id-ID')} per orang\nGÇó Total terkumpul = 10 +ù Rp ${(nominalArisan||10000).toLocaleString('id-ID')} = Rp ${(10*(nominalArisan||10000)).toLocaleString('id-ID')}\nGÇó Pemenang hadir GåÆ menerima Rp ${(9*(nominalArisan||10000)).toLocaleString('id-ID')} (9 orang lainnya)\n\nIni bukan pengurangan GÇö ini cara menghitung yang benar dan jujur agar uang fisik yang diserahkan ke pemenang cocok dengan yang ada di tangan.`
+                            answer: `Pemenang menerima uang dari semua anggota yang hadir, MINUS bagian dirinya sendiri G karena tidak masuk akal seseorang membayar ke dirinya sendiri.\n\nContoh mudah:\nG Ada 10 anggota hadir, iuran Rp ${(nominalArisan||10000).toLocaleString('id-ID')} per orang\nG Total terkumpul = 10 + Rp ${(nominalArisan||10000).toLocaleString('id-ID')} = Rp ${(10*(nominalArisan||10000)).toLocaleString('id-ID')}\nG Pemenang hadir G menerima Rp ${(9*(nominalArisan||10000)).toLocaleString('id-ID')} (9 orang lainnya)\n\nIni bukan pengurangan G ini cara menghitung yang benar dan jujur agar uang fisik yang diserahkan ke pemenang cocok dengan yang ada di tangan.`
                         },
                         {
                             label: 'Kenapa ada "Pemenang" di menu?',
-                            answer: `Menu Pemenang menampilkan daftar siapa saja yang SUDAH mendapat giliran menang di siklus yang sedang berjalan.\n\nAnda bisa cek:\nGÇó Siapa sudah menang di putaran berapa\nGÇó Siapa yang belum mendapat giliran\n\nJika nama Anda belum ada di daftar, berarti Anda masih punya kesempatan menang di bulan-bulan mendatang. Sabar ya! =ƒÿè`
+                            answer: `Menu Pemenang menampilkan daftar siapa saja yang SUDAH mendapat giliran menang di siklus yang sedang berjalan.\n\nAnda bisa cek:\nG Siapa sudah menang di putaran berapa\nG Siapa yang belum mendapat giliran\n\nJika nama Anda belum ada di daftar, berarti Anda masih punya kesempatan menang di bulan-bulan mendatang. Sabar ya! =`
                         },
                         {
                             label: 'Apa itu Putaran dan Siklus?',
-                            answer: `=ƒöä Putaran = urutan pertemuan arisan.\nPutaran 1 = pertemuan pertama, putaran 2 = pertemuan kedua, dst.\n\n=ƒöü Siklus = satu "babak" penuh sampai semua anggota mendapat giliran menang.\n\nContoh: jika ada 12 anggota arisan, satu siklus = 12 putaran (Gëê 12 bulan). Setelah semua dapat giliran, masuk Siklus baru.\n\nSaat ini: Siklus ke-${cycleNumber||1}, Putaran ke-${currentRound||1}.`
+                            answer: `= Putaran = urutan pertemuan arisan.\nPutaran 1 = pertemuan pertama, putaran 2 = pertemuan kedua, dst.\n\n= Siklus = satu "babak" penuh sampai semua anggota mendapat giliran menang.\n\nContoh: jika ada 12 anggota arisan, satu siklus = 12 putaran (G 12 bulan). Setelah semua dapat giliran, masuk Siklus baru.\n\nSaat ini: Siklus ke-${cycleNumber||1}, Putaran ke-${currentRound||1}.`
                         },
                         {
                             label: 'Apa itu Arsip Riwayat?',
-                            answer: `Arsip Riwayat (menu "Arsip Riwayat" di beranda) adalah catatan historis semua pertemuan arisan yang sudah selesai.\n\nDi sana Anda bisa melihat:\nGÇó Siapa pemenang tiap bulan\nGÇó Berapa kas yang terkumpul\nGÇó Saldo kas jimpitan akhir tiap bulan\n\nData ini TIDAK bisa dimanipulasi oleh siapapun setelah tersimpan, kecuali ada revisi resmi oleh admin dengan alasan yang jelas.`
+                            answer: `Arsip Riwayat (menu "Arsip Riwayat" di beranda) adalah catatan historis semua pertemuan arisan yang sudah selesai.\n\nDi sana Anda bisa melihat:\nG Siapa pemenang tiap bulan\nG Berapa kas yang terkumpul\nG Saldo kas jimpitan akhir tiap bulan\n\nData ini TIDAK bisa dimanipulasi oleh siapapun setelah tersimpan, kecuali ada revisi resmi oleh admin dengan alasan yang jelas.`
                         }
                     ]
                 },
                 jimpitan: {
-                    label: '=ƒÆ¦ Memahami Kas Jimpitan', icon: 'savings',
+                    label: '=Æ¦ Memahami Kas Jimpitan', icon: 'savings',
                     intro: 'Apa itu jimpitan, mengapa ada dua kas, dan bagaimana cara membacanya.',
                     topics: [
                         {
                             label: 'Apa itu Jimpitan?',
-                            answer: `Jimpitan adalah iuran kecil yang dikumpulkan setiap pertemuan arisan, terpisah dari uang arisan.\n\nBesarnya: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} per anggota per pertemuan.\n\nUang jimpitan TIDAK diundi GÇö dikumpulkan terus sebagai "tabungan bersama" RT yang bisa dipakai untuk keperluan operasional, membantu warga yang kesulitan, atau ditransfer ke Kas RT jika diperlukan.`
+                            answer: `Jimpitan adalah iuran kecil yang dikumpulkan setiap pertemuan arisan, terpisah dari uang arisan.\n\nBesarnya: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} per anggota per pertemuan.\n\nUang jimpitan TIDAK diundi G dikumpulkan terus sebagai "tabungan bersama" RT yang bisa dipakai untuk keperluan operasional, membantu warga yang kesulitan, atau ditransfer ke Kas RT jika diperlukan.`
                         },
                         {
                             label: 'Bedanya Kas Jimpitan dan Kas RT?',
-                            answer: `Ada DUA kantong uang di sistem ini:\n\n=ƒƒª Kas Jimpitan GÇö uang dari iuran kehadiran bulanan. Ini uang hasil gotong royong murni dari warga.\n\n=ƒƒ¬ Kas RT Utama GÇö uang operasional RT yang lebih besar. Bisa berasal dari pencairan jimpitan, iuran umum, sumbangan, dll.\n\nAdmin bisa memindahkan sebagian jimpitan ke Kas RT jika ada kebutuhan mendesak. Semua perpindahan uang tercatat di Buku Kas.`
+                            answer: `Ada DUA kantong uang di sistem ini:\n\n= Kas Jimpitan G uang dari iuran kehadiran bulanan. Ini uang hasil gotong royong murni dari warga.\n\n= Kas RT Utama G uang operasional RT yang lebih besar. Bisa berasal dari pencairan jimpitan, iuran umum, sumbangan, dll.\n\nAdmin bisa memindahkan sebagian jimpitan ke Kas RT jika ada kebutuhan mendesak. Semua perpindahan uang tercatat di Buku Kas.`
                         },
                         {
                             label: 'Apa itu "Saldo Efektif"?',
-                            answer: `Di Ringkasan (Dashboard) ada tampilan "Saldo Efektif Jimpitan".\n\nIni bukan hanya uang tunai yang ada GÇö ini gabungan dari:\nG£à Saldo tunai yang ada di kas jimpitan\nG£à Total tunggakan semua warga (uang yang masih "di dalam" warga)\n\nContoh: saldo tunai Rp 50.000, ada warga dengan tunggakan Rp 20.000 GåÆ Saldo Efektif = Rp 70.000.\n\nIni memberikan gambaran total aset jimpitan yang sesungguhnya.`
+                            answer: `Di Ringkasan (Dashboard) ada tampilan "Saldo Efektif Jimpitan".\n\nIni bukan hanya uang tunai yang ada G ini gabungan dari:\nG Saldo tunai yang ada di kas jimpitan\nG Total tunggakan semua warga (uang yang masih "di dalam" warga)\n\nContoh: saldo tunai Rp 50.000, ada warga dengan tunggakan Rp 20.000 G Saldo Efektif = Rp 70.000.\n\nIni memberikan gambaran total aset jimpitan yang sesungguhnya.`
                         },
                         {
                             label: 'Apa itu Talangan?',
-                            answer: `"Talangan" terjadi saat ada warga yang tidak hadir (Alfa atau Musibah).\n\nKarena pemenang harus tetap menerima uang penuh, kekurangan dari warga yang absen itu "dipinjam sementara" dari Kas Jimpitan.\n\nNanti saat warga yang absen itu hadir kembali dan melunasi tunggakannya, uang kembali masuk ke kas jimpitan.\n\nJadi sistem ini adil GÇö pemenang tidak dirugikan, dan warga yang absen wajib bayar di bulan berikutnya.`
+                            answer: `"Talangan" terjadi saat ada warga yang tidak hadir (Alfa atau Musibah).\n\nKarena pemenang harus tetap menerima uang penuh, kekurangan dari warga yang absen itu "dipinjam sementara" dari Kas Jimpitan.\n\nNanti saat warga yang absen itu hadir kembali dan melunasi tunggakannya, uang kembali masuk ke kas jimpitan.\n\nJadi sistem ini adil G pemenang tidak dirugikan, dan warga yang absen wajib bayar di bulan berikutnya.`
                         }
                     ]
                 },
                 tunggakan: {
-                    label: 'GÜán+Å Tunggakan Saya', icon: 'warning',
+                    label: 'Gn+ Tunggakan Saya', icon: 'warning',
                     intro: 'Penjelasan kenapa bisa ada tunggakan, apa artinya, dan bagaimana cara melunasinya.',
                     topics: [
                         {
                             label: 'Kenapa saya punya tunggakan?',
-                            answer: `Tunggakan timbul otomatis jika Anda tidak hadir di pertemuan arisan, baik karena:\nGÇó Alfa (tidak hadir tanpa alasan) =ƒö¦\nGÇó Musibah (berhalangan: sakit, keluarga, dll) =ƒƒí\n\nBesaran tunggakan = Rp ${(nominalArisan||10000).toLocaleString('id-ID')} (arisan) + Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} (jimpitan) = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} per bulan absen.\n\nIni bukan denda GÇö ini adalah kewajiban yang tertunda yang harus dibayar di pertemuan berikutnya.`
+                            answer: `Tunggakan timbul otomatis jika Anda tidak hadir di pertemuan arisan, baik karena:\nG Alfa (tidak hadir tanpa alasan) =\nG Musibah (berhalangan: sakit, keluarga, dll) =\n\nBesaran tunggakan = Rp ${(nominalArisan||10000).toLocaleString('id-ID')} (arisan) + Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} (jimpitan) = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} per bulan absen.\n\nIni bukan denda G ini adalah kewajiban yang tertunda yang harus dibayar di pertemuan berikutnya.`
                         },
                         {
                             label: 'Bagaimana cara melunasi?',
-                            answer: `Cara melunasi tunggakan sangat mudah:\n\n1n+ÅGâú Hadir di pertemuan arisan bulan berikutnya\n2n+ÅGâú Bayar iuran seperti biasa\n3n+ÅGâú Beritahu admin bahwa Anda ingin melunasi tunggakan\n4n+ÅGâú Admin akan mencentang "Lunasi Tunggakan?" di kartu absen Anda\n\nSetelah itu, tunggakan Anda otomatis terhapus dari sistem dan saldo bersih kembali.`
+                            answer: `Cara melunasi tunggakan sangat mudah:\n\n1n+G Hadir di pertemuan arisan bulan berikutnya\n2n+G Bayar iuran seperti biasa\n3n+G Beritahu admin bahwa Anda ingin melunasi tunggakan\n4n+G Admin akan mencentang "Lunasi Tunggakan?" di kartu absen Anda\n\nSetelah itu, tunggakan Anda otomatis terhapus dari sistem dan saldo bersih kembali.`
                         },
                         {
                             label: 'Apa bedanya "Rapor Merah" dan Musibah?',
-                            answer: `=ƒö¦ Rapor Merah (dari Alfa) GÇö Anda tidak hadir TANPA alasan yang jelas. Nama Anda akan tampil di tanda merah di daftar warga.\n\n=ƒƒí Musibah GÇö Anda tidak hadir karena halangan yang valid (sakit keras, keluarga meninggal, bencana, dll). Admin memberi toleransi GÇö Anda punya tunggakan tapi TIDAK mendapat rapor merah.\n\nKeduanya harus dilunasi, tapi Musibah diperlakukan dengan lebih manusiawi.`
+                            answer: `= Rapor Merah (dari Alfa) G Anda tidak hadir TANPA alasan yang jelas. Nama Anda akan tampil di tanda merah di daftar warga.\n\n= Musibah G Anda tidak hadir karena halangan yang valid (sakit keras, keluarga meninggal, bencana, dll). Admin memberi toleransi G Anda punya tunggakan tapi TIDAK mendapat rapor merah.\n\nKeduanya harus dilunasi, tapi Musibah diperlakukan dengan lebih manusiawi.`
                         },
                         {
                             label: 'Bagaimana jika saya meninggal atau pindah?',
-                            answer: `Jika status warga diubah admin menjadi "Meninggal / Wafat" atau "Nonaktif / Pindah":\n\nG£à Bebas dari kewajiban iuran arisan\nG£à Tidak lagi masuk undian pemenang\n=ƒö¦ Masih dicatat untuk jimpitan jika masih hadir\n\nAdmin akan memperbarui status tersebut berdasarkan informasi yang diterima. Hubungi admin RT untuk pembaruan data.`
+                            answer: `Jika status warga diubah admin menjadi "Meninggal / Wafat" atau "Nonaktif / Pindah":\n\nG Bebas dari kewajiban iuran arisan\nG Tidak lagi masuk undian pemenang\n= Masih dicatat untuk jimpitan jika masih hadir\n\nAdmin akan memperbarui status tersebut berdasarkan informasi yang diterima. Hubungi admin RT untuk pembaruan data.`
                         }
                     ]
                 },
                 iuran: {
-                    label: '=ƒñ¥ Cara Baca Iuran Umum', icon: 'volunteer_activism',
+                    label: '= Cara Baca Iuran Umum', icon: 'volunteer_activism',
                     intro: 'Memahami apa itu Iuran Umum dan kenapa status Anda LUNAS atau BELUM LUNAS.',
                     topics: [
                         {
                             label: 'Apa itu Iuran Umum?',
-                            answer: `Iuran Umum adalah tagihan khusus di luar arisan rutin GÇö misalnya:\nGÇó Dana Peringatan 17 Agustus\nGÇó Sumbangan Pembangunan Masjid/Mushola\nGÇó Kas Sosial Warga\nGÇó Dana Darurat Bencana\n\nSetiap agenda iuran punya judul, nominal minimum, dan tenggat waktu yang ditetapkan admin.`
+                            answer: `Iuran Umum adalah tagihan khusus di luar arisan rutin G misalnya:\nG Dana Peringatan 17 Agustus\nG Sumbangan Pembangunan Masjid/Mushola\nG Kas Sosial Warga\nG Dana Darurat Bencana\n\nSetiap agenda iuran punya judul, nominal minimum, dan tenggat waktu yang ditetapkan admin.`
                         },
                         {
                             label: 'Kenapa saya hanya lihat LUNAS/BELUM?',
-                            answer: `Ini adalah fitur PRIVASI yang disengaja.\n\nSistem menjaga kerahasiaan besaran donasi tiap warga GÇö karena kemampuan finansial setiap orang berbeda. Anda hanya melihat status LUNAS jika nominal Anda sudah memenuhi minimum yang ditetapkan.\n\nHanya Admin yang tahu nominal persis masing-masing warga. Sesama warga TIDAK bisa melihat berapa yang dibayar orang lain.`
+                            answer: `Ini adalah fitur PRIVASI yang disengaja.\n\nSistem menjaga kerahasiaan besaran donasi tiap warga G karena kemampuan finansial setiap orang berbeda. Anda hanya melihat status LUNAS jika nominal Anda sudah memenuhi minimum yang ditetapkan.\n\nHanya Admin yang tahu nominal persis masing-masing warga. Sesama warga TIDAK bisa melihat berapa yang dibayar orang lain.`
                         },
                         {
                             label: 'Bagaimana cara lapor ke admin?',
-                            answer: `Jika Anda sudah membayar iuran tapi status masih "BELUM LUNAS":\n\n1n+ÅGâú Hubungi admin RT langsung\n2n+ÅGâú Tunjukkan bukti pembayaran\n3n+ÅGâú Admin akan memperbarui data di sistem\n\nAdmin perlu mengklik "Simpan Rekap Warga" agar perubahan tersimpan ke server.`
+                            answer: `Jika Anda sudah membayar iuran tapi status masih "BELUM LUNAS":\n\n1n+G Hubungi admin RT langsung\n2n+G Tunjukkan bukti pembayaran\n3n+G Admin akan memperbarui data di sistem\n\nAdmin perlu mengklik "Simpan Rekap Warga" agar perubahan tersimpan ke server.`
                         }
                     ]
                 },
                 kas: {
-                    label: '=ƒôû Cara Baca Kas RT', icon: 'account_balance_wallet',
-                    intro: 'Memahami laporan keuangan RT GÇö dari mana uang masuk, ke mana uang keluar.',
+                    label: '= Cara Baca Kas RT', icon: 'account_balance_wallet',
+                    intro: 'Memahami laporan keuangan RT G dari mana uang masuk, ke mana uang keluar.',
                     topics: [
                         {
                             label: 'Apa yang terlihat di menu Kas RT?',
-                            answer: `Di menu "Kas RT" Anda bisa melihat:\n\n=ƒôè Saldo kas RT saat ini\n=ƒôï Riwayat semua pemasukan dan pengeluaran\n\nPermasukan bisa berasal dari: iuran opsional, donasi warga, pencairan jimpitan, hasil iuran umum.\n\nPengeluaran bisa untuk: belanja alat, konsumsi rapat, bantuan sosial, honor petugas, dll.`
+                            answer: `Di menu "Kas RT" Anda bisa melihat:\n\n= Saldo kas RT saat ini\n= Riwayat semua pemasukan dan pengeluaran\n\nPermasukan bisa berasal dari: iuran opsional, donasi warga, pencairan jimpitan, hasil iuran umum.\n\nPengeluaran bisa untuk: belanja alat, konsumsi rapat, bantuan sosial, honor petugas, dll.`
                         },
                         {
                             label: 'Apakah warga bisa tambah/hapus data?',
-                            answer: `Tidak. Warga hanya bisa MELIHAT riwayat transaksi.\n\nHanya Admin yang bisa mencatat transaksi baru atau menghapus entri yang salah.\n\nIni memastikan transparansi GÇö semua warga bisa memantau keuangan RT, tapi hanya admin yang berwenang mengubah data.`
+                            answer: `Tidak. Warga hanya bisa MELIHAT riwayat transaksi.\n\nHanya Admin yang bisa mencatat transaksi baru atau menghapus entri yang salah.\n\nIni memastikan transparansi G semua warga bisa memantau keuangan RT, tapi hanya admin yang berwenang mengubah data.`
                         },
                         {
                             label: 'Apakah data ini bisa dipercaya?',
-                            answer: `Ya. Semua transaksi di sistem ini:\nG£à Langsung tersimpan ke cloud (Firebase)\nG£à Sinkron di semua perangkat secara realtime\nG£à Hanya bisa diubah oleh Admin dengan PIN khusus\nG£à Setiap perubahan saldo ada jejak transaksi\n\nJika ada keraguan, warga bisa meminta admin untuk menampilkan laporan cetak di pertemuan RT.`
+                            answer: `Ya. Semua transaksi di sistem ini:\nG Langsung tersimpan ke cloud (Firebase)\nG Sinkron di semua perangkat secara realtime\nG Hanya bisa diubah oleh Admin dengan PIN khusus\nG Setiap perubahan saldo ada jejak transaksi\n\nJika ada keraguan, warga bisa meminta admin untuk menampilkan laporan cetak di pertemuan RT.`
                         }
                     ]
                 },
                 buku_warga: {
-                    label: '=ƒæñ Cara Baca Data Diri', icon: 'person',
+                    label: '= Cara Baca Data Diri', icon: 'person',
                     intro: 'Memahami status, tunggakan, dan informasi diri Anda di Buku Warga.',
                     topics: [
                         {
                             label: 'Apa arti tanda di nama saya?',
-                            answer: `Di menu "Buku Warga", setiap warga punya tanda:\n\n=ƒƒó BERSIH GÇö tidak ada tunggakan, kehadiran bagus.\n=ƒö¦ HUTANG Rp X,XXX GÇö ada tunggakan yang harus segera dilunasi.\nGÜ½ WAFAT GÇö status telah diubah admin (tidak lagi aktif di arisan).\nGÜ¬ NONAKTIF GÇö pindah atau tidak aktif lagi.\n\nTanda merah kecil (GùÅ) di samping nama = warga punya rapor merah dari Alfa.`
+                            answer: `Di menu "Buku Warga", setiap warga punya tanda:\n\n= BERSIH G tidak ada tunggakan, kehadiran bagus.\n= HUTANG Rp X,XXX G ada tunggakan yang harus segera dilunasi.\nGÜ½ WAFAT G status telah diubah admin (tidak lagi aktif di arisan).\nGÜ¬ NONAKTIF G pindah atau tidak aktif lagi.\n\nTanda merah kecil (G) di samping nama = warga punya rapor merah dari Alfa.`
                         },
                         {
                             label: 'Saya baru bergabung, apa yang perlu saya tahu?',
-                            answer: `Selamat bergabung! Berikut yang perlu dipahami:\n\n1. Setiap bulan Anda membayar Rp ${(nominalArisan||10000).toLocaleString('id-ID')} arisan + Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} jimpitan = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} total per pertemuan.\n\n2. Nama Anda masuk daftar undian. Anda akan menang tepat 1 kali per siklus.\n\n3. Jika tidak bisa hadir, beritahu admin sebelumnya agar dicatat Musibah (bukan Alfa).\n\n4. Tunggakan tidak hangus GÇö harus dilunasi saat hadir berikutnya.`
+                            answer: `Selamat bergabung! Berikut yang perlu dipahami:\n\n1. Setiap bulan Anda membayar Rp ${(nominalArisan||10000).toLocaleString('id-ID')} arisan + Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} jimpitan = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} total per pertemuan.\n\n2. Nama Anda masuk daftar undian. Anda akan menang tepat 1 kali per siklus.\n\n3. Jika tidak bisa hadir, beritahu admin sebelumnya agar dicatat Musibah (bukan Alfa).\n\n4. Tunggakan tidak hangus G harus dilunasi saat hadir berikutnya.`
                         },
                         {
                             label: 'Bagaimana cara cek status arisan saya?',
-                            answer: `Buka menu "Pemenang" di beranda GÇö cari nama Anda:\n\nG£à Nama ADA di daftar = Anda SUDAH menang di siklus ini. Selamat!\nGÅ¦ Nama TIDAK ADA = Anda belum mendapat giliran, masih akan diundi bulan mendatang.\n\nBuka menu "Buku Warga" untuk cek tunggakan dan status terkini Anda.`
+                            answer: `Buka menu "Pemenang" di beranda G cari nama Anda:\n\nG Nama ADA di daftar = Anda SUDAH menang di siklus ini. Selamat!\nGÅ¦ Nama TIDAK ADA = Anda belum mendapat giliran, masih akan diundi bulan mendatang.\n\nBuka menu "Buku Warga" untuk cek tunggakan dan status terkini Anda.`
                         }
                     ]
                 },
                 info_rt: {
-                    label: '=ƒôó Info & Jadwal RT', icon: 'campaign',
+                    label: '= Info & Jadwal RT', icon: 'campaign',
                     intro: 'Cara membaca pengumuman, galeri, inventaris, dan jadwal kegiatan.',
                     topics: [
                         {
                             label: 'Menu Info Warga',
-                            answer: `Menu "Info Warga" berisi pengumuman resmi dari pengurus RT GÇö seperti pemberitahuan jadwal, kegiatan, aturan baru, atau informasi penting lainnya.\n\nSemua warga bisa membaca tanpa perlu login. Informasi ini HANYA bisa ditulis dan diedit oleh Admin.`
+                            answer: `Menu "Info Warga" berisi pengumuman resmi dari pengurus RT G seperti pemberitahuan jadwal, kegiatan, aturan baru, atau informasi penting lainnya.\n\nSemua warga bisa membaca tanpa perlu login. Informasi ini HANYA bisa ditulis dan diedit oleh Admin.`
                         },
                         {
                             label: 'Menu Galeri',
@@ -762,7 +747,7 @@ const getDirectImgUrl = (url) => {
                     ]
                 },
                 infaq_pinjam: {
-                    label: '=ƒôª Infaq & Pinjam', icon: 'volunteer_activism',
+                    label: '= Infaq & Pinjam', icon: 'volunteer_activism',
                     intro: 'Panduan donasi Infaq sukarela dan tata cara meminjam inventaris RT.',
                     topics: [
                         {
@@ -786,8 +771,8 @@ const getDirectImgUrl = (url) => {
                 setMessages([{
                     sender: 'robot',
                     text: newMode === 'admin'
-                        ? `Mode Admin aktif =ƒöº\n\nSaya siap menjelaskan semua fitur teknis, logika kalkulasi, dan cara kerja sistem. Pilih menu:`
-                        : `Mode Warga aktif =ƒæ¿GÇì=ƒæ¬GÇì=ƒæºGÇì=ƒæª\n\nSaya akan menjelaskan data arisan dengan bahasa yang mudah dipahami. Pilih topik yang ingin Anda pahami:`
+                        ? `Mode Admin aktif =\n\nSaya siap menjelaskan semua fitur teknis, logika kalkulasi, dan cara kerja sistem. Pilih menu:`
+                        : `Mode Warga aktif =G=G=G=\n\nSaya akan menjelaskan data arisan dengan bahasa yang mudah dipahami. Pilih topik yang ingin Anda pahami:`
                 }]);
             };
 
@@ -797,7 +782,7 @@ const getDirectImgUrl = (url) => {
                 setActiveMenu(menuKey);
                 setMessages(prev => [...prev,
                     { sender: 'user', text: menu.label },
-                    { sender: 'robot', text: `${menu.intro}\n\nPilih topik yang ingin Anda ketahui lebih lanjut =ƒæç` }
+                    { sender: 'robot', text: `${menu.intro}\n\nPilih topik yang ingin Anda ketahui lebih lanjut =` }
                 ]);
             };
 
@@ -835,11 +820,11 @@ const getDirectImgUrl = (url) => {
                     }
                 }
                 if (found.length === 0) {
-                    setMessages(prev => [...prev, { sender: 'robot', text: `Saya tidak menemukan info tentang "${userMsg}".\n\nCoba gunakan kata kunci seperti: tunggakan, pemenang, jimpitan, saldo, iuran, hapus, siklus, atau pilih menu di bawah =ƒæç` }]);
+                    setMessages(prev => [...prev, { sender: 'robot', text: `Saya tidak menemukan info tentang "${userMsg}".\n\nCoba gunakan kata kunci seperti: tunggakan, pemenang, jimpitan, saldo, iuran, hapus, siklus, atau pilih menu di bawah =` }]);
                 } else {
                     const best = found[0];
-                    const extra = best.otherMode ? `\n\n=ƒÆí Info ini ada di mode ${mode === 'admin' ? 'Warga' : 'Admin'}. Coba ganti mode untuk topik lebih lanjut.` : (found.length > 1 ? `\n\n=ƒÆí Ada ${found.length - 1} topik lain yang relevan. Pilih menu untuk eksplorasi lebih lanjut.` : '');
-                    setMessages(prev => [...prev, { sender: 'robot', text: `=ƒôî ${best.menuLabel}:\n\n${best.topic.answer}${extra}` }]);
+                    const extra = best.otherMode ? `\n\n= Info ini ada di mode ${mode === 'admin' ? 'Warga' : 'Admin'}. Coba ganti mode untuk topik lebih lanjut.` : (found.length > 1 ? `\n\n= Ada ${found.length - 1} topik lain yang relevan. Pilih menu untuk eksplorasi lebih lanjut.` : '');
+                    setMessages(prev => [...prev, { sender: 'robot', text: `= ${best.menuLabel}:\n\n${best.topic.answer}${extra}` }]);
                 }
             };
 
@@ -892,7 +877,7 @@ const getDirectImgUrl = (url) => {
                                     {currentKB[activeMenu].topics.map((t, i) => (
                                         <button key={i} onClick={() => handleTopicClick(activeMenu, t)} className={`text-[11px] font-bold px-3 py-1.5 rounded-full border active:scale-95 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-google-blue/30 hover:bg-google-blue hover:text-white' : 'bg-google-greenLight text-google-greenDark border-google-green/30 hover:bg-google-green hover:text-white'}`}>{t.label}</button>
                                     ))}
-                                    <button onClick={() => setActiveMenu(null)} className="text-[11px] font-bold bg-slate-100 text-slate-500 border border-slate-200 px-3 py-1.5 rounded-full hover:bg-slate-200 active:scale-95 transition-all">G£ò Tutup</button>
+                                    <button onClick={() => setActiveMenu(null)} className="text-[11px] font-bold bg-slate-100 text-slate-500 border border-slate-200 px-3 py-1.5 rounded-full hover:bg-slate-200 active:scale-95 transition-all">G Tutup</button>
                                 </div>
                             )}
 
@@ -942,9 +927,9 @@ const getDirectImgUrl = (url) => {
         function normalizeAudioUrl(url) {
             if (!url) return '';
             try {
-                // Dropbox share link GåÆ dl.dropboxusercontent.com (direct stream, CORS OK)
+                // Dropbox share link G dl.dropboxusercontent.com (direct stream, CORS OK)
                 // Contoh: https://www.dropbox.com/s/XXXXX/file.mp3?dl=0
-                //   GåÆ https://dl.dropboxusercontent.com/s/XXXXX/file.mp3
+                //   G https://dl.dropboxusercontent.com/s/XXXXX/file.mp3
                 if (url.includes('dropbox.com')) {
                     // Format baru Dropbox: /scl/fi/ atau /s/
                     let normalized = url
@@ -957,8 +942,8 @@ const getDirectImgUrl = (url) => {
                     // dl.dropboxusercontent.com tidak butuh rlkey
                     return normalized;
                 }
-                // Google Drive viewer GåÆ langsung (catatan: GDrive sering CORS issue, tapi kita coba convert)
-                // https://drive.google.com/file/d/ID/view GåÆ https://drive.google.com/uc?export=download&id=ID
+                // Google Drive viewer G langsung (catatan: GDrive sering CORS issue, tapi kita coba convert)
+                // https://drive.google.com/file/d/ID/view G https://drive.google.com/uc?export=download&id=ID
                 const gdriveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
                 if (gdriveMatch) {
                     return `https://drive.google.com/uc?export=download&id=${gdriveMatch[1]}`;
@@ -986,7 +971,7 @@ const getDirectImgUrl = (url) => {
 
                 const attemptPlay = () => {
                     audio.play().catch(() => {
-                        // Browser blokir autoplay GÇö tunggu interaksi user
+                        // Browser blokir autoplay G tunggu interaksi user
                     });
                 };
 
@@ -1012,7 +997,7 @@ const getDirectImgUrl = (url) => {
                 };
             }, [streamUrl]);
 
-            // Render hanya elemen audio tersembunyi GÇö tidak ada UI yang terlihat
+            // Render hanya elemen audio tersembunyi G tidak ada UI yang terlihat
             return <audio ref={audioRef} src={streamUrl} preload="auto" style={{ display: 'none' }} />;
         }
 
@@ -1104,7 +1089,7 @@ const getDirectImgUrl = (url) => {
                                         <Icon name={isEnabled ? 'graphic_eq' : 'music_off'} className="text-white text-[20px]" fill="true" />
                                     </div>
                                     <div className="min-w-0">
-                                        <p className="text-[10px] font-extrabold uppercase tracking-widest text-google-textVariant">{isEnabled ? '=ƒÄ¦ Aktif' : '=ƒöç Nonaktif'}</p>
+                                        <p className="text-[10px] font-extrabold uppercase tracking-widest text-google-textVariant">{isEnabled ? '=Ä¦ Aktif' : '= Nonaktif'}</p>
                                         <p className="font-extrabold text-[15px] text-google-text truncate">{currentName || 'Musik RT'}</p>
                                     </div>
                                 </div>
@@ -1122,7 +1107,7 @@ const getDirectImgUrl = (url) => {
                             {/* Preview player native browser */}
                             {isEnabled && (
                                 <div className="bg-white/80 rounded-[14px] p-3 border border-google-green/20">
-                                    <p className="text-[10px] font-extrabold text-google-greenDark mb-2 uppercase tracking-widest">Gû¦ Preview</p>
+                                    <p className="text-[10px] font-extrabold text-google-greenDark mb-2 uppercase tracking-widest">G Preview</p>
                                     <audio controls src={currentUrl} className="w-full" style={{ height: '36px' }}>
                                         Browser Anda tidak mendukung audio.
                                     </audio>
@@ -1143,7 +1128,7 @@ const getDirectImgUrl = (url) => {
                             <Icon name="cloud_upload" className="text-white text-[24px]" fill="true" />
                             <div>
                                 <p className="text-white font-extrabold text-[15px]">Upload via Dropbox</p>
-                                <p className="text-blue-100 text-[11px] font-medium">Cara terbaik GÇö gratis, cepat, dan bebas CORS</p>
+                                <p className="text-blue-100 text-[11px] font-medium">Cara terbaik G gratis, cepat, dan bebas CORS</p>
                             </div>
                         </div>
                         <div className="p-4 sm:p-5 md:p-6">
@@ -1151,7 +1136,7 @@ const getDirectImgUrl = (url) => {
                                 {[
                                     { step: '1', text: 'Buka dropbox.com dan login (atau daftar gratis).', icon: 'open_in_new' },
                                     { step: '2', text: 'Upload file MP3/WAV/OGG ke Dropbox Anda.', icon: 'upload' },
-                                    { step: '3', text: 'Klik kanan file GåÆ "Share" GåÆ "Copy Link" GÇö salin link yang muncul.', icon: 'share' },
+                                    { step: '3', text: 'Klik kanan file G "Share" G "Copy Link" G salin link yang muncul.', icon: 'share' },
                                     { step: '4', text: 'Paste link di kolom URL di bawah. Sistem otomatis mengkonversi ke link streaming.', icon: 'paste' },
                                 ].map(item => (
                                     <li key={item.step} className="flex flex-wrap items-start gap-3">
@@ -1192,7 +1177,7 @@ const getDirectImgUrl = (url) => {
                                 {testStatus === 'ok' && (
                                     <div className="bg-google-greenLight border-2 border-google-green/40 rounded-[12px] p-3">
                                         <p className="text-[12px] font-extrabold text-google-greenDark mb-2 flex flex-wrap items-center gap-1.5">
-                                            <Icon name="check_circle" className="text-[14px]" fill="true" /> URL Valid GÇö Preview:
+                                            <Icon name="check_circle" className="text-[14px]" fill="true" /> URL Valid G Preview:
                                         </p>
                                         <audio controls src={previewUrl} className="w-full" style={{ height: '34px' }} />
                                     </div>
@@ -1224,7 +1209,7 @@ const getDirectImgUrl = (url) => {
                         <ul className="text-[12px] font-medium text-google-yellowDark/90 space-y-1 list-disc list-inside">
                             <li>Musik <strong>hanya memutar</strong> untuk pengguna login sebagai <strong>Warga</strong>.</li>
                             <li>Admin tidak mendengar musik saat login sebagai Admin.</li>
-                            <li>Browser mobile kadang memblokir autoplay GÇö warga cukup tap layar sekali.</li>
+                            <li>Browser mobile kadang memblokir autoplay G warga cukup tap layar sekali.</li>
                             <li>Gunakan file audio bebas hak cipta atau milik sendiri.</li>
                         </ul>
                     </div>
@@ -2007,7 +1992,7 @@ const getDirectImgUrl = (url) => {
                         <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
                             <p className="flex flex-wrap items-center gap-1.5 justify-center">
                                 <Icon name="flag" className="text-red-500 text-[16px] animate-pulse" fill="true" />
-                                -¬ {new Date().getFullYear()} <span className="text-red-600 font-extrabold">WP LINGKUNGAN</span>. All rights reserved.
+                                - {new Date().getFullYear()} <span className="text-red-600 font-extrabold">WP LINGKUNGAN</span>. All rights reserved.
                             </p>
                             <p className="flex flex-wrap items-center justify-center gap-1.5">
                                 Developed by <span className="bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent font-extrabold tracking-wide uppercase">NOVAN RESTU UTOMO</span>
@@ -2076,7 +2061,7 @@ const getDirectImgUrl = (url) => {
                                     <ol className="list-decimal pl-5 space-y-3 text-[14px] text-google-textVariant font-medium">
                                         <li>Buka website ini di browser <b>Google Chrome</b>.</li>
                                         <li>Tunggu beberapa detik, akan muncul banner <b>"Pasang Aplikasi Ini"</b> di bagian bawah layar. Klik tombol <b>Install</b>.</li>
-                                        <li>Atau, klik ikon <b>titik tiga</b> (Gï«) di pojok kanan atas browser.</li>
+                                        <li>Atau, klik ikon <b>titik tiga</b> (G) di pojok kanan atas browser.</li>
                                         <li>Pilih menu <b>"Tambahkan ke Layar Utama"</b> (Add to Home screen) atau <b>"Instal Aplikasi"</b>.</li>
                                         <li>Klik <b>Instal</b> pada pop-up yang muncul. Aplikasi siap digunakan!</li>
                                     </ol>
@@ -2103,7 +2088,7 @@ const getDirectImgUrl = (url) => {
                                         <li>Buka website ini di <b>Google Chrome</b> atau <b>Microsoft Edge</b>.</li>
                                         <li>Perhatikan ujung kanan bilah alamat web (address bar).</li>
                                         <li>Klik ikon <b>Install</b> <Icon name="install_desktop" className="text-[16px] inline text-google-blue" /> yang muncul di sana.</li>
-                                        <li>Pada Chrome, Anda juga bisa klik ikon <b>titik tiga</b> (Gï«) &rarr; <b>"Save and share"</b> &rarr; <b>"Install page as app"</b>.</li>
+                                        <li>Pada Chrome, Anda juga bisa klik ikon <b>titik tiga</b> (G) &rarr; <b>"Save and share"</b> &rarr; <b>"Install page as app"</b>.</li>
                                         <li>Aplikasi akan terinstal, dapat di-pin ke Taskbar, dan dibuka layaknya program desktop biasa.</li>
                                     </ol>
                                 </div>
@@ -2353,7 +2338,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         ))}
                     </div>
 
-                    {/* Iklan In-Article AdSense GÇö hanya tampil jika enabled */}
+                    {/* Iklan In-Article AdSense G hanya tampil jika enabled */}
                     {adsConfig?.enabled && (
                         <div className="my-2 no-print ad-wrapper-collapse">
                             <AdSenseUnit slot={ADSENSE_SLOTS.inArticle} format="fluid" layout="in-article" />
@@ -2656,7 +2641,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     {isGPS && <span className="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-extrabold border border-red-200">GPS</span>}
                                 </h3>
                             </div>
-                            <p className="text-[12px] font-bold text-google-textVariant mt-0.5">Metode Kemenag RI GÇó Hari ini: {schedule.tanggal}</p>
+                            <p className="text-[12px] font-bold text-google-textVariant mt-0.5">Metode Kemenag RI G Hari ini: {schedule.tanggal}</p>
                         </div>
 
                         <div className="w-full md:w-auto flex flex-wrap items-center gap-2">
@@ -2957,7 +2942,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
                         <button type="button" onClick={() => setFormData(p => ({...p, kondisi: {...p.kondisi, [field]: Math.max(0, (p.kondisi[field]||0)-1)}}))}
-                            className="w-8 h-8 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[18px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">GêÆ</button>
+                            className="w-8 h-8 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[18px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">G</button>
                         <span className="w-8 text-center font-extrabold text-[16px] text-google-text">{formData.kondisi[field] || 0}</span>
                         <button type="button" onClick={() => setFormData(p => ({...p, kondisi: {...p.kondisi, [field]: (p.kondisi[field]||0)+1}}))}
                             className="w-8 h-8 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[18px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">+</button>
@@ -3072,9 +3057,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <div>
                                         <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 uppercase tracking-widest">Jumlah per Kondisi</label>
                                         <div className="space-y-2.5">
-                                            <KondisiInput label="=ƒƒó Kondisi Baru" field="baru" color="border-google-green/40 focus-within:border-google-green" icon="verified" />
-                                            <KondisiInput label="=ƒƒí Kondisi Bekas" field="bekas" color="border-google-yellow/40 focus-within:border-google-yellow" icon="refresh" />
-                                            <KondisiInput label="=ƒö¦ Kondisi Rusak" field="rusak" color="border-google-red/40 focus-within:border-google-red" icon="report" />
+                                            <KondisiInput label="= Kondisi Baru" field="baru" color="border-google-green/40 focus-within:border-google-green" icon="verified" />
+                                            <KondisiInput label="= Kondisi Bekas" field="bekas" color="border-google-yellow/40 focus-within:border-google-yellow" icon="refresh" />
+                                            <KondisiInput label="= Kondisi Rusak" field="rusak" color="border-google-red/40 focus-within:border-google-red" icon="report" />
                                         </div>
                                         {/* Ringkasan */}
                                         {((formData.kondisi.baru||0)+(formData.kondisi.bekas||0)+(formData.kondisi.rusak||0)) > 0 && (
@@ -3095,10 +3080,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 {isUploading ? <div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div> : formData.imageUrl ? <img src={formData.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview" /> : <Icon name="cloud_upload" className="text-[24px]" />}
                                             </div>
                                             <div className="relative z-0 flex-1 min-w-0">
-                                                <p className="font-extrabold text-[14px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan G£ô' : 'Pilih Gambar'}</p>
-                                                <p className="text-[12px] text-google-textVariant">{formData.imageUrl ? 'Klik untuk ganti foto' : 'Maks. 2MB GÇö JPG, PNG, WEBP'}</p>
+                                                <p className="font-extrabold text-[14px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan G' : 'Pilih Gambar'}</p>
+                                                <p className="text-[12px] text-google-textVariant">{formData.imageUrl ? 'Klik untuk ganti foto' : 'Maks. 2MB G JPG, PNG, WEBP'}</p>
                                             </div>
-                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[16px] hover:bg-google-redLight active:scale-95 shrink-0">+ù</button>}
+                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[16px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
                                         </div>
                                     </div>
 
@@ -3259,7 +3244,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         <option value="">-- Pilih Barang --</option>
                                         {inventarisData.map(item => {
                                             const stok = getStokTersedia(item.id);
-                                            return <option key={item.id} value={item.id} disabled={stok <= 0}>{item.name} GÇö Stok tersedia: {stok} dari {item.qty}{stok <= 0 ? ' (Habis)' : ''}</option>;
+                                            return <option key={item.id} value={item.id} disabled={stok <= 0}>{item.name} G Stok tersedia: {stok} dari {item.qty}{stok <= 0 ? ' (Habis)' : ''}</option>;
                                         })}
                                     </select>
                                 </div>
@@ -3268,7 +3253,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <label className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-wider mb-1.5 block">Jumlah Dipinjam *</label>
                                     <div className="flex flex-wrap items-center gap-3 bg-slate-50 border-2 border-slate-200 focus-within:border-google-green rounded-[14px] px-4 py-3">
                                         <button type="button" onClick={() => setFormData(p => ({...p, qty: Math.max(1, (p.qty||1)-1)}))}
-                                            className="w-9 h-9 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[20px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">GêÆ</button>
+                                            className="w-9 h-9 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[20px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">G</button>
                                         <div className="flex-1 text-center">
                                             <span className="font-extrabold text-[20px] text-google-text">{formData.qty || 1}</span>
                                             <span className="text-[12px] text-google-textVariant ml-2">unit</span>
@@ -3325,9 +3310,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-extrabold text-[15px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[13px] font-bold text-google-yellowDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[14px]" />{p.namaBarang} <span className="ml-1 bg-google-yellow/20 text-google-yellowDark border border-google-yellow/40 px-2 py-0.5 rounded-full font-extrabold text-[11px]">{p.qty || 1} unit</span></p>
-                                                    <p className="text-[12px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[13px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} GåÆ Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
+                                                    <p className="text-[12px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[13px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} G Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
                                                     <p className="text-[12px] text-google-textVariant mt-0.5 italic">"{p.keperluan}"</p>
-                                                    {p.catatan && <p className="text-[11px] text-slate-500 mt-0.5">=ƒô¥ {p.catatan}</p>}
+                                                    {p.catatan && <p className="text-[11px] text-slate-500 mt-0.5">= {p.catatan}</p>}
                                                 </div>
                                                 <div className="flex flex-wrap gap-2 shrink-0">
                                                     <button onClick={() => setKonfirmRejectId(p.id)} className="px-4 py-2.5 bg-white text-google-red border-2 border-google-red/30 rounded-full font-extrabold text-[12px] hover:bg-google-redLight active:scale-95 transition-all">Tolak</button>
@@ -3348,7 +3333,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-extrabold text-[15px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[13px] font-bold text-google-blueDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[14px]" />{p.namaBarang} <span className="ml-1 bg-google-blue/10 text-google-blueDark border border-google-blue/30 px-2 py-0.5 rounded-full font-extrabold text-[11px]">{p.qty || 1} unit</span></p>
-                                                    <p className="text-[12px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[13px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} GåÆ Estimasi Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
+                                                    <p className="text-[12px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[13px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} G Estimasi Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
                                                     <p className="text-[12px] text-google-textVariant mt-0.5 italic">"{p.keperluan}"</p>
                                                     {/* Cek apakah sudah lewat tanggal kembali */}
                                                     {p.tanggalKembali < getLocalDate() && (
@@ -3386,7 +3371,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             </div>
                                             <div className="min-w-0">
                                                 <p className="font-extrabold text-[14px] text-google-text truncate">{item.name}</p>
-                                                <p className={`text-[12px] font-bold mt-0.5 ${stok <= 0 ? 'text-google-red' : 'text-google-greenDark'}`}>{stok <= 0 ? 'G¥î Semua sedang dipinjam' : `G£à ${stok} dari ${item.qty} tersedia`}</p>
+                                                <p className={`text-[12px] font-bold mt-0.5 ${stok <= 0 ? 'text-google-red' : 'text-google-greenDark'}`}>{stok <= 0 ? 'G Semua sedang dipinjam' : `G ${stok} dari ${item.qty} tersedia`}</p>
                                                 {sedangDipinjam.length > 0 && (
                                                     <div className="mt-1.5 bg-google-redLight/50 border border-google-red/20 rounded-[10px] px-3 py-1.5 space-y-1">
                                                         {sedangDipinjam.map((p, i) => (
@@ -3422,7 +3407,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <p className="text-[13px] font-bold text-google-green mb-6">Stok inventaris akan otomatis pulih setelah konfirmasi.</p>
                                     <div className="flex flex-wrap gap-3">
                                         <button onClick={() => setKonfirmReturnId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-extrabold text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
-                                        <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-full font-extrabold text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">G£à Konfirmasi Kembali</button>
+                                        <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-full font-extrabold text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">G Konfirmasi Kembali</button>
                                     </div>
                                 </>) : null; })()}
                             </div>
@@ -3768,7 +3753,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                         donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                         'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                                     }`}>
-                                                        {donasi.status === 'APPROVED' ? 'G£à Disetujui' : donasi.status === 'REJECTED' ? 'G¥î Ditolak' : 'GÅ¦ Menunggu'}
+                                                        {donasi.status === 'APPROVED' ? 'G Disetujui' : donasi.status === 'REJECTED' ? 'G Ditolak' : 'GÅ¦ Menunggu'}
                                                     </span>
                                                 )}
                                             </div>
@@ -3778,7 +3763,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             </div>
                         )}
 
-                        {/* Riwayat Donasi GÇö Tampil untuk SEMUA user (Warga & Admin) */}
+                        {/* Riwayat Donasi G Tampil untuk SEMUA user (Warga & Admin) */}
                         {(prog.donasi || []).length > 0 && userRole !== 'admin' && (
                             <div className="bg-white rounded-[28px] border-2 border-slate-200 shadow-sm p-4 sm:p-5 md:p-6">
                                 <h3 className="text-[17px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2">
@@ -3808,7 +3793,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                 'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                             }`}>
-                                                {donasi.status === 'APPROVED' ? 'G£à Disetujui' : donasi.status === 'REJECTED' ? 'G¥î Ditolak' : 'GÅ¦ Menunggu'}
+                                                {donasi.status === 'APPROVED' ? 'G Disetujui' : donasi.status === 'REJECTED' ? 'G Ditolak' : 'GÅ¦ Menunggu'}
                                             </span>
                                         </div>
                                     ))}
@@ -3943,7 +3928,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                     </div>
                                                 ))}
                                                 <p className="text-[11px] font-bold text-google-textVariant bg-white border border-slate-200 rounded-[10px] px-3 py-2 leading-relaxed">
-                                                    =ƒô¥ Cantumkan nominal <span className="text-google-green font-extrabold">{formatRp(safeNumber(nominalInput))}</span> dan nama <span className="text-google-greenDark font-extrabold">{namaDisplay}</span> saat transfer.
+                                                    = Cantumkan nominal <span className="text-google-green font-extrabold">{formatRp(safeNumber(nominalInput))}</span> dan nama <span className="text-google-greenDark font-extrabold">{namaDisplay}</span> saat transfer.
                                                 </p>
                                             </div>
                                         );
@@ -4015,7 +4000,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     <div className="bg-white rounded-[32px] border-2 border-slate-200 shadow-sm p-6 sm:p-8">
                         <h3 className="text-[20px] font-extrabold text-google-text mb-6 tracking-tight">
-                            {editingId ? 'G£Ån+Å Edit Program Infaq' : 'GPò Buat Program Infaq Baru'}
+                            {editingId ? 'Gn+ Edit Program Infaq' : 'GP Buat Program Infaq Baru'}
                         </h3>
                         <div className="space-y-5">
 
@@ -4030,10 +4015,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             : <Icon name="cloud_upload" className="text-[24px] text-google-textVariant" />}
                                     </div>
                                     <div className="flex-1 z-0">
-                                        <p className="font-extrabold text-[14px] text-google-text">{isUploading ? 'Mengunggah...' : form.imageUrl ? 'Foto Tersimpan G£ô' : 'Pilih Foto Program'}</p>
+                                        <p className="font-extrabold text-[14px] text-google-text">{isUploading ? 'Mengunggah...' : form.imageUrl ? 'Foto Tersimpan G' : 'Pilih Foto Program'}</p>
                                         <p className="text-[12px] text-google-textVariant">Maks. 2MB</p>
                                     </div>
-                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[16px] hover:bg-google-redLight active:scale-95 shrink-0">+ù</button>}
+                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[16px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
                                 </div>
                             </div>
 
@@ -4169,7 +4154,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                 setIsFormOpen(true);
             };
 
-            // Upload Galeri: Canvas compress GåÆ base64 GåÆ Firestore (tanpa GAS)
+            // Upload Galeri: Canvas compress G base64 G Firestore (tanpa GAS)
             const handleImageUpload = (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -4386,7 +4371,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             };
 
             const handleImageUpload = (e) => {
-                // Upload Informasi: Canvas compress GåÆ base64 GåÆ Firestore (tanpa GAS)
+                // Upload Informasi: Canvas compress G base64 G Firestore (tanpa GAS)
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) { setErrorMsg('File harus berupa gambar!'); return; }
@@ -4510,8 +4495,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [previewMember, setPreviewMember] = useState(null);
 
             useEffect(() => {
-                if (previewMember && JsBarcode) {
+                if (previewMember) {
+                    import('jsbarcode').then((module) => {
+                        const JsBarcode = module.default;
                     JsBarcode("#preview-barcode", `M-${previewMember.id}`, { width: 2, height: 60, fontSize: 16 });
+                    });
                 }
             }, [previewMember]);
 
@@ -4530,9 +4518,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const handlePrintBarcode = () => {
                 setPrintMode('barcode');
                 setTimeout(() => {
-                    if (JsBarcode) {
+                    
+                    import('jsbarcode').then((module) => {
+                        const JsBarcode = module.default;
                         JsBarcode(".barcode-element").init();
-                    }
+                    });
                     setTimeout(() => {
                         window.print();
                         setTimeout(() => setPrintMode(''), 1000);
@@ -4924,7 +4914,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         </div>
                                     </div>
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pt-6 border-t-2 border-slate-100">
-                                        <div className="bg-google-greenLight/50 px-5 py-3.5 rounded-[16px] border-2 border-google-green/20"><p className="text-[10px] text-google-greenDark uppercase tracking-widest font-extrabold mb-1">Total Dana Terkumpul</p><p className="text-[22px] font-extrabold text-google-greenDark tracking-tight truncate">{userRole === 'admin' ? formatRp(totalTerkumpul) : '=ƒöÆ Disembunyikan'}</p></div>
+                                        <div className="bg-google-greenLight/50 px-5 py-3.5 rounded-[16px] border-2 border-google-green/20"><p className="text-[10px] text-google-greenDark uppercase tracking-widest font-extrabold mb-1">Total Dana Terkumpul</p><p className="text-[22px] font-extrabold text-google-greenDark tracking-tight truncate">{userRole === 'admin' ? formatRp(totalTerkumpul) : '= Disembunyikan'}</p></div>
                                         {userRole === 'admin' ? (
                                             <div className="flex flex-wrap items-center gap-3 shrink-0 self-end sm:self-auto">
                                                 <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-6 py-3.5 bg-google-blueLight text-google-blueDark border-2 border-google-blue/30 rounded-full text-[14px] font-extrabold hover:bg-google-blue hover:text-white transition-all duration-300 hover:shadow-md active:scale-95 flex flex-wrap items-center gap-1.5"><Icon name="edit_document" className="text-[18px]"/> Kelola</button>
@@ -4969,7 +4959,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [isUploading, setIsUploading] = useState(false);
             const [editingId, setEditingId] = useState(null);
 
-            // Upload Nota Kas RT: Canvas compress GåÆ base64 GåÆ Firestore (tanpa GAS)
+            // Upload Nota Kas RT: Canvas compress G base64 G Firestore (tanpa GAS)
             const handleImageUpload = (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -5102,7 +5092,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <div className="flex-1 min-w-0">
                                         <p className="font-extrabold text-[16px] text-google-text truncate mb-1.5">{t.description}</p>
                                         <div className="flex flex-wrap items-center gap-2">
-                                            <p className="text-[12px] font-bold text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5"><Icon name="label" className="text-[14px]" /> {t.category} GÇó {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
+                                            <p className="text-[12px] font-bold text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5"><Icon name="label" className="text-[14px]" /> {t.category} G {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
                                             {t.receiptUrl && <a href={t.receiptUrl} target="_blank" rel="noopener noreferrer" className="text-[12px] font-bold text-google-blue bg-google-blueLight border border-google-blue/20 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[14px]" /> Lihat Bukti</a>}
                                         </div>
                                     </div>
@@ -5239,7 +5229,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
             useEffect(() => {
                 if (isScannerOpen) {
-                    if (!scannerRef.current && Html5QrcodeScanner) {
+                    if (!scannerRef.current) {
+                        import('html5-qrcode').then((module) => {
+                            const Html5QrcodeScanner = module.Html5QrcodeScanner;
                         scannerRef.current = new Html5QrcodeScanner("reader", { fps: 10, qrbox: {width: 250, height: 150} }, false);
                         scannerRef.current.render((decodedText) => {
                             const memberIdStr = decodedText.replace('M-', '');
@@ -5253,6 +5245,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 showToast('Warga tidak ditemukan!');
                             }
                         }, (error) => {});
+                        });
                     }
                 } else {
                     if (scannerRef.current) {
@@ -5365,7 +5358,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     return updatedM;
                 });
                 
-                if(isCycleAlreadyComplete) { winnerName = "G£à SIKLUS SELESAI (TIDAK ADA UNDIAN)"; }
+                if(isCycleAlreadyComplete) { winnerName = "G SIKLUS SELESAI (TIDAK ADA UNDIAN)"; }
 
                 const formattedDate = parseLocalDate(meetingDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -5382,7 +5375,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                 const totalDebtSnapshot = members.reduce((sum, m) => sum + (m.debt || 0), 0);
                 const formattedDate = parseLocalDate(meetingDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
                 
-                setMeetingHistory(prev => [{ id: Date.now(), round: currentRound, periode: formatBulanTahun(arisanPeriod), date: formattedDate, winner: '=ƒÅûn+Å LIBUR (TIDAK ADA ARISAN)', kasArisanTerkumpul: 0, kasJimpitanMasuk: 0, pelunasanTunggakan: 0, talanganJimpitan: 0, tunggakanBaru: 0, saldoAkhirJimpitan: jimpitanBalance, totalTunggakanAkhir: totalDebtSnapshot, absensiDetails: [] }, ...prev]);
+                setMeetingHistory(prev => [{ id: Date.now(), round: currentRound, periode: formatBulanTahun(arisanPeriod), date: formattedDate, winner: '=n+ LIBUR (TIDAK ADA ARISAN)', kasArisanTerkumpul: 0, kasJimpitanMasuk: 0, pelunasanTunggakan: 0, talanganJimpitan: 0, tunggakanBaru: 0, saldoAkhirJimpitan: jimpitanBalance, totalTunggakanAkhir: totalDebtSnapshot, absensiDetails: [] }, ...prev]);
                 
                 const [year, month] = arisanPeriod.split('-'); let d = new Date(year, month - 1); d.setMonth(d.getMonth() + 1);
                 setArisanPeriod(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
@@ -5670,13 +5663,15 @@ const chartRef = useRef(null);
 const canvasRef = useRef(null);
 
 useEffect(() => {
-if (!canvasRef.current || history.length === 0 || !Chart) return;
+if (!canvasRef.current || history.length === 0) return;
 const chronological = [...history].reverse();
 const labels = chronological.map(h => h.periode);
 const dataPoints = chronological.map(h => h.saldoAkhirJimpitan || 0);
 
 if (chartRef.current) chartRef.current.destroy();
 
+import('chart.js/auto').then((module) => {
+const Chart = module.default;
 const ctx = canvasRef.current.getContext('2d');
 chartRef.current = new Chart(ctx, {
 type: 'line',
@@ -5710,7 +5705,7 @@ ticks: { callback: function(value) { return 'Rp ' + (value/1000) + 'k'; } }
 }
 });
 
-return () => { if (chartRef.current) chartRef.current.destroy(); };
+}); return () => { if (chartRef.current) chartRef.current.destroy(); };
 }, [history]);
 
 let growthStatus = null;
@@ -5869,7 +5864,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             return (
                                 <div key={record.id} className="bg-white rounded-[32px] overflow-hidden border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300">
                                     <div className="p-6 sm:p-8 flex flex-col sm:flex-row justify-between sm:items-center border-b-2 border-slate-100 bg-slate-50">
-                                        <div><h3 className="font-extrabold text-2xl text-google-text tracking-tight">Putaran Ke-{record.round}</h3><p className="text-[14px] font-bold text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[18px]"/> {record.periode} GÇó {record.date}</p></div>
+                                        <div><h3 className="font-extrabold text-2xl text-google-text tracking-tight">Putaran Ke-{record.round}</h3><p className="text-[14px] font-bold text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[18px]"/> {record.periode} G {record.date}</p></div>
                                         <div className="mt-5 sm:mt-0 flex flex-col sm:items-end"><span className="text-[11px] uppercase font-extrabold text-google-textVariant tracking-widest mb-2">{isHoliday ? 'Status Kegiatan' : 'Pemenang Arisan'}</span><div className={`${isHoliday ? 'bg-gradient-to-r from-google-yellow to-google-yellowDark text-white border-google-yellowDark' : 'bg-gradient-to-r from-google-blue to-google-blueDark text-white border-google-blueDark'} px-6 py-3 rounded-full font-extrabold text-[15px] shadow-md inline-flex items-center gap-2 border-2`}><Icon name={isHoliday ? "event_busy" : "emoji_events"} className="text-[20px]" fill="true" /> {record.winner}</div></div>
                                     </div>
                                     <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -6135,7 +6130,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         {sponsorsData?.sponsors?.map((s, i) => (
                             <div key={i} className="flex items-center justify-between bg-white p-3 rounded-[12px] shadow-sm border border-slate-100 gap-3">
                             <div className="flex items-center gap-3 overflow-hidden">
-                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 p-1 border border-slate-100" onError={e => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>=ƒû+n+Å</text></svg>'; }} />
+                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 p-1 border border-slate-100" onError={e => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>=+n+</text></svg>'; }} />
                                 <span className="text-[13px] font-bold text-google-text truncate">{s.name}</span>
                             </div>
                             <button onClick={() => {
@@ -6178,7 +6173,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 </div>
                                 <div>
                                 <p className="font-extrabold text-[13px] text-google-text">{previewUrl ? 'Ganti Gambar Logo' : 'Pilih File Logo (Maks 2MB)'}</p>
-                                <p className="text-[11px] text-google-textVariant font-medium">PNG, JPG, SVG, WEBP GÇö upload ke Google Drive</p>
+                                <p className="text-[11px] text-google-textVariant font-medium">PNG, JPG, SVG, WEBP G upload ke Google Drive</p>
                                 </div>
                             </div>
                             )}
@@ -6322,7 +6317,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 }
             };
 
-            // Upload Banner: Canvas compress GåÆ base64 GåÆ Firestore (tanpa GAS)
+            // Upload Banner: Canvas compress G base64 G Firestore (tanpa GAS)
             const handleLogoUpload = (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -7047,5 +7042,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
 // Default export untuk digunakan di main.jsx
 export default App;
+
+
 
 
