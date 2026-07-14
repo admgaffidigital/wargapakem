@@ -15,16 +15,16 @@
     "categories": ["finance", "utilities", "productivity"],
     "icons": [
         {
-            "src": "National_emblem_of_Indonesia_Garuda_Pancasila.svg",
+            "src": "pwa-icon.svg",
             "sizes": "192x192",
             "type": "image/svg+xml",
-            "purpose": "any"
+            "purpose": "any maskable"
         },
         {
-            "src": "National_emblem_of_Indonesia_Garuda_Pancasila.svg",
+            "src": "pwa-icon.svg",
             "sizes": "512x512",
             "type": "image/svg+xml",
-            "purpose": "any"
+            "purpose": "any maskable"
         }
     ],
     "shortcuts": [
@@ -32,20 +32,22 @@
             "name": "Ringkasan Arisan",
             "short_name": "Ringkasan",
             "url": "./#dashboard",
-            "icons": [{"src": "National_emblem_of_Indonesia_Garuda_Pancasila.svg", "sizes": "192x192", "type": "image/svg+xml"}]
+            "icons": [{"src": "pwa-icon.svg", "sizes": "192x192", "type": "image/svg+xml"}]
         },
         {
             "name": "Kas RT",
             "short_name": "Kas RT",
             "url": "./#kas",
-            "icons": [{"src": "National_emblem_of_Indonesia_Garuda_Pancasila.svg", "sizes": "192x192", "type": "image/svg+xml"}]
+            "icons": [{"src": "pwa-icon.svg", "sizes": "192x192", "type": "image/svg+xml"}]
         },
         {
             "name": "Buku Warga",
             "short_name": "Warga",
             "url": "./#warga",
-            "icons": [{"src": "National_emblem_of_Indonesia_Garuda_Pancasila.svg", "sizes": "192x192", "type": "image/svg+xml"}]
+            "icons": [{"src": "pwa-icon.svg", "sizes": "192x192", "type": "image/svg+xml"}]
         }
     ]
 }
+
+
 
