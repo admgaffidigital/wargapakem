@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // App.jsx - Portal Warga RT PAKEM
 // Dikonversi dari index.html (Babel CDN) ke Vite build system
 // ============================================================
@@ -6699,7 +6699,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             </div>
                                         )}
                                     </div>
-                                    <button onClick={() => { showAlert('Kebijakan Hukum & Privasi berhasil disimpan!')} className="w-full mt-8 bg-slate-50 border-2 border-slate-200 text-google-blueDark py-4 rounded-full font-extrabold text-[15px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan Kebijakan</button>
+                                    <button onClick={() => { showAlert('Kebijakan Hukum & Privasi berhasil disimpan!') }} className="w-full mt-8 bg-slate-50 border-2 border-slate-200 text-google-blueDark py-4 rounded-full font-extrabold text-[15px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan Kebijakan</button>
                                 </div>
                             )}
                             {activeMenu === 'infodesa' && (
