@@ -1,10 +1,10 @@
-// ============================================================
-// SERVICE WORKER — Portal Warga RT PAKEM
+﻿// ============================================================
+// SERVICE WORKER â€” Portal Warga RT PAKEM
 // Strategi: Cache First untuk aset statis, Network First untuk data
 // ============================================================
 
-const CACHE_NAME = 'warga-pakem-v1';
-const CACHE_STATIC = 'warga-pakem-static-v1';
+const CACHE_NAME = 'warga-pakem-v1.2';
+const CACHE_STATIC = 'warga-pakem-static-v1.2';
 
 // Aset lokal yang selalu di-cache saat install
 const STATIC_ASSETS = [
@@ -23,7 +23,7 @@ const CDN_CACHEABLE = [
     'unpkg.com',
 ];
 
-// ===== INSTALL — Pre-cache aset lokal =====
+// ===== INSTALL â€” Pre-cache aset lokal =====
 self.addEventListener('install', (event) => {
     console.log('[SW] Install - Pre-caching aset lokal...');
     event.waitUntil(
@@ -35,7 +35,7 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// ===== ACTIVATE — Hapus cache lama =====
+// ===== ACTIVATE â€” Hapus cache lama =====
 self.addEventListener('activate', (event) => {
     console.log('[SW] Activate - Membersihkan cache lama...');
     event.waitUntil(
@@ -52,7 +52,7 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// ===== FETCH — Strategi caching =====
+// ===== FETCH â€” Strategi caching =====
 self.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url);
 
@@ -65,7 +65,7 @@ self.addEventListener('fetch', (event) => {
         return; // Biarkan Firebase berjalan normal tanpa cache SW
     }
 
-    // CDN Library → Cache First (setelah pertama kali didownload, pakai cache)
+    // CDN Library â†’ Cache First (setelah pertama kali didownload, pakai cache)
     const isCDN = CDN_CACHEABLE.some((host) => url.hostname.includes(host));
     if (isCDN) {
         event.respondWith(
@@ -84,7 +84,7 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Aset Lokal (index.html, SVG, manifest) → Stale While Revalidate
+    // Aset Lokal (index.html, SVG, manifest) â†’ Stale While Revalidate
     // Tampilkan cache dulu, update di background
     if (url.pathname === '/' || url.pathname.endsWith('.html') ||
         url.pathname.endsWith('.svg') || url.pathname.endsWith('.json') ||
@@ -106,9 +106,10 @@ self.addEventListener('fetch', (event) => {
     }
 });
 
-// ===== MESSAGE — Force update dari halaman =====
+// ===== MESSAGE â€” Force update dari halaman =====
 self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
     }
 });
+
