@@ -1751,6 +1751,7 @@ const getDirectImgUrl = (url) => {
             const [userRole, setUserRole] = useState(null); 
             const [activeTab, setActiveTab] = useState('menu'); 
             const [showLogoutModal, setShowLogoutModal] = useState(false);
+            const [showLicenseModal, setShowLicenseModal] = useState(false);
             const [isOffline, setIsOffline] = useState(!navigator.onLine); 
             
             // Core Database States
@@ -1994,9 +1995,9 @@ const getDirectImgUrl = (url) => {
                                 <Icon name="flag" className="text-red-500 text-[16px] animate-pulse" fill="true" />
                                 - {new Date().getFullYear()} <span className="text-red-600 font-extrabold">WP LINGKUNGAN</span>. All rights reserved.
                             </p>
-                            <p className="flex flex-wrap items-center justify-center gap-1.5">
-                                Developed by <span className="bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent font-extrabold tracking-wide uppercase">NOVAN RESTU UTOMO</span>
-                            </p>
+                            <button onClick={() => setShowLicenseModal(true)} className="flex flex-wrap items-center justify-center gap-1.5 hover:text-red-500 transition-colors active:scale-95 group">
+                                <Icon name="lock" className="text-[14px] group-hover:scale-110 transition-transform" /> <span className="underline decoration-dashed underline-offset-4">&copy; 2026 Keamanan Data & Hak Cipta</span>
+                            </button>
                         </div>
                     </footer>
 
@@ -2262,6 +2263,13 @@ const getDirectImgUrl = (url) => {
                                 <div className="text-left">
                                     <label className="text-[11px] font-extrabold text-google-textVariant block mb-1.5 ml-2 uppercase tracking-widest">Kata Sandi</label>
                                     <input type="password" placeholder="Kata Sandi Firebase" value={password} onChange={(e) => { setPassword(e.target.value); setError(''); }} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md text-google-text rounded-[16px] px-5 py-3.5 text-[15px] font-bold outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
+                                </div>
+                                <div className="mt-8 pt-4 border-t-2 border-slate-100/50 text-center">
+                                    <p className="text-[10px] text-slate-400 font-medium px-4 leading-relaxed">
+                                        <Icon name="shield" className="text-[12px] inline mr-1" />
+                                        Dilindungi enkripsi & keamanan tingkat lanjut. <br /> Segala bentuk pencurian data akan dipidanakan.
+                                    </p>
+                                    <p className="text-[10px] text-slate-300 font-extrabold mt-1">&copy; 2026 Novan Restu Utomo</p>
                                 </div>
                                 {error && <p className="text-[12px] text-google-redDark font-extrabold bg-google-redLight py-3 rounded-[12px] border-2 border-google-red/30 shadow-sm flex flex-wrap items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[16px]"/> {error}</p>}
                                 <div className="flex flex-wrap gap-3 pt-4">
