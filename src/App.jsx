@@ -1780,6 +1780,13 @@ const getDirectImgUrl = (url) => {
             }, [identity?.logoApp]);
             const [nextMeeting, setNextMeeting, l13] = useFirebaseSync('next_meeting', { date: 'Belum dijadwalkan', time: '-', location: '-', notes: '-' });
             const [informasi, setInformasi, l14] = useFirebaseSync('informasi', []);
+            const defaultLegal = {
+                enabled: true,
+                terms: "1. Akses Portal: Portal ini hanya diperuntukkan bagi warga lingkungan yang terdaftar sah. Dilarang membagikan akses login kepada pihak luar.\n2. Penggunaan Fitur: Warga dilarang menyalahgunakan fitur portal untuk menyebarkan hoaks, ujaran kebencian, atau pelanggaran hukum.\n3. Hak Admin: Admin (Pengurus Lingkungan) berhak memblokir akun warga yang terbukti melanggar aturan atau memalsukan data.\n4. Validitas Data: Warga bertanggung jawab penuh atas kebenaran data yang diunggah.",
+                privacy: "1. Pengumpulan Data: Sistem mengumpulkan data (seperti Nama, NIK, Alamat) murni untuk keperluan administrasi rukun tetangga.\n2. Keamanan Data: Data disimpan di server cloud secara aman dengan sistem database modern.\n3. Anti Jual-Beli Data: Kami menjamin 100% bahwa data warga tidak akan pernah dijual atau diberikan ke pihak ketiga untuk tujuan komersial.\n4. Keterbukaan Data Kas: Informasi keuangan diproses secara transparan demi akuntabilitas lingkungan."
+            };
+            const [legalData, setLegalData, l_legal] = useFirebaseSync('legal', defaultLegal);
+            const [showLegalModal, setShowLegalModal] = useState(null); // 'terms' | 'privacy' | null
             const [iuranData, setIuranData, l15] = useFirebaseSync('iuran_umum', []);
             const [galeriData, setGaleriData, l17] = useFirebaseSync('galeri_warga', []);
             const [umkmData, setUmkmData, l_umkm] = useFirebaseSync('umkm', []);
@@ -1882,7 +1889,7 @@ const getDirectImgUrl = (url) => {
             if (!isLoggedIn) {
                 return (
                     <>
-                        <LoginScreen onLogin={(role) => { 
+                        <LoginScreen legalData={legalData} setShowLegalModal={setShowLegalModal} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); window.location.hash = 'menu';
                         }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
@@ -1939,7 +1946,7 @@ const getDirectImgUrl = (url) => {
                     case 'kas': return <BukuKas balance={kasRtBalance} setBalance={setKasRtBalance} transactions={kasRtTransactions} setTransactions={setKasRtTransactions} userRole={userRole} identity={identity} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} />;
                     case 'laporan': return <Laporan history={meetingHistory} setMeetingHistory={setMeetingHistory} members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} cycleNumber={cycleNumber} identity={identity} userRole={userRole} />;
                     case 'pertemuan': return userRole === 'admin' ? <Pertemuan members={members} setMembers={setMembers} currentRound={currentRound} setCurrentRound={setCurrentRound} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} setMeetingHistory={setMeetingHistory} onFinish={() => changeTab('menu')} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} identity={identity} cycleNumber={cycleNumber} /> : null;
-                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} /> : null;
+                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} legalData={legalData} setLegalData={setLegalData} /> : null;
                     case 'infaq': return <Infaq infaqData={infaqData} setInfaqData={setInfaqData} userRole={userRole} identity={identity} />;
                     case 'pemenang': return <Pemenang members={members} />;
                     case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} />;
@@ -2211,7 +2218,7 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
@@ -2270,6 +2277,14 @@ const getDirectImgUrl = (url) => {
                                         Dilindungi enkripsi & keamanan tingkat lanjut. <br /> Segala bentuk pencurian data akan dipidanakan.
                                     </p>
                                     <p className="text-[10px] text-slate-300 font-extrabold mt-1">&copy; 2026 Novan Restu Utomo</p>
+                                    
+                                    {legalData?.enabled && (
+                                        <div className="flex flex-wrap items-center justify-center gap-3 mt-4 text-[10px] font-bold text-google-blue">
+                                            <button onClick={() => setShowLegalModal('terms')} className="hover:underline">Syarat & Ketentuan</button>
+                                            <span className="text-slate-300">|</span>
+                                            <button onClick={() => setShowLegalModal('privacy')} className="hover:underline">Kebijakan Privasi</button>
+                                        </div>
+                                    )}
                                 </div>
                                 {error && <p className="text-[12px] text-google-redDark font-extrabold bg-google-redLight py-3 rounded-[12px] border-2 border-google-red/30 shadow-sm flex flex-wrap items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[16px]"/> {error}</p>}
                                 <div className="flex flex-wrap gap-3 pt-4">
