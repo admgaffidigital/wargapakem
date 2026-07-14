@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // App.jsx - Portal Warga RT PAKEM
 // Dikonversi dari index.html (Babel CDN) ke Vite build system
 // ============================================================
@@ -525,7 +525,7 @@ const getDirectImgUrl = (url) => {
                     intro: 'Menu Warga adalah pusat data seluruh anggota G nama, program, status, dan tunggakan.',
                     topics: [
                         { label: 'Program Keikutsertaan', answer: `Ada 2 jenis program warga:\n\n1n+G Full (Arisan & Iuran) G ikut arisan bulanan DAN iuran umum. Muncul di Absen Arisan.\n\n2n+G Hanya Iuran Umum G tidak ikut arisan, tapi tetap kena tagihan Iuran Umum.\n\nPilih sesuai kesepakatan saat mendaftar.` },
-                        { label: 'Status Warga (3 jenis)', answer: `= Aktif G ikut semua kewajiban.\n\nGܽ Meninggal / Wafat G bebas arisan, TETAP wajib jimpitan Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}. Kartu di Absen otomatis abu-abu.\n\n= Nonaktif / Pindah G sama seperti Meninggal, bebas arisan.\n\nUbah status lewat tombol Edit di daftar warga.` },
+                        { label: 'Status Warga (3 jenis)', answer: `= Aktif G ikut semua kewajiban.\n\nGÜ½ Meninggal / Wafat G bebas arisan, TETAP wajib jimpitan Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}. Kartu di Absen otomatis abu-abu.\n\n= Nonaktif / Pindah G sama seperti Meninggal, bebas arisan.\n\nUbah status lewat tombol Edit di daftar warga.` },
                         { label: 'Tunggakan Warga', answer: `Tunggakan timbul otomatis saat warga Alfa atau Musibah.\n\nBesaran = Arisan + Jimpitan = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} per bulan absen.\n\nLunas saat warga hadir + centang "Lunasi Tunggakan?" di form Absen.` },
                         { label: 'Rapor Merah vs Musibah', answer: `= Rapor Merah (Alfa) G tidak hadir tanpa alasan. Dapat tanda merah di dashboard.\n\n= Musibah G berhalangan karena alasan valid (sakit, musibah). Punya tunggakan tapi TIDAK dapat rapor merah.\n\nMusibah = toleransi, Alfa = peringatan.` },
                         { label: 'Tambah / Edit / Hapus Warga', answer: `GP Tambah G isi nama, program, status. Nama harus unik karena jadi identifikasi di absensi.\n\nGn+ Edit G ubah data termasuk status dan koreksi tunggakan manual.\n\n=n+ Hapus G ada konfirmasi. Tidak bisa dipulihkan.` }
@@ -543,7 +543,7 @@ const getDirectImgUrl = (url) => {
                     ]
                 },
                 kas: {
-                    label: '=Ʀ Buku Kas RT', icon: 'account_balance_wallet',
+                    label: '=Æ¦ Buku Kas RT', icon: 'account_balance_wallet',
                     intro: 'Catatan keuangan Kas RT Utama. Terpisah dari Kas Jimpitan.',
                     topics: [
                         { label: 'Kategori Transaksi', answer: `= Pemasukan: Iuran Opsional, Donasi, Pemasukan Jasa, Lain-lain.\n= Pengeluaran: Belanja Barang/Alat, Honor Jasa, Konsumsi, Bantuan Sosial, Lain-lain.\n\nSetiap transaksi wajib ada keterangan agar mudah diaudit.` },
@@ -627,7 +627,7 @@ const getDirectImgUrl = (url) => {
                     ]
                 },
                 jimpitan: {
-                    label: '=Ʀ Memahami Kas Jimpitan', icon: 'savings',
+                    label: '=Æ¦ Memahami Kas Jimpitan', icon: 'savings',
                     intro: 'Apa itu jimpitan, mengapa ada dua kas, dan bagaimana cara membacanya.',
                     topics: [
                         {
@@ -712,7 +712,7 @@ const getDirectImgUrl = (url) => {
                     topics: [
                         {
                             label: 'Apa arti tanda di nama saya?',
-                            answer: `Di menu "Buku Warga", setiap warga punya tanda:\n\n= BERSIH G tidak ada tunggakan, kehadiran bagus.\n= HUTANG Rp X,XXX G ada tunggakan yang harus segera dilunasi.\nGܽ WAFAT G status telah diubah admin (tidak lagi aktif di arisan).\nGܬ NONAKTIF G pindah atau tidak aktif lagi.\n\nTanda merah kecil (G) di samping nama = warga punya rapor merah dari Alfa.`
+                            answer: `Di menu "Buku Warga", setiap warga punya tanda:\n\n= BERSIH G tidak ada tunggakan, kehadiran bagus.\n= HUTANG Rp X,XXX G ada tunggakan yang harus segera dilunasi.\nGÜ½ WAFAT G status telah diubah admin (tidak lagi aktif di arisan).\nGÜ¬ NONAKTIF G pindah atau tidak aktif lagi.\n\nTanda merah kecil (G) di samping nama = warga punya rapor merah dari Alfa.`
                         },
                         {
                             label: 'Saya baru bergabung, apa yang perlu saya tahu?',
@@ -720,7 +720,7 @@ const getDirectImgUrl = (url) => {
                         },
                         {
                             label: 'Bagaimana cara cek status arisan saya?',
-                            answer: `Buka menu "Pemenang" di beranda G cari nama Anda:\n\nG Nama ADA di daftar = Anda SUDAH menang di siklus ini. Selamat!\nGŦ Nama TIDAK ADA = Anda belum mendapat giliran, masih akan diundi bulan mendatang.\n\nBuka menu "Buku Warga" untuk cek tunggakan dan status terkini Anda.`
+                            answer: `Buka menu "Pemenang" di beranda G cari nama Anda:\n\nG Nama ADA di daftar = Anda SUDAH menang di siklus ini. Selamat!\nGÅ¦ Nama TIDAK ADA = Anda belum mendapat giliran, masih akan diundi bulan mendatang.\n\nBuka menu "Buku Warga" untuk cek tunggakan dan status terkini Anda.`
                         }
                     ]
                 },
@@ -1089,7 +1089,7 @@ const getDirectImgUrl = (url) => {
                                         <Icon name={isEnabled ? 'graphic_eq' : 'music_off'} className="text-white text-[20px]" fill="true" />
                                     </div>
                                     <div className="min-w-0">
-                                        <p className="text-[10px] font-extrabold uppercase tracking-widest text-google-textVariant">{isEnabled ? '=Ħ Aktif' : '= Nonaktif'}</p>
+                                        <p className="text-[10px] font-extrabold uppercase tracking-widest text-google-textVariant">{isEnabled ? '=Ä¦ Aktif' : '= Nonaktif'}</p>
                                         <p className="font-extrabold text-[15px] text-google-text truncate">{currentName || 'Musik RT'}</p>
                                     </div>
                                 </div>
@@ -2057,7 +2057,7 @@ const getDirectImgUrl = (url) => {
                     )}
                     {showLegalModal && (
                         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4 animate-fade-in">
-                            <div className="bg-white rounded-[24px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col max-h-[80vh]">
+                            <div className="bg-white rounded-[32px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-100/50 max-h-[80vh]">
                                 <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between shrink-0">
                                     <h3 className="text-[16px] font-black text-slate-800 flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
@@ -3832,7 +3832,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                         donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                         'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                                     }`}>
-                                                        {donasi.status === 'APPROVED' ? 'G Disetujui' : donasi.status === 'REJECTED' ? 'G Ditolak' : 'GŦ Menunggu'}
+                                                        {donasi.status === 'APPROVED' ? 'G Disetujui' : donasi.status === 'REJECTED' ? 'G Ditolak' : 'GÅ¦ Menunggu'}
                                                     </span>
                                                 )}
                                             </div>
@@ -3872,7 +3872,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                 'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                             }`}>
-                                                {donasi.status === 'APPROVED' ? 'G Disetujui' : donasi.status === 'REJECTED' ? 'G Ditolak' : 'GŦ Menunggu'}
+                                                {donasi.status === 'APPROVED' ? 'G Disetujui' : donasi.status === 'REJECTED' ? 'G Ditolak' : 'GÅ¦ Menunggu'}
                                             </span>
                                         </div>
                                     ))}
@@ -7122,6 +7122,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
 // Default export untuk digunakan di main.jsx
 export default App;
+
+
 
 
 
