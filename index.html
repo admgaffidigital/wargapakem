@@ -10,8 +10,23 @@ Developer: NOVAN RESTU UTOMO
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2636322336243340"
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-2636322336243340">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover' name='viewport'/>
+    <meta content='width=device-width, initial-scale=1.0, viewport-fit=cover' name='viewport'/>
     <title>Portal Warga RT - PAKEM | Banyuanyar Gurah Kediri</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portal digital warga RT Pakem, Banyuanyar, Gurah, Kediri. Kelola arisan, keuangan kas RT, buku warga, galeri, pengaduan, dan informasi lingkungan secara mudah dan transparan." />
+    <meta name="keywords" content="portal warga RT, Pakem, Banyuanyar, Gurah, Kediri, arisan, kas RT, aplikasi RT" />
+    <meta name="author" content="Admin Warga RT PAKEM" />
+    <!-- Open Graph (WhatsApp, Facebook share preview) -->
+    <meta property="og:title" content="Portal Warga RT - PAKEM | Banyuanyar Gurah Kediri" />
+    <meta property="og:description" content="Portal digital warga RT Pakem — kelola arisan, kas RT, buku warga, galeri, dan laporan pengaduan." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wargapakem.vercel.app/" />
+    <meta property="og:image" content="https://wargapakem.vercel.app/National_emblem_of_Indonesia_Garuda_Pancasila.svg" />
+    <!-- Twitter/X Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Portal Warga RT - PAKEM" />
+    <meta name="twitter:description" content="Portal digital warga RT Pakem — arisan, kas, galeri & pengaduan." />
 
     
     <!-- ===== PWA: Install to Homescreen ===== -->
@@ -36,11 +51,16 @@ Developer: NOVAN RESTU UTOMO
     <meta content="#dc2626" name="theme-color" />
     <meta content="#dc2626" name="background-color" />
     
+    <!-- DNS Prefetch untuk koneksi CDN lebih cepat -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    <link rel="dns-prefetch" href="https://www.gstatic.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
     <!-- Google Fonts & Material Symbols -->
     <link href='https://fonts.googleapis.com' rel='preconnect'/>
     <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
     <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
-    <link href='https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&amp;display=block' rel='stylesheet'/>
+    <link href='https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&amp;display=swap' rel='stylesheet'/>
     
     <script src='https://cdn.tailwindcss.com'></script>
     <script>
@@ -234,6 +254,16 @@ Developer: NOVAN RESTU UTOMO
     <!-- Leaflet Map CSS and JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <!-- Service Worker Registration untuk PWA Offline -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function (reg) { console.log('[SW] Terdaftar:', reg.scope); })
+                    .catch(function (err) { console.warn('[SW] Gagal daftar:', err); });
+            });
+        }
+    </script>
 </head>
 <body>
     <div style='display:none;'></div>
