@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // App.jsx - Portal Warga RT PAKEM
 // Dikonversi dari index.html (Babel CDN) ke Vite build system
 // ============================================================
@@ -250,16 +250,16 @@ const getDirectImgUrl = (url) => {
         // ADMOB: Komponen Banner dan Interstitial
         // =====================================================
         // =====================================================
-        // Google AdSense � Publisher ID & Slot IDs
+        // Google AdSense ΓÇö Publisher ID & Slot IDs
         // =====================================================
         const ADSENSE_CLIENT = 'ca-pub-2636322336243340';
         const ADSENSE_SLOTS = {
-            banner:      '4610725620',   // Banner responsive ? sticky bottom
-            inArticle:   '8219064079',   // In-article fluid ? antara konten
-            autoRelaxed: '2966737393',   // Autorelaxed ? bawah halaman
+            banner:      '4610725620',   // Banner responsive ΓåÆ sticky bottom
+            inArticle:   '8219064079',   // In-article fluid ΓåÆ antara konten
+            autoRelaxed: '2966737393',   // Autorelaxed ΓåÆ bawah halaman
         };
 
-        // Helper push iklan � cek data-ad-status di elemen ins itu sendiri
+        // Helper push iklan ΓÇö cek data-ad-status di elemen ins itu sendiri
         // Google AdSense set attribute ini setelah slot berhasil diinisialisasi
         function initAdSlot(insEl) {
             if (!insEl) return;
@@ -274,7 +274,7 @@ const getDirectImgUrl = (url) => {
         }
 
         // =====================================================
-        // AdSenseUnit � unit iklan fleksibel dengan auto-collapse
+        // AdSenseUnit ΓÇö unit iklan fleksibel dengan auto-collapse
         // Jika iklan kosong/unfilled: wrapper otomatis collapse (height:0)
         // =====================================================
         function AdSenseUnit({ slot, format, layout, wrapClass }) {
@@ -300,7 +300,7 @@ const getDirectImgUrl = (url) => {
                         wrap.style.margin    = '0';
                         wrap.style.padding   = '0';
                     } else if (status === 'filled') {
-                        // Iklan berhasil load � tampilkan dengan animasi
+                        // Iklan berhasil load ΓÇö tampilkan dengan animasi
                         wrap.style.height   = '';
                         wrap.style.overflow = '';
                         wrap.style.opacity  = '0';
@@ -345,7 +345,7 @@ const getDirectImgUrl = (url) => {
         }
 
         // =====================================================
-        // AdMobBanner � sticky bottom, dengan auto-collapse jika unfilled
+        // AdMobBanner ΓÇö sticky bottom, dengan auto-collapse jika unfilled
         // =====================================================
         function AdMobBanner({ adId }) {
             const wrapRef = useRef(null);
@@ -406,7 +406,7 @@ const getDirectImgUrl = (url) => {
         }
 
         // =====================================================
-        // AdMobInterstitial � iklan layar penuh saat buka halaman tertentu
+        // AdMobInterstitial ΓÇö iklan layar penuh saat buka halaman tertentu
         // =====================================================
         function AdMobInterstitial({ adId, trigger, currentTab }) {
             const shownRef = useRef(new Set());
@@ -453,7 +453,7 @@ const getDirectImgUrl = (url) => {
                 countdown.textContent = 'Tutup dalam 5 detik...';
 
                 const closeBtn = document.createElement('button');
-                closeBtn.textContent = '? Tutup';
+                closeBtn.textContent = 'Γ£ò Tutup';
                 closeBtn.style.cssText = 'background:#94a3b8;color:#fff;border:none;border-radius:50px;padding:8px 20px;font-weight:800;font-size:12px;cursor:not-allowed;transition:all 0.3s;';
                 closeBtn.disabled = true;
 
@@ -477,7 +477,7 @@ const getDirectImgUrl = (url) => {
                     if (secs <= 0) {
                         clearInterval(timer);
                         countdown.textContent = 'Iklan selesai';
-                        closeBtn.textContent = '? Tutup';
+                        closeBtn.textContent = 'Γ£ò Tutup';
                         closeBtn.disabled = false;
                         closeBtn.style.cssText = 'background:#10b981;color:#fff;border:none;border-radius:50px;padding:8px 20px;font-weight:800;font-size:12px;cursor:pointer;transition:all 0.3s;';
                     } else {
@@ -503,8 +503,8 @@ const getDirectImgUrl = (url) => {
             const [messages, setMessages] = useState([{
                 sender: 'robot',
                 text: userRole === 'admin'
-                    ? `Halo Admin! ?? Saya Asisten Pintar ${identity?.name || 'Arisan RT'}.\n\nSaya memahami semua fitur, logika, dan kalkulasi sistem. Pilih mode panduan yang Anda butuhkan:`
-                    : `Halo Warga ${identity?.name || 'RT'}! ??\n\nSaya siap menjelaskan cara membaca data arisan, iuran, kas, dan semua informasi di aplikasi ini dengan bahasa yang mudah dipahami. Silakan pilih topik:`
+                    ? `Halo Admin! ≡ƒæï Saya Asisten Pintar ${identity?.name || 'Arisan RT'}.\n\nSaya memahami semua fitur, logika, dan kalkulasi sistem. Pilih mode panduan yang Anda butuhkan:`
+                    : `Halo Warga ${identity?.name || 'RT'}! ≡ƒæï\n\nSaya siap menjelaskan cara membaca data arisan, iuran, kas, dan semua informasi di aplikasi ini dengan bahasa yang mudah dipahami. Silakan pilih topik:`
             }]);
             const messagesEndRef = useRef(null);
             const [inputText, setInputText] = useState('');
@@ -531,77 +531,77 @@ const getDirectImgUrl = (url) => {
             };
 
             // ================================================================
-            // KNOWLEDGE BASE ADMIN � teknis, fitur, kalkulasi sistem
+            // KNOWLEDGE BASE ADMIN ΓÇö teknis, fitur, kalkulasi sistem
             // ================================================================
             const kbAdmin = {
                 warga: {
-                    label: '?? Menu Warga', icon: 'group',
-                    intro: 'Menu Warga adalah pusat data seluruh anggota � nama, program, status, dan tunggakan.',
+                    label: '≡ƒæÑ Menu Warga', icon: 'group',
+                    intro: 'Menu Warga adalah pusat data seluruh anggota ΓÇö nama, program, status, dan tunggakan.',
                     topics: [
-                        { label: 'Program Keikutsertaan', answer: `Ada 2 jenis program warga:\n\n1?? Full (Arisan & Iuran) � ikut arisan bulanan DAN iuran umum. Muncul di Absen Arisan.\n\n2?? Hanya Iuran Umum � tidak ikut arisan, tapi tetap kena tagihan Iuran Umum.\n\nPilih sesuai kesepakatan saat mendaftar.` },
-                        { label: 'Status Warga (3 jenis)', answer: `?? Aktif � ikut semua kewajiban.\n\n? Meninggal / Wafat � bebas arisan, TETAP wajib jimpitan Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}. Kartu di Absen otomatis abu-abu.\n\n?? Nonaktif / Pindah � sama seperti Meninggal, bebas arisan.\n\nUbah status lewat tombol Edit di daftar warga.` },
+                        { label: 'Program Keikutsertaan', answer: `Ada 2 jenis program warga:\n\n1∩╕ÅΓâú Full (Arisan & Iuran) ΓÇö ikut arisan bulanan DAN iuran umum. Muncul di Absen Arisan.\n\n2∩╕ÅΓâú Hanya Iuran Umum ΓÇö tidak ikut arisan, tapi tetap kena tagihan Iuran Umum.\n\nPilih sesuai kesepakatan saat mendaftar.` },
+                        { label: 'Status Warga (3 jenis)', answer: `≡ƒƒó Aktif ΓÇö ikut semua kewajiban.\n\nΓÜ½ Meninggal / Wafat ΓÇö bebas arisan, TETAP wajib jimpitan Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}. Kartu di Absen otomatis abu-abu.\n\n≡ƒöÿ Nonaktif / Pindah ΓÇö sama seperti Meninggal, bebas arisan.\n\nUbah status lewat tombol Edit di daftar warga.` },
                         { label: 'Tunggakan Warga', answer: `Tunggakan timbul otomatis saat warga Alfa atau Musibah.\n\nBesaran = Arisan + Jimpitan = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} per bulan absen.\n\nLunas saat warga hadir + centang "Lunasi Tunggakan?" di form Absen.` },
-                        { label: 'Rapor Merah vs Musibah', answer: `?? Rapor Merah (Alfa) � tidak hadir tanpa alasan. Dapat tanda merah di dashboard.\n\n?? Musibah � berhalangan karena alasan valid (sakit, musibah). Punya tunggakan tapi TIDAK dapat rapor merah.\n\nMusibah = toleransi, Alfa = peringatan.` },
-                        { label: 'Tambah / Edit / Hapus Warga', answer: `? Tambah � isi nama, program, status. Nama harus unik karena jadi identifikasi di absensi.\n\n?? Edit � ubah data termasuk status dan koreksi tunggakan manual.\n\n??? Hapus � ada konfirmasi. Tidak bisa dipulihkan.` }
+                        { label: 'Rapor Merah vs Musibah', answer: `≡ƒö┤ Rapor Merah (Alfa) ΓÇö tidak hadir tanpa alasan. Dapat tanda merah di dashboard.\n\n≡ƒƒí Musibah ΓÇö berhalangan karena alasan valid (sakit, musibah). Punya tunggakan tapi TIDAK dapat rapor merah.\n\nMusibah = toleransi, Alfa = peringatan.` },
+                        { label: 'Tambah / Edit / Hapus Warga', answer: `Γ₧ò Tambah ΓÇö isi nama, program, status. Nama harus unik karena jadi identifikasi di absensi.\n\nΓ£Å∩╕Å Edit ΓÇö ubah data termasuk status dan koreksi tunggakan manual.\n\n≡ƒùæ∩╕Å Hapus ΓÇö ada konfirmasi. Tidak bisa dipulihkan.` }
                     ]
                 },
                 pertemuan: {
-                    label: '??? Absen Arisan', icon: 'how_to_reg',
-                    intro: 'Form absen 3 langkah: konfirmasi periode ? catat kehadiran ? pilih pemenang.',
+                    label: '≡ƒùô∩╕Å Absen Arisan', icon: 'how_to_reg',
+                    intro: 'Form absen 3 langkah: konfirmasi periode ΓåÆ catat kehadiran ΓåÆ pilih pemenang.',
                     topics: [
-                        { label: 'Alur 3 Langkah', answer: `Step 1 � Konfirmasi periode & tanggal.\nStep 2 � Klik status tiap warga: Hadir / Musibah / Alfa. Warga Meninggal/Nonaktif otomatis abu-abu.\nStep 3 � Pilih pemenang dari daftar eligible (belum pernah menang siklus ini).` },
-                        { label: 'Kalkulasi Kas Arisan', answer: `Kas Arisan = (Jumlah Hadir � Rp ${(nominalArisan||10000).toLocaleString('id-ID')}) - 1 nominal pemenang (karena pemenang tidak bayar ke diri sendiri).\n\nContoh 10 orang hadir: Rp ${(10*(nominalArisan||10000)).toLocaleString('id-ID')} - Rp ${(nominalArisan||10000).toLocaleString('id-ID')} = Rp ${(9*(nominalArisan||10000)).toLocaleString('id-ID')} diserahkan ke pemenang.` },
+                        { label: 'Alur 3 Langkah', answer: `Step 1 ΓÇö Konfirmasi periode & tanggal.\nStep 2 ΓÇö Klik status tiap warga: Hadir / Musibah / Alfa. Warga Meninggal/Nonaktif otomatis abu-abu.\nStep 3 ΓÇö Pilih pemenang dari daftar eligible (belum pernah menang siklus ini).` },
+                        { label: 'Kalkulasi Kas Arisan', answer: `Kas Arisan = (Jumlah Hadir ├ù Rp ${(nominalArisan||10000).toLocaleString('id-ID')}) ΓêÆ 1 nominal pemenang (karena pemenang tidak bayar ke diri sendiri).\n\nContoh 10 orang hadir: Rp ${(10*(nominalArisan||10000)).toLocaleString('id-ID')} ΓêÆ Rp ${(nominalArisan||10000).toLocaleString('id-ID')} = Rp ${(9*(nominalArisan||10000)).toLocaleString('id-ID')} diserahkan ke pemenang.` },
                         { label: 'Kalkulasi Kas Jimpitan', answer: `Hadir = +Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} masuk jimpitan.\nAlfa/Musibah = warga tidak setor, tapi kekurangan untuk pemenang ditalangi dari jimpitan.\nMeninggal/Nonaktif hadir = +Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} jimpitan saja.` },
-                        { label: 'Sistem Talangan', answer: `Warga Alfa/Musibah ? uang arisan untuk pemenang tetap full, ditambal dari Kas Jimpitan sementara.\nWarga tercatat tunggakan Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')}.\nSaat hadir + centang lunasi ? tunggakan terhapus, kas jimpitan dipulihkan.` },
-                        { label: 'Libur & Siklus Baru', answer: `Libur: klik "Tandai Libur" di Step 1 ? periode lanjut, putaran tidak berubah.\n\nSiklus Baru: semua warga sudah pernah menang ? muncul opsi reset. Siklus ke-${cycleNumber||1} saat ini, putaran ke-${currentRound||1}.` }
+                        { label: 'Sistem Talangan', answer: `Warga Alfa/Musibah ΓåÆ uang arisan untuk pemenang tetap full, ditambal dari Kas Jimpitan sementara.\nWarga tercatat tunggakan Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')}.\nSaat hadir + centang lunasi ΓåÆ tunggakan terhapus, kas jimpitan dipulihkan.` },
+                        { label: 'Libur & Siklus Baru', answer: `Libur: klik "Tandai Libur" di Step 1 ΓåÆ periode lanjut, putaran tidak berubah.\n\nSiklus Baru: semua warga sudah pernah menang ΓåÆ muncul opsi reset. Siklus ke-${cycleNumber||1} saat ini, putaran ke-${currentRound||1}.` }
                     ]
                 },
                 kas: {
-                    label: '?? Buku Kas RT', icon: 'account_balance_wallet',
+                    label: '≡ƒÆ░ Buku Kas RT', icon: 'account_balance_wallet',
                     intro: 'Catatan keuangan Kas RT Utama. Terpisah dari Kas Jimpitan.',
                     topics: [
-                        { label: 'Kategori Transaksi', answer: `?? Pemasukan: Iuran Opsional, Donasi, Pemasukan Jasa, Lain-lain.\n?? Pengeluaran: Belanja Barang/Alat, Honor Jasa, Konsumsi, Bantuan Sosial, Lain-lain.\n\nSetiap transaksi wajib ada keterangan agar mudah diaudit.` },
+                        { label: 'Kategori Transaksi', answer: `≡ƒôÑ Pemasukan: Iuran Opsional, Donasi, Pemasukan Jasa, Lain-lain.\n≡ƒôñ Pengeluaran: Belanja Barang/Alat, Honor Jasa, Konsumsi, Bantuan Sosial, Lain-lain.\n\nSetiap transaksi wajib ada keterangan agar mudah diaudit.` },
                         { label: 'Tarik Kas Jimpitan', answer: `Dana jimpitan bisa dicairkan ke Kas RT via tombol "Tarik Kas Jimpitan".\n\nMaksimal tarik = saldo jimpitan saat ini: Rp ${(jimpitanBalance||0).toLocaleString('id-ID')}.\n\nJika transaksi ini dihapus, saldo jimpitan otomatis dikembalikan.` },
                         { label: 'Guard Saldo Negatif', answer: `Sistem TIDAK mengizinkan pengeluaran melebihi saldo kas.\n\nJika nominal > saldo, muncul pesan error dan transaksi dibatalkan. Saldo RT saat ini: Rp ${(kasRtBalance||0).toLocaleString('id-ID')}.` }
                     ]
                 },
                 iuran: {
-                    label: '?? Iuran Umum', icon: 'volunteer_activism',
-                    intro: 'Tagihan khusus di luar arisan � dana kemerdekaan, pembangunan, dll.',
+                    label: '≡ƒñ¥ Iuran Umum', icon: 'volunteer_activism',
+                    intro: 'Tagihan khusus di luar arisan ΓÇö dana kemerdekaan, pembangunan, dll.',
                     topics: [
-                        { label: 'Cara Kerja Iuran', answer: `Admin buat agenda ? isi nominal yang dibayar tiap warga ? warga hanya lihat LUNAS/BELUM LUNAS (nominal privat).\n\nSetelah rekap tersimpan, admin bisa setor ke Kas RT Utama.` },
+                        { label: 'Cara Kerja Iuran', answer: `Admin buat agenda ΓåÆ isi nominal yang dibayar tiap warga ΓåÆ warga hanya lihat LUNAS/BELUM LUNAS (nominal privat).\n\nSetelah rekap tersimpan, admin bisa setor ke Kas RT Utama.` },
                         { label: 'Validasi Sebelum Setor', answer: `Tombol "Setor ke Kas" akan diblokir jika admin belum klik "Simpan Rekap Warga" dulu.\n\nIni mencegah perbedaan antara data yang tampil dan yang benar-benar disetor.` },
                         { label: 'Hapus Agenda', answer: `Ada dialog konfirmasi 2 langkah sebelum hapus.\n\nSemua data pembayaran warga ikut terhapus. Dana yang sudah disetor ke kas TETAP ada di Buku Kas.` }
                     ]
                 },
                 laporan: {
-                    label: '?? Laporan & Revisi', icon: 'analytics',
-                    intro: 'Riwayat historis semua pertemuan arisan � kas, talangan, saldo per bulan.',
+                    label: '≡ƒôï Laporan & Revisi', icon: 'analytics',
+                    intro: 'Riwayat historis semua pertemuan arisan ΓÇö kas, talangan, saldo per bulan.',
                     topics: [
                         { label: 'Kolom Laporan', answer: `Setiap baris laporan menampilkan: Periode, Putaran, Pemenang, Kas Arisan Terkumpul, Kas Jimpitan Masuk, Talangan, Tunggakan Baru, Total Tunggakan Akhir, dan Saldo Akhir Jimpitan.` },
-                        { label: 'Revisi Absensi', answer: `Klik ikon Edit di baris laporan ? ubah status warga ? Simpan.\n\nSistem otomatis hitung ulang: saldo jimpitan, tunggakan warga, kasArisan (jika pemenang berubah), dan saldoAkhirJimpitan di record tersebut.\n\nWarga Meninggal/Nonaktif tidak bisa diubah statusnya.` }
+                        { label: 'Revisi Absensi', answer: `Klik ikon Edit di baris laporan ΓåÆ ubah status warga ΓåÆ Simpan.\n\nSistem otomatis hitung ulang: saldo jimpitan, tunggakan warga, kasArisan (jika pemenang berubah), dan saldoAkhirJimpitan di record tersebut.\n\nWarga Meninggal/Nonaktif tidak bisa diubah statusnya.` }
                     ]
                 },
                 dashboard: {
-                    label: '?? Dashboard', icon: 'dashboard',
-                    intro: 'Ringkasan kondisi arisan RT � saldo, tunggakan, putaran saat ini.',
+                    label: '≡ƒôè Dashboard', icon: 'dashboard',
+                    intro: 'Ringkasan kondisi arisan RT ΓÇö saldo, tunggakan, putaran saat ini.',
                     topics: [
                         { label: 'Saldo Efektif Jimpitan', answer: `Saldo Efektif = Saldo Tunai + Total Piutang (tunggakan seluruh warga).\n\nIni menggambarkan total aset jimpitan secara riil. Saldo tunai jimpitan saat ini: Rp ${(jimpitanBalance||0).toLocaleString('id-ID')}.` },
                         { label: 'Rapor Merah di Dashboard', answer: `Badge merah menunjukkan jumlah warga yang punya tunggakan dari status Alfa (absen tanpa alasan).\n\nMusibah tidak ikut hitungan rapor merah meski ada tunggakan.` }
                     ]
                 },
                 pengaturan: {
-                    label: '?? Pengaturan', icon: 'settings',
+                    label: 'ΓÜÖ∩╕Å Pengaturan', icon: 'settings',
                     intro: 'Konfigurasi sistem: nominal, identitas, koreksi saldo, PIN, reset.',
                     topics: [
                         { label: 'Nominal Arisan & Jimpitan', answer: `Arisan: Rp ${(nominalArisan||10000).toLocaleString('id-ID')} | Jimpitan: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}.\n\nPerubahan berlaku mulai pertemuan berikutnya. Riwayat lama tetap memakai nominal lama.` },
                         { label: 'Koreksi Saldo Manual', answer: `Kas RT: perbedaan dicatat otomatis sebagai transaksi "Penyesuaian Saldo Awal" di Buku Kas.\nJimpitan: langsung ubah tanpa entry transaksi.\n\nGunakan jika ada perbedaan antara sistem dan uang fisik.` },
                         { label: 'Kalibrasi Putaran & Siklus', answer: `Koreksi nomor putaran dan siklus jika ada kesalahan (misal migrasi dari sistem lama).\n\nPutaran saat ini: ${currentRound||1} | Siklus: ${cycleNumber||1}.` },
-                        { label: 'Factory Reset', answer: `Menghapus SEMUA data: warga, riwayat, saldo, iuran, galeri, inventaris.\n\nKetik "RESET" untuk konfirmasi. ?? TIDAK BISA DIBATALKAN. PIN admin tetap tidak berubah agar admin masih bisa login setelah reset.` }
+                        { label: 'Factory Reset', answer: `Menghapus SEMUA data: warga, riwayat, saldo, iuran, galeri, inventaris.\n\nKetik "RESET" untuk konfirmasi. ΓÜá∩╕Å TIDAK BISA DIBATALKAN. PIN admin tetap tidak berubah agar admin masih bisa login setelah reset.` }
                     ]
                 },
                 infaq_inventaris: {
-                    label: '?? Infaq & Inventaris', icon: 'inventory_2',
+                    label: '≡ƒôª Infaq & Inventaris', icon: 'inventory_2',
                     intro: 'Kelola data Infaq, barang inventaris, dan status peminjaman.',
                     topics: [
                         { label: 'Sistem Infaq Warga', answer: `Infaq dikelola terpisah dari Kas RT dan Jimpitan.\n\nSaat ini ada ${infaqData?.filter(i => i.status === 'PENDING').length || 0} donasi Infaq yang menunggu persetujuan (PENDING). Total donasi disetujui: Rp ${(infaqData?.filter(i => i.status === 'APPROVED').reduce((sum, i) => sum + parseInt(i.nominal || 0), 0) || 0).toLocaleString('id-ID')}.` },
@@ -611,140 +611,140 @@ const getDirectImgUrl = (url) => {
             };
 
             // ================================================================
-            // KNOWLEDGE BASE WARGA � bahasa awam, cara baca data
+            // KNOWLEDGE BASE WARGA ΓÇö bahasa awam, cara baca data
             // ================================================================
             const kbWarga = {
                 arisan: {
-                    label: '?? Cara Baca Arisan', icon: 'emoji_events',
+                    label: '≡ƒÅå Cara Baca Arisan', icon: 'emoji_events',
                     intro: 'Penjelasan lengkap tentang sistem arisan, bagaimana uang dihitung, dan apa artinya setiap data yang tampil.',
                     topics: [
                         {
                             label: 'Apa itu Arisan RT ini?',
-                            answer: `Arisan RT adalah kegiatan kumpul-kumpul uang rutin setiap bulan. Setiap anggota membayar iuran arisan sebesar Rp ${(nominalArisan||10000).toLocaleString('id-ID')} per pertemuan.\n\nUang dari semua anggota dikumpulkan, lalu diundi � satu orang beruntung mendapatkan semua uang tersebut bulan itu.\n\nSetiap orang akan mendapat giliran menang TEPAT 1 kali per siklus, jadi tidak ada yang dirugikan. Setelah semua mendapat giliran, siklus baru dimulai lagi dari awal.`
+                            answer: `Arisan RT adalah kegiatan kumpul-kumpul uang rutin setiap bulan. Setiap anggota membayar iuran arisan sebesar Rp ${(nominalArisan||10000).toLocaleString('id-ID')} per pertemuan.\n\nUang dari semua anggota dikumpulkan, lalu diundi ΓÇö satu orang beruntung mendapatkan semua uang tersebut bulan itu.\n\nSetiap orang akan mendapat giliran menang TEPAT 1 kali per siklus, jadi tidak ada yang dirugikan. Setelah semua mendapat giliran, siklus baru dimulai lagi dari awal.`
                         },
                         {
                             label: 'Berapa uang yang diterima pemenang?',
-                            answer: `Pemenang menerima uang dari semua anggota yang hadir, MINUS bagian dirinya sendiri � karena tidak masuk akal seseorang membayar ke dirinya sendiri.\n\nContoh mudah:\n� Ada 10 anggota hadir, iuran Rp ${(nominalArisan||10000).toLocaleString('id-ID')} per orang\n� Total terkumpul = 10 � Rp ${(nominalArisan||10000).toLocaleString('id-ID')} = Rp ${(10*(nominalArisan||10000)).toLocaleString('id-ID')}\n� Pemenang hadir ? menerima Rp ${(9*(nominalArisan||10000)).toLocaleString('id-ID')} (9 orang lainnya)\n\nIni bukan pengurangan � ini cara menghitung yang benar dan jujur agar uang fisik yang diserahkan ke pemenang cocok dengan yang ada di tangan.`
+                            answer: `Pemenang menerima uang dari semua anggota yang hadir, MINUS bagian dirinya sendiri ΓÇö karena tidak masuk akal seseorang membayar ke dirinya sendiri.\n\nContoh mudah:\nΓÇó Ada 10 anggota hadir, iuran Rp ${(nominalArisan||10000).toLocaleString('id-ID')} per orang\nΓÇó Total terkumpul = 10 ├ù Rp ${(nominalArisan||10000).toLocaleString('id-ID')} = Rp ${(10*(nominalArisan||10000)).toLocaleString('id-ID')}\nΓÇó Pemenang hadir ΓåÆ menerima Rp ${(9*(nominalArisan||10000)).toLocaleString('id-ID')} (9 orang lainnya)\n\nIni bukan pengurangan ΓÇö ini cara menghitung yang benar dan jujur agar uang fisik yang diserahkan ke pemenang cocok dengan yang ada di tangan.`
                         },
                         {
                             label: 'Kenapa ada "Pemenang" di menu?',
-                            answer: `Menu Pemenang menampilkan daftar siapa saja yang SUDAH mendapat giliran menang di siklus yang sedang berjalan.\n\nAnda bisa cek:\n� Siapa sudah menang di putaran berapa\n� Siapa yang belum mendapat giliran\n\nJika nama Anda belum ada di daftar, berarti Anda masih punya kesempatan menang di bulan-bulan mendatang. Sabar ya! ??`
+                            answer: `Menu Pemenang menampilkan daftar siapa saja yang SUDAH mendapat giliran menang di siklus yang sedang berjalan.\n\nAnda bisa cek:\nΓÇó Siapa sudah menang di putaran berapa\nΓÇó Siapa yang belum mendapat giliran\n\nJika nama Anda belum ada di daftar, berarti Anda masih punya kesempatan menang di bulan-bulan mendatang. Sabar ya! ≡ƒÿè`
                         },
                         {
                             label: 'Apa itu Putaran dan Siklus?',
-                            answer: `?? Putaran = urutan pertemuan arisan.\nPutaran 1 = pertemuan pertama, putaran 2 = pertemuan kedua, dst.\n\n?? Siklus = satu "babak" penuh sampai semua anggota mendapat giliran menang.\n\nContoh: jika ada 12 anggota arisan, satu siklus = 12 putaran (� 12 bulan). Setelah semua dapat giliran, masuk Siklus baru.\n\nSaat ini: Siklus ke-${cycleNumber||1}, Putaran ke-${currentRound||1}.`
+                            answer: `≡ƒöä Putaran = urutan pertemuan arisan.\nPutaran 1 = pertemuan pertama, putaran 2 = pertemuan kedua, dst.\n\n≡ƒöü Siklus = satu "babak" penuh sampai semua anggota mendapat giliran menang.\n\nContoh: jika ada 12 anggota arisan, satu siklus = 12 putaran (Γëê 12 bulan). Setelah semua dapat giliran, masuk Siklus baru.\n\nSaat ini: Siklus ke-${cycleNumber||1}, Putaran ke-${currentRound||1}.`
                         },
                         {
                             label: 'Apa itu Arsip Riwayat?',
-                            answer: `Arsip Riwayat (menu "Arsip Riwayat" di beranda) adalah catatan historis semua pertemuan arisan yang sudah selesai.\n\nDi sana Anda bisa melihat:\n� Siapa pemenang tiap bulan\n� Berapa kas yang terkumpul\n� Saldo kas jimpitan akhir tiap bulan\n\nData ini TIDAK bisa dimanipulasi oleh siapapun setelah tersimpan, kecuali ada revisi resmi oleh admin dengan alasan yang jelas.`
+                            answer: `Arsip Riwayat (menu "Arsip Riwayat" di beranda) adalah catatan historis semua pertemuan arisan yang sudah selesai.\n\nDi sana Anda bisa melihat:\nΓÇó Siapa pemenang tiap bulan\nΓÇó Berapa kas yang terkumpul\nΓÇó Saldo kas jimpitan akhir tiap bulan\n\nData ini TIDAK bisa dimanipulasi oleh siapapun setelah tersimpan, kecuali ada revisi resmi oleh admin dengan alasan yang jelas.`
                         }
                     ]
                 },
                 jimpitan: {
-                    label: '?? Memahami Kas Jimpitan', icon: 'savings',
+                    label: '≡ƒÆ░ Memahami Kas Jimpitan', icon: 'savings',
                     intro: 'Apa itu jimpitan, mengapa ada dua kas, dan bagaimana cara membacanya.',
                     topics: [
                         {
                             label: 'Apa itu Jimpitan?',
-                            answer: `Jimpitan adalah iuran kecil yang dikumpulkan setiap pertemuan arisan, terpisah dari uang arisan.\n\nBesarnya: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} per anggota per pertemuan.\n\nUang jimpitan TIDAK diundi � dikumpulkan terus sebagai "tabungan bersama" RT yang bisa dipakai untuk keperluan operasional, membantu warga yang kesulitan, atau ditransfer ke Kas RT jika diperlukan.`
+                            answer: `Jimpitan adalah iuran kecil yang dikumpulkan setiap pertemuan arisan, terpisah dari uang arisan.\n\nBesarnya: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} per anggota per pertemuan.\n\nUang jimpitan TIDAK diundi ΓÇö dikumpulkan terus sebagai "tabungan bersama" RT yang bisa dipakai untuk keperluan operasional, membantu warga yang kesulitan, atau ditransfer ke Kas RT jika diperlukan.`
                         },
                         {
                             label: 'Bedanya Kas Jimpitan dan Kas RT?',
-                            answer: `Ada DUA kantong uang di sistem ini:\n\n?? Kas Jimpitan � uang dari iuran kehadiran bulanan. Ini uang hasil gotong royong murni dari warga.\n\n?? Kas RT Utama � uang operasional RT yang lebih besar. Bisa berasal dari pencairan jimpitan, iuran umum, sumbangan, dll.\n\nAdmin bisa memindahkan sebagian jimpitan ke Kas RT jika ada kebutuhan mendesak. Semua perpindahan uang tercatat di Buku Kas.`
+                            answer: `Ada DUA kantong uang di sistem ini:\n\n≡ƒƒª Kas Jimpitan ΓÇö uang dari iuran kehadiran bulanan. Ini uang hasil gotong royong murni dari warga.\n\n≡ƒƒ⌐ Kas RT Utama ΓÇö uang operasional RT yang lebih besar. Bisa berasal dari pencairan jimpitan, iuran umum, sumbangan, dll.\n\nAdmin bisa memindahkan sebagian jimpitan ke Kas RT jika ada kebutuhan mendesak. Semua perpindahan uang tercatat di Buku Kas.`
                         },
                         {
                             label: 'Apa itu "Saldo Efektif"?',
-                            answer: `Di Ringkasan (Dashboard) ada tampilan "Saldo Efektif Jimpitan".\n\nIni bukan hanya uang tunai yang ada � ini gabungan dari:\n? Saldo tunai yang ada di kas jimpitan\n? Total tunggakan semua warga (uang yang masih "di dalam" warga)\n\nContoh: saldo tunai Rp 50.000, ada warga dengan tunggakan Rp 20.000 ? Saldo Efektif = Rp 70.000.\n\nIni memberikan gambaran total aset jimpitan yang sesungguhnya.`
+                            answer: `Di Ringkasan (Dashboard) ada tampilan "Saldo Efektif Jimpitan".\n\nIni bukan hanya uang tunai yang ada ΓÇö ini gabungan dari:\nΓ£à Saldo tunai yang ada di kas jimpitan\nΓ£à Total tunggakan semua warga (uang yang masih "di dalam" warga)\n\nContoh: saldo tunai Rp 50.000, ada warga dengan tunggakan Rp 20.000 ΓåÆ Saldo Efektif = Rp 70.000.\n\nIni memberikan gambaran total aset jimpitan yang sesungguhnya.`
                         },
                         {
                             label: 'Apa itu Talangan?',
-                            answer: `"Talangan" terjadi saat ada warga yang tidak hadir (Alfa atau Musibah).\n\nKarena pemenang harus tetap menerima uang penuh, kekurangan dari warga yang absen itu "dipinjam sementara" dari Kas Jimpitan.\n\nNanti saat warga yang absen itu hadir kembali dan melunasi tunggakannya, uang kembali masuk ke kas jimpitan.\n\nJadi sistem ini adil � pemenang tidak dirugikan, dan warga yang absen wajib bayar di bulan berikutnya.`
+                            answer: `"Talangan" terjadi saat ada warga yang tidak hadir (Alfa atau Musibah).\n\nKarena pemenang harus tetap menerima uang penuh, kekurangan dari warga yang absen itu "dipinjam sementara" dari Kas Jimpitan.\n\nNanti saat warga yang absen itu hadir kembali dan melunasi tunggakannya, uang kembali masuk ke kas jimpitan.\n\nJadi sistem ini adil ΓÇö pemenang tidak dirugikan, dan warga yang absen wajib bayar di bulan berikutnya.`
                         }
                     ]
                 },
                 tunggakan: {
-                    label: '?? Tunggakan Saya', icon: 'warning',
+                    label: 'ΓÜá∩╕Å Tunggakan Saya', icon: 'warning',
                     intro: 'Penjelasan kenapa bisa ada tunggakan, apa artinya, dan bagaimana cara melunasinya.',
                     topics: [
                         {
                             label: 'Kenapa saya punya tunggakan?',
-                            answer: `Tunggakan timbul otomatis jika Anda tidak hadir di pertemuan arisan, baik karena:\n� Alfa (tidak hadir tanpa alasan) ??\n� Musibah (berhalangan: sakit, keluarga, dll) ??\n\nBesaran tunggakan = Rp ${(nominalArisan||10000).toLocaleString('id-ID')} (arisan) + Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} (jimpitan) = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} per bulan absen.\n\nIni bukan denda � ini adalah kewajiban yang tertunda yang harus dibayar di pertemuan berikutnya.`
+                            answer: `Tunggakan timbul otomatis jika Anda tidak hadir di pertemuan arisan, baik karena:\nΓÇó Alfa (tidak hadir tanpa alasan) ≡ƒö┤\nΓÇó Musibah (berhalangan: sakit, keluarga, dll) ≡ƒƒí\n\nBesaran tunggakan = Rp ${(nominalArisan||10000).toLocaleString('id-ID')} (arisan) + Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} (jimpitan) = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} per bulan absen.\n\nIni bukan denda ΓÇö ini adalah kewajiban yang tertunda yang harus dibayar di pertemuan berikutnya.`
                         },
                         {
                             label: 'Bagaimana cara melunasi?',
-                            answer: `Cara melunasi tunggakan sangat mudah:\n\n1?? Hadir di pertemuan arisan bulan berikutnya\n2?? Bayar iuran seperti biasa\n3?? Beritahu admin bahwa Anda ingin melunasi tunggakan\n4?? Admin akan mencentang "Lunasi Tunggakan?" di kartu absen Anda\n\nSetelah itu, tunggakan Anda otomatis terhapus dari sistem dan saldo bersih kembali.`
+                            answer: `Cara melunasi tunggakan sangat mudah:\n\n1∩╕ÅΓâú Hadir di pertemuan arisan bulan berikutnya\n2∩╕ÅΓâú Bayar iuran seperti biasa\n3∩╕ÅΓâú Beritahu admin bahwa Anda ingin melunasi tunggakan\n4∩╕ÅΓâú Admin akan mencentang "Lunasi Tunggakan?" di kartu absen Anda\n\nSetelah itu, tunggakan Anda otomatis terhapus dari sistem dan saldo bersih kembali.`
                         },
                         {
                             label: 'Apa bedanya "Rapor Merah" dan Musibah?',
-                            answer: `?? Rapor Merah (dari Alfa) � Anda tidak hadir TANPA alasan yang jelas. Nama Anda akan tampil di tanda merah di daftar warga.\n\n?? Musibah � Anda tidak hadir karena halangan yang valid (sakit keras, keluarga meninggal, bencana, dll). Admin memberi toleransi � Anda punya tunggakan tapi TIDAK mendapat rapor merah.\n\nKeduanya harus dilunasi, tapi Musibah diperlakukan dengan lebih manusiawi.`
+                            answer: `≡ƒö┤ Rapor Merah (dari Alfa) ΓÇö Anda tidak hadir TANPA alasan yang jelas. Nama Anda akan tampil di tanda merah di daftar warga.\n\n≡ƒƒí Musibah ΓÇö Anda tidak hadir karena halangan yang valid (sakit keras, keluarga meninggal, bencana, dll). Admin memberi toleransi ΓÇö Anda punya tunggakan tapi TIDAK mendapat rapor merah.\n\nKeduanya harus dilunasi, tapi Musibah diperlakukan dengan lebih manusiawi.`
                         },
                         {
                             label: 'Bagaimana jika saya meninggal atau pindah?',
-                            answer: `Jika status warga diubah admin menjadi "Meninggal / Wafat" atau "Nonaktif / Pindah":\n\n? Bebas dari kewajiban iuran arisan\n? Tidak lagi masuk undian pemenang\n?? Masih dicatat untuk jimpitan jika masih hadir\n\nAdmin akan memperbarui status tersebut berdasarkan informasi yang diterima. Hubungi admin RT untuk pembaruan data.`
+                            answer: `Jika status warga diubah admin menjadi "Meninggal / Wafat" atau "Nonaktif / Pindah":\n\nΓ£à Bebas dari kewajiban iuran arisan\nΓ£à Tidak lagi masuk undian pemenang\n≡ƒö╡ Masih dicatat untuk jimpitan jika masih hadir\n\nAdmin akan memperbarui status tersebut berdasarkan informasi yang diterima. Hubungi admin RT untuk pembaruan data.`
                         }
                     ]
                 },
                 iuran: {
-                    label: '?? Cara Baca Iuran Umum', icon: 'volunteer_activism',
+                    label: '≡ƒñ¥ Cara Baca Iuran Umum', icon: 'volunteer_activism',
                     intro: 'Memahami apa itu Iuran Umum dan kenapa status Anda LUNAS atau BELUM LUNAS.',
                     topics: [
                         {
                             label: 'Apa itu Iuran Umum?',
-                            answer: `Iuran Umum adalah tagihan khusus di luar arisan rutin � misalnya:\n� Dana Peringatan 17 Agustus\n� Sumbangan Pembangunan Masjid/Mushola\n� Kas Sosial Warga\n� Dana Darurat Bencana\n\nSetiap agenda iuran punya judul, nominal minimum, dan tenggat waktu yang ditetapkan admin.`
+                            answer: `Iuran Umum adalah tagihan khusus di luar arisan rutin ΓÇö misalnya:\nΓÇó Dana Peringatan 17 Agustus\nΓÇó Sumbangan Pembangunan Masjid/Mushola\nΓÇó Kas Sosial Warga\nΓÇó Dana Darurat Bencana\n\nSetiap agenda iuran punya judul, nominal minimum, dan tenggat waktu yang ditetapkan admin.`
                         },
                         {
                             label: 'Kenapa saya hanya lihat LUNAS/BELUM?',
-                            answer: `Ini adalah fitur PRIVASI yang disengaja.\n\nSistem menjaga kerahasiaan besaran donasi tiap warga � karena kemampuan finansial setiap orang berbeda. Anda hanya melihat status LUNAS jika nominal Anda sudah memenuhi minimum yang ditetapkan.\n\nHanya Admin yang tahu nominal persis masing-masing warga. Sesama warga TIDAK bisa melihat berapa yang dibayar orang lain.`
+                            answer: `Ini adalah fitur PRIVASI yang disengaja.\n\nSistem menjaga kerahasiaan besaran donasi tiap warga ΓÇö karena kemampuan finansial setiap orang berbeda. Anda hanya melihat status LUNAS jika nominal Anda sudah memenuhi minimum yang ditetapkan.\n\nHanya Admin yang tahu nominal persis masing-masing warga. Sesama warga TIDAK bisa melihat berapa yang dibayar orang lain.`
                         },
                         {
                             label: 'Bagaimana cara lapor ke admin?',
-                            answer: `Jika Anda sudah membayar iuran tapi status masih "BELUM LUNAS":\n\n1?? Hubungi admin RT langsung\n2?? Tunjukkan bukti pembayaran\n3?? Admin akan memperbarui data di sistem\n\nAdmin perlu mengklik "Simpan Rekap Warga" agar perubahan tersimpan ke server.`
+                            answer: `Jika Anda sudah membayar iuran tapi status masih "BELUM LUNAS":\n\n1∩╕ÅΓâú Hubungi admin RT langsung\n2∩╕ÅΓâú Tunjukkan bukti pembayaran\n3∩╕ÅΓâú Admin akan memperbarui data di sistem\n\nAdmin perlu mengklik "Simpan Rekap Warga" agar perubahan tersimpan ke server.`
                         }
                     ]
                 },
                 kas: {
-                    label: '?? Cara Baca Kas RT', icon: 'account_balance_wallet',
-                    intro: 'Memahami laporan keuangan RT � dari mana uang masuk, ke mana uang keluar.',
+                    label: '≡ƒôû Cara Baca Kas RT', icon: 'account_balance_wallet',
+                    intro: 'Memahami laporan keuangan RT ΓÇö dari mana uang masuk, ke mana uang keluar.',
                     topics: [
                         {
                             label: 'Apa yang terlihat di menu Kas RT?',
-                            answer: `Di menu "Kas RT" Anda bisa melihat:\n\n?? Saldo kas RT saat ini\n?? Riwayat semua pemasukan dan pengeluaran\n\nPermasukan bisa berasal dari: iuran opsional, donasi warga, pencairan jimpitan, hasil iuran umum.\n\nPengeluaran bisa untuk: belanja alat, konsumsi rapat, bantuan sosial, honor petugas, dll.`
+                            answer: `Di menu "Kas RT" Anda bisa melihat:\n\n≡ƒôè Saldo kas RT saat ini\n≡ƒôï Riwayat semua pemasukan dan pengeluaran\n\nPermasukan bisa berasal dari: iuran opsional, donasi warga, pencairan jimpitan, hasil iuran umum.\n\nPengeluaran bisa untuk: belanja alat, konsumsi rapat, bantuan sosial, honor petugas, dll.`
                         },
                         {
                             label: 'Apakah warga bisa tambah/hapus data?',
-                            answer: `Tidak. Warga hanya bisa MELIHAT riwayat transaksi.\n\nHanya Admin yang bisa mencatat transaksi baru atau menghapus entri yang salah.\n\nIni memastikan transparansi � semua warga bisa memantau keuangan RT, tapi hanya admin yang berwenang mengubah data.`
+                            answer: `Tidak. Warga hanya bisa MELIHAT riwayat transaksi.\n\nHanya Admin yang bisa mencatat transaksi baru atau menghapus entri yang salah.\n\nIni memastikan transparansi ΓÇö semua warga bisa memantau keuangan RT, tapi hanya admin yang berwenang mengubah data.`
                         },
                         {
                             label: 'Apakah data ini bisa dipercaya?',
-                            answer: `Ya. Semua transaksi di sistem ini:\n? Langsung tersimpan ke cloud (Firebase)\n? Sinkron di semua perangkat secara realtime\n? Hanya bisa diubah oleh Admin dengan PIN khusus\n? Setiap perubahan saldo ada jejak transaksi\n\nJika ada keraguan, warga bisa meminta admin untuk menampilkan laporan cetak di pertemuan RT.`
+                            answer: `Ya. Semua transaksi di sistem ini:\nΓ£à Langsung tersimpan ke cloud (Firebase)\nΓ£à Sinkron di semua perangkat secara realtime\nΓ£à Hanya bisa diubah oleh Admin dengan PIN khusus\nΓ£à Setiap perubahan saldo ada jejak transaksi\n\nJika ada keraguan, warga bisa meminta admin untuk menampilkan laporan cetak di pertemuan RT.`
                         }
                     ]
                 },
                 buku_warga: {
-                    label: '?? Cara Baca Data Diri', icon: 'person',
+                    label: '≡ƒæñ Cara Baca Data Diri', icon: 'person',
                     intro: 'Memahami status, tunggakan, dan informasi diri Anda di Buku Warga.',
                     topics: [
                         {
                             label: 'Apa arti tanda di nama saya?',
-                            answer: `Di menu "Buku Warga", setiap warga punya tanda:\n\n?? BERSIH � tidak ada tunggakan, kehadiran bagus.\n?? HUTANG Rp X,XXX � ada tunggakan yang harus segera dilunasi.\n? WAFAT � status telah diubah admin (tidak lagi aktif di arisan).\n? NONAKTIF � pindah atau tidak aktif lagi.\n\nTanda merah kecil (?) di samping nama = warga punya rapor merah dari Alfa.`
+                            answer: `Di menu "Buku Warga", setiap warga punya tanda:\n\n≡ƒƒó BERSIH ΓÇö tidak ada tunggakan, kehadiran bagus.\n≡ƒö┤ HUTANG Rp X,XXX ΓÇö ada tunggakan yang harus segera dilunasi.\nΓÜ½ WAFAT ΓÇö status telah diubah admin (tidak lagi aktif di arisan).\nΓÜ¬ NONAKTIF ΓÇö pindah atau tidak aktif lagi.\n\nTanda merah kecil (ΓùÅ) di samping nama = warga punya rapor merah dari Alfa.`
                         },
                         {
                             label: 'Saya baru bergabung, apa yang perlu saya tahu?',
-                            answer: `Selamat bergabung! Berikut yang perlu dipahami:\n\n1. Setiap bulan Anda membayar Rp ${(nominalArisan||10000).toLocaleString('id-ID')} arisan + Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} jimpitan = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} total per pertemuan.\n\n2. Nama Anda masuk daftar undian. Anda akan menang tepat 1 kali per siklus.\n\n3. Jika tidak bisa hadir, beritahu admin sebelumnya agar dicatat Musibah (bukan Alfa).\n\n4. Tunggakan tidak hangus � harus dilunasi saat hadir berikutnya.`
+                            answer: `Selamat bergabung! Berikut yang perlu dipahami:\n\n1. Setiap bulan Anda membayar Rp ${(nominalArisan||10000).toLocaleString('id-ID')} arisan + Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} jimpitan = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} total per pertemuan.\n\n2. Nama Anda masuk daftar undian. Anda akan menang tepat 1 kali per siklus.\n\n3. Jika tidak bisa hadir, beritahu admin sebelumnya agar dicatat Musibah (bukan Alfa).\n\n4. Tunggakan tidak hangus ΓÇö harus dilunasi saat hadir berikutnya.`
                         },
                         {
                             label: 'Bagaimana cara cek status arisan saya?',
-                            answer: `Buka menu "Pemenang" di beranda � cari nama Anda:\n\n? Nama ADA di daftar = Anda SUDAH menang di siklus ini. Selamat!\n? Nama TIDAK ADA = Anda belum mendapat giliran, masih akan diundi bulan mendatang.\n\nBuka menu "Buku Warga" untuk cek tunggakan dan status terkini Anda.`
+                            answer: `Buka menu "Pemenang" di beranda ΓÇö cari nama Anda:\n\nΓ£à Nama ADA di daftar = Anda SUDAH menang di siklus ini. Selamat!\nΓÅ│ Nama TIDAK ADA = Anda belum mendapat giliran, masih akan diundi bulan mendatang.\n\nBuka menu "Buku Warga" untuk cek tunggakan dan status terkini Anda.`
                         }
                     ]
                 },
                 info_rt: {
-                    label: '?? Info & Jadwal RT', icon: 'campaign',
+                    label: '≡ƒôó Info & Jadwal RT', icon: 'campaign',
                     intro: 'Cara membaca pengumuman, galeri, inventaris, dan jadwal kegiatan.',
                     topics: [
                         {
                             label: 'Menu Info Warga',
-                            answer: `Menu "Info Warga" berisi pengumuman resmi dari pengurus RT � seperti pemberitahuan jadwal, kegiatan, aturan baru, atau informasi penting lainnya.\n\nSemua warga bisa membaca tanpa perlu login. Informasi ini HANYA bisa ditulis dan diedit oleh Admin.`
+                            answer: `Menu "Info Warga" berisi pengumuman resmi dari pengurus RT ΓÇö seperti pemberitahuan jadwal, kegiatan, aturan baru, atau informasi penting lainnya.\n\nSemua warga bisa membaca tanpa perlu login. Informasi ini HANYA bisa ditulis dan diedit oleh Admin.`
                         },
                         {
                             label: 'Menu Galeri',
@@ -761,7 +761,7 @@ const getDirectImgUrl = (url) => {
                     ]
                 },
                 infaq_pinjam: {
-                    label: '?? Infaq & Pinjam', icon: 'volunteer_activism',
+                    label: '≡ƒôª Infaq & Pinjam', icon: 'volunteer_activism',
                     intro: 'Panduan donasi Infaq sukarela dan tata cara meminjam inventaris RT.',
                     topics: [
                         {
@@ -785,8 +785,8 @@ const getDirectImgUrl = (url) => {
                 setMessages([{
                     sender: 'robot',
                     text: newMode === 'admin'
-                        ? `Mode Admin aktif ??\n\nSaya siap menjelaskan semua fitur teknis, logika kalkulasi, dan cara kerja sistem. Pilih menu:`
-                        : `Mode Warga aktif ???????????\n\nSaya akan menjelaskan data arisan dengan bahasa yang mudah dipahami. Pilih topik yang ingin Anda pahami:`
+                        ? `Mode Admin aktif ≡ƒöº\n\nSaya siap menjelaskan semua fitur teknis, logika kalkulasi, dan cara kerja sistem. Pilih menu:`
+                        : `Mode Warga aktif ≡ƒæ¿ΓÇì≡ƒæ⌐ΓÇì≡ƒæºΓÇì≡ƒæª\n\nSaya akan menjelaskan data arisan dengan bahasa yang mudah dipahami. Pilih topik yang ingin Anda pahami:`
                 }]);
             };
 
@@ -796,7 +796,7 @@ const getDirectImgUrl = (url) => {
                 setActiveMenu(menuKey);
                 setMessages(prev => [...prev,
                     { sender: 'user', text: menu.label },
-                    { sender: 'robot', text: `${menu.intro}\n\nPilih topik yang ingin Anda ketahui lebih lanjut ??` }
+                    { sender: 'robot', text: `${menu.intro}\n\nPilih topik yang ingin Anda ketahui lebih lanjut ≡ƒæç` }
                 ]);
             };
 
@@ -834,11 +834,11 @@ const getDirectImgUrl = (url) => {
                     }
                 }
                 if (found.length === 0) {
-                    setMessages(prev => [...prev, { sender: 'robot', text: `Saya tidak menemukan info tentang "${userMsg}".\n\nCoba gunakan kata kunci seperti: tunggakan, pemenang, jimpitan, saldo, iuran, hapus, siklus, atau pilih menu di bawah ??` }]);
+                    setMessages(prev => [...prev, { sender: 'robot', text: `Saya tidak menemukan info tentang "${userMsg}".\n\nCoba gunakan kata kunci seperti: tunggakan, pemenang, jimpitan, saldo, iuran, hapus, siklus, atau pilih menu di bawah ≡ƒæç` }]);
                 } else {
                     const best = found[0];
-                    const extra = best.otherMode ? `\n\n?? Info ini ada di mode ${mode === 'admin' ? 'Warga' : 'Admin'}. Coba ganti mode untuk topik lebih lanjut.` : (found.length > 1 ? `\n\n?? Ada ${found.length - 1} topik lain yang relevan. Pilih menu untuk eksplorasi lebih lanjut.` : '');
-                    setMessages(prev => [...prev, { sender: 'robot', text: `?? ${best.menuLabel}:\n\n${best.topic.answer}${extra}` }]);
+                    const extra = best.otherMode ? `\n\n≡ƒÆí Info ini ada di mode ${mode === 'admin' ? 'Warga' : 'Admin'}. Coba ganti mode untuk topik lebih lanjut.` : (found.length > 1 ? `\n\n≡ƒÆí Ada ${found.length - 1} topik lain yang relevan. Pilih menu untuk eksplorasi lebih lanjut.` : '');
+                    setMessages(prev => [...prev, { sender: 'robot', text: `≡ƒôî ${best.menuLabel}:\n\n${best.topic.answer}${extra}` }]);
                 }
             };
 
@@ -870,7 +870,7 @@ const getDirectImgUrl = (url) => {
                             </div>
 
                             {/* Chat area */}
-                            <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-3 bg-slate-50 hide-scrollbar border-y border-slate-100" style={{fontSize:'13px'}}>
+                            <div className="flex-1 overflow-y-auto p-4 sm:p-5 md:p-6 space-y-3 bg-slate-50 hide-scrollbar border-y border-slate-100" style={{fontSize:'13px'}}>
                                 {messages.map((msg, i) => (
                                     <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                                         {msg.sender === 'robot' && (
@@ -891,7 +891,7 @@ const getDirectImgUrl = (url) => {
                                     {currentKB[activeMenu].topics.map((t, i) => (
                                         <button key={i} onClick={() => handleTopicClick(activeMenu, t)} className={`text-[11px] font-bold px-3 py-1.5 rounded-full border active:scale-95 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-google-blue/30 hover:bg-google-blue hover:text-white' : 'bg-google-greenLight text-google-greenDark border-google-green/30 hover:bg-google-green hover:text-white'}`}>{t.label}</button>
                                     ))}
-                                    <button onClick={() => setActiveMenu(null)} className="text-[11px] font-bold bg-slate-100 text-slate-500 border border-slate-200 px-3 py-1.5 rounded-full hover:bg-slate-200 active:scale-95 transition-all">? Tutup</button>
+                                    <button onClick={() => setActiveMenu(null)} className="text-[11px] font-bold bg-slate-100 text-slate-500 border border-slate-200 px-3 py-1.5 rounded-full hover:bg-slate-200 active:scale-95 transition-all">Γ£ò Tutup</button>
                                 </div>
                             )}
 
@@ -941,9 +941,9 @@ const getDirectImgUrl = (url) => {
         function normalizeAudioUrl(url) {
             if (!url) return '';
             try {
-                // Dropbox share link ? dl.dropboxusercontent.com (direct stream, CORS OK)
+                // Dropbox share link ΓåÆ dl.dropboxusercontent.com (direct stream, CORS OK)
                 // Contoh: https://www.dropbox.com/s/XXXXX/file.mp3?dl=0
-                //   ? https://dl.dropboxusercontent.com/s/XXXXX/file.mp3
+                //   ΓåÆ https://dl.dropboxusercontent.com/s/XXXXX/file.mp3
                 if (url.includes('dropbox.com')) {
                     // Format baru Dropbox: /scl/fi/ atau /s/
                     let normalized = url
@@ -956,8 +956,8 @@ const getDirectImgUrl = (url) => {
                     // dl.dropboxusercontent.com tidak butuh rlkey
                     return normalized;
                 }
-                // Google Drive viewer ? langsung (catatan: GDrive sering CORS issue, tapi kita coba convert)
-                // https://drive.google.com/file/d/ID/view ? https://drive.google.com/uc?export=download&id=ID
+                // Google Drive viewer ΓåÆ langsung (catatan: GDrive sering CORS issue, tapi kita coba convert)
+                // https://drive.google.com/file/d/ID/view ΓåÆ https://drive.google.com/uc?export=download&id=ID
                 const gdriveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
                 if (gdriveMatch) {
                     return `https://drive.google.com/uc?export=download&id=${gdriveMatch[1]}`;
@@ -985,7 +985,7 @@ const getDirectImgUrl = (url) => {
 
                 const attemptPlay = () => {
                     audio.play().catch(() => {
-                        // Browser blokir autoplay � tunggu interaksi user
+                        // Browser blokir autoplay ΓÇö tunggu interaksi user
                     });
                 };
 
@@ -1011,7 +1011,7 @@ const getDirectImgUrl = (url) => {
                 };
             }, [streamUrl]);
 
-            // Render hanya elemen audio tersembunyi � tidak ada UI yang terlihat
+            // Render hanya elemen audio tersembunyi ΓÇö tidak ada UI yang terlihat
             return <audio ref={audioRef} src={streamUrl} preload="auto" style={{ display: 'none' }} />;
         }
 
@@ -1082,7 +1082,7 @@ const getDirectImgUrl = (url) => {
                     <audio ref={previewAudioRef} preload="auto" style={{ display: 'none' }} />
 
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm">
+                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm">
                         <div className="flex flex-wrap items-center gap-4">
                             <div className="w-14 h-14 rounded-[20px] bg-google-yellowLight flex items-center justify-center border-2 border-google-yellow/40 shrink-0">
                                 <Icon name="music_note" className="text-[32px] text-google-yellowDark" fill="true" />
@@ -1103,7 +1103,7 @@ const getDirectImgUrl = (url) => {
                                         <Icon name={isEnabled ? 'graphic_eq' : 'music_off'} className="text-white text-[20px]" fill="true" />
                                     </div>
                                     <div className="min-w-0">
-                                        <p className="text-[10px] font-extrabold uppercase tracking-widest text-google-textVariant">{isEnabled ? '?? Aktif' : '?? Nonaktif'}</p>
+                                        <p className="text-[10px] font-extrabold uppercase tracking-widest text-google-textVariant">{isEnabled ? '≡ƒÄ╡ Aktif' : '≡ƒöç Nonaktif'}</p>
                                         <p className="font-extrabold text-[15px] text-google-text truncate">{currentName || 'Musik RT'}</p>
                                     </div>
                                 </div>
@@ -1121,7 +1121,7 @@ const getDirectImgUrl = (url) => {
                             {/* Preview player native browser */}
                             {isEnabled && (
                                 <div className="bg-white/80 rounded-[14px] p-3 border border-google-green/20">
-                                    <p className="text-[10px] font-extrabold text-google-greenDark mb-2 uppercase tracking-widest">? Preview</p>
+                                    <p className="text-[10px] font-extrabold text-google-greenDark mb-2 uppercase tracking-widest">Γû╢ Preview</p>
                                     <audio controls src={currentUrl} className="w-full" style={{ height: '36px' }}>
                                         Browser Anda tidak mendukung audio.
                                     </audio>
@@ -1142,15 +1142,15 @@ const getDirectImgUrl = (url) => {
                             <Icon name="cloud_upload" className="text-white text-[24px]" fill="true" />
                             <div>
                                 <p className="text-white font-extrabold text-[15px]">Upload via Dropbox</p>
-                                <p className="text-blue-100 text-[11px] font-medium">Cara terbaik � gratis, cepat, dan bebas CORS</p>
+                                <p className="text-blue-100 text-[11px] font-medium">Cara terbaik ΓÇö gratis, cepat, dan bebas CORS</p>
                             </div>
                         </div>
-                        <div className="p-4 sm:p-6 md:p-8">
+                        <div className="p-4 sm:p-5 md:p-6">
                             <ol className="space-y-3 mb-5">
                                 {[
                                     { step: '1', text: 'Buka dropbox.com dan login (atau daftar gratis).', icon: 'open_in_new' },
                                     { step: '2', text: 'Upload file MP3/WAV/OGG ke Dropbox Anda.', icon: 'upload' },
-                                    { step: '3', text: 'Klik kanan file ? "Share" ? "Copy Link" � salin link yang muncul.', icon: 'share' },
+                                    { step: '3', text: 'Klik kanan file ΓåÆ "Share" ΓåÆ "Copy Link" ΓÇö salin link yang muncul.', icon: 'share' },
                                     { step: '4', text: 'Paste link di kolom URL di bawah. Sistem otomatis mengkonversi ke link streaming.', icon: 'paste' },
                                 ].map(item => (
                                     <li key={item.step} className="flex flex-wrap items-start gap-3">
@@ -1191,7 +1191,7 @@ const getDirectImgUrl = (url) => {
                                 {testStatus === 'ok' && (
                                     <div className="bg-google-greenLight border-2 border-google-green/40 rounded-[12px] p-3">
                                         <p className="text-[12px] font-extrabold text-google-greenDark mb-2 flex flex-wrap items-center gap-1.5">
-                                            <Icon name="check_circle" className="text-[14px]" fill="true" /> URL Valid � Preview:
+                                            <Icon name="check_circle" className="text-[14px]" fill="true" /> URL Valid ΓÇö Preview:
                                         </p>
                                         <audio controls src={previewUrl} className="w-full" style={{ height: '34px' }} />
                                     </div>
@@ -1223,7 +1223,7 @@ const getDirectImgUrl = (url) => {
                         <ul className="text-[12px] font-medium text-google-yellowDark/90 space-y-1 list-disc list-inside">
                             <li>Musik <strong>hanya memutar</strong> untuk pengguna login sebagai <strong>Warga</strong>.</li>
                             <li>Admin tidak mendengar musik saat login sebagai Admin.</li>
-                            <li>Browser mobile kadang memblokir autoplay � warga cukup tap layar sekali.</li>
+                            <li>Browser mobile kadang memblokir autoplay ΓÇö warga cukup tap layar sekali.</li>
                             <li>Gunakan file audio bebas hak cipta atau milik sendiri.</li>
                         </ul>
                     </div>
@@ -1231,6 +1231,530 @@ const getDirectImgUrl = (url) => {
             );
         }
 
+
+        
+        function Umkm({ umkmData, setUmkmData, userRole }) {
+            const [isFormOpen, setIsFormOpen] = useState(false);
+            const [editingId, setEditingId] = useState(null);
+            const [formData, setFormData] = useState({ name: '', owner: '', phone: '', category: 'Lainnya', description: '', imageUrl: '' });
+            const [errorMsg, setErrorMsg] = useState('');
+            const [isUploading, setIsUploading] = useState(false);
+            const [deleteConfirmId, setDeleteConfirmId] = useState(null);
+            const [searchQuery, setSearchQuery] = useState('');
+            const [selectedCategory, setSelectedCategory] = useState('Semua');
+
+            const categories = ['Semua', 'Makanan & Minuman', 'Jasa', 'Toko/Warung', 'Pakaian', 'Kesehatan', 'Lainnya'];
+
+            const handleSave = () => {
+                if (!formData.name || !formData.phone) return setErrorMsg("Nama Usaha dan Nomor WhatsApp wajib diisi!");
+                
+                // Format phone number (ensure starts with 62)
+                let formattedPhone = formData.phone.replace(/\D/g, '');
+                if (formattedPhone.startsWith('0')) {
+                    formattedPhone = '62' + formattedPhone.substring(1);
+                } else if (!formattedPhone.startsWith('62')) {
+                    formattedPhone = '62' + formattedPhone;
+                }
+
+                const newFormData = { ...formData, phone: formattedPhone };
+
+                if (editingId) {
+                    setUmkmData(umkmData.map(item => item.id === editingId ? { ...item, ...newFormData } : item));
+                    setModalConfig && setModalConfig({ message: 'Data UMKM berhasil diperbarui.' });
+                } else {
+                    setUmkmData([{ id: Date.now(), ...newFormData }, ...umkmData]);
+                    setModalConfig && setModalConfig({ message: 'Data UMKM berhasil ditambahkan.' });
+                }
+                setIsFormOpen(false);
+                setEditingId(null);
+            };
+
+            const handleEdit = (item) => {
+                setFormData({
+                    name: item.name || '',
+                    owner: item.owner || '',
+                    phone: item.phone || '',
+                    category: item.category || 'Lainnya',
+                    description: item.description || '',
+                    imageUrl: item.imageUrl || ''
+                });
+                setEditingId(item.id);
+                setErrorMsg('');
+                setIsUploading(false);
+                setIsFormOpen(true);
+            };
+
+            const handleImageUpload = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
+                if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
+                setIsUploading(true); setErrorMsg('');
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        const MAX_SIZE = 800;
+                        if (width > height && width > MAX_SIZE) { height *= MAX_SIZE / width; width = MAX_SIZE; }
+                        else if (height > MAX_SIZE) { width *= MAX_SIZE / height; height = MAX_SIZE; }
+                        canvas.width = width; canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.6);
+                        setFormData({ ...formData, imageUrl: compressedDataUrl });
+                        setIsUploading(false);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            };
+
+            const filteredData = (umkmData || []).filter(item => {
+                const matchSearch = (item.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                    (item.owner || '').toLowerCase().includes(searchQuery.toLowerCase());
+                const matchCategory = selectedCategory === 'Semua' || item.category === selectedCategory;
+                return matchSearch && matchCategory;
+            });
+
+            // Mock modal config untuk alert sederhana jika tidak ada di props
+            const [modalConfig, setModalConfig] = useState(null);
+
+            return (
+                <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+                    {modalConfig && (
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+                            <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
+                                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <Icon name="check_circle" className="text-4xl text-green-500" />
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-800 mb-2">Berhasil</h3>
+                                <p className="text-slate-600 mb-8">{modalConfig.message}</p>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-full transition-all">Tutup</button>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-100/50 p-6 sm:p-10 rounded-[32px] border border-green-200/60 shadow-[0_8px_30px_rgba(34,197,94,0.12)] mb-8 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                            <div>
+                                <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-2xl mb-4 shadow-lg">
+                                    <Icon name="storefront" />
+                                </div>
+                                <h1 className="text-3xl sm:text-4xl font-black text-slate-800 tracking-tight mb-2">Pasar Warga RT</h1>
+                                <p className="text-slate-600 text-[15px] sm:text-[16px] max-w-xl font-medium leading-relaxed">Direktori usaha milik warga RT. Dukung UMKM lokal dengan berbelanja dari tetangga sendiri.</p>
+                            </div>
+                            {userRole === 'admin' && (
+                                <button onClick={() => { setFormData({ name: '', owner: '', phone: '', category: 'Lainnya', description: '', imageUrl: '' }); setEditingId(null); setIsFormOpen(true); }} className="w-full md:w-auto bg-green-600 text-white px-8 py-4 rounded-full font-extrabold text-[15px] shadow-[0_8px_25px_rgba(22,163,74,0.3)] hover:bg-green-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+                                    <Icon name="add_circle" className="group-hover:rotate-90 transition-transform duration-300" /> Tambah Usaha
+                                </button>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="mb-6 flex flex-col sm:flex-row gap-4">
+                        <div className="relative flex-1">
+                            <Icon name="search" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                            <input type="text" placeholder="Cari nama usaha atau pemilik..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-2xl focus:border-green-500 outline-none transition-all font-medium text-slate-700" />
+                        </div>
+                        <div className="relative min-w-[200px]">
+                            <Icon name="filter_list" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full pl-12 pr-10 py-3.5 bg-white border-2 border-slate-200 rounded-2xl focus:border-green-500 outline-none transition-all font-bold text-slate-700 appearance-none cursor-pointer">
+                                {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                            </select>
+                            <Icon name="expand_more" className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                        </div>
+                    </div>
+
+                    {filteredData.length === 0 ? (
+                        <div className="bg-white/80 backdrop-blur-md rounded-[32px] p-12 text-center border-2 border-dashed border-slate-200 shadow-sm">
+                            <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <Icon name="store_off" className="text-[48px] text-slate-300" />
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-700 mb-2">Belum Ada UMKM</h3>
+                            <p className="text-slate-500 font-medium">Daftar usaha warga masih kosong atau tidak ditemukan.</p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {filteredData.map(item => (
+                                <div key={item.id} className="bg-white rounded-[24px] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
+                                    <div className="relative h-48 w-full bg-slate-100 overflow-hidden shrink-0">
+                                        {item.imageUrl ? (
+                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                        ) : (
+                                            <div className="w-full h-full flex flex-col items-center justify-center text-slate-400">
+                                                <Icon name="image" className="text-4xl mb-2" />
+                                                <span className="text-sm font-medium">Tidak ada foto</span>
+                                            </div>
+                                        )}
+                                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[12px] font-bold text-green-700 shadow-sm border border-green-100 flex items-center gap-1">
+                                            <Icon name="sell" className="text-[14px]" /> {item.category}
+                                        </div>
+                                        {userRole === 'admin' && (
+                                            <div className="absolute top-4 right-4 flex gap-2">
+                                                <button onClick={() => handleEdit(item)} className="w-10 h-10 bg-white/95 text-blue-600 rounded-full shadow-lg flex items-center justify-center hover:bg-blue-50 transition-colors">
+                                                    <Icon name="edit" className="text-[20px]" />
+                                                </button>
+                                                <button onClick={() => setDeleteConfirmId(item.id)} className="w-10 h-10 bg-white/95 text-red-500 rounded-full shadow-lg flex items-center justify-center hover:bg-red-50 transition-colors">
+                                                    <Icon name="delete" className="text-[20px]" />
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="p-6 flex flex-col flex-1">
+                                        <h3 className="font-extrabold text-xl text-slate-800 mb-1 line-clamp-1">{item.name}</h3>
+                                        <div className="flex items-center text-slate-500 text-sm mb-4 font-medium">
+                                            <Icon name="person" className="text-[16px] mr-1" /> {item.owner}
+                                        </div>
+                                        <p className="text-slate-600 text-sm mb-6 line-clamp-3 leading-relaxed flex-1">
+                                            {item.description || 'Tidak ada deskripsi.'}
+                                        </p>
+                                        <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%20melihat%20usaha%20Anda%20di%20Portal%20Warga.%20Bisa%20tanya-tanya?`} target="_blank" rel="noopener noreferrer" className="mt-auto w-full bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border-2 border-green-200 hover:border-green-600 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95">
+                                            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                                            Hubungi Penjual
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {isFormOpen && (
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                            <div className="bg-white w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
+                                <div className="p-6 sm:p-8 border-b border-slate-100 flex items-center justify-between shrink-0 bg-gradient-to-r from-green-50 to-white rounded-t-[32px]">
+                                    <h2 className="text-2xl font-black text-slate-800 tracking-tight flex items-center gap-2">
+                                        <Icon name="storefront" className="text-green-600" />
+                                        {editingId ? 'Edit Data UMKM' : 'Tambah UMKM Baru'}
+                                    </h2>
+                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 border border-slate-200 transition-all">
+                                        <Icon name="close" />
+                                    </button>
+                                </div>
+                                <div className="p-6 sm:p-8 overflow-y-auto space-y-5">
+                                    {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-2xl text-[14px] font-bold border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
+                                    
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Nama Usaha / Toko</label>
+                                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="Contoh: Warung Barokah" />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Nama Pemilik</label>
+                                        <input type="text" value={formData.owner} onChange={e => setFormData({...formData, owner: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="Contoh: Bpk. Budi" />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Nomor WhatsApp</label>
+                                        <div className="relative">
+                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-500">+62</div>
+                                            <input type="number" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl pl-12 pr-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="81234567890" />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Kategori</label>
+                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-bold text-slate-700 appearance-none bg-white">
+                                            {categories.filter(c => c !== 'Semua').map(c => <option key={c} value={c}>{c}</option>)}
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Deskripsi Usaha</label>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="3" className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 resize-none" placeholder="Menjual berbagai macam kebutuhan..."></textarea>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Foto (Opsional)</label>
+                                        <div className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center hover:bg-slate-50 transition-colors relative">
+                                            <input type="file" accept="image/*" onChange={handleImageUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                                            {isUploading ? (
+                                                <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-green-500" /><span className="font-bold">Memproses gambar...</span></div>
+                                            ) : formData.imageUrl ? (
+                                                <div className="relative inline-block">
+                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-xl shadow-sm" />
+                                                    <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[11px] px-2 py-1 rounded-md font-bold">Ganti</div>
+                                                </div>
+                                            ) : (
+                                                <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400" /><span className="font-bold text-sm">Upload foto</span></div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-6 sm:p-8 border-t border-slate-100 flex gap-3 shrink-0 bg-slate-50 rounded-b-[32px]">
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white text-slate-700 font-bold py-4 rounded-full border-2 border-slate-200 hover:bg-slate-100">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-black py-4 rounded-full shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {deleteConfirmId && (
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[110] flex items-center justify-center p-4">
+                            <div className="bg-white max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up">
+                                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                                    <Icon name="warning" className="text-[40px] text-red-500" />
+                                </div>
+                                <h3 className="text-xl font-black text-slate-800 mb-2">Hapus UMKM?</h3>
+                                <p className="text-slate-500 font-medium mb-8">Data usaha yang dihapus tidak dapat dikembalikan. Yakin?</p>
+                                <div className="flex gap-3">
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 rounded-full font-bold hover:bg-slate-200">Batal</button>
+                                    <button onClick={() => {
+                                        setUmkmData(umkmData.filter(item => item.id !== deleteConfirmId));
+                                        setModalConfig && setModalConfig({ message: 'Data UMKM dihapus.' });
+                                        setDeleteConfirmId(null);
+                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-full font-bold shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        
+        function Pengaduan({ laporanData, setLaporanData, userRole }) {
+            const [isFormOpen, setIsFormOpen] = useState(false);
+            const [formData, setFormData] = useState({ title: '', category: 'Infrastruktur', description: '', reporter: '', imageUrl: '', status: 'Menunggu' });
+            const [errorMsg, setErrorMsg] = useState('');
+            const [isUploading, setIsUploading] = useState(false);
+            const [deleteConfirmId, setDeleteConfirmId] = useState(null);
+            const [filterStatus, setFilterStatus] = useState('Semua');
+
+            const categories = ['Infrastruktur', 'Keamanan', 'Kebersihan', 'Sosial', 'Lainnya'];
+            const statuses = ['Menunggu', 'Diproses', 'Selesai'];
+
+            const handleSave = () => {
+                if (!formData.title || !formData.description) return setErrorMsg("Judul dan Deskripsi wajib diisi!");
+                const newLaporan = { id: Date.now(), date: new Date().toISOString(), ...formData };
+                setLaporanData([newLaporan, ...(laporanData || [])]);
+                setIsFormOpen(false);
+                setFormData({ title: '', category: 'Infrastruktur', description: '', reporter: '', imageUrl: '', status: 'Menunggu' });
+                setModalConfig && setModalConfig({ message: 'Laporan berhasil dikirim.' });
+            };
+
+            const handleImageUpload = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
+                if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran maksimal 10MB!');
+                setIsUploading(true); setErrorMsg('');
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width; let height = img.height;
+                        const MAX = 800;
+                        if (width > height && width > MAX) { height *= MAX / width; width = MAX; }
+                        else if (height > MAX) { width *= MAX / height; height = MAX; }
+                        canvas.width = width; canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        setFormData({ ...formData, imageUrl: canvas.toDataURL('image/jpeg', 0.6) });
+                        setIsUploading(false);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            };
+
+            const changeStatus = (id, newStatus) => {
+                setLaporanData((laporanData || []).map(item => item.id === id ? { ...item, status: newStatus } : item));
+            };
+
+            const filteredData = (laporanData || []).filter(item => filterStatus === 'Semua' || item.status === filterStatus);
+
+            const [modalConfig, setModalConfig] = useState(null);
+
+            const getStatusColor = (status) => {
+                switch(status) {
+                    case 'Menunggu': return 'bg-red-100 text-red-700 border-red-200';
+                    case 'Diproses': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+                    case 'Selesai': return 'bg-green-100 text-green-700 border-green-200';
+                    default: return 'bg-slate-100 text-slate-700 border-slate-200';
+                }
+            };
+
+            const formatDate = (isoString) => {
+                const date = new Date(isoString);
+                return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            };
+
+            return (
+                <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+                    {modalConfig && (
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+                            <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
+                                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <Icon name="check_circle" className="text-4xl text-green-500" />
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-800 mb-2">Berhasil</h3>
+                                <p className="text-slate-600 mb-8">{modalConfig.message}</p>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-full transition-all">Tutup</button>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="bg-gradient-to-br from-indigo-50 to-blue-100/50 p-6 sm:p-10 rounded-[32px] border border-blue-200/60 shadow-[0_8px_30px_rgba(59,130,246,0.12)] mb-8 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                            <div>
+                                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-2xl mb-4 shadow-lg">
+                                    <Icon name="campaign" />
+                                </div>
+                                <h1 className="text-3xl sm:text-4xl font-black text-slate-800 tracking-tight mb-2">Lapor RT</h1>
+                                <p className="text-slate-600 text-[15px] sm:text-[16px] max-w-xl font-medium leading-relaxed">Sistem Pengaduan dan Aspirasi Warga. Laporkan keluhan atau berikan saran untuk lingkungan kita.</p>
+                            </div>
+                            <button onClick={() => setIsFormOpen(true)} className="w-full md:w-auto bg-blue-600 text-white px-8 py-4 rounded-full font-extrabold text-[15px] shadow-[0_8px_25px_rgba(37,99,235,0.3)] hover:bg-blue-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+                                <Icon name="add_circle" className="group-hover:rotate-90 transition-transform duration-300" /> Buat Laporan
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="mb-6 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                        {['Semua', ...statuses].map(status => (
+                            <button key={status} onClick={() => setFilterStatus(status)} className={`px-5 py-2.5 rounded-full font-bold text-sm whitespace-nowrap transition-all ${filterStatus === status ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>
+                                {status}
+                            </button>
+                        ))}
+                    </div>
+
+                    {filteredData.length === 0 ? (
+                        <div className="bg-white/80 backdrop-blur-md rounded-[32px] p-12 text-center border-2 border-dashed border-slate-200 shadow-sm">
+                            <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <Icon name="task_alt" className="text-[48px] text-slate-300" />
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-700 mb-2">Belum Ada Laporan</h3>
+                            <p className="text-slate-500 font-medium">Lingkungan aman terkendali. Belum ada pengaduan warga.</p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {filteredData.map(item => (
+                                <div key={item.id} className="bg-white rounded-[24px] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col relative overflow-hidden group">
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div className="flex items-center gap-2">
+                                            <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-bold">{item.category}</span>
+                                            <span className={`px-3 py-1 rounded-full text-xs font-bold border ${getStatusColor(item.status)}`}>{item.status}</span>
+                                        </div>
+                                        {userRole === 'admin' && (
+                                            <button onClick={() => setDeleteConfirmId(item.id)} className="w-8 h-8 rounded-full bg-red-50 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors">
+                                                <Icon name="delete" className="text-[16px]" />
+                                            </button>
+                                        )}
+                                    </div>
+                                    <h3 className="text-xl font-black text-slate-800 mb-2">{item.title}</h3>
+                                    <p className="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-4">{item.description}</p>
+                                    
+                                    {item.imageUrl && (
+                                        <div className="mb-4 rounded-xl overflow-hidden bg-slate-100 h-48 border border-slate-200">
+                                            <img src={item.imageUrl} alt="Lampiran Laporan" className="w-full h-full object-cover" />
+                                        </div>
+                                    )}
+
+                                    <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-500">
+                                        <div className="flex items-center gap-1.5"><Icon name="person" className="text-[16px]" /> {item.reporter || 'Warga'}</div>
+                                        <div className="flex items-center gap-1.5"><Icon name="schedule" className="text-[16px]" /> {formatDate(item.date)}</div>
+                                    </div>
+
+                                    {userRole === 'admin' && (
+                                        <div className="mt-4 flex gap-2">
+                                            {statuses.map(st => (
+                                                item.status !== st && (
+                                                    <button key={st} onClick={() => changeStatus(item.id, st)} className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-colors ${st === 'Menunggu' ? 'border-red-200 text-red-600 hover:bg-red-50' : st === 'Diproses' ? 'border-yellow-200 text-yellow-600 hover:bg-yellow-50' : 'border-green-200 text-green-600 hover:bg-green-50'}`}>
+                                                        Set {st}
+                                                    </button>
+                                                )
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {isFormOpen && (
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                            <div className="bg-white w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
+                                <div className="p-6 sm:p-8 border-b border-slate-100 flex items-center justify-between shrink-0 bg-gradient-to-r from-blue-50 to-white rounded-t-[32px]">
+                                    <h2 className="text-2xl font-black text-slate-800 tracking-tight flex items-center gap-2">
+                                        <Icon name="campaign" className="text-blue-600" /> Buat Laporan
+                                    </h2>
+                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 border border-slate-200 transition-all"><Icon name="close" /></button>
+                                </div>
+                                <div className="p-6 sm:p-8 overflow-y-auto space-y-5">
+                                    {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-2xl text-[14px] font-bold border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
+                                    
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Judul Laporan</label>
+                                        <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700" placeholder="Cth: Lampu jalan mati di Blok A" />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Kategori</label>
+                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-bold text-slate-700 appearance-none bg-white">
+                                            {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Isi Laporan / Detail</label>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="4" className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 resize-none" placeholder="Ceritakan detail masalah..."></textarea>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Nama Pelapor (Opsional)</label>
+                                        <input type="text" value={formData.reporter} onChange={e => setFormData({...formData, reporter: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700" placeholder="Kosongkan jika ingin anonim" />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Lampiran Foto (Opsional)</label>
+                                        <div className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center hover:bg-slate-50 transition-colors relative">
+                                            <input type="file" accept="image/*" onChange={handleImageUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                                            {isUploading ? (
+                                                <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-blue-500" /><span className="font-bold">Memproses gambar...</span></div>
+                                            ) : formData.imageUrl ? (
+                                                <div className="relative inline-block">
+                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-xl shadow-sm" />
+                                                    <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[11px] px-2 py-1 rounded-md font-bold">Ganti</div>
+                                                </div>
+                                            ) : (
+                                                <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400" /><span className="font-bold text-sm">Upload foto bukti</span></div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-6 sm:p-8 border-t border-slate-100 flex gap-3 shrink-0 bg-slate-50 rounded-b-[32px]">
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white text-slate-700 font-bold py-4 rounded-full border-2 border-slate-200 hover:bg-slate-100">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-black py-4 rounded-full shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {deleteConfirmId && (
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[110] flex items-center justify-center p-4">
+                            <div className="bg-white max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up">
+                                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5"><Icon name="warning" className="text-[40px] text-red-500" /></div>
+                                <h3 className="text-xl font-black text-slate-800 mb-2">Hapus Laporan?</h3>
+                                <p className="text-slate-500 font-medium mb-8">Laporan yang dihapus tidak dapat dikembalikan. Yakin?</p>
+                                <div className="flex gap-3">
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 rounded-full font-bold hover:bg-slate-200">Batal</button>
+                                    <button onClick={() => {
+                                        setLaporanData((laporanData || []).filter(item => item.id !== deleteConfirmId));
+                                        setModalConfig && setModalConfig({ message: 'Laporan dihapus.' });
+                                        setDeleteConfirmId(null);
+                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-full font-bold shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
 
         function App() {
 
@@ -1256,6 +1780,8 @@ const getDirectImgUrl = (url) => {
             const [informasi, setInformasi, l14] = useFirebaseSync('informasi', []);
             const [iuranData, setIuranData, l15] = useFirebaseSync('iuran_umum', []);
             const [galeriData, setGaleriData, l17] = useFirebaseSync('galeri_warga', []);
+            const [umkmData, setUmkmData, l_umkm] = useFirebaseSync('umkm', []);
+        const [laporanData, setLaporanData] = useFirebaseSync('laporan', []);
             const [inventarisData, setInventarisData, l18] = useFirebaseSync('inventaris_rt', []);
             const [bannerImage, setBannerImage, l19] = useFirebaseSync('banner_image', '');
             const [adsConfig, setAdsConfig, l20] = useFirebaseSync('ads_config', { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: 'laporan' });
@@ -1263,13 +1789,23 @@ const getDirectImgUrl = (url) => {
             const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
             const [musicData, setMusicData, l23] = useFirebaseSync('music_config', { url: '', name: '', enabled: true });
             const [sponsorsData, setSponsorsData, l24] = useFirebaseSync('sponsors_data', { enabled: false, sponsors: [] });
+            const [infoDesa, setInfoDesa, l25] = useFirebaseSync('info_desa', {
+                enabled: true,
+                batas: { utara: 'Desa Adan-adan', selatan: 'Desa Gurah', timur: 'Desa Tumpang', barat: 'Desa Sukorejo' },
+                kontak: [
+                    { id: 1, nama: 'Ambulans Siaga Desa', telepon: '0812-3456-7890', icon: 'local_hospital', color: 'red' },
+                    { id: 2, nama: 'Kantor Balai Desa', telepon: '(0354) 689123', icon: 'business', color: 'slate' },
+                    { id: 3, nama: 'Bhabinkamtibmas', telepon: '0821-4455-6677', icon: 'security', color: 'blue' },
+                    { id: 4, nama: 'Babinsa Desa', telepon: '0857-8899-0011', icon: 'military_tech', color: 'green' }
+                ]
+            });
 
             // State khusus UI tambahan
             const [showPwaGuide, setShowPwaGuide] = useState(false);
 
             // Jika Firebase tidak tersedia (offline total / gagal init), anggap semua loaded
             const firebaseUnavailable = !db;
-            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l20 && l21 && l22 && l23);
+            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l20 && l21 && l22 && l23 && l24 && l25);
 
             useEffect(() => {
                 if (auth && onAuthStateChanged) {
@@ -1368,6 +1904,8 @@ const getDirectImgUrl = (url) => {
                 { id: 'warga', icon: 'group', label: 'Buku Warga', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'galery', icon: 'photo_library', label: 'Galeri', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-300' },
                 { id: 'inventaris', icon: 'inventory_2', label: 'Inventaris', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
+                { id: 'umkm', icon: 'storefront', label: 'UMKM RT', bg: 'bg-green-100', color: 'text-green-700 border-2 border-green-500' },
+                { id: 'pengaduan', icon: 'report_problem', label: 'Lapor RT', bg: 'bg-blue-100', color: 'text-blue-700 border-2 border-blue-500' },
                 { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'iuran', icon: 'volunteer_activism', label: 'Iuran Umum', bg: 'bg-google-redLight', color: 'text-google-redDark border-2 border-google-red' },
                 { id: 'kas', icon: 'account_balance_wallet', label: 'Kas RT', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
@@ -1386,25 +1924,27 @@ const getDirectImgUrl = (url) => {
 
             const renderContent = () => {
                 switch(activeTab) {
-                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} adsConfig={adsConfig} setShowPwaGuide={setShowPwaGuide} sponsorsData={sponsorsData} />;
+                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} adsConfig={adsConfig} setShowPwaGuide={setShowPwaGuide} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
                     case 'dashboard': return <Dashboard members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} currentRound={currentRound} setCurrentRound={setCurrentRound} userRole={userRole} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} changeTab={changeTab} arisanPeriod={arisanPeriod} />;
                     case 'informasi': return <Informasi data={informasi} setData={setInformasi} userRole={userRole} />;
                     case 'warga': return <WargaList members={members} setMembers={setMembers} userRole={userRole} identity={identity} cycleNumber={cycleNumber} currentRound={currentRound} arisanPeriod={arisanPeriod} />;
                     case 'galery': return <Galeri data={galeriData} setData={setGaleriData} userRole={userRole} />;
                     case 'inventaris': return <Inventaris data={inventarisData} setData={setInventarisData} userRole={userRole} pinjamData={pinjamData} />;
+                    case 'umkm': return <Umkm umkmData={umkmData} setUmkmData={setUmkmData} userRole={userRole} />;
+                    case 'pengaduan': return <Pengaduan laporanData={laporanData} setLaporanData={setLaporanData} userRole={userRole} />;
                     case 'pinjam': return <PinjamInventaris inventarisData={inventarisData} setInventarisData={setInventarisData} pinjamData={pinjamData} setPinjamData={setPinjamData} members={members} userRole={userRole} />;
                     case 'iuran': return <IuranUmum iuranData={iuranData} setIuranData={setIuranData} members={members} userRole={userRole} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} identity={identity} />;
                     case 'kas': return <BukuKas balance={kasRtBalance} setBalance={setKasRtBalance} transactions={kasRtTransactions} setTransactions={setKasRtTransactions} userRole={userRole} identity={identity} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} />;
                     case 'laporan': return <Laporan history={meetingHistory} setMeetingHistory={setMeetingHistory} members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} cycleNumber={cycleNumber} identity={identity} userRole={userRole} />;
                     case 'pertemuan': return userRole === 'admin' ? <Pertemuan members={members} setMembers={setMembers} currentRound={currentRound} setCurrentRound={setCurrentRound} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} setMeetingHistory={setMeetingHistory} onFinish={() => changeTab('menu')} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} identity={identity} cycleNumber={cycleNumber} /> : null;
-                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} /> : null;
+                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} /> : null;
                     case 'infaq': return <Infaq infaqData={infaqData} setInfaqData={setInfaqData} userRole={userRole} identity={identity} />;
                     case 'pemenang': return <Pemenang members={members} />;
-                    case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} setNextMeeting={setNextMeeting} userRole={userRole} />;
+                    case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} />;
                     case 'kalender': return <Kalender />;
-                    case 'peta': return <PetaDesa />;
+                    case 'peta': return <PetaDesa infoDesa={infoDesa} />;
                     case 'musik': return userRole === 'admin' ? <MusicAdmin musicData={musicData} setMusicData={setMusicData} /> : null;
-                    default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} sponsorsData={sponsorsData} />;
+                    default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
                 }
             };
 
@@ -1420,7 +1960,7 @@ const getDirectImgUrl = (url) => {
                             </div>
                         )}
 
-                        <header className="bg-white/85 backdrop-blur-lg text-google-text py-3 px-4 sm:px-6 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-3xl border border-red-500/10 shadow-[0_10px_30px_rgba(239,68,68,0.04)]">
+                        <header className="bg-white/95 text-google-text py-4 px-5 sm:px-8 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/10 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
                             <div className="max-w-5xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center space-x-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
@@ -1451,7 +1991,7 @@ const getDirectImgUrl = (url) => {
                         <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
                             <p className="flex flex-wrap items-center gap-1.5 justify-center">
                                 <Icon name="flag" className="text-red-500 text-[16px] animate-pulse" fill="true" />
-                                � {new Date().getFullYear()} <span className="text-red-600 font-extrabold">WP LINGKUNGAN</span>. All rights reserved.
+                                ┬⌐ {new Date().getFullYear()} <span className="text-red-600 font-extrabold">WP LINGKUNGAN</span>. All rights reserved.
                             </p>
                             <p className="flex flex-wrap items-center justify-center gap-1.5">
                                 Developed by <span className="bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent font-extrabold tracking-wide uppercase">NOVAN RESTU UTOMO</span>
@@ -1501,11 +2041,11 @@ const getDirectImgUrl = (url) => {
             return (
                 <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
 <div className="bg-white rounded-[32px] w-full max-w-xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-200" style={{ animation: 'slideUp 0.3s ease-out' }}>
-                        <div className="p-4 sm:p-6 md:p-8 border-b-2 border-slate-200 flex justify-between items-center bg-slate-50 rounded-t-[30px]">
+                        <div className="p-4 sm:p-5 md:p-6 border-b-2 border-slate-200 flex justify-between items-center bg-slate-50 rounded-t-[30px]">
                             <h3 className="text-xl font-extrabold text-google-text flex flex-wrap items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
                             <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 text-slate-500 hover:bg-slate-300 hover:text-google-text transition-all active:scale-95"><Icon name="close" /></button>
                         </div>
-                        <div className="p-4 sm:p-6 md:p-8 overflow-y-auto flex-1">
+                        <div className="p-4 sm:p-5 md:p-6 overflow-y-auto flex-1">
                             <p className="text-[14px] text-google-textVariant mb-6 font-medium">Aplikasi ini bisa diinstal langsung ke perangkat Anda (Android, iOS, maupun PC/Laptop) tanpa melalui App Store atau Play Store. Hemat memori dan cepat!</p>
                             
                             <div className="flex bg-slate-100 p-1.5 rounded-[16px] mb-6 border-2 border-slate-200 shadow-inner">
@@ -1520,7 +2060,7 @@ const getDirectImgUrl = (url) => {
                                     <ol className="list-decimal pl-5 space-y-3 text-[14px] text-google-textVariant font-medium">
                                         <li>Buka website ini di browser <b>Google Chrome</b>.</li>
                                         <li>Tunggu beberapa detik, akan muncul banner <b>"Pasang Aplikasi Ini"</b> di bagian bawah layar. Klik tombol <b>Install</b>.</li>
-                                        <li>Atau, klik ikon <b>titik tiga</b> (?) di pojok kanan atas browser.</li>
+                                        <li>Atau, klik ikon <b>titik tiga</b> (Γï«) di pojok kanan atas browser.</li>
                                         <li>Pilih menu <b>"Tambahkan ke Layar Utama"</b> (Add to Home screen) atau <b>"Instal Aplikasi"</b>.</li>
                                         <li>Klik <b>Instal</b> pada pop-up yang muncul. Aplikasi siap digunakan!</li>
                                     </ol>
@@ -1547,7 +2087,7 @@ const getDirectImgUrl = (url) => {
                                         <li>Buka website ini di <b>Google Chrome</b> atau <b>Microsoft Edge</b>.</li>
                                         <li>Perhatikan ujung kanan bilah alamat web (address bar).</li>
                                         <li>Klik ikon <b>Install</b> <Icon name="install_desktop" className="text-[16px] inline text-google-blue" /> yang muncul di sana.</li>
-                                        <li>Pada Chrome, Anda juga bisa klik ikon <b>titik tiga</b> (?) {"->"} <b>"Save and share"</b> {"->"} <b>"Install page as app"</b>.</li>
+                                        <li>Pada Chrome, Anda juga bisa klik ikon <b>titik tiga</b> (Γï«) &rarr; <b>"Save and share"</b> &rarr; <b>"Install page as app"</b>.</li>
                                         <li>Aplikasi akan terinstal, dapat di-pin ke Taskbar, dan dibuka layaknya program desktop biasa.</li>
                                     </ol>
                                 </div>
@@ -1562,8 +2102,8 @@ const getDirectImgUrl = (url) => {
         }
 
         function FlagWavingBackground() {
-            const canvasRef = React.useRef(null);
-            React.useEffect(() => {
+            const canvasRef = useRef(null);
+            useEffect(() => {
                 const canvas = canvasRef.current;
                 if (!canvas) return;
                 const ctx = canvas.getContext('2d');
@@ -1696,7 +2236,7 @@ const getDirectImgUrl = (url) => {
             };
             
             return (
-                <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 bg-transparent relative overflow-hidden">
+                <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 sm:p-5 md:p-6 bg-transparent relative overflow-hidden">
                     <FlagWavingBackground />
 
                     <div className="relative overflow-hidden bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-[32px] w-full max-w-sm text-center shadow-[0_20px_50px_rgba(239,68,68,0.08)] border-2 border-red-500/10 z-10 hover:border-red-500/30 hover:shadow-[0_20px_50px_rgba(239,68,68,0.15)] transition-all duration-500">
@@ -1735,12 +2275,12 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsConfig, setShowPwaGuide, sponsorsData }) {
+function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsConfig, setShowPwaGuide, sponsorsData, nextMeeting }) {
             return (
                 <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto mt-2">
                     
                     {/* --- AREA BANNER UTAMA --- */}
-                    <div className={`relative rounded-[32px] p-6 sm:p-10 text-white border-2 border-google-blueDark shadow-xl overflow-hidden group ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark' : 'bg-slate-900'}`}>
+                    <div className={`relative rounded-[32px] p-5 sm:p-8 text-white border-2 border-google-blueDark shadow-xl overflow-hidden group ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark' : 'bg-slate-900'}`}>
                         {bannerImage && (
                             <>
                                 {/* object-center memastikan fokus gambar tetap di tengah */}
@@ -1772,6 +2312,16 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     </div>
                     {/* --- AKHIR AREA BANNER --- */}
 
+                    {/* --- AREA RUNNING TEXT AGENDA --- */}
+                    {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
+                        <div className="bg-red-50 border-2 border-red-200 text-red-800 rounded-full px-4 py-2 flex items-center gap-3 overflow-hidden shadow-sm mt-4">
+                            <Icon name="campaign" className="text-red-600 shrink-0 animate-pulse text-[20px]" />
+                            <marquee className="text-[13px] font-bold tracking-wide whitespace-nowrap uppercase">
+                                Info Agenda Mendatang: <span className="font-extrabold text-red-700">{nextMeeting.date}</span> jam <span className="font-extrabold text-red-700">{nextMeeting.time}</span> di <span className="font-extrabold text-red-700">{nextMeeting.location}</span>. Agenda: {nextMeeting.notes}
+                            </marquee>
+                        </div>
+                    )}
+
                     {/* AREA GRID MENU */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5">
                         {NavItems.map((item, idx) => (
@@ -1787,7 +2337,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         ))}
                     </div>
 
-                    {/* Iklan In-Article AdSense � hanya tampil jika enabled */}
+                    {/* Iklan In-Article AdSense ΓÇö hanya tampil jika enabled */}
                     {adsConfig?.enabled && (
                         <div className="my-2 no-print ad-wrapper-collapse">
                             <AdSenseUnit slot={ADSENSE_SLOTS.inArticle} format="fluid" layout="in-article" />
@@ -1805,20 +2355,20 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     
                     {/* SPONSORED BY */}
                     {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
-                        <div className="flex flex-col items-center justify-center mt-12 mb-8 animate-fadeIn">
+                        <div className="flex flex-col items-center justify-center mt-20 mb-8 animate-fadeIn">
                             <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 mb-4">Sponsored By</p>
                             <div className="flex flex-wrap items-center justify-center gap-6">
                                 {sponsorsData.sponsors.map((s, i) => (
-                                    <img key={i} src={s.url} alt={s.name} className="h-10 sm:h-12 max-w-[120px] object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300" title={s.name} />
+                                    <img key={i} src={s.url} alt={s.name} className="h-14 sm:h-16 max-w-[160px] object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300" title={s.name} />
                                 ))}
                             </div>
                         </div>
                     )}
     
                     {userRole !== 'admin' && (
-                        <div className="flex justify-center mt-4">
-                            <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[24px] text-center border-2 border-slate-200 shadow-sm flex items-center justify-center">
-                                <p className="text-[13px] font-bold text-google-textVariant flex flex-wrap items-center justify-center gap-2"><Icon name="info" className="text-[18px]" /> Mode Warga (akses terbatas).</p>
+                        <div className="flex justify-center mt-16 mb-4">
+                            <div className="bg-white py-2 px-4 rounded-full text-center border-2 border-slate-200 shadow-sm flex items-center justify-center">
+                                <p className="text-[11px] font-bold text-google-textVariant flex flex-wrap items-center justify-center gap-1.5"><Icon name="info" className="text-[15px]" /> Mode Warga (akses terbatas).</p>
                             </div>
                         </div>
                     )}
@@ -1851,6 +2401,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [loading, setLoading] = useState(false);
             const [nextPrayer, setNextPrayer] = useState(null);
             const [timeRemaining, setTimeRemaining] = useState('');
+            const [adzanEnabled, setAdzanEnabled] = useState(() => localStorage.getItem('sholat_adzan_enabled') === 'true');
+            const lastAdzanPlayed = useRef(null);
 
             const fetchByCoords = useCallback(async (lat, lng) => {
                 setLoading(true);
@@ -2027,6 +2579,31 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     
                     const timeStr = `${hrs > 0 ? hrs + 'j ' : ''}${mins}m ${secs}s`;
                     setTimeRemaining(timeStr);
+
+                    // Cek Notifikasi Adzan
+                    const nowTimeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                    const currentPrayer = prayerTimes.find(p => p.time === nowTimeStr && p.name !== 'Imsak');
+                    if (currentPrayer) {
+                        const adzanKey = `${schedule.tanggal}-${currentPrayer.name}`;
+                        if (lastAdzanPlayed.current !== adzanKey) {
+                            lastAdzanPlayed.current = adzanKey;
+                            const isAdzanActive = localStorage.getItem('sholat_adzan_enabled') === 'true';
+                            if (isAdzanActive) {
+                                try {
+                                    const audio = new Audio('https://www.islamcan.com/audio/adhan/azan1.mp3');
+                                    audio.play().catch(e => console.warn("Auto-play Adzan diblokir browser:", e));
+                                    
+                                    if ("Notification" in window && Notification.permission === "granted") {
+                                        new Notification("Waktu Sholat", {
+                                            body: `Telah masuk waktu sholat ${currentPrayer.name} untuk wilayah ${city}`
+                                        });
+                                    }
+                                } catch(err) {
+                                    console.error("Gagal memutar adzan:", err);
+                                }
+                            }
+                        }
+                    }
                 }, 1000);
 
                 return () => clearInterval(timer);
@@ -2063,10 +2640,40 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     {isGPS && <span className="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-extrabold border border-red-200">GPS</span>}
                                 </h3>
                             </div>
-                            <p className="text-[12px] font-bold text-google-textVariant mt-0.5">Metode Kemenag RI � Hari ini: {schedule.tanggal}</p>
+                            <p className="text-[12px] font-bold text-google-textVariant mt-0.5">Metode Kemenag RI ΓÇó Hari ini: {schedule.tanggal}</p>
                         </div>
 
                         <div className="w-full md:w-auto flex flex-wrap items-center gap-2">
+                            <button 
+                                type="button"
+                                onClick={() => {
+                                    const newVal = !adzanEnabled;
+                                    setAdzanEnabled(newVal);
+                                    localStorage.setItem('sholat_adzan_enabled', newVal ? 'true' : 'false');
+                                    if (newVal) {
+                                        if ("Notification" in window && Notification.permission !== "granted") {
+                                            Notification.requestPermission();
+                                        }
+                                        // window.showToast defined globally? The component uses showToast
+                                        if (typeof showToast === 'function') {
+                                            showToast('Notifikasi & Suara Adzan diaktifkan');
+                                        }
+                                    } else {
+                                        if (typeof showToast === 'function') {
+                                            showToast('Notifikasi Adzan dinonaktifkan');
+                                        }
+                                    }
+                                }}
+                                className={`flex items-center gap-1.5 font-extrabold text-[12px] px-5 py-2.5 rounded-full border transition-all active:scale-95 ${
+                                    adzanEnabled 
+                                        ? 'bg-emerald-50 text-emerald-600 border-emerald-500/30' 
+                                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                                }`}
+                            >
+                                <Icon name={adzanEnabled ? "notifications_active" : "notifications_off"} className="text-[16px]"/>
+                                {adzanEnabled ? 'Adzan Aktif' : 'Adzan Mati'}
+                            </button>
+
                             <button 
                                 type="button" 
                                 onClick={handleGPSDetection}
@@ -2180,9 +2787,22 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-gradient-to-r from-google-blue to-google-blueDark h-full rounded-full transition-all duration-1000" style={{ width: `${(winnersCount / (arisanMembers.length || 1)) * 100}%` }}></div></div>
                         </div>
                     </div>
+
+                    <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-[32px] p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 border-2 border-slate-700 relative overflow-hidden group cursor-default">
+                        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-google-blue opacity-20 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
+                        <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-google-green opacity-20 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000 delay-100"></div>
+
+                        <div className="relative z-10 w-full text-center sm:text-left">
+                            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-[10px] font-extrabold uppercase tracking-widest bg-white/10 text-slate-200 mb-3 border border-white/10 shadow-sm">
+                                <Icon name="account_balance_wallet" className="text-[14px]" /> Total Dana Kelolaan Global
+                            </span>
+                            <p className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight drop-shadow-md">{formatRp((kasRtBalance || 0) + (jimpitanBalance || 0))}</p>
+                            <p className="text-[13px] text-slate-400 font-medium mt-2">Gabungan Total Saldo Aktif Kas Utama RT + Kas Jimpitan Tunai.</p>
+                        </div>
+                    </div>
                     
                     {isCycleComplete && userRole === 'admin' && (
-                        <div className="bg-gradient-to-r from-google-blueLight to-blue-50 p-6 sm:p-8 rounded-[32px] flex flex-col sm:flex-row items-center sm:text-left text-center gap-6 border-2 border-google-blue shadow-sm">
+                        <div className="bg-gradient-to-r from-google-blueLight to-blue-50 p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row items-center sm:text-left text-center gap-6 border-2 border-google-blue shadow-sm">
                             <div className="bg-google-blue text-white w-16 h-16 rounded-full flex items-center justify-center shadow-md border-2 border-google-blueDark shrink-0"><Icon name="task_alt" className="text-[32px]" fill="true" /></div>
                             <div className="flex-1"><h3 className="font-extrabold text-google-blueDark text-xl mb-1.5">Siklus Telah Selesai</h3><p className="text-[14px] font-medium text-google-blue">Seluruh warga arisan telah memenangkan putaran. Silakan mulai siklus baru.</p></div>
                             <button onClick={() => setShowResetModal(true)} className="w-full sm:w-auto px-8 py-3.5 bg-google-blue text-white font-extrabold rounded-full text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="refresh" className="text-[20px]"/> Mulai Baru</button>
@@ -2221,7 +2841,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     </div>
 
                     {redRecords > 0 && (
-                        <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-6 sm:p-8 rounded-[32px] flex items-start space-x-5 border-2 border-google-redDark shadow-lg hover:shadow-xl transition-shadow animate-pulse" style={{ animationDuration: '3s' }}>
+                        <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex items-start space-x-5 border-2 border-google-redDark shadow-lg hover:shadow-xl transition-shadow animate-pulse" style={{ animationDuration: '3s' }}>
                             <Icon name="warning" className="text-[36px] shrink-0 drop-shadow-md" fill="true" />
                             <div><h4 className="text-[18px] font-extrabold mb-1.5 tracking-tight">Peringatan: Tunggakan Terdeteksi</h4><p className="text-[14px] font-medium text-red-50 leading-relaxed">Terdapat <strong>{redRecords} warga</strong> dengan catatan rapor merah.</p></div>
                         </div>
@@ -2321,7 +2941,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
                         <button type="button" onClick={() => setFormData(p => ({...p, kondisi: {...p.kondisi, [field]: Math.max(0, (p.kondisi[field]||0)-1)}}))}
-                            className="w-8 h-8 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[18px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">-</button>
+                            className="w-8 h-8 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[18px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">ΓêÆ</button>
                         <span className="w-8 text-center font-extrabold text-[16px] text-google-text">{formData.kondisi[field] || 0}</span>
                         <button type="button" onClick={() => setFormData(p => ({...p, kondisi: {...p.kondisi, [field]: (p.kondisi[field]||0)+1}}))}
                             className="w-8 h-8 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[18px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">+</button>
@@ -2332,7 +2952,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             return (
                 <div className="space-y-6">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print">
+                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print">
                         <div>
                             <h2 className="text-2xl font-extrabold text-google-text tracking-tight">Aset &amp; Inventaris</h2>
                             <p className="text-[14px] font-medium text-google-textVariant mt-1.5">Daftar barang fasilitas RT beserta kondisi dan stok pinjam.</p>
@@ -2436,9 +3056,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <div>
                                         <label className="text-[11px] font-extrabold text-google-textVariant block mb-2 uppercase tracking-widest">Jumlah per Kondisi</label>
                                         <div className="space-y-2.5">
-                                            <KondisiInput label="?? Kondisi Baru" field="baru" color="border-google-green/40 focus-within:border-google-green" icon="verified" />
-                                            <KondisiInput label="?? Kondisi Bekas" field="bekas" color="border-google-yellow/40 focus-within:border-google-yellow" icon="refresh" />
-                                            <KondisiInput label="?? Kondisi Rusak" field="rusak" color="border-google-red/40 focus-within:border-google-red" icon="report" />
+                                            <KondisiInput label="≡ƒƒó Kondisi Baru" field="baru" color="border-google-green/40 focus-within:border-google-green" icon="verified" />
+                                            <KondisiInput label="≡ƒƒí Kondisi Bekas" field="bekas" color="border-google-yellow/40 focus-within:border-google-yellow" icon="refresh" />
+                                            <KondisiInput label="≡ƒö┤ Kondisi Rusak" field="rusak" color="border-google-red/40 focus-within:border-google-red" icon="report" />
                                         </div>
                                         {/* Ringkasan */}
                                         {((formData.kondisi.baru||0)+(formData.kondisi.bekas||0)+(formData.kondisi.rusak||0)) > 0 && (
@@ -2459,10 +3079,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 {isUploading ? <div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div> : formData.imageUrl ? <img src={formData.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview" /> : <Icon name="cloud_upload" className="text-[24px]" />}
                                             </div>
                                             <div className="relative z-0 flex-1 min-w-0">
-                                                <p className="font-extrabold text-[14px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan ?' : 'Pilih Gambar'}</p>
-                                                <p className="text-[12px] text-google-textVariant">{formData.imageUrl ? 'Klik untuk ganti foto' : 'Maks. 2MB � JPG, PNG, WEBP'}</p>
+                                                <p className="font-extrabold text-[14px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan Γ£ô' : 'Pilih Gambar'}</p>
+                                                <p className="text-[12px] text-google-textVariant">{formData.imageUrl ? 'Klik untuk ganti foto' : 'Maks. 2MB ΓÇö JPG, PNG, WEBP'}</p>
                                             </div>
-                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[16px] hover:bg-google-redLight active:scale-95 shrink-0">�</button>}
+                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[16px] hover:bg-google-redLight active:scale-95 shrink-0">├ù</button>}
                                         </div>
                                     </div>
 
@@ -2584,7 +3204,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             return (
                 <div className="space-y-6">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm">
+                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
                                 <h2 className="text-2xl font-extrabold text-google-text tracking-tight flex flex-wrap items-center gap-2"><Icon name="handshake" className="text-[28px] text-google-green" />Pinjam Inventaris</h2>
@@ -2623,7 +3243,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         <option value="">-- Pilih Barang --</option>
                                         {inventarisData.map(item => {
                                             const stok = getStokTersedia(item.id);
-                                            return <option key={item.id} value={item.id} disabled={stok <= 0}>{item.name} � Stok tersedia: {stok} dari {item.qty}{stok <= 0 ? ' (Habis)' : ''}</option>;
+                                            return <option key={item.id} value={item.id} disabled={stok <= 0}>{item.name} ΓÇö Stok tersedia: {stok} dari {item.qty}{stok <= 0 ? ' (Habis)' : ''}</option>;
                                         })}
                                     </select>
                                 </div>
@@ -2632,7 +3252,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <label className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-wider mb-1.5 block">Jumlah Dipinjam *</label>
                                     <div className="flex flex-wrap items-center gap-3 bg-slate-50 border-2 border-slate-200 focus-within:border-google-green rounded-[14px] px-4 py-3">
                                         <button type="button" onClick={() => setFormData(p => ({...p, qty: Math.max(1, (p.qty||1)-1)}))}
-                                            className="w-9 h-9 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[20px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">-</button>
+                                            className="w-9 h-9 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center font-extrabold text-[20px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">ΓêÆ</button>
                                         <div className="flex-1 text-center">
                                             <span className="font-extrabold text-[20px] text-google-text">{formData.qty || 1}</span>
                                             <span className="text-[12px] text-google-textVariant ml-2">unit</span>
@@ -2681,7 +3301,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         <div className="space-y-4">
                             {/* Pending */}
                             {pendingList.length > 0 && (
-                                <div className="bg-white rounded-[32px] border-2 border-google-yellow/40 shadow-sm p-4 sm:p-6 md:p-8">
+                                <div className="bg-white rounded-[32px] border-2 border-google-yellow/40 shadow-sm p-4 sm:p-5 md:p-6">
                                     <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2"><Icon name="pending" className="text-[20px] text-google-yellow" />Menunggu Persetujuan ({pendingList.length})</h3>
                                     <div className="space-y-3">
                                         {pendingList.map(p => (
@@ -2689,9 +3309,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-extrabold text-[15px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[13px] font-bold text-google-yellowDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[14px]" />{p.namaBarang} <span className="ml-1 bg-google-yellow/20 text-google-yellowDark border border-google-yellow/40 px-2 py-0.5 rounded-full font-extrabold text-[11px]">{p.qty || 1} unit</span></p>
-                                                    <p className="text-[12px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[13px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} ? Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
+                                                    <p className="text-[12px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[13px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} ΓåÆ Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
                                                     <p className="text-[12px] text-google-textVariant mt-0.5 italic">"{p.keperluan}"</p>
-                                                    {p.catatan && <p className="text-[11px] text-slate-500 mt-0.5">?? {p.catatan}</p>}
+                                                    {p.catatan && <p className="text-[11px] text-slate-500 mt-0.5">≡ƒô¥ {p.catatan}</p>}
                                                 </div>
                                                 <div className="flex flex-wrap gap-2 shrink-0">
                                                     <button onClick={() => setKonfirmRejectId(p.id)} className="px-4 py-2.5 bg-white text-google-red border-2 border-google-red/30 rounded-full font-extrabold text-[12px] hover:bg-google-redLight active:scale-95 transition-all">Tolak</button>
@@ -2704,7 +3324,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             )}
                             {/* Approved / sedang dipinjam */}
                             {approvedList.length > 0 && (
-                                <div className="bg-white rounded-[32px] border-2 border-google-blue/30 shadow-sm p-4 sm:p-6 md:p-8">
+                                <div className="bg-white rounded-[32px] border-2 border-google-blue/30 shadow-sm p-4 sm:p-5 md:p-6">
                                     <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2"><Icon name="handshake" className="text-[20px] text-google-blue" />Sedang Dipinjam ({approvedList.length})</h3>
                                     <div className="space-y-3">
                                         {approvedList.map(p => (
@@ -2712,7 +3332,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-extrabold text-[15px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[13px] font-bold text-google-blueDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[14px]" />{p.namaBarang} <span className="ml-1 bg-google-blue/10 text-google-blueDark border border-google-blue/30 px-2 py-0.5 rounded-full font-extrabold text-[11px]">{p.qty || 1} unit</span></p>
-                                                    <p className="text-[12px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[13px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} ? Estimasi Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
+                                                    <p className="text-[12px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[13px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} ΓåÆ Estimasi Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
                                                     <p className="text-[12px] text-google-textVariant mt-0.5 italic">"{p.keperluan}"</p>
                                                     {/* Cek apakah sudah lewat tanggal kembali */}
                                                     {p.tanggalKembali < getLocalDate() && (
@@ -2750,7 +3370,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             </div>
                                             <div className="min-w-0">
                                                 <p className="font-extrabold text-[14px] text-google-text truncate">{item.name}</p>
-                                                <p className={`text-[12px] font-bold mt-0.5 ${stok <= 0 ? 'text-google-red' : 'text-google-greenDark'}`}>{stok <= 0 ? '? Semua sedang dipinjam' : `? ${stok} dari ${item.qty} tersedia`}</p>
+                                                <p className={`text-[12px] font-bold mt-0.5 ${stok <= 0 ? 'text-google-red' : 'text-google-greenDark'}`}>{stok <= 0 ? 'Γ¥î Semua sedang dipinjam' : `Γ£à ${stok} dari ${item.qty} tersedia`}</p>
                                                 {sedangDipinjam.length > 0 && (
                                                     <div className="mt-1.5 bg-google-redLight/50 border border-google-red/20 rounded-[10px] px-3 py-1.5 space-y-1">
                                                         {sedangDipinjam.map((p, i) => (
@@ -2777,7 +3397,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {/* Modal konfirmasi kembali */}
                     {konfirmReturnId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 {(() => { const p = pinjamData.find(x => x.id === konfirmReturnId); return p ? (<>
                                     <div className="mb-5 bg-google-greenLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="assignment_return" className="text-[40px] text-google-green" /></div>
@@ -2786,7 +3406,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <p className="text-[13px] font-bold text-google-green mb-6">Stok inventaris akan otomatis pulih setelah konfirmasi.</p>
                                     <div className="flex flex-wrap gap-3">
                                         <button onClick={() => setKonfirmReturnId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-extrabold text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
-                                        <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-full font-extrabold text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">? Konfirmasi Kembali</button>
+                                        <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-full font-extrabold text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">Γ£à Konfirmasi Kembali</button>
                                     </div>
                                 </>) : null; })()}
                             </div>
@@ -2795,7 +3415,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {/* Modal konfirmasi tolak */}
                     {konfirmRejectId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="cancel" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-xl font-extrabold text-google-text mb-2">Tolak Pengajuan?</h3>
@@ -2913,7 +3533,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             if (view === 'list') return (
                 <div className="space-y-6">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
                             <h2 className="text-2xl font-extrabold text-google-text tracking-tight flex flex-wrap items-center gap-2">
                                 <Icon name="volunteer_activism" className="text-[28px] text-google-green" fill="true" />Program Infaq
@@ -2990,7 +3610,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {/* Modal hapus */}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30">
                                     <Icon name="delete" className="text-[40px] text-google-red" />
@@ -3027,7 +3647,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         )}
 
                         {/* Judul & dana */}
-                        <div className="bg-white rounded-[28px] border-2 border-slate-200 shadow-sm p-4 sm:p-6 md:p-8">
+                        <div className="bg-white rounded-[28px] border-2 border-slate-200 shadow-sm p-4 sm:p-5 md:p-6">
                             <h2 className="text-[22px] font-extrabold text-google-text mb-2 tracking-tight">{prog.judul}</h2>
                             <p className="text-[14px] text-google-textVariant font-medium leading-relaxed mb-4">{prog.deskripsi}</p>
                             {/* Progress dana */}
@@ -3057,7 +3677,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                         {/* Admin: update dana */}
                         {userRole === 'admin' && (
-                            <div className="bg-white rounded-[28px] border-2 border-google-blue/30 shadow-sm p-4 sm:p-6 md:p-8">
+                            <div className="bg-white rounded-[28px] border-2 border-google-blue/30 shadow-sm p-4 sm:p-5 md:p-6">
                                 <h3 className="text-[15px] font-extrabold text-google-text mb-3 flex flex-wrap items-center gap-2">
                                     <Icon name="edit" className="text-[18px] text-google-blue" />Perbarui Dana Terkumpul
                                 </h3>
@@ -3080,13 +3700,13 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                         {/* Admin: Panel Approval Bukti Transfer */}
                         {userRole === 'admin' && (prog.donasi || []).length > 0 && (
-                            <div className="bg-white rounded-[28px] border-2 border-google-yellow/30 shadow-sm p-4 sm:p-6 md:p-8">
+                            <div className="bg-white rounded-[28px] border-2 border-google-yellow/30 shadow-sm p-4 sm:p-5 md:p-6">
                                 <h3 className="text-[17px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2">
                                     <Icon name="verified_user" className="text-[22px] text-google-yellow" fill="true" />Persetujuan Bukti Bayar
                                 </h3>
                                 <div className="space-y-4">
                                     {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[20px] p-4 sm:p-6 md:p-8 border border-slate-200 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+                                        <div key={donasi.id} className="bg-slate-50 rounded-[20px] p-4 sm:p-5 md:p-6 border border-slate-200 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
                                             <div className="flex flex-wrap items-center gap-4 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] overflow-hidden hover:opacity-80 transition-opacity">
@@ -3132,7 +3752,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                         donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                         'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                                     }`}>
-                                                        {donasi.status === 'APPROVED' ? '? Disetujui' : donasi.status === 'REJECTED' ? '? Ditolak' : '? Menunggu'}
+                                                        {donasi.status === 'APPROVED' ? 'Γ£à Disetujui' : donasi.status === 'REJECTED' ? 'Γ¥î Ditolak' : 'ΓÅ│ Menunggu'}
                                                     </span>
                                                 )}
                                             </div>
@@ -3142,15 +3762,15 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             </div>
                         )}
 
-                        {/* Riwayat Donasi � Tampil untuk SEMUA user (Warga & Admin) */}
+                        {/* Riwayat Donasi ΓÇö Tampil untuk SEMUA user (Warga & Admin) */}
                         {(prog.donasi || []).length > 0 && userRole !== 'admin' && (
-                            <div className="bg-white rounded-[28px] border-2 border-slate-200 shadow-sm p-4 sm:p-6 md:p-8">
+                            <div className="bg-white rounded-[28px] border-2 border-slate-200 shadow-sm p-4 sm:p-5 md:p-6">
                                 <h3 className="text-[17px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2">
                                     <Icon name="receipt_long" className="text-[22px] text-google-blue" fill="true" />Riwayat Donasi Anda
                                 </h3>
                                 <div className="space-y-3">
                                     {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[16px] p-4 sm:p-6 md:p-8 border border-slate-200 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
+                                        <div key={donasi.id} className="bg-slate-50 rounded-[16px] p-4 sm:p-5 md:p-6 border border-slate-200 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
                                             <div className="flex flex-wrap items-center gap-3 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] overflow-hidden hover:opacity-80 transition-opacity">
@@ -3172,7 +3792,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                 donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                 'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                             }`}>
-                                                {donasi.status === 'APPROVED' ? '? Disetujui' : donasi.status === 'REJECTED' ? '? Ditolak' : '? Menunggu'}
+                                                {donasi.status === 'APPROVED' ? 'Γ£à Disetujui' : donasi.status === 'REJECTED' ? 'Γ¥î Ditolak' : 'ΓÅ│ Menunggu'}
                                             </span>
                                         </div>
                                     ))}
@@ -3182,7 +3802,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                         {/* Tujuan & manfaat */}
                         {(prog.tujuan || prog.manfaat) && (
-                            <div className="bg-white rounded-[28px] border-2 border-slate-200 shadow-sm p-4 sm:p-6 md:p-8 space-y-4">
+                            <div className="bg-white rounded-[28px] border-2 border-slate-200 shadow-sm p-4 sm:p-5 md:p-6 space-y-4">
                                 {prog.tujuan && (
                                     <div>
                                         <p className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-wider mb-1.5 flex flex-wrap items-center gap-1.5"><Icon name="flag" className="text-[14px] text-google-blue" />Tujuan Program</p>
@@ -3199,7 +3819,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         )}
 
                         {/* Form infaq warga */}
-                        <div className="bg-white rounded-[28px] border-2 border-google-green/30 shadow-sm p-4 sm:p-6 md:p-8 space-y-5">
+                        <div className="bg-white rounded-[28px] border-2 border-google-green/30 shadow-sm p-4 sm:p-5 md:p-6 space-y-5">
                             <h3 className="text-[17px] font-extrabold text-google-text flex flex-wrap items-center gap-2">
                                 <Icon name="volunteer_activism" className="text-[22px] text-google-green" fill="true" />Tunaikan Infaq
                             </h3>
@@ -3255,8 +3875,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                         {/* Modal pembayaran */}
                         {showPayModal && (
-                            <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
-                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[28px] p-4 sm:p-6 md:p-8 w-full max-w-sm shadow-2xl border-2 border-slate-200 my-4">
+                            <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
+                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[28px] p-4 sm:p-5 md:p-6 w-full max-w-sm shadow-2xl border-2 border-slate-200 my-4">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[18px] font-extrabold text-google-text">Cara Pembayaran</h3>
                                         <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border-2 border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
@@ -3265,7 +3885,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     </div>
 
                                     {/* Ringkasan */}
-                                    <div className="bg-google-greenLight border border-google-green/30 rounded-[16px] p-4 sm:p-6 md:p-8 mb-4">
+                                    <div className="bg-google-greenLight border border-google-green/30 rounded-[16px] p-4 sm:p-5 md:p-6 mb-4">
                                         <p className="text-[12px] font-bold text-google-textVariant">Nominal Infaq</p>
                                         <p className="text-[22px] font-extrabold text-google-green">{formatRp(safeNumber(nominalInput))}</p>
                                         <p className="text-[12px] font-bold text-google-textVariant mt-1">Atas nama: <span className="text-google-greenDark font-extrabold">{namaDisplay}</span></p>
@@ -3307,14 +3927,14 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                                     </div>
                                                 ))}
                                                 <p className="text-[11px] font-bold text-google-textVariant bg-white border border-slate-200 rounded-[10px] px-3 py-2 leading-relaxed">
-                                                    ?? Cantumkan nominal <span className="text-google-green font-extrabold">{formatRp(safeNumber(nominalInput))}</span> dan nama <span className="text-google-greenDark font-extrabold">{namaDisplay}</span> saat transfer.
+                                                    ≡ƒô¥ Cantumkan nominal <span className="text-google-green font-extrabold">{formatRp(safeNumber(nominalInput))}</span> dan nama <span className="text-google-greenDark font-extrabold">{namaDisplay}</span> saat transfer.
                                                 </p>
                                             </div>
                                         );
                                     })()}
 
                                         {/* Upload Bukti */}
-                                        <div className="mt-4 bg-slate-50 border-2 border-slate-200 rounded-[18px] p-4 sm:p-6 md:p-8 text-center relative overflow-hidden transition-all focus-within:border-google-green group hover:border-google-green/40 cursor-pointer">
+                                        <div className="mt-4 bg-slate-50 border-2 border-slate-200 rounded-[18px] p-4 sm:p-5 md:p-6 text-center relative overflow-hidden transition-all focus-within:border-google-green group hover:border-google-green/40 cursor-pointer">
                                             <p className="text-[12px] font-extrabold text-google-textVariant mb-2 uppercase tracking-wider">Upload Bukti Transfer</p>
                                             <input type="file" accept="image/*" onChange={handleBuktiUpload} disabled={isUploadingBukti} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                             {isUploadingBukti ? (
@@ -3379,7 +3999,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     <div className="bg-white rounded-[32px] border-2 border-slate-200 shadow-sm p-6 sm:p-8">
                         <h3 className="text-[20px] font-extrabold text-google-text mb-6 tracking-tight">
-                            {editingId ? '?? Edit Program Infaq' : '? Buat Program Infaq Baru'}
+                            {editingId ? 'Γ£Å∩╕Å Edit Program Infaq' : 'Γ₧ò Buat Program Infaq Baru'}
                         </h3>
                         <div className="space-y-5">
 
@@ -3394,10 +4014,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             : <Icon name="cloud_upload" className="text-[24px] text-google-textVariant" />}
                                     </div>
                                     <div className="flex-1 z-0">
-                                        <p className="font-extrabold text-[14px] text-google-text">{isUploading ? 'Mengunggah...' : form.imageUrl ? 'Foto Tersimpan ?' : 'Pilih Foto Program'}</p>
+                                        <p className="font-extrabold text-[14px] text-google-text">{isUploading ? 'Mengunggah...' : form.imageUrl ? 'Foto Tersimpan Γ£ô' : 'Pilih Foto Program'}</p>
                                         <p className="text-[12px] text-google-textVariant">Maks. 2MB</p>
                                     </div>
-                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[16px] hover:bg-google-redLight active:scale-95 shrink-0">�</button>}
+                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[16px] hover:bg-google-redLight active:scale-95 shrink-0">├ù</button>}
                                 </div>
                             </div>
 
@@ -3455,7 +4075,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 </div>
                                 <div className="space-y-3">
                                     {form.rekening.map((r, i) => (
-                                        <div key={i} className="bg-slate-50 border-2 border-slate-200 rounded-[18px] p-4 sm:p-6 md:p-8 space-y-3">
+                                        <div key={i} className="bg-slate-50 border-2 border-slate-200 rounded-[18px] p-4 sm:p-5 md:p-6 space-y-3">
                                             <div className="flex items-center justify-between">
                                                 <p className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-wider">Rekening {i+1}</p>
                                                 {form.rekening.length > 1 && (
@@ -3533,39 +4153,38 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                 setIsFormOpen(true);
             };
 
+            // Upload Galeri: Canvas compress ΓåÆ base64 ΓåÆ Firestore (tanpa GAS)
             const handleImageUpload = (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
-                if (file.size > 2 * 1024 * 1024) return setErrorMsg("Ukuran gambar maksimal 2MB!");
-
+                if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
+                if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
+                setIsUploading(true); setErrorMsg('');
                 const reader = new FileReader();
                 reader.onloadend = () => {
-                    const base64String = reader.result.split(',')[1];
-                    setIsUploading(true); setErrorMsg('');
-
-                    const gasUrl = window.GAS_DRIVE_URL; 
-
-                    fetch(gasUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({ base64: base64String, mimeType: file.type, filename: `galeri-${Date.now()}-${file.name}` })
-                    })
-                    .then(res => res.json())
-                    .then(response => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const MAX = 1200;
+                        let w = img.width, h = img.height;
+                        if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
+                        else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
+                        canvas.width = w; canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        const compressed = canvas.toDataURL('image/webp', 0.82);
+                        setFormData(prev => ({ ...prev, imageUrl: compressed }));
                         setIsUploading(false);
-                        if (response.status === 'success') { setFormData(prev => ({ ...prev, imageUrl: response.viewUrl })); } 
-                        else { setErrorMsg('Gagal mengunggah: ' + response.message); }
-                    })
-                    .catch(err => {
-                        setIsUploading(false); setErrorMsg('Terjadi kesalahan jaringan saat mengunggah gambar.');
-                    });
+                    };
+                    img.onerror = () => { setErrorMsg('Gagal memproses gambar.'); setIsUploading(false); };
+                    img.src = reader.result;
                 };
+                reader.onerror = () => { setErrorMsg('Gagal membaca file.'); setIsUploading(false); };
                 reader.readAsDataURL(file);
             };
 
             return (
                 <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div>
                             <h2 className="text-2xl font-extrabold text-google-text tracking-tight flex flex-wrap items-center gap-2">
                                 <Icon name="photo_library" className="text-[28px] text-red-600"/>
@@ -3592,7 +4211,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between">
+                                <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between flex-1">
                                     <div>
                                         <div className="flex flex-wrap justify-between items-start gap-2 mb-1.5">
                                             <span className="text-[10px] font-extrabold text-red-600 bg-red-50 border border-red-500/15 px-2.5 py-1 rounded-md uppercase tracking-wider">
@@ -3604,9 +4223,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             </span>
                                         </div>
                                         <h3 onClick={() => setSelectedPhoto(item)} className="text-[16px] font-extrabold text-google-text leading-snug tracking-tight mb-2 group-hover:text-red-600 transition-colors cursor-pointer line-clamp-1">{item.title}</h3>
-                                        <p className="text-[12.5px] font-medium text-google-textVariant leading-relaxed line-clamp-2 mb-4 bg-slate-50 p-2.5 rounded-[14px] border border-slate-100">
-                                            {item.description || 'Tidak ada deskripsi.'}
-                                        </p>
+                                        <div className="bg-slate-50 p-3 rounded-[14px] border border-slate-100 mb-4">
+                                            <p className="text-[12.5px] font-medium text-google-textVariant leading-relaxed line-clamp-3">
+                                                {item.description || 'Tidak ada deskripsi.'}
+                                            </p>
+                                        </div>
                                     </div>
                                     {userRole === 'admin' && (
                                         <div className="flex flex-wrap justify-end gap-2 border-t border-slate-100 pt-3">
@@ -3636,7 +4257,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {selectedPhoto && (
                         <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="bg-white rounded-[32px] w-full max-w-2xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-200 overflow-hidden" style={{ animation: 'slideUp 0.3s ease-out' }}>
-                                <div className="p-4 sm:p-6 md:p-8 border-b border-slate-100 flex justify-between items-center bg-slate-50 shrink-0">
+                                <div className="p-4 sm:p-5 md:p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50 shrink-0">
                                     <div className="flex flex-wrap items-center gap-2">
                                         <Icon name="image" className="text-red-600" />
                                         <span className="text-[13px] font-extrabold text-google-text">Detail Dokumentasi</span>
@@ -3749,61 +4370,37 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             };
 
             const handleImageUpload = (e) => {
+                // Upload Informasi: Canvas compress ΓåÆ base64 ΓåÆ Firestore (tanpa GAS)
                 const file = e.target.files[0];
                 if (!file) return;
-
-                if (file.size > 2 * 1024 * 1024) {
-                    setErrorMsg("Ukuran gambar maksimal 2MB!");
-                    return;
-                }
-
+                if (!file.type.match('image.*')) { setErrorMsg('File harus berupa gambar!'); return; }
+                if (file.size > 10 * 1024 * 1024) { setErrorMsg('Ukuran file maksimal 10MB!'); return; }
+                setIsUploading(true); setErrorMsg('');
                 const reader = new FileReader();
                 reader.onloadend = () => {
-                    const base64String = reader.result.split(',')[1];
-                    setIsUploading(true);
-                    setErrorMsg('');
-
-                    // ==============================================================
-                    // PENTING: GANTI URL DI BAWAH INI DENGAN URL WEB APP GAS ANDA
-                    // ==============================================================
-                    const gasUrl = window.GAS_DRIVE_URL; 
-
-                    if(!gasUrl) {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const MAX = 1200;
+                        let w = img.width, h = img.height;
+                        if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
+                        else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
+                        canvas.width = w; canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        const compressed = canvas.toDataURL('image/webp', 0.82);
+                        setFormData(prev => ({ ...prev, imageUrl: compressed }));
                         setIsUploading(false);
-                        setErrorMsg("Anda belum memasukkan URL Google Apps Script. Cek kembali kode sumber Anda.");
-                        return;
-                    }
-
-                    fetch(gasUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({
-                            base64: base64String,
-                            mimeType: file.type,
-                            filename: `info-${Date.now()}-${file.name}`
-                        })
-                    })
-                    .then(res => res.json())
-                    .then(response => {
-                        setIsUploading(false);
-                        if (response.status === 'success') {
-                            setFormData(prev => ({ ...prev, imageUrl: response.viewUrl }));
-                        } else {
-                            setErrorMsg('Gagal mengunggah: ' + response.message);
-                        }
-                    })
-                    .catch(err => {
-                        setIsUploading(false);
-                        setErrorMsg('Terjadi kesalahan jaringan saat mengunggah gambar.');
-                        console.error("Upload error:", err);
-                    });
+                    };
+                    img.onerror = () => { setErrorMsg('Gagal memproses gambar.'); setIsUploading(false); };
+                    img.src = reader.result;
                 };
+                reader.onerror = () => { setErrorMsg('Gagal membaca file gambar.'); setIsUploading(false); };
                 reader.readAsDataURL(file);
             };
 
             return (
                 <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Papan Informasi & Kegiatan</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Pengumuman dan dokumentasi lingkungan RT.</p></div>
                         {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="add" className="text-[20px]" /><span>Buat Info Baru</span></button>}
                     </div>
@@ -3892,6 +4489,40 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [deleteConfirmId, setDeleteConfirmId] = useState(null);
             const [formData, setFormData] = useState({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' });
             const [errorMsg, setErrorMsg] = useState('');
+            const [printMode, setPrintMode] = useState('');
+            const [searchQuery, setSearchQuery] = useState('');
+            const [previewMember, setPreviewMember] = useState(null);
+
+            useEffect(() => {
+                if (previewMember && window.JsBarcode) {
+                    window.JsBarcode("#preview-barcode", `M-${previewMember.id}`, { width: 2, height: 60, fontSize: 16 });
+                }
+            }, [previewMember]);
+
+            const handleDownloadBarcode = () => {
+                const canvas = document.getElementById("preview-barcode");
+                if (!canvas) return;
+                const url = canvas.toDataURL("image/png");
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = `Barcode_${previewMember.name.replace(/\s+/g, '_')}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+            
+            const handlePrintBarcode = () => {
+                setPrintMode('barcode');
+                setTimeout(() => {
+                    if (window.JsBarcode) {
+                        window.JsBarcode(".barcode-element").init();
+                    }
+                    setTimeout(() => {
+                        window.print();
+                        setTimeout(() => setPrintMode(''), 1000);
+                    }, 200);
+                }, 200);
+            };
             
             const handleSave = () => {
                 const trimmedName = formData.name ? formData.name.trim() : '';
@@ -3911,40 +4542,69 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
             return (
                 <div className="space-y-5">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Buku Induk Warga</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Total <span className="font-extrabold text-google-blue">{members.length} Warga</span> Terdaftar</p></div>
                         <div className="flex gap-3 w-full sm:w-auto overflow-x-auto hide-scrollbar pb-1 sm:pb-0">
-                            <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[18px]" /><span>Cetak Form</span></button>
+                            <button onClick={() => { setPrintMode('buku'); setTimeout(() => { window.print(); setTimeout(() => setPrintMode(''), 1000); }, 100); }} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[18px]" /><span>Cetak Form</span></button>
+                            {userRole === 'admin' && <button onClick={handlePrintBarcode} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="qr_code_scanner" className="text-[18px]" /><span>Cetak Barcode</span></button>}
                             {userRole === 'admin' && <button onClick={() => { setFormData({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="person_add" className="text-[20px]" /><span>Tambah Data</span></button>}
                         </div>
                     </div>
 
-                    <div className="hidden print-only">
-                        <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1><p>{identity?.subtitle || ''}</p></div>
-                        <div className="text-center mb-6"><h2 className="text-[14pt] font-bold underline uppercase mb-1">Buku Induk &amp; Evaluasi Warga</h2><p className="text-[11pt]">Siklus Ke-{cycleNumber || 1} | Putaran Ke-{currentRound} | Periode: {formatBulanTahun(arisanPeriod)}</p></div>
-                        <table className="print-table">
-                            <thead><tr><th width="5%">No</th><th width="30%">Nama Warga</th><th width="15%">Program</th><th width="15%">Status Arisan</th><th width="15%">Tunggakan</th><th width="20%">Keterangan</th></tr></thead>
-                            <tbody>
-                                {members.length === 0 ? <tr><td colSpan="6" className="text-center font-bold">Belum ada data.</td></tr> : members.map((m, idx) => (
-                                    <tr key={m.id}>
-                                        <td className="text-center font-bold">{idx + 1}</td>
-                                        <td className="font-bold">{m.name} {m.status === 'Meninggal' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Wafat</span>}{m.status === 'Nonaktif' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Nonaktif</span>}</td>
-                                        <td className="text-center font-bold">{m.program === 'IuranOnly' ? 'Iuran Saja' : 'Arisan + Iuran'}</td>
-                                        <td className="text-center font-bold">{m.program === 'IuranOnly' ? '-' : (m.hasWon ? `Menang (Put.${m.wonRound})` : 'Belum')}</td>
-                                        <td className="text-right font-bold">{m.debt > 0 ? formatRp(m.debt) : '-'}</td><td></td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <div className="ttd-container">
-                            <div className="ttd-box"><p>Mengetahui,</p><p>Ketua RT</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
-                            <div className="ttd-box"><p>Dibuat Oleh,</p><p>Sekretaris / Admin</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
-                        </div>
+                    <div className="bg-white p-4 sm:p-5 rounded-[24px] border-2 border-slate-200 shadow-sm flex items-center gap-3 no-print">
+                        <Icon name="search" className="text-[24px] text-slate-400 shrink-0 ml-2" />
+                        <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Cari nama warga..." className="w-full bg-transparent outline-none font-bold text-[15px] text-google-text placeholder:text-slate-400 placeholder:font-medium" />
+                        {searchQuery && <button onClick={() => setSearchQuery('')} className="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-full text-slate-500 shrink-0 active:scale-95 transition-all"><Icon name="close" className="text-[18px]" /></button>}
                     </div>
 
+                    {printMode === 'buku' && (
+                        <div className="hidden print-only">
+                            <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1><p>{identity?.subtitle || ''}</p></div>
+                            <div className="text-center mb-6"><h2 className="text-[14pt] font-bold underline uppercase mb-1">Buku Induk &amp; Evaluasi Warga</h2><p className="text-[11pt]">Siklus Ke-{cycleNumber || 1} | Putaran Ke-{currentRound} | Periode: {formatBulanTahun(arisanPeriod)}</p></div>
+                            <table className="print-table">
+                                <thead><tr><th width="5%">No</th><th width="30%">Nama Warga</th><th width="15%">Program</th><th width="15%">Status Arisan</th><th width="15%">Tunggakan</th><th width="20%">Keterangan</th></tr></thead>
+                                <tbody>
+                                    {members.length === 0 ? <tr><td colSpan="6" className="text-center font-bold">Belum ada data.</td></tr> : members.map((m, idx) => (
+                                        <tr key={m.id}>
+                                            <td className="text-center font-bold">{idx + 1}</td>
+                                            <td className="font-bold">{m.name} {m.status === 'Meninggal' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Wafat</span>}{m.status === 'Nonaktif' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Nonaktif</span>}</td>
+                                            <td className="text-center font-bold">{m.program === 'IuranOnly' ? 'Iuran Saja' : 'Arisan + Iuran'}</td>
+                                            <td className="text-center font-bold">{m.program === 'IuranOnly' ? '-' : (m.hasWon ? `Menang (Put.${m.wonRound})` : 'Belum')}</td>
+                                            <td className="text-right font-bold">{m.debt > 0 ? formatRp(m.debt) : '-'}</td><td></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            <div className="ttd-container">
+                                <div className="ttd-box"><p>Mengetahui,</p><p>Ketua RT</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
+                                <div className="ttd-box"><p>Dibuat Oleh,</p><p>Sekretaris / Admin</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
+                            </div>
+                        </div>
+                    )}
+                    
+                    {printMode === 'barcode' && (
+                        <div className="hidden print-only">
+                            <div className="text-center mb-8"><h2 className="text-[18pt] font-extrabold uppercase mb-1">Kartu Barcode Warga</h2><p className="text-[12pt]">{identity?.name || 'Aplikasi Arisan'}</p></div>
+                            <div className="grid grid-cols-2 gap-8" style={{ pageBreakInside: 'avoid' }}>
+                                {members.map(m => (
+                                    <div key={m.id} className="border-2 border-black p-6 rounded-2xl flex flex-col items-center justify-center text-center" style={{ pageBreakInside: 'avoid' }}>
+                                        <h3 className="font-extrabold text-[12pt] mb-2 uppercase">{identity?.name || 'RT/RW'}</h3>
+                                        <p className="font-extrabold text-[16pt] uppercase mb-1 leading-tight">{m.name}</p>
+                                        <p className="font-bold text-[11pt] mb-4 text-gray-700">No. Anggota: M-{m.id}</p>
+                                        <svg className="barcode-element" data-value={`M-${m.id}`} data-text={`M-${m.id}`} data-height="50" data-width="1.8" data-fontSize="14"></svg>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
                     <div className="space-y-4 no-print">
-                        {members.map((member) => (
-                            <div key={member.id} className="bg-white rounded-[24px] p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between border-2 border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/40 transition-all duration-300 gap-5 group">
+                        {(() => {
+                            const filteredMembers = members.filter(m => (m.name || '').toLowerCase().includes((searchQuery || '').toLowerCase()));
+                            return (
+                                <>
+                                    {filteredMembers.map((member) => (
+                                        <div key={member.id} onClick={(e) => { if(!e.target.closest('button')) setPreviewMember(member); }} className="bg-white rounded-[24px] p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between border-2 border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/40 transition-all duration-300 gap-5 group cursor-pointer">
                                 <div className="flex flex-wrap items-center gap-5">
                                     <div className={`w-16 h-16 rounded-[20px] flex items-center justify-center font-extrabold text-[24px] shrink-0 border-2 transition-colors duration-300 ${isNonaktif(member) ? 'bg-slate-50 text-slate-400 border-slate-200' : 'bg-google-blueLight text-google-blueDark border-google-blue/30 group-hover:bg-google-blue group-hover:text-white group-hover:border-google-blueDark'}`}>{member.name.charAt(0).toUpperCase()}</div>
                                     <div className="flex-1 min-w-0">
@@ -3963,8 +4623,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     </div>
                                 )}
                             </div>
-                        ))}
-                        {members.length === 0 && <div className="bg-white rounded-[32px] border-2 border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border-2 border-slate-200"><Icon name="group_off" className="text-[48px] text-slate-400" fill="true" /></div><p className="text-google-text font-extrabold text-[20px] tracking-tight">Belum ada Warga</p><p className="text-[15px] font-medium text-google-textVariant mt-1.5">Silakan tambahkan data warga baru.</p></div>}
+                                    ))}
+                                    {filteredMembers.length === 0 && <div className="bg-white rounded-[32px] border-2 border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border-2 border-slate-200"><Icon name="search_off" className="text-[48px] text-slate-400" fill="true" /></div><p className="text-google-text font-extrabold text-[20px] tracking-tight">Tidak Ditemukan</p><p className="text-[15px] font-medium text-google-textVariant mt-1.5">Tidak ada warga yang cocok dengan pencarian.</p></div>}
+                                </>
+                            );
+                        })()}
                     </div>
 
                     {isFormOpen && (
@@ -3973,9 +4636,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 <h3 className="text-2xl font-extrabold text-google-text mb-6 tracking-tight">{editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}</h3>
                                 <div className="space-y-5">
                                     <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
-                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Program Keikutsertaan</label><select value={formData.program || 'Arisan'} onChange={e => setFormData({...formData, program: e.target.value, hasWon: false, wonRound: ''})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Arisan">Full (Arisan &amp; Iuran)</option><option value="IuranOnly">Hanya Iuran Umum Saja</option></select></div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Program Keikutsertaan</label><select value={formData.program || 'Arisan'} onChange={e => setFormData({...formData, program: e.target.value, hasWon: false, wonRound: ''})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Arisan">Full (Arisan &amp; Iuran)</option><option value="IuranOnly">Hanya Iuran Umum Saja</option></select></div>
                                     <div className="flex flex-wrap gap-5">
-                                        <div className="flex-1"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Status</label><select value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md p-4 sm:p-6 md:p-8 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Normal">Aktif</option><option value="Meninggal">Meninggal / Wafat</option><option value="Nonaktif">Nonaktif / Pindah</option></select></div>
+                                        <div className="flex-1"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Status</label><select value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Normal">Aktif</option><option value="Meninggal">Meninggal / Wafat</option><option value="Nonaktif">Nonaktif / Pindah</option></select></div>
                                         <div className="flex-1"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tunggakan (Rp)</label><input type="number" min="0" value={formData.debt} onChange={e => {setFormData({...formData, debt: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                     </div>
                                     {formData.program !== 'IuranOnly' && (
@@ -4003,6 +4666,36 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                     <button onClick={executeDelete} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
                                 </div>
+                            </div>
+                        </div>
+                    )}
+                    
+                    {previewMember && (
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity" onClick={() => setPreviewMember(null)}>
+                            <div className="max-h-[90vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform relative" onClick={e => e.stopPropagation()}>
+                                <button onClick={() => setPreviewMember(null)} className="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-500 active:scale-95 transition-all"><Icon name="close" className="text-[20px]" /></button>
+                                
+                                <div className="mb-4">
+                                    <div className={`w-20 h-20 mx-auto rounded-[24px] flex items-center justify-center font-extrabold text-[32px] border-2 shadow-sm ${isNonaktif(previewMember) ? 'bg-slate-50 text-slate-400 border-slate-200' : 'bg-google-blueLight text-google-blueDark border-google-blue/30'}`}>{previewMember.name.charAt(0).toUpperCase()}</div>
+                                </div>
+                                <h3 className={`font-extrabold text-[22px] tracking-tight mb-1 ${isNonaktif(previewMember) ? 'text-slate-400 line-through' : 'text-google-text'}`}>{previewMember.name}</h3>
+                                <p className="text-[13px] font-bold text-google-textVariant mb-6 bg-slate-50 inline-block px-4 py-1.5 rounded-full border-2 border-slate-200">No. Anggota: M-{previewMember.id}</p>
+
+                                <div className="space-y-3 text-left mb-6 bg-slate-50 p-5 rounded-[24px] border-2 border-slate-200">
+                                    <div className="flex justify-between items-center pb-3 border-b-2 border-slate-100"><span className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-widest">Status</span><span className="font-bold text-[14px] text-google-text">{previewMember.status}</span></div>
+                                    <div className="flex justify-between items-center pb-3 border-b-2 border-slate-100"><span className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-widest">Program</span><span className="font-bold text-[14px] text-google-text">{previewMember.program === 'IuranOnly' ? 'Hanya Iuran' : 'Arisan & Iuran'}</span></div>
+                                    <div className="flex justify-between items-center pb-3 border-b-2 border-slate-100"><span className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-widest">Tunggakan</span><span className={`font-extrabold text-[14px] ${previewMember.debt > 0 ? 'text-google-red' : 'text-google-green'}`}>{previewMember.debt > 0 ? formatRp(previewMember.debt) : 'Rp 0 (Aman)'}</span></div>
+                                    {previewMember.program !== 'IuranOnly' && (
+                                        <div className="flex justify-between items-center"><span className="text-[12px] font-extrabold text-google-textVariant uppercase tracking-widest">Arisan</span><span className={`font-bold text-[14px] ${previewMember.hasWon ? 'text-google-blue' : 'text-google-textVariant'}`}>{previewMember.hasWon ? `Menang (Put. ${previewMember.wonRound})` : 'Belum Menang'}</span></div>
+                                    )}
+                                </div>
+                                
+                                <div className="border-2 border-dashed border-slate-300 rounded-[24px] p-5 bg-white mb-2 relative">
+                                    <p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-3">Barcode Resmi</p>
+                                    <canvas id="preview-barcode" className="mx-auto w-full max-w-[200px]"></canvas>
+                                    <button onClick={handleDownloadBarcode} className="mt-4 bg-slate-100 hover:bg-slate-200 text-google-text font-extrabold text-[12px] px-4 py-2 rounded-full transition-all flex items-center justify-center gap-1 mx-auto border-2 border-slate-200 active:scale-95"><Icon name="download" className="text-[16px]"/> Simpan Gambar (PNG)</button>
+                                </div>
+                                <p className="text-[11px] font-medium text-slate-400 mt-4">Tunjukkan barcode ini kepada petugas jika diperlukan.</p>
                             </div>
                         </div>
                     )}
@@ -4059,7 +4752,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
             if (view === 'form') {
                 return (
-                    <div className="bg-white p-6 sm:p-10 rounded-[32px] border-2 border-slate-200 max-w-2xl mx-auto shadow-xl">
+                    <div className="bg-white p-5 sm:p-8 rounded-[32px] border-2 border-slate-200 max-w-2xl mx-auto shadow-xl">
                         <div className="flex flex-wrap items-center gap-5 mb-8 border-b-2 border-slate-100 pb-6"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[20px] font-extrabold text-google-text" /></button><h2 className="text-[22px] sm:text-[24px] font-extrabold text-google-text leading-tight tracking-tight">{selectedAgenda ? 'Edit Agenda' : 'Buat Agenda Iuran'}</h2></div>
                         <div className="space-y-6">
                             <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama / Keperluan Iuran</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Dana 17 Agustus" /></div>
@@ -4084,7 +4777,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                 return (
                     <div className="space-y-6 max-w-5xl mx-auto">
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm">
                             <div className="flex flex-wrap items-center gap-5"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[20px] font-extrabold text-google-text" /></button><div><h2 className="text-[22px] sm:text-[24px] font-extrabold text-google-text leading-tight tracking-tight">{selectedAgenda.title}</h2><p className="text-[14px] font-medium text-google-textVariant mt-1">Kelola Penyetoran Warga</p></div></div>
                             {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[18px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
                         </div>
@@ -4108,11 +4801,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             </div>
                         </div>
 
-                        <div className="bg-white p-6 sm:p-10 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
+                        <div className="bg-white p-5 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[24px] border-2 border-slate-200 text-center shadow-sm"><p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-2">Target / Warga</p><p className="text-[24px] font-extrabold text-google-text tracking-tight">{formatRp(selectedAgenda.minAmount)}</p></div>
-                                <div className="bg-google-greenLight p-4 sm:p-6 md:p-8 rounded-[24px] border-2 border-google-green/30 text-center shadow-sm"><p className="text-[11px] font-extrabold text-google-greenDark uppercase tracking-widest mb-2">Dana Terkumpul</p><p className="text-[24px] font-extrabold text-google-greenDark tracking-tight">{formatRp(totalTerkumpul)}</p></div>
-                                <div className="bg-gradient-to-br from-google-blueLight to-blue-50 p-4 sm:p-6 md:p-8 rounded-[24px] border-2 border-google-blue/30 text-center flex flex-col items-center relative shadow-sm hover:shadow-md transition-shadow group"><p className="text-[11px] font-extrabold text-google-blueDark uppercase tracking-widest mb-2">Sisa (Belum Disetor)</p><p className="text-[24px] font-extrabold text-google-blueDark group-hover:scale-105 transition-transform tracking-tight">{formatRp(sisa)}</p>
+                                <div className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-slate-200 text-center shadow-sm"><p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-2">Target / Warga</p><p className="text-[24px] font-extrabold text-google-text tracking-tight">{formatRp(selectedAgenda.minAmount)}</p></div>
+                                <div className="bg-google-greenLight p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-google-green/30 text-center shadow-sm"><p className="text-[11px] font-extrabold text-google-greenDark uppercase tracking-widest mb-2">Dana Terkumpul</p><p className="text-[24px] font-extrabold text-google-greenDark tracking-tight">{formatRp(totalTerkumpul)}</p></div>
+                                <div className="bg-gradient-to-br from-google-blueLight to-blue-50 p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-google-blue/30 text-center flex flex-col items-center relative shadow-sm hover:shadow-md transition-shadow group"><p className="text-[11px] font-extrabold text-google-blueDark uppercase tracking-widest mb-2">Sisa (Belum Disetor)</p><p className="text-[24px] font-extrabold text-google-blueDark group-hover:scale-105 transition-transform tracking-tight">{formatRp(sisa)}</p>
                                     {userRole === 'admin' && sisa > 0 && <button onClick={() => { 
                                             const savedTotal = calculateTotal(selectedAgenda.payments || {});
                                             const currentTotal = calculateTotal(tempPayments);
@@ -4122,7 +4815,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 </div>
                             </div>
                             
-                            <div className="bg-slate-50 border-2 border-slate-200 p-4 sm:p-6 md:p-8 rounded-[24px] mb-10 shadow-sm">
+                            <div className="bg-slate-50 border-2 border-slate-200 p-4 sm:p-5 md:p-6 rounded-[24px] mb-10 shadow-sm">
                                 <div className="flex justify-between items-end mb-4"><span className="text-[14px] font-extrabold text-google-textVariant">Progres Pelunasan Warga</span><span className="text-[20px] font-extrabold text-google-blueDark leading-none">{lunasCount} <span className="text-[15px] text-google-textVariant">/ {activeMembers.length}</span></span></div>
                                 <div className="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-gradient-to-r from-google-blue to-google-blueDark h-full rounded-full transition-all duration-1000" style={{ width: `${activeMembers.length === 0 ? 0 : (lunasCount / activeMembers.length) * 100}%` }}></div></div>
                             </div>
@@ -4170,7 +4863,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Setor ke Kas RT</h3>
                                     <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Mutasi dana fisik dari Iuran ke Saldo Buku Kas Utama.</p>
                                     
-                                    <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[24px] mb-8 border-2 border-slate-200 shadow-sm"><p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-2">Batas Maksimal Tarik</p><p className="text-[28px] font-extrabold text-google-text tracking-tight">{formatRp(sisa)}</p></div>
+                                    <div className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] mb-8 border-2 border-slate-200 shadow-sm"><p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-2">Batas Maksimal Tarik</p><p className="text-[28px] font-extrabold text-google-text tracking-tight">{formatRp(sisa)}</p></div>
                                     
                                     <div className="text-left mb-8"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[18px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                     
@@ -4189,7 +4882,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
             return (
                 <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Agenda Iuran Umum</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Penggalangan dana non-arisan (berlaku untuk semua warga).</p></div>
                         {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', minAmount: 0, dueDate: getLocalDate(), payments: {}, transferredToKas: 0 }); setSelectedAgenda(null); setView('form'); setErrorMsg(''); }} className="shrink-0 bg-google-blue text-white px-8 py-3.5 rounded-full font-extrabold flex flex-wrap items-center gap-2 text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto justify-center"><Icon name="add_task" className="text-[20px]" /><span>Buat Agenda Baru</span></button>}
                     </div>
@@ -4206,16 +4899,16 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <div>
                                         <h3 className="text-[24px] font-extrabold text-google-text leading-snug mb-6 group-hover:text-google-blue transition-colors tracking-tight">{agenda.title}</h3>
                                         <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border-2 border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-blueLight flex items-center justify-center text-google-blue border border-google-blue/20"><Icon name="event" className="text-[24px]" fill="true"/></div><div><p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest mb-1">Batas Akhir</p><p className="text-[14px] font-bold text-google-text">{parseLocalDate(agenda.dueDate).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p></div></div>
-                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border-2 border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-greenLight flex items-center justify-center text-google-green border border-google-green/20"><Icon name="payments" className="text-[24px]" fill="true"/></div><div><p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest mb-1">Target Minimal</p><p className="text-[15px] font-extrabold text-google-text">{formatRp(agenda.minAmount)}</p></div></div>
+                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[20px] border-2 border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-blueLight flex items-center justify-center text-google-blue border border-google-blue/20"><Icon name="event" className="text-[24px]" fill="true"/></div><div><p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest mb-1">Batas Akhir</p><p className="text-[14px] font-bold text-google-text">{parseLocalDate(agenda.dueDate).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p></div></div>
+                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[20px] border-2 border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-greenLight flex items-center justify-center text-google-green border border-google-green/20"><Icon name="payments" className="text-[24px]" fill="true"/></div><div><p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest mb-1">Target Minimal</p><p className="text-[15px] font-extrabold text-google-text">{formatRp(agenda.minAmount)}</p></div></div>
                                         </div>
-                                        <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[24px] border-2 border-slate-200 mb-8 shadow-sm">
+                                        <div className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-slate-200 mb-8 shadow-sm">
                                             <div className="flex justify-between items-end mb-4"><span className="text-[13px] font-bold text-google-textVariant">Progres Warga Lunas</span><span className="text-[18px] font-extrabold text-google-blueDark leading-none">{lunasCount} <span className="text-[13px] text-google-textVariant">/ {activeMembers.length}</span></span></div>
                                             <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-gradient-to-r from-google-blue to-google-blueDark h-full rounded-full transition-all duration-1000" style={{ width: `${progressPercent}%` }}></div></div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pt-6 border-t-2 border-slate-100">
-                                        <div className="bg-google-greenLight/50 px-5 py-3.5 rounded-[16px] border-2 border-google-green/20"><p className="text-[10px] text-google-greenDark uppercase tracking-widest font-extrabold mb-1">Total Dana Terkumpul</p><p className="text-[22px] font-extrabold text-google-greenDark tracking-tight truncate">{userRole === 'admin' ? formatRp(totalTerkumpul) : '?? Disembunyikan'}</p></div>
+                                        <div className="bg-google-greenLight/50 px-5 py-3.5 rounded-[16px] border-2 border-google-green/20"><p className="text-[10px] text-google-greenDark uppercase tracking-widest font-extrabold mb-1">Total Dana Terkumpul</p><p className="text-[22px] font-extrabold text-google-greenDark tracking-tight truncate">{userRole === 'admin' ? formatRp(totalTerkumpul) : '≡ƒöÆ Disembunyikan'}</p></div>
                                         {userRole === 'admin' ? (
                                             <div className="flex flex-wrap items-center gap-3 shrink-0 self-end sm:self-auto">
                                                 <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-6 py-3.5 bg-google-blueLight text-google-blueDark border-2 border-google-blue/30 rounded-full text-[14px] font-extrabold hover:bg-google-blue hover:text-white transition-all duration-300 hover:shadow-md active:scale-95 flex flex-wrap items-center gap-1.5"><Icon name="edit_document" className="text-[18px]"/> Kelola</button>
@@ -4260,32 +4953,32 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [isUploading, setIsUploading] = useState(false);
             const [editingId, setEditingId] = useState(null);
 
+            // Upload Nota Kas RT: Canvas compress ΓåÆ base64 ΓåÆ Firestore (tanpa GAS)
             const handleImageUpload = (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
-                if (file.size > 2 * 1024 * 1024) return setErrorMsg("Ukuran gambar maksimal 2MB!");
-
+                if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
+                if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
+                setIsUploading(true); setErrorMsg('');
                 const reader = new FileReader();
                 reader.onloadend = () => {
-                    const base64String = reader.result.split(',')[1];
-                    setIsUploading(true); setErrorMsg('');
-
-                    const gasUrl = window.GAS_DRIVE_URL; 
-                    fetch(gasUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({ base64: base64String, mimeType: file.type, filename: `bukukas-${Date.now()}-${file.name}` })
-                    })
-                    .then(res => res.json())
-                    .then(response => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const MAX = 1200;
+                        let w = img.width, h = img.height;
+                        if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
+                        else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
+                        canvas.width = w; canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        const compressed = canvas.toDataURL('image/webp', 0.82);
+                        setFormData(prev => ({ ...prev, receiptUrl: compressed }));
                         setIsUploading(false);
-                        if (response.status === 'success') { setFormData(prev => ({ ...prev, receiptUrl: response.viewUrl })); } 
-                        else { setErrorMsg('Gagal mengunggah nota: ' + response.message); }
-                    })
-                    .catch(err => {
-                        setIsUploading(false); setErrorMsg('Terjadi kesalahan jaringan saat mengunggah nota.');
-                    });
+                    };
+                    img.onerror = () => { setErrorMsg('Gagal memproses gambar nota.'); setIsUploading(false); };
+                    img.src = reader.result;
                 };
+                reader.onerror = () => { setErrorMsg('Gagal membaca file nota.'); setIsUploading(false); };
                 reader.readAsDataURL(file);
             };
 
@@ -4331,7 +5024,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
             return (
                 <div className="space-y-6 print:p-0">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Buku Kas Utama</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Catatan riwayat transaksi operasional RT.</p></div>
                         <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center gap-2 text-[14px] border-2 border-slate-200 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[18px]" /> <span>Cetak Laporan</span></button>
                     </div>
@@ -4369,15 +5062,15 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
                     {userRole === 'admin' && (
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 no-print">
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-4 sm:p-6 md:p-8 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-4 sm:p-5 md:p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/20"><Icon name="add" className="text-[28px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[15px] font-extrabold text-google-text">Catat Pemasukan</span>
                             </button>
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-4 sm:p-6 md:p-8 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-200 p-4 sm:p-5 md:p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/20"><Icon name="remove" className="text-[28px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[15px] font-extrabold text-google-text">Catat Pengeluaran</span>
                             </button>
-                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border-2 border-slate-200 p-4 sm:p-6 md:p-8 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border-2 border-slate-200 p-4 sm:p-5 md:p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-yellowLight text-google-yellowDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-yellow group-hover:text-white transition-colors duration-300 shadow-sm border border-google-yellow/20"><Icon name="move_to_inbox" className="text-[28px] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" /></div>
                                 <span className="text-[15px] font-extrabold text-google-text leading-tight">Cairkan Kas Jimpitan</span>
                             </button>
@@ -4393,7 +5086,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <div className="flex-1 min-w-0">
                                         <p className="font-extrabold text-[16px] text-google-text truncate mb-1.5">{t.description}</p>
                                         <div className="flex flex-wrap items-center gap-2">
-                                            <p className="text-[12px] font-bold text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5"><Icon name="label" className="text-[14px]" /> {t.category} � {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
+                                            <p className="text-[12px] font-bold text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5"><Icon name="label" className="text-[14px]" /> {t.category} ΓÇó {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
                                             {t.receiptUrl && <a href={t.receiptUrl} target="_blank" rel="noopener noreferrer" className="text-[12px] font-bold text-google-blue bg-google-blueLight border border-google-blue/20 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[14px]" /> Lihat Bukti</a>}
                                         </div>
                                     </div>
@@ -4475,7 +5168,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Pencairan Jimpitan</h3>
                                 <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Tarik dana dari kas Jimpitan Fisik ke Kas Utama RT.</p>
                                 
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[24px] mb-8 border-2 border-slate-200 shadow-sm"><p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-2">Saldo Jimpitan Saat Ini</p><p className="text-[28px] font-extrabold text-google-text tracking-tight">{formatRp(jimpitanBalance)}</p></div>
+                                <div className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] mb-8 border-2 border-slate-200 shadow-sm"><p className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest mb-2">Saldo Jimpitan Saat Ini</p><p className="text-[28px] font-extrabold text-google-text tracking-tight">{formatRp(jimpitanBalance)}</p></div>
                                 
                                 <div className="text-left mb-8"><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[18px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                 
@@ -4517,6 +5210,85 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     return updated;
                 });
             }, [arisanMembers]);
+
+            const [isScannerOpen, setIsScannerOpen] = useState(false);
+            const [scannedMembers, setScannedMembers] = useState([]);
+            const [cashReceived, setCashReceived] = useState('');
+            const [cashierStatus, setCashierStatus] = useState('Hadir');
+            const [showCashierModal, setShowCashierModal] = useState(false);
+            const scannerRef = useRef(null);
+            
+            const scannedMembersRef = useRef(scannedMembers);
+            useEffect(() => { scannedMembersRef.current = scannedMembers; }, [scannedMembers]);
+
+            useEffect(() => {
+                if (isScannerOpen) {
+                    if (!scannerRef.current && window.Html5QrcodeScanner) {
+                        scannerRef.current = new window.Html5QrcodeScanner("reader", { fps: 10, qrbox: {width: 250, height: 150} }, false);
+                        scannerRef.current.render((decodedText) => {
+                            const memberIdStr = decodedText.replace('M-', '');
+                            const m = arisanMembers.find(x => x.id.toString() === memberIdStr);
+                            if (m) {
+                                if (!scannedMembersRef.current.some(x => x.id === m.id)) {
+                                    setScannedMembers(prev => [...prev, m]);
+                                    showToast(`${m.name} masuk keranjang!`);
+                                }
+                            } else {
+                                showToast('Warga tidak ditemukan!');
+                            }
+                        }, (error) => {});
+                    }
+                } else {
+                    if (scannerRef.current) {
+                        scannerRef.current.clear().catch(e => console.error(e));
+                        scannerRef.current = null;
+                    }
+                }
+                return () => {
+                    if (scannerRef.current) {
+                        scannerRef.current.clear().catch(e => console.error(e));
+                        scannerRef.current = null;
+                    }
+                };
+            }, [isScannerOpen, arisanMembers]);
+            
+            const handleOpenCashier = () => {
+                if (scannedMembers.length === 0) return;
+                setIsScannerOpen(false);
+                setShowCashierModal(true);
+                setCashReceived('');
+                setCashierStatus('Hadir');
+            };
+
+            const handleCashierSave = () => {
+                if (scannedMembers.length === 0) return;
+                
+                let totalTagihanGabungan = 0;
+                scannedMembers.forEach(m => {
+                    const tagihanBulanIni = (m.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan;
+                    totalTagihanGabungan += tagihanBulanIni + (m.debt || 0);
+                });
+                
+                const received = safeNumber(cashReceived);
+                const isPaidFull = received >= totalTagihanGabungan;
+
+                setAttendance(prev => {
+                    const updated = { ...prev };
+                    scannedMembers.forEach(m => {
+                        updated[m.id] = {
+                            status: cashierStatus,
+                            payDebt: (cashierStatus === 'Hadir' && isPaidFull && m.debt > 0)
+                        };
+                    });
+                    return updated;
+                });
+
+                showToast(`Presensi ${scannedMembers.length} warga disimpan!`);
+                setShowCashierModal(false);
+                setScannedMembers([]);
+                
+                setTimeout(() => setIsScannerOpen(true), 300);
+            };
             const [selectedWinnerId, setSelectedWinnerId] = useState('');
             const [errorMsg, setErrorMsg] = useState('');
             
@@ -4577,7 +5349,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     return updatedM;
                 });
                 
-                if(isCycleAlreadyComplete) { winnerName = "? SIKLUS SELESAI (TIDAK ADA UNDIAN)"; }
+                if(isCycleAlreadyComplete) { winnerName = "Γ£à SIKLUS SELESAI (TIDAK ADA UNDIAN)"; }
 
                 const formattedDate = parseLocalDate(meetingDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -4594,7 +5366,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                 const totalDebtSnapshot = members.reduce((sum, m) => sum + (m.debt || 0), 0);
                 const formattedDate = parseLocalDate(meetingDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
                 
-                setMeetingHistory(prev => [{ id: Date.now(), round: currentRound, periode: formatBulanTahun(arisanPeriod), date: formattedDate, winner: '??? LIBUR (TIDAK ADA ARISAN)', kasArisanTerkumpul: 0, kasJimpitanMasuk: 0, pelunasanTunggakan: 0, talanganJimpitan: 0, tunggakanBaru: 0, saldoAkhirJimpitan: jimpitanBalance, totalTunggakanAkhir: totalDebtSnapshot, absensiDetails: [] }, ...prev]);
+                setMeetingHistory(prev => [{ id: Date.now(), round: currentRound, periode: formatBulanTahun(arisanPeriod), date: formattedDate, winner: '≡ƒÅû∩╕Å LIBUR (TIDAK ADA ARISAN)', kasArisanTerkumpul: 0, kasJimpitanMasuk: 0, pelunasanTunggakan: 0, talanganJimpitan: 0, tunggakanBaru: 0, saldoAkhirJimpitan: jimpitanBalance, totalTunggakanAkhir: totalDebtSnapshot, absensiDetails: [] }, ...prev]);
                 
                 const [year, month] = arisanPeriod.split('-'); let d = new Date(year, month - 1); d.setMonth(d.getMonth() + 1);
                 setArisanPeriod(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`);
@@ -4610,7 +5382,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         {[1, 2, 3].map(num => (<div key={num} className="flex flex-col items-center relative z-10"><div className={`w-12 h-12 rounded-full flex items-center justify-center font-extrabold text-[18px] border-2 transition-all duration-500 ${step >= num ? 'bg-google-blue text-white border-google-blueDark shadow-md scale-110' : 'bg-white text-slate-400 border-slate-300'}`}>{num}</div></div>))}
                         <div className="absolute left-16 right-16 h-2 bg-slate-200 top-[45px] z-0 rounded-full overflow-hidden"><div className="h-full bg-google-blue transition-all duration-700 ease-in-out" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%' }}></div></div>
                     </div>
-                    <div className="p-6 sm:p-10 bg-white">
+                    <div className="p-5 sm:p-8 bg-white">
                         {step === 1 && (
                             <div className="space-y-6">
                                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-5 mb-8 no-print border-b-2 border-slate-100 pb-8">
@@ -4623,6 +5395,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                         </div>
                                     </div>
                                     <div className="flex flex-wrap gap-3 w-full lg:w-auto mt-2 lg:mt-0">
+                                        <button onClick={() => setIsScannerOpen(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-google-blue text-white px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300"><Icon name="qr_code_scanner" className="text-[20px]" /><span>Kasir Scan</span></button>
                                         <button onClick={() => setShowHolidayModal(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[20px]" /><span>Bulan Libur</span></button>
                                         <button onClick={() => window.print()} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[20px]" /><span>Cetak Blanko Absen</span></button>
                                     </div>
@@ -4704,10 +5477,103 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="event_busy" className="text-[48px] text-google-yellowDark" /></div>
                                             <h3 className="text-2xl font-extrabold text-google-text mb-2 tracking-tight">Liburkan Bulan Ini?</h3>
                                             <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-relaxed">Periode <b className="text-google-text">{formatBulanTahun(arisanPeriod)}</b> akan ditandai sebagai bulan libur.</p>
-                                            <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[24px] border border-slate-200 text-left"><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[18px] text-google-blue shrink-0"/><span>Tidak ada penarikan kas/jimpitan sama sekali.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[18px] text-google-blue shrink-0"/><span>Putaran ke-{currentRound} tidak akan dihitung.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[18px] text-google-blue shrink-0"/><span>Periode akan melompat ke bulan berikutnya.</span></p></div>
+                                            <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] border border-slate-200 text-left"><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[18px] text-google-blue shrink-0"/><span>Tidak ada penarikan kas/jimpitan sama sekali.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[18px] text-google-blue shrink-0"/><span>Putaran ke-{currentRound} tidak akan dihitung.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[18px] text-google-blue shrink-0"/><span>Periode akan melompat ke bulan berikutnya.</span></p></div>
                                             <div className="flex flex-wrap gap-3">
                                                 <button onClick={() => setShowHolidayModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                                 <button onClick={handleSetHoliday} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300">Setuju, Libur</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {isScannerOpen && (
+                                    <div className="fixed inset-0 bg-slate-900/90 z-50 flex flex-col p-4 sm:p-6 no-print overflow-y-auto hide-scrollbar">
+                                        <div className="flex justify-between items-center mb-6 shrink-0">
+                                            <h3 className="text-white font-extrabold text-xl sm:text-2xl">Scan Barcode Warga</h3>
+                                            <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white p-2 rounded-full hover:bg-white/40"><Icon name="close" className="text-[24px]" /></button>
+                                        </div>
+                                        <div className="flex-1 flex flex-col items-center pt-2 pb-10">
+                                            <div id="reader" className="w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl shrink-0"></div>
+                                            
+                                            {scannedMembers.length > 0 && (
+                                                <div className="mt-6 w-full max-w-md bg-white rounded-[24px] p-5 shadow-2xl border-2 border-google-blue shrink-0">
+                                                    <h4 className="font-extrabold text-google-text mb-3 text-[14px] uppercase tracking-widest">Keranjang Scan ({scannedMembers.length} Warga)</h4>
+                                                    <div className="flex flex-wrap gap-2 mb-4 max-h-[150px] overflow-y-auto hide-scrollbar">
+                                                        {scannedMembers.map(m => (
+                                                            <span key={m.id} className="bg-google-blueLight text-google-blueDark px-3 py-1.5 rounded-full text-[13px] font-bold border border-google-blue/30">{m.name}</span>
+                                                        ))}
+                                                    </div>
+                                                    <button onClick={handleOpenCashier} className="w-full bg-google-blue text-white py-3.5 rounded-xl font-extrabold flex items-center justify-center gap-2 hover:bg-google-blueDark transition-colors shadow-md">Proses Pembayaran <Icon name="arrow_forward" className="text-[18px]" /></button>
+                                                </div>
+                                            )}
+                                            {scannedMembers.length === 0 && <p className="text-white/60 text-center font-medium mt-6 shrink-0">Arahkan kamera ke barcode warga untuk memindai.</p>}
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {showCashierModal && scannedMembers.length > 0 && (
+                                    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+                                        <div className="bg-white rounded-[32px] p-6 w-full max-w-sm shadow-2xl border-2 border-slate-200 max-h-[95vh] flex flex-col">
+                                            <h3 className="text-xl font-extrabold text-google-text mb-2 text-center">Kasir Pembayaran</h3>
+                                            <div className="text-center mb-4">
+                                                <p className="text-[14px] text-google-textVariant font-bold">{scannedMembers.length} Warga (Gandengan)</p>
+                                                <p className="text-[14px] font-extrabold text-google-text truncate">{scannedMembers.map(m => m.name).join(', ')}</p>
+                                            </div>
+                                            
+                                            <div className="overflow-y-auto hide-scrollbar flex-1 mb-4">
+                                                <div className="bg-slate-50 p-4 rounded-2xl border-2 border-slate-200">
+                                                    {(() => {
+                                                        let totalTagihanBulanIni = 0;
+                                                        let totalTunggakan = 0;
+                                                        scannedMembers.forEach(m => {
+                                                            totalTagihanBulanIni += (m.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan;
+                                                            totalTunggakan += (m.debt || 0);
+                                                        });
+                                                        const totalGabungan = totalTagihanBulanIni + totalTunggakan;
+                                                        return (
+                                                            <>
+                                                                <div className="flex justify-between text-[14px] mb-1"><span className="text-google-textVariant font-bold">Total Tagihan Bulan Ini</span><span className="font-extrabold text-google-text">{formatRp(totalTagihanBulanIni)}</span></div>
+                                                                {totalTunggakan > 0 && <div className="flex justify-between text-[14px] mb-1"><span className="text-google-red font-bold">Total Tunggakan</span><span className="font-extrabold text-google-red">{formatRp(totalTunggakan)}</span></div>}
+                                                                <div className="border-t-2 border-slate-200 my-2"></div>
+                                                                <div className="flex justify-between text-[16px]"><span className="font-extrabold text-google-text">Total Harus Dibayar</span><span className="font-extrabold text-google-blue">{formatRp(totalGabungan)}</span></div>
+                                                            </>
+                                                        )
+                                                    })()}
+                                                </div>
+
+                                                <div className="mb-4 mt-4">
+                                                    <label className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant block mb-2">Status Kehadiran (Semua Warga)</label>
+                                                    <div className="flex gap-2">
+                                                        {['Hadir', 'Musibah', 'Alfa'].map(stat => (
+                                                            <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[12px] font-extrabold uppercase tracking-widest rounded-xl border-2 transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-200 hover:bg-slate-50'}`}>{stat}</button>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
+                                                <div className="mb-4">
+                                                    <label className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant block mb-2">Uang Diterima (Rp)</label>
+                                                    <input type="number" min="0" value={cashReceived} onChange={e => setCashReceived(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[18px] font-bold outline-none rounded-2xl text-google-text placeholder:text-slate-300 transition-all" placeholder="0" />
+                                                </div>
+
+                                                {(() => {
+                                                    let totalGabungan = 0;
+                                                    scannedMembers.forEach(m => {
+                                                        totalGabungan += (m.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan + (m.debt || 0);
+                                                    });
+                                                    const received = safeNumber(cashReceived);
+                                                    const kembalian = received - totalGabungan;
+                                                    return received > 0 ? (
+                                                        <div className={`p-4 rounded-2xl border-2 shadow-sm ${kembalian >= 0 ? 'bg-google-greenLight border-google-green/40 text-google-greenDark' : 'bg-google-redLight border-google-red/40 text-google-redDark'}`}>
+                                                            <p className="text-[11px] font-extrabold uppercase tracking-widest mb-1">{kembalian >= 0 ? 'Kembalian' : 'Status'}</p>
+                                                            <p className="text-[20px] font-extrabold">{kembalian >= 0 ? formatRp(kembalian) : 'Uang Kurang!'}</p>
+                                                        </div>
+                                                    ) : null;
+                                                })()}
+                                            </div>
+
+                                            <div className="flex gap-3 mt-auto shrink-0 pt-2 border-t-2 border-slate-100">
+                                                <button onClick={() => { setShowCashierModal(false); setScannedMembers([]); setTimeout(() => setIsScannerOpen(true), 300); }} className="flex-1 bg-white border-2 border-slate-200 text-google-text font-extrabold py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-300 transition-all text-[14px]">Batal</button>
+                                                <button onClick={handleCashierSave} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white font-extrabold py-3.5 rounded-full hover:bg-google-blueDark hover:shadow-md transition-all text-[14px] flex justify-center items-center gap-2"><Icon name="save" className="text-[18px]" />Simpan</button>
                                             </div>
                                         </div>
                                     </div>
@@ -4726,7 +5592,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             <p className="text-4xl lg:text-5xl font-extrabold text-google-greenDark drop-shadow-sm tracking-tight">{formatRp(calculations.kasArisanTerkumpul)}</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 space-y-5 shadow-sm">
+                                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 space-y-5 shadow-sm">
                                         <div className="flex justify-between text-[15px] font-bold"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="add_circle" className="text-[20px] text-google-green"/> Tunai Masuk</span><span className="text-google-greenDark font-extrabold">+{formatRp(calculations.kasJimpitanTerkumpul)}</span></div>
                                         <div className="flex justify-between text-[15px] font-bold"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="add_circle" className="text-[20px] text-google-green"/> Bayar Tunggakan</span><span className="text-google-greenDark font-extrabold">+{formatRp(calculations.pelunasanTunggakan)}</span></div>
                                         <div className="flex justify-between text-[15px] font-bold"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="remove_circle" className="text-[20px] text-google-red"/> Talangan (Keluar)</span><span className="text-google-redDark font-extrabold">-{formatRp(calculations.talanganJimpitan)}</span></div>
@@ -4752,14 +5618,14 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                     <div className="mb-8 relative z-10 animate-bounce" style={{ animationDuration: '2s' }}><Icon name="emoji_events" className="text-[100px] text-google-yellow drop-shadow-2xl" fill="true" /></div>
                                     
                                     {isCycleAlreadyComplete ? (
-                                        <div className="text-center bg-google-greenLight text-google-greenDark p-4 sm:p-6 md:p-8 rounded-[24px] border-2 border-google-green max-w-sm mx-auto relative z-10 shadow-sm">
+                                        <div className="text-center bg-google-greenLight text-google-greenDark p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-google-green max-w-sm mx-auto relative z-10 shadow-sm">
                                             <Icon name="verified" className="text-[40px] mb-3 mx-auto" fill="true" />
                                             <p className="font-extrabold text-[16px]">Semua warga sudah menang (Siklus Selesai).</p>
                                         </div>
                                     ) : (
-                                        <div className="text-left bg-white rounded-[24px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 focus-within:border-google-blue focus-within:shadow-lg transition-all max-w-sm mx-auto relative z-10 shadow-md">
+                                        <div className="text-left bg-white rounded-[24px] p-4 sm:p-5 md:p-6 border-2 border-slate-200 focus-within:border-google-blue focus-within:shadow-lg transition-all max-w-sm mx-auto relative z-10 shadow-md">
                                             <label className="text-[11px] font-extrabold text-google-textVariant block mb-3 uppercase tracking-widest text-center">Pilih Warga Pemenang</label>
-                                            <select className="w-full bg-slate-50 rounded-[16px] border-2 border-slate-200 text-[18px] font-extrabold outline-none p-4 sm:p-6 md:p-8 text-google-blueDark cursor-pointer focus:bg-white transition-colors" value={selectedWinnerId} onChange={(e) => {setSelectedWinnerId(e.target.value); setErrorMsg('');}}>
+                                            <select className="w-full bg-slate-50 rounded-[16px] border-2 border-slate-200 text-[18px] font-extrabold outline-none px-5 py-3.5 text-google-blueDark cursor-pointer focus:bg-white transition-colors" value={selectedWinnerId} onChange={(e) => {setSelectedWinnerId(e.target.value); setErrorMsg('');}}>
                                                 <option value="" disabled>-- Klik untuk memilih --</option>
                                                 {eligibleWinners.map(m => ( <option key={m.id} value={m.id}>{m.name}</option> ))}
                                             </select>
@@ -4782,8 +5648,68 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [filterMonth, setFilterMonth] = useState('Semua');
             const availableMonths = [...new Set(history.map(item => item.periode))];
             const displayedHistory = filterMonth === 'Semua' ? history : history.filter(item => item.periode === filterMonth);
-            const [editingHistoryId, setEditingHistoryId] = useState(null);
-            const [tempAttendance, setTempAttendance] = useState({});
+const [editingHistoryId, setEditingHistoryId] = useState(null);
+const [tempAttendance, setTempAttendance] = useState({});
+const chartRef = useRef(null);
+const canvasRef = useRef(null);
+
+useEffect(() => {
+if (!canvasRef.current || history.length === 0 || !window.Chart) return;
+const chronological = [...history].reverse();
+const labels = chronological.map(h => h.periode);
+const dataPoints = chronological.map(h => h.saldoAkhirJimpitan || 0);
+
+if (chartRef.current) chartRef.current.destroy();
+
+const ctx = canvasRef.current.getContext('2d');
+chartRef.current = new window.Chart(ctx, {
+type: 'line',
+data: {
+labels: labels,
+datasets: [{
+label: 'Saldo Jimpitan (Rp)',
+data: dataPoints,
+borderColor: '#1a73e8',
+backgroundColor: 'rgba(26, 115, 232, 0.1)',
+borderWidth: 3,
+pointBackgroundColor: '#1a73e8',
+pointBorderColor: '#fff',
+pointBorderWidth: 2,
+pointRadius: 5,
+pointHoverRadius: 7,
+fill: true,
+tension: 0.4
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+plugins: { legend: { display: false } },
+scales: {
+y: {
+beginAtZero: true,
+ticks: { callback: function(value) { return 'Rp ' + (value/1000) + 'k'; } }
+}
+}
+}
+});
+
+return () => { if (chartRef.current) chartRef.current.destroy(); };
+}, [history]);
+
+let growthStatus = null;
+let growthAmount = 0;
+if (history.length >= 2) {
+const latest = history[0].saldoAkhirJimpitan || 0;
+const previous = history[1].saldoAkhirJimpitan || 0;
+growthAmount = latest - previous;
+if (growthAmount > 0) growthStatus = 'tumbuh';
+else if (growthAmount < 0) growthStatus = 'turun';
+else growthStatus = 'stagnan';
+} else if (history.length === 1) {
+growthStatus = 'tumbuh';
+growthAmount = history[0].saldoAkhirJimpitan || 0;
+}
 
             const handleOpenEdit = (record) => { const attMap = {}; record.absensiDetails.forEach(a => { attMap[a.name] = a.status; }); setTempAttendance(attMap); setEditingHistoryId(record.id); };
             const handleAttendanceChange = (name, status) => { setTempAttendance(prev => ({ ...prev, [name]: status })); };
@@ -4862,17 +5788,42 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
             return (
                 <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 no-print shadow-sm">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 no-print shadow-sm">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Riwayat Pertemuan Arisan</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Arsip resmi presensi dan sirkulasi dana bulanan.</p></div>
                         <button onClick={() => window.print()} className="bg-white border-2 border-slate-200 text-google-text px-8 py-3.5 rounded-full font-extrabold flex flex-wrap items-center gap-2 text-[14px] hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[18px]" /><span>Cetak Arsip</span></button>
                     </div>
 
                     {history.length > 0 && (
-                        <div className="no-print max-w-xs bg-white rounded-[24px] px-6 py-4 border-2 border-slate-200 shadow-sm focus-within:border-google-blue focus-within:shadow-md transition-all">
-                            <label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Filter Periode</label>
-                            <select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="w-full bg-transparent border-none text-[16px] outline-none text-google-blueDark font-extrabold cursor-pointer"><option value="Semua">Tampilkan Semua Bulan</option>{availableMonths.map((month, idx) => <option key={idx} value={month}>{month}</option>)}</select>
-                        </div>
-                    )}
+<div className="no-print mb-8 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm">
+<div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+<div>
+<h3 className="text-xl font-extrabold text-google-text tracking-tight">Tren Saldo Jimpitan</h3>
+<p className="text-[13px] font-medium text-google-textVariant mt-1">Pertumbuhan saldo tunai dari setiap pertemuan.</p>
+</div>
+{growthStatus && (
+<div className={`px-4 py-2 rounded-[16px] flex items-center gap-3 border-2 ${
+growthStatus === 'tumbuh' ? 'bg-google-greenLight border-google-green/40 text-google-greenDark' :
+growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-redDark' :
+'bg-slate-100 border-slate-300 text-slate-600'
+}`}>
+<Icon name={growthStatus === 'tumbuh' ? 'trending_up' : growthStatus === 'turun' ? 'trending_down' : 'trending_flat'} className="text-[28px]" />
+<div className="flex flex-col">
+<span className="text-[10px] uppercase font-extrabold tracking-widest">{growthStatus === 'tumbuh' ? 'Status: Tumbuh' : growthStatus === 'turun' ? 'Status: Menurun' : 'Status: Stagnan / Stack'}</span>
+<span className="font-extrabold text-[15px] leading-tight">{growthStatus !== 'stagnan' ? (growthAmount > 0 ? '+' : '') + formatRp(Math.abs(growthAmount)) : 'Tidak ada pertumbuhan'}</span>
+</div>
+</div>
+)}
+</div>
+<div className="w-full h-[250px] relative mb-6">
+<canvas ref={canvasRef}></canvas>
+</div>
+
+<div className="max-w-xs bg-slate-50 rounded-[20px] px-6 py-4 border-2 border-slate-200 shadow-sm focus-within:border-google-blue focus-within:shadow-md transition-all">
+<label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Filter Periode Arsip</label>
+<select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="w-full bg-transparent border-none text-[16px] outline-none text-google-blueDark font-extrabold cursor-pointer"><option value="Semua">Tampilkan Semua Bulan</option>{availableMonths.map((month, idx) => <option key={idx} value={month}>{month}</option>)}</select>
+</div>
+</div>
+)}
 
                     <div className="hidden print-only">
                         <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || ''}</h1><p>{identity?.subtitle || ''}</p></div>
@@ -4902,7 +5853,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             return (
                                 <div key={record.id} className="bg-white rounded-[32px] overflow-hidden border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300">
                                     <div className="p-6 sm:p-8 flex flex-col sm:flex-row justify-between sm:items-center border-b-2 border-slate-100 bg-slate-50">
-                                        <div><h3 className="font-extrabold text-2xl text-google-text tracking-tight">Putaran Ke-{record.round}</h3><p className="text-[14px] font-bold text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[18px]"/> {record.periode} � {record.date}</p></div>
+                                        <div><h3 className="font-extrabold text-2xl text-google-text tracking-tight">Putaran Ke-{record.round}</h3><p className="text-[14px] font-bold text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[18px]"/> {record.periode} ΓÇó {record.date}</p></div>
                                         <div className="mt-5 sm:mt-0 flex flex-col sm:items-end"><span className="text-[11px] uppercase font-extrabold text-google-textVariant tracking-widest mb-2">{isHoliday ? 'Status Kegiatan' : 'Pemenang Arisan'}</span><div className={`${isHoliday ? 'bg-gradient-to-r from-google-yellow to-google-yellowDark text-white border-google-yellowDark' : 'bg-gradient-to-r from-google-blue to-google-blueDark text-white border-google-blueDark'} px-6 py-3 rounded-full font-extrabold text-[15px] shadow-md inline-flex items-center gap-2 border-2`}><Icon name={isHoliday ? "event_busy" : "emoji_events"} className="text-[20px]" fill="true" /> {record.winner}</div></div>
                                     </div>
                                     <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -4970,6 +5921,106 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         </div>
                     )}
                 </div>
+            );
+        }
+
+
+        function InfoDesaSection({ infoDesa, setInfoDesa, showAlert }) {
+            const [localInfo, setLocalInfo] = useState(infoDesa || { enabled: true, batas: {}, kontak: [] });
+            
+            useEffect(() => {
+                if (infoDesa) setLocalInfo(infoDesa);
+            }, [infoDesa]);
+
+            const handleSave = () => {
+                setInfoDesa(localInfo);
+                showAlert('Pengaturan Info Desa berhasil disimpan.');
+            };
+
+            const updateBatas = (arah, val) => {
+                setLocalInfo(prev => ({
+                    ...prev,
+                    batas: { ...prev.batas, [arah]: val }
+                }));
+            };
+
+            const addKontak = () => {
+                setLocalInfo(prev => ({
+                    ...prev,
+                    kontak: [...(prev.kontak || []), { id: Date.now(), nama: 'Kontak Baru', telepon: '0800-0000-0000', icon: 'contact_phone', color: 'slate' }]
+                }));
+            };
+
+            const removeKontak = (index) => {
+                setLocalInfo(prev => ({
+                    ...prev,
+                    kontak: prev.kontak.filter((k, i) => i !== index)
+                }));
+            };
+
+            const updateKontak = (index, field, val) => {
+                setLocalInfo(prev => ({
+                    ...prev,
+                    kontak: prev.kontak.map((k, i) => i === index ? { ...k, [field]: val } : k)
+                }));
+            };
+
+            return (
+                <PengaturanSection title="Manajemen Info Layanan Desa" onSave={handleSave}>
+                    <div className="space-y-6">
+                        {/* Toggle Aktif */}
+                        <label className="flex items-center justify-between bg-slate-50 border-2 border-slate-200 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 transition-all duration-200">
+                            <div>
+                                <p className="text-[14px] font-extrabold text-google-text">Aktifkan Info Desa</p>
+                                <p className="text-[12px] text-google-textVariant font-medium mt-0.5">Tampilkan bagian batas & kontak di Peta Desa</p>
+                            </div>
+                            <div className="relative">
+                                <input type="checkbox" className="sr-only peer" checked={localInfo.enabled} onChange={e => setLocalInfo({...localInfo, enabled: e.target.checked})} />
+                                <div className="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-google-blue after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                            </div>
+                        </label>
+
+                        {localInfo.enabled && (
+                            <>
+                                {/* Batas Administrasi */}
+                                <div className="p-4 bg-slate-50 border-2 border-slate-200 rounded-[20px]">
+                                    <h4 className="font-extrabold text-[14px] text-google-text mb-4">Batas Administrasi</h4>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        {['utara', 'selatan', 'timur', 'barat'].map(arah => (
+                                            <div key={arah} className="bg-white rounded-[12px] px-4 py-2 border-2 border-slate-200 focus-within:border-google-blue transition-all">
+                                                <label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">{arah}</label>
+                                                <input type="text" value={localInfo.batas?.[arah] || ''} onChange={e => updateBatas(arah, e.target.value)} className="w-full bg-transparent border-none text-[13px] font-bold outline-none p-0 text-google-text" placeholder={`Batas ${arah}`} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Kontak Penting */}
+                                <div className="p-4 bg-slate-50 border-2 border-slate-200 rounded-[20px]">
+                                    <h4 className="font-extrabold text-[14px] text-google-text mb-4">Kontak Penting</h4>
+                                    <div className="space-y-3 mb-4">
+                                        {localInfo.kontak?.map((k, idx) => {
+                                            const idKey = k.id || k.nama;
+                                            return (
+                                            <div key={idKey} className="flex flex-col sm:flex-row gap-3 bg-white p-3 rounded-[12px] border-2 border-slate-200 relative group">
+                                                <div className="flex-1">
+                                                    <input type="text" value={k.nama} onChange={e => updateKontak(idKey, 'nama', e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-[8px] px-3 py-2 text-[13px] font-bold outline-none focus:border-google-blue text-google-text mb-2" placeholder="Nama Layanan" />
+                                                    <input type="text" value={k.telepon} onChange={e => updateKontak(idKey, 'telepon', e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-[8px] px-3 py-2 text-[13px] font-bold outline-none focus:border-google-blue text-google-text" placeholder="Nomor Telepon" />
+                                                </div>
+                                                <button onClick={() => removeKontak(idKey)} className="self-end sm:self-center bg-red-50 text-red-600 p-2 rounded-[8px] hover:bg-red-100 transition-colors">
+                                                    <Icon name="delete" className="text-[20px]" />
+                                                </button>
+                                            </div>
+                                        )})}
+                                    </div>
+                                    <button onClick={addKontak} className="w-full py-3 border-2 border-dashed border-slate-300 rounded-[12px] text-google-textVariant font-bold text-[13px] hover:bg-slate-100 hover:text-google-blue hover:border-google-blue transition-all flex items-center justify-center gap-2">
+                                        <Icon name="add" className="text-[18px]" /> Tambah Kontak
+                                    </button>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                </PengaturanSection>
             );
         }
 
@@ -5068,7 +6119,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         {sponsorsData?.sponsors?.map((s, i) => (
                             <div key={i} className="flex items-center justify-between bg-white p-3 rounded-[12px] shadow-sm border border-slate-100 gap-3">
                             <div className="flex items-center gap-3 overflow-hidden">
-                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 p-1 border border-slate-100" onError={e => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>???</text></svg>'; }} />
+                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 p-1 border border-slate-100" onError={e => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>≡ƒû╝∩╕Å</text></svg>'; }} />
                                 <span className="text-[13px] font-bold text-google-text truncate">{s.name}</span>
                             </div>
                             <button onClick={() => {
@@ -5111,7 +6162,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 </div>
                                 <div>
                                 <p className="font-extrabold text-[13px] text-google-text">{previewUrl ? 'Ganti Gambar Logo' : 'Pilih File Logo (Maks 2MB)'}</p>
-                                <p className="text-[11px] text-google-textVariant font-medium">PNG, JPG, SVG, WEBP � upload ke Google Drive</p>
+                                <p className="text-[11px] text-google-textVariant font-medium">PNG, JPG, SVG, WEBP ΓÇö upload ke Google Drive</p>
                                 </div>
                             </div>
                             )}
@@ -5155,7 +6206,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
 
         function PengaturanSection({ title, onSave, children }) {
             return (
-                <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                     <h3 className="font-extrabold text-[20px] text-google-text mb-6 border-b-2 border-slate-100 pb-4 group-hover:text-google-blue transition-colors tracking-tight">{title}</h3>
                     <div className="space-y-6 mb-8">{children}</div>
                     <button onClick={onSave} className="w-full bg-slate-50 border-2 border-slate-200 text-google-blueDark py-4 rounded-full font-extrabold text-[15px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan {title}</button>
@@ -5166,7 +6217,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
         function Pengaturan(props) {
             const { nominalArisan, setNominalArisan, nominalJimpitan, setNominalJimpitan, identity, setIdentity, setMembers, setMeetingHistory, currentRound, setCurrentRound, cycleNumber, setCycleNumber, jimpitanBalance, setJimpitanBalance, kasRtBalance, setKasRtBalance, kasRtTransactions, setKasRtTransactions, arisanPeriod, setArisanPeriod, bannerImage, setBannerImage,
             // State tambahan untuk reset menyeluruh (diteruskan dari App)
-            setIuranData, setGaleriData, setInventarisData, setInformasi, setNextMeeting, adsConfig, setAdsConfig } = props;
+            setIuranData, setGaleriData, setInventarisData, setInformasi, setNextMeeting, adsConfig, setAdsConfig, infoDesa, setInfoDesa, umkmData, setUmkmData } = props;
             
             const [formIdentity, setFormIdentity] = useState(identity);
             const [formAds, setFormAds] = useState(adsConfig || { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: ['laporan'] });
@@ -5180,6 +6231,19 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             const [resetPromptInput, setResetPromptInput] = useState('');
             const [formBanner, setFormBanner] = useState(bannerImage || '');
             const [isUploadingBanner, setIsUploadingBanner] = useState(false);
+            const [activeMenu, setActiveMenu] = useState(null);
+            
+            const pengaturanMenus = [
+                { id: 'profil', title: 'Profil Aplikasi', icon: 'badge', bg: 'bg-blue-100', text: 'text-blue-600', border: 'border-blue-200', hoverBorder: 'hover:border-blue-500', groupHoverBg: 'group-hover:bg-blue-500', groupHoverText: 'group-hover:text-blue-600', desc: 'Nama & Kop Surat Aplikasi' },
+                { id: 'nominal', title: 'Iuran Wajib', icon: 'payments', bg: 'bg-emerald-100', text: 'text-emerald-600', border: 'border-emerald-200', hoverBorder: 'hover:border-emerald-500', groupHoverBg: 'group-hover:bg-emerald-500', groupHoverText: 'group-hover:text-emerald-600', desc: 'Besaran Arisan & Jimpitan' },
+                { id: 'kalibrasi', title: 'Kalibrasi Siklus', icon: 'build', bg: 'bg-orange-100', text: 'text-orange-600', border: 'border-orange-200', hoverBorder: 'hover:border-orange-500', groupHoverBg: 'group-hover:bg-orange-500', groupHoverText: 'group-hover:text-orange-600', desc: 'Atur Putaran & Siklus' },
+                { id: 'saldo', title: 'Koreksi Saldo', icon: 'account_balance_wallet', bg: 'bg-indigo-100', text: 'text-indigo-600', border: 'border-indigo-200', hoverBorder: 'hover:border-indigo-500', groupHoverBg: 'group-hover:bg-indigo-500', groupHoverText: 'group-hover:text-indigo-600', desc: 'Edit Saldo Kas Utama' },
+                { id: 'banner', title: 'Banner Utama', icon: 'image', bg: 'bg-purple-100', text: 'text-purple-600', border: 'border-purple-200', hoverBorder: 'hover:border-purple-500', groupHoverBg: 'group-hover:bg-purple-500', groupHoverText: 'group-hover:text-purple-600', desc: 'Gambar Latar Halaman Depan' },
+                { id: 'ads', title: 'AdSense', icon: 'ad_units', bg: 'bg-amber-100', text: 'text-amber-600', border: 'border-amber-200', hoverBorder: 'hover:border-amber-500', groupHoverBg: 'group-hover:bg-amber-500', groupHoverText: 'group-hover:text-amber-600', desc: 'Kelola Iklan Google' },
+                { id: 'sponsor', title: 'Sponsor', icon: 'handshake', bg: 'bg-teal-100', text: 'text-teal-600', border: 'border-teal-200', hoverBorder: 'hover:border-teal-500', groupHoverBg: 'group-hover:bg-teal-500', groupHoverText: 'group-hover:text-teal-600', desc: 'Logo Sponsor RT' },
+                { id: 'infodesa', title: 'Info Desa', icon: 'map', bg: 'bg-rose-100', text: 'text-rose-600', border: 'border-rose-200', hoverBorder: 'hover:border-rose-500', groupHoverBg: 'group-hover:bg-rose-500', groupHoverText: 'group-hover:text-rose-600', desc: 'Kontak & Batas Wilayah' },
+                { id: 'reset', title: 'Reset Sistem', icon: 'warning', bg: 'bg-red-100', text: 'text-red-600', border: 'border-red-200', hoverBorder: 'hover:border-red-500', groupHoverBg: 'group-hover:bg-red-500', groupHoverText: 'group-hover:text-red-600', desc: 'Hapus Semua Data' }
+            ];
 
             useEffect(() => { setFormSaldo({ jimpitan: jimpitanBalance, kasRt: kasRtBalance }); }, [jimpitanBalance, kasRtBalance]);
             useEffect(() => { setFormRound({ round: currentRound, cycle: cycleNumber }); setFormPeriod(arisanPeriod); }, [currentRound, cycleNumber, arisanPeriod]);
@@ -5225,12 +6289,14 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     if (setIuranData) setIuranData([]);
                     if (setGaleriData) setGaleriData([]);
                     if (setInventarisData) setInventarisData([]);
+                    if (setUmkmData) setUmkmData([]);
+                    if (setLaporanData) setLaporanData([]);
                     if (setInformasi) setInformasi([]);
                     if (setNextMeeting) setNextMeeting({ date: 'Belum dijadwalkan', time: '-', location: '-', notes: '-' });
                     setBannerImage('');
                     // Bersihkan localStorage cache
                     try {
-                        const keys = ['members','history','round','cycle','jimpitan','kas_rt_balance','kas_rt_trx','period','iuran_umum','galeri_warga','inventaris_rt','informasi','next_meeting','banner_image'];
+                        const keys = ['members','history','round','cycle','jimpitan','kas_rt_balance','kas_rt_trx','period','iuran_umum','galeri_warga','inventaris_rt','informasi','next_meeting','banner_image','umkm', 'laporan'];
                         keys.forEach(k => localStorage.removeItem('arisan_rt_' + k));
                     } catch(e) {}
                     setConfirmResetModal(false); setResetPromptInput(''); showAlert("Sistem berhasil di-reset total.");
@@ -5239,193 +6305,224 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                 }
             };
 
+            // Upload Banner: Canvas compress ΓåÆ base64 ΓåÆ Firestore (tanpa GAS)
             const handleBannerUpload = (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
-                if (file.size > 2 * 1024 * 1024) return showAlert("Gagal: Ukuran gambar maksimal 2MB!");
-
+                if (!file.type.match('image.*')) return showAlert('Gagal: File harus berupa gambar!');
+                if (file.size > 10 * 1024 * 1024) return showAlert('Gagal: Ukuran file maksimal 10MB!');
+                setIsUploadingBanner(true);
                 const reader = new FileReader();
                 reader.onloadend = () => {
-                    const base64String = reader.result.split(',')[1];
-                    setIsUploadingBanner(true); 
-
-                    const gasUrl = window.GAS_DRIVE_URL; 
-
-                    fetch(gasUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'text/plain' },
-                        body: JSON.stringify({ base64: base64String, mimeType: file.type, filename: `banner-${Date.now()}-${file.name}` })
-                    })
-                    .then(res => res.json())
-                    .then(response => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const MAX = 1600;
+                        let w = img.width, h = img.height;
+                        if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
+                        else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
+                        canvas.width = w; canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        const compressed = canvas.toDataURL('image/webp', 0.85);
+                        setFormBanner(compressed);
                         setIsUploadingBanner(false);
-                        if (response.status === 'success') { setFormBanner(response.viewUrl); showAlert("Gambar berhasil diunggah! Klik 'Simpan Banner' untuk menerapkan."); } 
-                        else { showAlert('Gagal mengunggah gambar: ' + response.message); }
-                    })
-                    .catch(err => {
-                        setIsUploadingBanner(false); showAlert('Terjadi kesalahan jaringan saat mengunggah gambar.');
-                    });
+                        showAlert('Gambar berhasil diproses! Klik "Simpan Banner" untuk menerapkan.');
+                    };
+                    img.onerror = () => { showAlert('Gagal memproses gambar banner.'); setIsUploadingBanner(false); };
+                    img.src = reader.result;
                 };
+                reader.onerror = () => { showAlert('Gagal membaca file gambar banner.'); setIsUploadingBanner(false); };
                 reader.readAsDataURL(file);
             };
-            return (
-                <div className="space-y-6">
-                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-wrap items-center gap-5">
-                        <div className="bg-google-blueLight text-google-blue w-16 h-16 rounded-[20px] flex items-center justify-center border-2 border-google-blue/30 shrink-0"><Icon name="admin_panel_settings" className="text-[32px]" fill="true"/></div>
-                        <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Setelan Portal Admin</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Ubah konfigurasi fundamental aplikasi RT.</p></div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-                        <PengaturanSection title="Profil Utama Aplikasi" onSave={() => handleSaveAll('id')}>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Kop Surat (Baris 1)</label><input type="text" value={formIdentity.name} onChange={e => setFormIdentity({...formIdentity, name: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Sub Judul (Baris 2)</label><input type="text" value={formIdentity.subtitle} onChange={e => setFormIdentity({...formIdentity, subtitle: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                        </PengaturanSection>
-                        <PengaturanSection title="Iuran Arisan Wajib" onSave={() => handleSaveAll('nominal')}>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Arisan (Rp)</label><input type="number" min="0" value={formNominal.arisan} onChange={e => setFormNominal({...formNominal, arisan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Jimpitan (Rp)</label><input type="number" min="0" value={formNominal.jimpitan} onChange={e => setFormNominal({...formNominal, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                        </PengaturanSection>
-                        <PengaturanSection title="Kalibrasi Siklus &amp; Bulan" onSave={() => handleSaveAll('kalibrasi')}>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Bulan &amp; Tahun Arisan</label><input type="month" value={formPeriod} onChange={e => setFormPeriod(e.target.value)} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text cursor-pointer" /></div>
-                            <div className="flex flex-wrap gap-4">
-                                <div className="flex-1 bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Putaran Ke-</label><input type="number" min="1" value={formRound.round} onChange={e => setFormRound({...formRound, round: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                                <div className="flex-1 bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Siklus Ke-</label><input type="number" min="1" value={formRound.cycle} onChange={e => setFormRound({...formRound, cycle: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+            const renderGridMenu = () => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    {pengaturanMenus.map(menu => (
+                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white rounded-[24px] p-5 sm:p-6 border-2 border-slate-200 shadow-sm ${menu.hoverBorder} hover:shadow-lg cursor-pointer transition-all duration-300 group flex flex-col items-center text-center gap-4`}>
+                            <div className={`w-14 h-14 ${menu.bg} ${menu.text} rounded-[16px] flex items-center justify-center border-2 ${menu.border} group-hover:scale-110 ${menu.groupHoverBg} group-hover:text-white transition-all duration-300`}>
+                                <Icon name={menu.icon} className="text-[28px]" fill="true" />
                             </div>
-                        </PengaturanSection>
-                        <PengaturanSection title="Koreksi Saldo Manual" onSave={() => handleSaveAll('saldo')}>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Kas RT Utama (Rp)</label><input type="number" min="0" value={formSaldo.kasRt} onChange={e => setFormSaldo({...formSaldo, kasRt: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                            <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue focus-within:bg-white transition-all shadow-sm hover:shadow-md"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Jimpitan Berjalan (Rp)</label><input type="number" min="0" value={formSaldo.jimpitan} onChange={e => setFormSaldo({...formSaldo, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
-                        </PengaturanSection>
+                            <div>
+                                <h3 className={`font-extrabold text-[16px] text-google-text tracking-tight ${menu.groupHoverText} transition-colors`}>{menu.title}</h3>
+                                <p className="text-[12px] font-medium text-google-textVariant mt-1">{menu.desc}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            );
 
-<PengaturanSection title="Gambar Latar Banner (Menu Utama)" onSave={() => handleSaveAll('banner')}>
-                            <div className={`flex flex-col gap-4 bg-slate-50 border-2 ${isUploadingBanner ? 'border-google-blue shadow-md' : 'border-slate-200'} p-4 rounded-[16px] transition-all`}>
-                                <label className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest">Unggah Foto (Orientasi Lebar/Landscape direkomendasikan)</label>
-                                <div className="relative overflow-hidden w-full h-14 bg-white border-2 border-slate-200 rounded-[12px] flex items-center px-4 hover:border-google-blue transition-colors cursor-pointer">
-                                    <input type="file" accept="image/*" onChange={handleBannerUpload} disabled={isUploadingBanner} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
-                                    {isUploadingBanner ? (
-                                        <div className="flex flex-wrap items-center gap-3"><div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div><span className="font-extrabold text-[13px] text-google-blue">Mengunggah ke Drive...</span></div>
-                                    ) : (
-                                        <div className="flex flex-wrap items-center gap-3"><Icon name="add_photo_alternate" className="text-google-textVariant text-[24px]" /><span className="font-extrabold text-[13px] text-google-text">{formBanner ? "Ganti Gambar Baru" : "Pilih File Gambar (Maks 2MB)"}</span></div>
-                                    )}
-                                </div>
-                                {formBanner && !isUploadingBanner && (
-                                    <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border-2 border-slate-200 group">
-                                        <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover" />
-                                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                            <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[12px] font-extrabold px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[16px]"/> Hapus</button>
+            const renderHeader = (menuId) => {
+                const menu = pengaturanMenus.find(m => m.id === menuId);
+                if (!menu) return null;
+                return (
+                    <div className="flex flex-wrap items-center gap-4 mb-6">
+                        <button onClick={() => setActiveMenu(null)} className="w-12 h-12 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all text-google-textVariant shrink-0 shadow-sm hover:shadow-md">
+                            <Icon name="arrow_back" className="text-[24px]" />
+                        </button>
+                        <div className={`w-12 h-12 ${menu.bg} ${menu.text} rounded-full flex items-center justify-center border ${menu.border} shrink-0`}>
+                            <Icon name={menu.icon} className="text-[24px]" fill="true" />
+                        </div>
+                        <h2 className="text-[20px] font-extrabold text-google-text tracking-tight">{menu.title}</h2>
+                    </div>
+                );
+            };
+
+            return (
+                <div className="space-y-6 tab-fade-in">
+                    {activeMenu === null && (
+                        <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-wrap items-center gap-5">
+                            <div className="bg-google-blueLight text-google-blue w-16 h-16 rounded-[20px] flex items-center justify-center border-2 border-google-blue/30 shrink-0"><Icon name="admin_panel_settings" className="text-[32px]" fill="true"/></div>
+                            <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Setelan Portal Admin</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Ubah konfigurasi fundamental aplikasi RT.</p></div>
+                        </div>
+                    )}
+
+                    {activeMenu === null ? renderGridMenu() : (
+                        <div className="w-full">
+                            {renderHeader(activeMenu)}
+                            
+                            {activeMenu === 'profil' && (
+                                <PengaturanSection title="Profil Utama Aplikasi" onSave={() => handleSaveAll('id')}>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Kop Surat (Baris 1)</label><input type="text" value={formIdentity.name} onChange={e => setFormIdentity({...formIdentity, name: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Sub Judul (Baris 2)</label><input type="text" value={formIdentity.subtitle} onChange={e => setFormIdentity({...formIdentity, subtitle: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'nominal' && (
+                                <PengaturanSection title="Iuran Wajib" onSave={() => handleSaveAll('nominal')}>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Arisan (Rp)</label><input type="number" min="0" value={formNominal.arisan} onChange={e => setFormNominal({...formNominal, arisan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Jimpitan (Rp)</label><input type="number" min="0" value={formNominal.jimpitan} onChange={e => setFormNominal({...formNominal, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'kalibrasi' && (
+                                <PengaturanSection title="Kalibrasi Siklus & Bulan" onSave={() => handleSaveAll('kalibrasi')}>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Bulan & Tahun Arisan</label><input type="month" value={formPeriod} onChange={e => setFormPeriod(e.target.value)} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text cursor-pointer" /></div>
+                                    <div className="flex flex-wrap gap-4">
+                                        <div className="flex-1 bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Putaran Ke-</label><input type="number" min="1" value={formRound.round} onChange={e => setFormRound({...formRound, round: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                        <div className="flex-1 bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Siklus Ke-</label><input type="number" min="1" value={formRound.cycle} onChange={e => setFormRound({...formRound, cycle: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                    </div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'saldo' && (
+                                <PengaturanSection title="Koreksi Saldo Manual" onSave={() => handleSaveAll('saldo')}>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Kas RT Utama (Rp)</label><input type="number" min="0" value={formSaldo.kasRt} onChange={e => setFormSaldo({...formSaldo, kasRt: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[11px] font-extrabold text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Jimpitan Berjalan (Rp)</label><input type="number" min="0" value={formSaldo.jimpitan} onChange={e => setFormSaldo({...formSaldo, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[15px] font-bold outline-none p-0 text-google-text" /></div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'banner' && (
+                                <PengaturanSection title="Gambar Latar Banner Utama" onSave={() => handleSaveAll('banner')}>
+                                    <div className={`flex flex-col gap-4 bg-white border-2 ${isUploadingBanner ? 'border-google-blue shadow-md' : 'border-slate-200'} p-4 rounded-[16px] transition-all`}>
+                                        <label className="text-[11px] font-extrabold text-google-textVariant uppercase tracking-widest">Unggah Foto (Orientasi Lebar/Landscape direkomendasikan)</label>
+                                        <div className="relative overflow-hidden w-full h-14 bg-slate-50 border-2 border-slate-200 rounded-[12px] flex items-center px-4 hover:border-google-blue transition-colors cursor-pointer">
+                                            <input type="file" accept="image/*" onChange={handleBannerUpload} disabled={isUploadingBanner} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
+                                            {isUploadingBanner ? (
+                                                <div className="flex flex-wrap items-center gap-3"><div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div><span className="font-extrabold text-[13px] text-google-blue">Mengunggah...</span></div>
+                                            ) : (
+                                                <div className="flex flex-wrap items-center gap-3"><Icon name="add_photo_alternate" className="text-google-textVariant text-[24px]" /><span className="font-extrabold text-[13px] text-google-text">{formBanner ? "Ganti Gambar Baru" : "Pilih File Gambar (Maks 2MB)"}</span></div>
+                                            )}
+                                        </div>
+                                        {formBanner && !isUploadingBanner && (
+                                            <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border-2 border-slate-200 group">
+                                                <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover" />
+                                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                                    <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[12px] font-extrabold px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[16px]"/> Hapus</button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </PengaturanSection>
+                            )}
+
+                            {activeMenu === 'ads' && (
+                                <PengaturanSection title="Kelola Iklan Google AdSense" onSave={() => handleSaveAll('ads')}>
+                                    <div className="flex flex-col gap-5">
+                                        <label className="flex items-center justify-between bg-white border-2 border-slate-200 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/30 transition-colors group shadow-sm">
+                                            <div>
+                                                <p className="text-[14px] font-extrabold text-google-text">Aktifkan Iklan AdSense</p>
+                                                <p className="text-[12px] text-google-textVariant font-medium mt-0.5">Tampilkan iklan Google AdSense untuk warga</p>
+                                                <p className="text-[10px] text-google-blue font-bold mt-1 font-mono">Publisher: ca-pub-2636322336243340</p>
+                                            </div>
+                                            <div className="relative">
+                                                <input type="checkbox" className="sr-only peer" checked={formAds.enabled} onChange={e => setFormAds(p => ({...p, enabled: e.target.checked}))} />
+                                                <div className="w-12 h-6 bg-slate-200 peer-checked:bg-google-blue rounded-full transition-colors peer"></div>
+                                                <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-6 peer"></div>
+                                            </div>
+                                        </label>
+
+                                        <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
+                                            <div className="flex flex-wrap items-center gap-2 mb-1">
+                                                <div className="w-8 h-8 bg-google-blueLight rounded-xl flex items-center justify-center border border-google-blue/20">
+                                                    <Icon name="ad_units" className="text-google-blue text-[18px]" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-[13px] font-extrabold text-google-text">Banner Ad</p>
+                                                    <p className="text-[11px] text-google-textVariant font-medium">Iklan strip sticky bawah layar</p>
+                                                    <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 4610725620</p>
+                                                </div>
+                                            </div>
+                                            <input type="text" value={formAds.bannerAdId} onChange={e => { const v = e.target.value.trim(); setFormAds(p => ({...p, bannerAdId: v})); }} placeholder="Kosongkan = pakai slot default 4610725620" className="w-full bg-white shadow-sm border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors" />
+                                            <div className="flex flex-wrap gap-2">
+                                                <button type="button" onClick={() => setFormAds(p => ({...p, bannerAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
+                                            </div>
+                                        </div>
+
+                                        <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
+                                            <div className="flex flex-wrap items-center gap-2 mb-1">
+                                                <div className="w-8 h-8 bg-google-yellowLight rounded-xl flex items-center justify-center border border-google-yellow/20">
+                                                    <Icon name="fullscreen" className="text-google-yellowDark text-[18px]" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-[13px] font-extrabold text-google-text">Interstitial Ad</p>
+                                                    <p className="text-[11px] text-google-textVariant font-medium">Iklan layar penuh saat buka halaman tertentu</p>
+                                                    <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 8219064079</p>
+                                                </div>
+                                            </div>
+                                            <input type="text" value={formAds.interstitialAdId} onChange={e => { const v = e.target.value.trim(); setFormAds(p => ({...p, interstitialAdId: v})); }} placeholder="Kosongkan = pakai slot default 8219064079" className="w-full bg-white shadow-sm border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors" />
+                                            <div className="flex flex-wrap gap-2">
+                                                <button type="button" onClick={() => setFormAds(p => ({...p, interstitialAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
+                                            </div>
+                                            
+                                            <div>
+                                                <p className="text-[12px] font-extrabold text-google-textVariant mb-2 uppercase tracking-wider">Tampil saat warga buka:</p>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {[{id:'laporan',label:'Arsip Riwayat'},{id:'warga',label:'Buku Warga'},{id:'pemenang',label:'Pemenang'},{id:'iuran',label:'Iuran Umum'},{id:'kas',label:'Kas RT'}].map(opt => (
+                                                        <label key={opt.id} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2 cursor-pointer text-[12px] font-bold transition-all ${formAds.interstitialTrigger?.includes(opt.id) ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-200 hover:border-google-blue/50'}`}>
+                                                            <input type="checkbox" className="hidden" checked={formAds.interstitialTrigger?.includes(opt.id) || false} onChange={e => {
+                                                                const current = formAds.interstitialTrigger || [];
+                                                                const arr = typeof current === 'string' ? [current] : current;
+                                                                setFormAds(p => ({...p, interstitialTrigger: e.target.checked ? [...arr.filter(x=>x!==opt.id), opt.id] : arr.filter(x=>x!==opt.id)}));
+                                                            }} />
+                                                            {opt.label}
+                                                        </label>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                )}
-                            </div>
-                        </PengaturanSection>
+                                </PengaturanSection>
+                            )}
 
-                    {/* ===== SECTION: Kelola Iklan AdMob ===== */}
-                    <PengaturanSection title="?? Kelola Iklan Google AdSense" onSave={() => handleSaveAll('ads')}>
-                        <div className="flex flex-col gap-5">
-                            {/* Toggle aktif/nonaktif */}
-                            <label className="flex items-center justify-between bg-slate-50 border-2 border-slate-200 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/30 transition-colors group">
-                                <div>
-                                    <p className="text-[14px] font-extrabold text-google-text">Aktifkan Iklan AdSense</p>
-                                    <p className="text-[12px] text-google-textVariant font-medium mt-0.5">Tampilkan iklan Google AdSense untuk warga</p>
-                                    <p className="text-[10px] text-google-blue font-bold mt-1 font-mono">Publisher: ca-pub-2636322336243340</p>
-                                </div>
-                                <div className="relative">
-                                    <input type="checkbox" className="sr-only peer" checked={formAds.enabled} onChange={e => setFormAds(p => ({...p, enabled: e.target.checked}))} />
-                                    <div className="w-12 h-6 bg-slate-200 peer-checked:bg-google-blue rounded-full transition-colors peer"></div>
-                                    <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-6 peer"></div>
-                                </div>
-                            </label>
+                            {activeMenu === 'sponsor' && (
+                                <SponsorSection sponsorsData={props.sponsorsData} setSponsorsData={props.setSponsorsData} showAlert={showAlert} />
+                            )}
+                            
+                            {activeMenu === 'infodesa' && (
+                                <InfoDesaSection infoDesa={props.infoDesa} setInfoDesa={props.setInfoDesa} showAlert={showAlert} />
+                            )}
 
-                            {/* Banner Ad */}
-                            <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
-                                <div className="flex flex-wrap items-center gap-2 mb-1">
-                                    <div className="w-8 h-8 bg-google-blueLight rounded-xl flex items-center justify-center border border-google-blue/20">
-                                        <Icon name="ad_units" className="text-google-blue text-[18px]" />
+                            {activeMenu === 'reset' && (
+                                <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-8 sm:p-10 rounded-[32px] border-2 border-google-redDark shadow-xl relative overflow-hidden group">
+                                    <Icon name="warning" className="absolute -right-5 -top-5 text-[160px] text-white opacity-10 group-hover:scale-110 transition-transform duration-700" fill="true" />
+                                    <div className="relative z-10">
+                                        <div className="flex items-center space-x-3 mb-4"><Icon name="report" className="text-[36px] text-white" fill="true" /><h3 className="font-extrabold text-[24px] tracking-tight">Bahaya: Hapus Semua Database</h3></div>
+                                        <p className="text-[15px] font-medium mb-8 text-white/90 max-w-xl leading-relaxed">Tindakan ini akan menghapus seluruh data warga, riwayat keuangan, tunggakan, dan mengembalikan saldo kas menjadi nol kembali seperti baru (Setelan Pabrik).</p>
+                                        <button onClick={() => setConfirmResetModal(true)} className="bg-white text-google-redDark px-8 py-4 rounded-full font-extrabold text-[15px] shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto hover:bg-slate-50 border-2 border-transparent hover:border-google-red"><Icon name="delete_forever" className="text-[20px]"/> Format Database Sekarang</button>
                                     </div>
-                                    <div>
-                                        <p className="text-[13px] font-extrabold text-google-text">Banner Ad</p>
-                                        <p className="text-[11px] text-google-textVariant font-medium">Iklan strip sticky bawah layar</p>
-                                        <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 4610725620 (sudah terpasang)</p>
-                                    </div>
-                                </div>
-                                <input
-                                    type="text"
-                                    value={formAds.bannerAdId}
-                                    onChange={e => { const v = e.target.value.trim(); if (v && v.startsWith('ca-app-pub')) { setErrorMsg('Format salah! Gunakan ca-pub-..., bukan ca-app-pub-... (itu AdMob App)'); return; } setFormAds(p => ({...p, bannerAdId: v})); }}
-                                    placeholder="Kosongkan = pakai slot default 4610725620"
-                                    className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors"
-                                />
-                                {formAds.bannerAdId && <p className="text-[11px] text-google-green font-bold flex flex-wrap items-center gap-1"><Icon name="check_circle" className="text-[14px]"/>ID Banner tersimpan</p>}
-                                <div className="flex flex-wrap gap-2">
-                                    <button type="button" onClick={() => setFormAds(p => ({...p, bannerAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full hover:bg-google-red hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
-                                    <button type="button" onClick={() => { setFormAds(p => ({...p, bannerAdId: ''})); }} className="text-[11px] font-extrabold text-google-green bg-google-greenLight border border-google-green/30 px-4 py-2 rounded-full hover:bg-google-green hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1"><Icon name="restart_alt" className="text-[13px]"/>Pakai Default</button>
-                                </div>
-                            </div>
-
-                            {/* Interstitial Ad */}
-                            <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
-                                <div className="flex flex-wrap items-center gap-2 mb-1">
-                                    <div className="w-8 h-8 bg-google-yellowLight rounded-xl flex items-center justify-center border border-google-yellow/20">
-                                        <Icon name="fullscreen" className="text-google-yellowDark text-[18px]" />
-                                    </div>
-                                    <div>
-                                        <p className="text-[13px] font-extrabold text-google-text">Interstitial Ad</p>
-                                        <p className="text-[11px] text-google-textVariant font-medium">Iklan layar penuh saat buka halaman tertentu</p>
-                                        <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 8219064079 (sudah terpasang)</p>
-                                    </div>
-                                </div>
-                                <input
-                                    type="text"
-                                    value={formAds.interstitialAdId}
-                                    onChange={e => { const v = e.target.value.trim(); if (v && v.startsWith('ca-app-pub')) { setErrorMsg('Format salah! Gunakan ca-pub-..., bukan ca-app-pub-... (itu AdMob App)'); return; } setFormAds(p => ({...p, interstitialAdId: v})); }}
-                                    placeholder="Kosongkan = pakai slot default 8219064079"
-                                    className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors"
-                                />
-                                {formAds.interstitialAdId && <p className="text-[11px] text-google-green font-bold flex flex-wrap items-center gap-1"><Icon name="check_circle" className="text-[14px]"/>ID Interstitial tersimpan</p>}
-                                <div className="flex flex-wrap gap-2">
-                                    <button type="button" onClick={() => setFormAds(p => ({...p, interstitialAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full hover:bg-google-red hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
-                                    <button type="button" onClick={() => { setFormAds(p => ({...p, interstitialAdId: ''})); }} className="text-[11px] font-extrabold text-google-green bg-google-greenLight border border-google-green/30 px-4 py-2 rounded-full hover:bg-google-green hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1"><Icon name="restart_alt" className="text-[13px]"/>Pakai Default</button>
-                                </div>
-                                {/* Pilih trigger halaman */}
-                                <div>
-                                    <p className="text-[12px] font-extrabold text-google-textVariant mb-2 uppercase tracking-wider">Tampil saat warga buka:</p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {[{id:'laporan',label:'Arsip Riwayat'},{id:'warga',label:'Buku Warga'},{id:'pemenang',label:'Pemenang'},{id:'iuran',label:'Iuran Umum'},{id:'kas',label:'Kas RT'}].map(opt => (
-                                            <label key={opt.id} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2 cursor-pointer text-[12px] font-bold transition-all ${formAds.interstitialTrigger?.includes(opt.id) ? 'bg-google-blue text-white border-google-blueDark' : 'bg-slate-50 text-google-text border-slate-200 hover:border-google-blue/50'}`}>
-                                                <input type="checkbox" className="hidden" checked={formAds.interstitialTrigger?.includes(opt.id) || false} onChange={e => {
-                                                    const current = formAds.interstitialTrigger || [];
-                                                    const arr = typeof current === 'string' ? [current] : current;
-                                                    setFormAds(p => ({...p, interstitialTrigger: e.target.checked ? [...arr.filter(x=>x!==opt.id), opt.id] : arr.filter(x=>x!==opt.id)}));
-                                                }} />
-                                                {opt.label}
-                                            </label>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Preview */}
-                            {formAds.enabled && formAds.bannerAdId && (
-                                <div className="bg-google-blueLight border-2 border-google-blue/30 rounded-[16px] p-4 sm:p-6 md:p-8">
-                                    <p className="text-[12px] font-extrabold text-google-blueDark mb-2 flex flex-wrap items-center gap-1.5"><Icon name="preview" className="text-[16px]"/>Preview Banner:</p>
-                                    <AdMobBanner adId={formAds.bannerAdId} />
                                 </div>
                             )}
                         </div>
-                    </PengaturanSection>
-
-                    </div>
-
-                    {/* ===== SECTION: Manajemen Sponsor ===== */}
-                    <SponsorSection sponsorsData={props.sponsorsData} setSponsorsData={props.setSponsorsData} showAlert={showAlert} />
-
-                    <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-8 sm:p-10 rounded-[32px] border-2 border-google-redDark shadow-xl relative overflow-hidden group">
-                        <Icon name="warning" className="absolute -right-5 -top-5 text-[160px] text-white opacity-10 group-hover:scale-110 transition-transform duration-700" fill="true" />
-                        <div className="relative z-10">
-                            <div className="flex items-center space-x-3 mb-4"><Icon name="report" className="text-[36px] text-white" fill="true" /><h3 className="font-extrabold text-[24px] tracking-tight">Bahaya: Hapus Semua Database</h3></div>
-                            <p className="text-[15px] font-medium mb-8 text-white/90 max-w-xl leading-relaxed">Tindakan ini akan menghapus seluruh data warga, riwayat keuangan, tunggakan, dan mengembalikan saldo kas menjadi nol kembali seperti baru (Setelan Pabrik).</p>
-                            <button onClick={() => setConfirmResetModal(true)} className="bg-white text-google-redDark px-8 py-4 rounded-full font-extrabold text-[15px] shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto hover:bg-slate-50 border-2 border-transparent hover:border-google-red"><Icon name="delete_forever" className="text-[20px]"/> Format Database Sekarang</button>
-                        </div>
-                    </div>
+                    )}
 
                     {modalConfig && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
@@ -5450,18 +6547,19 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             );
         }
 
+
         function Pemenang({ members }) {
             const winners = members.filter(m => m.hasWon).sort((a, b) => a.wonRound - b.wonRound);
             return (
                 <div className="space-y-6 max-w-4xl mx-auto">
-                    <div className="bg-white p-6 sm:p-8 rounded-[32px] flex flex-col sm:flex-row justify-between items-center border-2 border-slate-200 shadow-sm text-center sm:text-left gap-5">
+                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row justify-between items-center border-2 border-slate-200 shadow-sm text-center sm:text-left gap-5">
                         <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Daftar Pemenang Arisan</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Warga yang telah menerima dana pada siklus aktif saat ini.</p></div>
                         <div className="w-16 h-16 bg-google-yellowLight rounded-[20px] flex items-center justify-center border-2 border-google-yellow/40 shrink-0 shadow-sm"><Icon name="emoji_events" className="text-[32px] text-google-yellowDark" fill="true" /></div>
                     </div>
                     {winners.length === 0 ? <div className="bg-white rounded-[32px] border-2 border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border-2 border-slate-200"><Icon name="military_tech" className="text-[48px] text-slate-400" /></div><h3 className="font-extrabold text-[22px] text-google-text mb-2 tracking-tight">Belum Ada Pemenang</h3><p className="text-google-textVariant font-medium text-[15px]">Data penerima arisan akan tampil di sini setelah diundi.</p></div> : (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                             {winners.map((winner, index) => (
-                                <div key={winner.id} className="bg-white p-4 sm:p-6 md:p-8 rounded-[24px] flex items-center space-x-6 border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-yellow/60 transition-all duration-300 group">
+                                <div key={winner.id} className="bg-white p-4 sm:p-5 md:p-6 rounded-[24px] flex items-center space-x-6 border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-yellow/60 transition-all duration-300 group">
                                     <div className="bg-google-yellowLight border-2 border-google-yellow/40 text-google-yellowDark font-extrabold w-16 h-16 rounded-[20px] flex items-center justify-center shrink-0 text-[20px] group-hover:bg-google-yellow group-hover:text-white group-hover:scale-110 transition-all duration-300 shadow-sm">#{index + 1}</div>
                                     <div className="flex-1 min-w-0"><h3 className="font-extrabold text-google-text text-[18px] truncate group-hover:text-google-yellowDark transition-colors tracking-tight">{winner.name}</h3><p className="text-[14px] font-bold text-google-textVariant mt-1">Menang di Putaran {winner.wonRound}</p></div>
                                     <Icon name="check_circle" className="text-[32px] text-google-green group-hover:scale-110 transition-transform" fill="true" />
@@ -5476,39 +6574,31 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
         function Kegiatan({ nextMeeting, setNextMeeting, userRole }) {
             const [isEditing, setIsEditing] = useState(false);
             const [formData, setFormData] = useState(nextMeeting);
-            // FIX MINOR-1: Sync formData saat nextMeeting berubah dari Firebase (tapi hanya jika tidak sedang edit)
             useEffect(() => { if (!isEditing) setFormData(nextMeeting); }, [nextMeeting, isEditing]);
             
             return (
                 <div className="space-y-6 tab-fade-in">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm">
-                        <div><h2 className="text-2xl font-extrabold text-google-text tracking-tight">Jadwal Pertemuan</h2><p className="text-[14px] font-medium text-google-textVariant mt-1.5">Informasi resmi kegiatan RT untuk bulan selanjutnya.</p></div>
-                        {userRole === 'admin' && !isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-200 text-google-text px-8 py-3.5 rounded-full font-extrabold flex flex-wrap items-center justify-center gap-2 text-[14px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[18px]" /><span>Ubah Jadwal</span></button>}
-                    </div>
+                    {userRole === 'admin' && (
+                        <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm">
+                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5">
+                                <div><h2 className="text-xl font-extrabold text-google-text tracking-tight">Pengaturan Agenda</h2><p className="text-[13px] font-medium text-google-textVariant mt-1">Agenda tampil sebagai teks berjalan (marquee) di Halaman Utama.</p></div>
+                                {!isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-200 text-google-text px-6 py-2.5 rounded-full font-extrabold flex items-center justify-center gap-2 text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[16px]" /><span>Ubah Agenda</span></button>}
+                            </div>
 
-                    {isEditing ? (
-                        <div className="bg-white rounded-[32px] p-6 sm:p-10 space-y-6 border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Hari &amp; Tanggal</label><input type="text" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Sabtu, 10 Agustus 2026"/></div>
-                                <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Jam Pelaksanaan</label><input type="text" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: 19.30 WIB - Selesai"/></div>
-                            </div>
-                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-bold outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
-                            <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[15px] font-medium outline-none rounded-[16px] resize-none min-h-[140px] leading-relaxed transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
-                            <div className="flex flex-wrap gap-3 pt-8 mt-6 border-t-2 border-slate-100">
-                                <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-extrabold text-[14px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex flex-wrap bg-google-blue border-2 border-google-blueDark text-white px-6 py-3.5 rounded-full font-extrabold text-[14px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[18px]"/> Simpan Jadwal</button>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="bg-white rounded-[32px] p-6 sm:p-10 text-google-text border-2 border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300 relative overflow-hidden group">
-                            <div className="absolute -right-10 -top-10 w-64 max-w-full h-64 bg-google-blueLight opacity-30 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
-                            
-                            <div className="mb-10 relative z-10"><Icon name="event" className="text-[56px] text-google-blue mb-5 group-hover:scale-110 transition-transform duration-300 origin-left" fill="true" /><h3 className="text-4xl sm:text-5xl font-extrabold leading-tight text-google-blueDark tracking-tight">{nextMeeting.date}</h3><div className="inline-flex items-center gap-2.5 mt-5 bg-google-blueLight/50 px-5 py-2.5 rounded-[16px] border-2 border-google-blue/20 shadow-sm"><Icon name="schedule" className="text-[20px] text-google-blueDark"/><p className="text-[15px] font-extrabold text-google-blueDark uppercase tracking-widest">{nextMeeting.time}</p></div></div>
-                            <div className="space-y-5 bg-slate-50 border-2 border-slate-200 p-8 rounded-[24px] relative z-10 shadow-sm">
-                                <div className="flex flex-wrap gap-5"><div className="bg-white w-12 h-12 rounded-[16px] flex items-center justify-center shrink-0 shadow-sm border-2 border-slate-100"><Icon name="location_on" className="text-[24px] text-google-red" fill="true"/></div><div><p className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant mb-1.5">Lokasi</p><p className="font-extrabold text-[16px] text-google-text">{nextMeeting.location}</p></div></div>
-                                <div className="w-full h-px bg-slate-200 my-3"></div>
-                                <div className="flex flex-wrap gap-5"><div className="bg-white w-12 h-12 rounded-[16px] flex items-center justify-center shrink-0 shadow-sm border-2 border-slate-100"><Icon name="description" className="text-[24px] text-google-yellowDark" fill="true" /></div><div><p className="text-[11px] uppercase tracking-widest font-extrabold text-google-textVariant mb-1.5">Agenda</p><p className="font-medium text-[15px] leading-relaxed text-google-text">{nextMeeting.notes}</p></div></div>
-                            </div>
+                            {isEditing && (
+                                <div className="mt-6 pt-6 border-t-2 border-slate-100 space-y-6">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Hari &amp; Tanggal</label><input type="text" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[14px] font-bold outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Sabtu, 10 Agustus 2026"/></div>
+                                        <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Jam Pelaksanaan</label><input type="text" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[14px] font-bold outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: 19.30 WIB - Selesai"/></div>
+                                    </div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[14px] font-bold outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
+                                    <div><label className="text-[11px] font-extrabold text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[14px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
+                                    <div className="flex flex-wrap gap-3 pt-6 mt-6 border-t-2 border-slate-100">
+                                        <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3 rounded-full font-extrabold text-[13px] hover:bg-slate-50 border-2 border-slate-200 active:scale-95 transition-all shadow-sm flex items-center justify-center">Batal</button>
+                                        <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex bg-google-blue border-2 border-google-blueDark text-white px-6 py-3 rounded-full font-extrabold text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Agenda</button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     )}
 
@@ -5660,7 +6750,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             return (
                 <div className="space-y-6 max-w-5xl mx-auto">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
+                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
                         <div className="text-center md:text-left">
                             <h2 className="text-2xl font-extrabold text-google-text tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
                                 <Icon name="calendar_month" className="text-[28px] text-red-600"/>
@@ -5680,20 +6770,20 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         {/* Detail Day Card & Weton Checker */}
                         <div className="space-y-6">
                             {/* Hari Ini / Selected Day Info */}
-                            <div className="bg-white rounded-[32px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm relative overflow-hidden group">
+                            <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-200 shadow-sm relative overflow-hidden group">
                                 <div className="absolute -right-8 -top-8 w-44 h-44 bg-red-50/50 opacity-40 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700"></div>
                                 <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-100 pb-3">
                                     <Icon name="info" className="text-[18px] text-red-600" />
                                     Detail Tanggal
                                 </h3>
                                 <div className="space-y-4 relative z-10">
-                                    <div className="bg-slate-50 border border-slate-200/60 p-4 sm:p-6 md:p-8 rounded-[20px] shadow-sm">
+                                    <div className="bg-slate-50 border border-slate-200/60 p-4 sm:p-5 md:p-6 rounded-[20px] shadow-sm">
                                         <p className="text-[10px] uppercase tracking-widest font-extrabold text-google-textVariant mb-1">Masehi / Nasional</p>
                                         <p className="font-extrabold text-[16px] text-google-text">
                                             {selectedDate.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
                                         </p>
                                     </div>
-                                    <div className="bg-red-50/50 border border-red-500/10 p-4 sm:p-6 md:p-8 rounded-[20px] shadow-sm">
+                                    <div className="bg-red-50/50 border border-red-500/10 p-4 sm:p-5 md:p-6 rounded-[20px] shadow-sm">
                                         <p className="text-[10px] uppercase tracking-widest font-extrabold text-red-800 mb-1">Jawa / Pasaran</p>
                                         <p className="font-extrabold text-[16px] text-red-700">
                                             {selectedDetails.jawa}
@@ -5702,7 +6792,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                             Weton: <span className="underline decoration-dotted">{selectedDetails.jawaDay} {selectedDetails.pasaran}</span>
                                         </p>
                                     </div>
-                                    <div className="bg-slate-50 border border-slate-200/60 p-4 sm:p-6 md:p-8 rounded-[20px] shadow-sm">
+                                    <div className="bg-slate-50 border border-slate-200/60 p-4 sm:p-5 md:p-6 rounded-[20px] shadow-sm">
                                         <p className="text-[10px] uppercase tracking-widest font-extrabold text-google-textVariant mb-1">Hijriah / Kalender Islam</p>
                                         <p className="font-extrabold text-[16px] text-google-text">
                                             {selectedDetails.hijri}
@@ -5712,7 +6802,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                             </div>
 
                             {/* Weton Checker Tool */}
-                            <div className="bg-white rounded-[32px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm">
+                            <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-200 shadow-sm">
                                 <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-100 pb-3">
                                     <Icon name="search" className="text-[18px] text-red-600" />
                                     Cek Weton & Pasaran Lahir
@@ -5729,7 +6819,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                                 </form>
 
                                 {checkResult && (
-                                    <div className="mt-5 p-4 sm:p-6 md:p-8 rounded-[20px] bg-red-50 border border-red-500/20 space-y-2.5 tab-fade-in">
+                                    <div className="mt-5 p-4 sm:p-5 md:p-6 rounded-[20px] bg-red-50 border border-red-500/20 space-y-2.5 tab-fade-in">
                                         <div>
                                             <p className="text-[9px] uppercase tracking-widest font-extrabold text-red-800">Hasil Analisis</p>
                                             <p className="text-[12px] font-bold text-slate-600 mt-1">Masehi: {checkResult.gregorian}</p>
@@ -5746,7 +6836,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         </div>
 
                         {/* Calendar Grid Sheet */}
-                        <div className="lg:col-span-2 bg-white rounded-[32px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm flex flex-col">
+                        <div className="lg:col-span-2 bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-200 shadow-sm flex flex-col">
                             {/* Navigation */}
                             <div className="flex justify-between items-center mb-6">
                                 <button onClick={handlePrevMonth} className="w-10 h-10 bg-slate-50 border border-slate-200 text-google-text hover:bg-slate-100 hover:border-slate-300 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
@@ -5825,95 +6915,11 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
             );
         }
 
-        function PetaDesa() {
-            useEffect(() => {
-                const map = L.map('village-map', {
-                    scrollWheelZoom: false
-                }).setView([-7.8172, 112.0832], 15);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '� OpenStreetMap contributors'
-                }).addTo(map);
-
-                const redIcon = L.icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                });
-
-                const blueIcon = L.icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                });
-
-                const balaiDesa = L.marker([-7.8164, 112.0818], { icon: redIcon }).addTo(map);
-                balaiDesa.bindPopup(`
-                    <div style="font-family: 'Outfit', sans-serif; text-align: center;">
-                        <h4 style="margin: 0 0 5px; font-weight: 800; color: #b91c1c;">Kantor Balai Desa Banyuanyar</h4>
-                        <p style="margin: 0; font-size: 11px; font-weight: bold; color: #475569;">Pusat Administrasi & Layanan Publik Desa</p>
-                    </div>
-                `).openPopup();
-
-                const markers = [
-                    { coords: [-7.8185, 112.0850], title: 'Pos Keamanan RT 01', desc: 'Wilayah RW 02 - Desa Banyuanyar' },
-                    { coords: [-7.8155, 112.0842], title: 'Pos Keamanan RT 02', desc: 'Wilayah RW 02 - Desa Banyuanyar' },
-                    { coords: [-7.8192, 112.0805], title: 'Batas Wilayah Barat (RT 03)', desc: 'Pintu Masuk Barat Desa' },
-                    { coords: [-7.8140, 112.0820], title: 'Batas Wilayah Utara (RT 04)', desc: 'Arah Menuju Adan-adan' }
-                ];
-
-                markers.forEach(m => {
-                    L.marker(m.coords, { icon: blueIcon }).addTo(map)
-                        .bindPopup(`
-                            <div style="font-family: 'Outfit', sans-serif;">
-                                <h5 style="margin: 0 0 4px; font-weight: 800; color: #1e3a8a;">${m.title}</h5>
-                                <p style="margin: 0; font-size: 11px; font-weight: bold; color: #64748b;">${m.desc}</p>
-                            </div>
-                        `);
-                });
-
-                const banyuanyarBoundary = [
-                    [-7.8120, 112.0780],
-                    [-7.8125, 112.0880],
-                    [-7.8220, 112.0890],
-                    [-7.8230, 112.0790]
-                ];
-
-                const boundaryPolygon = L.polygon(banyuanyarBoundary, {
-                    color: '#dc2626',
-                    fillColor: '#ef4444',
-                    fillOpacity: 0.1,
-                    weight: 3,
-                    dashArray: '6, 8'
-                }).addTo(map);
-
-                boundaryPolygon.bindPopup(`
-                    <div style="font-family: 'Outfit', sans-serif; text-align: center;">
-                        <h4 style="margin: 0 0 4px; font-weight: 800; color: #dc2626;">Batas Wilayah Desa Banyuanyar</h4>
-                        <p style="margin: 0; font-size: 11px; font-weight: bold; color: #64748b;">Kec. Gurah, Kab. Kediri, Jawa Timur</p>
-                    </div>
-                `);
-
-                const timer = setTimeout(() => {
-                    map.invalidateSize();
-                }, 400);
-
-                return () => {
-                    clearTimeout(timer);
-                    map.remove();
-                };
-            }, []);
+        function PetaDesa({ infoDesa }) {
 
             return (
                 <div className="space-y-6 max-w-5xl mx-auto tab-fade-in">
-                    <div className="bg-white p-6 sm:p-8 rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
+                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
                         <div className="text-center md:text-left">
                             <h2 className="text-2xl font-extrabold text-google-text tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
                                 <Icon name="map" className="text-[28px] text-red-600"/>
@@ -5929,74 +6935,50 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-[32px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm overflow-hidden">
-                        <div id="village-map" className="h-[450px] w-full rounded-[24px] z-10 border border-slate-200/80"></div>
-                        <p className="text-[11px] font-bold text-center text-google-textVariant mt-3 flex flex-wrap items-center justify-center gap-1"><Icon name="info" className="text-[14px]" /> Klik marker peta untuk rincian lokasi atau gerakkan peta secara interaktif.</p>
+                    <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-200 shadow-sm overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[450px] rounded-[24px] z-10 border border-slate-200/80" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
+                        <p className="text-[11px] font-bold text-center text-google-textVariant mt-3 flex flex-wrap items-center justify-center gap-1"><Icon name="info" className="text-[14px]" /> Peta interaktif dari Google Maps.</p>
                     </div>
 
+                    {infoDesa?.enabled && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-white rounded-[32px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm">
+                        <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-200 shadow-sm">
                             <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-100 pb-3">
                                 <Icon name="border_outer" className="text-[18px] text-red-600" />
                                 Batas Administrasi Desa
                             </h3>
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
-                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Utara</p>
-                                    <p className="font-extrabold text-[14px] text-google-text">Desa Adan-adan</p>
-                                </div>
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
-                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Selatan</p>
-                                    <p className="font-extrabold text-[14px] text-google-text">Desa Gurah</p>
-                                </div>
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
-                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Timur</p>
-                                    <p className="font-extrabold text-[14px] text-google-text">Desa Tumpang</p>
-                                </div>
-                                <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[20px] border border-slate-200/50">
-                                    <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">Barat</p>
-                                    <p className="font-extrabold text-[14px] text-google-text">Desa Sukorejo</p>
-                                </div>
+                                {['utara', 'selatan', 'timur', 'barat'].map(arah => (
+                                    <div key={arah} className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[20px] border border-slate-200/50">
+                                        <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-500 mb-0.5">{arah}</p>
+                                        <p className="font-extrabold text-[14px] text-google-text">{infoDesa.batas?.[arah] || '-'}</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-[32px] p-4 sm:p-6 md:p-8 border-2 border-slate-200 shadow-sm">
+                        <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-200 shadow-sm">
                             <h3 className="text-[16px] font-extrabold text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-100 pb-3">
                                 <Icon name="contact_phone" className="text-[18px] text-red-600" />
                                 Kontak Penting Layanan Desa
                             </h3>
                             <div className="space-y-3">
-                                <div className="flex justify-between items-center bg-red-50/50 border border-red-500/10 px-4 py-3 rounded-[16px]">
-                                    <div className="flex flex-wrap items-center gap-2.5">
-                                        <Icon name="local_hospital" className="text-[18px] text-red-600" fill="true"/>
-                                        <span className="text-[13px] font-bold text-red-800">Ambulans Siaga Desa</span>
+                                {infoDesa.kontak?.map((k, i) => (
+                                    <div key={k.id || i} className={`flex justify-between items-center bg-${k.color}-50/50 border border-${k.color}-500/10 px-4 py-3 rounded-[16px]`}>
+                                        <div className="flex flex-wrap items-center gap-2.5">
+                                            <Icon name={k.icon || 'contact_phone'} className={`text-[18px] text-${k.color}-600`} fill="true"/>
+                                            <span className={`text-[13px] font-bold text-${k.color}-800`}>{k.nama}</span>
+                                        </div>
+                                        <span className={`text-[13px] font-black text-${k.color}-700`}>{k.telepon}</span>
                                     </div>
-                                    <span className="text-[13px] font-black text-red-700">0812-3456-7890</span>
-                                </div>
-                                <div className="flex justify-between items-center bg-slate-50 border border-slate-200/50 px-4 py-3 rounded-[16px]">
-                                    <div className="flex flex-wrap items-center gap-2.5">
-                                        <Icon name="business" className="text-[18px] text-slate-500" fill="true"/>
-                                        <span className="text-[13px] font-bold text-google-text">Kantor Balai Desa</span>
-                                    </div>
-                                    <span className="text-[13px] font-black text-google-textVariant">(0354) 689123</span>
-                                </div>
-                                <div className="flex justify-between items-center bg-slate-50 border border-slate-200/50 px-4 py-3 rounded-[16px]">
-                                    <div className="flex flex-wrap items-center gap-2.5">
-                                        <Icon name="shield" className="text-[18px] text-blue-600" fill="true"/>
-                                        <span className="text-[13px] font-bold text-google-text">Bhabinkamtibmas</span>
-                                    </div>
-                                    <span className="text-[13px] font-black text-google-textVariant">0821-4455-6677</span>
-                                </div>
-                                <div className="flex justify-between items-center bg-slate-50 border border-slate-200/50 px-4 py-3 rounded-[16px]">
-                                    <div className="flex flex-wrap items-center gap-2.5">
-                                        <Icon name="military_tech" className="text-[18px] text-emerald-600" fill="true"/>
-                                        <span className="text-[13px] font-bold text-google-text">Babinsa Desa</span>
-                                    </div>
-                                    <span className="text-[13px] font-black text-google-textVariant">0857-8899-0011</span>
-                                </div>
+                                ))}
+                                {(!infoDesa.kontak || infoDesa.kontak.length === 0) && (
+                                    <div className="text-center p-4 text-slate-500 text-sm">Belum ada kontak penting</div>
+                                )}
                             </div>
                         </div>
                     </div>
+                    )}
                 </div>
             );
         }
