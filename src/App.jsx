@@ -2007,6 +2007,16 @@ const getDirectImgUrl = (url) => {
                             </button>
                         </div>
                     </footer>
+{legalData?.enabled && (
+                        <div className="w-full text-center pb-6 no-print bg-white">
+                            <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-extrabold text-google-blue">
+                                <button onClick={() => setShowLegalModal('terms')} className="hover:underline">Syarat & Ketentuan</button>
+                                <span className="text-slate-300">|</span>
+                                <button onClick={() => setShowLegalModal('privacy')} className="hover:underline">Kebijakan Privasi</button>
+                            </div>
+                        </div>
+                    )}
+                    
 
                     {/* Sticky Bottom Banner Ad - compact 50px, safe-area aware */}
                     {adsConfig?.enabled && (
@@ -2020,6 +2030,52 @@ const getDirectImgUrl = (url) => {
                     )}
                     <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
                     <PWAInstallBanner />
+                    {showLicenseModal && (
+                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4 animate-fade-in">
+                            <div className="bg-white rounded-[32px] w-full max-w-lg overflow-hidden shadow-2xl animate-slide-up border-2 border-red-500/20">
+                                <div className="bg-red-50 px-6 py-5 border-b border-red-500/10 flex items-center justify-between">
+                                    <h3 className="text-[16px] font-black text-red-700 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-100 text-red-500 transition-colors"><Icon name="close" /></button>
+                                </div>
+                                <div className="p-6 md:p-8">
+                                    <div className="prose prose-sm text-slate-600 text-justify leading-relaxed max-w-none">
+                                        <p className="font-bold text-slate-800 text-[14px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
+                                        <p className="mb-3">Seluruh data di dalam sistem ini dilindungi secara ketat dan dikelola secara eksklusif oleh Admin Lingkungan.</p>
+                                        <p className="mb-4 text-red-600 font-medium bg-red-50 p-3 rounded-xl border border-red-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <strong>dilaporkan kepada pihak yang berwajib</strong> sesuai perundang-undangan yang berlaku.</p>
+                                        <p className="mb-6">Sistem ini diperuntukkan khusus untuk keperluan digitalisasi guna menunjang tata kelola lingkungan desa yang transparan dan akuntabel.</p>
+                                        
+                                        <div className="border-t-2 border-dashed border-slate-200 pt-4 text-center">
+                                            <p className="text-[12px] font-extrabold text-slate-400 mb-1">COPYRIGHT &copy; 2026</p>
+                                            <p className="text-[11px] text-slate-400 mb-2">Sistem & lisensi ditandatangani secara digital oleh pengembang resmi:</p>
+                                            <p className="text-[18px] font-black tracking-widest bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent uppercase">Novan Restu Utomo</p>
+                                        </div>
+                                    </div>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-full mt-6 bg-slate-100 hover:bg-slate-200 text-slate-700 py-4 rounded-2xl font-extrabold text-[14px] transition-colors active:scale-95">Saya Mengerti</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {showLegalModal && (
+                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4 animate-fade-in">
+                            <div className="bg-white rounded-[24px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col max-h-[80vh]">
+                                <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between shrink-0">
+                                    <h3 className="text-[16px] font-black text-slate-800 flex items-center gap-2">
+                                        <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
+                                        {showLegalModal === 'terms' ? 'Syarat & Ketentuan' : 'Kebijakan Privasi'}
+                                    </h3>
+                                    <button onClick={() => setShowLegalModal(null)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-200 text-slate-500"><Icon name="close" /></button>
+                                </div>
+                                <div className="p-6 overflow-y-auto custom-scrollbar">
+                                    <div className="prose prose-sm text-slate-600 text-justify leading-relaxed whitespace-pre-wrap">
+                                        {showLegalModal === 'terms' ? legalData?.terms : legalData?.privacy}
+                                    </div>
+                                </div>
+                                <div className="p-4 border-t border-slate-100 shrink-0">
+                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-xl font-extrabold text-[14px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <ToastContainer />
                     {/* Floating Music Player - hanya untuk warga */}
                     {userRole === 'warga' && musicData?.url && musicData?.enabled && <FloatingMusicPlayer musicData={musicData} />}
@@ -6276,6 +6332,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 { id: 'banner', title: 'Banner Utama', icon: 'image', bg: 'bg-purple-100', text: 'text-purple-600', border: 'border-purple-200', hoverBorder: 'hover:border-purple-500', groupHoverBg: 'group-hover:bg-purple-500', groupHoverText: 'group-hover:text-purple-600', desc: 'Gambar Latar Halaman Depan' },
                 { id: 'ads', title: 'AdSense', icon: 'ad_units', bg: 'bg-amber-100', text: 'text-amber-600', border: 'border-amber-200', hoverBorder: 'hover:border-amber-500', groupHoverBg: 'group-hover:bg-amber-500', groupHoverText: 'group-hover:text-amber-600', desc: 'Kelola Iklan Google' },
                 { id: 'sponsor', title: 'Sponsor', icon: 'handshake', bg: 'bg-teal-100', text: 'text-teal-600', border: 'border-teal-200', hoverBorder: 'hover:border-teal-500', groupHoverBg: 'group-hover:bg-teal-500', groupHoverText: 'group-hover:text-teal-600', desc: 'Logo Sponsor RT' },
+                { id: 'legal', title: 'Kebijakan', icon: 'gavel', bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-200', hoverBorder: 'hover:border-slate-500', groupHoverBg: 'group-hover:bg-slate-500', groupHoverText: 'group-hover:text-slate-600', desc: 'Syarat & Privasi' },
                 { id: 'infodesa', title: 'Info Desa', icon: 'map', bg: 'bg-rose-100', text: 'text-rose-600', border: 'border-rose-200', hoverBorder: 'hover:border-rose-500', groupHoverBg: 'group-hover:bg-rose-500', groupHoverText: 'group-hover:text-rose-600', desc: 'Kontak & Batas Wilayah' },
                 { id: 'reset', title: 'Reset Sistem', icon: 'warning', bg: 'bg-red-100', text: 'text-red-600', border: 'border-red-200', hoverBorder: 'hover:border-red-500', groupHoverBg: 'group-hover:bg-red-500', groupHoverText: 'group-hover:text-red-600', desc: 'Hapus Semua Data' }
             ];
