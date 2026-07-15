@@ -2458,9 +2458,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                     {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
                         <div className="flex flex-col items-center justify-center mt-20 mb-8 animate-fadeIn">
                             <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 mb-4">Sponsored By</p>
-                            <div className="flex flex-wrap items-center justify-center gap-6">
+                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 items-center justify-items-center w-full max-w-5xl px-4 mx-auto">
                                 {sponsorsData.sponsors.map((s, i) => (
-                                    <img key={i} src={s.url} alt={s.name} className="h-14 sm:h-16 max-w-[160px] object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300" title={s.name} />
+                                    <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 lg:h-16 w-auto max-w-[90px] sm:max-w-[120px] md:max-w-[140px] lg:max-w-[160px] object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-110" title={s.name} />
                                 ))}
                             </div>
                         </div>
