@@ -1938,110 +1938,29 @@ const getDirectImgUrl = (url) => {
         }
 
         function FlagWavingBackground() {
-            const canvasRef = useRef(null);
-            useEffect(() => {
-                const canvas = canvasRef.current;
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                let animFrame;
-                let t = 0;
-                let W, H;
-
-                function resize() {
-                    W = window.innerWidth;
-                    H = window.innerHeight;
-                    canvas.width = W;
-                    canvas.height = H;
-                }
-                resize();
-                window.addEventListener('resize', resize);
-
-                function draw() {
-                    animFrame = requestAnimationFrame(draw);
-                    
-                    if (document.hidden) return;
-
-                    ctx.clearRect(0, 0, W, H);
-
-                    // 1. Gambar latar belakang MERAH solid
-                    ctx.fillStyle = '#dc2626'; // Merah standar
-                    ctx.fillRect(0, 0, W, H);
-
-                    // 2. Gambar area PUTIH menggunakan kurva mulus (Polygon Path)
-                    ctx.fillStyle = '#f8fafc'; // Putih salju
-                    ctx.beginPath();
-                    
-                    // Mulai dari sisi kiri (Tiang)
-                    const startPhase = 0 * Math.PI * 3.5 - t * 1.8;
-                    ctx.moveTo(0, H * 0.5 + Math.sin(startPhase) * 0);
-
-                    // Loop untuk menggambar kurva batas bendera dengan sangat halus (resolusi 5px)
-                    for (let x = 0; x <= W; x += 5) {
-                        const xProgress = x / W;
-                        const amplitude = H * 0.08 * xProgress * xProgress;
-                        const wavePhase = xProgress * Math.PI * 3.5 - t * 1.8;
-                        const midY = H * 0.5 + Math.sin(wavePhase) * amplitude;
-                        ctx.lineTo(x, midY);
-                    }
-                    
-                    // Pastikan titik terakhir tepat di ujung kanan layar
-                    const endAmp = H * 0.08;
-                    const endPhase = Math.PI * 3.5 - t * 1.8;
-                    ctx.lineTo(W, H * 0.5 + Math.sin(endPhase) * endAmp);
-
-                    // Menutup area putih ke sudut bawah layar
-                    ctx.lineTo(W, H);
-                    ctx.lineTo(0, H);
-                    ctx.closePath();
-                    ctx.fill();
-
-                    // 3. Tambahkan bayangan kain 3D dengan Linear Gradient yang sangat halus
-                    // Ini menggantikan strip vertikal yang membuat garis kasar
-                    const shadeGrad = ctx.createLinearGradient(0, 0, W, 0);
-                    const shadeStops = 40; // 40 titik untuk gradasi mulus
-                    for (let i = 0; i <= shadeStops; i++) {
-                        const xProgress = i / shadeStops;
-                        const wavePhase = xProgress * Math.PI * 3.5 - t * 1.8;
-                        const curvature = Math.cos(wavePhase); // -1 sampai 1
-                        
-                        if (curvature > 0) {
-                            // Sisi menghadap cahaya (Putih mengkilap)
-                            const alpha = curvature * 0.15; // Maks 15% putih
-                            shadeGrad.addColorStop(xProgress, `rgba(255,255,255,${alpha})`);
-                        } else {
-                            // Sisi membelakangi cahaya (Hitam bayangan)
-                            const alpha = -curvature * 0.25; // Maks 25% hitam
-                            shadeGrad.addColorStop(xProgress, `rgba(0,0,0,${alpha})`);
-                        }
-                    }
-                    ctx.fillStyle = shadeGrad;
-                    ctx.fillRect(0, 0, W, H);
-
-                    // 4. Efek kilau satin yang bergerak (Shimmer)
-                    const shimX = W * (0.3 + Math.sin(t * 0.4) * 0.25);
-                    const shimY = H * (0.3 + Math.cos(t * 0.3) * 0.15);
-                    const grad = ctx.createRadialGradient(shimX, shimY, 0, shimX, shimY, W * 0.45);
-                    grad.addColorStop(0, 'rgba(255,255,255,0.08)');
-                    grad.addColorStop(1, 'rgba(255,255,255,0)');
-                    ctx.fillStyle = grad;
-                    ctx.fillRect(0, 0, W, H);
-
-                    t += 0.045;
-                }
-
-                draw();
-                return () => {
-                    cancelAnimationFrame(animFrame);
-                    window.removeEventListener('resize', resize);
-                };
-            }, []);
-
             return (
-                <canvas
-                    ref={canvasRef}
-                    className="fixed inset-0 pointer-events-none no-print"
-                    style={{ zIndex: -1, width: '100%', height: '100%' }}
-                />
+                <div 
+                    className="fixed inset-0 pointer-events-none no-print" 
+                    style={{ zIndex: -1, background: '#f8fafc' }}
+                >
+                    {/* Bagian Merah */}
+                    <div 
+                        className="absolute top-0 left-0 w-full h-[55%]"
+                        style={{
+                            background: 'linear-gradient(180deg, #dc2626 0%, #b91c1c 100%)',
+                            borderBottomLeftRadius: '50% 10%',
+                            borderBottomRightRadius: '50% 10%',
+                            boxShadow: '0 10px 30px rgba(220, 38, 38, 0.2)'
+                        }}
+                    ></div>
+                    {/* Efek Kilau */}
+                    <div 
+                        className="absolute inset-0 opacity-30"
+                        style={{
+                            background: 'radial-gradient(circle at 50% 30%, rgba(255,255,255,0.4) 0%, transparent 60%)'
+                        }}
+                    ></div>
+                </div>
             );
         }
 
