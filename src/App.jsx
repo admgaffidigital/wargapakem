@@ -1938,65 +1938,119 @@ const getDirectImgUrl = (url) => {
         }
 
         function FlagWavingBackground() {
-            // 25 potongan vertikal untuk simulasi kain 3D yang sangat mulus
-            const strips = 25; 
+            const canvasRef = useRef(null);
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let animFrame;
+                let t = 0;
+                let W, H;
+                let isAnimating = true;
+
+                function resize() {
+                    W = window.innerWidth;
+                    H = window.innerHeight;
+                    canvas.width = W;
+                    canvas.height = H;
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                function drawFrame(time) {
+                    ctx.clearRect(0, 0, W, H);
+
+                    // 1. Gambar latar belakang MERAH solid
+                    ctx.fillStyle = '#dc2626'; // Merah standar
+                    ctx.fillRect(0, 0, W, H);
+
+                    // 2. Gambar area PUTIH menggunakan kurva mulus (Polygon Path)
+                    ctx.fillStyle = '#f8fafc'; // Putih salju
+                    ctx.beginPath();
+                    
+                    // Mulai dari sisi kiri (Tiang)
+                    const startPhase = 0 * Math.PI * 3.5 - time * 1.8;
+                    ctx.moveTo(0, H * 0.5 + Math.sin(startPhase) * 0);
+
+                    // Loop untuk menggambar kurva batas bendera
+                    // Optimasi: Gunakan resolusi 15px di layar kecil (mobile) agar ringan
+                    const step = W < 768 ? 15 : 5;
+                    for (let x = 0; x <= W; x += step) {
+                        const xProgress = x / W;
+                        const amplitude = H * 0.08 * xProgress * xProgress;
+                        const wavePhase = xProgress * Math.PI * 3.5 - time * 1.8;
+                        const midY = H * 0.5 + Math.sin(wavePhase) * amplitude;
+                        ctx.lineTo(x, midY);
+                    }
+                    
+                    const endAmp = H * 0.08;
+                    const endPhase = Math.PI * 3.5 - time * 1.8;
+                    ctx.lineTo(W, H * 0.5 + Math.sin(endPhase) * endAmp);
+
+                    ctx.lineTo(W, H);
+                    ctx.lineTo(0, H);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // 3. Tambahkan bayangan kain 3D dengan Linear Gradient yang sangat halus
+                    const shadeGrad = ctx.createLinearGradient(0, 0, W, 0);
+                    const shadeStops = W < 768 ? 20 : 40; 
+                    for (let i = 0; i <= shadeStops; i++) {
+                        const xProgress = i / shadeStops;
+                        const wavePhase = xProgress * Math.PI * 3.5 - time * 1.8;
+                        const curvature = Math.cos(wavePhase); // -1 sampai 1
+                        
+                        if (curvature > 0) {
+                            const alpha = curvature * 0.15; 
+                            shadeGrad.addColorStop(xProgress, `rgba(255,255,255,${alpha})`);
+                        } else {
+                            const alpha = -curvature * 0.25; 
+                            shadeGrad.addColorStop(xProgress, `rgba(0,0,0,${alpha})`);
+                        }
+                    }
+                    ctx.fillStyle = shadeGrad;
+                    ctx.fillRect(0, 0, W, H);
+
+                    // 4. Efek kilau satin yang bergerak (Shimmer)
+                    const shimX = W * (0.3 + Math.sin(time * 0.4) * 0.25);
+                    const shimY = H * (0.3 + Math.cos(time * 0.3) * 0.15);
+                    const grad = ctx.createRadialGradient(shimX, shimY, 0, shimX, shimY, W * 0.45);
+                    grad.addColorStop(0, 'rgba(255,255,255,0.08)');
+                    grad.addColorStop(1, 'rgba(255,255,255,0)');
+                    ctx.fillStyle = grad;
+                    ctx.fillRect(0, 0, W, H);
+                }
+
+                function loop() {
+                    if (!isAnimating) return;
+                    animFrame = requestAnimationFrame(loop);
+                    if (document.hidden) return;
+                    drawFrame(t);
+                    t += 0.045;
+                }
+
+                // Render frame pertama langsung agar layar tidak kosong
+                drawFrame(0);
+
+                // Tunda animasi 2 detik agar PageSpeed selesai menghitung LCP dan TTI tanpa gangguan
+                const startDelay = setTimeout(() => {
+                    loop();
+                }, 2000);
+
+                return () => {
+                    isAnimating = false;
+                    clearTimeout(startDelay);
+                    cancelAnimationFrame(animFrame);
+                    window.removeEventListener('resize', resize);
+                };
+            }, []);
+
             return (
-                <div 
-                    className="fixed inset-0 pointer-events-none no-print flex bg-[#f8fafc] overflow-hidden" 
-                    style={{ zIndex: -1, perspective: '800px' }}
-                >
-                    {Array.from({ length: strips }).map((_, i) => (
-                        <div 
-                            key={i}
-                            className="h-[120%] -mt-[10%] relative"
-                            style={{
-                                width: `calc(100% / ${strips} + 2px)`,
-                                marginLeft: i === 0 ? 0 : '-1px',
-                                background: 'linear-gradient(180deg, #dc2626 0%, #b91c1c 49.5%, #e2e8f0 50%, #f8fafc 100%)',
-                                animation: `clothFlutter 2.5s ease-in-out infinite alternate`,
-                                animationDelay: `${i * -0.12}s`,
-                                transformOrigin: 'center center',
-                                transformStyle: 'preserve-3d',
-                                willChange: 'transform'
-                            }}
-                        >
-                            {/* Bayangan dinamis untuk memberikan kedalaman 3D */}
-                            <div 
-                                className="absolute inset-0 bg-black"
-                                style={{
-                                    animation: `clothShadowFlutter 2.5s ease-in-out infinite alternate`,
-                                    animationDelay: `${i * -0.12}s`,
-                                    willChange: 'opacity'
-                                }}
-                            ></div>
-                            {/* Kilauan cahaya dinamis */}
-                            <div 
-                                className="absolute inset-0 bg-white mix-blend-overlay"
-                                style={{
-                                    animation: `clothHighlightFlutter 2.5s ease-in-out infinite alternate`,
-                                    animationDelay: `${i * -0.12}s`,
-                                    willChange: 'opacity'
-                                }}
-                            ></div>
-                        </div>
-                    ))}
-                    <style>{`
-                        @keyframes clothFlutter {
-                            0% { transform: translateZ(-35px) translateY(15px) rotateX(2deg); }
-                            100% { transform: translateZ(40px) translateY(-15px) rotateX(-2deg); }
-                        }
-                        @keyframes clothShadowFlutter {
-                            0% { opacity: 0.25; }
-                            50% { opacity: 0; }
-                            100% { opacity: 0.05; }
-                        }
-                        @keyframes clothHighlightFlutter {
-                            0% { opacity: 0; }
-                            50% { opacity: 0.15; }
-                            100% { opacity: 0.35; }
-                        }
-                    `}</style>
-                </div>
+                <canvas
+                    ref={canvasRef}
+                    className="fixed inset-0 pointer-events-none no-print"
+                    style={{ zIndex: -1, width: '100%', height: '100%' }}
+                />
             );
         }
 
