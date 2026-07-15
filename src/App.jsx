@@ -238,28 +238,8 @@ const getDirectImgUrl = (url) => {
         // =====================================================
         // Google AdSense G Publisher ID & Slot IDs
         // =====================================================
-        const ADSENSE_CLIENT = 'ca-pub-2636322336243340';
-        const ADSENSE_SLOTS = {
-            banner:      '4610725620',   // Banner responsive G sticky bottom
-            inArticle:   '8219064079',   // In-article fluid G antara konten
-            autoRelaxed: '2966737393',   // Autorelaxed G bawah halaman
-        };
-
-        // Helper push iklan G cek data-ad-status di elemen ins itu sendiri
-        // Google AdSense set attribute ini setelah slot berhasil diinisialisasi
-        function initAdSlot(insEl) {
-            if (!insEl) return;
-            // Jika Google sudah pernah inisialisasi slot ini, lewati
-            if (insEl.getAttribute('data-ad-status')) return;
-            try {
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-                console.log('[AdSense] push slot:', insEl.getAttribute('data-ad-slot'), '| client:', insEl.getAttribute('data-ad-client'));
-            } catch(e) {
-                console.warn('[AdSense] push error:', e.message);
-            }
-        }
-
-        // =====================================================
+        
+                // =====================================================
         // AdSenseUnit G unit iklan fleksibel dengan auto-collapse
         // Jika iklan kosong/unfilled: wrapper otomatis collapse (height:0)
         // =====================================================
@@ -1793,7 +1773,6 @@ const getDirectImgUrl = (url) => {
         const [laporanData, setLaporanData] = useFirebaseSync('laporan', []);
             const [inventarisData, setInventarisData, l18] = useFirebaseSync('inventaris_rt', []);
             const [bannerImage, setBannerImage, l19] = useFirebaseSync('banner_image', '');
-            const [adsConfig, setAdsConfig, l20] = useFirebaseSync('ads_config', { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: 'laporan' });
             const [pinjamData, setPinjamData, l21] = useFirebaseSync('pinjam_inventaris', []);
             const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
             const [musicData, setMusicData, l23] = useFirebaseSync('music_config', { url: '', name: '', enabled: true });
@@ -1954,7 +1933,7 @@ const getDirectImgUrl = (url) => {
 
             const renderContent = () => {
                 switch(activeTab) {
-                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} adsConfig={adsConfig} setShowPwaGuide={setShowPwaGuide} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
+                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} setShowPwaGuide={setShowPwaGuide} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
                     case 'dashboard': return <Dashboard members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} currentRound={currentRound} setCurrentRound={setCurrentRound} userRole={userRole} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} changeTab={changeTab} arisanPeriod={arisanPeriod} />;
                     case 'informasi': return <Informasi data={informasi} setData={setInformasi} userRole={userRole} />;
                     case 'warga': return <WargaList members={members} setMembers={setMembers} userRole={userRole} identity={identity} cycleNumber={cycleNumber} currentRound={currentRound} arisanPeriod={arisanPeriod} />;
@@ -1967,7 +1946,7 @@ const getDirectImgUrl = (url) => {
                     case 'kas': return <BukuKas balance={kasRtBalance} setBalance={setKasRtBalance} transactions={kasRtTransactions} setTransactions={setKasRtTransactions} userRole={userRole} identity={identity} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} />;
                     case 'laporan': return <Laporan history={meetingHistory} setMeetingHistory={setMeetingHistory} members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} cycleNumber={cycleNumber} identity={identity} userRole={userRole} />;
                     case 'pertemuan': return userRole === 'admin' ? <Pertemuan members={members} setMembers={setMembers} currentRound={currentRound} setCurrentRound={setCurrentRound} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} setMeetingHistory={setMeetingHistory} onFinish={() => changeTab('menu')} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} identity={identity} cycleNumber={cycleNumber} /> : null;
-                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} adsConfig={adsConfig} setAdsConfig={setAdsConfig} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} legalData={legalData} setLegalData={setLegalData} /> : null;
+                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} legalData={legalData} setLegalData={setLegalData} /> : null;
                     case 'infaq': return <Infaq infaqData={infaqData} setInfaqData={setInfaqData} userRole={userRole} identity={identity} />;
                     case 'pemenang': return <Pemenang members={members} />;
                     case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} />;
@@ -2011,7 +1990,7 @@ const getDirectImgUrl = (url) => {
                         </header>
                     </div>
 
-                    <main className="flex-1 w-full pt-5 md:pt-8 print:pb-0 print:pt-0" style={{paddingBottom: (adsConfig?.enabled && adsConfig?.bannerAdId) ? 'calc(8rem + env(safe-area-inset-bottom, 0px))' : '10rem'}}>
+                    <main className="flex-1 w-full pt-5 md:pt-8 print:pb-0 print:pt-0" style={{paddingBottom: '10rem'}}>
                         <div key={activeTab} className="max-w-5xl mx-auto px-4 sm:px-6 tab-fade-in pb-10">
                             {renderContent()}
                         </div>
@@ -2046,9 +2025,6 @@ const getDirectImgUrl = (url) => {
                         </div>
                     )}
                     {/* Interstitial Ad - tampil berdasarkan tab trigger */}
-                    {adsConfig?.enabled && adsConfig?.interstitialAdId && (
-                        <AdMobInterstitial adId={adsConfig.interstitialAdId} trigger={Array.isArray(adsConfig.interstitialTrigger) ? adsConfig.interstitialTrigger : [adsConfig.interstitialTrigger]} currentTab={activeTab} />
-                    )}
                     <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
                     <PWAInstallBanner />
                     {showLicenseModal && (
@@ -2376,7 +2352,7 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsConfig, setShowPwaGuide, sponsorsData, nextMeeting }) {
+function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setShowPwaGuide, sponsorsData, nextMeeting }) {
             return (
                 <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto mt-2">
                     
@@ -2438,20 +2414,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, adsCon
                         ))}
                     </div>
 
-                    {/* Iklan In-Article AdSense G hanya tampil jika enabled */}
-                    {adsConfig?.enabled && (
-                        <div className="my-2 no-print ad-wrapper-collapse">
-                            <AdSenseUnit slot={ADSENSE_SLOTS.inArticle} format="fluid" layout="in-article" />
-                        </div>
-                    )}
-
-                    {/* Iklan Autorelaxed sebelum info bawah */}
-                    {adsConfig?.enabled && (
-                        <div className="no-print ad-wrapper-collapse">
-                            <AdSenseUnit slot={ADSENSE_SLOTS.autoRelaxed} format="autorelaxed" />
-                        </div>
-                    )}
                     
+                                        
 
                     
                     {/* SPONSORED BY */}
@@ -6328,11 +6292,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
         function Pengaturan(props) {
             const { nominalArisan, setNominalArisan, nominalJimpitan, setNominalJimpitan, identity, setIdentity, setMembers, setMeetingHistory, currentRound, setCurrentRound, cycleNumber, setCycleNumber, jimpitanBalance, setJimpitanBalance, kasRtBalance, setKasRtBalance, kasRtTransactions, setKasRtTransactions, arisanPeriod, setArisanPeriod, bannerImage, setBannerImage,
             // State tambahan untuk reset menyeluruh (diteruskan dari App)
-            setIuranData, setGaleriData, setInventarisData, setInformasi, setNextMeeting, adsConfig, setAdsConfig, infoDesa, setInfoDesa, umkmData, setUmkmData } = props;
+            setIuranData, setGaleriData, setInventarisData, setInformasi, setNextMeeting, infoDesa, setInfoDesa, umkmData, setUmkmData } = props;
             
             const [formIdentity, setFormIdentity] = useState(identity);
-            const [formAds, setFormAds] = useState(adsConfig || { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: ['laporan'] });
-            useEffect(() => { setFormAds(adsConfig || { enabled: false, bannerAdId: '', interstitialAdId: '', bannerBottom: true, interstitialTrigger: ['laporan'] }); }, [adsConfig]);
             const [formNominal, setFormNominal] = useState({ arisan: nominalArisan, jimpitan: nominalJimpitan });
             const [formPeriod, setFormPeriod] = useState(arisanPeriod);
             const [formSaldo, setFormSaldo] = useState({ jimpitan: jimpitanBalance, kasRt: kasRtBalance });
@@ -6388,7 +6350,6 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     setCycleNumber(Math.max(1, safeNumber(formRound.cycle))); 
                 }
                 if(type === 'banner') { setBannerImage(formBanner); }
-                if(type === 'ads') { setAdsConfig({...formAds}); }
                 showAlert("Perubahan berhasil disimpan.");
             };
 

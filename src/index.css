@@ -145,11 +145,4 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     .ttd-name { font-weight: bold; text-decoration: underline; margin-bottom: 2px; }
 }
 
-/* ============================================================
-   GOOGLE ADSENSE — Sembunyikan slot kosong
-   ============================================================ */
-ins.adsbygoogle { min-height: 0 !important; }
-ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; height: 0 !important; }
-ins.adsbygoogle:not([data-ad-status]) { height: 0 !important; overflow: hidden !important; }
-.admob-banner-container ins.adsbygoogle:not([data-ad-status]) { display: block !important; height: 50px !important; }
-.ad-wrapper-collapse { transition: height 0.3s ease; }
+
