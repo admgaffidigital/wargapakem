@@ -1938,54 +1938,62 @@ const getDirectImgUrl = (url) => {
         }
 
         function FlagWavingBackground() {
+            // 25 potongan vertikal untuk simulasi kain 3D yang sangat mulus
+            const strips = 25; 
             return (
                 <div 
-                    className="fixed inset-0 pointer-events-none no-print overflow-hidden bg-[#f8fafc]" 
-                    style={{ zIndex: -1 }}
+                    className="fixed inset-0 pointer-events-none no-print flex bg-[#f8fafc] overflow-hidden" 
+                    style={{ zIndex: -1, perspective: '800px' }}
                 >
-                    {/* Bagian Merah (Atas) */}
-                    <div className="absolute top-0 left-0 w-full h-[45%] bg-gradient-to-b from-[#dc2626] to-[#b91c1c]"></div>
-                    
-                    {/* Transisi Gelombang Bergerak (SVG) */}
-                    <div 
-                        className="absolute left-0 w-[200%] h-[15%]"
-                        style={{
-                            top: '40%',
-                            background: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,0 L0,0 Z" fill="%23b91c1c" /></svg>')`,
-                            backgroundSize: '50% 100%',
-                            backgroundRepeat: 'repeat-x',
-                            animation: 'flagWaveAnim 4s linear infinite',
-                        }}
-                    ></div>
-                    
-                    {/* Lipatan Kain (Shadow) */}
-                    <div 
-                        className="absolute inset-0 opacity-50 mix-blend-multiply"
-                        style={{
-                            background: 'linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
-                            backgroundSize: '200% 100%',
-                            animation: 'flagShadowAnim 4s linear infinite',
-                        }}
-                    ></div>
-
-                    {/* Lipatan Kain (Highlight) */}
-                    <div 
-                        className="absolute inset-0 opacity-40 mix-blend-overlay"
-                        style={{
-                            background: 'linear-gradient(90deg, rgba(255,255,255,0) 12.5%, rgba(255,255,255,0.4) 37.5%, rgba(255,255,255,0) 62.5%, rgba(255,255,255,0.4) 87.5%, rgba(255,255,255,0) 100%)',
-                            backgroundSize: '200% 100%',
-                            animation: 'flagShadowAnim 4s linear infinite',
-                        }}
-                    ></div>
-
+                    {Array.from({ length: strips }).map((_, i) => (
+                        <div 
+                            key={i}
+                            className="h-[120%] -mt-[10%] relative"
+                            style={{
+                                width: `calc(100% / ${strips} + 2px)`,
+                                marginLeft: i === 0 ? 0 : '-1px',
+                                background: 'linear-gradient(180deg, #dc2626 0%, #b91c1c 49.5%, #e2e8f0 50%, #f8fafc 100%)',
+                                animation: `clothFlutter 2.5s ease-in-out infinite alternate`,
+                                animationDelay: `${i * -0.12}s`,
+                                transformOrigin: 'center center',
+                                transformStyle: 'preserve-3d',
+                                willChange: 'transform'
+                            }}
+                        >
+                            {/* Bayangan dinamis untuk memberikan kedalaman 3D */}
+                            <div 
+                                className="absolute inset-0 bg-black"
+                                style={{
+                                    animation: `clothShadowFlutter 2.5s ease-in-out infinite alternate`,
+                                    animationDelay: `${i * -0.12}s`,
+                                    willChange: 'opacity'
+                                }}
+                            ></div>
+                            {/* Kilauan cahaya dinamis */}
+                            <div 
+                                className="absolute inset-0 bg-white mix-blend-overlay"
+                                style={{
+                                    animation: `clothHighlightFlutter 2.5s ease-in-out infinite alternate`,
+                                    animationDelay: `${i * -0.12}s`,
+                                    willChange: 'opacity'
+                                }}
+                            ></div>
+                        </div>
+                    ))}
                     <style>{`
-                        @keyframes flagWaveAnim {
-                            0% { transform: translateX(0); }
-                            100% { transform: translateX(-50%); }
+                        @keyframes clothFlutter {
+                            0% { transform: translateZ(-35px) translateY(15px) rotateX(2deg); }
+                            100% { transform: translateZ(40px) translateY(-15px) rotateX(-2deg); }
                         }
-                        @keyframes flagShadowAnim {
-                            0% { background-position: 0 0; }
-                            100% { background-position: -100% 0; }
+                        @keyframes clothShadowFlutter {
+                            0% { opacity: 0.25; }
+                            50% { opacity: 0; }
+                            100% { opacity: 0.05; }
+                        }
+                        @keyframes clothHighlightFlutter {
+                            0% { opacity: 0; }
+                            50% { opacity: 0.15; }
+                            100% { opacity: 0.35; }
                         }
                     `}</style>
                 </div>
