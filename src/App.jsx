@@ -2018,13 +2018,7 @@ const getDirectImgUrl = (url) => {
                     )}
                     
 
-                    {/* Sticky Bottom Banner Ad - compact 50px, safe-area aware */}
-                    {adsConfig?.enabled && (
-                        <div className="fixed left-0 right-0 z-40 no-print" style={{bottom: 'env(safe-area-inset-bottom, 0px)'}}>
-                            <AdMobBanner adId={adsConfig.bannerAdId} />
-                        </div>
-                    )}
-                    {/* Interstitial Ad - tampil berdasarkan tab trigger */}
+
                     <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
                     <PWAInstallBanner />
                     {showLicenseModal && (
