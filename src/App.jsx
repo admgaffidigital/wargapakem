@@ -1499,6 +1499,7 @@ const getDirectImgUrl = (url) => {
 
             
             const [isLoggedIn, setIsLoggedIn] = useState(false);
+            const [isCheckingAuth, setIsCheckingAuth] = useState(true);
             const [userRole, setUserRole] = useState(null); 
             const [activeTab, setActiveTab] = useState('menu'); 
             const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -1574,8 +1575,11 @@ const getDirectImgUrl = (url) => {
                             setIsLoggedIn(true);
                             if (window.location.hash === '') window.location.hash = 'menu';
                         }
+                        setIsCheckingAuth(false);
                     });
                     return () => unsubscribe();
+                } else {
+                    setIsCheckingAuth(false);
                 }
             }, []);
 
@@ -1610,33 +1614,38 @@ const getDirectImgUrl = (url) => {
 
             const changeTab = (tabId) => { window.location.hash = tabId; };
 
-            if (!isAppReady) {
-                return (
-                    <div className="fixed inset-0 z-[999] bg-slate-100/90 backdrop-blur-md flex justify-center items-center">
-                        <div className="bg-white p-8 sm:p-10 rounded-[32px] shadow-2xl border-2 border-slate-200 flex flex-col items-center max-w-[300px] max-w-full w-[90%] relative overflow-hidden">
-                            <div className="flex h-2 w-full absolute top-0 left-0">
-                                <div className="w-1/4 bg-google-blue"></div>
-                                <div className="w-1/4 bg-google-red"></div>
-                                <div className="w-1/4 bg-google-yellow"></div>
-                                <div className="w-1/4 bg-google-green"></div>
-                            </div>
-                            <div className="flex flex-wrap items-center justify-center gap-2.5 mt-4 mb-6 h-8">
-                                <div className="w-4 h-4 rounded-full bg-google-blue animate-bounce" style={{ animationDelay: '0s', animationDuration: '0.9s' }}></div>
-                                <div className="w-4 h-4 rounded-full bg-google-red animate-bounce" style={{ animationDelay: '0.15s', animationDuration: '0.9s' }}></div>
-                                <div className="w-4 h-4 rounded-full bg-google-yellow animate-bounce" style={{ animationDelay: '0.3s', animationDuration: '0.9s' }}></div>
-                                <div className="w-4 h-4 rounded-full bg-google-green animate-bounce" style={{ animationDelay: '0.45s', animationDuration: '0.9s' }}></div>
-                            </div>
-                            <h2 className="text-google-text font-extrabold text-[18px] mb-3 tracking-tight text-center">Memuat Portal</h2>
-                            <div className="flex flex-wrap items-center gap-2 bg-slate-50 px-4 py-2 rounded-full border border-slate-200">
-                                <div className="w-2 h-2 bg-google-blue rounded-full animate-pulse"></div>
-                                <p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest">Sinkronisasi Data</p>
-                            </div>
+            const SpinnerComponent = (
+                <div className="fixed inset-0 z-[999] bg-slate-100/90 backdrop-blur-md flex justify-center items-center">
+                    <div className="bg-white p-8 sm:p-10 rounded-[32px] shadow-2xl border-2 border-slate-200 flex flex-col items-center max-w-[300px] max-w-full w-[90%] relative overflow-hidden">
+                        <div className="flex h-2 w-full absolute top-0 left-0">
+                            <div className="w-1/4 bg-google-blue"></div>
+                            <div className="w-1/4 bg-google-red"></div>
+                            <div className="w-1/4 bg-google-yellow"></div>
+                            <div className="w-1/4 bg-google-green"></div>
+                        </div>
+                        <div className="flex flex-wrap items-center justify-center gap-2.5 mt-4 mb-6 h-8">
+                            <div className="w-4 h-4 rounded-full bg-google-blue animate-bounce" style={{ animationDelay: '0s', animationDuration: '0.9s' }}></div>
+                            <div className="w-4 h-4 rounded-full bg-google-red animate-bounce" style={{ animationDelay: '0.15s', animationDuration: '0.9s' }}></div>
+                            <div className="w-4 h-4 rounded-full bg-google-yellow animate-bounce" style={{ animationDelay: '0.3s', animationDuration: '0.9s' }}></div>
+                            <div className="w-4 h-4 rounded-full bg-google-green animate-bounce" style={{ animationDelay: '0.45s', animationDuration: '0.9s' }}></div>
+                        </div>
+                        <h2 className="text-google-text font-extrabold text-[18px] mb-3 tracking-tight text-center">Memuat Portal</h2>
+                        <div className="flex flex-wrap items-center gap-2 bg-slate-50 px-4 py-2 rounded-full border border-slate-200">
+                            <div className="w-2 h-2 bg-google-blue rounded-full animate-pulse"></div>
+                            <p className="text-[10px] font-extrabold text-google-textVariant uppercase tracking-widest">Sinkronisasi Data</p>
                         </div>
                     </div>
-                );
+                </div>
+            );
+
+            if (isCheckingAuth) {
+                return SpinnerComponent;
             }
 
             if (!isLoggedIn) {
+                if (!firebaseUnavailable && (!l12 || !l_legal)) {
+                    return SpinnerComponent;
+                }
                 return (
                     <>
                         <LoginScreen legalData={legalData} setShowLegalModal={setShowLegalModal} onLogin={(role) => { 
