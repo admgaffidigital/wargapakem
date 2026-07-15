@@ -51,11 +51,17 @@ Build: Vite + React + Tailwind CSS
   <meta content="#dc2626" name="theme-color" />
   <meta content="#dc2626" name="background-color" />
 
-  <!-- DNS Prefetch -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <!-- DNS Prefetch & Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.gstatic.com" />
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+
+  <!-- Fonts Preload (Performance) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&display=swap" />
 
   <!-- Loading screen style (inline agar tampil sebelum JS load) -->
   <style>
@@ -87,7 +93,7 @@ Build: Vite + React + Tailwind CSS
     <!-- Loading screen tampil sebelum React selesai mount -->
     <div id="loading-screen">
       <div class="loading-icon-wrap">
-        <img src="/National_emblem_of_Indonesia_Garuda_Pancasila.svg" alt="Garuda Pancasila" />
+        <img src="/National_emblem_of_Indonesia_Garuda_Pancasila.svg" alt="Garuda Pancasila" width="100" height="100" fetchpriority="high" />
       </div>
       <div class="loading-dots">
         <span></span><span></span><span></span>

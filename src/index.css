@@ -1,8 +1,6 @@
 /* ============================================================
-   GOOGLE FONTS & MATERIAL SYMBOLS — harus sebelum @tailwind
+   GOOGLE FONTS & MATERIAL SYMBOLS — Di-load dari index.html untuk performa
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&display=swap');
 
 /* ============================================================
    TAILWIND CSS DIRECTIVES

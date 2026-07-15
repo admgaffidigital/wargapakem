@@ -40,13 +40,16 @@ const app = initializeApp(firebaseConfig);
 let db;
 try {
     db = initializeFirestore(app, {
-        localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
+        localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }),
+        experimentalForceLongPolling: true
     });
     console.log("[Firebase] Database berhasil diinisialisasi (offline persistence aktif).");
 } catch (offlineError) {
     console.warn("[Firebase] Offline persistence gagal, mencoba tanpa offline cache...", offlineError.message);
     try {
-        db = initializeFirestore(app, {});
+        db = initializeFirestore(app, {
+            experimentalForceLongPolling: true
+        });
         console.log("[Firebase] Database berhasil diinisialisasi (mode online-only).");
     } catch (onlineError) {
         console.error("[Firebase Error] Gagal menghubungkan ke Firebase:", onlineError);
