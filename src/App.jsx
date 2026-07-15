@@ -6307,7 +6307,6 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 { id: 'kalibrasi', title: 'Kalibrasi Siklus', icon: 'build', bg: 'bg-orange-100', text: 'text-orange-600', border: 'border-orange-200', hoverBorder: 'hover:border-orange-500', groupHoverBg: 'group-hover:bg-orange-500', groupHoverText: 'group-hover:text-orange-600', desc: 'Atur Putaran & Siklus' },
                 { id: 'saldo', title: 'Koreksi Saldo', icon: 'account_balance_wallet', bg: 'bg-indigo-100', text: 'text-indigo-600', border: 'border-indigo-200', hoverBorder: 'hover:border-indigo-500', groupHoverBg: 'group-hover:bg-indigo-500', groupHoverText: 'group-hover:text-indigo-600', desc: 'Edit Saldo Kas Utama' },
                 { id: 'banner', title: 'Banner Utama', icon: 'image', bg: 'bg-purple-100', text: 'text-purple-600', border: 'border-purple-200', hoverBorder: 'hover:border-purple-500', groupHoverBg: 'group-hover:bg-purple-500', groupHoverText: 'group-hover:text-purple-600', desc: 'Gambar Latar Halaman Depan' },
-                { id: 'ads', title: 'AdSense', icon: 'ad_units', bg: 'bg-amber-100', text: 'text-amber-600', border: 'border-amber-200', hoverBorder: 'hover:border-amber-500', groupHoverBg: 'group-hover:bg-amber-500', groupHoverText: 'group-hover:text-amber-600', desc: 'Kelola Iklan Google' },
                 { id: 'sponsor', title: 'Sponsor', icon: 'handshake', bg: 'bg-teal-100', text: 'text-teal-600', border: 'border-teal-200', hoverBorder: 'hover:border-teal-500', groupHoverBg: 'group-hover:bg-teal-500', groupHoverText: 'group-hover:text-teal-600', desc: 'Logo Sponsor RT' },
                 { id: 'legal', title: 'Kebijakan', icon: 'gavel', bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-200', hoverBorder: 'hover:border-slate-500', groupHoverBg: 'group-hover:bg-slate-500', groupHoverText: 'group-hover:text-slate-600', desc: 'Syarat & Privasi' },
                 { id: 'infodesa', title: 'Info Desa', icon: 'map', bg: 'bg-rose-100', text: 'text-rose-600', border: 'border-rose-200', hoverBorder: 'hover:border-rose-500', groupHoverBg: 'group-hover:bg-rose-500', groupHoverText: 'group-hover:text-rose-600', desc: 'Kontak & Batas Wilayah' },
@@ -6542,75 +6541,6 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 </div>
                                             </div>
                                         )}
-                                    </div>
-                                </PengaturanSection>
-                            )}
-
-                            {activeMenu === 'ads' && (
-                                <PengaturanSection title="Kelola Iklan Google AdSense" onSave={() => handleSaveAll('ads')}>
-                                    <div className="flex flex-col gap-5">
-                                        <label className="flex items-center justify-between bg-white border-2 border-slate-200 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/30 transition-colors group shadow-sm">
-                                            <div>
-                                                <p className="text-[14px] font-extrabold text-google-text">Aktifkan Iklan AdSense</p>
-                                                <p className="text-[12px] text-google-textVariant font-medium mt-0.5">Tampilkan iklan Google AdSense untuk warga</p>
-                                                <p className="text-[10px] text-google-blue font-bold mt-1 font-mono">Publisher: ca-pub-2636322336243340</p>
-                                            </div>
-                                            <div className="relative">
-                                                <input type="checkbox" className="sr-only peer" checked={formAds.enabled} onChange={e => setFormAds(p => ({...p, enabled: e.target.checked}))} />
-                                                <div className="w-12 h-6 bg-slate-200 peer-checked:bg-google-blue rounded-full transition-colors peer"></div>
-                                                <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-6 peer"></div>
-                                            </div>
-                                        </label>
-
-                                        <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
-                                            <div className="flex flex-wrap items-center gap-2 mb-1">
-                                                <div className="w-8 h-8 bg-google-blueLight rounded-xl flex items-center justify-center border border-google-blue/20">
-                                                    <Icon name="ad_units" className="text-google-blue text-[18px]" />
-                                                </div>
-                                                <div>
-                                                    <p className="text-[13px] font-extrabold text-google-text">Banner Ad</p>
-                                                    <p className="text-[11px] text-google-textVariant font-medium">Iklan strip sticky bawah layar</p>
-                                                    <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 4610725620</p>
-                                                </div>
-                                            </div>
-                                            <input type="text" value={formAds.bannerAdId} onChange={e => { const v = e.target.value.trim(); setFormAds(p => ({...p, bannerAdId: v})); }} placeholder="Kosongkan = pakai slot default 4610725620" className="w-full bg-white shadow-sm border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors" />
-                                            <div className="flex flex-wrap gap-2">
-                                                <button type="button" onClick={() => setFormAds(p => ({...p, bannerAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
-                                            </div>
-                                        </div>
-
-                                        <div className={`flex flex-col gap-3 transition-opacity ${formAds.enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
-                                            <div className="flex flex-wrap items-center gap-2 mb-1">
-                                                <div className="w-8 h-8 bg-google-yellowLight rounded-xl flex items-center justify-center border border-google-yellow/20">
-                                                    <Icon name="fullscreen" className="text-google-yellowDark text-[18px]" />
-                                                </div>
-                                                <div>
-                                                    <p className="text-[13px] font-extrabold text-google-text">Interstitial Ad</p>
-                                                    <p className="text-[11px] text-google-textVariant font-medium">Iklan layar penuh saat buka halaman tertentu</p>
-                                                    <p className="text-[10px] text-google-green font-bold font-mono">Default Slot: 8219064079</p>
-                                                </div>
-                                            </div>
-                                            <input type="text" value={formAds.interstitialAdId} onChange={e => { const v = e.target.value.trim(); setFormAds(p => ({...p, interstitialAdId: v})); }} placeholder="Kosongkan = pakai slot default 8219064079" className="w-full bg-white shadow-sm border-2 border-slate-200 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-mono font-medium outline-none transition-colors" />
-                                            <div className="flex flex-wrap gap-2">
-                                                <button type="button" onClick={() => setFormAds(p => ({...p, interstitialAdId: ''}))} className="text-[11px] font-extrabold text-google-red bg-google-redLight border border-google-red/30 px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[13px]"/>Hapus ID</button>
-                                            </div>
-                                            
-                                            <div>
-                                                <p className="text-[12px] font-extrabold text-google-textVariant mb-2 uppercase tracking-wider">Tampil saat warga buka:</p>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {[{id:'laporan',label:'Arsip Riwayat'},{id:'warga',label:'Buku Warga'},{id:'pemenang',label:'Pemenang'},{id:'iuran',label:'Iuran Umum'},{id:'kas',label:'Kas RT'}].map(opt => (
-                                                        <label key={opt.id} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2 cursor-pointer text-[12px] font-bold transition-all ${formAds.interstitialTrigger?.includes(opt.id) ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-200 hover:border-google-blue/50'}`}>
-                                                            <input type="checkbox" className="hidden" checked={formAds.interstitialTrigger?.includes(opt.id) || false} onChange={e => {
-                                                                const current = formAds.interstitialTrigger || [];
-                                                                const arr = typeof current === 'string' ? [current] : current;
-                                                                setFormAds(p => ({...p, interstitialTrigger: e.target.checked ? [...arr.filter(x=>x!==opt.id), opt.id] : arr.filter(x=>x!==opt.id)}));
-                                                            }} />
-                                                            {opt.label}
-                                                        </label>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </PengaturanSection>
                             )}
