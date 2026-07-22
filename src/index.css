@@ -417,4 +417,31 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     border-color: rgba(99, 102, 241, 0.3) !important;
 }
 
+/* Dim bright solid colored buttons in Dark Mode */
+.dark .bg-google-green {
+    background-color: #166534 !important; /* green-800 */
+    border-color: #14532d !important;
+}
+
+.dark .bg-google-yellow {
+    background-color: #854d0e !important; /* yellow-800 */
+    border-color: #713f12 !important;
+}
+
+.dark .bg-google-red {
+    background-color: #991b1b !important; /* red-800 */
+    border-color: #7f1d1d !important;
+}
+
+.dark .bg-google-blue {
+    background-color: #991b1b !important; /* google-blue is red, so red-800 */
+    border-color: #7f1d1d !important;
+}
+
+/* Redupkan hover di mode gelap */
+.dark .hover\:bg-slate-200\/50:hover {
+    background-color: rgba(51, 65, 85, 0.4) !important;
+}
+
+
 
