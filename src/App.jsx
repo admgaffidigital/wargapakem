@@ -1803,12 +1803,12 @@ const getDirectImgUrl = (url) => {
                     <PWAInstallBanner />
                     {showLicenseModal && (
                         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4 animate-fade-in">
-                            <div className="bg-white rounded-[32px] w-full max-w-lg overflow-hidden shadow-2xl animate-slide-up border-2 border-red-500/20">
-                                <div className="bg-red-50 px-6 py-5 border-b border-red-500/10 flex items-center justify-between">
+                            <div className="bg-white rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl animate-slide-up border-2 border-red-500/20 flex flex-col max-h-[85vh]">
+                                <div className="bg-red-50 px-6 py-5 border-b border-red-500/10 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-bold text-red-700 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-100 text-red-500 transition-colors"><Icon name="close" /></button>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-[12px] hover:bg-red-100 text-red-500 transition-colors"><Icon name="close" /></button>
                                 </div>
-                                <div className="p-6 md:p-8">
+                                <div className="p-6 md:p-8 overflow-y-auto hide-scrollbar">
                                     <div className="prose prose-sm text-slate-600 text-justify leading-relaxed max-w-none">
                                         <p className="font-medium text-slate-800 text-[13px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
                                         <p className="mb-3">Seluruh data di dalam sistem ini dilindungi secara ketat dan dikelola secara eksklusif oleh Admin Lingkungan.</p>
@@ -1828,7 +1828,7 @@ const getDirectImgUrl = (url) => {
                     )}
                     {showLegalModal && (
                         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4 animate-fade-in">
-                            <div className="bg-white rounded-[32px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-100/50 max-h-[80vh]">
+                            <div className="bg-white rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-100/50 max-h-[85vh]">
                                 <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-bold text-slate-800 flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
