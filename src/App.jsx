@@ -7066,6 +7066,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             }
 
             return (
+                <>
                 <div className="space-y-6 tab-fade-in relative z-10 w-full animate-slide-up no-print">
                     <div className="bg-gradient-to-br from-google-yellow via-amber-400 to-orange-500 text-white p-8 sm:p-10 rounded-[32px] border-2 border-orange-600/20 shadow-lg relative overflow-hidden">
                         <div className="relative z-10">
@@ -7120,9 +7121,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         ))}
                     </div>
                     {blogData.length === 0 && <div className="bg-white rounded-[24px] border-2 border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border-2 border-slate-300"><Icon name="article" className="text-[48px] text-slate-400" /></div><h3 className="font-bold text-[18px] text-google-text mb-2">Belum Ada Artikel</h3><p className="text-google-textVariant font-medium text-[13px]">Artikel atau blog yang diterbitkan oleh Admin akan muncul di sini.</p></div>}
+                </div>
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
                             <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto hide-scrollbar border-2 border-slate-300 animate-slide-up">
                                 <h3 className="text-2xl font-bold text-google-text mb-6 tracking-tight">{editingId ? 'Edit Artikel' : 'Tulis Artikel Baru'}</h3>
                                 <div className="space-y-5">
@@ -7155,7 +7157,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
 
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
                             <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 animate-slide-up">
                                 <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-100 text-red-500"><Icon name="delete_forever" className="text-[48px]" fill="true" /></div>
                                 <h3 className="text-2xl font-bold text-google-text mb-2">Hapus Artikel?</h3>
@@ -7167,7 +7169,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
                         </div>
                     )}
-                </div>
+                </>
             );
         }
 
