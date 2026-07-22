@@ -615,7 +615,7 @@ const getDirectImgUrl = (url) => {
                                                 <Icon name="support_agent" className="text-white text-[13px]" fill="true" />
                                             </div>
                                         )}
-                                        <div className={`p-3 rounded-2xl max-w-[82%] leading-relaxed shadow-sm whitespace-pre-line font-medium ${msg.sender === 'user' ? (mode === 'admin' ? 'bg-google-blue' : 'bg-google-green') + ' text-white rounded-tr-sm text-[11px]' : 'bg-white text-google-text border border-slate-200 rounded-tl-sm text-[12.5px]'}`}>{msg.text}</div>
+                                        <div className={`p-3 rounded-[12px] max-w-[82%] leading-relaxed shadow-sm whitespace-pre-line font-medium ${msg.sender === 'user' ? (mode === 'admin' ? 'bg-google-blue' : 'bg-google-green') + ' text-white rounded-tr-sm text-[11px]' : 'bg-white text-google-text border border-slate-200 rounded-tl-sm text-[12.5px]'}`}>{msg.text}</div>
                                     </div>
                                 ))}
                                 <div ref={messagesEndRef} />
@@ -626,9 +626,9 @@ const getDirectImgUrl = (url) => {
                                 <div className="px-3 py-2 bg-white border-b border-slate-100 flex flex-wrap gap-1.5 shrink-0 max-h-36 overflow-y-auto hide-scrollbar">
                                     <p className="w-full text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-0.5">{currentKB[activeMenu].label}</p>
                                     {currentKB[activeMenu].topics.map((t, i) => (
-                                        <button key={i} onClick={() => handleTopicClick(activeMenu, t)} className={`text-[10px] font-medium px-3 py-1.5 rounded-full border active:scale-95 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-google-blue/30 hover:bg-google-blue hover:text-white' : 'bg-google-greenLight text-google-greenDark border-google-green/30 hover:bg-google-green hover:text-white'}`}>{t.label}</button>
+                                        <button key={i} onClick={() => handleTopicClick(activeMenu, t)} className={`text-[10px] font-medium px-3 py-1.5 rounded-[12px] border active:scale-95 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-google-blue/30 hover:bg-google-blue hover:text-white' : 'bg-google-greenLight text-google-greenDark border-google-green/30 hover:bg-google-green hover:text-white'}`}>{t.label}</button>
                                     ))}
-                                    <button onClick={() => setActiveMenu(null)} className="text-[10px] font-medium bg-slate-100 text-slate-500 border border-slate-200 px-3 py-1.5 rounded-full hover:bg-slate-200 active:scale-95 transition-all">G Tutup</button>
+                                    <button onClick={() => setActiveMenu(null)} className="text-[10px] font-medium bg-slate-100 text-slate-500 border border-slate-200 px-3 py-1.5 rounded-[12px] hover:bg-slate-200 active:scale-95 transition-all">G Tutup</button>
                                 </div>
                             )}
 
@@ -637,7 +637,7 @@ const getDirectImgUrl = (url) => {
                                 <div className="px-3 py-2 bg-white border-b border-slate-100 flex flex-wrap gap-1.5 shrink-0 max-h-28 overflow-y-auto hide-scrollbar">
                                     <p className="w-full text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-0.5">Pilih Topik:</p>
                                     {mainMenus.map(key => (
-                                        <button key={key} onClick={() => handleMenuClick(key)} className={`text-[10px] font-medium border-2 px-3 py-1.5 rounded-full active:scale-95 transition-all flex items-center gap-1 ${mode === 'admin' ? 'bg-slate-50 text-google-text border-slate-200 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight' : 'bg-slate-50 text-google-text border-slate-200 hover:border-google-green hover:text-google-greenDark hover:bg-google-greenLight'}`}>
+                                        <button key={key} onClick={() => handleMenuClick(key)} className={`text-[10px] font-medium border-2 px-3 py-1.5 rounded-[12px] active:scale-95 transition-all flex items-center gap-1 ${mode === 'admin' ? 'bg-slate-50 text-google-text border-slate-200 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight' : 'bg-slate-50 text-google-text border-slate-200 hover:border-google-green hover:text-google-greenDark hover:bg-google-greenLight'}`}>
                                             <Icon name={currentKB[key].icon} className="text-[12px]" />{currentKB[key].label.replace(/^[^\s]+\s/, '')}
                                         </button>
                                     ))}
@@ -651,9 +651,9 @@ const getDirectImgUrl = (url) => {
                                     onChange={e => setInputText(e.target.value)}
                                     onKeyDown={e => e.key === 'Enter' && handleSearch()}
                                     placeholder={mode === 'admin' ? 'Tanya fitur sistem...' : 'Tanya tentang arisan Anda...'}
-                                    className="flex-1 bg-slate-50 border-2 border-slate-200 focus:border-google-blue rounded-full px-4 py-2 text-[11px] font-medium outline-none transition-colors"
+                                    className="flex-1 bg-slate-50 border-2 border-slate-200 focus:border-google-blue rounded-[10px] px-4 py-2 text-[11px] font-medium outline-none transition-colors"
                                 />
-                                <button onClick={handleSearch} className={`w-9 h-9 text-white rounded-full flex items-center justify-center active:scale-95 transition-all shrink-0 ${mode === 'admin' ? 'bg-google-blue hover:bg-google-blueDark' : 'bg-google-green hover:bg-google-greenDark'}`}>
+                                <button onClick={handleSearch} className={`w-9 h-9 text-white rounded-[12px] flex items-center justify-center active:scale-95 transition-all shrink-0 ${mode === 'admin' ? 'bg-google-blue hover:bg-google-blueDark' : 'bg-google-green hover:bg-google-greenDark'}`}>
                                     <Icon name="send" className="text-[14px]" />
                                 </button>
                             </div>
@@ -846,11 +846,11 @@ const getDirectImgUrl = (url) => {
                                 </div>
                                 <div className="flex flex-wrap gap-2 shrink-0">
                                     <button onClick={handleToggleEnabled}
-                                            className={`px-3 py-2 rounded-full font-medium text-[11px] border-2 transition-all active:scale-95 ${isEnabled ? 'bg-white text-google-greenDark border-google-green/40 hover:bg-google-greenLight' : 'bg-google-green text-white border-google-greenDark'}`}>
+                                            className={`px-3 py-2 rounded-[10px] font-medium text-[11px] border-2 transition-all active:scale-95 ${isEnabled ? 'bg-white text-google-greenDark border-google-green/40 hover:bg-google-greenLight' : 'bg-google-green text-white border-google-greenDark'}`}>
                                         {isEnabled ? 'Nonaktifkan' : 'Aktifkan'}
                                     </button>
                                     <button onClick={handleDeleteMusic}
-                                            className="px-3 py-2 rounded-full font-medium text-[11px] bg-google-redLight text-google-redDark border-2 border-google-red/30 hover:bg-google-red hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1">
+                                            className="px-3 py-2 rounded-[10px] font-medium text-[11px] bg-google-redLight text-google-redDark border-2 border-google-red/30 hover:bg-google-red hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1">
                                         <Icon name="delete" className="text-[12px]" /> Hapus
                                     </button>
                                 </div>
@@ -1063,13 +1063,13 @@ const getDirectImgUrl = (url) => {
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-                            <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
+                            <div className="bg-white rounded-[16px] p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
                                 </div>
                                 <h3 className="text-xl font-medium text-slate-800 mb-2">Berhasil</h3>
                                 <p className="text-slate-600 mb-8">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-full transition-all">Tutup</button>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-[12px] transition-all">Tutup</button>
                             </div>
                         </div>
                     )}
@@ -1078,14 +1078,14 @@ const getDirectImgUrl = (url) => {
                         <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
-                                <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-2xl mb-4 shadow-lg">
+                                <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-[12px] mb-4 shadow-lg">
                                     <Icon name="storefront" />
                                 </div>
                                 <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight mb-2">Pasar Warga RT</h1>
                                 <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Direktori usaha milik warga RT. Dukung UMKM lokal dengan berbelanja dari tetangga sendiri.</p>
                             </div>
                             {userRole === 'admin' && (
-                                <button onClick={() => { setFormData({ name: '', owner: '', phone: '', category: 'Lainnya', description: '', imageUrl: '' }); setEditingId(null); setIsFormOpen(true); }} className="w-full md:w-auto bg-green-600 text-white px-8 py-4 rounded-full font-medium text-[13px] shadow-[0_8px_25px_rgba(22,163,74,0.3)] hover:bg-green-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+                                <button onClick={() => { setFormData({ name: '', owner: '', phone: '', category: 'Lainnya', description: '', imageUrl: '' }); setEditingId(null); setIsFormOpen(true); }} className="w-full md:w-auto bg-green-600 text-white px-8 py-4 rounded-[12px] font-medium text-[13px] shadow-[0_8px_25px_rgba(22,163,74,0.3)] hover:bg-green-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
                                     <Icon name="add_circle" className="group-hover:rotate-90 transition-transform duration-300" /> Tambah Usaha
                                 </button>
                             )}
@@ -1095,11 +1095,11 @@ const getDirectImgUrl = (url) => {
                     <div className="mb-6 flex flex-col sm:flex-row gap-4">
                         <div className="relative flex-1">
                             <Icon name="search" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                            <input type="text" placeholder="Cari nama usaha atau pemilik..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-2xl focus:border-green-500 outline-none transition-all font-medium text-slate-700" />
+                            <input type="text" placeholder="Cari nama usaha atau pemilik..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-12 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700" />
                         </div>
                         <div className="relative min-w-[200px]">
                             <Icon name="filter_list" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full pl-12 pr-10 py-3.5 bg-white border-2 border-slate-200 rounded-2xl focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none cursor-pointer">
+                            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full pl-12 pr-10 py-3.5 bg-white border-2 border-slate-200 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none cursor-pointer">
                                 {categories.map(c => <option key={c} value={c}>{c}</option>)}
                             </select>
                             <Icon name="expand_more" className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
@@ -1149,7 +1149,7 @@ const getDirectImgUrl = (url) => {
                                         <p className="text-slate-600 text-sm mb-6 line-clamp-3 leading-relaxed flex-1">
                                             {item.description || 'Tidak ada deskripsi.'}
                                         </p>
-                                        <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%20melihat%20usaha%20Anda%20di%20Portal%20Warga.%20Bisa%20tanya-tanya?`} target="_blank" rel="noopener noreferrer" className="mt-auto w-full bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border-2 border-green-200 hover:border-green-600 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all active:scale-95">
+                                        <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%20melihat%20usaha%20Anda%20di%20Portal%20Warga.%20Bisa%20tanya-tanya?`} target="_blank" rel="noopener noreferrer" className="mt-auto w-full bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border-2 border-green-200 hover:border-green-600 py-3 rounded-[10px] font-medium flex items-center justify-center gap-2 transition-all active:scale-95">
                                             <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                                             Hubungi Penjual
                                         </a>
@@ -1172,48 +1172,48 @@ const getDirectImgUrl = (url) => {
                                     </button>
                                 </div>
                                 <div className="p-6 sm:p-8 overflow-y-auto space-y-5">
-                                    {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-2xl text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
+                                    {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
                                     
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Nama Usaha / Toko</label>
-                                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="Contoh: Warung Barokah" />
+                                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full border-2 border-slate-200 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="Contoh: Warung Barokah" />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Nama Pemilik</label>
-                                        <input type="text" value={formData.owner} onChange={e => setFormData({...formData, owner: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="Contoh: Bpk. Budi" />
+                                        <input type="text" value={formData.owner} onChange={e => setFormData({...formData, owner: e.target.value})} className="w-full border-2 border-slate-200 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="Contoh: Bpk. Budi" />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Nomor WhatsApp</label>
                                         <div className="relative">
                                             <div className="absolute left-4 top-1/2 -translate-y-1/2 font-medium text-slate-500">+62</div>
-                                            <input type="number" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl pl-12 pr-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="81234567890" />
+                                            <input type="number" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full border-2 border-slate-200 rounded-[12px] pl-12 pr-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="81234567890" />
                                         </div>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none bg-white">
+                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-200 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none bg-white">
                                             {categories.filter(c => c !== 'Semua').map(c => <option key={c} value={c}>{c}</option>)}
                                         </select>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Deskripsi Usaha</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="3" className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 resize-none" placeholder="Menjual berbagai macam kebutuhan..."></textarea>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="3" className="w-full border-2 border-slate-200 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 resize-none" placeholder="Menjual berbagai macam kebutuhan..."></textarea>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Foto (Opsional)</label>
-                                        <div className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center hover:bg-slate-50 transition-colors relative">
+                                        <div className="border-2 border-dashed border-slate-300 rounded-[12px] p-6 text-center hover:bg-slate-50 transition-colors relative">
                                             <input type="file" accept="image/*" onChange={handleImageUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                                             {isUploading ? (
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-green-500" /><span className="font-medium">Memproses gambar...</span></div>
                                             ) : formData.imageUrl ? (
                                                 <div className="relative inline-block">
-                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-xl shadow-sm" />
-                                                    <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-md font-medium">Ganti</div>
+                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm" />
+                                                    <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-[6px] font-medium">Ganti</div>
                                                 </div>
                                             ) : (
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400" /><span className="font-medium text-sm">Upload foto</span></div>
@@ -1222,8 +1222,8 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                 </div>
                                 <div className="p-6 sm:p-8 border-t border-slate-100 flex gap-3 shrink-0 bg-slate-50 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white text-slate-700 font-medium py-4 rounded-full border-2 border-slate-200 hover:bg-slate-100">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-bold py-4 rounded-full shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white text-slate-700 font-medium py-4 rounded-[12px] border-2 border-slate-200 hover:bg-slate-100">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-bold py-4 rounded-[12px] shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
                                 </div>
                             </div>
                         </div>
@@ -1238,7 +1238,7 @@ const getDirectImgUrl = (url) => {
                                 <h3 className="text-xl font-bold text-slate-800 mb-2">Hapus UMKM?</h3>
                                 <p className="text-slate-500 font-medium mb-8">Data usaha yang dihapus tidak dapat dikembalikan. Yakin?</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 rounded-full font-medium hover:bg-slate-200">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 rounded-[12px] font-medium hover:bg-slate-200">Batal</button>
                                     <button onClick={() => {
                                         setUmkmData(umkmData.filter(item => item.id !== deleteConfirmId));
                                         setModalConfig && setModalConfig({ message: 'Data UMKM dihapus.' });
@@ -1325,13 +1325,13 @@ const getDirectImgUrl = (url) => {
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-                            <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
+                            <div className="bg-white rounded-[16px] p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
                                 </div>
                                 <h3 className="text-xl font-medium text-slate-800 mb-2">Berhasil</h3>
                                 <p className="text-slate-600 mb-8">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-full transition-all">Tutup</button>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-[12px] transition-all">Tutup</button>
                             </div>
                         </div>
                     )}
@@ -1340,13 +1340,13 @@ const getDirectImgUrl = (url) => {
                         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
-                                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-2xl mb-4 shadow-lg">
+                                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-[12px] mb-4 shadow-lg">
                                     <Icon name="campaign" />
                                 </div>
                                 <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight mb-2">Lapor RT</h1>
                                 <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Sistem Pengaduan dan Aspirasi Warga. Laporkan keluhan atau berikan saran untuk lingkungan kita.</p>
                             </div>
-                            <button onClick={() => setIsFormOpen(true)} className="w-full md:w-auto bg-blue-600 text-white px-8 py-4 rounded-full font-medium text-[13px] shadow-[0_8px_25px_rgba(37,99,235,0.3)] hover:bg-blue-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+                            <button onClick={() => setIsFormOpen(true)} className="w-full md:w-auto bg-blue-600 text-white px-8 py-4 rounded-[12px] font-medium text-[13px] shadow-[0_8px_25px_rgba(37,99,235,0.3)] hover:bg-blue-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
                                 <Icon name="add_circle" className="group-hover:rotate-90 transition-transform duration-300" /> Buat Laporan
                             </button>
                         </div>
@@ -1354,7 +1354,7 @@ const getDirectImgUrl = (url) => {
 
                     <div className="mb-6 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                         {['Semua', ...statuses].map(status => (
-                            <button key={status} onClick={() => setFilterStatus(status)} className={`px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-all ${filterStatus === status ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>
+                            <button key={status} onClick={() => setFilterStatus(status)} className={`px-5 py-2.5 rounded-[12px] font-medium text-sm whitespace-nowrap transition-all ${filterStatus === status ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>
                                 {status}
                             </button>
                         ))}
@@ -1374,8 +1374,8 @@ const getDirectImgUrl = (url) => {
                                 <div key={item.id} className="bg-white rounded-[24px] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col relative overflow-hidden group">
                                     <div className="flex justify-between items-start mb-4">
                                         <div className="flex items-center gap-2">
-                                            <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-medium">{item.category}</span>
-                                            <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(item.status)}`}>{item.status}</span>
+                                            <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-[10px] text-xs font-medium">{item.category}</span>
+                                            <span className={`px-3 py-1 rounded-[10px] text-xs font-medium border ${getStatusColor(item.status)}`}>{item.status}</span>
                                         </div>
                                         {userRole === 'admin' && (
                                             <button onClick={() => setDeleteConfirmId(item.id)} className="w-8 h-8 rounded-full bg-red-50 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors">
@@ -1387,7 +1387,7 @@ const getDirectImgUrl = (url) => {
                                     <p className="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-4">{item.description}</p>
                                     
                                     {item.imageUrl && (
-                                        <div className="mb-4 rounded-xl overflow-hidden bg-slate-100 h-48 border border-slate-200">
+                                        <div className="mb-4 rounded-[10px] overflow-hidden bg-slate-100 h-48 border border-slate-200">
                                             <img src={item.imageUrl} alt="Lampiran Laporan" className="w-full h-full object-cover" />
                                         </div>
                                     )}
@@ -1401,7 +1401,7 @@ const getDirectImgUrl = (url) => {
                                         <div className="mt-4 flex gap-2">
                                             {statuses.map(st => (
                                                 item.status !== st && (
-                                                    <button key={st} onClick={() => changeStatus(item.id, st)} className={`flex-1 py-2 rounded-xl text-xs font-medium border transition-colors ${st === 'Menunggu' ? 'border-red-200 text-red-600 hover:bg-red-50' : st === 'Diproses' ? 'border-yellow-200 text-yellow-600 hover:bg-yellow-50' : 'border-green-200 text-green-600 hover:bg-green-50'}`}>
+                                                    <button key={st} onClick={() => changeStatus(item.id, st)} className={`flex-1 py-2 rounded-[10px] text-xs font-medium border transition-colors ${st === 'Menunggu' ? 'border-red-200 text-red-600 hover:bg-red-50' : st === 'Diproses' ? 'border-yellow-200 text-yellow-600 hover:bg-yellow-50' : 'border-green-200 text-green-600 hover:bg-green-50'}`}>
                                                         Set {st}
                                                     </button>
                                                 )
@@ -1423,40 +1423,40 @@ const getDirectImgUrl = (url) => {
                                     <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 border border-slate-200 transition-all"><Icon name="close" /></button>
                                 </div>
                                 <div className="p-6 sm:p-8 overflow-y-auto space-y-5">
-                                    {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-2xl text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
+                                    {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
                                     
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Judul Laporan</label>
-                                        <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700" placeholder="Cth: Lampu jalan mati di Blok A" />
+                                        <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full border-2 border-slate-200 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700" placeholder="Cth: Lampu jalan mati di Blok A" />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 appearance-none bg-white">
+                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-200 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 appearance-none bg-white">
                                             {categories.map(c => <option key={c} value={c}>{c}</option>)}
                                         </select>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Isi Laporan / Detail</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="4" className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 resize-none" placeholder="Ceritakan detail masalah..."></textarea>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="4" className="w-full border-2 border-slate-200 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 resize-none" placeholder="Ceritakan detail masalah..."></textarea>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Nama Pelapor (Opsional)</label>
-                                        <input type="text" value={formData.reporter} onChange={e => setFormData({...formData, reporter: e.target.value})} className="w-full border-2 border-slate-200 rounded-2xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700" placeholder="Kosongkan jika ingin anonim" />
+                                        <input type="text" value={formData.reporter} onChange={e => setFormData({...formData, reporter: e.target.value})} className="w-full border-2 border-slate-200 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700" placeholder="Kosongkan jika ingin anonim" />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-2">Lampiran Foto (Opsional)</label>
-                                        <div className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center hover:bg-slate-50 transition-colors relative">
+                                        <div className="border-2 border-dashed border-slate-300 rounded-[12px] p-6 text-center hover:bg-slate-50 transition-colors relative">
                                             <input type="file" accept="image/*" onChange={handleImageUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                                             {isUploading ? (
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-blue-500" /><span className="font-medium">Memproses gambar...</span></div>
                                             ) : formData.imageUrl ? (
                                                 <div className="relative inline-block">
-                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-xl shadow-sm" />
-                                                    <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-md font-medium">Ganti</div>
+                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm" />
+                                                    <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-[6px] font-medium">Ganti</div>
                                                 </div>
                                             ) : (
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400" /><span className="font-medium text-sm">Upload foto bukti</span></div>
@@ -1465,8 +1465,8 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                 </div>
                                 <div className="p-6 sm:p-8 border-t border-slate-100 flex gap-3 shrink-0 bg-slate-50 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white text-slate-700 font-medium py-4 rounded-full border-2 border-slate-200 hover:bg-slate-100">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-bold py-4 rounded-full shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white text-slate-700 font-medium py-4 rounded-[12px] border-2 border-slate-200 hover:bg-slate-100">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-bold py-4 rounded-[12px] shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
                                 </div>
                             </div>
                         </div>
@@ -1479,7 +1479,7 @@ const getDirectImgUrl = (url) => {
                                 <h3 className="text-xl font-bold text-slate-800 mb-2">Hapus Laporan?</h3>
                                 <p className="text-slate-500 font-medium mb-8">Laporan yang dihapus tidak dapat dikembalikan. Yakin?</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 rounded-full font-medium hover:bg-slate-200">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 rounded-[12px] font-medium hover:bg-slate-200">Batal</button>
                                     <button onClick={() => {
                                         setLaporanData((laporanData || []).filter(item => item.id !== deleteConfirmId));
                                         setModalConfig && setModalConfig({ message: 'Laporan dihapus.' });
@@ -1630,7 +1630,7 @@ const getDirectImgUrl = (url) => {
                             <div className="w-4 h-4 rounded-full bg-google-green animate-bounce" style={{ animationDelay: '0.45s', animationDuration: '0.9s' }}></div>
                         </div>
                         <h2 className="text-google-text font-medium text-[16px] mb-3 tracking-tight text-center">Memuat Portal</h2>
-                        <div className="flex flex-wrap items-center gap-2 bg-slate-50 px-4 py-2 rounded-full border border-slate-200">
+                        <div className="flex flex-wrap items-center gap-2 bg-slate-50 px-4 py-2 rounded-[10px] border border-slate-200">
                             <div className="w-2 h-2 bg-google-blue rounded-full animate-pulse"></div>
                             <p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest">Sinkronisasi Data</p>
                         </div>
@@ -1668,7 +1668,7 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                 </div>
                                 <div className="p-4 border-t border-slate-100 shrink-0">
-                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-xl font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
+                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-[10px] font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
                                 </div>
                             </div>
                         </div>
@@ -1763,7 +1763,7 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                 </div>
                                 <div className="flex items-center space-x-3 shrink-0 pl-2">
-                                    <span className={`text-[9px] font-medium px-3 py-1.5 rounded-md uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/20' : 'bg-slate-50 text-slate-600 border-slate-200'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
+                                    <span className={`text-[9px] font-medium px-3 py-1.5 rounded-[6px] uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/20' : 'bg-slate-50 text-slate-600 border-slate-200'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
                                     <button onClick={() => setShowLogoutModal(true)} className="w-10 h-10 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-red-500/20 shadow-sm"><Icon name="logout" className="text-[16px]" /></button>
                                 </div>
                             </div>
@@ -1812,7 +1812,7 @@ const getDirectImgUrl = (url) => {
                                     <div className="prose prose-sm text-slate-600 text-justify leading-relaxed max-w-none">
                                         <p className="font-medium text-slate-800 text-[13px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
                                         <p className="mb-3">Seluruh data di dalam sistem ini dilindungi secara ketat dan dikelola secara eksklusif oleh Admin Lingkungan.</p>
-                                        <p className="mb-4 text-red-600 font-medium bg-red-50 p-3 rounded-xl border border-red-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <strong>dilaporkan kepada pihak yang berwajib</strong> sesuai perundang-undangan yang berlaku.</p>
+                                        <p className="mb-4 text-red-600 font-medium bg-red-50 p-3 rounded-[10px] border border-red-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <strong>dilaporkan kepada pihak yang berwajib</strong> sesuai perundang-undangan yang berlaku.</p>
                                         <p className="mb-6">Sistem ini diperuntukkan khusus untuk keperluan digitalisasi guna menunjang tata kelola lingkungan desa yang transparan dan akuntabel.</p>
                                         
                                         <div className="border-t-2 border-dashed border-slate-200 pt-4 text-center">
@@ -1821,7 +1821,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[16px] font-bold tracking-widest bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent uppercase">Novan Restu Utomo</p>
                                         </div>
                                     </div>
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-full mt-6 bg-slate-100 hover:bg-slate-200 text-slate-700 py-4 rounded-2xl font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-full mt-6 bg-slate-100 hover:bg-slate-200 text-slate-700 py-4 rounded-[12px] font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
                                 </div>
                             </div>
                         </div>
@@ -1842,7 +1842,7 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                 </div>
                                 <div className="p-4 border-t border-slate-100 shrink-0">
-                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-xl font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
+                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-[10px] font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
                                 </div>
                             </div>
                         </div>
@@ -1860,8 +1860,8 @@ const getDirectImgUrl = (url) => {
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Keluar Sesi?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white text-google-text py-3.5 px-6 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all shadow-sm">Batal</button>
-                                    <button onClick={executeLogout} className="flex-1 bg-google-red text-white py-3.5 px-6 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-redDark border-2 border-google-redDark active:scale-95 transition-all">Ya, Keluar</button>
+                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white text-google-text py-3.5 px-6 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={executeLogout} className="flex-1 bg-google-red text-white py-3.5 px-6 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-redDark border-2 border-google-redDark active:scale-95 transition-all">Ya, Keluar</button>
                                 </div>
                             </div>
                         </div>
@@ -1930,7 +1930,7 @@ const getDirectImgUrl = (url) => {
                             )}
                         </div>
                         <div className="p-5 sm:p-6 md:p-8 border-t-2 border-slate-200 bg-slate-50 rounded-b-[30px] flex justify-end">
-                            <button onClick={onClose} className="bg-google-blue text-white px-6 py-3 rounded-full font-medium text-[13px] shadow-md hover:bg-google-blueDark transition-all active:scale-95">Tutup Panduan</button>
+                            <button onClick={onClose} className="bg-google-blue text-white px-6 py-3 rounded-[12px] font-medium text-[13px] shadow-md hover:bg-google-blueDark transition-all active:scale-95">Tutup Panduan</button>
                         </div>
                     </div>
                 </div>
@@ -2094,8 +2094,8 @@ const getDirectImgUrl = (url) => {
                         
                         {mode === 'select' ? (
                             <div className="space-y-4">
-                                <button onClick={() => onLogin('warga')} className="w-full bg-white text-google-text font-medium py-3.5 rounded-full flex flex-wrap justify-center items-center gap-2 border-2 border-slate-200 text-[13px] hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 active:scale-95 shadow-sm"><Icon name="person" className="text-[17px] text-google-textVariant" /><span>Masuk sebagai Warga</span></button>
-                                <button onClick={() => setMode('admin_login')} className="w-full bg-google-blue text-white font-medium py-3.5 rounded-full flex flex-wrap justify-center items-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all duration-300 active:scale-95"><Icon name="lock" className="text-[17px]" /><span>Otorisasi Admin</span></button>
+                                <button onClick={() => onLogin('warga')} className="w-full bg-white text-google-text font-medium py-3.5 rounded-[12px] flex flex-wrap justify-center items-center gap-2 border-2 border-slate-200 text-[13px] hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 active:scale-95 shadow-sm"><Icon name="person" className="text-[17px] text-google-textVariant" /><span>Masuk sebagai Warga</span></button>
+                                <button onClick={() => setMode('admin_login')} className="w-full bg-google-blue text-white font-medium py-3.5 rounded-[12px] flex flex-wrap justify-center items-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all duration-300 active:scale-95"><Icon name="lock" className="text-[17px]" /><span>Otorisasi Admin</span></button>
                             </div>
                         ) : (
                             <div className="space-y-4">
@@ -2124,8 +2124,8 @@ const getDirectImgUrl = (url) => {
                                 </div>
                                 {error && <p className="text-[11px] text-google-redDark font-medium bg-google-redLight py-3 rounded-[12px] border-2 border-google-red/30 shadow-sm flex flex-wrap items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[14px]"/> {error}</p>}
                                 <div className="flex flex-wrap gap-3 pt-4">
-                                    <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-200 text-google-text py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
-                                    <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
+                                    <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-200 text-google-text py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
+                                    <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
                                 </div>
                             </div>
                         )}
@@ -2485,7 +2485,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <Icon name="mosque" className="text-red-600 text-[20px]" fill="true"/>
                                 <h3 className="text-[16px] font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2">
                                     Jadwal Sholat {city}
-                                    {isGPS && <span className="text-[9px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-medium border border-red-200">GPS</span>}
+                                    {isGPS && <span className="text-[9px] bg-red-100 text-red-600 px-2 py-0.5 rounded-[10px] font-medium border border-red-200">GPS</span>}
                                 </h3>
                             </div>
                             <p className="text-[11px] font-medium text-google-textVariant mt-0.5">Metode Kemenag RI G Hari ini: {schedule.tanggal}</p>
@@ -2512,7 +2512,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         }
                                     }
                                 }}
-                                className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-full border transition-all active:scale-95 ${
+                                className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-[10px] border transition-all active:scale-95 ${
                                     adzanEnabled 
                                         ? 'bg-emerald-50 text-emerald-600 border-emerald-500/30' 
                                         : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
@@ -2525,7 +2525,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             <button 
                                 type="button" 
                                 onClick={handleGPSDetection}
-                                className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-full border transition-all active:scale-95 ${
+                                className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-[10px] border transition-all active:scale-95 ${
                                     isGPS 
                                         ? 'bg-red-50 text-red-600 border-red-500/30' 
                                         : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
@@ -2546,7 +2546,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         className="bg-transparent border-none outline-none text-[12.5px] font-medium w-full text-google-text placeholder:text-slate-400"
                                     />
                                 </div>
-                                <button type="submit" disabled={isSearching} className="bg-red-600 text-white font-medium text-[11px] px-5 py-2.5 rounded-full border border-red-700 hover:bg-red-700 shadow-sm active:scale-95 transition-all">
+                                <button type="submit" disabled={isSearching} className="bg-red-600 text-white font-medium text-[11px] px-5 py-2.5 rounded-[12px] border border-red-700 hover:bg-red-700 shadow-sm active:scale-95 transition-all">
                                     {isSearching ? '...' : 'Cari'}
                                 </button>
                             </form>
@@ -2623,7 +2623,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 <div className="space-y-5 sm:space-y-6">
                     <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-2 border-slate-200 shadow-sm hover:shadow-lg transition-shadow">
                         <div>
-                            <span className="inline-flex items-center px-3.5 py-1.5 rounded-md text-[9px] font-medium uppercase tracking-widest bg-google-blueLight text-google-blueDark mb-3 border border-google-blue/30">Siklus {cycleNumber}</span>
+                            <span className="inline-flex items-center px-3.5 py-1.5 rounded-[6px] text-[9px] font-medium uppercase tracking-widest bg-google-blueLight text-google-blueDark mb-3 border border-google-blue/30">Siklus {cycleNumber}</span>
                             <h2 className="text-3xl sm:text-4xl font-medium text-google-text leading-tight tracking-tight">Putaran {currentRound}</h2>
                             <p className="text-[13px] font-medium text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[16px]" /> {formatBulanTahun(arisanPeriod)}</p>
                         </div>
@@ -2641,7 +2641,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                         <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-google-green opacity-20 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000 delay-100"></div>
 
                         <div className="relative z-10 w-full text-center sm:text-left">
-                            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-[9px] font-medium uppercase tracking-widest bg-white/10 text-slate-200 mb-3 border border-white/10 shadow-sm">
+                            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[6px] text-[9px] font-medium uppercase tracking-widest bg-white/10 text-slate-200 mb-3 border border-white/10 shadow-sm">
                                 <Icon name="account_balance_wallet" className="text-[13px]" /> Total Dana Kelolaan Global
                             </span>
                             <p className="text-4xl sm:text-5xl font-medium text-white tracking-tight drop-shadow-md">{formatRp((kasRtBalance || 0) + (jimpitanBalance || 0))}</p>
@@ -2653,7 +2653,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                         <div className="bg-gradient-to-r from-google-blueLight to-blue-50 p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row items-center sm:text-left text-center gap-6 border-2 border-google-blue shadow-sm">
                             <div className="bg-google-blue text-white w-16 h-16 rounded-full flex items-center justify-center shadow-md border-2 border-google-blueDark shrink-0"><Icon name="task_alt" className="text-[32px]" fill="true" /></div>
                             <div className="flex-1"><h3 className="font-medium text-google-blueDark text-xl mb-1.5">Siklus Telah Selesai</h3><p className="text-[13px] font-medium text-google-blue">Seluruh warga arisan telah memenangkan putaran. Silakan mulai siklus baru.</p></div>
-                            <button onClick={() => setShowResetModal(true)} className="w-full sm:w-auto px-8 py-3.5 bg-google-blue text-white font-medium rounded-full text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="refresh" className="text-[17px]"/> Mulai Baru</button>
+                            <button onClick={() => setShowResetModal(true)} className="w-full sm:w-auto px-8 py-3.5 bg-google-blue text-white font-medium rounded-[12px] text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="refresh" className="text-[17px]"/> Mulai Baru</button>
                         </div>
                     )}
 
@@ -2663,7 +2663,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <div><span className="text-[10px] font-medium uppercase tracking-widest text-google-textVariant block mb-2">Kas Utama RT</span><p className="text-3xl font-medium text-google-text group-hover:text-google-blue transition-colors tracking-tight">{formatRp(kasRtBalance)}</p></div>
                                 <div className="bg-google-blueLight text-google-blueDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border-2 border-google-blue/20"><Icon name="account_balance" className="text-[24px]" fill="true" /></div>
                             </div>
-                            <button onClick={() => changeTab('kas')} className="w-full bg-white text-google-text border-2 border-slate-200 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-blue hover:text-google-blue transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Rincian Kas</button>
+                            <button onClick={() => changeTab('kas')} className="w-full bg-white text-google-text border-2 border-slate-200 font-medium py-3.5 rounded-[12px] text-[12px] hover:bg-slate-50 hover:border-google-blue hover:text-google-blue transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Rincian Kas</button>
                         </div>
                         
                         <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-green/50 transition-all duration-300 group cursor-default">
@@ -2671,7 +2671,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <div><span className="text-[10px] font-medium uppercase tracking-widest text-google-textVariant block mb-2">Kas Jimpitan Tunai</span><p className="text-3xl font-medium text-google-text group-hover:text-google-green transition-colors tracking-tight">{formatRp(jimpitanBalance)}</p></div>
                                 <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border-2 border-google-green/20"><Icon name="savings" className="text-[24px]" fill="true" /></div>
                             </div>
-                            <button onClick={() => changeTab('laporan')} className="w-full bg-white text-google-text border-2 border-slate-200 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-green hover:text-google-green transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Riwayat Arisan</button>
+                            <button onClick={() => changeTab('laporan')} className="w-full bg-white text-google-text border-2 border-slate-200 font-medium py-3.5 rounded-[12px] text-[12px] hover:bg-slate-50 hover:border-google-green hover:text-google-green transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Riwayat Arisan</button>
                         </div>
 
                         <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-red/50 transition-all duration-300 group cursor-default">
@@ -2679,7 +2679,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <div><span className="text-[10px] font-medium uppercase tracking-widest text-google-textVariant block mb-2">Tunggakan Total</span><p className="text-3xl font-medium text-google-text group-hover:text-google-red transition-colors tracking-tight">{formatRp(totalDebt)}</p></div>
                                 <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border-2 border-google-red/20"><Icon name="money_off" className="text-[24px]" fill="true" /></div>
                             </div>
-                            <button onClick={() => changeTab('warga')} className="w-full bg-white text-google-text border-2 border-slate-200 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-red hover:text-google-red transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Cek Penunggak</button>
+                            <button onClick={() => changeTab('warga')} className="w-full bg-white text-google-text border-2 border-slate-200 font-medium py-3.5 rounded-[12px] text-[12px] hover:bg-slate-50 hover:border-google-red hover:text-google-red transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Cek Penunggak</button>
                         </div>
                     </div>
 
@@ -2702,7 +2702,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Mulai Siklus Baru?</h3>
                                 <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-5 sm:p-6 md:p-8 rounded-[24px] border-2 border-slate-200"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setShowResetModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => setShowResetModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                     <button onClick={() => { 
                                         setMembers(members.map(m => m.program === 'IuranOnly' ? m : { ...m, hasWon: false, wonRound: null })); 
                                         setCurrentRound(1); 
@@ -2806,7 +2806,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             <p className="text-[13px] font-medium text-google-textVariant mt-1.5">Daftar barang fasilitas RT beserta kondisi dan stok pinjam.</p>
                         </div>
                         {userRole === 'admin' && (
-                            <button onClick={() => { setFormData({ name: '', kondisi: { baru: 0, bekas: 0, rusak: 0 }, imageUrl: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="flex flex-wrap items-center gap-2 bg-google-yellow text-white px-6 py-3 rounded-full font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all shrink-0">
+                            <button onClick={() => { setFormData({ name: '', kondisi: { baru: 0, bekas: 0, rusak: 0 }, imageUrl: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="flex flex-wrap items-center gap-2 bg-google-yellow text-white px-6 py-3 rounded-[12px] font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all shrink-0">
                                 <Icon name="add" className="text-[17px]" />Tambah Barang
                             </button>
                         )}
@@ -2830,10 +2830,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         }
                                         {/* Badge status pinjam */}
                                         {sedangDipinjam > 0 && (
-                                            <div className="absolute top-3 left-3 bg-google-red text-white px-2.5 py-1 rounded-xl font-medium text-[9px] shadow-sm flex flex-wrap items-center gap-1 uppercase tracking-wider"><Icon name="handshake" className="text-[11px]" />{sedangDipinjam} Dipinjam</div>
+                                            <div className="absolute top-3 left-3 bg-google-red text-white px-2.5 py-1 rounded-[10px] font-medium text-[9px] shadow-sm flex flex-wrap items-center gap-1 uppercase tracking-wider"><Icon name="handshake" className="text-[11px]" />{sedangDipinjam} Dipinjam</div>
                                         )}
                                         {/* Badge total stok */}
-                                        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-google-text px-3 py-1.5 rounded-xl font-medium text-[11px] shadow-sm border border-slate-200 flex flex-wrap items-center gap-1.5">
+                                        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-google-text px-3 py-1.5 rounded-[10px] font-medium text-[11px] shadow-sm border border-slate-200 flex flex-wrap items-center gap-1.5">
                                             <Icon name="tag" className="text-[13px] text-google-yellowDark" />{totalStok} unit
                                         </div>
                                     </div>
@@ -2844,9 +2844,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
 
                                         {/* Kondisi chips */}
                                         <div className="flex flex-wrap gap-1.5">
-                                            {kondisi.baru > 0 && <span className="text-[10px] font-medium bg-google-greenLight text-google-greenDark border border-google-green/30 px-2.5 py-1 rounded-full flex flex-wrap items-center gap-1"><Icon name="verified" className="text-[11px]" />Baru: {kondisi.baru}</span>}
-                                            {kondisi.bekas > 0 && <span className="text-[10px] font-medium bg-google-yellowLight text-google-yellowDark border border-google-yellow/30 px-2.5 py-1 rounded-full flex flex-wrap items-center gap-1"><Icon name="refresh" className="text-[11px]" />Bekas: {kondisi.bekas}</span>}
-                                            {kondisi.rusak > 0 && <span className="text-[10px] font-medium bg-google-redLight text-google-redDark border border-google-red/30 px-2.5 py-1 rounded-full flex flex-wrap items-center gap-1"><Icon name="report" className="text-[11px]" />Rusak: {kondisi.rusak}</span>}
+                                            {kondisi.baru > 0 && <span className="text-[10px] font-medium bg-google-greenLight text-google-greenDark border border-google-green/30 px-2.5 py-1 rounded-[10px] flex flex-wrap items-center gap-1"><Icon name="verified" className="text-[11px]" />Baru: {kondisi.baru}</span>}
+                                            {kondisi.bekas > 0 && <span className="text-[10px] font-medium bg-google-yellowLight text-google-yellowDark border border-google-yellow/30 px-2.5 py-1 rounded-[10px] flex flex-wrap items-center gap-1"><Icon name="refresh" className="text-[11px]" />Bekas: {kondisi.bekas}</span>}
+                                            {kondisi.rusak > 0 && <span className="text-[10px] font-medium bg-google-redLight text-google-redDark border border-google-red/30 px-2.5 py-1 rounded-[10px] flex flex-wrap items-center gap-1"><Icon name="report" className="text-[11px]" />Rusak: {kondisi.rusak}</span>}
                                         </div>
 
                                         {/* Stok pinjam */}
@@ -2861,7 +2861,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                 {pinjamData.filter(p => p.itemId === item.id && p.status === 'approved').map((p, i) => (
                                                     <div key={i} className="flex items-center justify-between">
                                                         <span className="text-[11px] font-medium text-google-text truncate flex flex-wrap items-center gap-1.5"><Icon name="person" className="text-[12px] text-google-textVariant" />{p.namaWarga}</span>
-                                                        <span className="text-[10px] font-medium text-google-red shrink-0 ml-2 bg-white px-2 py-0.5 rounded-full border border-google-red/20">{p.qty || 1} unit</span>
+                                                        <span className="text-[10px] font-medium text-google-red shrink-0 ml-2 bg-white px-2 py-0.5 rounded-[10px] border border-google-red/20">{p.qty || 1} unit</span>
                                                     </div>
                                                 ))}
                                             </div>
@@ -2870,8 +2870,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         {/* Tombol admin */}
                                         {userRole === 'admin' && (
                                             <div className="flex flex-wrap justify-end gap-2 mt-auto pt-2 border-t-2 border-slate-100">
-                                                <button onClick={() => openEditForm(item)} className="bg-slate-50 text-google-text border-2 border-slate-200 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight px-4 py-2.5 rounded-full font-medium text-[11px] active:scale-95 transition-all flex flex-wrap items-center gap-1.5"><Icon name="edit" className="text-[13px]" />Edit</button>
-                                                <button onClick={() => setDeleteConfirmId(item.id)} className="bg-slate-50 text-google-red border-2 border-slate-200 hover:border-google-red/40 hover:bg-google-redLight px-4 py-2.5 rounded-full font-medium text-[11px] active:scale-95 transition-all flex flex-wrap items-center gap-1.5"><Icon name="delete" className="text-[13px]" />Hapus</button>
+                                                <button onClick={() => openEditForm(item)} className="bg-slate-50 text-google-text border-2 border-slate-200 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight px-4 py-2.5 rounded-[12px] font-medium text-[11px] active:scale-95 transition-all flex flex-wrap items-center gap-1.5"><Icon name="edit" className="text-[13px]" />Edit</button>
+                                                <button onClick={() => setDeleteConfirmId(item.id)} className="bg-slate-50 text-google-red border-2 border-slate-200 hover:border-google-red/40 hover:bg-google-redLight px-4 py-2.5 rounded-[12px] font-medium text-[11px] active:scale-95 transition-all flex flex-wrap items-center gap-1.5"><Icon name="delete" className="text-[13px]" />Hapus</button>
                                             </div>
                                         )}
                                     </div>
@@ -2930,7 +2930,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                 <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan G' : 'Pilih Gambar'}</p>
                                                 <p className="text-[11px] text-google-textVariant">{formData.imageUrl ? 'Klik untuk ganti foto' : 'Maks. 2MB G JPG, PNG, WEBP'}</p>
                                             </div>
-                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
+                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-[12px] w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
                                         </div>
                                     </div>
 
@@ -2938,8 +2938,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 </div>
 
                                 <div className="flex flex-wrap gap-3 mt-6">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all disabled:opacity-50">Simpan</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all disabled:opacity-50">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -2953,8 +2953,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Barang?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Barang ini akan dihapus permanen dari daftar inventaris RT.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Barang berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Barang berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -3060,12 +3060,12 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             </div>
                             <div className="flex gap-2 flex-wrap">
                                 {userRole === 'admin' && (
-                                    <button onClick={() => setView(view === 'admin' ? 'list' : 'admin')} className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[12px] border-2 transition-all active:scale-95 ${view === 'admin' ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-200 hover:border-google-blue'}`}>
+                                    <button onClick={() => setView(view === 'admin' ? 'list' : 'admin')} className={`flex items-center gap-2 px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 transition-all active:scale-95 ${view === 'admin' ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-200 hover:border-google-blue'}`}>
                                         <Icon name="admin_panel_settings" className="text-[16px]" />Panel Admin
-                                        {pendingList.length > 0 && <span className="bg-google-red text-white text-[9px] font-bold px-2 py-0.5 rounded-full">{pendingList.length}</span>}
+                                        {pendingList.length > 0 && <span className="bg-google-red text-white text-[9px] font-bold px-2 py-0.5 rounded-[10px]">{pendingList.length}</span>}
                                     </button>
                                 )}
-                                <button onClick={() => { setView('form'); setErrorMsg(''); }} className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-full font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all">
+                                <button onClick={() => { setView('form'); setErrorMsg(''); }} className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all">
                                     <Icon name="add" className="text-[16px]" />Ajukan Pinjam
                                 </button>
                             </div>
@@ -3138,8 +3138,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             </div>
                             {errorMsg && <div className="mt-4 bg-google-redLight border border-google-red/30 text-google-redDark px-4 py-3 rounded-[14px] text-[12px] font-medium flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px]" />{errorMsg}</div>}
                             <div className="flex flex-wrap gap-3 mt-6">
-                                <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                                <button onClick={handleSubmitPinjam} className="flex flex-wrap bg-google-green text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2"><Icon name="send" className="text-[16px]" />Kirim Pengajuan</button>
+                                <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
+                                <button onClick={handleSubmitPinjam} className="flex flex-wrap bg-google-green text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2"><Icon name="send" className="text-[16px]" />Kirim Pengajuan</button>
                             </div>
                         </div>
                     )}
@@ -3156,14 +3156,14 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                             <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-yellowLight/40 border border-google-yellow/40 rounded-[20px] p-5 sm:p-6 md:p-8">
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-medium text-[13px] text-google-text truncate">{p.namaWarga}</p>
-                                                    <p className="text-[12px] font-medium text-google-yellowDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[13px]" />{p.namaBarang} <span className="ml-1 bg-google-yellow/20 text-google-yellowDark border border-google-yellow/40 px-2 py-0.5 rounded-full font-medium text-[10px]">{p.qty || 1} unit</span></p>
+                                                    <p className="text-[12px] font-medium text-google-yellowDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[13px]" />{p.namaBarang} <span className="ml-1 bg-google-yellow/20 text-google-yellowDark border border-google-yellow/40 px-2 py-0.5 rounded-[10px] font-medium text-[10px]">{p.qty || 1} unit</span></p>
                                                     <p className="text-[11px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[12px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} G Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
                                                     <p className="text-[11px] text-google-textVariant mt-0.5 italic">"{p.keperluan}"</p>
                                                     {p.catatan && <p className="text-[10px] text-slate-500 mt-0.5">= {p.catatan}</p>}
                                                 </div>
                                                 <div className="flex flex-wrap gap-2 shrink-0">
-                                                    <button onClick={() => setKonfirmRejectId(p.id)} className="px-4 py-2.5 bg-white text-google-red border-2 border-google-red/30 rounded-full font-medium text-[11px] hover:bg-google-redLight active:scale-95 transition-all">Tolak</button>
-                                                    <button onClick={() => handleApprove(p.id)} className="px-4 py-2.5 bg-google-green text-white border-2 border-google-greenDark rounded-full font-medium text-[11px] hover:bg-google-greenDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1"><Icon name="check" className="text-[13px]" />Setujui</button>
+                                                    <button onClick={() => setKonfirmRejectId(p.id)} className="px-4 py-2.5 bg-white text-google-red border-2 border-google-red/30 rounded-[12px] font-medium text-[11px] hover:bg-google-redLight active:scale-95 transition-all">Tolak</button>
+                                                    <button onClick={() => handleApprove(p.id)} className="px-4 py-2.5 bg-google-green text-white border-2 border-google-greenDark rounded-[12px] font-medium text-[11px] hover:bg-google-greenDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1"><Icon name="check" className="text-[13px]" />Setujui</button>
                                                 </div>
                                             </div>
                                         ))}
@@ -3179,7 +3179,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                             <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-blueLight/30 border border-google-blue/30 rounded-[20px] p-5 sm:p-6 md:p-8">
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-medium text-[13px] text-google-text truncate">{p.namaWarga}</p>
-                                                    <p className="text-[12px] font-medium text-google-blueDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[13px]" />{p.namaBarang} <span className="ml-1 bg-google-blue/10 text-google-blueDark border border-google-blue/30 px-2 py-0.5 rounded-full font-medium text-[10px]">{p.qty || 1} unit</span></p>
+                                                    <p className="text-[12px] font-medium text-google-blueDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[13px]" />{p.namaBarang} <span className="ml-1 bg-google-blue/10 text-google-blueDark border border-google-blue/30 px-2 py-0.5 rounded-[10px] font-medium text-[10px]">{p.qty || 1} unit</span></p>
                                                     <p className="text-[11px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[12px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} G Estimasi Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
                                                     <p className="text-[11px] text-google-textVariant mt-0.5 italic">"{p.keperluan}"</p>
                                                     {/* Cek apakah sudah lewat tanggal kembali */}
@@ -3187,7 +3187,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                         <p className="text-[10px] font-medium text-google-red mt-1 flex flex-wrap items-center gap-1"><Icon name="warning" className="text-[12px]" />Melewati estimasi tanggal kembali!</p>
                                                     )}
                                                 </div>
-                                                <button onClick={() => setKonfirmReturnId(p.id)} className="px-4 py-2.5 bg-google-blue text-white border-2 border-google-blueDark rounded-full font-medium text-[11px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1 shrink-0"><Icon name="assignment_return" className="text-[13px]" />Barang Kembali</button>
+                                                <button onClick={() => setKonfirmReturnId(p.id)} className="px-4 py-2.5 bg-google-blue text-white border-2 border-google-blueDark rounded-[12px] font-medium text-[11px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1 shrink-0"><Icon name="assignment_return" className="text-[13px]" />Barang Kembali</button>
                                             </div>
                                         ))}
                                     </div>
@@ -3224,7 +3224,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                         {sedangDipinjam.map((p, i) => (
                                                             <div key={i} className="flex items-center justify-between">
                                                                 <span className="text-[10px] font-medium text-google-text flex flex-wrap items-center gap-1"><Icon name="person" className="text-[11px] text-google-textVariant" />{p.namaWarga}</span>
-                                                                <span className="text-[9px] font-medium text-google-red bg-white px-2 py-0.5 rounded-full border border-google-red/20 shrink-0 ml-1">{p.qty || 1} unit</span>
+                                                                <span className="text-[9px] font-medium text-google-red bg-white px-2 py-0.5 rounded-[10px] border border-google-red/20 shrink-0 ml-1">{p.qty || 1} unit</span>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -3253,8 +3253,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     <p className="text-[13px] text-google-textVariant mb-2"><span className="font-medium text-google-text">{p.namaBarang}</span><br/>dikembalikan oleh <span className="font-medium text-google-blueDark">{p.namaWarga}</span></p>
                                     <p className="text-[12px] font-medium text-google-green mb-6">Stok inventaris akan otomatis pulih setelah konfirmasi.</p>
                                     <div className="flex flex-wrap gap-3">
-                                        <button onClick={() => setKonfirmReturnId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
-                                        <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-full font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">G Konfirmasi Kembali</button>
+                                        <button onClick={() => setKonfirmReturnId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-[12px] font-medium text-[12px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
+                                        <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-[12px] font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">G Konfirmasi Kembali</button>
                                     </div>
                                 </>) : null; })()}
                             </div>
@@ -3269,8 +3269,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <h3 className="text-xl font-medium text-google-text mb-2">Tolak Pengajuan?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-6">Pengajuan pinjam ini akan dihapus dari daftar.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setKonfirmRejectId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
-                                    <button onClick={() => handleReject(konfirmRejectId)} className="flex-1 bg-google-red text-white px-4 py-3 rounded-full font-medium text-[12px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Tolak & Hapus</button>
+                                    <button onClick={() => setKonfirmRejectId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-[12px] font-medium text-[12px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
+                                    <button onClick={() => handleReject(konfirmRejectId)} className="flex-1 bg-google-red text-white px-4 py-3 rounded-[12px] font-medium text-[12px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Tolak & Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -3466,7 +3466,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <h3 className="text-xl font-medium text-google-text mb-2">Hapus Program Infaq?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-8">Program beserta data rekening akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
                                     <button onClick={() => { setInfaqData(infaqData.filter(i => i.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Program infaq dihapus.'); }}
                                         className="flex-1 bg-google-red text-white px-4 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Hapus</button>
                                 </div>
@@ -3595,7 +3595,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                         </button>
                                                     </>
                                                 ) : (
-                                                    <span className={`px-3 py-1.5 rounded-md text-[10px] font-medium uppercase tracking-widest ${
+                                                    <span className={`px-3 py-1.5 rounded-[6px] text-[10px] font-medium uppercase tracking-widest ${
                                                         donasi.status === 'APPROVED' ? 'bg-google-greenLight text-google-greenDark border border-google-green/30' :
                                                         donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                         'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
@@ -3635,7 +3635,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                     <p className="text-[10px] text-google-textVariant">{parseLocalDate(donasi.tanggal).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'})}</p>
                                                 </div>
                                             </div>
-                                            <span className={`px-3 py-1.5 rounded-md text-[10px] font-medium uppercase tracking-widest shrink-0 ${
+                                            <span className={`px-3 py-1.5 rounded-[6px] text-[10px] font-medium uppercase tracking-widest shrink-0 ${
                                                 donasi.status === 'APPROVED' ? 'bg-google-greenLight text-google-greenDark border border-google-green/30' :
                                                 donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                 'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
@@ -3694,7 +3694,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <div className="flex gap-2 flex-wrap mb-3">
                                     {[['nama','Nama Saya'],['tanpanama','Tanpa Nama'],['hambaalah','Hamba Allah']].map(([val, label]) => (
                                         <button key={val} onClick={() => setTipeNama(val)}
-                                            className={`px-4 py-2 rounded-full font-medium text-[11px] border-2 transition-all active:scale-95 ${tipeNama === val ? 'bg-google-green text-white border-google-greenDark' : 'bg-slate-50 text-google-text border-slate-200 hover:border-google-green/40'}`}>
+                                            className={`px-4 py-2 rounded-[10px] font-medium text-[11px] border-2 transition-all active:scale-95 ${tipeNama === val ? 'bg-google-green text-white border-google-greenDark' : 'bg-slate-50 text-google-text border-slate-200 hover:border-google-green/40'}`}>
                                             {label}
                                         </button>
                                     ))}
@@ -3727,7 +3727,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[28px] p-4 sm:p-5 md:p-6 w-full max-w-sm shadow-2xl border-2 border-slate-200 my-4">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[16px] font-medium text-google-text">Cara Pembayaran</h3>
-                                        <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border-2 border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
+                                        <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border-2 border-slate-200 rounded-[12px] flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
                                             <Icon name="close" className="text-[16px]" />
                                         </button>
                                     </div>
@@ -3744,7 +3744,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         <div className="flex gap-2 flex-wrap mb-3">
                                             {(prog.rekening || []).map((r, i) => (
                                                 <button key={i} onClick={() => setSelectedRek(i)}
-                                                    className={`px-3 py-1.5 rounded-full font-medium text-[11px] border-2 transition-all active:scale-95 ${selectedRek === i ? 'bg-google-blue text-white border-google-blueDark' : 'bg-slate-50 text-google-text border-slate-200'}`}>
+                                                    className={`px-3 py-1.5 rounded-[10px] font-medium text-[11px] border-2 transition-all active:scale-95 ${selectedRek === i ? 'bg-google-blue text-white border-google-blueDark' : 'bg-slate-50 text-google-text border-slate-200'}`}>
                                                     {r.bank}
                                                 </button>
                                             ))}
@@ -3865,7 +3865,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : form.imageUrl ? 'Foto Tersimpan G' : 'Pilih Foto Program'}</p>
                                         <p className="text-[11px] text-google-textVariant">Maks. 2MB</p>
                                     </div>
-                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
+                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-[12px] w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
                                 </div>
                             </div>
 
@@ -3917,7 +3917,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             <div>
                                 <div className="flex items-center justify-between mb-3">
                                     <label className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest">Rekening Pembayaran *</label>
-                                    <button type="button" onClick={addRek} className="flex flex-wrap items-center gap-1 text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-full hover:bg-google-blue hover:text-white active:scale-95 transition-all">
+                                    <button type="button" onClick={addRek} className="flex flex-wrap items-center gap-1 text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-[12px] hover:bg-google-blue hover:text-white active:scale-95 transition-all">
                                         <Icon name="add" className="text-[13px]" />Tambah Rekening
                                     </button>
                                 </div>
@@ -3927,7 +3927,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                             <div className="flex items-center justify-between">
                                                 <p className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider">Rekening {i+1}</p>
                                                 {form.rekening.length > 1 && (
-                                                    <button type="button" onClick={() => removeRek(i)} className="text-google-red hover:bg-google-redLight w-7 h-7 flex items-center justify-center rounded-full border border-google-red/20 active:scale-95 transition-all">
+                                                    <button type="button" onClick={() => removeRek(i)} className="text-google-red hover:bg-google-redLight w-7 h-7 flex items-center justify-center rounded-[12px] border border-google-red/20 active:scale-95 transition-all">
                                                         <Icon name="close" className="text-[13px]" />
                                                     </button>
                                                 )}
@@ -3953,8 +3953,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                         </div>
 
                         <div className="flex flex-wrap gap-3 mt-6">
-                            <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                            <button onClick={handleSaveProgram} disabled={isUploading} className="flex-1 bg-google-green text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all disabled:opacity-50">
+                            <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
+                            <button onClick={handleSaveProgram} disabled={isUploading} className="flex-1 bg-google-green text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all disabled:opacity-50">
                                 {editingId ? 'Simpan Perubahan' : 'Buat Program'}
                             </button>
                         </div>
@@ -4041,7 +4041,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             <p className="text-[13px] font-medium text-google-textVariant mt-1.5">Album dokumentasi digital dan catatan kegiatan warga.</p>
                         </div>
                         {userRole === 'admin' && (
-                            <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue border-2 border-google-blueDark text-white px-6 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2">
+                            <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue border-2 border-google-blueDark text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2">
                                 <Icon name="add_a_photo" className="text-[17px]" />
                                 <span>Unggah Foto</span>
                             </button>
@@ -4062,7 +4062,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between flex-1">
                                     <div>
                                         <div className="flex flex-wrap justify-between items-start gap-2 mb-1.5">
-                                            <span className="text-[9px] font-medium text-red-600 bg-red-50 border border-red-500/15 px-2.5 py-1 rounded-md uppercase tracking-wider">
+                                            <span className="text-[9px] font-medium text-red-600 bg-red-50 border border-red-500/15 px-2.5 py-1 rounded-[6px] uppercase tracking-wider">
                                                 {parseLocalDate(item.date).toLocaleDateString('id-ID', {month: 'long', year:'numeric'})}
                                             </span>
                                             <span className="text-[10px] font-medium text-google-textVariant flex flex-wrap items-center gap-0.5">
@@ -4079,10 +4079,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     </div>
                                     {userRole === 'admin' && (
                                         <div className="flex flex-wrap justify-end gap-2 border-t border-slate-100 pt-3">
-                                            <button onClick={() => handleEdit(item)} className="bg-white text-google-blue w-9 h-9 rounded-full font-medium flex items-center justify-center hover:bg-google-blueLight border border-slate-200 hover:border-google-blue/30 transition-all duration-300">
+                                            <button onClick={() => handleEdit(item)} className="bg-white text-google-blue w-9 h-9 rounded-[12px] font-medium flex items-center justify-center hover:bg-google-blueLight border border-slate-200 hover:border-google-blue/30 transition-all duration-300">
                                                 <Icon name="edit" className="text-[14px]" />
                                             </button>
-                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red w-9 h-9 rounded-full font-medium flex items-center justify-center hover:bg-google-redLight border border-slate-200 hover:border-google-red/30 transition-all duration-300">
+                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red w-9 h-9 rounded-[12px] font-medium flex items-center justify-center hover:bg-google-redLight border border-slate-200 hover:border-google-red/30 transition-all duration-300">
                                                 <Icon name="delete" className="text-[14px]" />
                                             </button>
                                         </div>
@@ -4110,7 +4110,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         <Icon name="image" className="text-red-600" />
                                         <span className="text-[12px] font-medium text-google-text">Detail Dokumentasi</span>
                                     </div>
-                                    <button onClick={() => setSelectedPhoto(null)} className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-200 text-slate-500 hover:bg-slate-300 transition-all active:scale-95">
+                                    <button onClick={() => setSelectedPhoto(null)} className="w-9 h-9 flex items-center justify-center rounded-[12px] bg-slate-200 text-slate-500 hover:bg-slate-300 transition-all active:scale-95">
                                         <Icon name="close" />
                                     </button>
                                 </div>
@@ -4120,7 +4120,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     </div>
                                     <div className="p-6 sm:p-8 space-y-4">
                                         <div className="flex flex-wrap items-center gap-3">
-                                            <span className="text-[10px] font-medium text-red-700 bg-red-50 border border-red-500/15 px-3 py-1.5 rounded-full flex flex-wrap items-center gap-1">
+                                            <span className="text-[10px] font-medium text-red-700 bg-red-50 border border-red-500/15 px-3 py-1.5 rounded-[10px] flex flex-wrap items-center gap-1">
                                                 <Icon name="event" className="text-[13px]" />
                                                 {parseLocalDate(selectedPhoto.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}
                                             </span>
@@ -4176,8 +4176,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-4 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-100">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex flex-wrap items-center justify-center gap-2">
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex flex-wrap items-center justify-center gap-2">
                                         {editingId ? 'Simpan' : 'Unggah'}
                                     </button>
                                 </div>
@@ -4192,8 +4192,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Foto?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Foto ini akan dihapus dari galeri warga.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Foto berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Foto berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4250,7 +4250,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 <div className="space-y-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Papan Informasi & Kegiatan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Pengumuman dan dokumentasi lingkungan RT.</p></div>
-                        {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="add" className="text-[17px]" /><span>Buat Info Baru</span></button>}
+                        {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="add" className="text-[17px]" /><span>Buat Info Baru</span></button>}
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -4259,13 +4259,13 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 {item.imageUrl && <div className="w-full h-48 sm:h-56 bg-slate-100 relative shrink-0 border-b-2 border-slate-200 overflow-hidden"><img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" onError={(e) => { e.target.style.display = 'none'; }} /></div>}
                                 <div className="p-6 sm:p-8 flex flex-col">
                                     <h3 className="text-[17px] sm:text-[18px] font-medium text-google-text leading-snug mb-4 group-hover:text-google-blue transition-colors tracking-tight">{item.title}</h3>
-                                    <div className="flex flex-wrap items-center gap-2 mb-5 text-google-blueDark bg-google-blueLight self-start px-4 py-2 rounded-xl text-[11px] font-medium uppercase tracking-widest border-2 border-google-blue/20"><Icon name="calendar_today" className="text-[14px]" /><span>{parseLocalDate(item.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'})}</span></div>
+                                    <div className="flex flex-wrap items-center gap-2 mb-5 text-google-blueDark bg-google-blueLight self-start px-4 py-2 rounded-[10px] text-[11px] font-medium uppercase tracking-widest border-2 border-google-blue/20"><Icon name="calendar_today" className="text-[14px]" /><span>{parseLocalDate(item.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'})}</span></div>
                                     <p className="text-[13px] font-medium text-google-textVariant leading-relaxed mb-6 whitespace-pre-line flex-1">{item.description}</p>
                                     
                                     {userRole === 'admin' && (
                                         <div className="flex flex-wrap justify-end gap-3 mt-auto pt-6 border-t-2 border-slate-100">
-                                            <button onClick={() => { setFormData(item); setEditingId(item.id); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white text-google-text border-2 border-slate-200 px-5 py-2.5 rounded-full font-medium text-[12px] hover:border-google-blue hover:text-google-blue shadow-sm active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red border-2 border-slate-200 px-5 py-2.5 rounded-full font-medium text-[12px] hover:border-google-red hover:bg-google-redLight shadow-sm active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                            <button onClick={() => { setFormData(item); setEditingId(item.id); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white text-google-text border-2 border-slate-200 px-5 py-2.5 rounded-[12px] font-medium text-[12px] hover:border-google-blue hover:text-google-blue shadow-sm active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red border-2 border-slate-200 px-5 py-2.5 rounded-[12px] font-medium text-[12px] hover:border-google-red hover:bg-google-redLight shadow-sm active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                         </div>
                                     )}
                                 </div>
@@ -4307,8 +4307,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-4 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-100 shrink-0">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">Publikasikan</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">Publikasikan</button>
                                 </div>
                             </div>
                         </div>
@@ -4321,8 +4321,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Informasi?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Konten ini akan dihapus secara permanen dari layar warga.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Informasi berhasil dihapus.'); }} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Informasi berhasil dihapus.'); }} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4398,9 +4398,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Buku Induk Warga</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Total <span className="font-medium text-google-blue">{members.length} Warga</span> Terdaftar</p></div>
                         <div className="flex gap-3 w-full sm:w-auto overflow-x-auto hide-scrollbar pb-1 sm:pb-0">
-                            <button onClick={() => { setPrintMode('buku'); setTimeout(() => { window.print(); setTimeout(() => setPrintMode(''), 1000); }, 100); }} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /><span>Cetak Form</span></button>
-                            {userRole === 'admin' && <button onClick={handlePrintBarcode} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="qr_code_scanner" className="text-[16px]" /><span>Cetak Barcode</span></button>}
-                            {userRole === 'admin' && <button onClick={() => { setFormData({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="person_add" className="text-[17px]" /><span>Tambah Data</span></button>}
+                            <button onClick={() => { setPrintMode('buku'); setTimeout(() => { window.print(); setTimeout(() => setPrintMode(''), 1000); }, 100); }} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /><span>Cetak Form</span></button>
+                            {userRole === 'admin' && <button onClick={handlePrintBarcode} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="qr_code_scanner" className="text-[16px]" /><span>Cetak Barcode</span></button>}
+                            {userRole === 'admin' && <button onClick={() => { setFormData({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="person_add" className="text-[17px]" /><span>Tambah Data</span></button>}
                         </div>
                     </div>
 
@@ -4440,7 +4440,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             <div className="text-center mb-8"><h2 className="text-[18pt] font-medium uppercase mb-1">Kartu Barcode Warga</h2><p className="text-[12pt]">{identity?.name || 'Aplikasi Arisan'}</p></div>
                             <div className="grid grid-cols-2 gap-8" style={{ pageBreakInside: 'avoid' }}>
                                 {members.map(m => (
-                                    <div key={m.id} className="border-2 border-black p-6 rounded-2xl flex flex-col items-center justify-center text-center" style={{ pageBreakInside: 'avoid' }}>
+                                    <div key={m.id} className="border-2 border-black p-6 rounded-[12px] flex flex-col items-center justify-center text-center" style={{ pageBreakInside: 'avoid' }}>
                                         <h3 className="font-medium text-[12pt] mb-2 uppercase">{identity?.name || 'RT/RW'}</h3>
                                         <p className="font-medium text-[16pt] uppercase mb-1 leading-tight">{m.name}</p>
                                         <p className="font-medium text-[11pt] mb-4 text-gray-700">No. Anggota: M-{m.id}</p>
@@ -4461,18 +4461,18 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <div className="flex flex-wrap items-center gap-5">
                                     <div className={`w-16 h-16 rounded-[20px] flex items-center justify-center font-medium text-[20px] shrink-0 border-2 transition-colors duration-300 ${isNonaktif(member) ? 'bg-slate-50 text-slate-400 border-slate-200' : 'bg-google-blueLight text-google-blueDark border-google-blue/30 group-hover:bg-google-blue group-hover:text-white group-hover:border-google-blueDark'}`}>{member.name.charAt(0).toUpperCase()}</div>
                                     <div className="flex-1 min-w-0">
-                                        <h3 className={`font-medium text-[16px] truncate transition-colors tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text group-hover:text-google-blueDark'}`}>{member.name} {isNonaktif(member) && <span className="text-[9px] uppercase tracking-wider bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md ml-2 font-medium border-2 border-slate-200 align-middle">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</h3>
+                                        <h3 className={`font-medium text-[16px] truncate transition-colors tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text group-hover:text-google-blueDark'}`}>{member.name} {isNonaktif(member) && <span className="text-[9px] uppercase tracking-wider bg-slate-100 text-slate-500 px-2.5 py-1 rounded-[6px] ml-2 font-medium border-2 border-slate-200 align-middle">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</h3>
                                         <div className="flex flex-wrap items-center gap-2.5 mt-2.5 text-[10px] uppercase tracking-wider">
-                                            <span className={`px-3 py-1.5 rounded-md font-medium border-2 ${member.program === 'IuranOnly' ? 'bg-slate-50 text-google-textVariant border-slate-200' : 'bg-google-blue/10 text-google-blueDark border-google-blue/20'}`}>{member.program === 'IuranOnly' ? 'Hanya Iuran' : 'Arisan & Iuran'}</span>
-                                            {member.program !== 'IuranOnly' && (member.hasWon ? <span className="bg-google-blue text-white px-3 py-1.5 rounded-md font-medium shadow-sm border-2 border-google-blueDark flex flex-wrap items-center gap-1"><Icon name="emoji_events" className="text-[13px]"/> Menang Put. {member.wonRound}</span> : <span className="text-google-textVariant px-3 py-1.5 rounded-md bg-slate-100 font-medium border-2 border-slate-200">Belum Menang</span>)}
-                                            {member.debt > 0 ? <span className="bg-google-redLight text-google-redDark px-3 py-1.5 rounded-md font-medium border-2 border-google-red/40 animate-pulse flex flex-wrap items-center gap-1.5"><Icon name="warning" className="text-[13px]"/> Tunggakan {formatRp(member.debt)}</span> : <span className="bg-google-greenLight text-google-greenDark px-3 py-1.5 rounded-md font-medium border-2 border-google-green/40 flex flex-wrap items-center gap-1.5"><Icon name="check_circle" className="text-[13px]"/> Aman</span>}
+                                            <span className={`px-3 py-1.5 rounded-[6px] font-medium border-2 ${member.program === 'IuranOnly' ? 'bg-slate-50 text-google-textVariant border-slate-200' : 'bg-google-blue/10 text-google-blueDark border-google-blue/20'}`}>{member.program === 'IuranOnly' ? 'Hanya Iuran' : 'Arisan & Iuran'}</span>
+                                            {member.program !== 'IuranOnly' && (member.hasWon ? <span className="bg-google-blue text-white px-3 py-1.5 rounded-[6px] font-medium shadow-sm border-2 border-google-blueDark flex flex-wrap items-center gap-1"><Icon name="emoji_events" className="text-[13px]"/> Menang Put. {member.wonRound}</span> : <span className="text-google-textVariant px-3 py-1.5 rounded-[6px] bg-slate-100 font-medium border-2 border-slate-200">Belum Menang</span>)}
+                                            {member.debt > 0 ? <span className="bg-google-redLight text-google-redDark px-3 py-1.5 rounded-[6px] font-medium border-2 border-google-red/40 animate-pulse flex flex-wrap items-center gap-1.5"><Icon name="warning" className="text-[13px]"/> Tunggakan {formatRp(member.debt)}</span> : <span className="bg-google-greenLight text-google-greenDark px-3 py-1.5 rounded-[6px] font-medium border-2 border-google-green/40 flex flex-wrap items-center gap-1.5"><Icon name="check_circle" className="text-[13px]"/> Aman</span>}
                                         </div>
                                     </div>
                                 </div>
                                 {userRole === 'admin' && (
                                     <div className="flex flex-wrap items-center gap-2.5 shrink-0 border-t-2 sm:border-t-0 border-slate-100 pt-5 sm:pt-0 justify-end w-full sm:w-auto opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <button onClick={() => { setFormData(member); setEditingId(member.id); setIsFormOpen(true); setErrorMsg(''); }} className="bg-white text-google-text px-5 py-2.5 rounded-full font-medium text-[12px] border-2 border-slate-200 shadow-sm hover:border-google-blue hover:text-google-blue active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="edit" className="text-[14px]" /><span className="sm:hidden">Edit</span></button>
-                                        <button onClick={() => setDeleteConfirmId(member.id)} className="bg-white text-google-red px-5 py-2.5 rounded-full font-medium text-[12px] border-2 border-slate-200 shadow-sm hover:border-google-red hover:bg-google-redLight active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="delete" className="text-[14px]" /><span className="sm:hidden">Hapus</span></button>
+                                        <button onClick={() => { setFormData(member); setEditingId(member.id); setIsFormOpen(true); setErrorMsg(''); }} className="bg-white text-google-text px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 border-slate-200 shadow-sm hover:border-google-blue hover:text-google-blue active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="edit" className="text-[14px]" /><span className="sm:hidden">Edit</span></button>
+                                        <button onClick={() => setDeleteConfirmId(member.id)} className="bg-white text-google-red px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 border-slate-200 shadow-sm hover:border-google-red hover:bg-google-redLight active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="delete" className="text-[14px]" /><span className="sm:hidden">Hapus</span></button>
                                     </div>
                                 )}
                             </div>
@@ -4496,15 +4496,15 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     </div>
                                     {formData.program !== 'IuranOnly' && (
                                         <div className="pt-5 border-t-2 border-slate-100">
-                                            <label className="flex flex-wrap items-center gap-3 mb-5 cursor-pointer group"><div className="relative flex items-center justify-center"><input type="checkbox" checked={formData.hasWon} onChange={e => setFormData({...formData, hasWon: e.target.checked})} className="peer appearance-none w-6 h-6 border-2 border-slate-300 rounded-lg checked:bg-google-blue checked:border-google-blue transition-colors cursor-pointer" /><Icon name="check" className="absolute text-white text-[14px] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" strokeWidth="4"/></div><span className="text-[13px] font-medium text-google-text group-hover:text-google-blue transition-colors">Warga Sudah Menang Arisan</span></label>
+                                            <label className="flex flex-wrap items-center gap-3 mb-5 cursor-pointer group"><div className="relative flex items-center justify-center"><input type="checkbox" checked={formData.hasWon} onChange={e => setFormData({...formData, hasWon: e.target.checked})} className="peer appearance-none w-6 h-6 border-2 border-slate-300 rounded-[8px] checked:bg-google-blue checked:border-google-blue transition-colors cursor-pointer" /><Icon name="check" className="absolute text-white text-[14px] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" strokeWidth="4"/></div><span className="text-[13px] font-medium text-google-text group-hover:text-google-blue transition-colors">Warga Sudah Menang Arisan</span></label>
                                             {formData.hasWon && <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Di Putaran Ke-</label><input type="number" min="1" value={formData.wonRound} onChange={e => {setFormData({...formData, wonRound: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: 3" /></div>}
                                         </div>
                                     )}
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-5 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-100">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Simpan</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={handleSave} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -4516,8 +4516,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Warga?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Data warga dan riwayatnya akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={executeDelete} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={executeDelete} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4532,7 +4532,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     <div className={`w-20 h-20 mx-auto rounded-[24px] flex items-center justify-center font-medium text-[32px] border-2 shadow-sm ${isNonaktif(previewMember) ? 'bg-slate-50 text-slate-400 border-slate-200' : 'bg-google-blueLight text-google-blueDark border-google-blue/30'}`}>{previewMember.name.charAt(0).toUpperCase()}</div>
                                 </div>
                                 <h3 className={`font-medium text-[18px] tracking-tight mb-1 ${isNonaktif(previewMember) ? 'text-slate-400 line-through' : 'text-google-text'}`}>{previewMember.name}</h3>
-                                <p className="text-[12px] font-medium text-google-textVariant mb-6 bg-slate-50 inline-block px-4 py-1.5 rounded-full border-2 border-slate-200">No. Anggota: M-{previewMember.id}</p>
+                                <p className="text-[12px] font-medium text-google-textVariant mb-6 bg-slate-50 inline-block px-4 py-1.5 rounded-[10px] border-2 border-slate-200">No. Anggota: M-{previewMember.id}</p>
 
                                 <div className="space-y-3 text-left mb-6 bg-slate-50 p-5 rounded-[24px] border-2 border-slate-200">
                                     <div className="flex justify-between items-center pb-3 border-b-2 border-slate-100"><span className="text-[11px] font-medium text-google-textVariant uppercase tracking-widest">Status</span><span className="font-medium text-[13px] text-google-text">{previewMember.status}</span></div>
@@ -4546,7 +4546,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <div className="border-2 border-dashed border-slate-300 rounded-[24px] p-5 bg-white mb-2 relative">
                                     <p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-3">Barcode Resmi</p>
                                     <canvas id="preview-barcode" className="mx-auto w-full max-w-[200px]"></canvas>
-                                    <button onClick={handleDownloadBarcode} className="mt-4 bg-slate-100 hover:bg-slate-200 text-google-text font-medium text-[11px] px-4 py-2 rounded-full transition-all flex items-center justify-center gap-1 mx-auto border-2 border-slate-200 active:scale-95"><Icon name="download" className="text-[14px]"/> Simpan Gambar (PNG)</button>
+                                    <button onClick={handleDownloadBarcode} className="mt-4 bg-slate-100 hover:bg-slate-200 text-google-text font-medium text-[11px] px-4 py-2 rounded-[12px] transition-all flex items-center justify-center gap-1 mx-auto border-2 border-slate-200 active:scale-95"><Icon name="download" className="text-[14px]"/> Simpan Gambar (PNG)</button>
                                 </div>
                                 <p className="text-[10px] font-medium text-slate-400 mt-4">Tunjukkan barcode ini kepada petugas jika diperlukan.</p>
                             </div>
@@ -4616,7 +4616,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                         </div>
                         {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                         <div className="flex justify-end mt-10 pt-6 border-t-2 border-slate-100">
-                            <button onClick={handleSaveAgenda} className="bg-google-blue text-white px-8 py-4 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[17px]"/> Simpan Agenda</button>
+                            <button onClick={handleSaveAgenda} className="bg-google-blue text-white px-8 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[17px]"/> Simpan Agenda</button>
                         </div>
                     </div>
                 );
@@ -4632,7 +4632,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                     <div className="space-y-6 max-w-5xl mx-auto">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm">
                             <div className="flex flex-wrap items-center gap-5"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><div><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda.title}</h2><p className="text-[13px] font-medium text-google-textVariant mt-1">Kelola Penyetoran Warga</p></div></div>
-                            {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
+                            {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
                         </div>
 
                         <div className="hidden print-only">
@@ -4682,7 +4682,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         <div key={member.id} className={`p-6 rounded-[24px] border-2 flex flex-col justify-between transition-all duration-300 group ${userRole === 'admin' ? (isError ? 'bg-google-redLight border-google-red hover:shadow-lg' : 'bg-white border-slate-200 hover:border-google-blue hover:shadow-xl hover:-translate-y-1') : (isLunas ? 'bg-google-greenLight border-google-green shadow-sm' : 'bg-slate-50 border-slate-200')}`}>
                                             <div className="flex justify-between items-start mb-6">
                                                 <h3 className="font-medium text-[14px] text-google-text truncate pr-3 group-hover:text-google-blue transition-colors leading-tight">{member.name}</h3>
-                                                {isLunas ? <span className="text-[9px] bg-google-green text-white px-3 py-1.5 rounded-md font-medium uppercase tracking-widest shadow-sm flex flex-wrap items-center gap-1 shrink-0 border border-google-greenDark"><Icon name="check" className="text-[11px]"/> LUNAS</span> : <span className="text-[9px] bg-slate-200 text-google-textVariant px-3 py-1.5 rounded-md font-medium uppercase tracking-widest shrink-0 border border-slate-300">BELUM</span>}
+                                                {isLunas ? <span className="text-[9px] bg-google-green text-white px-3 py-1.5 rounded-[6px] font-medium uppercase tracking-widest shadow-sm flex flex-wrap items-center gap-1 shrink-0 border border-google-greenDark"><Icon name="check" className="text-[11px]"/> LUNAS</span> : <span className="text-[9px] bg-slate-200 text-google-textVariant px-3 py-1.5 rounded-[6px] font-medium uppercase tracking-widest shrink-0 border border-slate-300">BELUM</span>}
                                             </div>
                                             {userRole === 'admin' ? (
                                                 <div>
@@ -4704,7 +4704,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             {userRole === 'admin' && (
                                 <div className="mt-10 pt-8 border-t-2 border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-5">
                                     {errorMsg ? <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-5 py-4 rounded-[16px] w-full sm:w-auto flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div> : <div></div>}
-                                    <button onClick={handleSavePayments} className="w-full sm:w-auto bg-google-blue text-white px-10 py-4 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[17px]" /> Simpan Rekap Warga</button>
+                                    <button onClick={handleSavePayments} className="w-full sm:w-auto bg-google-blue text-white px-10 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[17px]" /> Simpan Rekap Warga</button>
                                 </div>
                             )}
                         </div>
@@ -4723,8 +4723,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                     
                                     <div className="flex flex-wrap gap-3">
-                                        <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                        <button onClick={executeTransferToKas} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Setor Dana</button>
+                                        <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                        <button onClick={executeTransferToKas} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Setor Dana</button>
                                     </div>
                                 </div>
                             </div>
@@ -4737,7 +4737,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 <div className="space-y-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Agenda Iuran Umum</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Penggalangan dana non-arisan (berlaku untuk semua warga).</p></div>
-                        {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', minAmount: 0, dueDate: getLocalDate(), payments: {}, transferredToKas: 0 }); setSelectedAgenda(null); setView('form'); setErrorMsg(''); }} className="shrink-0 bg-google-blue text-white px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto justify-center"><Icon name="add_task" className="text-[17px]" /><span>Buat Agenda Baru</span></button>}
+                        {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', minAmount: 0, dueDate: getLocalDate(), payments: {}, transferredToKas: 0 }); setSelectedAgenda(null); setView('form'); setErrorMsg(''); }} className="shrink-0 bg-google-blue text-white px-8 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto justify-center"><Icon name="add_task" className="text-[17px]" /><span>Buat Agenda Baru</span></button>}
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
@@ -4764,12 +4764,12 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         <div className="bg-google-greenLight/50 px-5 py-3.5 rounded-[16px] border-2 border-google-green/20"><p className="text-[9px] text-google-greenDark uppercase tracking-widest font-medium mb-1">Total Dana Terkumpul</p><p className="text-[18px] font-medium text-google-greenDark tracking-tight truncate">{userRole === 'admin' ? formatRp(totalTerkumpul) : '= Disembunyikan'}</p></div>
                                         {userRole === 'admin' ? (
                                             <div className="flex flex-wrap items-center gap-3 shrink-0 self-end sm:self-auto">
-                                                <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-6 py-3.5 bg-google-blueLight text-google-blueDark border-2 border-google-blue/30 rounded-full text-[13px] font-medium hover:bg-google-blue hover:text-white transition-all duration-300 hover:shadow-md active:scale-95 flex flex-wrap items-center gap-1.5"><Icon name="edit_document" className="text-[16px]"/> Kelola</button>
+                                                <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-6 py-3.5 bg-google-blueLight text-google-blueDark border-2 border-google-blue/30 rounded-[12px] text-[13px] font-medium hover:bg-google-blue hover:text-white transition-all duration-300 hover:shadow-md active:scale-95 flex flex-wrap items-center gap-1.5"><Icon name="edit_document" className="text-[16px]"/> Kelola</button>
                                                 <button onClick={() => { setFormData({ title: agenda.title, minAmount: agenda.minAmount, dueDate: agenda.dueDate, payments: agenda.payments || {}, transferredToKas: agenda.transferredToKas || 0 }); setSelectedAgenda(agenda); setView('form'); setErrorMsg(''); }} className="w-12 h-12 flex items-center justify-center bg-white text-google-text hover:bg-slate-50 hover:border-slate-300 rounded-full border-2 border-slate-200 active:scale-95 transition-all duration-300 shadow-sm"><Icon name="settings" className="text-[17px]" /></button>
                                                 <button onClick={() => setDeleteConfirmAgendaId(agenda.id)} className="w-12 h-12 flex items-center justify-center bg-white text-google-red hover:bg-google-redLight hover:border-google-red/40 rounded-full border-2 border-slate-200 active:scale-95 transition-all duration-300 shadow-sm"><Icon name="delete" className="text-[17px]" /></button>
                                             </div>
                                         ) : (
-                                            <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-8 py-3.5 bg-white border-2 border-slate-200 text-google-text rounded-full text-[13px] font-medium hover:bg-slate-50 hover:border-slate-300 shadow-sm shrink-0 active:scale-95 transition-all duration-300 self-end sm:self-auto flex flex-wrap items-center gap-2"><Icon name="visibility" className="text-[16px]"/> Cek Status Saya</button>
+                                            <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-8 py-3.5 bg-white border-2 border-slate-200 text-google-text rounded-[12px] text-[13px] font-medium hover:bg-slate-50 hover:border-slate-300 shadow-sm shrink-0 active:scale-95 transition-all duration-300 self-end sm:self-auto flex flex-wrap items-center gap-2"><Icon name="visibility" className="text-[16px]"/> Cek Status Saya</button>
                                         )}
                                     </div>
                                 </div>
@@ -4786,8 +4786,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Agenda?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Agenda iuran beserta seluruh data pembayaran warga akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmAgendaId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={() => { setIuranData(iuranData.filter(i => i.id !== deleteConfirmAgendaId)); setDeleteConfirmAgendaId(null); showToast('Agenda iuran berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmAgendaId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => { setIuranData(iuranData.filter(i => i.id !== deleteConfirmAgendaId)); setDeleteConfirmAgendaId(null); showToast('Agenda iuran berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4879,7 +4879,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 <div className="space-y-6 print:p-0">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Buku Kas Utama</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Catatan riwayat transaksi operasional RT.</p></div>
-                        <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-slate-200 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[16px]" /> <span>Cetak Laporan</span></button>
+                        <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-slate-200 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[16px]" /> <span>Cetak Laporan</span></button>
                     </div>
 
                     <div className="hidden print-only">
@@ -4939,8 +4939,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     <div className="flex-1 min-w-0">
                                         <p className="font-medium text-[14px] text-google-text truncate mb-1.5">{t.description}</p>
                                         <div className="flex flex-wrap items-center gap-2">
-                                            <p className="text-[11px] font-medium text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5"><Icon name="label" className="text-[13px]" /> {t.category} G {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
-                                            {t.receiptUrl && <a href={t.receiptUrl} target="_blank" rel="noopener noreferrer" className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/20 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</a>}
+                                            <p className="text-[11px] font-medium text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5"><Icon name="label" className="text-[13px]" /> {t.category} G {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
+                                            {t.receiptUrl && <a href={t.receiptUrl} target="_blank" rel="noopener noreferrer" className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/20 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</a>}
                                         </div>
                                     </div>
                                 </div>
@@ -4953,13 +4953,13 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                 setFormData(t);
                                                 setIsModalOpen(true);
                                                 setErrorMsg('');
-                                            }} className="text-google-blue bg-white hover:bg-google-blueLight border-2 border-slate-200 hover:border-google-blue/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[14px]" /><span className="hidden sm:inline">Edit</span></button>
+                                            }} className="text-google-blue bg-white hover:bg-google-blueLight border-2 border-slate-200 hover:border-google-blue/40 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[14px]" /><span className="hidden sm:inline">Edit</span></button>
                                             <button onClick={() => { 
                                                 if (t.type === 'Pemasukan') setBalance(prev => prev - t.amount); 
                                                 else setBalance(prev => prev + t.amount);
                                                 if (t.category === 'Mutasi Jimpitan') setJimpitanBalance(prev => prev + t.amount);
                                                 setTransactions(transactions.filter(x => x.id !== t.id)); 
-                                            }} className="text-google-red bg-white hover:bg-google-redLight border-2 border-slate-200 hover:border-google-red/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[14px]" /><span className="hidden sm:inline">Hapus</span></button>
+                                            }} className="text-google-red bg-white hover:bg-google-redLight border-2 border-slate-200 hover:border-google-red/40 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[14px]" /><span className="hidden sm:inline">Hapus</span></button>
                                         </div>
                                     )}
                                 </div>
@@ -5007,8 +5007,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-100">
-                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className={`flex-1 text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-google-green border-google-greenDark hover:bg-google-greenDark' : 'bg-google-red border-google-redDark hover:bg-google-redDark'}`}>Simpan Data</button>
+                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className={`flex-1 text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-google-green border-google-greenDark hover:bg-google-greenDark' : 'bg-google-red border-google-redDark hover:bg-google-redDark'}`}>Simpan Data</button>
                                 </div>
                             </div>
                         </div>
@@ -5028,8 +5028,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 
                                 <div className="flex flex-wrap gap-3 pt-2">
-                                    <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleTransferJimpitan} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border-2 border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
+                                    <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={handleTransferJimpitan} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border-2 border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
                                 </div>
                             </div>
                         </div>
@@ -5251,9 +5251,9 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                         </div>
                                     </div>
                                     <div className="flex flex-wrap gap-3 w-full lg:w-auto mt-2 lg:mt-0">
-                                        <button onClick={() => setIsScannerOpen(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-google-blue text-white px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300"><Icon name="qr_code_scanner" className="text-[17px]" /><span>Kasir Scan</span></button>
-                                        <button onClick={() => setShowHolidayModal(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[17px]" /><span>Bulan Libur</span></button>
-                                        <button onClick={() => window.print()} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[17px]" /><span>Cetak Blanko Absen</span></button>
+                                        <button onClick={() => setIsScannerOpen(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300"><Icon name="qr_code_scanner" className="text-[17px]" /><span>Kasir Scan</span></button>
+                                        <button onClick={() => setShowHolidayModal(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[17px]" /><span>Bulan Libur</span></button>
+                                        <button onClick={() => window.print()} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[17px]" /><span>Cetak Blanko Absen</span></button>
                                     </div>
                                 </div>
                                 <div className="hidden print-only">
@@ -5280,10 +5280,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                     <div className="min-w-0">
                                                         <h3 className={`font-medium text-[14px] truncate tracking-tight ${isMeninggal ? 'text-slate-400 line-through' : 'text-google-text'}`}>{member.name}</h3>
                                                         {isMeninggal
-                                                            ? <span className="text-[9px] text-slate-500 font-medium border border-slate-300 px-2.5 py-1 rounded-md bg-slate-200 mt-1.5 inline-flex items-center gap-1 uppercase tracking-widest"><Icon name="sentiment_very_dissatisfied" className="text-[12px]" /> Wafat / Nonaktif</span>
+                                                            ? <span className="text-[9px] text-slate-500 font-medium border border-slate-300 px-2.5 py-1 rounded-[6px] bg-slate-200 mt-1.5 inline-flex items-center gap-1 uppercase tracking-widest"><Icon name="sentiment_very_dissatisfied" className="text-[12px]" /> Wafat / Nonaktif</span>
                                                             : member.debt > 0
-                                                                ? <span className="text-[10px] bg-google-redLight text-google-redDark px-3 py-1.5 rounded-md font-medium inline-flex items-center gap-1.5 mt-1.5 border border-google-red/40 uppercase tracking-wider"><Icon name="warning" className="text-[13px]"/> Hutang {formatRp(member.debt)}</span>
-                                                                : <span className="text-[10px] bg-google-greenLight text-google-greenDark font-medium px-3 py-1.5 rounded-md mt-1.5 inline-flex items-center gap-1.5 border border-google-green/40 uppercase tracking-wider"><Icon name="check_circle" className="text-[13px]"/> Bersih</span>
+                                                                ? <span className="text-[10px] bg-google-redLight text-google-redDark px-3 py-1.5 rounded-[6px] font-medium inline-flex items-center gap-1.5 mt-1.5 border border-google-red/40 uppercase tracking-wider"><Icon name="warning" className="text-[13px]"/> Hutang {formatRp(member.debt)}</span>
+                                                                : <span className="text-[10px] bg-google-greenLight text-google-greenDark font-medium px-3 py-1.5 rounded-[6px] mt-1.5 inline-flex items-center gap-1.5 border border-google-green/40 uppercase tracking-wider"><Icon name="check_circle" className="text-[13px]"/> Bersih</span>
                                                         }
                                                     </div>
                                                 </div>
@@ -5309,14 +5309,14 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                             ) : (
                                                 <div className="flex flex-wrap rounded-[16px] bg-slate-100 p-2 gap-2 border border-slate-200 inset-shadow-sm">
                                                     {['Hadir', 'Musibah', 'Alfa'].map(stat => (
-                                                        <button key={stat} onClick={() => handleAttendanceChange(member.id, stat)} className={`flex-1 py-3 text-[11px] font-medium uppercase tracking-widest rounded-xl transition-all duration-300 border-2 ${attendance[member.id].status === stat ? (stat === 'Hadir' ? 'bg-google-green text-white border-google-greenDark shadow-md scale-105' : stat === 'Musibah' ? 'bg-google-yellow text-white border-google-yellowDark shadow-md scale-105' : 'bg-google-red text-white border-google-redDark shadow-md scale-105') : 'bg-transparent text-google-textVariant border-transparent hover:bg-slate-200/50'}`}>{stat}</button>
+                                                        <button key={stat} onClick={() => handleAttendanceChange(member.id, stat)} className={`flex-1 py-3 text-[11px] font-medium uppercase tracking-widest rounded-[10px] transition-all duration-300 border-2 ${attendance[member.id].status === stat ? (stat === 'Hadir' ? 'bg-google-green text-white border-google-greenDark shadow-md scale-105' : stat === 'Musibah' ? 'bg-google-yellow text-white border-google-yellowDark shadow-md scale-105' : 'bg-google-red text-white border-google-redDark shadow-md scale-105') : 'bg-transparent text-google-textVariant border-transparent hover:bg-slate-200/50'}`}>{stat}</button>
                                                     ))}
                                                 </div>
                                             )}
                                             {attendance[member.id]?.status === 'Hadir' && member.debt > 0 && !isMeninggal && (
                                                 <label className="flex items-center justify-between bg-google-blueLight px-5 py-4 rounded-[16px] cursor-pointer border border-google-blue/30 shadow-sm hover:bg-google-blue/20 transition-colors group mt-2">
                                                     <div><span className="text-[13px] font-medium text-google-blueDark block mb-0.5">Lunasi Tunggakan?</span><span className="text-[11px] font-medium text-google-blue">Centang potong saldo</span></div>
-                                                    <div className="relative flex items-center justify-center"><input type="checkbox" checked={attendance[member.id].payDebt} onChange={() => togglePayDebt(member.id)} className="peer appearance-none w-7 h-7 border-2 border-google-blue/50 rounded-lg checked:bg-google-blue checked:border-google-blue transition-colors cursor-pointer" /><Icon name="check" className="absolute text-white text-[16px] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" strokeWidth="4"/></div>
+                                                    <div className="relative flex items-center justify-center"><input type="checkbox" checked={attendance[member.id].payDebt} onChange={() => togglePayDebt(member.id)} className="peer appearance-none w-7 h-7 border-2 border-google-blue/50 rounded-[8px] checked:bg-google-blue checked:border-google-blue transition-colors cursor-pointer" /><Icon name="check" className="absolute text-white text-[16px] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" strokeWidth="4"/></div>
                                                 </label>
                                             )}
                                         </div>
@@ -5325,7 +5325,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
 
                                     {arisanMembers.length === 0 && <div className="col-span-full bg-slate-50 border-2 border-slate-200 p-12 text-center rounded-[32px] shadow-sm"><Icon name="group_off" className="text-[48px] text-slate-400 mb-4 mx-auto" fill="true" /><p className="font-medium text-[16px] text-google-text">Belum ada warga arisan terdaftar.</p></div>}
                                 </div>
-                                <div className="pt-8 flex justify-end no-print border-t-2 border-slate-100 mt-10"><button onClick={() => setStep(2)} className="bg-google-blue text-white px-10 py-4 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center gap-2">Lanjut Ke Rekapitulasi <Icon name="arrow_forward" className="text-[17px]"/></button></div>
+                                <div className="pt-8 flex justify-end no-print border-t-2 border-slate-100 mt-10"><button onClick={() => setStep(2)} className="bg-google-blue text-white px-10 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center gap-2">Lanjut Ke Rekapitulasi <Icon name="arrow_forward" className="text-[17px]"/></button></div>
                                 
                                 {showHolidayModal && (
                                     <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
@@ -5335,8 +5335,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                             <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Periode <b className="text-google-text">{formatBulanTahun(arisanPeriod)}</b> akan ditandai sebagai bulan libur.</p>
                                             <div className="text-[12px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] border border-slate-200 text-left"><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Tidak ada penarikan kas/jimpitan sama sekali.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Putaran ke-{currentRound} tidak akan dihitung.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Periode akan melompat ke bulan berikutnya.</span></p></div>
                                             <div className="flex flex-wrap gap-3">
-                                                <button onClick={() => setShowHolidayModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                                <button onClick={handleSetHoliday} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300">Setuju, Libur</button>
+                                                <button onClick={() => setShowHolidayModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                                <button onClick={handleSetHoliday} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300">Setuju, Libur</button>
                                             </div>
                                         </div>
                                     </div>
@@ -5346,20 +5346,20 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     <div className="fixed inset-0 bg-slate-900/90 z-50 flex flex-col p-4 sm:p-6 no-print overflow-y-auto hide-scrollbar">
                                         <div className="flex justify-between items-center mb-6 shrink-0">
                                             <h3 className="text-white font-medium text-xl sm:text-2xl">Scan Barcode Warga</h3>
-                                            <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white p-2 rounded-full hover:bg-white/40"><Icon name="close" className="text-[20px]" /></button>
+                                            <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white p-2 rounded-[12px] hover:bg-white/40"><Icon name="close" className="text-[20px]" /></button>
                                         </div>
                                         <div className="flex-1 flex flex-col items-center pt-2 pb-10">
-                                            <div id="reader" className="w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl shrink-0"></div>
+                                            <div id="reader" className="w-full max-w-md bg-white rounded-[16px] overflow-hidden shadow-2xl shrink-0"></div>
                                             
                                             {scannedMembers.length > 0 && (
                                                 <div className="mt-6 w-full max-w-md bg-white rounded-[24px] p-5 shadow-2xl border-2 border-google-blue shrink-0">
                                                     <h4 className="font-medium text-google-text mb-3 text-[13px] uppercase tracking-widest">Keranjang Scan ({scannedMembers.length} Warga)</h4>
                                                     <div className="flex flex-wrap gap-2 mb-4 max-h-[150px] overflow-y-auto hide-scrollbar">
                                                         {scannedMembers.map(m => (
-                                                            <span key={m.id} className="bg-google-blueLight text-google-blueDark px-3 py-1.5 rounded-full text-[12px] font-medium border border-google-blue/30">{m.name}</span>
+                                                            <span key={m.id} className="bg-google-blueLight text-google-blueDark px-3 py-1.5 rounded-[10px] text-[12px] font-medium border border-google-blue/30">{m.name}</span>
                                                         ))}
                                                     </div>
-                                                    <button onClick={handleOpenCashier} className="w-full bg-google-blue text-white py-3.5 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-google-blueDark transition-colors shadow-md">Proses Pembayaran <Icon name="arrow_forward" className="text-[16px]" /></button>
+                                                    <button onClick={handleOpenCashier} className="w-full bg-google-blue text-white py-3.5 rounded-[10px] font-medium flex items-center justify-center gap-2 hover:bg-google-blueDark transition-colors shadow-md">Proses Pembayaran <Icon name="arrow_forward" className="text-[16px]" /></button>
                                                 </div>
                                             )}
                                             {scannedMembers.length === 0 && <p className="text-white/60 text-center font-medium mt-6 shrink-0">Arahkan kamera ke barcode warga untuk memindai.</p>}
@@ -5377,7 +5377,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                             </div>
                                             
                                             <div className="overflow-y-auto hide-scrollbar flex-1 mb-4">
-                                                <div className="bg-slate-50 p-4 rounded-2xl border-2 border-slate-200">
+                                                <div className="bg-slate-50 p-4 rounded-[12px] border-2 border-slate-200">
                                                     {(() => {
                                                         let totalTagihanBulanIni = 0;
                                                         let totalTunggakan = 0;
@@ -5401,14 +5401,14 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                     <label className="text-[10px] uppercase tracking-widest font-medium text-google-textVariant block mb-2">Status Kehadiran (Semua Warga)</label>
                                                     <div className="flex gap-2">
                                                         {['Hadir', 'Musibah', 'Alfa'].map(stat => (
-                                                            <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[11px] font-medium uppercase tracking-widest rounded-xl border-2 transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-200 hover:bg-slate-50'}`}>{stat}</button>
+                                                            <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[11px] font-medium uppercase tracking-widest rounded-[10px] border-2 transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-200 hover:bg-slate-50'}`}>{stat}</button>
                                                         ))}
                                                     </div>
                                                 </div>
 
                                                 <div className="mb-4">
                                                     <label className="text-[10px] uppercase tracking-widest font-medium text-google-textVariant block mb-2">Uang Diterima (Rp)</label>
-                                                    <input type="number" min="0" value={cashReceived} onChange={e => setCashReceived(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-2xl text-google-text placeholder:text-slate-300 transition-all" placeholder="0" />
+                                                    <input type="number" min="0" value={cashReceived} onChange={e => setCashReceived(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-[12px] text-google-text placeholder:text-slate-300 transition-all" placeholder="0" />
                                                 </div>
 
                                                 {(() => {
@@ -5419,7 +5419,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                                     const received = safeNumber(cashReceived);
                                                     const kembalian = received - totalGabungan;
                                                     return received > 0 ? (
-                                                        <div className={`p-4 rounded-2xl border-2 shadow-sm ${kembalian >= 0 ? 'bg-google-greenLight border-google-green/40 text-google-greenDark' : 'bg-google-redLight border-google-red/40 text-google-redDark'}`}>
+                                                        <div className={`p-4 rounded-[12px] border-2 shadow-sm ${kembalian >= 0 ? 'bg-google-greenLight border-google-green/40 text-google-greenDark' : 'bg-google-redLight border-google-red/40 text-google-redDark'}`}>
                                                             <p className="text-[10px] font-medium uppercase tracking-widest mb-1">{kembalian >= 0 ? 'Kembalian' : 'Status'}</p>
                                                             <p className="text-[17px] font-medium">{kembalian >= 0 ? formatRp(kembalian) : 'Uang Kurang!'}</p>
                                                         </div>
@@ -5428,8 +5428,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                             </div>
 
                                             <div className="flex gap-3 mt-auto shrink-0 pt-2 border-t-2 border-slate-100">
-                                                <button onClick={() => { setShowCashierModal(false); setScannedMembers([]); setTimeout(() => setIsScannerOpen(true), 300); }} className="flex-1 bg-white border-2 border-slate-200 text-google-text font-medium py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-300 transition-all text-[13px]">Batal</button>
-                                                <button onClick={handleCashierSave} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white font-medium py-3.5 rounded-full hover:bg-google-blueDark hover:shadow-md transition-all text-[13px] flex justify-center items-center gap-2"><Icon name="save" className="text-[16px]" />Simpan</button>
+                                                <button onClick={() => { setShowCashierModal(false); setScannedMembers([]); setTimeout(() => setIsScannerOpen(true), 300); }} className="flex-1 bg-white border-2 border-slate-200 text-google-text font-medium py-3.5 rounded-[12px] hover:bg-slate-50 hover:border-slate-300 transition-all text-[13px]">Batal</button>
+                                                <button onClick={handleCashierSave} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white font-medium py-3.5 rounded-[12px] hover:bg-google-blueDark hover:shadow-md transition-all text-[13px] flex justify-center items-center gap-2"><Icon name="save" className="text-[16px]" />Simpan</button>
                                             </div>
                                         </div>
                                     </div>
@@ -5458,8 +5458,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     </div>
                                 </div>
                                 <div className="pt-8 flex flex-col sm:flex-row justify-between border-t-2 border-slate-100 mt-10 gap-4">
-                                    <button onClick={() => setStep(1)} className="w-full sm:w-auto bg-white text-google-text border-2 border-slate-200 px-8 py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
-                                    <button onClick={() => setStep(3)} className="w-full sm:w-auto bg-google-blue text-white border-2 border-google-blueDark px-10 py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Lanjut Undi Pemenang <Icon name="celebration" className="text-[17px]"/></button>
+                                    <button onClick={() => setStep(1)} className="w-full sm:w-auto bg-white text-google-text border-2 border-slate-200 px-8 py-4 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
+                                    <button onClick={() => setStep(3)} className="w-full sm:w-auto bg-google-blue text-white border-2 border-google-blueDark px-10 py-4 rounded-[12px] font-medium text-[13px] shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Lanjut Undi Pemenang <Icon name="celebration" className="text-[17px]"/></button>
                                 </div>
                             </div>
                         )}
@@ -5490,8 +5490,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-5 py-4 rounded-[16px] mt-6 flex flex-wrap items-center justify-center gap-2 max-w-sm mx-auto relative z-10"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 </div>
                                 <div className="pt-8 flex flex-col sm:flex-row justify-between border-t-2 border-slate-100 mt-10 gap-4">
-                                    <button onClick={() => setStep(2)} className="w-full sm:w-auto bg-white text-google-text border-2 border-slate-200 px-8 py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
-                                    <button onClick={submitPertemuan} className="w-full sm:w-auto bg-google-green text-white border-2 border-google-greenDark px-12 py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-greenDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2"><Icon name="check_circle" className="text-[17px]"/> Selesai &amp; Simpan</button>
+                                    <button onClick={() => setStep(2)} className="w-full sm:w-auto bg-white text-google-text border-2 border-slate-200 px-8 py-4 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
+                                    <button onClick={submitPertemuan} className="w-full sm:w-auto bg-google-green text-white border-2 border-google-greenDark px-12 py-4 rounded-[12px] font-medium text-[13px] shadow-md hover:bg-google-greenDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2"><Icon name="check_circle" className="text-[17px]"/> Selesai &amp; Simpan</button>
                                 </div>
                             </div>
                         )}
@@ -5648,7 +5648,7 @@ growthAmount = history[0].saldoAkhirJimpitan || 0;
                 <div className="space-y-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 no-print shadow-sm">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Riwayat Pertemuan Arisan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Arsip resmi presensi dan sirkulasi dana bulanan.</p></div>
-                        <button onClick={() => window.print()} className="bg-white border-2 border-slate-200 text-google-text px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[16px]" /><span>Cetak Arsip</span></button>
+                        <button onClick={() => window.print()} className="bg-white border-2 border-slate-200 text-google-text px-8 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center gap-2 text-[13px] hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[16px]" /><span>Cetak Arsip</span></button>
                     </div>
 
                     {history.length > 0 && (
@@ -5733,7 +5733,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div className="p-6 sm:p-8 border-t-2 border-slate-100 bg-white">
                                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                                                 <h4 className="font-medium text-[16px] text-google-text tracking-tight">Detail Presensi Warga</h4>
-                                                {userRole === 'admin' && <button onClick={() => handleOpenEdit(record)} className="text-[12px] bg-white text-google-text font-medium px-6 py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-300 no-print transition-all duration-300 active:scale-95 border-2 border-slate-200 flex flex-wrap items-center gap-2 shadow-sm"><Icon name="edit" className="text-[16px]" /> Revisi Data</button>}
+                                                {userRole === 'admin' && <button onClick={() => handleOpenEdit(record)} className="text-[12px] bg-white text-google-text font-medium px-6 py-3.5 rounded-[12px] hover:bg-slate-50 hover:border-slate-300 no-print transition-all duration-300 active:scale-95 border-2 border-slate-200 flex flex-wrap items-center gap-2 shadow-sm"><Icon name="edit" className="text-[16px]" /> Revisi Data</button>}
                                             </div>
                                             <div className="flex flex-wrap gap-3 no-print text-[13px]">
                                                 {record.absensiDetails.map((a, i) => {
@@ -5767,14 +5767,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             ) : (
                                             <div className="flex flex-wrap rounded-[16px] bg-slate-200/60 p-2 gap-2 border-2 border-slate-200 inset-shadow-sm">
                                                 {['Hadir', 'Musibah', 'Alfa'].map(stat => (
-                                                    <button key={stat} onClick={() => handleAttendanceChange(member.name, stat)} className={`flex-1 py-2.5 text-[10px] uppercase tracking-widest font-medium rounded-xl transition-all duration-300 border-2 ${tempAttendance[member.name] === stat ? (stat === 'Hadir' ? 'bg-google-green text-white shadow-md border-google-greenDark scale-105' : stat === 'Musibah' ? 'bg-google-yellowDark text-white shadow-md border-google-yellowDark scale-105' : 'bg-google-red text-white shadow-md border-google-redDark scale-105') : 'text-google-textVariant bg-transparent hover:bg-white border-transparent'}`}>{stat}</button>
+                                                    <button key={stat} onClick={() => handleAttendanceChange(member.name, stat)} className={`flex-1 py-2.5 text-[10px] uppercase tracking-widest font-medium rounded-[10px] transition-all duration-300 border-2 ${tempAttendance[member.name] === stat ? (stat === 'Hadir' ? 'bg-google-green text-white shadow-md border-google-greenDark scale-105' : stat === 'Musibah' ? 'bg-google-yellowDark text-white shadow-md border-google-yellowDark scale-105' : 'bg-google-red text-white shadow-md border-google-redDark scale-105') : 'text-google-textVariant bg-transparent hover:bg-white border-transparent'}`}>{stat}</button>
                                                 ))}
                                             </div>
                                             )}
                                         </div>
                                     ))}
                                 </div>
-                                <div className="flex flex-wrap gap-3 pt-6 border-t-2 border-slate-100 mt-2 shrink-0"><button onClick={() => setEditingHistoryId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={saveEditHistory} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center">Simpan Revisi</button></div>
+                                <div className="flex flex-wrap gap-3 pt-6 border-t-2 border-slate-100 mt-2 shrink-0"><button onClick={() => setEditingHistoryId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={saveEditHistory} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center">Simpan Revisi</button></div>
                             </div>
                         </div>
                     )}
@@ -6036,7 +6036,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             <p className="text-[11px] font-medium text-google-green flex items-center gap-1"><Icon name="check_circle" className="text-[13px]"/>Logo siap disimpan</p>
                             <p className="text-[9px] text-google-textVariant truncate font-mono mt-0.5">{previewUrl.slice(0,60)}</p>
                             </div>
-                            <button onClick={() => { setNewUrl(''); setPreviewUrl(''); setUploadError(''); }} className="text-google-red hover:bg-red-50 p-1.5 rounded-full transition-colors shrink-0"><Icon name="close" className="text-[14px]" /></button>
+                            <button onClick={() => { setNewUrl(''); setPreviewUrl(''); setUploadError(''); }} className="text-google-red hover:bg-red-50 p-1.5 rounded-[12px] transition-colors shrink-0"><Icon name="close" className="text-[14px]" /></button>
                         </div>
                         )}
 
@@ -6051,7 +6051,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </details>
                     </div>
 
-                    <button onClick={handleAdd} disabled={isUploading || !newName.trim() || !newUrl.trim()} className="w-full bg-google-blue border-2 border-google-blueDark text-white py-4 rounded-full font-medium text-[13px] hover:bg-google-blueDark active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 shadow-md disabled:opacity-40 disabled:cursor-not-allowed">
+                    <button onClick={handleAdd} disabled={isUploading || !newName.trim() || !newUrl.trim()} className="w-full bg-google-blue border-2 border-google-blueDark text-white py-4 rounded-[12px] font-medium text-[13px] hover:bg-google-blueDark active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 shadow-md disabled:opacity-40 disabled:cursor-not-allowed">
                         <Icon name="add_circle" className="text-[17px]" />Tambah &amp; Simpan Sponsor
                     </button>
                     </div>
@@ -6067,7 +6067,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                     <h3 className="font-medium text-[17px] text-google-text mb-6 border-b-2 border-slate-100 pb-4 group-hover:text-google-blue transition-colors tracking-tight">{title}</h3>
                     <div className="space-y-6 mb-8">{children}</div>
-                    <button onClick={onSave} className="w-full bg-slate-50 border-2 border-slate-200 text-google-blueDark py-4 rounded-full font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan {title}</button>
+                    <button onClick={onSave} className="w-full bg-slate-50 border-2 border-slate-200 text-google-blueDark py-4 rounded-[12px] font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan {title}</button>
                 </div>
             );
         }
@@ -6326,7 +6326,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border-2 border-slate-200 group">
                                                 <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                    <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[11px] font-medium px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[14px]"/> Hapus</button>
+                                                    <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[11px] font-medium px-4 py-2 rounded-[12px] flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[14px]"/> Hapus</button>
                                                 </div>
                                             </div>
                                         )}
@@ -6342,7 +6342,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="bg-white p-6 md:p-8 rounded-[32px] border-2 border-slate-100/50 shadow-sm relative overflow-hidden animate-fade-in">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10"></div>
                                     <div className="flex items-center gap-3 mb-6">
-                                        <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 border border-slate-200"><Icon name="gavel" className="text-[20px]" /></div>
+                                        <div className="w-12 h-12 rounded-[12px] bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 border border-slate-200"><Icon name="gavel" className="text-[20px]" /></div>
                                         <div>
                                             <h2 className="text-[16px] md:text-[17px] font-bold text-slate-800 tracking-tight">Hukum & Kebijakan</h2>
                                             <p className="text-[12px] text-slate-500 font-medium">Syarat & Ketentuan serta Privasi</p>
@@ -6350,12 +6350,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     </div>
 
                                     <div className="space-y-6">
-                                        <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border-2 border-slate-100">
+                                        <div className="flex items-center justify-between p-4 bg-slate-50 rounded-[12px] border-2 border-slate-100">
                                             <div>
                                                 <p className="text-[13px] font-medium text-slate-800">Aktifkan Halaman Kebijakan</p>
                                                 <p className="text-[11px] text-slate-500">Tampilkan link di menu dan layar login</p>
                                             </div>
-                                            <button onClick={() => props.setLegalData(p => ({...p, enabled: !p?.enabled}))} className={`w-14 h-8 flex items-center rounded-full p-1 transition-colors duration-300 ease-in-out shadow-inner ${props.legalData?.enabled ? 'bg-google-green' : 'bg-slate-300'}`}>
+                                            <button onClick={() => props.setLegalData(p => ({...p, enabled: !p?.enabled}))} className={`w-14 h-8 flex items-center rounded-[12px] p-1 transition-colors duration-300 ease-in-out shadow-inner ${props.legalData?.enabled ? 'bg-google-green' : 'bg-slate-300'}`}>
                                                 <div className={`bg-white w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${props.legalData?.enabled ? 'translate-x-6' : 'translate-x-0'}`}></div>
                                             </button>
                                         </div>
@@ -6364,16 +6364,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="space-y-6 animate-fade-in">
                                                 <div>
                                                     <label className="text-[11px] font-medium text-slate-500 block mb-2 ml-1 uppercase tracking-widest">Syarat & Ketentuan</label>
-                                                    <textarea value={props.legalData?.terms || ''} onChange={(e) => props.setLegalData(p => ({...p, terms: e.target.value}))} rows="6" className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white text-slate-700 rounded-2xl px-5 py-4 text-[13px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Syarat dan Ketentuan..."></textarea>
+                                                    <textarea value={props.legalData?.terms || ''} onChange={(e) => props.setLegalData(p => ({...p, terms: e.target.value}))} rows="6" className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white text-slate-700 rounded-[12px] px-5 py-4 text-[13px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Syarat dan Ketentuan..."></textarea>
                                                 </div>
                                                 <div>
                                                     <label className="text-[11px] font-medium text-slate-500 block mb-2 ml-1 uppercase tracking-widest">Kebijakan Privasi</label>
-                                                    <textarea value={props.legalData?.privacy || ''} onChange={(e) => props.setLegalData(p => ({...p, privacy: e.target.value}))} rows="6" className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white text-slate-700 rounded-2xl px-5 py-4 text-[13px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Kebijakan Privasi..."></textarea>
+                                                    <textarea value={props.legalData?.privacy || ''} onChange={(e) => props.setLegalData(p => ({...p, privacy: e.target.value}))} rows="6" className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white text-slate-700 rounded-[12px] px-5 py-4 text-[13px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Kebijakan Privasi..."></textarea>
                                                 </div>
                                             </div>
                                         )}
                                     </div>
-                                    <button onClick={() => { showAlert('Kebijakan Hukum & Privasi berhasil disimpan!') }} className="w-full mt-8 bg-slate-50 border-2 border-slate-200 text-google-blueDark py-4 rounded-full font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan Kebijakan</button>
+                                    <button onClick={() => { showAlert('Kebijakan Hukum & Privasi berhasil disimpan!') }} className="w-full mt-8 bg-slate-50 border-2 border-slate-200 text-google-blueDark py-4 rounded-[12px] font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan Kebijakan</button>
                                 </div>
                             )}
                             {activeMenu === 'infodesa' && (
@@ -6386,7 +6386,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="relative z-10">
                                         <div className="flex items-center space-x-3 mb-4"><Icon name="report" className="text-[36px] text-white" fill="true" /><h3 className="font-medium text-[20px] tracking-tight">Bahaya: Hapus Semua Database</h3></div>
                                         <p className="text-[13px] font-medium mb-8 text-white/90 max-w-xl leading-relaxed">Tindakan ini akan menghapus seluruh data warga, riwayat keuangan, tunggakan, dan mengembalikan saldo kas menjadi nol kembali seperti baru (Setelan Pabrik).</p>
-                                        <button onClick={() => setConfirmResetModal(true)} className="bg-white text-google-redDark px-8 py-4 rounded-full font-medium text-[13px] shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto hover:bg-slate-50 border-2 border-transparent hover:border-google-red"><Icon name="delete_forever" className="text-[17px]"/> Format Database Sekarang</button>
+                                        <button onClick={() => setConfirmResetModal(true)} className="bg-white text-google-redDark px-8 py-4 rounded-[12px] font-medium text-[13px] shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto hover:bg-slate-50 border-2 border-transparent hover:border-google-red"><Icon name="delete_forever" className="text-[17px]"/> Format Database Sekarang</button>
                                     </div>
                                 </div>
                             )}
@@ -6398,7 +6398,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-200 transform scale-100 transition-transform">
                                 <div className="mb-6 bg-google-greenLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="check_circle" className="text-[48px] text-google-green" fill="true" /></div>
                                 <p className="text-google-text text-[17px] font-medium mb-8 leading-snug tracking-tight">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue text-white px-8 py-4 rounded-full font-medium text-[13px] border-2 border-google-blueDark hover:bg-google-blueDark active:scale-95 transition-all duration-300 shadow-md">Tutup Pesan</button>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue text-white px-8 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark hover:bg-google-blueDark active:scale-95 transition-all duration-300 shadow-md">Tutup Pesan</button>
                             </div>
                         </div>
                     )}
@@ -6408,7 +6408,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <h3 className="text-3xl font-medium text-google-red mb-2 tracking-tight">Reset Total?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tindakan ini permanen dan tidak bisa dibatalkan. Ketik kata <b className="text-google-red">RESET</b> di bawah ini.</p>
                                 <div className="bg-slate-50 rounded-[16px] px-5 py-4 border-2 border-google-red/40 focus-within:border-google-red focus-within:bg-white focus-within:shadow-md transition-all mb-8"><input type="text" value={resetPromptInput} onChange={e => setResetPromptInput(e.target.value)} className="w-full bg-transparent border-none text-[18px] outline-none p-0 text-google-redDark uppercase tracking-widest font-medium placeholder:text-google-red/30" placeholder="RESET" /></div>
-                                <div className="flex flex-wrap gap-3"><button onClick={() => {setConfirmResetModal(false); setResetPromptInput('');}} className="w-full sm:w-auto bg-white text-google-text py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={executeFactoryReset} className="flex flex-wrap bg-google-red text-white border-2 border-google-redDark py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Eksekusi</button></div>
+                                <div className="flex flex-wrap gap-3"><button onClick={() => {setConfirmResetModal(false); setResetPromptInput('');}} className="w-full sm:w-auto bg-white text-google-text py-4 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-200 hover:border-slate-300 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={executeFactoryReset} className="flex flex-wrap bg-google-red text-white border-2 border-google-redDark py-4 rounded-[12px] font-medium text-[13px] shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Eksekusi</button></div>
                             </div>
                         </div>
                     )}
@@ -6451,7 +6451,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-200 shadow-sm">
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5">
                                 <div><h2 className="text-xl font-medium text-google-text tracking-tight">Pengaturan Agenda</h2><p className="text-[12px] font-medium text-google-textVariant mt-1">Agenda tampil sebagai teks berjalan (marquee) di Halaman Utama.</p></div>
-                                {!isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-200 text-google-text px-6 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 text-[12px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[14px]" /><span>Ubah Agenda</span></button>}
+                                {!isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-200 text-google-text px-6 py-2.5 rounded-[12px] font-medium flex items-center justify-center gap-2 text-[12px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[14px]" /><span>Ubah Agenda</span></button>}
                             </div>
 
                             {isEditing && (
@@ -6463,8 +6463,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
                                     <div className="flex flex-wrap gap-3 pt-6 mt-6 border-t-2 border-slate-100">
-                                        <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3 rounded-full font-medium text-[12px] hover:bg-slate-50 border-2 border-slate-200 active:scale-95 transition-all shadow-sm flex items-center justify-center">Batal</button>
-                                        <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex bg-google-blue border-2 border-google-blueDark text-white px-6 py-3 rounded-full font-medium text-[12px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all items-center justify-center gap-2"><Icon name="save" className="text-[14px]"/> Simpan Agenda</button>
+                                        <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3 rounded-[12px] font-medium text-[12px] hover:bg-slate-50 border-2 border-slate-200 active:scale-95 transition-all shadow-sm flex items-center justify-center">Batal</button>
+                                        <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex bg-google-blue border-2 border-google-blueDark text-white px-6 py-3 rounded-[12px] font-medium text-[12px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all items-center justify-center gap-2"><Icon name="save" className="text-[14px]"/> Simpan Agenda</button>
                                     </div>
                                 </div>
                             )}
@@ -6681,7 +6681,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Pilih Tanggal</label>
                                         <input type="date" value={checkDateStr} onChange={e => { setCheckDateStr(e.target.value); setCheckResult(null); }} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text cursor-pointer animate-none" />
                                     </div>
-                                    <button type="submit" className="w-full bg-red-600 text-white py-3.5 rounded-full font-medium text-[12px] border-2 border-red-700 hover:bg-red-700 active:scale-95 transition-all duration-300 shadow-md flex flex-wrap justify-center items-center gap-1.5">
+                                    <button type="submit" className="w-full bg-red-600 text-white py-3.5 rounded-[12px] font-medium text-[12px] border-2 border-red-700 hover:bg-red-700 active:scale-95 transition-all duration-300 shadow-md flex flex-wrap justify-center items-center gap-1.5">
                                         <Icon name="explore" className="text-[14px]"/>
                                         Cek Sekarang
                                     </button>
