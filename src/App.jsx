@@ -2187,14 +2187,15 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                     {/* AREA GRID MENU */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5">
                         {NavItems.map((item, idx) => (
-                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white p-5 sm:p-6 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3.5 active:scale-95 group">
+                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
                                 <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 
-                                <div className={`relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-[20px] sm:rounded-[24px] flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-md border-2 border-transparent ${item.bg} ${item.color.replace('border-2', '')}`}>
-                                    <Icon name={item.icon} className="text-[32px] sm:text-[36px]" fill="true" />
+                                <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-[14px] sm:rounded-[16px] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md border border-white/60 ${item.bg} ${item.color.replace('border-2', '')}`}>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/10 to-black/5 rounded-[14px] sm:rounded-[16px]"></div>
+                                    <Icon name={item.icon} className="relative z-10 text-[26px] sm:text-[30px] drop-shadow-sm" fill="true" />
                                 </div>
                                 
-                                <span className="relative z-10 text-[13px] sm:text-[13px] font-medium text-google-textVariant group-hover:text-google-blueDark transition-colors tracking-tight">{item.label}</span>
+                                <span className="relative z-10 text-[12.5px] sm:text-[13px] font-bold text-google-textVariant group-hover:text-google-blueDark transition-colors tracking-tight">{item.label}</span>
                             </button>
                         ))}
                     </div>
