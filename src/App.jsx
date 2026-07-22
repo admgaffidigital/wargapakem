@@ -1660,7 +1660,7 @@ const getDirectImgUrl = (url) => {
                 }
                 return (
                     <>
-                        <LoginScreen legalData={legalData} setShowLegalModal={setShowLegalModal} onLogin={(role) => { 
+                        <LoginScreen theme={theme} legalData={legalData} setShowLegalModal={setShowLegalModal} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); window.location.hash = 'menu';
                         }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
@@ -2078,7 +2078,7 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
