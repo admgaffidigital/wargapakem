@@ -289,5 +289,52 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5) !important;
 }
 
+/* Specific component overrides for Dark Mode */
+.dark .bg-gradient-to-br.from-google-blue {
+    background-image: linear-gradient(to bottom right, #7f1d1d, #4c0519) !important;
+    border-color: #4c0519 !important;
+}
 
+.dark .bg-gradient-to-r.from-google-yellowLight {
+    background-image: linear-gradient(to right, rgba(251, 188, 4, 0.12), rgba(30, 41, 59, 0.3)) !important;
+    border-color: rgba(251, 188, 4, 0.25) !important;
+}
 
+.dark .bg-gradient-to-r.from-google-red {
+    background-image: linear-gradient(to right, #7f1d1d, #4c0519) !important;
+    border-color: #4c0519 !important;
+}
+
+.dark footer {
+    background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.95)) !important;
+    border-top-color: #334155 !important;
+    color: #94a3b8 !important;
+}
+
+.dark footer .text-red-600 {
+    color: #fca5a5 !important;
+}
+
+.dark footer button,
+.dark footer a {
+    color: #94a3b8 !important;
+}
+
+.dark footer button:hover,
+.dark footer a:hover {
+    color: #f8fafc !important;
+}
+
+.dark footer + div,
+.dark .text-center.pb-6.no-print.bg-white {
+    background-color: #0f172a !important;
+}
+
+.dark footer + div button,
+.dark .text-center.pb-6.no-print.bg-white button {
+    color: #f87171 !important;
+}
+
+.dark .border-google-yellow\/30 {
+    border-color: rgba(251, 188, 4, 0.25) !important;
+}
