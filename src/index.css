@@ -385,3 +385,36 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     filter: invert(90%) hue-rotate(180deg) !important;
 }
 
+/* Blue & Indigo theme overrides for menu items */
+.dark .bg-blue-50,
+.dark .bg-blue-100 {
+    background-color: rgba(59, 130, 246, 0.12) !important;
+}
+
+.dark .text-blue-700,
+.dark .text-blue-600 {
+    color: #93c5fd !important;
+}
+
+.dark .border-blue-500,
+.dark .border-blue-400 {
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark .bg-indigo-50,
+.dark .bg-indigo-100 {
+    background-color: rgba(99, 102, 241, 0.12) !important;
+}
+
+.dark .text-indigo-700,
+.dark .text-indigo-600 {
+    color: #a5b4fc !important;
+}
+
+.dark .border-indigo-500,
+.dark .border-indigo-400,
+.dark .border-indigo-200 {
+    border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+
