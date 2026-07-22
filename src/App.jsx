@@ -1763,23 +1763,23 @@ const getDirectImgUrl = (url) => {
                             </div>
                         )}
 
-                        <header className="bg-white/95 text-google-text py-4 px-5 sm:px-8 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
+                        <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
                             <div className="max-w-5xl mx-auto flex items-center justify-between">
-                                <div className="flex items-center space-x-3 overflow-hidden">
+                                <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
-                                        <div className="bg-gradient-to-tr from-red-500 to-rose-600 text-white w-10 h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40"><Icon name="home" className="text-[17px]" fill="true" /></div>
+                                        <div className="bg-gradient-to-tr from-red-500 to-rose-600 text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40"><Icon name="home" className="text-[15px] sm:text-[17px]" fill="true" /></div>
                                     ) : (
-                                        <button onClick={() => changeTab('menu')} className="w-10 h-10 bg-white text-google-text border-2 border-slate-300 hover:text-red-600 hover:border-red-500/40 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px]" /></button>
+                                        <button onClick={() => changeTab('menu')} className="w-9 h-9 sm:w-10 sm:h-10 bg-white text-google-text border-2 border-slate-300 hover:text-red-600 hover:border-red-500/40 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[15px] sm:text-[17px]" /></button>
                                     )}
-                                    <div className="flex flex-wrap items-center gap-2 min-w-0">
-                                        <h1 className="text-[14px] sm:text-[16px] font-medium truncate leading-tight tracking-tight text-slate-800">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
-                                        {activeTab === 'menu' && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse shrink-0"></span>}
+                                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
+                                        <h1 className="text-[13px] sm:text-[16px] font-bold truncate leading-tight tracking-tight text-slate-800">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
+                                        {activeTab === 'menu' && <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse shrink-0"></span>}
                                     </div>
                                 </div>
-                                <div className="flex items-center space-x-3 shrink-0 pl-2">
-                                    <span className={`text-[9px] font-medium px-3 py-1.5 rounded-[6px] uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/30' : 'bg-slate-50 text-slate-600 border-slate-300'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
-                                    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-10 h-10 bg-slate-50 hover:bg-slate-200 text-slate-600 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 shadow-sm" title="Toggle Tema"><Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[16px]" /></button>
-                                    <button onClick={() => setShowLogoutModal(true)} className="w-10 h-10 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-red-500/30 shadow-sm"><Icon name="logout" className="text-[16px]" /></button>
+                                <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
+                                    <span className={`text-[8px] sm:text-[9px] font-medium px-2 py-1 sm:px-3 sm:py-1.5 rounded-[6px] uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/30' : 'bg-slate-50 text-slate-600 border-slate-300'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
+                                    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 text-slate-600 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 shadow-sm" title="Toggle Tema"><Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" /></button>
+                                    <button onClick={() => setShowLogoutModal(true)} className="w-9 h-9 sm:w-10 sm:h-10 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-red-500/30 shadow-sm"><Icon name="logout" className="text-[15px] sm:text-[16px]" /></button>
                                 </div>
                             </div>
                         </header>
