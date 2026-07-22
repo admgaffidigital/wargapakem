@@ -2170,7 +2170,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto mt-2">
                     
                     {/* --- AREA BANNER UTAMA --- */}
-                    <div className={`relative rounded-[32px] p-4 sm:p-6 text-white border-2 border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden group min-h-[220px] sm:min-h-[260px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark dark:from-rose-950 dark:to-rose-900' : 'bg-slate-900'}`}>
+                    <div className={`relative rounded-[32px] p-4 sm:p-6 text-white border-2 border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden group min-h-[250px] sm:min-h-[280px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark dark:from-rose-950 dark:to-rose-900' : 'bg-slate-900'}`}>
                         {bannerImage && (
                             <>
                                 <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" />
@@ -2181,8 +2181,8 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                         <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white opacity-5 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700 z-0"></div>
                         <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-google-blueLight opacity-10 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700 delay-100 z-0"></div>
 
-                        <div className="relative z-10 w-full max-w-md bg-slate-900/60 dark:bg-slate-950/65 backdrop-blur-md p-5 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-white/20 shadow-2xl text-left">
-                            <div className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3.5 py-1.5 rounded-full mb-3 border border-white/20 shadow-sm w-fit">
+                        <div className="relative z-10 w-full max-w-md bg-slate-900/60 dark:bg-slate-950/65 backdrop-blur-md p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-white/20 shadow-2xl text-left">
+                            <div className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full mb-2.5 border border-white/20 shadow-sm w-fit">
                                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                 <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Sistem Aktif</span>
                             </div>
