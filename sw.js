@@ -1,10 +1,10 @@
-﻿// ============================================================
+// ============================================================
 // SERVICE WORKER â€” Portal Warga RT PAKEM
 // Strategi: Cache First untuk aset statis, Network First untuk data
 // ============================================================
 
-const CACHE_NAME = 'warga-pakem-v1.2';
-const CACHE_STATIC = 'warga-pakem-static-v1.2';
+const CACHE_NAME = 'warga-pakem-v1.3';
+const CACHE_STATIC = 'warga-pakem-static-v1.3';
 
 // Aset lokal yang selalu di-cache saat install
 const STATIC_ASSETS = [
@@ -84,21 +84,31 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Aset Lokal (index.html, SVG, manifest) â†’ Stale While Revalidate
-    // Tampilkan cache dulu, update di background
-    if (url.pathname === '/' || url.pathname.endsWith('.html') ||
-        url.pathname.endsWith('.svg') || url.pathname.endsWith('.json') ||
-        url.pathname.endsWith('.js') || url.pathname.endsWith('.css')) {
+    // HTML dan Data -> Network First
+    if (url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname.endsWith('.json')) {
         event.respondWith(
-            caches.open(CACHE_STATIC).then((cache) => {
-                return cache.match(event.request).then((cached) => {
-                    const networkFetch = fetch(event.request).then((response) => {
-                        if (response && response.status === 200) {
-                            cache.put(event.request, response.clone());
-                        }
-                        return response;
-                    }).catch(() => cached);
-                    return cached || networkFetch;
+            fetch(event.request).then((response) => {
+                if (response && response.status === 200) {
+                    const clone = response.clone();
+                    caches.open(CACHE_STATIC).then((cache) => cache.put(event.request, clone));
+                }
+                return response;
+            }).catch(() => caches.match(event.request))
+        );
+        return;
+    }
+
+    // Aset Lokal (JS, CSS, SVG) yang memiliki hash unik -> Cache First
+    if (url.pathname.endsWith('.js') || url.pathname.endsWith('.css') || url.pathname.endsWith('.svg')) {
+        event.respondWith(
+            caches.match(event.request).then((cached) => {
+                if (cached) return cached;
+                return fetch(event.request).then((response) => {
+                    if (response && response.status === 200) {
+                        const clone = response.clone();
+                        caches.open(CACHE_STATIC).then((cache) => cache.put(event.request, clone));
+                    }
+                    return response;
                 });
             })
         );
