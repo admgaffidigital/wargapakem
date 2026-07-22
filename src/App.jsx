@@ -1821,7 +1821,9 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[16px] font-bold tracking-widest bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent uppercase">Novan Restu Utomo</p>
                                         </div>
                                     </div>
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-full mt-6 bg-slate-100 hover:bg-slate-200 text-slate-700 py-4 rounded-[12px] font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
+                                </div>
+                                <div className="p-4 md:px-8 md:pb-8 pt-0 shrink-0">
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-4 rounded-[12px] font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
                                 </div>
                             </div>
                         </div>
@@ -1855,7 +1857,7 @@ const getDirectImgUrl = (url) => {
 
                     {showLogoutModal && (
                         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[20px] p-8 w-full max-w-sm text-center border-2 border-slate-200 shadow-2xl transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="logout" className="text-[40px] text-google-red" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Keluar Sesi?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
