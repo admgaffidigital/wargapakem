@@ -1660,7 +1660,7 @@ const getDirectImgUrl = (url) => {
                 }
                 return (
                     <>
-                        <LoginScreen theme={theme} legalData={legalData} setShowLegalModal={setShowLegalModal} onLogin={(role) => { 
+                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); window.location.hash = 'menu';
                         }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
@@ -2078,7 +2078,7 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
@@ -2107,6 +2107,12 @@ const getDirectImgUrl = (url) => {
             return (
                 <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 sm:p-5 md:p-6 bg-transparent relative overflow-hidden">
                     <FlagWavingBackground theme={theme} />
+
+                    <div className="absolute top-4 right-4 z-20 no-print">
+                        <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-10 h-10 bg-white hover:bg-slate-100 text-slate-600 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 shadow-sm" title="Toggle Tema">
+                            <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[16px]" />
+                        </button>
+                    </div>
 
                     <div className="relative overflow-hidden bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-[32px] w-full max-w-sm text-center shadow-[0_20px_50px_rgba(239,68,68,0.08)] border-2 border-red-500/20 z-10 hover:border-red-500/40 hover:shadow-[0_20px_50px_rgba(239,68,68,0.15)] transition-all duration-500">
                         <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>
