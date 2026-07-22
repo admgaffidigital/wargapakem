@@ -4809,6 +4809,18 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
             const [isUploading, setIsUploading] = useState(false);
             const [editingId, setEditingId] = useState(null);
 
+            const groupedTransactions = useMemo(() => {
+                const sorted = [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
+                const groups = {};
+                sorted.forEach(t => {
+                    const dateObj = parseLocalDate(t.date);
+                    const monthYear = dateObj.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+                    if (!groups[monthYear]) groups[monthYear] = [];
+                    groups[monthYear].push(t);
+                });
+                return groups;
+            }, [transactions]);
+
             // Upload Nota Kas RT: Canvas compress G base64 G Firestore (tanpa GAS)
             const handleImageUpload = (e) => {
                 const file = e.target.files[0];
@@ -4933,42 +4945,50 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                         </div>
                     )}
 
-                    <div className="space-y-4 no-print">
-                        <h3 className="text-xl font-medium text-google-text mb-5 px-2 tracking-tight">Riwayat Transaksi Terkini</h3>
-                        {transactions.map((t) => (
-                            <div key={t.id} className="bg-white p-5 sm:p-6 rounded-[24px] border-2 border-slate-300 flex flex-col sm:flex-row sm:items-center justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300 gap-4 group">
-                                <div className="flex items-center gap-5 flex-1 overflow-hidden">
-                                    <div className={`w-14 h-14 rounded-[20px] flex items-center justify-center shrink-0 border-2 transition-colors duration-300 ${t.type === 'Pemasukan' ? 'bg-google-greenLight text-google-greenDark border-google-green/30 group-hover:bg-google-green group-hover:text-white' : 'bg-google-redLight text-google-redDark border-google-red/30 group-hover:bg-google-red group-hover:text-white'}`}><Icon name={t.type === 'Pemasukan' ? "arrow_downward" : "arrow_upward"} className="text-[24px]" fill="true" /></div>
-                                    <div className="flex-1 min-w-0">
-                                        <p className="font-medium text-[14px] text-google-text truncate mb-1.5">{t.description}</p>
-                                        <div className="flex flex-wrap items-center gap-2">
-                                            <p className="text-[11px] font-medium text-google-textVariant bg-slate-50 border border-slate-300 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5"><Icon name="label" className="text-[13px]" /> {t.category} G {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
-                                            {t.receiptUrl && <a href={t.receiptUrl} target="_blank" rel="noopener noreferrer" className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</a>}
+                    <div className="space-y-6 no-print">
+                        <h3 className="text-xl font-medium text-google-text mb-3 px-2 tracking-tight">Riwayat Transaksi Terkini</h3>
+                        {Object.keys(groupedTransactions).map((monthYear) => (
+                            <div key={monthYear} className="space-y-4">
+                                <div className="flex items-center gap-3 mb-2 px-2 pt-2">
+                                    <h4 className="text-[12px] font-bold text-slate-800 uppercase tracking-widest">{monthYear}</h4>
+                                    <div className="h-px bg-slate-300 flex-1"></div>
+                                </div>
+                                {groupedTransactions[monthYear].map((t) => (
+                                    <div key={t.id} className="bg-white p-5 sm:p-6 rounded-[20px] border-2 border-slate-300 flex flex-col sm:flex-row sm:items-center justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300 gap-4 group">
+                                        <div className="flex items-center gap-5 flex-1 overflow-hidden">
+                                            <div className={`w-14 h-14 rounded-[20px] flex items-center justify-center shrink-0 border-2 transition-colors duration-300 ${t.type === 'Pemasukan' ? 'bg-google-greenLight text-google-greenDark border-google-green/30 group-hover:bg-google-green group-hover:text-white' : 'bg-google-redLight text-google-redDark border-google-red/30 group-hover:bg-google-red group-hover:text-white'}`}><Icon name={t.type === 'Pemasukan' ? "arrow_downward" : "arrow_upward"} className="text-[24px]" fill="true" /></div>
+                                            <div className="flex-1 min-w-0">
+                                                <p className="font-medium text-[14px] text-google-text truncate mb-1.5">{t.description}</p>
+                                                <div className="flex flex-wrap items-center gap-2">
+                                                    <p className="text-[11px] font-medium text-google-textVariant bg-slate-50 border border-slate-300 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5"><Icon name="label" className="text-[13px]" /> {t.category} &bull; {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
+                                                    {t.receiptUrl && <a href={t.receiptUrl} target="_blank" rel="noopener noreferrer" className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</a>}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="text-left sm:text-right flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center border-t-2 sm:border-t-0 border-slate-200 pt-4 sm:pt-0 w-full sm:w-auto">
+                                            <span className={`font-medium text-[17px] ${t.type === 'Pemasukan' ? 'text-google-greenDark' : 'text-google-redDark'} tracking-tight`}>{t.type === 'Pemasukan' ? '+' : '-'}{formatRp(t.amount)}</span>
+                                            {userRole === 'admin' && t.category !== 'Saldo Awal' && (
+                                                <div className="flex flex-wrap gap-2 mt-0 sm:mt-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                    <button onClick={() => {
+                                                        setEditingId(t.id);
+                                                        setFormData(t);
+                                                        setIsModalOpen(true);
+                                                        setErrorMsg('');
+                                                    }} className="text-google-blue bg-white hover:bg-google-blueLight border-2 border-slate-300 hover:border-google-blue/40 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[14px]" /><span className="hidden sm:inline">Edit</span></button>
+                                                    <button onClick={() => { 
+                                                        if (t.type === 'Pemasukan') setBalance(prev => prev - t.amount); 
+                                                        else setBalance(prev => prev + t.amount);
+                                                        if (t.category === 'Mutasi Jimpitan') setJimpitanBalance(prev => prev + t.amount);
+                                                        setTransactions(transactions.filter(x => x.id !== t.id)); 
+                                                    }} className="text-google-red bg-white hover:bg-google-redLight border-2 border-slate-300 hover:border-google-red/40 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[14px]" /><span className="hidden sm:inline">Hapus</span></button>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
-                                </div>
-                                <div className="text-left sm:text-right flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center border-t-2 sm:border-t-0 border-slate-200 pt-4 sm:pt-0 w-full sm:w-auto">
-                                    <span className={`font-medium text-[17px] ${t.type === 'Pemasukan' ? 'text-google-greenDark' : 'text-google-redDark'} tracking-tight`}>{t.type === 'Pemasukan' ? '+' : '-'}{formatRp(t.amount)}</span>
-                                    {userRole === 'admin' && t.category !== 'Saldo Awal' && (
-                                        <div className="flex flex-wrap gap-2 mt-0 sm:mt-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <button onClick={() => {
-                                                setEditingId(t.id);
-                                                setFormData(t);
-                                                setIsModalOpen(true);
-                                                setErrorMsg('');
-                                            }} className="text-google-blue bg-white hover:bg-google-blueLight border-2 border-slate-300 hover:border-google-blue/40 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[14px]" /><span className="hidden sm:inline">Edit</span></button>
-                                            <button onClick={() => { 
-                                                if (t.type === 'Pemasukan') setBalance(prev => prev - t.amount); 
-                                                else setBalance(prev => prev + t.amount);
-                                                if (t.category === 'Mutasi Jimpitan') setJimpitanBalance(prev => prev + t.amount);
-                                                setTransactions(transactions.filter(x => x.id !== t.id)); 
-                                            }} className="text-google-red bg-white hover:bg-google-redLight border-2 border-slate-300 hover:border-google-red/40 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[14px]" /><span className="hidden sm:inline">Hapus</span></button>
-                                        </div>
-                                    )}
-                                </div>
+                                ))}
                             </div>
                         ))}
-                        {transactions.length === 0 && <div className="bg-white rounded-[32px] border-2 border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border-2 border-slate-300"><Icon name="receipt_long" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Transaksi</h3><p className="text-google-textVariant font-medium text-[13px]">Buku kas masih dalam keadaan kosong.</p></div>}
+                        {transactions.length === 0 && <div className="bg-white rounded-[24px] border-2 border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border-2 border-slate-300"><Icon name="receipt_long" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Transaksi</h3><p className="text-google-textVariant font-medium text-[13px]">Buku kas masih dalam keadaan kosong.</p></div>}
                     </div>
 
                     {isModalOpen && (
