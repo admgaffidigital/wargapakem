@@ -2170,32 +2170,27 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto mt-2">
                     
                     {/* --- AREA BANNER UTAMA --- */}
-                    <div className={`relative rounded-[32px] p-5 sm:p-8 text-white border-2 border-google-blueDark shadow-xl overflow-hidden group ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark' : 'bg-slate-900'}`}>
+                    <div className={`relative rounded-[32px] p-4 sm:p-6 text-white border-2 border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden group min-h-[220px] sm:min-h-[260px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark dark:from-rose-950 dark:to-rose-900' : 'bg-slate-900'}`}>
                         {bannerImage && (
                             <>
-                                {/* object-center memastikan fokus gambar tetap di tengah */}
                                 <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" />
-                                
-                                {/* Gradasi dibuat jauh lebih tipis agar gambar lebih terang di HP */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/20 to-transparent z-0"></div>
+                                <div className="absolute inset-0 bg-slate-950/20 z-0"></div>
                             </>
                         )}
 
-                        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white opacity-10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700 z-0"></div>
-                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-google-blueLight opacity-20 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700 delay-100 z-0"></div>
-                        <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-google-yellow opacity-10 rounded-full blur-2xl animate-pulse z-0"></div>
+                        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white opacity-5 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700 z-0"></div>
+                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-google-blueLight opacity-10 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700 delay-100 z-0"></div>
 
-                        <div className="relative z-10">
-                            <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-4 border border-white/30 shadow-sm">
-                                <div className="w-1.5 h-1.5 bg-green-300 rounded-full animate-pulse"></div>
-                                <span className="text-[9px] font-medium uppercase tracking-widest text-white [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">Sistem Aktif</span>
+                        <div className="relative z-10 w-full max-w-md bg-slate-900/60 dark:bg-slate-950/65 backdrop-blur-md p-5 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-white/20 shadow-2xl text-left">
+                            <div className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3.5 py-1.5 rounded-full mb-3 border border-white/20 shadow-sm w-fit">
+                                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+                                <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Sistem Aktif</span>
                             </div>
                             
-                            {/* Tambahan text-shadow kuat agar teks tetap mencolok meski background sangat terang */}
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium mb-2.5 tracking-tight [text-shadow:_0_2px_10px_rgba(0,0,0,0.7)]">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-1.5 tracking-tight text-white">
                                 Halo, {userRole === 'admin' ? 'Admin!' : 'Warga!'}
                             </h2>
-                            <p className="text-[13px] sm:text-[13px] font-medium text-white max-w-md leading-relaxed [text-shadow:_0_2px_8px_rgba(0,0,0,0.9)]">
+                            <p className="text-[12.5px] sm:text-[13px] font-medium text-white/90 leading-relaxed">
                                 {identity.subtitle}
                             </p>
                         </div>
