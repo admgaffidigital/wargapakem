@@ -2087,7 +2087,7 @@ const getDirectImgUrl = (url) => {
                     <div className="relative overflow-hidden bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-[32px] w-full max-w-sm text-center shadow-[0_20px_50px_rgba(239,68,68,0.08)] border-2 border-red-500/10 z-10 hover:border-red-500/30 hover:shadow-[0_20px_50px_rgba(239,68,68,0.15)] transition-all duration-500">
                         <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>
                         <div className="mx-auto mt-4 mb-6 bg-red-50/50 w-28 h-28 rounded-full flex items-center justify-center border-[3px] border-red-500/20 shadow-inner overflow-hidden">
-                            <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-20 h-20 object-cover rounded-full" />
+                            <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-20 h-20 object-contain"} />
                         </div>
                         <h1 className="text-[23px] font-black bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent mb-1.5 tracking-tight">Portal Layanan RT</h1>
                         <p className="text-[14px] font-medium text-google-textVariant mb-8 leading-snug">{identity.name}</p>
