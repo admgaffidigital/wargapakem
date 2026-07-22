@@ -1500,6 +1500,17 @@ const getDirectImgUrl = (url) => {
             
             const [isLoggedIn, setIsLoggedIn] = useState(false);
             const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+            const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
+
+            useEffect(() => {
+                const root = window.document.documentElement;
+                if (theme === 'dark') {
+                    root.classList.add('dark');
+                } else {
+                    root.classList.remove('dark');
+                }
+                localStorage.setItem('theme', theme);
+            }, [theme]);
             const [userRole, setUserRole] = useState(null); 
             const [activeTab, setActiveTab] = useState('menu'); 
             const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -1744,7 +1755,7 @@ const getDirectImgUrl = (url) => {
 
             return (
                 <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
-                    <FlagWavingBackground />
+                    <FlagWavingBackground theme={theme} />
                     <div className="sticky top-0 z-40 no-print w-full">
                         {isOffline && (
                             <div className="bg-google-redDark text-white text-center py-2.5 px-4 text-[12px] font-medium flex flex-wrap items-center justify-center gap-2 w-full shadow-md">
@@ -1767,6 +1778,7 @@ const getDirectImgUrl = (url) => {
                                 </div>
                                 <div className="flex items-center space-x-3 shrink-0 pl-2">
                                     <span className={`text-[9px] font-medium px-3 py-1.5 rounded-[6px] uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/30' : 'bg-slate-50 text-slate-600 border-slate-300'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
+                                    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-10 h-10 bg-slate-50 hover:bg-slate-200 text-slate-600 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 shadow-sm" title="Toggle Tema"><Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[16px]" /></button>
                                     <button onClick={() => setShowLogoutModal(true)} className="w-10 h-10 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-red-500/30 shadow-sm"><Icon name="logout" className="text-[16px]" /></button>
                                 </div>
                             </div>
@@ -1942,8 +1954,14 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-        function FlagWavingBackground() {
+        function FlagWavingBackground({ theme }) {
             const canvasRef = useRef(null);
+            const themeRef = useRef(theme);
+
+            useEffect(() => {
+                themeRef.current = theme;
+            }, [theme]);
+
             useEffect(() => {
                 const canvas = canvasRef.current;
                 if (!canvas) return;
@@ -1963,14 +1981,15 @@ const getDirectImgUrl = (url) => {
                 window.addEventListener('resize', resize);
 
                 function drawFrame(time) {
+                    const isDark = themeRef.current === 'dark';
                     ctx.clearRect(0, 0, W, H);
 
                     // 1. Gambar latar belakang MERAH solid
-                    ctx.fillStyle = '#dc2626'; // Merah standar
+                    ctx.fillStyle = isDark ? '#4c0519' : '#dc2626'; // Rose-950 atau Merah standar
                     ctx.fillRect(0, 0, W, H);
 
                     // 2. Gambar area PUTIH menggunakan kurva mulus (Polygon Path)
-                    ctx.fillStyle = '#f8fafc'; // Putih salju
+                    ctx.fillStyle = isDark ? '#0f172a' : '#f8fafc'; // Slate-900 atau Putih salju
                     ctx.beginPath();
                     
                     // Mulai dari sisi kiri (Tiang)
@@ -2087,7 +2106,7 @@ const getDirectImgUrl = (url) => {
             
             return (
                 <div className="w-full min-h-screen flex flex-col justify-center items-center p-4 sm:p-5 md:p-6 bg-transparent relative overflow-hidden">
-                    <FlagWavingBackground />
+                    <FlagWavingBackground theme={theme} />
 
                     <div className="relative overflow-hidden bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-[32px] w-full max-w-sm text-center shadow-[0_20px_50px_rgba(239,68,68,0.08)] border-2 border-red-500/20 z-10 hover:border-red-500/40 hover:shadow-[0_20px_50px_rgba(239,68,68,0.15)] transition-all duration-500">
                         <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>

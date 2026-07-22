@@ -145,4 +145,149 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     .ttd-name { font-weight: bold; text-decoration: underline; margin-bottom: 2px; }
 }
 
+/* ============================================================
+   DARK MODE SYSTEM
+   ============================================================ */
+.dark {
+    color-scheme: dark;
+}
+
+.dark body {
+    color: #f8fafc;
+}
+
+/* Base Overrides for Dark Mode */
+.dark .bg-white {
+    background-color: #1e293b !important; /* slate-800 */
+}
+
+/* Transparent overlays or headers */
+.dark .bg-white\/95 {
+    background-color: rgba(30, 41, 59, 0.95) !important;
+}
+.dark .bg-white\/80 {
+    background-color: rgba(30, 41, 59, 0.8) !important;
+}
+.dark .bg-white\/20 {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .bg-slate-50 {
+    background-color: #0f172a !important; /* slate-900 */
+}
+
+.dark .bg-slate-100 {
+    background-color: #1e293b !important;
+}
+
+.dark .bg-slate-200 {
+    background-color: #334155 !important; /* slate-700 */
+}
+
+.dark .bg-gray-50 {
+    background-color: #0f172a !important;
+}
+
+.dark .bg-gray-100 {
+    background-color: #1e293b !important;
+}
+
+/* Text Overrides */
+.dark .text-google-text, 
+.dark .text-slate-800, 
+.dark .text-slate-900, 
+.dark .text-slate-700, 
+.dark .text-gray-900, 
+.dark .text-gray-800 {
+    color: #f8fafc !important; /* slate-50 */
+}
+
+.dark .text-google-textVariant, 
+.dark .text-slate-600, 
+.dark .text-slate-500, 
+.dark .text-gray-600, 
+.dark .text-gray-500 {
+    color: #94a3b8 !important; /* slate-400 */
+}
+
+.dark .text-slate-400,
+.dark .text-gray-400 {
+    color: #64748b !important; /* slate-500 */
+}
+
+/* Border Overrides */
+.dark .border-slate-200, 
+.dark .border-slate-300, 
+.dark .border-slate-100,
+.dark .border-gray-200,
+.dark .border-gray-300 {
+    border-color: #334155 !important; /* slate-700 */
+}
+
+/* Inputs & Form Elements */
+.dark input, 
+.dark textarea, 
+.dark select {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+
+.dark input::placeholder, 
+.dark textarea::placeholder {
+    color: #64748b !important;
+}
+
+/* Google-themed light alerts and backgrounds */
+.dark .bg-google-blueLight,
+.dark .bg-red-50,
+.dark .bg-red-100 {
+    background-color: rgba(239, 68, 68, 0.12) !important;
+    color: #fca5a5 !important;
+}
+.dark .bg-google-yellowLight,
+.dark .bg-amber-50,
+.dark .bg-amber-100 {
+    background-color: rgba(251, 188, 4, 0.12) !important;
+    color: #fde047 !important;
+}
+.dark .bg-google-greenLight,
+.dark .bg-green-50,
+.dark .bg-green-100 {
+    background-color: rgba(34, 197, 94, 0.12) !important;
+    color: #86efac !important;
+}
+.dark .bg-google-redLight {
+    background-color: rgba(239, 68, 68, 0.12) !important;
+    color: #fca5a5 !important;
+}
+
+/* Active navigation or subtle hover states */
+.dark .hover\:bg-slate-50:hover, 
+.dark .hover\:bg-gray-50:hover {
+    background-color: #1e293b !important;
+}
+
+.dark .hover\:bg-slate-100:hover,
+.dark .hover\:bg-gray-100:hover {
+    background-color: #334155 !important;
+}
+
+/* Text colors inside light banners */
+.dark .text-google-blueDark, .dark .text-red-700, .dark .text-red-600 { color: #f87171 !important; }
+.dark .text-google-yellowDark, .dark .text-amber-700, .dark .text-amber-600 { color: #facc15 !important; }
+.dark .text-google-greenDark, .dark .text-green-700, .dark .text-green-600 { color: #4ade80 !important; }
+
+/* Border colors for Google cards */
+.dark .border-google-blue, .dark .border-red-500, .dark .border-red-400 { border-color: rgba(239, 68, 68, 0.3) !important; }
+.dark .border-google-yellow, .dark .border-amber-500, .dark .border-amber-400 { border-color: rgba(251, 188, 4, 0.3) !important; }
+.dark .border-google-green, .dark .border-green-500, .dark .border-green-400 { border-color: rgba(34, 197, 94, 0.3) !important; }
+.dark .border-google-red { border-color: rgba(239, 68, 68, 0.3) !important; }
+
+/* Shadow reductions for dark mode to prevent glow artifacts */
+.dark .shadow-sm, .dark .shadow, .dark .shadow-md, .dark .shadow-lg, .dark .shadow-xl, .dark .shadow-2xl {
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5) !important;
+}
+
+
 
