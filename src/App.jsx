@@ -2596,17 +2596,17 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                     )}
 
                     {nextPrayer && (
-                        <div className="bg-red-50/70 border border-red-500/30 p-5 sm:p-6 md:p-8 rounded-[24px] flex flex-col sm:flex-row justify-between items-center gap-4 shadow-sm">
+                        <div className="bg-red-50/70 dark:bg-red-950/40 border border-red-500/30 dark:border-red-500/20 p-5 sm:p-6 md:p-8 rounded-[24px] flex flex-col sm:flex-row justify-between items-center gap-4 shadow-sm">
                             <div className="flex flex-wrap items-center gap-3">
                                 <div className="w-11 h-11 bg-red-600 text-white rounded-full flex items-center justify-center shadow-md"><Icon name="alarm" className="text-[18px]"/></div>
                                 <div>
-                                    <p className="text-[10px] uppercase tracking-widest font-medium text-red-800">Sholat Berikutnya</p>
-                                    <h4 className="text-[14px] font-medium text-red-700 mt-0.5">{nextPrayer.name} pukul {nextPrayer.time}</h4>
+                                    <p className="text-[10px] uppercase tracking-widest font-medium text-red-800 dark:text-red-200">Sholat Berikutnya</p>
+                                    <h4 className="text-[14px] font-medium text-red-700 dark:text-red-300 mt-0.5">{nextPrayer.name} pukul {nextPrayer.time}</h4>
                                 </div>
                             </div>
-                            <div className="bg-white/80 border border-red-500/30 px-5 py-2.5 rounded-full shadow-sm text-center">
-                                <span className="text-[11px] font-medium text-red-800 uppercase tracking-wider block">Waktu Mundur</span>
-                                <span className="text-[13px] font-bold text-red-600 font-mono">{timeRemaining}</span>
+                            <div className="bg-white/80 dark:bg-red-900/40 border border-red-500/30 dark:border-red-500/30 px-5 py-2.5 rounded-full shadow-sm text-center">
+                                <span className="text-[11px] font-medium text-red-800 dark:text-red-200 uppercase tracking-wider block">Waktu Mundur</span>
+                                <span className="text-[13px] font-bold text-red-600 dark:text-red-300 font-mono">{timeRemaining}</span>
                             </div>
                         </div>
                     )}
