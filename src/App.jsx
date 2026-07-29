@@ -68,47 +68,89 @@ const getDirectImgUrl = (url) => {
                 return typeof initialValue === 'function' ? initialValue() : initialValue;
             });
             const [isLoaded, setIsLoaded] = useState(false);
-            
+            // Ref untuk mencegah onSnapshot menimpa state saat sedang ada proses simpan aktif.
+            // persistentLocalCache bisa rollback snapshot ke data lama jika write belum terkonfirmasi server.
+            const pendingWriteRef = useRef(false);
+            const pendingValueRef = useRef(undefined);
+
             useEffect(() => {
                 if (!db) {
-                    // Tidak ada Firebase - anggap loaded dengan data dari localStorage/initialValue
                     setIsLoaded(true);
                     return;
                 }
                 const docRef = doc(db, 'arisan_rt', key);
                 const unsubscribe = onSnapshot(docRef, (snapshot) => {
+                    // Jika sedang ada write yang tertunda, periksa apakah snapshot ini
+                    // adalah rollback (data lama) atau konfirmasi (data baru).
+                    if (pendingWriteRef.current && pendingValueRef.current !== undefined) {
+                        if (snapshot.exists()) {
+                            const incoming = snapshot.data().value;
+                            // Bandingkan dengan nilai yang sedang kita tulis.
+                            // Jika sama → write terkonfirmasi, hapus pending flag.
+                            // Jika beda → ini rollback, abaikan snapshot ini.
+                            const expected = JSON.stringify(pendingValueRef.current);
+                            const got      = JSON.stringify(incoming);
+                            if (expected === got) {
+                                // Write terkonfirmasi server ✓
+                                pendingWriteRef.current  = false;
+                                pendingValueRef.current  = undefined;
+                                try { localStorage.setItem('arisan_rt_' + key, got); } catch(e) {}
+                            }
+                            // Jika beda, jangan overwrite — biarkan state optimistic tetap
+                        }
+                        setIsLoaded(true);
+                        return;
+                    }
+
                     if (snapshot.exists()) {
                         const val = snapshot.data().value;
                         setData(val);
-                        // Sinkron ke localStorage sebagai cache offline
                         try { localStorage.setItem('arisan_rt_' + key, JSON.stringify(val)); } catch(e) {}
                     } else {
+                        // Dokumen belum ada di Firestore — coba pakai localStorage sebelum reset
+                        try {
+                            const cached = localStorage.getItem('arisan_rt_' + key);
+                            if (cached !== null) { setData(JSON.parse(cached)); setIsLoaded(true); return; }
+                        } catch(e) {}
                         const iv = typeof initialValue === 'function' ? initialValue() : initialValue;
                         setData(iv);
                     }
                     setIsLoaded(true);
                 }, (error) => {
                     console.warn(`[Sync Error] Gagal memuat koleksi '${key}':`, error.message);
-                    setIsLoaded(true); 
+                    setIsLoaded(true);
                 });
                 return () => unsubscribe();
             }, [key]);
-            
+
             const updateData = useCallback((newValue) => {
                 setData(prevData => {
                     const valueToStore = typeof newValue === 'function' ? newValue(prevData) : newValue;
-                    // Selalu simpan ke localStorage sebagai cache
+                    // Simpan ke localStorage sebelum kirim ke Firestore
                     try { localStorage.setItem('arisan_rt_' + key, JSON.stringify(valueToStore)); } catch(e) {}
                     if (db) {
-                        const docRef = doc(db, 'arisan_rt', key);
-                        const safeValue = valueToStore === undefined ? null : valueToStore;
-                        const sanitizedData = JSON.parse(JSON.stringify(safeValue));
-                        setDoc(docRef, { value: sanitizedData }, { merge: false }).catch(err => console.error(err)); 
+                        // Tandai bahwa ada write aktif agar onSnapshot tidak rollback
+                        pendingWriteRef.current = true;
+                        pendingValueRef.current = valueToStore;
+                        const docRef     = doc(db, 'arisan_rt', key);
+                        const safeValue  = valueToStore === undefined ? null : valueToStore;
+                        const sanitized  = JSON.parse(JSON.stringify(safeValue));
+                        setDoc(docRef, { value: sanitized }, { merge: false })
+                            .then(() => {
+                                // Write berhasil — biarkan onSnapshot mengkonfirmasi
+                            })
+                            .catch(err => {
+                                console.error('[Firebase] setDoc gagal:', err);
+                                pendingWriteRef.current = false;
+                                pendingValueRef.current = undefined;
+                                showToast('Gagal menyimpan ke server. Cek koneksi internet!', 'error');
+                                // Data tetap aman di localStorage
+                            });
                     }
                     return valueToStore;
                 });
             }, [key]);
-            
+
             return [data, updateData, isLoaded];
         }
 
