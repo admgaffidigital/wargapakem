@@ -1747,7 +1747,7 @@ const getDirectImgUrl = (url) => {
                 { id: 'warga', icon: 'group', label: 'Buku Warga', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'galery', icon: 'photo_library', label: 'Galeri', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-400' },
                 { id: 'inventaris', icon: 'inventory_2', label: 'Inventaris', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
-                { id: 'umkm', icon: 'storefront', label: 'UMKM RT', bg: 'bg-green-100', color: 'text-green-700 border-2 border-green-500' },
+                { id: 'umkm', icon: 'storefront', label: 'UMKM', bg: 'bg-green-100', color: 'text-green-700 border-2 border-green-500' },
                 { id: 'pengaduan', icon: 'report_problem', label: 'Lapor', bg: 'bg-blue-100', color: 'text-blue-700 border-2 border-blue-500' },
                 { id: 'blog', icon: 'article', label: 'Blog Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
                 { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
