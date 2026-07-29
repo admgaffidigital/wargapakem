@@ -336,19 +336,19 @@ const getDirectImgUrl = (url) => {
                     ]
                 },
                 kas: {
-                    label: '=Æ¦ Buku Kas RT', icon: 'account_balance_wallet',
-                    intro: 'Catatan keuangan Kas RT Utama. Terpisah dari Kas Jimpitan.',
+                    label: '= Buku Kas Warga', icon: 'account_balance_wallet',
+                    intro: 'Catatan keuangan Kas Warga Utama. Terpisah dari Kas Jimpitan.',
                     topics: [
                         { label: 'Kategori Transaksi', answer: `= Pemasukan: Iuran Opsional, Donasi, Pemasukan Jasa, Lain-lain.\n= Pengeluaran: Belanja Barang/Alat, Honor Jasa, Konsumsi, Bantuan Sosial, Lain-lain.\n\nSetiap transaksi wajib ada keterangan agar mudah diaudit.` },
-                        { label: 'Tarik Kas Jimpitan', answer: `Dana jimpitan bisa dicairkan ke Kas RT via tombol "Tarik Kas Jimpitan".\n\nMaksimal tarik = saldo jimpitan saat ini: Rp ${(jimpitanBalance||0).toLocaleString('id-ID')}.\n\nJika transaksi ini dihapus, saldo jimpitan otomatis dikembalikan.` },
-                        { label: 'Guard Saldo Negatif', answer: `Sistem TIDAK mengizinkan pengeluaran melebihi saldo kas.\n\nJika nominal > saldo, muncul pesan error dan transaksi dibatalkan. Saldo RT saat ini: Rp ${(kasRtBalance||0).toLocaleString('id-ID')}.` }
+                        { label: 'Tarik Kas Jimpitan', answer: `Dana jimpitan bisa dicairkan ke Kas Warga via tombol "Tarik Kas Jimpitan".\n\nMaksimal tarik = saldo jimpitan saat ini: Rp ${(jimpitanBalance||0).toLocaleString('id-ID')}.\n\nJika transaksi ini dihapus, saldo jimpitan otomatis dikembalikan.` },
+                        { label: 'Guard Saldo Negatif', answer: `Sistem TIDAK mengizinkan pengeluaran melebihi saldo kas.\n\nJika nominal > saldo, muncul pesan error dan transaksi dibatalkan. Saldo Warga saat ini: Rp ${(kasRtBalance||0).toLocaleString('id-ID')}.` }
                     ]
                 },
                 iuran: {
                     label: '= Iuran Umum', icon: 'volunteer_activism',
                     intro: 'Tagihan khusus di luar arisan G dana kemerdekaan, pembangunan, dll.',
                     topics: [
-                        { label: 'Cara Kerja Iuran', answer: `Admin buat agenda G isi nominal yang dibayar tiap warga G warga hanya lihat LUNAS/BELUM LUNAS (nominal privat).\n\nSetelah rekap tersimpan, admin bisa setor ke Kas RT Utama.` },
+                        { label: 'Cara Kerja Iuran', answer: `Admin buat agenda G isi nominal yang dibayar tiap warga G warga hanya lihat LUNAS/BELUM LUNAS (nominal privat).\n\nSetelah rekap tersimpan, admin bisa setor ke Kas Warga Utama.` },
                         { label: 'Validasi Sebelum Setor', answer: `Tombol "Setor ke Kas" akan diblokir jika admin belum klik "Simpan Rekap Warga" dulu.\n\nIni mencegah perbedaan antara data yang tampil dan yang benar-benar disetor.` },
                         { label: 'Hapus Agenda', answer: `Ada dialog konfirmasi 2 langkah sebelum hapus.\n\nSemua data pembayaran warga ikut terhapus. Dana yang sudah disetor ke kas TETAP ada di Buku Kas.` }
                     ]
@@ -374,7 +374,7 @@ const getDirectImgUrl = (url) => {
                     intro: 'Konfigurasi sistem: nominal, identitas, koreksi saldo, PIN, reset.',
                     topics: [
                         { label: 'Nominal Arisan & Jimpitan', answer: `Arisan: Rp ${(nominalArisan||10000).toLocaleString('id-ID')} | Jimpitan: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}.\n\nPerubahan berlaku mulai pertemuan berikutnya. Riwayat lama tetap memakai nominal lama.` },
-                        { label: 'Koreksi Saldo Manual', answer: `Kas RT: perbedaan dicatat otomatis sebagai transaksi "Penyesuaian Saldo Awal" di Buku Kas.\nJimpitan: langsung ubah tanpa entry transaksi.\n\nGunakan jika ada perbedaan antara sistem dan uang fisik.` },
+                        { label: 'Koreksi Saldo Manual', answer: `Kas Warga: perbedaan dicatat otomatis sebagai transaksi "Penyesuaian Saldo Awal" di Buku Kas.\nJimpitan: langsung ubah tanpa entry transaksi.\n\nGunakan jika ada perbedaan antara sistem dan uang fisik.` },
                         { label: 'Kalibrasi Putaran & Siklus', answer: `Koreksi nomor putaran dan siklus jika ada kesalahan (misal migrasi dari sistem lama).\n\nPutaran saat ini: ${currentRound||1} | Siklus: ${cycleNumber||1}.` },
                         { label: 'Factory Reset', answer: `Menghapus SEMUA data: warga, riwayat, saldo, iuran, galeri, inventaris.\n\nKetik "RESET" untuk konfirmasi. Gn+ TIDAK BISA DIBATALKAN. PIN admin tetap tidak berubah agar admin masih bisa login setelah reset.` }
                     ]
@@ -383,7 +383,7 @@ const getDirectImgUrl = (url) => {
                     label: '= Infaq & Inventaris', icon: 'inventory_2',
                     intro: 'Kelola data Infaq, barang inventaris, dan status peminjaman.',
                     topics: [
-                        { label: 'Sistem Infaq Warga', answer: `Infaq dikelola terpisah dari Kas RT dan Jimpitan.\n\nSaat ini ada ${infaqData?.filter(i => i.status === 'PENDING').length || 0} donasi Infaq yang menunggu persetujuan (PENDING). Total donasi disetujui: Rp ${(infaqData?.filter(i => i.status === 'APPROVED').reduce((sum, i) => sum + parseInt(i.nominal || 0), 0) || 0).toLocaleString('id-ID')}.` },
+                        { label: 'Sistem Infaq Warga', answer: `Infaq dikelola terpisah dari Kas Warga dan Jimpitan.\n\nSaat ini ada ${infaqData?.filter(i => i.status === 'PENDING').length || 0} donasi Infaq yang menunggu persetujuan (PENDING). Total donasi disetujui: Rp ${(infaqData?.filter(i => i.status === 'APPROVED').reduce((sum, i) => sum + parseInt(i.nominal || 0), 0) || 0).toLocaleString('id-ID')}.` },
                         { label: 'Manajemen Inventaris', answer: `RT memiliki ${inventarisData?.length || 0} jenis barang inventaris.\n\nJika ada yang meminjam, gunakan menu "Pinjam Inventaris". Saat ini ada ${pinjamData?.filter(p => p.status === 'DIPINJAM').length || 0} transaksi barang yang sedang dipinjam warga.` }
                     ]
                 }
@@ -425,11 +425,11 @@ const getDirectImgUrl = (url) => {
                     topics: [
                         {
                             label: 'Apa itu Jimpitan?',
-                            answer: `Jimpitan adalah iuran kecil yang dikumpulkan setiap pertemuan arisan, terpisah dari uang arisan.\n\nBesarnya: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} per anggota per pertemuan.\n\nUang jimpitan TIDAK diundi G dikumpulkan terus sebagai "tabungan bersama" RT yang bisa dipakai untuk keperluan operasional, membantu warga yang kesulitan, atau ditransfer ke Kas RT jika diperlukan.`
+                            answer: `Jimpitan adalah iuran kecil yang dikumpulkan setiap pertemuan arisan, terpisah dari uang arisan.\n\nBesarnya: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')} per anggota per pertemuan.\n\nUang jimpitan TIDAK diundi G dikumpulkan terus sebagai "tabungan bersama" RT yang bisa dipakai untuk keperluan operasional, membantu warga yang kesulitan, atau ditransfer ke Kas Warga jika diperlukan.`
                         },
                         {
-                            label: 'Bedanya Kas Jimpitan dan Kas RT?',
-                            answer: `Ada DUA kantong uang di sistem ini:\n\n= Kas Jimpitan G uang dari iuran kehadiran bulanan. Ini uang hasil gotong royong murni dari warga.\n\n= Kas RT Utama G uang operasional RT yang lebih besar. Bisa berasal dari pencairan jimpitan, iuran umum, sumbangan, dll.\n\nAdmin bisa memindahkan sebagian jimpitan ke Kas RT jika ada kebutuhan mendesak. Semua perpindahan uang tercatat di Buku Kas.`
+                            label: 'Bedanya Kas Jimpitan dan Kas Warga?',
+                            answer: `Ada DUA kantong uang di sistem ini:\n\n= Kas Jimpitan G uang dari iuran kehadiran bulanan. Ini uang hasil gotong royong murni dari warga.\n\n= Kas Warga Utama G uang operasional RT yang lebih besar. Bisa berasal dari pencairan jimpitan, iuran umum, sumbangan, dll.\n\nAdmin bisa memindahkan sebagian jimpitan ke Kas Warga jika ada kebutuhan mendesak. Semua perpindahan uang tercatat di Buku Kas.`
                         },
                         {
                             label: 'Apa itu "Saldo Efektif"?',
@@ -482,12 +482,12 @@ const getDirectImgUrl = (url) => {
                     ]
                 },
                 kas: {
-                    label: '= Cara Baca Kas RT', icon: 'account_balance_wallet',
-                    intro: 'Memahami laporan keuangan RT G dari mana uang masuk, ke mana uang keluar.',
+                    label: '= Cara Baca Kas Warga', icon: 'account_balance_wallet',
+                    intro: 'Memahami laporan keuangan Warga G dari mana uang masuk, ke mana uang keluar.',
                     topics: [
                         {
-                            label: 'Apa yang terlihat di menu Kas RT?',
-                            answer: `Di menu "Kas RT" Anda bisa melihat:\n\n= Saldo kas RT saat ini\n= Riwayat semua pemasukan dan pengeluaran\n\nPermasukan bisa berasal dari: iuran opsional, donasi warga, pencairan jimpitan, hasil iuran umum.\n\nPengeluaran bisa untuk: belanja alat, konsumsi rapat, bantuan sosial, honor petugas, dll.`
+                            label: 'Apa yang terlihat di menu Kas Warga?',
+                            answer: `Di menu "Kas Warga" Anda bisa melihat:\n\n= Saldo kas warga saat ini\n= Riwayat semua pemasukan dan pengeluaran\n\nPermasukan bisa berasal dari: iuran opsional, donasi warga, pencairan jimpitan, hasil iuran umum.\n\nPengeluaran bisa untuk: belanja alat, konsumsi rapat, bantuan sosial, honor petugas, dll.`
                         },
                         {
                             label: 'Apakah warga bisa tambah/hapus data?',
@@ -1752,7 +1752,7 @@ const getDirectImgUrl = (url) => {
                 { id: 'blog', icon: 'article', label: 'Blog Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
                 { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'iuran', icon: 'volunteer_activism', label: 'Iuran Umum', bg: 'bg-google-redLight', color: 'text-google-redDark border-2 border-google-red' },
-                { id: 'kas', icon: 'account_balance_wallet', label: 'Kas RT', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
+                { id: 'kas', icon: 'account_balance_wallet', label: 'Kas Warga', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
                 { id: 'laporan', icon: 'history', label: 'Arsip Riwayat', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-400' },
                 { id: 'infaq', icon: 'volunteer_activism', label: 'Infaq', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
@@ -4697,7 +4697,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 setKasRtTransactions(prev => [{ id: Date.now(), date: getLocalDate(), type: 'Pemasukan', category: 'Iuran Umum', description: `Mutasi Iuran: ${selectedAgenda.title}`, amount: nominal }, ...prev]);
                 setIuranData(iuranData.map(item => item.id === selectedAgenda.id ? { ...item, transferredToKas: (selectedAgenda.transferredToKas || 0) + nominal } : item));
                 setIsTransferModalOpen(false); setView('list');
-                showToast(`Berhasil menyetor ${formatRp(nominal)} ke Kas RT.`);
+                showToast(`Berhasil menyetor ${formatRp(nominal)} ke Kas Warga.`);
             };
 
             const calculateTotal = (obj) => { let total = 0; for(let k in obj) total += obj[k]; return total; };
@@ -4812,7 +4812,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                                 <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
                                     <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
-                                    <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Setor ke Kas RT</h3>
+                                    <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Setor ke Kas Warga</h3>
                                     <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Mutasi dana fisik dari Iuran ke Saldo Buku Kas Utama.</p>
                                     
                                     <div className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] mb-8 border-2 border-slate-300 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Batas Maksimal Tarik</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(sisa)}</p></div>
@@ -5003,7 +5003,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                     <tr key={t.id}><td className="text-center font-medium">{idx + 1}</td><td className="text-center font-medium">{parseLocalDate(t.date).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year:'numeric'})}</td><td className="font-medium">{t.description} {t.category ? `(${t.category})` : ''}</td><td className="text-right font-medium">{t.type === 'Pemasukan' ? formatRp(t.amount) : '-'}</td><td className="text-right font-medium">{t.type === 'Pengeluaran' ? formatRp(t.amount) : '-'}</td></tr>
                                 ))}
                             </tbody>
-                            <tfoot><tr><th colSpan="3" className="text-right">SALDO AKHIR KAS RT</th><th colSpan="2" className="text-center" style={{fontSize: '12pt'}}>{formatRp(balance)}</th></tr></tfoot>
+                            <tfoot><tr><th colSpan="3" className="text-right">SALDO AKHIR KAS WARGA</th><th colSpan="2" className="text-center" style={{fontSize: '12pt'}}>{formatRp(balance)}</th></tr></tfoot>
                         </table>
                         <div className="ttd-container">
                             <div className="ttd-box"><p>Mengetahui,</p><p>Ketua RT</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
@@ -6424,7 +6424,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {activeMenu === 'saldo' && (
                                 <PengaturanSection title="Koreksi Saldo Manual" onSave={() => handleSaveAll('saldo')}>
-                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Kas RT Utama (Rp)</label><input type="number" min="0" value={formSaldo.kasRt} onChange={e => setFormSaldo({...formSaldo, kasRt: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Kas Warga Utama (Rp)</label><input type="number" min="0" value={formSaldo.kasRt} onChange={e => setFormSaldo({...formSaldo, kasRt: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                     <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Jimpitan Berjalan (Rp)</label><input type="number" min="0" value={formSaldo.jimpitan} onChange={e => setFormSaldo({...formSaldo, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                 </PengaturanSection>
                             )}
