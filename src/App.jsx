@@ -2807,12 +2807,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 const totalQty = (k.baru || 0) + (k.bekas || 0) + (k.rusak || 0);
                 if (totalQty <= 0) return setErrorMsg('Jumlah barang minimal 1 unit (isi salah satu kondisi)!');
 
-                // Validasi ukuran foto: base64 tidak boleh melebihi ~700KB agar
-                // total dokumen Firestore tidak melampaui batas 1MB
                 const imgUrl = formData.imageUrl || '';
-                if (imgUrl.startsWith('data:') && imgUrl.length > 700000) {
-                    return setErrorMsg('Foto terlalu besar! Gunakan foto di bawah 500KB atau masukkan URL foto Google Drive.');
-                }
 
                 const itemData = {
                     name: formData.name.trim(),
@@ -2843,7 +2838,32 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 if (file.size > 2 * 1024 * 1024) return setErrorMsg('Ukuran foto maksimal 2MB!');
                 setIsUploading(true);
                 const reader = new FileReader();
-                reader.onloadend = () => { setFormData(prev => ({...prev, imageUrl: reader.result})); setIsUploading(false); };
+                reader.onloadend = () => {
+                    const img = new Image();
+                    img.onload = () => {
+                        // Kompres via canvas agar base64 aman untuk Firestore (<1MB limit)
+                        const MAX_DIM = 800;
+                        let { width, height } = img;
+                        if (width > MAX_DIM || height > MAX_DIM) {
+                            if (width > height) { height = Math.round(height * MAX_DIM / width); width = MAX_DIM; }
+                            else { width = Math.round(width * MAX_DIM / height); height = MAX_DIM; }
+                        }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width; canvas.height = height;
+                        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+                        // Kurangi kualitas bertahap sampai di bawah 900KB
+                        let quality = 0.85;
+                        let compressed = canvas.toDataURL('image/jpeg', quality);
+                        while (compressed.length > 900000 && quality > 0.3) {
+                            quality -= 0.1;
+                            compressed = canvas.toDataURL('image/jpeg', quality);
+                        }
+                        setFormData(prev => ({...prev, imageUrl: compressed}));
+                        setIsUploading(false);
+                    };
+                    img.onerror = () => { setErrorMsg('Gagal memproses gambar.'); setIsUploading(false); };
+                    img.src = reader.result;
+                };
                 reader.onerror = () => { setErrorMsg('Gagal membaca file.'); setIsUploading(false); };
                 reader.readAsDataURL(file);
             };
