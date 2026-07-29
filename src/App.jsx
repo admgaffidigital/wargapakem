@@ -2765,19 +2765,30 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                 const totalQty = (k.baru || 0) + (k.bekas || 0) + (k.rusak || 0);
                 if (totalQty <= 0) return setErrorMsg('Jumlah barang minimal 1 unit (isi salah satu kondisi)!');
 
+                // Validasi ukuran foto: base64 tidak boleh melebihi ~700KB agar
+                // total dokumen Firestore tidak melampaui batas 1MB
+                const imgUrl = formData.imageUrl || '';
+                if (imgUrl.startsWith('data:') && imgUrl.length > 700000) {
+                    return setErrorMsg('Foto terlalu besar! Gunakan foto di bawah 500KB atau masukkan URL foto Google Drive.');
+                }
+
                 const itemData = {
                     name: formData.name.trim(),
                     kondisi: { baru: k.baru || 0, bekas: k.bekas || 0, rusak: k.rusak || 0 },
-                    qty: totalQty,                    // total semua kondisi (untuk backward compat)
-                    qtyPinjam: (k.baru || 0) + (k.bekas || 0),  // yang bisa dipinjam
-                    imageUrl: formData.imageUrl || '',
+                    qty: totalQty,
+                    qtyPinjam: (k.baru || 0) + (k.bekas || 0),
+                    imageUrl: imgUrl,
                 };
 
-                if (editingId) {
-                    setData(data.map(item => item.id === editingId ? { ...item, ...itemData } : item));
+                const savedId = editingId;
+                if (savedId) {
+                    // Gunakan functional updater agar selalu pakai state terbaru
+                    setData(prev => prev.map(item => item.id === savedId ? { ...item, ...itemData } : item));
                     showToast('Data inventaris berhasil diperbarui.');
                 } else {
-                    setData([{ id: Date.now(), ...itemData }, ...data]);
+                    const newId = Date.now();
+                    // Gunakan functional updater agar selalu pakai state terbaru
+                    setData(prev => [{ id: newId, ...itemData }, ...prev]);
                     showToast('Barang baru berhasil ditambahkan.');
                 }
                 setIsFormOpen(false);
@@ -2980,7 +2991,7 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Barang ini akan dihapus permanen dari daftar inventaris RT.</p>
                                 <div className="flex flex-wrap gap-3">
                                     <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Barang berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
+                                    <button onClick={() => { const idToDelete = deleteConfirmId; setData(prev => prev.filter(item => item.id !== idToDelete)); setDeleteConfirmId(null); showToast('Barang berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
                         </div>
