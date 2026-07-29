@@ -1385,7 +1385,7 @@ const getDirectImgUrl = (url) => {
                                 <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-[12px] mb-4 shadow-lg">
                                     <Icon name="campaign" />
                                 </div>
-                                <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight mb-2">Lapor RT</h1>
+                                <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight mb-2">Lapor</h1>
                                 <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Sistem Pengaduan dan Aspirasi Warga. Laporkan keluhan atau berikan saran untuk lingkungan kita.</p>
                             </div>
                             <button onClick={() => setIsFormOpen(true)} className="w-full md:w-auto bg-blue-600 text-white px-8 py-4 rounded-[12px] font-medium text-[13px] shadow-[0_8px_25px_rgba(37,99,235,0.3)] hover:bg-blue-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
@@ -1748,7 +1748,7 @@ const getDirectImgUrl = (url) => {
                 { id: 'galery', icon: 'photo_library', label: 'Galeri', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-400' },
                 { id: 'inventaris', icon: 'inventory_2', label: 'Inventaris', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
                 { id: 'umkm', icon: 'storefront', label: 'UMKM RT', bg: 'bg-green-100', color: 'text-green-700 border-2 border-green-500' },
-                { id: 'pengaduan', icon: 'report_problem', label: 'Lapor RT', bg: 'bg-blue-100', color: 'text-blue-700 border-2 border-blue-500' },
+                { id: 'pengaduan', icon: 'report_problem', label: 'Lapor', bg: 'bg-blue-100', color: 'text-blue-700 border-2 border-blue-500' },
                 { id: 'blog', icon: 'article', label: 'Blog Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
                 { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'iuran', icon: 'volunteer_activism', label: 'Iuran Umum', bg: 'bg-google-redLight', color: 'text-google-redDark border-2 border-google-red' },
