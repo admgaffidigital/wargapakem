@@ -2922,10 +2922,10 @@ function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setSho
                             return (
                                 <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-yellow/40 transition-all duration-300 flex flex-col group relative">
                                     {/* Foto */}
-                                    <div className="w-full bg-slate-50 relative shrink-0 border-b-2 border-slate-300 overflow-hidden flex items-center justify-center" style={{minHeight:'120px', maxHeight:'220px'}}>
+                                    <div className="w-full relative shrink-0 border-b-2 border-slate-300 overflow-hidden" style={{height:'200px'}}>
                                         {item.imageUrl
-                                            ? <img src={item.imageUrl} className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-700" style={{maxHeight:'220px', objectFit:'contain'}} loading="lazy" alt={item.name} onError={(e) => { e.target.style.display='none'; e.target.nextSibling && (e.target.nextSibling.style.display='flex'); }} />
-                                            : <div className="flex items-center justify-center p-8"><Icon name="inventory_2" className="text-[64px] text-slate-300" /></div>
+                                            ? <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.name} onError={(e) => { e.target.style.display='none'; e.target.nextSibling && (e.target.nextSibling.style.display='flex'); }} />
+                                            : <div className="w-full h-full bg-slate-50 flex items-center justify-center"><Icon name="inventory_2" className="text-[64px] text-slate-300" /></div>
                                         }
                                         {/* Badge status pinjam */}
                                         {sedangDipinjam > 0 && (
