@@ -7864,10 +7864,15 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <p className="text-[12px] font-bold text-google-blue mt-1">{formatRp(prod.price)}</p>
                                                     <p className="text-[11.5px] font-medium text-slate-500 mt-2 line-clamp-3 leading-relaxed">{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     
-                                                    <div className="mt-3 flex items-center justify-between text-[11px] font-bold text-slate-500 bg-slate-50 p-2.5 rounded-[12px] border border-slate-200">
-                                                        <span className="flex items-center gap-1"><Icon name="location_on" className="text-google-blue text-[14px]" /> {prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</span>
+                                                    <div className="mt-3 space-y-2 bg-slate-50 p-3 rounded-[14px] border border-slate-200 text-[11px] font-bold text-slate-600">
+                                                        <div className="flex items-start gap-1.5">
+                                                            <Icon name="location_on" className="text-google-blue text-[15px] shrink-0 mt-0.5" />
+                                                            <span className="leading-tight">Lokasi: {prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</span>
+                                                        </div>
                                                         {prod.pickupGeoUrl && (
-                                                            <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="text-google-blue hover:underline inline-flex items-center gap-0.5"><Icon name="map" className="text-[12px]" /> Peta</a>
+                                                            <div className="pt-2 border-t border-slate-200/60 flex justify-end">
+                                                                <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="text-google-blue hover:underline inline-flex items-center gap-1 text-[10px] font-bold"><Icon name="map" className="text-[13px]" /> Buka Peta Pengambilan</a>
+                                                            </div>
                                                         )}
                                                     </div>
                                                 </div>
