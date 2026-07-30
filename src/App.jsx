@@ -1755,7 +1755,7 @@ const getDirectImgUrl = (url) => {
                 { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'iuran', icon: 'volunteer_activism', label: 'Iuran Umum', bg: 'bg-google-redLight', color: 'text-google-redDark border-2 border-google-red' },
                 { id: 'kas', icon: 'account_balance_wallet', label: 'Kas Warga', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
-                { id: 'tiket', icon: 'local_activity', label: 'Tiket Santai', bg: 'bg-rose-100', color: 'text-rose-700 border-2 border-rose-500' },
+                { id: 'tiket', icon: 'local_activity', label: 'Beli Tiket', bg: 'bg-rose-100', color: 'text-rose-700 border-2 border-rose-500' },
                 { id: 'laporan', icon: 'history', label: 'Arsip Riwayat', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-400' },
                 { id: 'infaq', icon: 'volunteer_activism', label: 'Infaq', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
