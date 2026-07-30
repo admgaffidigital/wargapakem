@@ -1613,13 +1613,15 @@ const getDirectImgUrl = (url) => {
                     { id: 4, nama: 'Babinsa Desa', telepon: '0857-8899-0011', icon: 'military_tech', color: 'green' }
                 ]
             });
+            const [ticketProducts, setTicketProducts, lTicketProducts] = useFirebaseSync('ticket_products', []);
+            const [ticketOrders, setTicketOrders, lTicketOrders] = useFirebaseSync('ticket_orders', []);
 
             // State khusus UI tambahan
             const [showPwaGuide, setShowPwaGuide] = useState(false);
 
             // Jika Firebase tidak tersedia (offline total / gagal init), anggap semua loaded
             const firebaseUnavailable = !db;
-            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l21 && l22 && l23 && l24 && l25);
+            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l21 && l22 && l23 && l24 && l25 && lTicketProducts && lTicketOrders);
 
             useEffect(() => {
                 if (auth && onAuthStateChanged) {
@@ -1753,6 +1755,7 @@ const getDirectImgUrl = (url) => {
                 { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'iuran', icon: 'volunteer_activism', label: 'Iuran Umum', bg: 'bg-google-redLight', color: 'text-google-redDark border-2 border-google-red' },
                 { id: 'kas', icon: 'account_balance_wallet', label: 'Kas Warga', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
+                { id: 'tiket', icon: 'local_activity', label: 'Tiket Santai', bg: 'bg-rose-100', color: 'text-rose-700 border-2 border-rose-500' },
                 { id: 'laporan', icon: 'history', label: 'Arsip Riwayat', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-400' },
                 { id: 'infaq', icon: 'volunteer_activism', label: 'Infaq', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
@@ -1780,6 +1783,7 @@ const getDirectImgUrl = (url) => {
                     case 'pinjam': return <PinjamInventaris inventarisData={inventarisData} setInventarisData={setInventarisData} pinjamData={pinjamData} setPinjamData={setPinjamData} members={members} userRole={userRole} />;
                     case 'iuran': return <IuranUmum iuranData={iuranData} setIuranData={setIuranData} members={members} userRole={userRole} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} identity={identity} />;
                     case 'kas': return <BukuKas balance={kasRtBalance} setBalance={setKasRtBalance} transactions={kasRtTransactions} setTransactions={setKasRtTransactions} userRole={userRole} identity={identity} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} />;
+                    case 'tiket': return <Tiket products={ticketProducts} setProducts={setTicketProducts} orders={ticketOrders} setOrders={setTicketOrders} userRole={userRole} identity={identity} />;
                     case 'laporan': return <Laporan history={meetingHistory} setMeetingHistory={setMeetingHistory} members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} cycleNumber={cycleNumber} identity={identity} userRole={userRole} />;
                     case 'pertemuan': return userRole === 'admin' ? <Pertemuan members={members} setMembers={setMembers} currentRound={currentRound} setCurrentRound={setCurrentRound} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} setMeetingHistory={setMeetingHistory} onFinish={() => changeTab('menu')} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} identity={identity} cycleNumber={cycleNumber} /> : null;
                     case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} legalData={legalData} setLegalData={setLegalData} /> : null;
@@ -7263,6 +7267,690 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
                     )}
                 </>
+            );
+        }
+
+        /* ================= TIKET EVENTS / JALAN SANTAI COMPONENT ================= */
+        function Tiket({ products = [], setProducts, orders = [], setOrders, userRole }) {
+            // Seeding default product
+            useEffect(() => {
+                if (!products || products.length === 0) {
+                    setProducts([
+                        {
+                            id: 1,
+                            name: "Tiket Jalan Santai RT Pakem",
+                            price: 5000,
+                            stock: 250,
+                            description: "Tiket resmi kegiatan Jalan Santai memperingati HUT RI RT Pakem. Banyak doorprize menarik: Sepeda Gunung, Kulkas, TV, Kompor Gas, dan ratusan hadiah hiburan lainnya! Pengambilan bisa di Pos RT atau diantarkan langsung ke rumah.",
+                            imageUrl: "",
+                            sold: 0
+                        }
+                    ]);
+                }
+            }, [products, setProducts]);
+
+            const [activeSubTab, setActiveSubTab] = useState(userRole === 'admin' ? 'orders' : 'shop');
+            const [modalConfig, setModalConfig] = useState(null);
+
+            // Warga State
+            const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
+            const [selectedProduct, setSelectedProduct] = useState(null);
+            const [buyForm, setBuyForm] = useState({ name: '', quantity: 1, notes: '', deliveryMethod: 'pickup', address: '', location: 'Pos RT Pakem (Balai RT)' });
+            const [wargaError, setWargaError] = useState('');
+            const [myTicketsSearch, setMyTicketsSearch] = useState('');
+            const [localSavedOrderIds, setLocalSavedOrderIds] = useState(() => {
+                try {
+                    const saved = localStorage.getItem('wargapakem_my_tickets');
+                    return saved ? JSON.parse(saved) : [];
+                } catch (e) {
+                    return [];
+                }
+            });
+
+            // Admin State
+            const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+            const [editingProduct, setEditingProduct] = useState(null);
+            const [productForm, setProductForm] = useState({ name: '', price: '', stock: '', description: '', imageUrl: '' });
+            const [productError, setProductError] = useState('');
+            const [isUploading, setIsUploading] = useState(false);
+            const [adminOrderFilter, setAdminOrderFilter] = useState('all');
+            const [adminSearchQuery, setAdminSearchQuery] = useState('');
+
+            const handleProductImageUpload = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                if (!file.type.match('image.*')) return setProductError('File harus berupa gambar!');
+                if (file.size > 10 * 1024 * 1024) return setProductError('Ukuran file maksimal 10MB!');
+                setIsUploading(true); setProductError('');
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        const MAX_SIZE = 600;
+                        if (width > height && width > MAX_SIZE) { height *= MAX_SIZE / width; width = MAX_SIZE; }
+                        else if (height > MAX_SIZE) { width *= MAX_SIZE / height; height = MAX_SIZE; }
+                        canvas.width = width; canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.6);
+                        setProductForm(prev => ({ ...prev, imageUrl: compressedDataUrl }));
+                        setIsUploading(false);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            };
+
+            const handleSaveProduct = () => {
+                if (!productForm.name || !productForm.price || productForm.stock === '') {
+                    return setProductError("Nama Tiket, Harga, dan Stok wajib diisi!");
+                }
+                const price = Number(productForm.price);
+                const stock = Number(productForm.stock);
+                if (isNaN(price) || price < 0) return setProductError("Harga harus berupa angka positif!");
+                if (isNaN(stock) || stock < 0) return setProductError("Stok harus berupa angka positif!");
+
+                const productData = {
+                    name: productForm.name,
+                    price: price,
+                    stock: stock,
+                    description: productForm.description,
+                    imageUrl: productForm.imageUrl
+                };
+
+                if (editingProduct) {
+                    setProducts(products.map(p => p.id === editingProduct.id ? { ...p, ...productData } : p));
+                    setModalConfig({ message: 'Produk tiket berhasil diperbarui.' });
+                } else {
+                    setProducts([{ id: Date.now(), sold: 0, ...productData }, ...products]);
+                    setModalConfig({ message: 'Produk tiket baru berhasil ditambahkan.' });
+                }
+                setIsProductModalOpen(false);
+                setEditingProduct(null);
+                setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '' });
+            };
+
+            const handleEditProduct = (product) => {
+                setEditingProduct(product);
+                setProductForm({
+                    name: product.name || '',
+                    price: product.price || '',
+                    stock: product.stock || 0,
+                    description: product.description || '',
+                    imageUrl: product.imageUrl || ''
+                });
+                setProductError('');
+                setIsProductModalOpen(true);
+            };
+
+            const handleDeleteProduct = (productId) => {
+                if (confirm("Yakin ingin menghapus produk tiket ini?")) {
+                    setProducts(products.filter(p => p.id !== productId));
+                    setModalConfig({ message: 'Produk tiket berhasil dihapus.' });
+                }
+            };
+
+            // Order actions (Admin)
+            const handleUpdateOrderStatus = (orderId, newStatus) => {
+                const order = orders.find(o => o.id === orderId);
+                if (!order) return;
+
+                // Restock if transitioning to cancelled
+                if (newStatus === 'cancelled' && order.status !== 'cancelled') {
+                    const updatedProducts = products.map(p => {
+                        if (p.id === order.productId) {
+                            return { ...p, stock: p.stock + order.quantity, sold: Math.max(0, (p.sold || 0) - order.quantity) };
+                        }
+                        return p;
+                    });
+                    setProducts(updatedProducts);
+                }
+
+                const updatedOrders = orders.map(o => o.id === orderId ? { ...o, status: newStatus } : o);
+                setOrders(updatedOrders);
+                showToast(`Status pesanan diubah ke: ${getStatusLabel(newStatus)}`);
+            };
+
+            const getStatusLabel = (status) => {
+                switch(status) {
+                    case 'pending': return 'Menunggu Konfirmasi';
+                    case 'processed': return 'Diproses';
+                    case 'completed': return 'Selesai';
+                    case 'cancelled': return 'Dibatalkan';
+                    default: return status;
+                }
+            };
+
+            const getStatusColor = (status) => {
+                switch(status) {
+                    case 'pending': return 'bg-amber-50 text-amber-705 border-amber-200 dark:bg-amber-950/20 dark:text-amber-400 dark:border-amber-900/40';
+                    case 'processed': return 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/20 dark:text-blue-400 dark:border-blue-900/40';
+                    case 'completed': return 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-400 dark:border-emerald-900/40';
+                    case 'cancelled': return 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/20 dark:text-rose-400 dark:border-rose-900/40';
+                    default: return 'bg-slate-50 text-slate-700 border-slate-200';
+                }
+            };
+
+            // Order placing (Warga)
+            const handleOpenBuyModal = (product) => {
+                setSelectedProduct(product);
+                setBuyForm({
+                    name: '',
+                    quantity: 1,
+                    notes: '',
+                    deliveryMethod: 'pickup',
+                    address: '',
+                    location: 'Pos RT Pakem (Balai RT)'
+                });
+                setWargaError('');
+                setIsBuyModalOpen(true);
+            };
+
+            const handlePlaceOrder = () => {
+                if (!buyForm.name.trim()) return setWargaError("Nama lengkap wajib diisi!");
+                const qty = Number(buyForm.quantity);
+                if (isNaN(qty) || qty < 1) return setWargaError("Jumlah pembelian minimal 1 tiket!");
+                if (qty > selectedProduct.stock) return setWargaError(`Stok tidak mencukupi! Hanya tersisa ${selectedProduct.stock} tiket.`);
+                if (buyForm.deliveryMethod === 'delivery' && !buyForm.address.trim()) return setWargaError("Alamat pengantaran wajib diisi jika memilih kirim ke rumah!");
+
+                const newOrder = {
+                    id: Date.now(),
+                    productId: selectedProduct.id,
+                    productName: selectedProduct.name,
+                    buyerName: buyForm.name.trim(),
+                    quantity: qty,
+                    totalPrice: qty * selectedProduct.price,
+                    notes: buyForm.notes.trim(),
+                    deliveryMethod: buyForm.deliveryMethod,
+                    address: buyForm.deliveryMethod === 'delivery' ? buyForm.address.trim() : '',
+                    pickupLocation: buyForm.deliveryMethod === 'pickup' ? buyForm.location : '',
+                    status: 'pending',
+                    timestamp: getLocalDate()
+                };
+
+                // Deduct stock
+                const updatedProducts = products.map(p => {
+                    if (p.id === selectedProduct.id) {
+                        return { ...p, stock: Math.max(0, p.stock - qty), sold: (p.sold || 0) + qty };
+                    }
+                    return p;
+                });
+                setProducts(updatedProducts);
+
+                // Add order
+                setOrders([newOrder, ...(orders || [])]);
+
+                // Save locally
+                const newLocalIds = [newOrder.id, ...localSavedOrderIds];
+                setLocalSavedOrderIds(newLocalIds);
+                try {
+                    localStorage.setItem('wargapakem_my_tickets', JSON.stringify(newLocalIds));
+                } catch(e) {}
+
+                setIsBuyModalOpen(false);
+                setModalConfig({ message: 'Pesanan tiket Anda berhasil diajukan! Menunggu konfirmasi admin.' });
+            };
+
+            const handleCancelOrderByWarga = (order) => {
+                // Return stock
+                const updatedProducts = products.map(p => {
+                    if (p.id === order.productId) {
+                        return { ...p, stock: p.stock + order.quantity, sold: Math.max(0, (p.sold || 0) - order.quantity) };
+                    }
+                    return p;
+                });
+                setProducts(updatedProducts);
+
+                // Update order status to cancelled
+                const updatedOrders = orders.map(o => o.id === order.id ? { ...o, status: 'cancelled' } : o);
+                setOrders(updatedOrders);
+                showToast("Pesanan berhasil dibatalkan.");
+            };
+
+            // Filters
+            const filteredOrders = (orders || []).filter(o => {
+                const matchStatus = adminOrderFilter === 'all' || o.status === adminOrderFilter;
+                const matchSearch = o.buyerName.toLowerCase().includes(adminSearchQuery.toLowerCase()) || 
+                                    (o.productName || '').toLowerCase().includes(adminSearchQuery.toLowerCase());
+                return matchStatus && matchSearch;
+            });
+
+            const myTicketsFiltered = (orders || []).filter(o => {
+                const isMyOrder = localSavedOrderIds.includes(o.id);
+                const isSearchMatch = myTicketsSearch ? o.buyerName.toLowerCase().includes(myTicketsSearch.toLowerCase()) : false;
+                return isMyOrder || isSearchMatch;
+            });
+
+            // Statistics (Admin)
+            const stats = useMemo(() => {
+                let totalSold = 0;
+                let revenue = 0;
+                let pendingCount = 0;
+
+                (orders || []).forEach(o => {
+                    if (o.status !== 'cancelled') {
+                        totalSold += o.quantity;
+                        if (o.status === 'completed' || o.status === 'processed') {
+                            revenue += o.totalPrice;
+                        }
+                    }
+                    if (o.status === 'pending') {
+                        pendingCount++;
+                    }
+                });
+
+                return { totalSold, revenue, pendingCount };
+            }, [orders]);
+
+            return (
+                <div className="animate-fade-in pb-24 max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                    {modalConfig && (
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+                            <div className="bg-white rounded-[28px] p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
+                                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <Icon name="check_circle" className="text-4xl text-green-500" />
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-800 mb-2">Berhasil</h3>
+                                <p className="text-slate-650 font-medium mb-8 text-[13px]">{modalConfig.message}</p>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white font-medium py-3.5 rounded-[12px] transition-all">Tutup</button>
+                            </div>
+                        </div>
+                    )}
+
+                    {userRole === 'admin' ? (
+                        /* ================== VIEW ADMIN ================== */
+                        <div className="space-y-6">
+                            {/* Stats */}
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div className="bg-white p-6 rounded-[24px] border-2 border-slate-205 shadow-sm flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-[14px] bg-rose-50 border border-rose-200 text-rose-500 flex items-center justify-center shrink-0"><Icon name="trending_up" className="text-[24px]" /></div>
+                                    <div>
+                                        <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Total Tiket Terjual</p>
+                                        <h4 className="text-xl font-bold text-slate-800">{stats.totalSold} <span className="text-[11px] font-medium text-slate-500">Tiket</span></h4>
+                                    </div>
+                                </div>
+                                <div className="bg-white p-6 rounded-[24px] border-2 border-slate-205 shadow-sm flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-[14px] bg-emerald-50 border border-emerald-200 text-emerald-500 flex items-center justify-center shrink-0"><Icon name="payments" className="text-[24px]" /></div>
+                                    <div>
+                                        <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Total Pendapatan</p>
+                                        <h4 className="text-xl font-bold text-slate-800">{formatRp(stats.revenue)}</h4>
+                                    </div>
+                                </div>
+                                <div className="bg-white p-6 rounded-[24px] border-2 border-slate-205 shadow-sm flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-[14px] bg-amber-50 border border-amber-205 text-amber-500 flex items-center justify-center shrink-0"><Icon name="schedule" className="text-[24px]" /></div>
+                                    <div>
+                                        <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Pesanan Pending</p>
+                                        <h4 className="text-xl font-bold text-slate-800">{stats.pendingCount} <span className="text-[11px] font-medium text-slate-500">Pesanan</span></h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Sub Navigation */}
+                            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                                <div className="flex gap-2">
+                                    <button onClick={() => setActiveSubTab('orders')} className={`px-4 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'orders' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="receipt_long" /> Pesanan Masuk</button>
+                                    <button onClick={() => setActiveSubTab('products')} className={`px-4 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'products' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="inventory_2" /> Kelola Produk</button>
+                                </div>
+                                {activeSubTab === 'products' && (
+                                    <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2.5 rounded-[12px] font-bold text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
+                                )}
+                            </div>
+
+                            {/* Panel Pesanan */}
+                            {activeSubTab === 'orders' && (
+                                <div className="space-y-5">
+                                    <div className="flex flex-col sm:flex-row gap-3">
+                                        <div className="flex-1 relative">
+                                            <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-11 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-rose-500/50" />
+                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" /></div>
+                                        </div>
+                                        <div className="flex gap-1.5 overflow-x-auto pb-1.5 sm:pb-0 shrink-0">
+                                            {['all', 'pending', 'processed', 'completed', 'cancelled'].map(status => (
+                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-[12px] text-[11px] font-bold border-2 transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-rose-50 text-rose-700 border-rose-500/30' : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {filteredOrders.length === 0 ? (
+                                        <div className="bg-white border-2 border-slate-200 p-12 text-center rounded-[24px]"><div className="w-16 h-16 bg-slate-50 border border-slate-250 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400"><Icon name="receipt" className="text-[28px]" /></div><p className="text-[13px] font-bold text-slate-800">Tidak ada pesanan ditemukan.</p></div>
+                                    ) : (
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            {filteredOrders.map(order => (
+                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border-2 border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
+                                                    <div>
+                                                        <div className="flex items-center justify-between mb-2.5">
+                                                            <span className="text-[10px] font-bold text-slate-400">#TKT-{String(order.id).slice(-6)}</span>
+                                                            <span className={`text-[9px] font-bold px-2.5 py-1 rounded-[6px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
+                                                        </div>
+                                                        <h4 className="font-extrabold text-[15px] text-slate-800">{order.buyerName}</h4>
+                                                        <p className="text-[12px] font-bold text-rose-600 mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
+                                                        
+                                                        <div className="mt-3 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
+                                                            <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
+                                                                <Icon name="local_shipping" className="text-[14px] mt-0.5 shrink-0" />
+                                                                <span>
+                                                                    {order.deliveryMethod === 'delivery' ? (
+                                                                        <><span className="font-bold text-rose-500">Kirim ke Rumah:</span> {order.address}</>
+                                                                    ) : (
+                                                                        <><span className="font-bold text-blue-500">Ambil di Lokasi:</span> {order.pickupLocation}</>
+                                                                    )}
+                                                                </span>
+                                                            </div>
+                                                            {order.notes && (
+                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium bg-slate-50 p-2.5 rounded-[8px] border border-slate-200">
+                                                                    <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-slate-400" />
+                                                                    <span><span className="font-bold text-slate-600">Catatan:</span> {order.notes}</span>
+                                                                </div>
+                                                            )}
+                                                            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
+                                                                <Icon name="event" className="text-[13px]" /> Tanggal Order: {order.timestamp}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Actions */}
+                                                    {order.status !== 'completed' && order.status !== 'cancelled' && (
+                                                        <div className="flex gap-2 border-t border-slate-105 pt-3.5">
+                                                            {order.status === 'pending' && (
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-55 hover:bg-blue-100 text-blue-600 border border-blue-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
+                                                            )}
+                                                            {order.status === 'processed' && (
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-55 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
+                                                            )}
+                                                            <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-rose-55 hover:bg-rose-100 text-rose-600 border border-rose-105 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* Panel Kelola Produk */}
+                            {activeSubTab === 'products' && (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                                    {products.map(prod => (
+                                        <div key={prod.id} className="bg-white rounded-[24px] border-2 border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
+                                            <div className="relative h-44 bg-slate-100 flex items-center justify-center border-b border-slate-200">
+                                                {prod.imageUrl ? (
+                                                    <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
+                                                ) : (
+                                                    <div className="text-slate-400 flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[11px] font-bold">Tidak ada foto</span></div>
+                                                )}
+                                                <div className="absolute top-3 right-3 bg-slate-900/75 text-white text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">Stok: {prod.stock}</div>
+                                            </div>
+                                            <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                                                <div>
+                                                    <h4 className="font-extrabold text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
+                                                    <p className="text-[12px] font-bold text-rose-600 mt-1">{formatRp(prod.price)}</p>
+                                                    <p className="text-[11.5px] font-medium text-slate-500 mt-2 line-clamp-3 leading-relaxed">{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                    <div className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-slate-400 bg-slate-50 px-2.5 py-1.5 rounded-[8px] w-fit border border-slate-200"><Icon name="shopping_bag" className="text-[13px]" /> Terjual: {prod.sold || 0} Pcs</div>
+                                                </div>
+                                                <div className="flex gap-2 pt-3 border-t border-slate-100">
+                                                    <button onClick={() => handleEditProduct(prod)} className="flex-1 bg-slate-50 hover:bg-slate-100 text-google-blue border border-slate-200 py-2.5 rounded-[10px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                                    <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 py-2.5 rounded-[10px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* Modal Kelola Produk */}
+                            {isProductModalOpen && (
+                                <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                                    <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto border-2 border-slate-350 animate-scale-up">
+                                        <h3 className="text-xl font-bold text-slate-800 mb-6 tracking-tight">{editingProduct ? 'Edit Produk Tiket' : 'Tambah Produk Tiket Baru'}</h3>
+                                        <div className="space-y-4">
+                                            <div>
+                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Tiket / Produk</label>
+                                                <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: Tiket Jalan Santai RT Pakem" />
+                                            </div>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Harga (Rp)</label>
+                                                    <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: 5000" />
+                                                </div>
+                                                <div>
+                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Stok Tiket</label>
+                                                    <input type="number" value={productForm.stock} onChange={e => setProductForm({...productForm, stock: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: 100" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Deskripsi Tiket</label>
+                                                <textarea value={productForm.description} onChange={e => setProductForm({...productForm, description: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all h-24 resize-none" placeholder="Tuliskan info doorprize, aturan, jadwal, dll..."></textarea>
+                                            </div>
+                                            <div>
+                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Upload Foto Cover (Opsional)</label>
+                                                <div className={`flex items-center gap-4 bg-slate-50 border-2 ${isUploading ? 'border-rose-500 shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-rose-500 transition-all`}>
+                                                    <input type="file" accept="image/*" onChange={handleProductImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
+                                                    <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
+                                                        {isUploading ? <div className="w-5 h-5 border-2 border-rose-500 border-t-transparent rounded-full animate-spin"></div> : <Icon name="image" className="text-[20px]" />}
+                                                    </div>
+                                                    <div className="relative z-0 flex-1 min-w-0">
+                                                        <p className="font-bold text-[13px] text-google-text truncate">{isUploading ? "Mengunggah..." : (productForm.imageUrl ? "Gambar Siap" : "Pilih Gambar")}</p>
+                                                        <p className="text-[11px] text-google-textVariant truncate">{productForm.imageUrl ? "Klik untuk mengganti" : "Maksimal 10MB"}</p>
+                                                    </div>
+                                                    {productForm.imageUrl && !isUploading && (
+                                                        <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300"><img src={productForm.imageUrl} alt="Preview" className="w-full h-full object-cover" /></div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            {productError && <div className="bg-red-50 text-red-650 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {productError}</div>}
+                                        </div>
+                                        <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
+                                            <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
+                                            <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-rose-500 text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-rose-600 transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        /* ================== VIEW WARGA ================== */
+                        <div className="space-y-6">
+                            {/* Banner Header */}
+                            <div className="bg-gradient-to-r from-rose-500 via-pink-500 to-orange-500 rounded-[28px] p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+                                <div className="absolute inset-0 bg-black/10"></div>
+                                <div className="relative z-10">
+                                    <span className="bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border border-white/20">EVENT RT PAKEM</span>
+                                    <h2 className="text-2xl sm:text-3xl font-extrabold mt-3 tracking-tight">Katalog Tiket Jalan Santai</h2>
+                                    <p className="text-[12px] sm:text-[13px] text-white/95 mt-1.5 max-w-xl leading-relaxed font-medium">
+                                        Beli tiket jalan santai Anda secara online di sini! Pilih pengambilan langsung di pos atau minta diantarkan ke depan pintu rumah Anda. Pembayaran praktis di tempat (COD).
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Warga Sub Tabs */}
+                            <div className="flex gap-2.5 border-b-2 border-slate-200/60 pb-3">
+                                <button onClick={() => setActiveSubTab('shop')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'shop' ? 'bg-rose-500 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}`}><Icon name="shopping_bag" className="text-[16px]" /> Beli Tiket</button>
+                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 relative ${activeSubTab === 'my_tickets' ? 'bg-rose-500 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}`}>
+                                    <Icon name="confirmation_number" className="text-[16px]" /> Tiket Saya
+                                    {myTicketsFiltered.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-rose-600 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white">{myTicketsFiltered.length}</span>}
+                                </button>
+                            </div>
+
+                            {/* Sub Tab: Beli Tiket */}
+                            {activeSubTab === 'shop' && (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                                    {products.map(prod => (
+                                        <div key={prod.id} className="bg-white rounded-[24px] border-2 border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
+                                            <div className="relative h-44 bg-slate-100 flex items-center justify-center border-b border-slate-200">
+                                                {prod.imageUrl ? (
+                                                    <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
+                                                ) : (
+                                                    <div className="text-rose-450 flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[10px] font-bold uppercase tracking-wider text-rose-500">Tiket Santai</span></div>
+                                                )}
+                                                <div className={`absolute top-3 right-3 text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-sm ${prod.stock > 0 ? 'bg-slate-900/75 text-white' : 'bg-red-500 text-white animate-pulse'}`}>{prod.stock > 0 ? `Sisa Stok: ${prod.stock}` : 'Stok Habis'}</div>
+                                            </div>
+                                            <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                                                <div>
+                                                    <h4 className="font-extrabold text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
+                                                    <p className="text-[12px] font-bold text-rose-650 mt-1">{formatRp(prod.price)}</p>
+                                                    <p className="text-[11.5px] font-medium text-slate-500 mt-2 line-clamp-3 leading-relaxed">{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                </div>
+                                                <button onClick={() => handleOpenBuyModal(prod)} disabled={prod.stock <= 0} className={`w-full py-3.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center justify-center gap-2 active:scale-95 ${prod.stock > 0 ? 'bg-rose-500 hover:bg-rose-600 text-white shadow-md shadow-rose-500/10' : 'bg-slate-100 border border-slate-350 text-slate-400 cursor-not-allowed'}`}><Icon name="add_shopping_cart" /> {prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}</button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* Sub Tab: Tiket Saya */}
+                            {activeSubTab === 'my_tickets' && (
+                                <div className="space-y-5">
+                                    <div className="bg-slate-50 border border-slate-200/80 rounded-[20px] p-4 flex flex-col sm:flex-row gap-3">
+                                        <div className="flex-1 relative">
+                                            <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-11 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-rose-500/50" />
+                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" /></div>
+                                        </div>
+                                        {myTicketsSearch && (
+                                            <button onClick={() => setMyTicketsSearch('')} className="bg-white border border-slate-300 text-slate-650 hover:bg-slate-100 px-4 py-3 rounded-[16px] text-[11px] font-bold transition-all">Reset</button>
+                                        )}
+                                    </div>
+
+                                    {myTicketsFiltered.length === 0 ? (
+                                        <div className="bg-white border-2 border-slate-200 p-12 text-center rounded-[24px]">
+                                            <div className="w-16 h-16 bg-slate-50 border border-slate-200 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400"><Icon name="confirmation_number" className="text-[28px]" /></div>
+                                            <p className="text-[13px] font-bold text-slate-800">Belum ada tiket yang terdaftar.</p>
+                                            <p className="text-[11.5px] font-medium text-slate-400 mt-1 max-w-sm mx-auto">Silakan beli tiket di tab "Beli Tiket" atau gunakan pencarian nama jika Anda membuat pesanan di perangkat lain.</p>
+                                        </div>
+                                    ) : (
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            {myTicketsFiltered.map(order => (
+                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border-2 border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
+                                                    <div>
+                                                        <div className="flex items-center justify-between mb-2.5">
+                                                            <span className="text-[10px] font-bold text-slate-400">ID Pesanan: #TKT-{String(order.id).slice(-6)}</span>
+                                                            <span className={`text-[9px] font-bold px-2.5 py-1 rounded-[6px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
+                                                        </div>
+                                                        <h4 className="font-extrabold text-[15px] text-slate-850">{order.buyerName}</h4>
+                                                        <p className="text-[12.5px] font-extrabold text-rose-600 mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
+                                                        
+                                                        <div className="mt-3.5 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
+                                                            <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
+                                                                <Icon name="local_shipping" className="text-[14px] mt-0.5 shrink-0" />
+                                                                <span>
+                                                                    {order.deliveryMethod === 'delivery' ? (
+                                                                        <><span className="font-bold text-rose-500">Diantar ke Rumah:</span> {order.address}</>
+                                                                    ) : (
+                                                                        <><span className="font-bold text-blue-500">Ambil Sendiri:</span> {order.pickupLocation}</>
+                                                                    )}
+                                                                </span>
+                                                            </div>
+                                                            {order.notes && (
+                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium bg-slate-50 p-2.5 rounded-[8px] border border-slate-200">
+                                                                    <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-slate-400" />
+                                                                    <span><span className="font-bold text-slate-600">Catatan Anda:</span> {order.notes}</span>
+                                                                </div>
+                                                            )}
+                                                            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
+                                                                <Icon name="event" className="text-[13px]" /> Tanggal Pesan: {order.timestamp}
+                                                            </div>
+                                                            <div className="flex items-center gap-1.5 text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-1 rounded-[6px] w-fit border border-emerald-100">
+                                                                <Icon name="payments" className="text-[13px]" /> Pembayaran COD (Di tempat)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {order.status === 'pending' && (
+                                                        <div className="border-t border-slate-100 pt-3">
+                                                            <button onClick={() => {
+                                                                if(confirm("Yakin ingin membatalkan pesanan ini?")) {
+                                                                    handleCancelOrderByWarga(order);
+                                                                }
+                                                            }} className="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Batalkan Pesanan</button>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* Modal Beli Tiket (Warga) */}
+                            {isBuyModalOpen && selectedProduct && (
+                                <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                                    <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto border-2 border-slate-350 animate-scale-up">
+                                        <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
+                                            <h3 className="text-lg font-extrabold text-slate-800">Formulir Beli Tiket</h3>
+                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-8 h-8 rounded-full border border-slate-300 text-slate-400 hover:bg-slate-100 flex items-center justify-center"><Icon name="close" /></button>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <div className="bg-rose-50 border border-rose-100 rounded-[16px] p-4 text-[12px]">
+                                                <p className="font-extrabold text-rose-700">{selectedProduct.name}</p>
+                                                <p className="font-medium text-slate-500 mt-0.5">Harga: {formatRp(selectedProduct.price)} / tiket</p>
+                                                <p className="font-medium text-slate-500">Tersedia: {selectedProduct.stock} tiket</p>
+                                            </div>
+
+                                            <div>
+                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lengkap Pembeli</label>
+                                                <input type="text" value={buyForm.name} onChange={e => setBuyForm({...buyForm, name: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: Ahmad Sunandar" />
+                                            </div>
+
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div>
+                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Jumlah Tiket</label>
+                                                    <input type="number" min="1" max={selectedProduct.stock} value={buyForm.quantity} onChange={e => setBuyForm({...buyForm, quantity: Math.max(1, Number(e.target.value))})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" />
+                                                </div>
+                                                <div>
+                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Total Pembayaran</label>
+                                                    <div className="w-full bg-slate-100 border-2 border-slate-200 p-4 text-[13px] font-extrabold text-rose-600 rounded-[16px] flex items-center">
+                                                        {formatRp(Number(buyForm.quantity || 1) * selectedProduct.price)}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Metode Penerimaan Tiket</label>
+                                                <div className="grid grid-cols-2 gap-3">
+                                                    <button type="button" onClick={() => setBuyForm({...buyForm, deliveryMethod: 'pickup'})} className={`p-4 rounded-[16px] border-2 font-bold text-[12px] text-center flex flex-col items-center justify-center gap-1.5 transition-all active:scale-95 ${buyForm.deliveryMethod === 'pickup' ? 'bg-blue-50 border-blue-500 text-blue-700' : 'bg-slate-50 border-slate-300 text-slate-500 hover:bg-slate-100'}`}>
+                                                        <Icon name="storefront" className="text-[20px]" /> Ambil di Pos RT
+                                                    </button>
+                                                    <button type="button" onClick={() => setBuyForm({...buyForm, deliveryMethod: 'delivery'})} className={`p-4 rounded-[16px] border-2 font-bold text-[12px] text-center flex flex-col items-center justify-center gap-1.5 transition-all active:scale-95 ${buyForm.deliveryMethod === 'delivery' ? 'bg-rose-50 border-rose-500 text-rose-700' : 'bg-slate-50 border-slate-300 text-slate-500 hover:bg-slate-100'}`}>
+                                                        <Icon name="local_shipping" className="text-[20px]" /> Kirim ke Rumah
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            {buyForm.deliveryMethod === 'pickup' ? (
+                                                <div>
+                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Lokasi Pengambilan</label>
+                                                    <select value={buyForm.location} onChange={e => setBuyForm({...buyForm, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 appearance-none">
+                                                        <option value="Pos RT Pakem (Balai RT)">Pos RT Pakem (Balai RT)</option>
+                                                        <option value="Rumah Ketua RT (Bpk. Bambang)">Rumah Ketua RT (Bpk. Bambang)</option>
+                                                        <option value="Depan Gapura Utama RT">Depan Gapura Utama RT</option>
+                                                    </select>
+                                                </div>
+                                            ) : (
+                                                <div>
+                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Alamat Lengkap / No. Rumah</label>
+                                                    <input type="text" value={buyForm.address} onChange={e => setBuyForm({...buyForm, address: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: RT 03 RW 01, Rumah No. 12 (Pagar Merah)" />
+                                                </div>
+                                            )}
+
+                                            <div>
+                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Catatan Tambahan (Opsional)</label>
+                                                <input type="text" value={buyForm.notes} onChange={e => setBuyForm({...buyForm, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: Kaos Ukuran L / Minta diantar sore hari" />
+                                            </div>
+
+                                            {wargaError && <div className="bg-red-50 text-red-650 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {wargaError}</div>}
+                                        </div>
+                                        <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
+                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
+                                            <button onClick={handlePlaceOrder} className="w-2/3 bg-rose-500 text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-rose-600 transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
             );
         }
 
