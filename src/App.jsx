@@ -7847,38 +7847,65 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Sub Tab: Beli Tiket */}
                             {activeSubTab === 'shop' && (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                                     {products.map(prod => (
-                                        <div key={prod.id} className="bg-white rounded-[24px] border-2 border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                                            <div className="relative h-44 bg-slate-100 flex items-center justify-center border-b border-slate-200">
+                                        <div key={prod.id} className="bg-white dark:bg-slate-900 rounded-[32px] border-2 border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
+                                            {/* 1:1 Aspect Ratio Full Frame Image */}
+                                            <div className="relative w-full aspect-square bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200 dark:border-slate-850">
                                                 {prod.imageUrl ? (
-                                                    <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
+                                                    <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
                                                 ) : (
-                                                    <div className="text-google-blue flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[10px] font-bold uppercase tracking-wider text-google-blue">Tiket Santai</span></div>
+                                                    <div className="w-full h-full bg-gradient-to-tr from-rose-500/10 to-google-blue/10 flex flex-col items-center justify-center p-6 text-center">
+                                                        <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-google-blue to-indigo-500 text-white flex items-center justify-center shadow-lg shadow-google-blue/20 mb-3 animate-pulse">
+                                                            <Icon name="local_activity" className="text-[32px]" />
+                                                        </div>
+                                                        <span className="text-[11px] font-extrabold uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
+                                                    </div>
                                                 )}
-                                                <div className={`absolute top-3 right-3 text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-sm ${prod.stock > 0 ? 'bg-slate-900/75 text-white' : 'bg-red-500 text-white animate-pulse'}`}>{prod.stock > 0 ? `Sisa Stok: ${prod.stock}` : 'Stok Habis'}</div>
+                                                {/* Stock Pill */}
+                                                <div className={`absolute top-4 right-4 text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-md shadow-md border ${prod.stock > 0 ? 'bg-slate-900/80 dark:bg-slate-950/80 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20 animate-pulse'}`}>
+                                                    {prod.stock > 0 ? `Sisa Stok: ${prod.stock}` : 'Stok Habis'}
+                                                </div>
                                             </div>
-                                            <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                                                <div>
-                                                    <h4 className="font-extrabold text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
-                                                    <p className="text-[12px] font-bold text-google-blue mt-1">{formatRp(prod.price)}</p>
-                                                    <p className="text-[11.5px] font-medium text-slate-500 mt-2 line-clamp-3 leading-relaxed">{prod.description || 'Tidak ada deskripsi.'}</p>
+
+                                            {/* Details */}
+                                            <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+                                                <div className="space-y-2">
+                                                    <h4 className="font-extrabold text-[16px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-2">{prod.name}</h4>
+                                                    <div className="flex items-baseline gap-1">
+                                                        <span className="text-xs font-bold text-slate-400">Harga:</span>
+                                                        <span className="text-lg font-black text-rose-550 dark:text-rose-450">{formatRp(prod.price)}</span>
+                                                    </div>
+                                                    <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed pt-1">{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     
-                                                    <div className="mt-3 space-y-2 bg-slate-50 p-3 rounded-[14px] border border-slate-200 text-[11px] font-bold text-slate-600">
-                                                        <div className="flex items-start gap-1.5">
-                                                            <Icon name="location_on" className="text-google-blue text-[15px] shrink-0 mt-0.5" />
-                                                            <span className="leading-tight">Lokasi: {prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</span>
+                                                    {/* Premium Location Card */}
+                                                    <div className="mt-4 flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800/80 rounded-[20px]">
+                                                        <div className="flex items-center gap-3 min-w-0">
+                                                            <div className="w-9 h-9 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 dark:text-rose-450 flex items-center justify-center shrink-0 border border-rose-100 dark:border-rose-900/30">
+                                                                <Icon name="location_on" className="text-[18px]" />
+                                                            </div>
+                                                            <div className="min-w-0">
+                                                                <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Lokasi Pengambilan</p>
+                                                                <p className="text-[12px] font-extrabold text-slate-700 dark:text-slate-300 truncate leading-tight mt-0.5">{prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
+                                                            </div>
                                                         </div>
                                                         {prod.pickupGeoUrl && (
-                                                            <div className="pt-2 border-t border-slate-200/60 flex justify-end">
-                                                                <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="text-google-blue hover:underline inline-flex items-center gap-1 text-[10px] font-bold"><Icon name="map" className="text-[13px]" /> Buka Peta Pengambilan</a>
-                                                            </div>
+                                                            <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-[12px] bg-google-blueLight hover:bg-google-blueLight/85 text-google-blueDark dark:bg-blue-950/40 dark:text-blue-400 flex items-center justify-center shrink-0 border border-google-blue/20 dark:border-blue-900/30 transition-all hover:scale-105" title="Buka Google Maps">
+                                                                <Icon name="map" className="text-[16px]" />
+                                                            </a>
                                                         )}
                                                     </div>
                                                 </div>
-                                                <div className="flex gap-2">
-                                                    <button onClick={() => handleOpenBuyModal(prod)} disabled={prod.stock <= 0} className={`flex-1 py-3.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center justify-center gap-2 active:scale-95 ${prod.stock > 0 ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-md shadow-google-blue/10' : 'bg-slate-100 border border-slate-350 text-slate-400 cursor-not-allowed'}`}><Icon name="add_shopping_cart" /> {prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}</button>
-                                                    <button onClick={() => setSharingProduct(prod)} className="px-3.5 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-750 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-[12px] transition-colors flex items-center justify-center active:scale-95" title="Bagikan"><Icon name="share" className="text-[16px]" /></button>
+
+                                                {/* Action Buttons */}
+                                                <div className="flex gap-3 pt-2">
+                                                    <button onClick={() => handleOpenBuyModal(prod)} disabled={prod.stock <= 0} className={`flex-1 py-3.5 rounded-[16px] font-bold text-[12.5px] transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md ${prod.stock > 0 ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}>
+                                                        <Icon name="add_shopping_cart" className="text-[18px]" /> 
+                                                        {prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
+                                                    </button>
+                                                    <button onClick={() => setSharingProduct(prod)} className="w-12 h-12 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-[16px] transition-all flex items-center justify-center active:scale-95" title="Bagikan">
+                                                        <Icon name="share" className="text-[18px]" />
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
