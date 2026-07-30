@@ -7295,7 +7295,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             // Warga State
             const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
             const [selectedProduct, setSelectedProduct] = useState(null);
-            const [buyForm, setBuyForm] = useState({ name: '', quantity: 1, notes: '', deliveryMethod: 'pickup', address: '', location: 'Pos RT Pakem (Balai RT)' });
+            const [buyForm, setBuyForm] = useState({ name: '', quantity: 1, notes: '', deliveryMethod: 'pickup', address: '', location: 'Rumah Mas Novan' });
             const [wargaError, setWargaError] = useState('');
             const [myTicketsSearch, setMyTicketsSearch] = useState('');
             const [localSavedOrderIds, setLocalSavedOrderIds] = useState(() => {
@@ -7443,7 +7443,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     notes: '',
                     deliveryMethod: 'pickup',
                     address: '',
-                    location: 'Pos RT Pakem (Balai RT)'
+                    location: 'Rumah Mas Novan'
                 });
                 setWargaError('');
                 setIsBuyModalOpen(true);
@@ -7922,9 +7922,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <div>
                                                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Lokasi Pengambilan</label>
                                                     <select value={buyForm.location} onChange={e => setBuyForm({...buyForm, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 appearance-none">
-                                                        <option value="Pos RT Pakem (Balai RT)">Pos RT Pakem (Balai RT)</option>
-                                                        <option value="Rumah Ketua RT (Bpk. Bambang)">Rumah Ketua RT (Bpk. Bambang)</option>
-                                                        <option value="Depan Gapura Utama RT">Depan Gapura Utama RT</option>
+                                                        <option value="Rumah Mas Novan">Rumah Mas Novan</option>
+                                                        <option value="Rumah Pak RT">Rumah Pak RT</option>
                                                     </select>
                                                 </div>
                                             ) : (
