@@ -7357,7 +7357,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             // Warga State
             const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
             const [selectedProduct, setSelectedProduct] = useState(null);
-            const [buyForm, setBuyForm] = useState({ name: '', quantity: 1, notes: '' });
+            const [buyForm, setBuyForm] = useState({ name: '', quantity: 1, notes: '', deliveryMethod: 'pickup', address: '' });
             const [wargaError, setWargaError] = useState('');
             const [myTicketsSearch, setMyTicketsSearch] = useState('');
             const [localSavedOrderIds, setLocalSavedOrderIds] = useState(() => {
@@ -7506,7 +7506,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 setBuyForm({
                     name: '',
                     quantity: 1,
-                    notes: ''
+                    notes: '',
+                    deliveryMethod: 'pickup',
+                    address: ''
                 });
                 setWargaError('');
                 setIsBuyModalOpen(true);
@@ -7517,6 +7519,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 const qty = Number(buyForm.quantity);
                 if (isNaN(qty) || qty < 1) return setWargaError("Jumlah pembelian minimal 1 tiket!");
                 if (qty > selectedProduct.stock) return setWargaError(`Stok tidak mencukupi! Hanya tersisa ${selectedProduct.stock} tiket.`);
+                if (buyForm.deliveryMethod === 'delivery' && !buyForm.address.trim()) {
+                    return setWargaError("Alamat rumah wajib diisi untuk metode pengantaran ke rumah!");
+                }
 
                 const newOrder = {
                     id: Date.now(),
@@ -7528,6 +7533,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     notes: buyForm.notes.trim(),
                     pickupLocation: selectedProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT',
                     pickupGeoUrl: selectedProduct.pickupGeoUrl || 'https://maps.google.com',
+                    deliveryMethod: buyForm.deliveryMethod,
+                    deliveryAddress: buyForm.deliveryMethod === 'delivery' ? buyForm.address.trim() : '',
                     status: 'pending',
                     timestamp: getLocalDate()
                 };
@@ -7552,7 +7559,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 } catch(e) {}
 
                 setIsBuyModalOpen(false);
-                setModalConfig({ message: 'Pesanan tiket Anda berhasil diajukan! Silakan lakukan pengambilan & pembayaran COD di lokasi.' });
+                setModalConfig({ message: 'Pesanan tiket Anda berhasil diajukan! Pembayaran dilakukan secara COD.' });
             };
 
             const handleCancelOrderByWarga = (order) => {
@@ -7690,15 +7697,26 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <p className="text-[12px] font-bold text-google-blue mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
                                                         
                                                         <div className="mt-3 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
-                                                            <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
-                                                                <Icon name="location_on" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
-                                                                <span>
-                                                                    <span className="font-bold text-slate-700">Lokasi Pengambilan:</span> {order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}
-                                                                    {order.pickupGeoUrl && (
-                                                                        <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-google-blue hover:underline inline-flex items-center gap-0.5"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
-                                                                    )}
-                                                                </span>
-                                                            </div>
+                                                            {order.deliveryMethod === 'delivery' ? (
+                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
+                                                                    <Icon name="local_shipping" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
+                                                                    <span>
+                                                                        <span className="font-bold text-slate-700">Metode:</span> Diantar ke Rumah
+                                                                        <br />
+                                                                        <span className="font-bold text-slate-700">Alamat:</span> {order.deliveryAddress}
+                                                                    </span>
+                                                                </div>
+                                                            ) : (
+                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
+                                                                    <Icon name="location_on" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
+                                                                    <span>
+                                                                        <span className="font-bold text-slate-700">Lokasi Pengambilan:</span> {order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}
+                                                                        {order.pickupGeoUrl && (
+                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-google-blue hover:underline inline-flex items-center gap-0.5"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
+                                                                        )}
+                                                                    </span>
+                                                                </div>
+                                                            )}
                                                             {order.notes && (
                                                                 <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium bg-slate-50 p-2.5 rounded-[8px] border border-slate-200">
                                                                     <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-slate-400" />
@@ -7951,15 +7969,26 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <p className="text-[12.5px] font-extrabold text-google-blue mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
                                                         
                                                         <div className="mt-3.5 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
-                                                            <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
-                                                                <Icon name="location_on" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
-                                                                <span>
-                                                                    <span className="font-bold text-slate-700">Lokasi Pengambilan:</span> {order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}
-                                                                    {order.pickupGeoUrl && (
-                                                                        <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-google-blue hover:underline inline-flex items-center gap-0.5"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
-                                                                    )}
-                                                                </span>
-                                                            </div>
+                                                            {order.deliveryMethod === 'delivery' ? (
+                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
+                                                                    <Icon name="local_shipping" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
+                                                                    <span>
+                                                                        <span className="font-bold text-slate-700">Metode:</span> Diantar ke Rumah
+                                                                        <br />
+                                                                        <span className="font-bold text-slate-700">Alamat:</span> {order.deliveryAddress}
+                                                                    </span>
+                                                                </div>
+                                                            ) : (
+                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
+                                                                    <Icon name="location_on" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
+                                                                    <span>
+                                                                        <span className="font-bold text-slate-700">Lokasi Pengambilan:</span> {order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}
+                                                                        {order.pickupGeoUrl && (
+                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-google-blue hover:underline inline-flex items-center gap-0.5"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
+                                                                        )}
+                                                                    </span>
+                                                                </div>
+                                                            )}
                                                             {order.notes && (
                                                                 <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium bg-slate-50 p-2.5 rounded-[8px] border border-slate-200">
                                                                     <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-slate-400" />
@@ -8006,21 +8035,47 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <p className="font-medium text-slate-500">Tersedia: {selectedProduct.stock} tiket</p>
                                             </div>
 
-                                            <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-250 p-4 rounded-[16px] text-[12px] text-emerald-800 dark:text-emerald-400">
-                                                <div className="flex items-start gap-2">
-                                                    <Icon name="info" className="text-[18px] shrink-0 mt-0.5" />
-                                                    <div>
-                                                        <p className="font-bold">Informasi Pengambilan & Pembayaran:</p>
-                                                        <p className="font-medium mt-1">Pembayaran dilakukan secara tunai / bayar di tempat (COD) saat mengambil tiket langsung di:</p>
-                                                        <p className="font-extrabold mt-1 text-[13px] flex items-center gap-1">
-                                                            <Icon name="location_on" className="text-[14px]" /> {selectedProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}
-                                                        </p>
-                                                        {selectedProduct.pickupGeoUrl && (
-                                                            <a href={selectedProduct.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-bold underline hover:text-emerald-900"><Icon name="map" className="text-[13px]" /> Petunjuk Arah Google Maps</a>
-                                                        )}
-                                                    </div>
+                                            {/* Pilihan Metode Penerimaan Tiket */}
+                                            <div>
+                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Metode Penerimaan Tiket</label>
+                                                <div className="grid grid-cols-2 gap-3">
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'pickup' })} className={`p-4 rounded-[20px] border-2 font-bold text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'pickup' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
+                                                        <Icon name="store" className="text-[20px]" />
+                                                        <span>Ambil Sendiri (COD)</span>
+                                                    </button>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-[20px] border-2 font-bold text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-105'}`}>
+                                                        <Icon name="local_shipping" className="text-[20px]" />
+                                                        <span>Antar ke Rumah (COD)</span>
+                                                    </button>
                                                 </div>
                                             </div>
+
+                                            {/* Tampilkan Input Alamat atau Info Lokasi */}
+                                            {buyForm.deliveryMethod === 'delivery' ? (
+                                                <div className="animate-fade-in bg-slate-50 border border-slate-200 p-4 rounded-[16px] space-y-3">
+                                                    <div>
+                                                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Alamat Pengiriman Rumah Lengkap</label>
+                                                        <input type="text" value={buyForm.address} onChange={e => setBuyForm({...buyForm, address: e.target.value})} className="w-full bg-white border-2 border-slate-300 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: RT 03 / RW 01, No. 12 (Sebelah Mushola)" />
+                                                    </div>
+                                                    <p className="text-[11px] text-slate-500 leading-normal flex items-start gap-1"><Icon name="info" className="text-[13px] text-google-blue shrink-0 mt-0.5" /> Pembayaran akan ditagihkan secara tunai saat pengurus RT mengantarkan tiket ke rumah Anda.</p>
+                                                </div>
+                                            ) : (
+                                                <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-250 p-4 rounded-[16px] text-[12px] text-emerald-800 dark:text-emerald-400 animate-fade-in">
+                                                    <div className="flex items-start gap-2">
+                                                        <Icon name="info" className="text-[18px] shrink-0 mt-0.5" />
+                                                        <div>
+                                                            <p className="font-bold">Informasi Pengambilan & Pembayaran:</p>
+                                                            <p className="font-medium mt-1">Pembayaran dilakukan secara tunai / bayar di tempat (COD) saat mengambil tiket langsung di:</p>
+                                                            <p className="font-extrabold mt-1 text-[13px] flex items-center gap-1">
+                                                                <Icon name="location_on" className="text-[14px]" /> {selectedProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}
+                                                            </p>
+                                                            {selectedProduct.pickupGeoUrl && (
+                                                                <a href={selectedProduct.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-bold underline hover:text-emerald-900"><Icon name="map" className="text-[13px]" /> Petunjuk Arah Google Maps</a>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
 
                                             <div>
                                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lengkap Pembeli</label>
