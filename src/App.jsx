@@ -1711,7 +1711,13 @@ const getDirectImgUrl = (url) => {
                 return (
                     <>
                         <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} onLogin={(role) => { 
-                            setIsLoggedIn(true); setUserRole(role); window.location.hash = 'menu';
+                            setIsLoggedIn(true); setUserRole(role); 
+                            const params = new URLSearchParams(window.location.search);
+                            if (params.get('page') === 'tiket') {
+                                window.location.hash = 'tiket';
+                            } else {
+                                window.location.hash = 'menu';
+                            }
                         }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
                         {showLegalModal && (
