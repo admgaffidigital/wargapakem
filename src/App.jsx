@@ -1755,7 +1755,7 @@ const getDirectImgUrl = (url) => {
                 { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'iuran', icon: 'volunteer_activism', label: 'Iuran Umum', bg: 'bg-google-redLight', color: 'text-google-redDark border-2 border-google-red' },
                 { id: 'kas', icon: 'account_balance_wallet', label: 'Kas Warga', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
-                { id: 'tiket', icon: 'local_activity', label: 'Beli Tiket', bg: 'bg-rose-100', color: 'text-rose-700 border-2 border-rose-500' },
+                { id: 'tiket', icon: 'local_activity', label: 'Beli Tiket', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
                 { id: 'laporan', icon: 'history', label: 'Arsip Riwayat', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-400' },
                 { id: 'infaq', icon: 'volunteer_activism', label: 'Infaq', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
@@ -7426,10 +7426,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             const getStatusColor = (status) => {
                 switch(status) {
-                    case 'pending': return 'bg-amber-50 text-amber-705 border-amber-200 dark:bg-amber-950/20 dark:text-amber-400 dark:border-amber-900/40';
+                    case 'pending': return 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/20 dark:text-amber-400 dark:border-amber-900/40';
                     case 'processed': return 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/20 dark:text-blue-400 dark:border-blue-900/40';
                     case 'completed': return 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-400 dark:border-emerald-900/40';
-                    case 'cancelled': return 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/20 dark:text-rose-400 dark:border-rose-900/40';
+                    case 'cancelled': return 'bg-red-50 text-red-700 border-red-200 dark:bg-red-950/20 dark:text-red-400 dark:border-red-900/40';
                     default: return 'bg-slate-50 text-slate-700 border-slate-200';
                 }
             };
@@ -7565,22 +7565,22 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="space-y-6">
                             {/* Stats */}
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                <div className="bg-white p-6 rounded-[24px] border-2 border-slate-205 shadow-sm flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-[14px] bg-rose-50 border border-rose-200 text-rose-500 flex items-center justify-center shrink-0"><Icon name="trending_up" className="text-[24px]" /></div>
+                                <div className="bg-white p-6 rounded-[24px] border-2 border-slate-200 shadow-sm flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-[14px] bg-google-blueLight border border-google-blue/30 text-google-blueDark flex items-center justify-center shrink-0"><Icon name="trending_up" className="text-[24px]" /></div>
                                     <div>
                                         <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Total Tiket Terjual</p>
                                         <h4 className="text-xl font-bold text-slate-800">{stats.totalSold} <span className="text-[11px] font-medium text-slate-500">Tiket</span></h4>
                                     </div>
                                 </div>
-                                <div className="bg-white p-6 rounded-[24px] border-2 border-slate-205 shadow-sm flex items-center gap-4">
+                                <div className="bg-white p-6 rounded-[24px] border-2 border-slate-200 shadow-sm flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-[14px] bg-emerald-50 border border-emerald-200 text-emerald-500 flex items-center justify-center shrink-0"><Icon name="payments" className="text-[24px]" /></div>
                                     <div>
                                         <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Total Pendapatan</p>
                                         <h4 className="text-xl font-bold text-slate-800">{formatRp(stats.revenue)}</h4>
                                     </div>
                                 </div>
-                                <div className="bg-white p-6 rounded-[24px] border-2 border-slate-205 shadow-sm flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-[14px] bg-amber-50 border border-amber-205 text-amber-500 flex items-center justify-center shrink-0"><Icon name="schedule" className="text-[24px]" /></div>
+                                <div className="bg-white p-6 rounded-[24px] border-2 border-slate-200 shadow-sm flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-[14px] bg-amber-50 border border-amber-200 text-amber-500 flex items-center justify-center shrink-0"><Icon name="schedule" className="text-[24px]" /></div>
                                     <div>
                                         <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Pesanan Pending</p>
                                         <h4 className="text-xl font-bold text-slate-800">{stats.pendingCount} <span className="text-[11px] font-medium text-slate-500">Pesanan</span></h4>
@@ -7595,7 +7595,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <button onClick={() => setActiveSubTab('products')} className={`px-4 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'products' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="inventory_2" /> Kelola Produk</button>
                                 </div>
                                 {activeSubTab === 'products' && (
-                                    <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2.5 rounded-[12px] font-bold text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
+                                    <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-google-blue hover:bg-google-blueDark text-white px-4 py-2.5 rounded-[12px] font-bold text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
                                 )}
                             </div>
 
@@ -7604,12 +7604,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="space-y-5">
                                     <div className="flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
-                                            <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-11 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-rose-500/50" />
+                                            <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-11 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
                                             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" /></div>
                                         </div>
                                         <div className="flex gap-1.5 overflow-x-auto pb-1.5 sm:pb-0 shrink-0">
                                             {['all', 'pending', 'processed', 'completed', 'cancelled'].map(status => (
-                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-[12px] text-[11px] font-bold border-2 transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-rose-50 text-rose-700 border-rose-500/30' : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
+                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-[12px] text-[11px] font-bold border-2 transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-google-blueLight text-google-blueDark border-google-blue/30' : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
                                             ))}
                                         </div>
                                     </div>
@@ -7626,14 +7626,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <span className={`text-[9px] font-bold px-2.5 py-1 rounded-[6px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
                                                         <h4 className="font-extrabold text-[15px] text-slate-800">{order.buyerName}</h4>
-                                                        <p className="text-[12px] font-bold text-rose-600 mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
+                                                        <p className="text-[12px] font-bold text-google-blue mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
                                                         
                                                         <div className="mt-3 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
                                                             <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
                                                                 <Icon name="local_shipping" className="text-[14px] mt-0.5 shrink-0" />
                                                                 <span>
                                                                     {order.deliveryMethod === 'delivery' ? (
-                                                                        <><span className="font-bold text-rose-500">Kirim ke Rumah:</span> {order.address}</>
+                                                                        <><span className="font-bold text-google-blue">Kirim ke Rumah:</span> {order.address}</>
                                                                     ) : (
                                                                         <><span className="font-bold text-blue-500">Ambil di Lokasi:</span> {order.pickupLocation}</>
                                                                     )}
@@ -7653,14 +7653,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                                     {/* Actions */}
                                                     {order.status !== 'completed' && order.status !== 'cancelled' && (
-                                                        <div className="flex gap-2 border-t border-slate-105 pt-3.5">
+                                                        <div className="flex gap-2 border-t border-slate-200 pt-3.5">
                                                             {order.status === 'pending' && (
-                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-55 hover:bg-blue-100 text-blue-600 border border-blue-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
                                                             )}
                                                             {order.status === 'processed' && (
-                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-55 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
                                                             )}
-                                                            <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-rose-55 hover:bg-rose-100 text-rose-600 border border-rose-105 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
+                                                            <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -7686,13 +7686,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                                                 <div>
                                                     <h4 className="font-extrabold text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
-                                                    <p className="text-[12px] font-bold text-rose-600 mt-1">{formatRp(prod.price)}</p>
+                                                    <p className="text-[12px] font-bold text-google-blue mt-1">{formatRp(prod.price)}</p>
                                                     <p className="text-[11.5px] font-medium text-slate-500 mt-2 line-clamp-3 leading-relaxed">{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     <div className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-slate-400 bg-slate-50 px-2.5 py-1.5 rounded-[8px] w-fit border border-slate-200"><Icon name="shopping_bag" className="text-[13px]" /> Terjual: {prod.sold || 0} Pcs</div>
                                                 </div>
                                                 <div className="flex gap-2 pt-3 border-t border-slate-100">
                                                     <button onClick={() => handleEditProduct(prod)} className="flex-1 bg-slate-50 hover:bg-slate-100 text-google-blue border border-slate-200 py-2.5 rounded-[10px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                                    <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 py-2.5 rounded-[10px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                                    <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 bg-red-50 hover:bg-red-100 text-red-650 border border-red-200 py-2.5 rounded-[10px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -7708,28 +7708,28 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div className="space-y-4">
                                             <div>
                                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Tiket / Produk</label>
-                                                <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: Tiket Jalan Santai RT Pakem" />
+                                                <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Tiket Jalan Santai RT Pakem" />
                                             </div>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Harga (Rp)</label>
-                                                    <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: 5000" />
+                                                    <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 5000" />
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Stok Tiket</label>
-                                                    <input type="number" value={productForm.stock} onChange={e => setProductForm({...productForm, stock: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: 100" />
+                                                    <input type="number" value={productForm.stock} onChange={e => setProductForm({...productForm, stock: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 100" />
                                                 </div>
                                             </div>
                                             <div>
                                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Deskripsi Tiket</label>
-                                                <textarea value={productForm.description} onChange={e => setProductForm({...productForm, description: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all h-24 resize-none" placeholder="Tuliskan info doorprize, aturan, jadwal, dll..."></textarea>
+                                                <textarea value={productForm.description} onChange={e => setProductForm({...productForm, description: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all h-24 resize-none" placeholder="Tuliskan info doorprize, aturan, jadwal, dll..."></textarea>
                                             </div>
                                             <div>
                                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Upload Foto Cover (Opsional)</label>
-                                                <div className={`flex items-center gap-4 bg-slate-50 border-2 ${isUploading ? 'border-rose-500 shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-rose-500 transition-all`}>
+                                                <div className={`flex items-center gap-4 bg-slate-50 border-2 ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                                     <input type="file" accept="image/*" onChange={handleProductImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                                     <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
-                                                        {isUploading ? <div className="w-5 h-5 border-2 border-rose-500 border-t-transparent rounded-full animate-spin"></div> : <Icon name="image" className="text-[20px]" />}
+                                                        {isUploading ? <div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div> : <Icon name="image" className="text-[20px]" />}
                                                     </div>
                                                     <div className="relative z-0 flex-1 min-w-0">
                                                         <p className="font-bold text-[13px] text-google-text truncate">{isUploading ? "Mengunggah..." : (productForm.imageUrl ? "Gambar Siap" : "Pilih Gambar")}</p>
@@ -7744,7 +7744,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
                                             <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
-                                            <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-rose-500 text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-rose-600 transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
+                                            <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
                                         </div>
                                     </div>
                                 </div>
@@ -7754,7 +7754,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         /* ================== VIEW WARGA ================== */
                         <div className="space-y-6">
                             {/* Banner Header */}
-                            <div className="bg-gradient-to-r from-rose-500 via-pink-500 to-orange-500 rounded-[28px] p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+                            <div className="bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark rounded-[28px] p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
                                 <div className="absolute inset-0 bg-black/10"></div>
                                 <div className="relative z-10">
                                     <span className="bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border border-white/20">EVENT RT PAKEM</span>
@@ -7767,10 +7767,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Warga Sub Tabs */}
                             <div className="flex gap-2.5 border-b-2 border-slate-200/60 pb-3">
-                                <button onClick={() => setActiveSubTab('shop')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'shop' ? 'bg-rose-500 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}`}><Icon name="shopping_bag" className="text-[16px]" /> Beli Tiket</button>
-                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 relative ${activeSubTab === 'my_tickets' ? 'bg-rose-500 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'}`}>
+                                <button onClick={() => setActiveSubTab('shop')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-md' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-305'}`}><Icon name="shopping_bag" className="text-[16px]" /> Beli Tiket</button>
+                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 relative ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-md' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-305'}`}>
                                     <Icon name="confirmation_number" className="text-[16px]" /> Tiket Saya
-                                    {myTicketsFiltered.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-rose-600 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white">{myTicketsFiltered.length}</span>}
+                                    {myTicketsFiltered.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-google-blue text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white">{myTicketsFiltered.length}</span>}
                                 </button>
                             </div>
 
@@ -7783,17 +7783,17 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 {prod.imageUrl ? (
                                                     <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
                                                 ) : (
-                                                    <div className="text-rose-450 flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[10px] font-bold uppercase tracking-wider text-rose-500">Tiket Santai</span></div>
+                                                    <div className="text-google-blue flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[10px] font-bold uppercase tracking-wider text-google-blue">Tiket Santai</span></div>
                                                 )}
                                                 <div className={`absolute top-3 right-3 text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-sm ${prod.stock > 0 ? 'bg-slate-900/75 text-white' : 'bg-red-500 text-white animate-pulse'}`}>{prod.stock > 0 ? `Sisa Stok: ${prod.stock}` : 'Stok Habis'}</div>
                                             </div>
                                             <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                                                 <div>
                                                     <h4 className="font-extrabold text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
-                                                    <p className="text-[12px] font-bold text-rose-650 mt-1">{formatRp(prod.price)}</p>
+                                                    <p className="text-[12px] font-bold text-google-blue mt-1">{formatRp(prod.price)}</p>
                                                     <p className="text-[11.5px] font-medium text-slate-500 mt-2 line-clamp-3 leading-relaxed">{prod.description || 'Tidak ada deskripsi.'}</p>
                                                 </div>
-                                                <button onClick={() => handleOpenBuyModal(prod)} disabled={prod.stock <= 0} className={`w-full py-3.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center justify-center gap-2 active:scale-95 ${prod.stock > 0 ? 'bg-rose-500 hover:bg-rose-600 text-white shadow-md shadow-rose-500/10' : 'bg-slate-100 border border-slate-350 text-slate-400 cursor-not-allowed'}`}><Icon name="add_shopping_cart" /> {prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}</button>
+                                                <button onClick={() => handleOpenBuyModal(prod)} disabled={prod.stock <= 0} className={`w-full py-3.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center justify-center gap-2 active:scale-95 ${prod.stock > 0 ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-md shadow-google-blue/10' : 'bg-slate-100 border border-slate-350 text-slate-400 cursor-not-allowed'}`}><Icon name="add_shopping_cart" /> {prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}</button>
                                             </div>
                                         </div>
                                     ))}
@@ -7805,7 +7805,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="space-y-5">
                                     <div className="bg-slate-50 border border-slate-200/80 rounded-[20px] p-4 flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
-                                            <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-11 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-rose-500/50" />
+                                            <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-11 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
                                             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" /></div>
                                         </div>
                                         {myTicketsSearch && (
@@ -7829,14 +7829,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <span className={`text-[9px] font-bold px-2.5 py-1 rounded-[6px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
                                                         <h4 className="font-extrabold text-[15px] text-slate-850">{order.buyerName}</h4>
-                                                        <p className="text-[12.5px] font-extrabold text-rose-600 mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
+                                                        <p className="text-[12.5px] font-extrabold text-google-blue mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
                                                         
                                                         <div className="mt-3.5 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
                                                             <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
                                                                 <Icon name="local_shipping" className="text-[14px] mt-0.5 shrink-0" />
                                                                 <span>
                                                                     {order.deliveryMethod === 'delivery' ? (
-                                                                        <><span className="font-bold text-rose-500">Diantar ke Rumah:</span> {order.address}</>
+                                                                        <><span className="font-bold text-google-blue">Diantar ke Rumah:</span> {order.address}</>
                                                                     ) : (
                                                                         <><span className="font-bold text-blue-500">Ambil Sendiri:</span> {order.pickupLocation}</>
                                                                     )}
@@ -7851,7 +7851,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
                                                                 <Icon name="event" className="text-[13px]" /> Tanggal Pesan: {order.timestamp}
                                                             </div>
-                                                            <div className="flex items-center gap-1.5 text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-1 rounded-[6px] w-fit border border-emerald-100">
+                                                            <div className="flex items-center gap-1.5 text-[10px] text-emerald-650 font-bold bg-emerald-50 px-2 py-1 rounded-[6px] w-fit border border-emerald-100">
                                                                 <Icon name="payments" className="text-[13px]" /> Pembayaran COD (Di tempat)
                                                             </div>
                                                         </div>
@@ -7863,7 +7863,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                 if(confirm("Yakin ingin membatalkan pesanan ini?")) {
                                                                     handleCancelOrderByWarga(order);
                                                                 }
-                                                            }} className="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-100 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Batalkan Pesanan</button>
+                                                            }} className="w-full bg-red-50 hover:bg-red-100 text-red-650 border border-red-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Batalkan Pesanan</button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -7882,25 +7882,25 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <button onClick={() => setIsBuyModalOpen(false)} className="w-8 h-8 rounded-full border border-slate-300 text-slate-400 hover:bg-slate-100 flex items-center justify-center"><Icon name="close" /></button>
                                         </div>
                                         <div className="space-y-4">
-                                            <div className="bg-rose-50 border border-rose-100 rounded-[16px] p-4 text-[12px]">
-                                                <p className="font-extrabold text-rose-700">{selectedProduct.name}</p>
+                                            <div className="bg-google-blueLight border border-google-blue/20 rounded-[16px] p-4 text-[12px] text-google-blueDark">
+                                                <p className="font-extrabold">{selectedProduct.name}</p>
                                                 <p className="font-medium text-slate-500 mt-0.5">Harga: {formatRp(selectedProduct.price)} / tiket</p>
                                                 <p className="font-medium text-slate-500">Tersedia: {selectedProduct.stock} tiket</p>
                                             </div>
 
                                             <div>
                                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lengkap Pembeli</label>
-                                                <input type="text" value={buyForm.name} onChange={e => setBuyForm({...buyForm, name: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: Ahmad Sunandar" />
+                                                <input type="text" value={buyForm.name} onChange={e => setBuyForm({...buyForm, name: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Ahmad Sunandar" />
                                             </div>
 
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Jumlah Tiket</label>
-                                                    <input type="number" min="1" max={selectedProduct.stock} value={buyForm.quantity} onChange={e => setBuyForm({...buyForm, quantity: Math.max(1, Number(e.target.value))})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" />
+                                                    <input type="number" min="1" max={selectedProduct.stock} value={buyForm.quantity} onChange={e => setBuyForm({...buyForm, quantity: Math.max(1, Number(e.target.value))})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" />
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Total Pembayaran</label>
-                                                    <div className="w-full bg-slate-100 border-2 border-slate-200 p-4 text-[13px] font-extrabold text-rose-600 rounded-[16px] flex items-center">
+                                                    <div className="w-full bg-slate-100 border-2 border-slate-200 p-4 text-[13px] font-extrabold text-google-blue rounded-[16px] flex items-center">
                                                         {formatRp(Number(buyForm.quantity || 1) * selectedProduct.price)}
                                                     </div>
                                                 </div>
@@ -7912,7 +7912,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <button type="button" onClick={() => setBuyForm({...buyForm, deliveryMethod: 'pickup'})} className={`p-4 rounded-[16px] border-2 font-bold text-[12px] text-center flex flex-col items-center justify-center gap-1.5 transition-all active:scale-95 ${buyForm.deliveryMethod === 'pickup' ? 'bg-blue-50 border-blue-500 text-blue-700' : 'bg-slate-50 border-slate-300 text-slate-500 hover:bg-slate-100'}`}>
                                                         <Icon name="storefront" className="text-[20px]" /> Ambil di Pos RT
                                                     </button>
-                                                    <button type="button" onClick={() => setBuyForm({...buyForm, deliveryMethod: 'delivery'})} className={`p-4 rounded-[16px] border-2 font-bold text-[12px] text-center flex flex-col items-center justify-center gap-1.5 transition-all active:scale-95 ${buyForm.deliveryMethod === 'delivery' ? 'bg-rose-50 border-rose-500 text-rose-700' : 'bg-slate-50 border-slate-300 text-slate-500 hover:bg-slate-100'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({...buyForm, deliveryMethod: 'delivery'})} className={`p-4 rounded-[16px] border-2 font-bold text-[12px] text-center flex flex-col items-center justify-center gap-1.5 transition-all active:scale-95 ${buyForm.deliveryMethod === 'delivery' ? 'bg-red-50 border-google-blue text-google-blueDark' : 'bg-slate-50 border-slate-300 text-slate-500 hover:bg-slate-100'}`}>
                                                         <Icon name="local_shipping" className="text-[20px]" /> Kirim ke Rumah
                                                     </button>
                                                 </div>
@@ -7921,7 +7921,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             {buyForm.deliveryMethod === 'pickup' ? (
                                                 <div>
                                                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Lokasi Pengambilan</label>
-                                                    <select value={buyForm.location} onChange={e => setBuyForm({...buyForm, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 appearance-none">
+                                                    <select value={buyForm.location} onChange={e => setBuyForm({...buyForm, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 appearance-none">
                                                         <option value="Pos RT Pakem (Balai RT)">Pos RT Pakem (Balai RT)</option>
                                                         <option value="Rumah Ketua RT (Bpk. Bambang)">Rumah Ketua RT (Bpk. Bambang)</option>
                                                         <option value="Depan Gapura Utama RT">Depan Gapura Utama RT</option>
@@ -7930,20 +7930,20 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             ) : (
                                                 <div>
                                                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Alamat Lengkap / No. Rumah</label>
-                                                    <input type="text" value={buyForm.address} onChange={e => setBuyForm({...buyForm, address: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: RT 03 RW 01, Rumah No. 12 (Pagar Merah)" />
+                                                    <input type="text" value={buyForm.address} onChange={e => setBuyForm({...buyForm, address: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: RT 03 RW 01, Rumah No. 12 (Pagar Merah)" />
                                                 </div>
                                             )}
 
                                             <div>
                                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Catatan Tambahan (Opsional)</label>
-                                                <input type="text" value={buyForm.notes} onChange={e => setBuyForm({...buyForm, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-rose-500/50 focus:shadow-md transition-all" placeholder="Cth: Kaos Ukuran L / Minta diantar sore hari" />
+                                                <input type="text" value={buyForm.notes} onChange={e => setBuyForm({...buyForm, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Kaos Ukuran L / Minta diantar sore hari" />
                                             </div>
 
                                             {wargaError && <div className="bg-red-50 text-red-650 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {wargaError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
                                             <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
-                                            <button onClick={handlePlaceOrder} className="w-2/3 bg-rose-500 text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-rose-600 transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
+                                            <button onClick={handlePlaceOrder} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
                                         </div>
                                     </div>
                                 </div>
