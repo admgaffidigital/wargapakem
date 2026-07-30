@@ -7357,7 +7357,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             // Warga State
             const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
             const [selectedProduct, setSelectedProduct] = useState(null);
-            const [buyForm, setBuyForm] = useState({ name: '', quantity: 1, notes: '', deliveryMethod: 'pickup', address: '' });
+            const [buyForm, setBuyForm] = useState({ name: '', quantity: 1, notes: '', deliveryMethod: 'pickup', deliveryDay: '', deliveryTime: '' });
             const [wargaError, setWargaError] = useState('');
             const [myTicketsSearch, setMyTicketsSearch] = useState('');
             const [localSavedOrderIds, setLocalSavedOrderIds] = useState(() => {
@@ -7508,7 +7508,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     quantity: 1,
                     notes: '',
                     deliveryMethod: 'pickup',
-                    address: ''
+                    deliveryDay: '',
+                    deliveryTime: ''
                 });
                 setWargaError('');
                 setIsBuyModalOpen(true);
@@ -7519,8 +7520,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 const qty = Number(buyForm.quantity);
                 if (isNaN(qty) || qty < 1) return setWargaError("Jumlah pembelian minimal 1 tiket!");
                 if (qty > selectedProduct.stock) return setWargaError(`Stok tidak mencukupi! Hanya tersisa ${selectedProduct.stock} tiket.`);
-                if (buyForm.deliveryMethod === 'delivery' && !buyForm.address.trim()) {
-                    return setWargaError("Alamat rumah wajib diisi untuk metode pengantaran ke rumah!");
+                if (buyForm.deliveryMethod === 'delivery') {
+                    if (!buyForm.deliveryDay.trim()) return setWargaError("Hari pengantaran wajib diisi!");
+                    if (!buyForm.deliveryTime.trim()) return setWargaError("Jam pengantaran wajib diisi!");
                 }
 
                 const newOrder = {
@@ -7534,7 +7536,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     pickupLocation: selectedProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT',
                     pickupGeoUrl: selectedProduct.pickupGeoUrl || 'https://maps.google.com',
                     deliveryMethod: buyForm.deliveryMethod,
-                    deliveryAddress: buyForm.deliveryMethod === 'delivery' ? buyForm.address.trim() : '',
+                    deliveryDay: buyForm.deliveryMethod === 'delivery' ? buyForm.deliveryDay.trim() : '',
+                    deliveryTime: buyForm.deliveryMethod === 'delivery' ? buyForm.deliveryTime.trim() : '',
                     status: 'pending',
                     timestamp: getLocalDate()
                 };
@@ -7703,7 +7706,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                     <span>
                                                                         <span className="font-bold text-slate-700">Metode:</span> Diantar ke Rumah
                                                                         <br />
-                                                                        <span className="font-bold text-slate-700">Alamat:</span> {order.deliveryAddress}
+                                                                        <span className="font-bold text-slate-700">Waktu Antar:</span> {order.deliveryDay || '-'}, {order.deliveryTime || '-'}
                                                                     </span>
                                                                 </div>
                                                             ) : (
@@ -7975,7 +7978,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                     <span>
                                                                         <span className="font-bold text-slate-700">Metode:</span> Diantar ke Rumah
                                                                         <br />
-                                                                        <span className="font-bold text-slate-700">Alamat:</span> {order.deliveryAddress}
+                                                                        <span className="font-bold text-slate-700">Waktu Antar:</span> {order.deliveryDay || '-'}, {order.deliveryTime || '-'}
                                                                     </span>
                                                                 </div>
                                                             ) : (
@@ -8050,14 +8053,20 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 </div>
                                             </div>
 
-                                            {/* Tampilkan Input Alamat atau Info Lokasi */}
+                                            {/* Tampilkan Input Waktu atau Info Lokasi */}
                                             {buyForm.deliveryMethod === 'delivery' ? (
                                                 <div className="animate-fade-in bg-slate-50 border border-slate-200 p-4 rounded-[16px] space-y-3">
-                                                    <div>
-                                                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Alamat Pengiriman Rumah Lengkap</label>
-                                                        <input type="text" value={buyForm.address} onChange={e => setBuyForm({...buyForm, address: e.target.value})} className="w-full bg-white border-2 border-slate-300 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: RT 03 / RW 01, No. 12 (Sebelah Mushola)" />
+                                                    <div className="grid grid-cols-2 gap-3">
+                                                        <div>
+                                                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Hari Pengantaran</label>
+                                                            <input type="text" value={buyForm.deliveryDay} onChange={e => setBuyForm({...buyForm, deliveryDay: e.target.value})} className="w-full bg-white border-2 border-slate-300 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Sabtu / Hari ini" />
+                                                        </div>
+                                                        <div>
+                                                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Jam Pengantaran</label>
+                                                            <input type="text" value={buyForm.deliveryTime} onChange={e => setBuyForm({...buyForm, deliveryTime: e.target.value})} className="w-full bg-white border-2 border-slate-300 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Jam 4 Sore / Malam" />
+                                                        </div>
                                                     </div>
-                                                    <p className="text-[11px] text-slate-500 leading-normal flex items-start gap-1"><Icon name="info" className="text-[13px] text-google-blue shrink-0 mt-0.5" /> Pembayaran akan ditagihkan secara tunai saat pengurus RT mengantarkan tiket ke rumah Anda.</p>
+                                                    <p className="text-[11px] text-slate-550 leading-normal flex items-start gap-1"><Icon name="info" className="text-[13px] text-google-blue shrink-0 mt-0.5" /> Karena lingkungan RT sama, alamat tidak diperlukan. Cukup atur waktu agar pengurus RT bisa mengantarkan tiket ke rumah Anda.</p>
                                                 </div>
                                             ) : (
                                                 <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-250 p-4 rounded-[16px] text-[12px] text-emerald-800 dark:text-emerald-400 animate-fade-in">
