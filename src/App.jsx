@@ -1658,6 +1658,12 @@ const getDirectImgUrl = (url) => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 };
                 window.addEventListener('hashchange', handleHashChange);
+
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('page') === 'tiket') {
+                    window.location.hash = 'tiket';
+                }
+
                 handleHashChange(); 
                 
                 return () => {
@@ -7293,6 +7299,54 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             const [activeSubTab, setActiveSubTab] = useState(userRole === 'admin' ? 'orders' : 'shop');
             const [modalConfig, setModalConfig] = useState(null);
+            const [sharingProduct, setSharingProduct] = useState(null);
+
+            useEffect(() => {
+                const params = new URLSearchParams(window.location.search);
+                const productId = params.get('product');
+                if (productId && products.length > 0) {
+                    const prod = products.find(p => String(p.id) === productId);
+                    if (prod && prod.stock > 0) {
+                        handleOpenBuyModal(prod);
+                        // Hapus query params dari URL agar tidak memicu terus menerus
+                        const newUrl = window.location.pathname + window.location.hash;
+                        window.history.replaceState({}, document.title, newUrl);
+                    }
+                }
+            }, [products]);
+
+            const handleShareToSocial = (platform) => {
+                if (!sharingProduct) return;
+                const shareUrl = `${window.location.origin}${window.location.pathname}?page=tiket&product=${sharingProduct.id}`;
+                const textMessage = `Yuk beli tiket *${sharingProduct.name}* Jalan Santai RT Pakem!%0AHarga: *${formatRp(sharingProduct.price)}*%0ALokasi Pengambilan: *${sharingProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}*%0A%0APesan online di sini: ${shareUrl}`;
+
+                switch (platform) {
+                    case 'whatsapp':
+                        window.open(`https://api.whatsapp.com/send?text=${textMessage}`, '_blank');
+                        break;
+                    case 'telegram':
+                        window.open(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(`Yuk beli tiket ${sharingProduct.name} Jalan Santai RT Pakem!`)}`, '_blank');
+                        break;
+                    case 'facebook':
+                        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+                        break;
+                    case 'twitter':
+                        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Yuk beli tiket ${sharingProduct.name} Jalan Santai RT Pakem! ${shareUrl}`)}`, '_blank');
+                        break;
+                    case 'copy':
+                        navigator.clipboard.writeText(shareUrl)
+                            .then(() => {
+                                showToast("Tautan berhasil disalin!");
+                                setSharingProduct(null);
+                            })
+                            .catch(() => {
+                                showToast("Gagal menyalin tautan.");
+                            });
+                        break;
+                    default:
+                        break;
+                }
+            };
 
             // Warga State
             const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
@@ -7696,6 +7750,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 </div>
                                                 <div className="flex gap-2 pt-3 border-t border-slate-100">
                                                     <button onClick={() => handleEditProduct(prod)} className="flex-1 bg-slate-50 hover:bg-slate-100 text-google-blue border border-slate-200 py-2.5 rounded-[10px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                                    <button onClick={() => setSharingProduct(prod)} className="px-2.5 bg-slate-50 hover:bg-slate-150 text-slate-700 border border-slate-200 py-2.5 rounded-[10px] transition-colors flex items-center justify-center" title="Bagikan"><Icon name="share" className="text-[14px]" /></button>
                                                     <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 py-2.5 rounded-[10px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                                 </div>
                                             </div>
@@ -7816,7 +7871,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         )}
                                                     </div>
                                                 </div>
-                                                <button onClick={() => handleOpenBuyModal(prod)} disabled={prod.stock <= 0} className={`w-full py-3.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center justify-center gap-2 active:scale-95 ${prod.stock > 0 ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-md shadow-google-blue/10' : 'bg-slate-100 border border-slate-350 text-slate-400 cursor-not-allowed'}`}><Icon name="add_shopping_cart" /> {prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}</button>
+                                                <div className="flex gap-2">
+                                                    <button onClick={() => handleOpenBuyModal(prod)} disabled={prod.stock <= 0} className={`flex-1 py-3.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center justify-center gap-2 active:scale-95 ${prod.stock > 0 ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-md shadow-google-blue/10' : 'bg-slate-100 border border-slate-350 text-slate-400 cursor-not-allowed'}`}><Icon name="add_shopping_cart" /> {prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}</button>
+                                                    <button onClick={() => setSharingProduct(prod)} className="px-3.5 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-750 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-[12px] transition-colors flex items-center justify-center active:scale-95" title="Bagikan"><Icon name="share" className="text-[16px]" /></button>
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
@@ -7958,6 +8016,41 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     </div>
                                 </div>
                             )}
+                        </div>
+                    )}
+
+                    {sharingProduct && (
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
+                            <div className="bg-white dark:bg-slate-900 rounded-[32px] p-6 sm:p-8 max-w-sm w-full shadow-2xl animate-scale-up border border-slate-200 dark:border-slate-800">
+                                <div className="flex justify-between items-center mb-6 pb-3 border-b border-slate-100 dark:border-slate-800">
+                                    <h3 className="text-lg font-extrabold text-slate-800 dark:text-slate-100 flex items-center gap-2"><Icon name="share" className="text-google-blue" /> Bagikan Tiket</h3>
+                                    <button onClick={() => setSharingProduct(null)} className="w-8 h-8 rounded-full border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"><Icon name="close" /></button>
+                                </div>
+
+                                <div className="mb-6 bg-slate-50 dark:bg-slate-950 p-4 rounded-[20px] border border-slate-205 dark:border-slate-800">
+                                    <h4 className="font-extrabold text-[14px] text-slate-800 dark:text-slate-250 line-clamp-1">{sharingProduct.name}</h4>
+                                    <p className="text-[12px] font-bold text-google-blue mt-0.5">{formatRp(sharingProduct.price)}</p>
+                                    <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-1.5 flex items-center gap-1"><Icon name="location_on" className="text-[13px] text-google-blue" /> {sharingProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
+                                </div>
+
+                                <div className="space-y-2.5">
+                                    <button onClick={() => handleShareToSocial('whatsapp')} className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                        <Icon name="chat" className="text-[18px]" /> WhatsApp
+                                    </button>
+                                    <button onClick={() => handleShareToSocial('telegram')} className="w-full bg-[#0088cc] hover:bg-[#0077b3] text-white font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                        <Icon name="send" className="text-[18px] rotate-[-30deg] mt-[-2px]" /> Telegram
+                                    </button>
+                                    <button onClick={() => handleShareToSocial('facebook')} className="w-full bg-[#1877F2] hover:bg-[#1566d4] text-white font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                        <Icon name="facebook" className="text-[18px]" /> Facebook
+                                    </button>
+                                    <button onClick={() => handleShareToSocial('twitter')} className="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                        <Icon name="close" className="text-[18px]" /> X (Twitter)
+                                    </button>
+                                    <button onClick={() => handleShareToSocial('copy')} className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-205 font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 active:scale-95">
+                                        <Icon name="content_copy" className="text-[18px]" /> Salin Tautan
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     )}
                 </div>
