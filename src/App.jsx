@@ -7581,6 +7581,18 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 showToast("Pesanan berhasil dibatalkan.");
             };
 
+            const handleDeleteOrderLog = (orderId) => {
+                if (confirm("Yakin ingin menghapus riwayat/log pesanan ini dari sistem?")) {
+                    setOrders((orders || []).filter(o => o.id !== orderId));
+                    const newLocalIds = (localSavedOrderIds || []).filter(id => id !== orderId);
+                    setLocalSavedOrderIds(newLocalIds);
+                    try {
+                        localStorage.setItem('wargapakem_my_tickets', JSON.stringify(newLocalIds));
+                    } catch(e) {}
+                    showToast("Riwayat pesanan berhasil dihapus.");
+                }
+            };
+
             // Filters
             const filteredOrders = (orders || []).filter(o => {
                 const matchStatus = adminOrderFilter === 'all' || o.status === adminOrderFilter;
@@ -7733,7 +7745,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     </div>
 
                                                     {/* Actions */}
-                                                    {order.status !== 'completed' && order.status !== 'cancelled' && (
+                                                    {order.status !== 'completed' && order.status !== 'cancelled' ? (
                                                         <div className="flex gap-2 border-t border-slate-200 pt-3.5">
                                                             {order.status === 'pending' && (
                                                                 <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
@@ -7742,6 +7754,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                 <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
                                                             )}
                                                             <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="flex gap-2 border-t border-slate-200 pt-3.5">
+                                                            <button onClick={() => handleDeleteOrderLog(order.id)} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus Log Pesanan</button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -8161,7 +8177,6 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
 // Default export untuk digunakan di main.jsx
 export default App;
-
 
 
 
