@@ -7354,6 +7354,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 }
             };
 
+            // Custom Confirm Dialog State
+            const [confirmModal, setConfirmModal] = useState(null);
+
             // Warga State
             const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
             const [selectedProduct, setSelectedProduct] = useState(null);
@@ -7453,10 +7456,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             };
 
             const handleDeleteProduct = (productId) => {
-                if (confirm("Yakin ingin menghapus produk tiket ini?")) {
-                    setProducts(products.filter(p => p.id !== productId));
-                    setModalConfig({ message: 'Produk tiket berhasil dihapus.' });
-                }
+                setConfirmModal({
+                    title: "Hapus Produk?",
+                    message: "Yakin ingin menghapus produk tiket ini? Tindakan ini tidak bisa dibatalkan.",
+                    confirmText: "Hapus",
+                    onConfirm: () => {
+                        setProducts(products.filter(p => p.id !== productId));
+                        setModalConfig({ message: 'Produk tiket berhasil dihapus.' });
+                        setConfirmModal(null);
+                    }
+                });
             };
 
             // Order actions (Admin)
@@ -7582,15 +7591,21 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             };
 
             const handleDeleteOrderLog = (orderId) => {
-                if (confirm("Yakin ingin menghapus riwayat/log pesanan ini dari sistem?")) {
-                    setOrders((orders || []).filter(o => o.id !== orderId));
-                    const newLocalIds = (localSavedOrderIds || []).filter(id => id !== orderId);
-                    setLocalSavedOrderIds(newLocalIds);
-                    try {
-                        localStorage.setItem('wargapakem_my_tickets', JSON.stringify(newLocalIds));
-                    } catch(e) {}
-                    showToast("Riwayat pesanan berhasil dihapus.");
-                }
+                setConfirmModal({
+                    title: "Hapus Log Pesanan?",
+                    message: "Yakin ingin menghapus riwayat/log pesanan ini dari sistem secara permanen?",
+                    confirmText: "Hapus",
+                    onConfirm: () => {
+                        setOrders((orders || []).filter(o => o.id !== orderId));
+                        const newLocalIds = (localSavedOrderIds || []).filter(id => id !== orderId);
+                        setLocalSavedOrderIds(newLocalIds);
+                        try {
+                            localStorage.setItem('wargapakem_my_tickets', JSON.stringify(newLocalIds));
+                        } catch(e) {}
+                        showToast("Riwayat pesanan berhasil dihapus.");
+                        setConfirmModal(null);
+                    }
+                });
             };
 
             // Filters
@@ -8026,9 +8041,15 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     {order.status === 'pending' && (
                                                         <div className="border-t border-slate-100 pt-3">
                                                             <button onClick={() => {
-                                                                if(confirm("Yakin ingin membatalkan pesanan ini?")) {
-                                                                    handleCancelOrderByWarga(order);
-                                                                }
+                                                                setConfirmModal({
+                                                                    title: "Batalkan Pesanan?",
+                                                                    message: "Apakah Anda yakin ingin membatalkan pesanan tiket ini?",
+                                                                    confirmText: "Batalkan",
+                                                                    onConfirm: () => {
+                                                                        handleCancelOrderByWarga(order);
+                                                                        setConfirmModal(null);
+                                                                    }
+                                                                });
                                                             }} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Batalkan Pesanan</button>
                                                         </div>
                                                     )}
@@ -8134,6 +8155,22 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     </div>
                                 </div>
                             )}
+                        </div>
+                    )}
+
+                    {confirmModal && (
+                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[150] flex items-center justify-center p-4">
+                            <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 animate-scale-up">
+                                <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-100 text-red-500">
+                                    <Icon name="delete_forever" className="text-[40px]" fill="true" />
+                                </div>
+                                <h3 className="text-xl font-black text-slate-800 mb-2">{confirmModal.title}</h3>
+                                <p className="text-[12.5px] font-medium text-slate-500 mb-6 leading-relaxed">{confirmModal.message}</p>
+                                <div className="flex gap-3">
+                                    <button onClick={() => setConfirmModal(null)} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={confirmModal.onConfirm} className="flex-1 bg-red-500 hover:bg-red-650 text-white py-3.5 rounded-[16px] font-bold text-[13px] active:scale-95 transition-all shadow-md">{confirmModal.confirmText || 'Hapus'}</button>
+                                </div>
+                            </div>
                         </div>
                     )}
 
