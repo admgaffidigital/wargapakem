@@ -7381,6 +7381,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const [isUploading, setIsUploading] = useState(false);
             const [adminOrderFilter, setAdminOrderFilter] = useState('all');
             const [adminSearchQuery, setAdminSearchQuery] = useState('');
+            // Track which product card has its description expanded
+            const [expandedDescId, setExpandedDescId] = useState(null);
 
             const handleProductImageUpload = (e) => {
                 const file = e.target.files[0];
@@ -7820,7 +7822,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <div>
                                                     <h4 className="font-extrabold text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
                                                     <p className="text-[12px] font-bold text-google-blue mt-1">{formatRp(prod.price)}</p>
-                                                    <p className="text-[11.5px] font-medium text-slate-500 mt-2 line-clamp-3 leading-relaxed">{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                    <p className={`text-[11.5px] font-medium text-slate-500 mt-2 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                    {(prod.description || '').length > 80 && (
+                                                        <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-bold text-google-blue hover:underline">
+                                                            {expandedDescId === prod.id ? '↑ Tutup' : '↓ Selengkapnya'}
+                                                        </button>
+                                                    )}
                                                     
                                                     <div className="mt-3 space-y-1.5">
                                                         <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 bg-slate-50 px-2.5 py-1.5 rounded-[8px] w-fit border border-slate-200"><Icon name="shopping_bag" className="text-[13px]" /> Terjual: {prod.sold || 0} Pcs</div>
@@ -7968,7 +7975,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             </span>
                                                         )}
                                                     </div>
-                                                    <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed pt-1">{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                    <p className={`text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed pt-1 ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                    {(prod.description || '').length > 100 && (
+                                                        <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1.5 text-[11px] font-bold text-google-blue dark:text-blue-400 hover:underline flex items-center gap-1">
+                                                            <Icon name={expandedDescId === prod.id ? 'expand_less' : 'expand_more'} className="text-[15px]" />
+                                                            {expandedDescId === prod.id ? 'Tutup' : 'Selengkapnya'}
+                                                        </button>
+                                                    )}
                                                     
                                                     {/* Premium Location Card */}
                                                     <div className="mt-4 flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800/80 rounded-[20px]">
