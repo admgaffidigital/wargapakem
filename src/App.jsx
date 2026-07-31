@@ -7430,10 +7430,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 };
 
                 if (editingProduct) {
-                    setProducts(products.map(p => p.id === editingProduct.id ? { ...p, ...productData } : p));
+                    // Capture editingProduct.id to avoid stale closure
+                    const editId = editingProduct.id;
+                    setProducts(prev => (prev || []).map(p => p.id === editId ? { ...p, ...productData } : p));
                     setModalConfig({ message: 'Produk tiket berhasil diperbarui.' });
                 } else {
-                    setProducts([{ id: Date.now(), sold: 0, ...productData }, ...products]);
+                    const newProduct = { id: Date.now(), sold: 0, ...productData };
+                    setProducts(prev => [newProduct, ...(prev || [])]);
                     setModalConfig({ message: 'Produk tiket baru berhasil ditambahkan.' });
                 }
                 setIsProductModalOpen(false);
@@ -7471,22 +7474,32 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             // Order actions (Admin)
             const handleUpdateOrderStatus = (orderId, newStatus) => {
-                const order = orders.find(o => o.id === orderId);
+                // Snapshot current values to avoid stale closure
+                const order = (orders || []).find(o => o.id === orderId);
                 if (!order) return;
+                // Guard: prevent re-cancellation
+                if (order.status === newStatus) return;
 
-                // Restock if transitioning to cancelled
+                // Restock & un-sold if transitioning TO cancelled
                 if (newStatus === 'cancelled' && order.status !== 'cancelled') {
-                    const updatedProducts = products.map(p => {
+                    setProducts(prev => (prev || []).map(p => {
                         if (p.id === order.productId) {
                             return { ...p, stock: p.stock + order.quantity, sold: Math.max(0, (p.sold || 0) - order.quantity) };
                         }
                         return p;
-                    });
-                    setProducts(updatedProducts);
+                    }));
+                }
+                // If reverting FROM cancelled back to active — deduct stock again
+                if (order.status === 'cancelled' && newStatus !== 'cancelled') {
+                    setProducts(prev => (prev || []).map(p => {
+                        if (p.id === order.productId) {
+                            return { ...p, stock: Math.max(0, p.stock - order.quantity), sold: (p.sold || 0) + order.quantity };
+                        }
+                        return p;
+                    }));
                 }
 
-                const updatedOrders = orders.map(o => o.id === orderId ? { ...o, status: newStatus } : o);
-                setOrders(updatedOrders);
+                setOrders(prev => (prev || []).map(o => o.id === orderId ? { ...o, status: newStatus } : o));
                 showToast(`Status pesanan diubah ke: ${getStatusLabel(newStatus)}`);
             };
 
@@ -7552,42 +7565,42 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     timestamp: getLocalDate()
                 };
 
-                // Deduct stock
-                const updatedProducts = products.map(p => {
-                    if (p.id === selectedProduct.id) {
+                // Deduct stock — functional update avoids stale closure
+                const targetProductId = selectedProduct.id;
+                setProducts(prev => (prev || []).map(p => {
+                    if (p.id === targetProductId) {
                         return { ...p, stock: Math.max(0, p.stock - qty), sold: (p.sold || 0) + qty };
                     }
                     return p;
+                }));
+
+                // Add order — functional update
+                setOrders(prev => [newOrder, ...(prev || [])]);
+
+                // Save locally — functional update
+                setLocalSavedOrderIds(prev => {
+                    const newLocalIds = [newOrder.id, ...(prev || [])];
+                    try {
+                        localStorage.setItem('wargapakem_my_tickets', JSON.stringify(newLocalIds));
+                    } catch(e) {}
+                    return newLocalIds;
                 });
-                setProducts(updatedProducts);
-
-                // Add order
-                setOrders([newOrder, ...(orders || [])]);
-
-                // Save locally
-                const newLocalIds = [newOrder.id, ...localSavedOrderIds];
-                setLocalSavedOrderIds(newLocalIds);
-                try {
-                    localStorage.setItem('wargapakem_my_tickets', JSON.stringify(newLocalIds));
-                } catch(e) {}
 
                 setIsBuyModalOpen(false);
                 setModalConfig({ message: 'Pesanan tiket Anda berhasil diajukan! Pembayaran dilakukan secara COD.' });
             };
 
             const handleCancelOrderByWarga = (order) => {
-                // Return stock
-                const updatedProducts = products.map(p => {
+                if (!order || order.status === 'cancelled') return;
+                // Return stock — functional update
+                setProducts(prev => (prev || []).map(p => {
                     if (p.id === order.productId) {
                         return { ...p, stock: p.stock + order.quantity, sold: Math.max(0, (p.sold || 0) - order.quantity) };
                     }
                     return p;
-                });
-                setProducts(updatedProducts);
-
-                // Update order status to cancelled
-                const updatedOrders = orders.map(o => o.id === order.id ? { ...o, status: 'cancelled' } : o);
-                setOrders(updatedOrders);
+                }));
+                // Update order status — functional update
+                setOrders(prev => (prev || []).map(o => o.id === order.id ? { ...o, status: 'cancelled' } : o));
                 showToast("Pesanan berhasil dibatalkan.");
             };
 
@@ -7613,15 +7626,20 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             // Filters
             const filteredOrders = (orders || []).filter(o => {
+                if (!o || !o.id) return false;
                 const matchStatus = adminOrderFilter === 'all' || o.status === adminOrderFilter;
-                const matchSearch = o.buyerName.toLowerCase().includes(adminSearchQuery.toLowerCase()) || 
-                                    (o.productName || '').toLowerCase().includes(adminSearchQuery.toLowerCase());
+                const buyerName = (o.buyerName || '').toLowerCase();
+                const productName = (o.productName || '').toLowerCase();
+                const query = adminSearchQuery.toLowerCase();
+                const matchSearch = buyerName.includes(query) || productName.includes(query);
                 return matchStatus && matchSearch;
             });
 
             const myTicketsFiltered = (orders || []).filter(o => {
+                if (!o || !o.id) return false;
                 const isMyOrder = localSavedOrderIds.includes(o.id);
-                const isSearchMatch = myTicketsSearch ? o.buyerName.toLowerCase().includes(myTicketsSearch.toLowerCase()) : false;
+                const buyerName = (o.buyerName || '').toLowerCase();
+                const isSearchMatch = myTicketsSearch ? buyerName.includes(myTicketsSearch.toLowerCase()) : false;
                 return isMyOrder || isSearchMatch;
             });
 
