@@ -4,13 +4,15 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  esbuild: {
+    // Drop console.log in production build for lighter JS weight and faster speed
+    pure: ['console.log']
+  },
   build: {
     outDir: 'dist',
-    // Chunk lebih besar diizinkan karena app ini memang besar
     chunkSizeWarningLimit: 2000,
     rollupOptions: {
       output: {
-        // Pisahkan vendor libraries ke chunk terpisah untuk caching lebih baik
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
           'firebase-vendor': ['firebase/app', 'firebase/firestore', 'firebase/auth'],
@@ -21,7 +23,6 @@ export default defineConfig({
       }
     }
   },
-  // Optimasi dependency pre-bundling
   optimizeDeps: {
     include: ['react', 'react-dom', 'firebase/app', 'firebase/firestore', 'firebase/auth', 'chart.js', 'leaflet', 'jsbarcode']
   }
