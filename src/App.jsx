@@ -8134,13 +8134,30 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Jumlah Tiket</label>
-                                                    <input type="number" min="1" max={selectedProduct.stock} value={buyForm.quantity} onChange={e => setBuyForm({...buyForm, quantity: Math.max(1, Number(e.target.value))})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" />
+                                                    <div className="flex items-center gap-0 bg-slate-50 border-2 border-slate-300 rounded-[16px] overflow-hidden focus-within:border-google-blue/50 focus-within:shadow-md transition-all">
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setBuyForm(f => ({ ...f, quantity: Math.max(1, (f.quantity || 1) - 1) }))}
+                                                            className="w-14 h-14 flex items-center justify-center text-slate-500 hover:bg-red-50 hover:text-red-500 active:scale-90 transition-all text-xl font-bold flex-shrink-0 select-none"
+                                                        >−</button>
+                                                        <span className="flex-1 text-center text-[18px] font-extrabold text-slate-800 select-none tabular-nums">
+                                                            {buyForm.quantity || 1}
+                                                        </span>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setBuyForm(f => ({ ...f, quantity: Math.min(selectedProduct.stock, (f.quantity || 1) + 1) }))}
+                                                            disabled={(buyForm.quantity || 1) >= selectedProduct.stock}
+                                                            className="w-14 h-14 flex items-center justify-center text-slate-500 hover:bg-green-50 hover:text-google-green active:scale-90 transition-all text-xl font-bold flex-shrink-0 select-none disabled:opacity-30 disabled:cursor-not-allowed"
+                                                        >+</button>
+                                                    </div>
+                                                    <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">Stok tersedia: <span className="text-google-blue font-bold">{selectedProduct.stock}</span> tiket</p>
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Total Pembayaran</label>
-                                                    <div className="w-full bg-slate-100 border-2 border-slate-200 p-4 text-[13px] font-extrabold text-google-blue rounded-[16px] flex items-center">
+                                                    <div className="w-full bg-google-blueLight border-2 border-google-blue/20 p-4 text-[15px] font-extrabold text-google-blue rounded-[16px] flex items-center justify-center h-14">
                                                         {formatRp(Number(buyForm.quantity || 1) * selectedProduct.price)}
                                                     </div>
+                                                    <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">{formatRp(selectedProduct.price)} × {buyForm.quantity || 1} tiket</p>
                                                 </div>
                                             </div>
 
