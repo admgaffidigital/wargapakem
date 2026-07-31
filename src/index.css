@@ -466,5 +466,24 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     background-color: rgba(51, 65, 85, 0.4) !important;
 }
 
+/* ============================================================
+   GLOBAL BORDER RADIUS NORMALIZATION (CLEAN & LESS CURVED)
+   ============================================================ */
+/* Large Components / Modals / Card Shells (32px, 28px, 24px, 22px -> 16px/14px) */
+.rounded-\[32px\] { border-radius: 16px !important; }
+.rounded-\[28px\] { border-radius: 16px !important; }
+.rounded-\[24px\] { border-radius: 14px !important; }
+.rounded-\[22px\] { border-radius: 14px !important; }
 
+/* Medium Cards / Forms / Large Buttons (20px, 18px, 16px, 14px -> 12px/10px) */
+.rounded-\[20px\] { border-radius: 12px !important; }
+.rounded-\[18px\] { border-radius: 12px !important; }
+.rounded-\[16px\] { border-radius: 10px !important; }
+.rounded-\[14px\] { border-radius: 10px !important; }
 
+/* Buttons / Badges / Small Items (12px, 10px, 8px, 6px, 4px -> 8px/6px/4px) */
+.rounded-\[12px\] { border-radius: 8px !important; }
+.rounded-\[10px\] { border-radius: 8px !important; }
+.rounded-\[8px\]  { border-radius: 6px !important; }
+.rounded-\[6px\]  { border-radius: 4px !important; }
+.rounded-\[4px\]  { border-radius: 4px !important; }
