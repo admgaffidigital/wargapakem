@@ -7923,7 +7923,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <span className="text-[11px] font-extrabold uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
                                                     </div>
                                                 )}
-                                                {/* Stock Pill */}
+                                                {/* Official Store Badge — top left */}
+                                                <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9.5px] font-extrabold px-2.5 py-1.5 rounded-full shadow-lg shadow-amber-500/30 backdrop-blur-sm border border-white/20 tracking-wide">
+                                                    <Icon name="verified" className="text-[13px]" fill="true" />
+                                                    OFFICIAL STORE
+                                                </div>
+                                                {/* Stock Pill — top right */}
                                                 <div className={`absolute top-4 right-4 text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-md shadow-md border ${prod.stock > 0 ? 'bg-slate-900/80 dark:bg-slate-950/80 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20 animate-pulse'}`}>
                                                     {prod.stock > 0 ? `Sisa Stok: ${prod.stock}` : 'Stok Habis'}
                                                 </div>
