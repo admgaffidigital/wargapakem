@@ -7933,9 +7933,17 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                                                 <div className="space-y-2">
                                                     <h4 className="font-extrabold text-[16px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-2">{prod.name}</h4>
-                                                    <div className="flex items-baseline gap-1">
-                                                        <span className="text-xs font-bold text-slate-400">Harga:</span>
-                                                        <span className="text-lg font-black text-rose-550 dark:text-rose-450">{formatRp(prod.price)}</span>
+                                                    <div className="flex items-center gap-2 flex-wrap">
+                                                        <div className="flex items-baseline gap-1">
+                                                            <span className="text-xs font-bold text-slate-400">Harga:</span>
+                                                            <span className="text-lg font-black text-rose-550 dark:text-rose-450">{formatRp(prod.price)}</span>
+                                                        </div>
+                                                        {(prod.sold || 0) > 0 && (
+                                                            <span className="inline-flex items-center gap-1 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800/40 text-orange-600 dark:text-orange-400 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                                                                <Icon name="trending_up" className="text-[12px]" />
+                                                                {prod.sold} terjual
+                                                            </span>
+                                                        )}
                                                     </div>
                                                     <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed pt-1">{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     
