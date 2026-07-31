@@ -7461,7 +7461,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     message: "Yakin ingin menghapus produk tiket ini? Tindakan ini tidak bisa dibatalkan.",
                     confirmText: "Hapus",
                     onConfirm: () => {
-                        setProducts(products.filter(p => p.id !== productId));
+                        setProducts(prev => prev.filter(p => p.id !== productId));
                         setModalConfig({ message: 'Produk tiket berhasil dihapus.' });
                         setConfirmModal(null);
                     }
@@ -7596,12 +7596,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     message: "Yakin ingin menghapus riwayat/log pesanan ini dari sistem secara permanen?",
                     confirmText: "Hapus",
                     onConfirm: () => {
-                        setOrders((orders || []).filter(o => o.id !== orderId));
-                        const newLocalIds = (localSavedOrderIds || []).filter(id => id !== orderId);
-                        setLocalSavedOrderIds(newLocalIds);
-                        try {
-                            localStorage.setItem('wargapakem_my_tickets', JSON.stringify(newLocalIds));
-                        } catch(e) {}
+                        setOrders(prev => (prev || []).filter(o => o.id !== orderId));
+                        setLocalSavedOrderIds(prev => {
+                            const newLocalIds = (prev || []).filter(id => id !== orderId);
+                            try {
+                                localStorage.setItem('wargapakem_my_tickets', JSON.stringify(newLocalIds));
+                            } catch(e) {}
+                            return newLocalIds;
+                        });
                         showToast("Riwayat pesanan berhasil dihapus.");
                         setConfirmModal(null);
                     }
