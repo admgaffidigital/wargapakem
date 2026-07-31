@@ -239,11 +239,34 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 }
 
 /* Google-themed light alerts and backgrounds */
+.dark .text-google-blue {
+    color: #f87171 !important;
+}
 .dark .bg-google-blueLight,
 .dark .bg-red-50,
 .dark .bg-red-100 {
     background-color: rgba(239, 68, 68, 0.12) !important;
     color: #fca5a5 !important;
+}
+.dark .bg-red-50:hover,
+.dark .bg-google-blueLight:hover {
+    background-color: rgba(239, 68, 68, 0.22) !important;
+}
+.dark .bg-blue-50 {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+    color: #93c5fd !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+.dark .bg-blue-50:hover {
+    background-color: rgba(59, 130, 246, 0.25) !important;
+}
+.dark .bg-emerald-50 {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+    color: #34d399 !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+}
+.dark .bg-emerald-50:hover {
+    background-color: rgba(16, 185, 129, 0.25) !important;
 }
 .dark .bg-google-yellowLight,
 .dark .bg-amber-50,

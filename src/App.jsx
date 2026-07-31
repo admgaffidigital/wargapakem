@@ -8046,7 +8046,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <span className="text-[10px] font-bold text-slate-400">ID Pesanan: #TKT-{String(order.id).slice(-6)}</span>
                                                             <span className={`text-[9px] font-bold px-2.5 py-1 rounded-[6px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
-                                                        <h4 className="font-extrabold text-[15px] text-slate-850">{order.buyerName}</h4>
+                                                        <h4 className="font-extrabold text-[15px] text-slate-800 dark:text-slate-100">{order.buyerName}</h4>
                                                         <p className="text-[12.5px] font-extrabold text-google-blue mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
                                                         
                                                         <div className="mt-3.5 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
@@ -8079,7 +8079,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
                                                                 <Icon name="event" className="text-[13px]" /> Tanggal Pesan: {order.timestamp}
                                                             </div>
-                                                            <div className="flex items-center gap-1.5 text-[10px] text-emerald-650 font-bold bg-emerald-50 px-2 py-1 rounded-[6px] w-fit border border-emerald-100">
+                                                            <div className="flex items-center gap-1.5 text-[10px] text-emerald-700 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-950/30 px-2 py-1 rounded-[6px] w-fit border border-emerald-100 dark:border-emerald-900/30">
                                                                 <Icon name="payments" className="text-[13px]" /> Pembayaran COD (Di tempat)
                                                             </div>
                                                         </div>
