@@ -8127,80 +8127,85 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 ) : (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                                         {activeProducts.map(prod => (
-                                            <div key={prod.id} className="bg-white dark:bg-slate-900 rounded-[32px] border-2 border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
-                                                {/* 1:1 Aspect Ratio Full Frame Image */}
-                                                <div className="relative w-full aspect-square bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200 dark:border-slate-850">
+                                            <div key={prod.id} className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/85 dark:border-slate-800/85 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                                                {/* Image Cover with Aspect-Ratio and overlays */}
+                                                <div className="relative w-full h-48 sm:h-52 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850">
                                                     {prod.imageUrl ? (
                                                         <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
                                                     ) : (
                                                         <div className="w-full h-full bg-gradient-to-tr from-rose-500/10 to-google-blue/10 flex flex-col items-center justify-center p-6 text-center">
-                                                            <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-google-blue to-indigo-500 text-white flex items-center justify-center shadow-lg shadow-google-blue/20 mb-3 animate-pulse">
-                                                                <Icon name="local_activity" className="text-[32px]" />
+                                                            <div className="w-14 h-14 rounded-[16px] bg-gradient-to-tr from-google-blue to-indigo-500 text-white flex items-center justify-center shadow-md mb-2">
+                                                                <Icon name="local_activity" className="text-[26px]" />
                                                             </div>
-                                                            <span className="text-[11px] font-extrabold uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
+                                                            <span className="text-[10px] font-extrabold uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
                                                         </div>
                                                     )}
                                                     {/* Official Store Badge — top left */}
-                                                    <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9.5px] font-extrabold px-2.5 py-1.5 rounded-full shadow-lg shadow-amber-500/30 backdrop-blur-sm border border-white/20 tracking-wide">
-                                                        <Icon name="verified" className="text-[13px]" fill="true" />
-                                                        OFFICIAL STORE
+                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-[8px] shadow-md shadow-amber-500/20 backdrop-blur-sm border border-white/20 tracking-wide">
+                                                        <Icon name="verified" className="text-[12px]" fill="true" />
+                                                        OFFICIAL
                                                     </div>
                                                     {/* Stock Pill — top right */}
-                                                    <div className={`absolute top-4 right-4 text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-md shadow-md border ${prod.stock > 0 ? 'bg-slate-900/80 dark:bg-slate-950/80 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20 animate-pulse'}`}>
-                                                        {prod.stock > 0 ? `Sisa Stok: ${prod.stock}` : 'Stok Habis'}
+                                                    <div className={`absolute top-3.5 right-3.5 text-[9.5px] font-extrabold px-2.5 py-1 rounded-[8px] backdrop-blur-md shadow-md border ${prod.stock > 0 ? 'bg-slate-900/75 dark:bg-slate-950/75 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20'}`}>
+                                                        {prod.stock > 0 ? `Stok: ${prod.stock}` : 'Stok Habis'}
                                                     </div>
+                                                    {/* Countdown Timer overlay — bottom right */}
+                                                    {prod.deadline && (
+                                                        <div className="absolute bottom-3 right-3 z-10 scale-90 origin-bottom-right">
+                                                            <CountdownTimer deadline={prod.deadline} />
+                                                        </div>
+                                                    )}
                                                 </div>
 
                                                 {/* Details */}
-                                                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
-                                                    <div className="space-y-2">
-                                                        <h4 className="font-extrabold text-[16px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-2">{prod.name}</h4>
-                                                        <div className="flex items-center gap-2 flex-wrap">
-                                                            <div className="flex items-baseline gap-1">
-                                                                <span className="text-xs font-bold text-slate-400">Harga:</span>
-                                                                <span className="text-lg font-black text-rose-550 dark:text-rose-450">{formatRp(prod.price)}</span>
-                                                            </div>
+                                                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
+                                                    <div className="space-y-3">
+                                                        <h4 className="font-extrabold text-[15px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-1">{prod.name}</h4>
+                                                        
+                                                        {/* Price and Sold Row */}
+                                                        <div className="flex items-center justify-between">
+                                                            <span className="text-base sm:text-lg font-black text-rose-550 dark:text-rose-450">{formatRp(prod.price)}</span>
                                                             {(prod.sold || 0) > 0 && (
-                                                                <span className="inline-flex items-center gap-1 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800/40 text-orange-600 dark:text-orange-400 text-[10px] font-bold px-2.5 py-1 rounded-full">
-                                                                    <Icon name="trending_up" className="text-[12px]" />
-                                                                    {prod.sold} terjual
+                                                                <span className="inline-flex items-center gap-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 text-[10px] font-bold px-2.5 py-1 rounded-[8px]">
+                                                                    <Icon name="trending_up" className="text-[11px]" />
+                                                                    {prod.sold} Terjual
                                                                 </span>
                                                             )}
-                                                            {/* Countdown Timer Badge */}
-                                                            {prod.deadline && <CountdownTimer deadline={prod.deadline} />}
                                                         </div>
-                                                        {/* Deadline info text */}
+
+                                                        {/* Batas Pembelian Box */}
                                                         {prod.deadline && (() => {
                                                             const isExp = new Date(prod.deadline) <= new Date();
                                                             return (
-                                                                <p className={`text-[10.5px] font-bold flex items-center gap-1 ${isExp ? 'text-red-500' : 'text-amber-600 dark:text-amber-400'}`}>
-                                                                    <Icon name={isExp ? 'timer_off' : 'event'} className="text-[12px]" />
-                                                                    {isExp ? 'Pembelian telah ditutup' : `Batas pembelian: ${new Date(prod.deadline).toLocaleString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' })}`}
-                                                                </p>
+                                                                <div className={`text-[10.5px] font-bold flex items-center gap-1.5 p-2.5 rounded-lg border ${isExp ? 'bg-rose-50/50 border-rose-100 text-rose-600 dark:bg-rose-950/10 dark:border-rose-900/30' : 'bg-amber-50/50 border-amber-100 text-amber-600 dark:bg-amber-950/10 dark:border-amber-900/30'}`}>
+                                                                    <Icon name={isExp ? 'timer_off' : 'event'} className="text-[14px]" />
+                                                                    <span>{isExp ? 'Pembelian telah ditutup' : `Batas pembelian: ${new Date(prod.deadline).toLocaleString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' })}`}</span>
+                                                                </div>
                                                             );
                                                         })()}
-                                                        <p className={`text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed pt-1 ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
-                                                        {(prod.description || '').length > 100 && (
-                                                            <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1.5 text-[11px] font-bold text-google-blue dark:text-blue-400 hover:underline flex items-center gap-1">
-                                                                <Icon name={expandedDescId === prod.id ? 'expand_less' : 'expand_more'} className="text-[15px]" />
+
+                                                        <p className={`text-[12px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-2'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                        {(prod.description || '').length > 80 && (
+                                                            <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-bold text-google-blue dark:text-blue-400 hover:underline flex items-center gap-0.5">
+                                                                <Icon name={expandedDescId === prod.id ? 'expand_less' : 'expand_more'} className="text-[14px]" />
                                                                 {expandedDescId === prod.id ? 'Tutup' : 'Selengkapnya'}
                                                             </button>
                                                         )}
                                                         
-                                                        {/* Premium Location Card */}
-                                                        <div className="mt-4 flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800/80 rounded-[20px]">
-                                                            <div className="flex items-center gap-3 min-w-0">
-                                                                <div className="w-9 h-9 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 dark:text-rose-450 flex items-center justify-center shrink-0 border border-rose-100 dark:border-rose-900/30">
-                                                                    <Icon name="location_on" className="text-[18px]" />
+                                                        {/* Pickup Location Box */}
+                                                        <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800/80 rounded-xl">
+                                                            <div className="flex items-center gap-2.5 min-w-0">
+                                                                <div className="w-8 h-8 rounded-[8px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 dark:text-rose-450 flex items-center justify-center shrink-0 border border-rose-100 dark:border-rose-900/30">
+                                                                    <Icon name="location_on" className="text-[16px]" />
                                                                 </div>
                                                                 <div className="min-w-0">
-                                                                    <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Lokasi Pengambilan</p>
-                                                                    <p className="text-[12px] font-extrabold text-slate-700 dark:text-slate-300 truncate leading-tight mt-0.5">{prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
+                                                                    <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Lokasi Pengambilan</p>
+                                                                    <p className="text-[11.5px] font-extrabold text-slate-700 dark:text-slate-300 truncate leading-tight mt-0.5">{prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
                                                                 </div>
                                                             </div>
                                                             {prod.pickupGeoUrl && (
-                                                                <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-[12px] bg-google-blueLight hover:bg-google-blueLight/85 text-google-blueDark dark:bg-blue-950/40 dark:text-blue-400 flex items-center justify-center shrink-0 border border-google-blue/20 dark:border-blue-900/30 transition-all hover:scale-105" title="Buka Google Maps">
-                                                                    <Icon name="map" className="text-[16px]" />
+                                                                <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-[8px] bg-google-blueLight hover:bg-google-blueLight/85 text-google-blueDark dark:bg-blue-950/40 dark:text-blue-400 flex items-center justify-center shrink-0 border border-google-blue/20 dark:border-blue-900/30 transition-all hover:scale-105" title="Buka Google Maps">
+                                                                    <Icon name="map" className="text-[14px]" />
                                                                 </a>
                                                             )}
                                                         </div>
@@ -8211,17 +8216,17 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         const isDeadlinePassed = prod.deadline && new Date(prod.deadline) <= new Date();
                                                         const canBuy = prod.stock > 0 && !isDeadlinePassed;
                                                         return (
-                                                            <div className="flex gap-3 pt-2">
+                                                            <div className="flex gap-2.5 pt-2">
                                                                 <button
                                                                     onClick={() => handleOpenBuyModal(prod)}
                                                                     disabled={!canBuy}
-                                                                    className={`flex-1 py-3.5 rounded-[16px] font-bold text-[12.5px] transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
+                                                                    className={`flex-1 py-3 rounded-xl font-bold text-[12.5px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
                                                                 >
-                                                                    <Icon name={isDeadlinePassed ? 'timer_off' : 'add_shopping_cart'} className="text-[18px]" />
-                                                                    {isDeadlinePassed ? 'Waktu Pembelian Habis' : prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
+                                                                    <Icon name={isDeadlinePassed ? 'timer_off' : 'add_shopping_cart'} className="text-[16px]" />
+                                                                    {isDeadlinePassed ? 'Pembelian Ditutup' : prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
                                                                 </button>
-                                                                <button onClick={() => setSharingProduct(prod)} className="w-12 h-12 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-[16px] transition-all flex items-center justify-center active:scale-95" title="Bagikan">
-                                                                    <Icon name="share" className="text-[18px]" />
+                                                                <button onClick={() => setSharingProduct(prod)} className="w-11 h-11 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-xl transition-all flex items-center justify-center active:scale-95" title="Bagikan">
+                                                                    <Icon name="share" className="text-[16px]" />
                                                                 </button>
                                                             </div>
                                                         );
@@ -8246,56 +8251,58 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 ) : (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                                         {archivedProducts.map(prod => (
-                                            <div key={prod.id} className="bg-slate-50 dark:bg-slate-900/60 rounded-[32px] border-2 border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between opacity-85 hover:opacity-100 transition-all duration-300">
-                                                {/* 1:1 Aspect Ratio Full Frame Image */}
-                                                <div className="relative w-full aspect-square bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200 dark:border-slate-850 grayscale">
+                                            <div key={prod.id} className="bg-slate-50/50 dark:bg-slate-900/60 rounded-2xl border border-slate-200/85 dark:border-slate-800/85 shadow-sm overflow-hidden flex flex-col justify-between opacity-90 hover:opacity-100 transition-all duration-300">
+                                                {/* Image Cover with Aspect-Ratio and overlays */}
+                                                <div className="relative w-full h-48 sm:h-52 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850 grayscale">
                                                     {prod.imageUrl ? (
                                                         <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
                                                     ) : (
                                                         <div className="w-full h-full bg-slate-100 dark:bg-slate-850 flex flex-col items-center justify-center p-6 text-center">
-                                                            <div className="w-16 h-16 rounded-3xl bg-slate-300 dark:bg-slate-700 text-slate-550 dark:text-slate-400 flex items-center justify-center shadow-md mb-3">
-                                                                <Icon name="local_activity" className="text-[32px]" />
+                                                            <div className="w-14 h-14 rounded-[16px] bg-slate-300 dark:bg-slate-700 text-slate-550 dark:text-slate-400 flex items-center justify-center shadow-md mb-2">
+                                                                <Icon name="local_activity" className="text-[26px]" />
                                                             </div>
-                                                            <span className="text-[11px] font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500">Tiket Jalan Santai</span>
+                                                            <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-450 dark:text-slate-500">Tiket Jalan Santai</span>
                                                         </div>
                                                     )}
                                                     {/* Archive Badge — top left */}
-                                                    <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-slate-700/90 text-white text-[9.5px] font-extrabold px-2.5 py-1.5 rounded-full shadow-md backdrop-blur-sm tracking-wide">
-                                                        <Icon name="archive" className="text-[13px]" fill="true" />
-                                                        ARSIP EVENT
+                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 bg-slate-700/90 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-[8px] shadow-md backdrop-blur-sm tracking-wide">
+                                                        <Icon name="archive" className="text-[12px]" fill="true" />
+                                                        ARSIP
                                                     </div>
                                                 </div>
 
                                                 {/* Details */}
-                                                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
-                                                    <div className="space-y-2">
-                                                        <h4 className="font-extrabold text-[16px] text-slate-650 dark:text-slate-350 tracking-tight leading-snug line-clamp-2 uppercase">{prod.name}</h4>
-                                                        <div className="flex items-center gap-2 flex-wrap">
-                                                            <div className="flex items-baseline gap-1">
-                                                                <span className="text-xs font-bold text-slate-400">Harga:</span>
-                                                                <span className="text-lg font-bold text-slate-500 line-through">{formatRp(prod.price)}</span>
-                                                            </div>
+                                                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
+                                                    <div className="space-y-3">
+                                                        <h4 className="font-extrabold text-[15px] text-slate-650 dark:text-slate-350 tracking-tight leading-snug line-clamp-1 uppercase">{prod.name}</h4>
+                                                        
+                                                        {/* Price and Sold Row */}
+                                                        <div className="flex items-center justify-between">
+                                                            <span className="text-base sm:text-lg font-bold text-slate-400 line-through">{formatRp(prod.price)}</span>
                                                             {(prod.sold || 0) > 0 && (
-                                                                <span className="inline-flex items-center gap-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 text-[10px] font-bold px-2.5 py-1 rounded-full">
-                                                                    <Icon name="trending_up" className="text-[12px]" />
-                                                                    {prod.sold} terjual
+                                                                <span className="inline-flex items-center gap-1 bg-slate-150 dark:bg-slate-850 border border-slate-200 dark:border-slate-750 text-slate-400 dark:text-slate-500 text-[10px] font-bold px-2.5 py-1 rounded-[8px]">
+                                                                    <Icon name="trending_up" className="text-[11px]" />
+                                                                    {prod.sold} Terjual
                                                                 </span>
                                                             )}
                                                         </div>
-                                                        <p className="text-[10.5px] font-bold flex items-center gap-1 text-red-500">
-                                                            <Icon name="timer_off" className="text-[12px]" />
-                                                            Event Selesai / Pembelian Ditutup
-                                                        </p>
-                                                        <p className={`text-[12.5px] font-medium text-slate-500 dark:text-slate-455 leading-relaxed pt-1 ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
+
+                                                        {/* Status selesai box */}
+                                                        <div className="text-[10.5px] font-bold flex items-center gap-1.5 p-2.5 rounded-lg border bg-rose-50/50 border-rose-100 text-rose-600 dark:bg-rose-950/10 dark:border-rose-900/30">
+                                                            <Icon name="timer_off" className="text-[14px]" />
+                                                            <span>Event Selesai / Pembelian Ditutup</span>
+                                                        </div>
+
+                                                        <p className={`text-[12px] font-medium text-slate-550 dark:text-slate-455 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-2'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     </div>
 
                                                     {/* Action Buttons (Disabled) */}
-                                                    <div className="flex gap-3 pt-2">
+                                                    <div className="flex gap-2.5 pt-2">
                                                         <button
                                                             disabled
-                                                            className="flex-1 py-3.5 rounded-[16px] font-bold text-[12.5px] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed flex items-center justify-center gap-2"
+                                                            className="flex-1 py-3 rounded-xl font-bold text-[12.5px] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed flex items-center justify-center gap-1.5"
                                                         >
-                                                            <Icon name="lock" className="text-[18px]" />
+                                                            <Icon name="lock" className="text-[16px]" />
                                                             Event Selesai / Diarsipkan
                                                         </button>
                                                     </div>
