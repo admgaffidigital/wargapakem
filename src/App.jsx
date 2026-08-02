@@ -8098,7 +8098,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         return (
                                                             <p className={`text-[10.5px] font-bold flex items-center gap-1 ${isExp ? 'text-red-500' : 'text-amber-600 dark:text-amber-400'}`}>
                                                                 <Icon name={isExp ? 'timer_off' : 'event'} className="text-[12px]" />
-                                                                {isExp ? 'Pembelian telah ditutup' : `Batas beli: ${new Date(prod.deadline).toLocaleString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' })}`}
+                                                                {isExp ? 'Pembelian telah ditutup' : `Batas pembelian: ${new Date(prod.deadline).toLocaleString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' })}`}
                                                             </p>
                                                         );
                                                     })()}
