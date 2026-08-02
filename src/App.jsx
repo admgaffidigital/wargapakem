@@ -7529,6 +7529,24 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 });
             };
 
+            const handleResetSales = (productId) => {
+                setConfirmModal({
+                    title: "Reset Penjualan?",
+                    message: "Yakin ingin mereset jumlah terjual menjadi 0 dan menghapus seluruh riwayat pesanan tiket ini? Tindakan ini tidak bisa dibatalkan.",
+                    confirmText: "Reset",
+                    onConfirm: () => {
+                        // Reset product sold count
+                        setProducts(prev => (prev || []).map(p => p.id === productId ? { ...p, sold: 0 } : p));
+                        // Delete orders of this product
+                        setOrders(prev => (prev || []).filter(o => o.productId !== productId));
+                        setModalConfig({ message: 'Data penjualan berhasil di-reset.' });
+                        setConfirmModal(null);
+                        setIsProductModalOpen(false);
+                    }
+                });
+            };
+
+
             // Order actions (Admin)
             const handleUpdateOrderStatus = (orderId, newStatus) => {
                 // Snapshot current values to avoid stale closure
@@ -7706,6 +7724,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const buyersListFiltered = buyersSearch
                 ? buyersList.filter(o => (o.buyerName || '').toLowerCase().includes(buyersSearch.toLowerCase()))
                 : buyersList;
+
+            // Filter produk aktif dan arsip
+            const activeProducts = (products || []).filter(p => !p.archived && !(p.deadline && new Date(p.deadline) <= new Date()));
+            const archivedProducts = (products || []).filter(p => p.archived || (p.deadline && new Date(p.deadline) <= new Date()));
+
 
             // Statistics (Admin)
             const stats = useMemo(() => {
@@ -8003,12 +8026,48 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     )}
                                                 </div>
                                             </div>
+
+                                            {/* Arsipkan Event Checkbox */}
+                                            <div className="pt-2">
+                                                <label className="flex items-center gap-3 cursor-pointer bg-slate-50 border-2 border-slate-200 p-3.5 rounded-[16px] hover:bg-slate-100 transition-all select-none">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={!!productForm.archived}
+                                                        onChange={e => setProductForm({...productForm, archived: e.target.checked})}
+                                                        className="w-4.5 h-4.5 text-google-blue rounded border-slate-300 focus:ring-google-blue"
+                                                    />
+                                                    <div className="flex-1">
+                                                        <span className="text-[12.5px] font-bold text-slate-800">Arsipkan Event ini</span>
+                                                        <p className="text-[10px] text-slate-500 font-medium leading-tight">Pindahkan event ini dari daftar aktif ke riwayat arsip event</p>
+                                                    </div>
+                                                </label>
+                                            </div>
+
+                                            {/* Reset Data Penjualan (Hanya untuk Edit) */}
+                                            {editingProduct && (
+                                                <div className="pt-2">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleResetSales(editingProduct.id)}
+                                                        className="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-250 py-3 rounded-[14px] text-[11.5px] font-bold transition-colors flex items-center justify-center gap-1.5"
+                                                    >
+                                                        <Icon name="restart_alt" className="text-[16px]" />
+                                                        Reset Penjualan & Pembelian (Hapus Riwayat)
+                                                    </button>
+                                                    <p className="text-[9px] text-slate-400 font-bold ml-1 mt-1 flex items-start gap-1">
+                                                        <Icon name="warning" className="text-[11px] text-amber-500 shrink-0" />
+                                                        PENTING: Seluruh pesanan masuk (order) untuk produk ini akan dihapus permanen dari sistem.
+                                                    </p>
+                                                </div>
+                                            )}
+
                                             {productError && <div className="bg-red-50 text-red-650 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {productError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
                                             <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
                                             <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
                                         </div>
+
                                     </div>
                                 </div>
                             )}
@@ -8029,131 +8088,220 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
 
                             {/* Warga Sub Tabs */}
-                            <div className="grid grid-cols-3 gap-2 pb-1">
-                                <button onClick={() => setActiveSubTab('shop')} className={`relative py-3 px-2 rounded-[16px] font-bold text-[11px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
-                                    <Icon name="shopping_bag" className="text-[20px]" />
-                                    <span>Beli Tiket</span>
+                            <div className="grid grid-cols-4 gap-1.5 pb-1">
+                                <button onClick={() => setActiveSubTab('shop')} className={`relative py-3.5 px-1 rounded-[16px] font-bold text-[10.5px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+                                    <Icon name="shopping_bag" className="text-[18px] sm:text-[20px]" />
+                                    <span className="truncate max-w-full text-center">Beli Tiket</span>
                                 </button>
-                                <button onClick={() => setActiveSubTab('my_tickets')} className={`relative py-3 px-2 rounded-[16px] font-bold text-[11px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
-                                    <Icon name="confirmation_number" className="text-[20px]" />
-                                    <span>Tiket Saya</span>
+                                <button onClick={() => setActiveSubTab('my_tickets')} className={`relative py-3.5 px-1 rounded-[16px] font-bold text-[10.5px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+                                    <Icon name="confirmation_number" className="text-[18px] sm:text-[20px]" />
+                                    <span className="truncate max-w-full text-center">Tiket Saya</span>
                                     {myTicketsFiltered.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-rose-500 text-white text-[9px] min-w-[20px] h-5 px-1 rounded-full flex items-center justify-center font-bold border-2 border-white">{myTicketsFiltered.length}</span>}
                                 </button>
-                                <button onClick={() => setActiveSubTab('buyers_list')} className={`relative py-3 px-2 rounded-[16px] font-bold text-[11px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
-                                    <Icon name="groups" className="text-[20px]" />
-                                    <span>Daftar Pembeli</span>
+                                <button onClick={() => setActiveSubTab('buyers_list')} className={`relative py-3.5 px-1 rounded-[16px] font-bold text-[10.5px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+                                    <Icon name="groups" className="text-[18px] sm:text-[20px]" />
+                                    <span className="truncate max-w-full text-center">Daftar Pembeli</span>
                                     {buyersList.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-rose-500 text-white text-[9px] min-w-[20px] h-5 px-1 rounded-full flex items-center justify-center font-bold border-2 border-white">{buyersList.length}</span>}
+                                </button>
+                                <button onClick={() => setActiveSubTab('archive')} className={`relative py-3.5 px-1 rounded-[16px] font-bold text-[10.5px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'archive' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+                                    <Icon name="archive" className="text-[18px] sm:text-[20px]" />
+                                    <span className="truncate max-w-full text-center">Arsip Event</span>
                                 </button>
                             </div>
 
+
                             {/* Sub Tab: Beli Tiket */}
                             {activeSubTab === 'shop' && (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                                    {products.map(prod => (
-                                        <div key={prod.id} className="bg-white dark:bg-slate-900 rounded-[32px] border-2 border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
-                                            {/* 1:1 Aspect Ratio Full Frame Image */}
-                                            <div className="relative w-full aspect-square bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200 dark:border-slate-850">
-                                                {prod.imageUrl ? (
-                                                    <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-                                                ) : (
-                                                    <div className="w-full h-full bg-gradient-to-tr from-rose-500/10 to-google-blue/10 flex flex-col items-center justify-center p-6 text-center">
-                                                        <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-google-blue to-indigo-500 text-white flex items-center justify-center shadow-lg shadow-google-blue/20 mb-3 animate-pulse">
-                                                            <Icon name="local_activity" className="text-[32px]" />
+                                activeProducts.length === 0 ? (
+                                    <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 p-12 text-center rounded-[24px]">
+                                        <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-250 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
+                                            <Icon name="local_activity" className="text-[28px]" />
+                                        </div>
+                                        <p className="text-[13px] font-bold text-slate-800 dark:text-slate-200">Tidak ada event tiket aktif saat ini.</p>
+                                        <p className="text-[11.5px] text-slate-500 dark:text-slate-400 mt-1">Silakan kunjungi tab "Arsip Event" untuk melihat riwayat event sebelumnya.</p>
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                                        {activeProducts.map(prod => (
+                                            <div key={prod.id} className="bg-white dark:bg-slate-900 rounded-[32px] border-2 border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
+                                                {/* 1:1 Aspect Ratio Full Frame Image */}
+                                                <div className="relative w-full aspect-square bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200 dark:border-slate-850">
+                                                    {prod.imageUrl ? (
+                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                                                    ) : (
+                                                        <div className="w-full h-full bg-gradient-to-tr from-rose-500/10 to-google-blue/10 flex flex-col items-center justify-center p-6 text-center">
+                                                            <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-google-blue to-indigo-500 text-white flex items-center justify-center shadow-lg shadow-google-blue/20 mb-3 animate-pulse">
+                                                                <Icon name="local_activity" className="text-[32px]" />
+                                                            </div>
+                                                            <span className="text-[11px] font-extrabold uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
                                                         </div>
-                                                        <span className="text-[11px] font-extrabold uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
+                                                    )}
+                                                    {/* Official Store Badge — top left */}
+                                                    <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9.5px] font-extrabold px-2.5 py-1.5 rounded-full shadow-lg shadow-amber-500/30 backdrop-blur-sm border border-white/20 tracking-wide">
+                                                        <Icon name="verified" className="text-[13px]" fill="true" />
+                                                        OFFICIAL STORE
                                                     </div>
-                                                )}
-                                                {/* Official Store Badge — top left */}
-                                                <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9.5px] font-extrabold px-2.5 py-1.5 rounded-full shadow-lg shadow-amber-500/30 backdrop-blur-sm border border-white/20 tracking-wide">
-                                                    <Icon name="verified" className="text-[13px]" fill="true" />
-                                                    OFFICIAL STORE
+                                                    {/* Stock Pill — top right */}
+                                                    <div className={`absolute top-4 right-4 text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-md shadow-md border ${prod.stock > 0 ? 'bg-slate-900/80 dark:bg-slate-950/80 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20 animate-pulse'}`}>
+                                                        {prod.stock > 0 ? `Sisa Stok: ${prod.stock}` : 'Stok Habis'}
+                                                    </div>
                                                 </div>
-                                                {/* Stock Pill — top right */}
-                                                <div className={`absolute top-4 right-4 text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-md shadow-md border ${prod.stock > 0 ? 'bg-slate-900/80 dark:bg-slate-950/80 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20 animate-pulse'}`}>
-                                                    {prod.stock > 0 ? `Sisa Stok: ${prod.stock}` : 'Stok Habis'}
-                                                </div>
-                                            </div>
 
-                                            {/* Details */}
-                                            <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
-                                                <div className="space-y-2">
-                                                    <h4 className="font-extrabold text-[16px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-2">{prod.name}</h4>
-                                                    <div className="flex items-center gap-2 flex-wrap">
-                                                        <div className="flex items-baseline gap-1">
-                                                            <span className="text-xs font-bold text-slate-400">Harga:</span>
-                                                            <span className="text-lg font-black text-rose-550 dark:text-rose-450">{formatRp(prod.price)}</span>
+                                                {/* Details */}
+                                                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+                                                    <div className="space-y-2">
+                                                        <h4 className="font-extrabold text-[16px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-2">{prod.name}</h4>
+                                                        <div className="flex items-center gap-2 flex-wrap">
+                                                            <div className="flex items-baseline gap-1">
+                                                                <span className="text-xs font-bold text-slate-400">Harga:</span>
+                                                                <span className="text-lg font-black text-rose-550 dark:text-rose-450">{formatRp(prod.price)}</span>
+                                                            </div>
+                                                            {(prod.sold || 0) > 0 && (
+                                                                <span className="inline-flex items-center gap-1 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800/40 text-orange-600 dark:text-orange-400 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                                                                    <Icon name="trending_up" className="text-[12px]" />
+                                                                    {prod.sold} terjual
+                                                                </span>
+                                                            )}
+                                                            {/* Countdown Timer Badge */}
+                                                            {prod.deadline && <CountdownTimer deadline={prod.deadline} />}
                                                         </div>
-                                                        {(prod.sold || 0) > 0 && (
-                                                            <span className="inline-flex items-center gap-1 bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800/40 text-orange-600 dark:text-orange-400 text-[10px] font-bold px-2.5 py-1 rounded-full">
-                                                                <Icon name="trending_up" className="text-[12px]" />
-                                                                {prod.sold} terjual
-                                                            </span>
+                                                        {/* Deadline info text */}
+                                                        {prod.deadline && (() => {
+                                                            const isExp = new Date(prod.deadline) <= new Date();
+                                                            return (
+                                                                <p className={`text-[10.5px] font-bold flex items-center gap-1 ${isExp ? 'text-red-500' : 'text-amber-600 dark:text-amber-400'}`}>
+                                                                    <Icon name={isExp ? 'timer_off' : 'event'} className="text-[12px]" />
+                                                                    {isExp ? 'Pembelian telah ditutup' : `Batas pembelian: ${new Date(prod.deadline).toLocaleString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' })}`}
+                                                                </p>
+                                                            );
+                                                        })()}
+                                                        <p className={`text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed pt-1 ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                        {(prod.description || '').length > 100 && (
+                                                            <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1.5 text-[11px] font-bold text-google-blue dark:text-blue-400 hover:underline flex items-center gap-1">
+                                                                <Icon name={expandedDescId === prod.id ? 'expand_less' : 'expand_more'} className="text-[15px]" />
+                                                                {expandedDescId === prod.id ? 'Tutup' : 'Selengkapnya'}
+                                                            </button>
                                                         )}
-                                                        {/* Countdown Timer Badge */}
-                                                        {prod.deadline && <CountdownTimer deadline={prod.deadline} />}
+                                                        
+                                                        {/* Premium Location Card */}
+                                                        <div className="mt-4 flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800/80 rounded-[20px]">
+                                                            <div className="flex items-center gap-3 min-w-0">
+                                                                <div className="w-9 h-9 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 dark:text-rose-450 flex items-center justify-center shrink-0 border border-rose-100 dark:border-rose-900/30">
+                                                                    <Icon name="location_on" className="text-[18px]" />
+                                                                </div>
+                                                                <div className="min-w-0">
+                                                                    <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Lokasi Pengambilan</p>
+                                                                    <p className="text-[12px] font-extrabold text-slate-700 dark:text-slate-300 truncate leading-tight mt-0.5">{prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
+                                                                </div>
+                                                            </div>
+                                                            {prod.pickupGeoUrl && (
+                                                                <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-[12px] bg-google-blueLight hover:bg-google-blueLight/85 text-google-blueDark dark:bg-blue-950/40 dark:text-blue-400 flex items-center justify-center shrink-0 border border-google-blue/20 dark:border-blue-900/30 transition-all hover:scale-105" title="Buka Google Maps">
+                                                                    <Icon name="map" className="text-[16px]" />
+                                                                </a>
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                    {/* Deadline info text */}
-                                                    {prod.deadline && (() => {
-                                                        const isExp = new Date(prod.deadline) <= new Date();
+
+                                                    {/* Action Buttons */}
+                                                    {(() => {
+                                                        const isDeadlinePassed = prod.deadline && new Date(prod.deadline) <= new Date();
+                                                        const canBuy = prod.stock > 0 && !isDeadlinePassed;
                                                         return (
-                                                            <p className={`text-[10.5px] font-bold flex items-center gap-1 ${isExp ? 'text-red-500' : 'text-amber-600 dark:text-amber-400'}`}>
-                                                                <Icon name={isExp ? 'timer_off' : 'event'} className="text-[12px]" />
-                                                                {isExp ? 'Pembelian telah ditutup' : `Batas pembelian: ${new Date(prod.deadline).toLocaleString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' })}`}
-                                                            </p>
+                                                            <div className="flex gap-3 pt-2">
+                                                                <button
+                                                                    onClick={() => handleOpenBuyModal(prod)}
+                                                                    disabled={!canBuy}
+                                                                    className={`flex-1 py-3.5 rounded-[16px] font-bold text-[12.5px] transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
+                                                                >
+                                                                    <Icon name={isDeadlinePassed ? 'timer_off' : 'add_shopping_cart'} className="text-[18px]" />
+                                                                    {isDeadlinePassed ? 'Waktu Pembelian Habis' : prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
+                                                                </button>
+                                                                <button onClick={() => setSharingProduct(prod)} className="w-12 h-12 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-[16px] transition-all flex items-center justify-center active:scale-95" title="Bagikan">
+                                                                    <Icon name="share" className="text-[18px]" />
+                                                                </button>
+                                                            </div>
                                                         );
                                                     })()}
-                                                    <p className={`text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed pt-1 ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
-                                                    {(prod.description || '').length > 100 && (
-                                                        <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1.5 text-[11px] font-bold text-google-blue dark:text-blue-400 hover:underline flex items-center gap-1">
-                                                            <Icon name={expandedDescId === prod.id ? 'expand_less' : 'expand_more'} className="text-[15px]" />
-                                                            {expandedDescId === prod.id ? 'Tutup' : 'Selengkapnya'}
-                                                        </button>
-                                                    )}
-                                                    
-                                                    {/* Premium Location Card */}
-                                                    <div className="mt-4 flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800/80 rounded-[20px]">
-                                                        <div className="flex items-center gap-3 min-w-0">
-                                                            <div className="w-9 h-9 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 dark:text-rose-450 flex items-center justify-center shrink-0 border border-rose-100 dark:border-rose-900/30">
-                                                                <Icon name="location_on" className="text-[18px]" />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )
+                            )}
+
+                            {/* Sub Tab: Arsip Event */}
+                            {activeSubTab === 'archive' && (
+                                archivedProducts.length === 0 ? (
+                                    <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 p-12 text-center rounded-[24px]">
+                                        <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-250 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
+                                            <Icon name="archive" className="text-[28px]" />
+                                        </div>
+                                        <p className="text-[13px] font-bold text-slate-800 dark:text-slate-200">Tidak ada arsip event saat ini.</p>
+                                        <p className="text-[11.5px] text-slate-500 dark:text-slate-400 mt-1">Seluruh event yang telah selesai atau diarsipkan akan muncul di sini sebagai riwayat kegiatan.</p>
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                                        {archivedProducts.map(prod => (
+                                            <div key={prod.id} className="bg-slate-50 dark:bg-slate-900/60 rounded-[32px] border-2 border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between opacity-85 hover:opacity-100 transition-all duration-300">
+                                                {/* 1:1 Aspect Ratio Full Frame Image */}
+                                                <div className="relative w-full aspect-square bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200 dark:border-slate-850 grayscale">
+                                                    {prod.imageUrl ? (
+                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
+                                                    ) : (
+                                                        <div className="w-full h-full bg-slate-100 dark:bg-slate-850 flex flex-col items-center justify-center p-6 text-center">
+                                                            <div className="w-16 h-16 rounded-3xl bg-slate-300 dark:bg-slate-700 text-slate-550 dark:text-slate-400 flex items-center justify-center shadow-md mb-3">
+                                                                <Icon name="local_activity" className="text-[32px]" />
                                                             </div>
-                                                            <div className="min-w-0">
-                                                                <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Lokasi Pengambilan</p>
-                                                                <p className="text-[12px] font-extrabold text-slate-700 dark:text-slate-300 truncate leading-tight mt-0.5">{prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
-                                                            </div>
+                                                            <span className="text-[11px] font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500">Tiket Jalan Santai</span>
                                                         </div>
-                                                        {prod.pickupGeoUrl && (
-                                                            <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-[12px] bg-google-blueLight hover:bg-google-blueLight/85 text-google-blueDark dark:bg-blue-950/40 dark:text-blue-400 flex items-center justify-center shrink-0 border border-google-blue/20 dark:border-blue-900/30 transition-all hover:scale-105" title="Buka Google Maps">
-                                                                <Icon name="map" className="text-[16px]" />
-                                                            </a>
-                                                        )}
+                                                    )}
+                                                    {/* Archive Badge — top left */}
+                                                    <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-slate-700/90 text-white text-[9.5px] font-extrabold px-2.5 py-1.5 rounded-full shadow-md backdrop-blur-sm tracking-wide">
+                                                        <Icon name="archive" className="text-[13px]" fill="true" />
+                                                        ARSIP EVENT
                                                     </div>
                                                 </div>
 
-                                                {/* Action Buttons */}
-                                                {(() => {
-                                                    const isDeadlinePassed = prod.deadline && new Date(prod.deadline) <= new Date();
-                                                    const canBuy = prod.stock > 0 && !isDeadlinePassed;
-                                                    return (
-                                                        <div className="flex gap-3 pt-2">
-                                                            <button
-                                                                onClick={() => handleOpenBuyModal(prod)}
-                                                                disabled={!canBuy}
-                                                                className={`flex-1 py-3.5 rounded-[16px] font-bold text-[12.5px] transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
-                                                            >
-                                                                <Icon name={isDeadlinePassed ? 'timer_off' : 'add_shopping_cart'} className="text-[18px]" />
-                                                                {isDeadlinePassed ? 'Waktu Pembelian Habis' : prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
-                                                            </button>
-                                                            <button onClick={() => setSharingProduct(prod)} className="w-12 h-12 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-[16px] transition-all flex items-center justify-center active:scale-95" title="Bagikan">
-                                                                <Icon name="share" className="text-[18px]" />
-                                                            </button>
+                                                {/* Details */}
+                                                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+                                                    <div className="space-y-2">
+                                                        <h4 className="font-extrabold text-[16px] text-slate-650 dark:text-slate-350 tracking-tight leading-snug line-clamp-2 uppercase">{prod.name}</h4>
+                                                        <div className="flex items-center gap-2 flex-wrap">
+                                                            <div className="flex items-baseline gap-1">
+                                                                <span className="text-xs font-bold text-slate-400">Harga:</span>
+                                                                <span className="text-lg font-bold text-slate-500 line-through">{formatRp(prod.price)}</span>
+                                                            </div>
+                                                            {(prod.sold || 0) > 0 && (
+                                                                <span className="inline-flex items-center gap-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                                                                    <Icon name="trending_up" className="text-[12px]" />
+                                                                    {prod.sold} terjual
+                                                                </span>
+                                                            )}
                                                         </div>
-                                                    );
-                                                })()}
+                                                        <p className="text-[10.5px] font-bold flex items-center gap-1 text-red-500">
+                                                            <Icon name="timer_off" className="text-[12px]" />
+                                                            Event Selesai / Pembelian Ditutup
+                                                        </p>
+                                                        <p className={`text-[12.5px] font-medium text-slate-500 dark:text-slate-455 leading-relaxed pt-1 ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                    </div>
+
+                                                    {/* Action Buttons (Disabled) */}
+                                                    <div className="flex gap-3 pt-2">
+                                                        <button
+                                                            disabled
+                                                            className="flex-1 py-3.5 rounded-[16px] font-bold text-[12.5px] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed flex items-center justify-center gap-2"
+                                                        >
+                                                            <Icon name="lock" className="text-[18px]" />
+                                                            Event Selesai / Diarsipkan
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                        ))}
+                                    </div>
+                                )
                             )}
+
 
                             {/* Sub Tab: Tiket Saya */}
                             {activeSubTab === 'my_tickets' && (
