@@ -2174,8 +2174,8 @@ const getDirectImgUrl = (url) => {
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain" />
                                 </div>
                                 <div className="min-w-0">
-                                    <h1 className="text-[13px] sm:text-[15px] font-bold tracking-tight text-slate-900 leading-tight uppercase">PORTAL RT PAKEM</h1>
-                                    <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 truncate uppercase leading-none mt-0.5">{identity.name || 'Banyuanyar Gurah Kediri'}</p>
+                                    <h1 className="text-[13px] sm:text-[15px] font-bold tracking-tight text-slate-900 leading-tight uppercase">{identity.name || 'Portal RT'}</h1>
+                                    <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 truncate uppercase leading-none mt-0.5">{identity.subtitle || 'Sistem Informasi Warga'}</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
@@ -2209,10 +2209,10 @@ const getDirectImgUrl = (url) => {
                                     
                                     <h2 className="text-2xl sm:text-3.5xl md:text-4.5xl font-extrabold tracking-tight leading-tight uppercase text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.5)]">
                                         Portal Layanan &amp; <br />
-                                        Informasi RT Pakem
+                                        {identity.name || 'Informasi Warga'}
                                     </h2>
                                     <p className="text-[12.5px] sm:text-[13.5px] font-medium text-white/95 leading-relaxed [text-shadow:_0_1px_4px_rgba(0,0,0,0.5)]">
-                                        Selamat datang di sistem informasi pelayanan warga digital RT Pakem, Banyuanyar, Gurah, Kediri. Menghadirkan transparansi data kas, arisan bulanan online, administrasi lingkungan, dan kabar berita warga.
+                                        {identity.subtitle ? `Selamat datang di sistem informasi pelayanan warga digital ${identity.name}. ${identity.subtitle}` : `Selamat datang di sistem informasi pelayanan warga digital ${identity.name || 'RT Anda'}. Menghadirkan transparansi data kas, arisan bulanan online, administrasi lingkungan, dan kabar berita warga.`}
                                     </p>
                                     <div className="pt-2 flex flex-wrap gap-3">
                                         <button onClick={() => onLogin('warga')} className="px-5 py-3 bg-white hover:bg-slate-50 rounded-[12px] font-bold text-[12px] shadow-md flex items-center gap-2 active:scale-95 transition-all text-red-600 hover:text-red-700">
@@ -2228,72 +2228,72 @@ const getDirectImgUrl = (url) => {
                             </div>
 
                             {/* SERVICES GRID SECTION (SPACIOUS 2 COLUMNS) */}
-                            <section className="space-y-4 max-w-4xl mx-auto w-full">
+                            <section className="space-y-4 max-w-5xl px-6 mx-auto w-full">
                                 <h3 className="text-[11px] font-extrabold text-slate-400 uppercase tracking-widest text-center">Layanan Utama Portal Kami</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
                                             <Icon name="campaign" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-extrabold text-[15px] text-slate-900">Info Pengumuman Resmi</h4>
-                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-300 leading-relaxed mt-1.5">Papan pengumuman penting, info rapat warga, &amp; berita lingkungan terkini dari pengurus RT.</p>
+                                            <h4 className="font-extrabold text-[15px] text-slate-900 dark:text-white">Info Pengumuman Resmi</h4>
+                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Papan pengumuman penting, info rapat warga, &amp; berita lingkungan terkini dari pengurus RT.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-greenLight border border-google-green/20 flex items-center justify-center shrink-0 text-google-greenDark">
                                             <Icon name="payments" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-extrabold text-[15px] text-slate-900">Transparansi Uang Kas</h4>
-                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-300 leading-relaxed mt-1.5">Laporan kas masuk dan keluar RT yang dicatat rinci, terbuka, &amp; dipantau warga kapan saja.</p>
+                                            <h4 className="font-extrabold text-[15px] text-slate-900 dark:text-white">Transparansi Uang Kas</h4>
+                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Laporan kas masuk dan keluar RT yang dicatat rinci, terbuka, &amp; dipantau warga kapan saja.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-blueLight border border-google-blue/20 flex items-center justify-center shrink-0 text-google-blueDark">
                                             <Icon name="local_activity" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-extrabold text-[15px] text-slate-900">Katalog Tiket &amp; Event (COD)</h4>
-                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-300 leading-relaxed mt-1.5">Pembelian tiket jalan santai dan kegiatan RT secara online dengan metode COD.</p>
+                                            <h4 className="font-extrabold text-[15px] text-slate-900 dark:text-white">Katalog Tiket &amp; Event (COD)</h4>
+                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pembelian tiket jalan santai dan kegiatan RT secara online dengan metode COD.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 flex items-center justify-center border border-rose-100 dark:border-rose-900/30">
                                             <Icon name="casino" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-extrabold text-[15px] text-slate-900">Sistem Arisan RT Digital</h4>
-                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-300 leading-relaxed mt-1.5">Pengundian berkala bulanan dan daftar riwayat pemenang arisan secara digital transparan.</p>
+                                            <h4 className="font-extrabold text-[15px] text-slate-900 dark:text-white">Sistem Arisan RT Digital</h4>
+                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pengundian berkala bulanan dan daftar riwayat pemenang arisan secara digital transparan.</p>
                                         </div>
                                     </div>
                                 </div>
                             </section>
 
                             {/* BOARD OF INFORMATION (SPACIOUS 2 COLUMNS WITH HIGH CONTRAST) */}
-                            <section id="berita" className="space-y-6 pt-4 max-w-4xl mx-auto w-full">
+                            <section id="berita" className="space-y-6 pt-4 max-w-5xl px-6 mx-auto w-full">
                                 <div className="text-center space-y-1">
                                     <h3 className="text-[11px] font-extrabold text-red-600 dark:text-red-400 uppercase tracking-widest">Informasi Lingkungan</h3>
-                                    <h2 className="text-2xl font-black text-slate-900 tracking-tight">KABAR WARGA &amp; PENGUMUMAN</h2>
+                                    <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">KABAR WARGA &amp; PENGUMUMAN</h2>
                                 </div>
 
                                 {informasi.length === 0 ? (
-                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-10 text-center max-w-md mx-auto">
-                                        <Icon name="campaign" className="text-[32px] text-slate-300 mb-2" />
-                                        <p className="text-[13px] font-bold text-slate-900">Belum Ada Pengumuman</p>
-                                        <p className="text-[11.5px] text-slate-600 mt-0.5">Pengumuman penting dan kabar warga RT akan muncul di halaman ini.</p>
+                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-10 text-center max-w-md mx-auto">
+                                        <Icon name="campaign" className="text-[32px] text-slate-300 dark:text-slate-600 mb-2" />
+                                        <p className="text-[13px] font-bold text-slate-900 dark:text-white">Belum Ada Pengumuman</p>
+                                        <p className="text-[11.5px] text-slate-600 dark:text-slate-400 mt-0.5">Pengumuman penting dan kabar warga RT akan muncul di halaman ini.</p>
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         {informasi.slice(0, 6).map(item => (
-                                            <div key={item.id} className="bg-white rounded-[24px] border-2 border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:border-slate-400 transition-all duration-300">
+                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                                 <div>
                                                     {item.imageUrl ? (
-                                                        <div className="w-full h-48 bg-slate-100 overflow-hidden border-b-2 border-slate-200">
+                                                        <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700">
                                                             <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover" />
                                                         </div>
                                                     ) : (
-                                                        <div className="w-full h-48 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center border-b-2 border-slate-200">
+                                                        <div className="w-full h-48 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center border-b-2 border-slate-200 dark:border-slate-700">
                                                             <Icon name="newspaper" className="text-[42px] text-red-500/20" />
                                                         </div>
                                                     )}
@@ -2302,14 +2302,14 @@ const getDirectImgUrl = (url) => {
                                                             <Icon name="event" className="text-[13px]" />
                                                             <span>{item.date ? new Date(item.date).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : 'Tanggal -'}</span>
                                                         </div>
-                                                        <h4 className="font-extrabold text-[16px] text-slate-900 tracking-tight leading-snug line-clamp-1">{item.title}</h4>
-                                                        <p className="text-[13px] font-semibold text-slate-700 dark:text-slate-200 leading-relaxed line-clamp-3">{item.description}</p>
+                                                        <h4 className="font-extrabold text-[16px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-1">{item.title}</h4>
+                                                        <p className="text-[13px] font-semibold text-slate-700 dark:text-slate-400 leading-relaxed line-clamp-3">{item.description}</p>
                                                     </div>
                                                 </div>
                                                 <div className="p-6 pt-0">
-                                                    <button onClick={() => onLogin('warga')} className="inline-flex items-center gap-1.5 text-red-600 hover:text-red-700 font-black text-[12.5px] transition-all hover:underline group">
+                                                    <button onClick={() => onLogin('warga')} className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 font-black text-[12.5px] transition-all hover:underline group">
                                                         <span>Baca Selengkapnya</span>
-                                                        <Icon name="arrow_right_alt" className="text-[16px] group-hover:translate-x-1 transition-transform" />
+                                                        <Icon name="arrow_forward" className="text-[14px] group-hover:translate-x-1 transition-transform" />
                                                     </button>
                                                 </div>
                                             </div>
@@ -2321,7 +2321,7 @@ const getDirectImgUrl = (url) => {
                             {/* ADSENSE PLACEHOLDER */}
                             <section className="py-4 text-center border-t-2 border-slate-200/60 max-w-xl mx-auto w-full">
                                 <p className="text-[8.5px] font-bold tracking-widest text-slate-400 dark:text-slate-550 uppercase mb-2">Halaman ini didukung penayangan informasi terverifikasi</p>
-                                <div className="w-full h-11 bg-slate-50 rounded-[12px] border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-500 text-[10px] font-medium px-4">
+                                <div className="w-full h-11 bg-slate-50 dark:bg-slate-800 rounded-[12px] border-2 border-dashed border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 text-[10px] font-medium px-4">
                                     <Icon name="info" className="text-[12px] mr-1.5 text-slate-400" /> Informasi Layanan Digital RT Pakem, Gurah, Kediri.
                                 </div>
                             </section>
@@ -2367,7 +2367,7 @@ const getDirectImgUrl = (url) => {
                     <footer className="w-[calc(100%-2rem)] max-w-5xl mx-auto rounded-[28px] border border-red-500/20 py-8 px-4 sm:px-6 text-center z-10 relative mb-6 bg-white">
                         <div className="max-w-4xl mx-auto space-y-4">
                             <p className="text-[11px] text-slate-500 leading-relaxed">
-                                Portal RT Pakem adalah sistem informasi manajemen kerukunan lingkungan RT 01 RW 01, Dusun Pakem, Desa Banyuanyar, Kec. Gurah, Kab. Kediri, Jawa Timur, Indonesia.
+                                {identity.name || 'Portal Warga'} adalah sistem informasi manajemen kerukunan lingkungan digital. {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
                             </p>
                             
                             {legalData?.enabled && (
@@ -2379,7 +2379,7 @@ const getDirectImgUrl = (url) => {
                             )}
 
                             <div className="pt-4 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between gap-3">
-                                <p className="text-[11px] text-slate-500">&copy; 2026 Novan Restu Utomo. All rights reserved.</p>
+                                <p className="text-[11px] text-slate-500">&copy; {new Date().getFullYear()} {identity.name || 'Portal RT Warga'}. All rights reserved.</p>
                                 <div className="flex items-center gap-1 text-[10px] text-slate-500">
                                     <Icon name="verified" className="text-[13px] text-emerald-500" fill="true" />
                                     <span>Google Adsense Ready &amp; indexed by Googlebot</span>
