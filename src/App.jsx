@@ -7282,6 +7282,47 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             );
         }
 
+        /* ================= COUNTDOWN TIMER COMPONENT ================= */
+        function CountdownTimer({ deadline }) {
+            const [timeLeft, setTimeLeft] = useState(null);
+
+            useEffect(() => {
+                if (!deadline) { setTimeLeft(null); return; }
+                const calc = () => {
+                    const diff = new Date(deadline) - new Date();
+                    if (diff <= 0) { setTimeLeft({ expired: true }); return; }
+                    const days = Math.floor(diff / 86400000);
+                    const hours = Math.floor((diff % 86400000) / 3600000);
+                    const mins = Math.floor((diff % 3600000) / 60000);
+                    const secs = Math.floor((diff % 60000) / 1000);
+                    setTimeLeft({ days, hours, mins, secs, expired: false });
+                };
+                calc();
+                const id = setInterval(calc, 1000);
+                return () => clearInterval(id);
+            }, [deadline]);
+
+            if (!timeLeft) return null;
+
+            if (timeLeft.expired) {
+                return (
+                    <div className="flex items-center gap-1.5 bg-red-500 text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full shadow-md">
+                        <Icon name="timer_off" className="text-[13px]" fill="true" />
+                        Pembelian Ditutup
+                    </div>
+                );
+            }
+
+            const urgent = timeLeft.days === 0;
+            return (
+                <div className={`flex items-center gap-1.5 text-[10px] font-extrabold px-3 py-1.5 rounded-full shadow-md ${urgent ? 'bg-rose-500 text-white animate-pulse' : 'bg-amber-400 text-amber-950'}`}>
+                    <Icon name="timer" className="text-[13px]" fill="true" />
+                    {timeLeft.days > 0 && <span>{timeLeft.days}h </span>}
+                    <span>{String(timeLeft.hours).padStart(2,'0')}:{String(timeLeft.mins).padStart(2,'0')}:{String(timeLeft.secs).padStart(2,'0')}</span>
+                </div>
+            );
+        }
+
         /* ================= TIKET EVENTS / JALAN SANTAI COMPONENT ================= */
         function Tiket({ products = [], setProducts, orders = [], setOrders, userRole, isProductsLoaded = false }) {
             // Seeding default product — hanya jika Firebase sudah selesai dimuat DAN data memang belum ada
@@ -7377,7 +7418,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             // Admin State
             const [isProductModalOpen, setIsProductModalOpen] = useState(false);
             const [editingProduct, setEditingProduct] = useState(null);
-            const [productForm, setProductForm] = useState({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' });
+            const [productForm, setProductForm] = useState({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '', deadline: '' });
             const [productError, setProductError] = useState('');
             const [isUploading, setIsUploading] = useState(false);
             const [adminOrderFilter, setAdminOrderFilter] = useState('all');
@@ -7431,7 +7472,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     description: productForm.description,
                     imageUrl: productForm.imageUrl,
                     pickupLocationName: productForm.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT',
-                    pickupGeoUrl: productForm.pickupGeoUrl || 'https://maps.google.com'
+                    pickupGeoUrl: productForm.pickupGeoUrl || 'https://maps.google.com',
+                    deadline: productForm.deadline || ''
                 };
 
                 if (editingProduct) {
@@ -7446,7 +7488,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 }
                 setIsProductModalOpen(false);
                 setEditingProduct(null);
-                setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' });
+                setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '', deadline: '' });
             };
 
             const handleSaveBuyerName = (orderId) => {
@@ -7467,7 +7509,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     description: product.description || '',
                     imageUrl: product.imageUrl || '',
                     pickupLocationName: product.pickupLocationName || '',
-                    pickupGeoUrl: product.pickupGeoUrl || ''
+                    pickupGeoUrl: product.pickupGeoUrl || '',
+                    deadline: product.deadline || ''
                 });
                 setProductError('');
                 setIsProductModalOpen(true);
@@ -7930,6 +7973,20 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Deskripsi Tiket</label>
                                                 <textarea value={productForm.description} onChange={e => setProductForm({...productForm, description: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all h-24 resize-none" placeholder="Tuliskan info doorprize, aturan, jadwal, dll..."></textarea>
                                             </div>
+                                            <div className="bg-rose-50 border-2 border-rose-200 rounded-[16px] p-4 space-y-2">
+                                                <label className="text-[10px] font-bold text-rose-500 uppercase tracking-wider flex items-center gap-1.5">
+                                                    <Icon name="timer" className="text-[14px]" fill="true" /> Batas Waktu Pembelian (Deadline)
+                                                </label>
+                                                <input
+                                                    type="datetime-local"
+                                                    value={productForm.deadline}
+                                                    onChange={e => setProductForm({...productForm, deadline: e.target.value})}
+                                                    className="w-full bg-white border-2 border-rose-300 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-rose-400 focus:shadow-sm transition-all"
+                                                />
+                                                <p className="text-[10.5px] text-rose-400 font-medium flex items-start gap-1">
+                                                    <Icon name="info" className="text-[12px] shrink-0 mt-0.5" /> Setelah waktu ini terlewati, tombol beli akan otomatis dikunci. Kosongkan jika tidak ada batas waktu.
+                                                </p>
+                                            </div>
                                             <div>
                                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Upload Foto Cover (Opsional)</label>
                                                 <div className={`flex items-center gap-4 bg-slate-50 border-2 ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
@@ -8032,7 +8089,19 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                 {prod.sold} terjual
                                                             </span>
                                                         )}
+                                                        {/* Countdown Timer Badge */}
+                                                        {prod.deadline && <CountdownTimer deadline={prod.deadline} />}
                                                     </div>
+                                                    {/* Deadline info text */}
+                                                    {prod.deadline && (() => {
+                                                        const isExp = new Date(prod.deadline) <= new Date();
+                                                        return (
+                                                            <p className={`text-[10.5px] font-bold flex items-center gap-1 ${isExp ? 'text-red-500' : 'text-amber-600 dark:text-amber-400'}`}>
+                                                                <Icon name={isExp ? 'timer_off' : 'event'} className="text-[12px]" />
+                                                                {isExp ? 'Pembelian telah ditutup' : `Batas beli: ${new Date(prod.deadline).toLocaleString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' })}`}
+                                                            </p>
+                                                        );
+                                                    })()}
                                                     <p className={`text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed pt-1 ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     {(prod.description || '').length > 100 && (
                                                         <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1.5 text-[11px] font-bold text-google-blue dark:text-blue-400 hover:underline flex items-center gap-1">
@@ -8061,15 +8130,25 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 </div>
 
                                                 {/* Action Buttons */}
-                                                <div className="flex gap-3 pt-2">
-                                                    <button onClick={() => handleOpenBuyModal(prod)} disabled={prod.stock <= 0} className={`flex-1 py-3.5 rounded-[16px] font-bold text-[12.5px] transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md ${prod.stock > 0 ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}>
-                                                        <Icon name="add_shopping_cart" className="text-[18px]" /> 
-                                                        {prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
-                                                    </button>
-                                                    <button onClick={() => setSharingProduct(prod)} className="w-12 h-12 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-[16px] transition-all flex items-center justify-center active:scale-95" title="Bagikan">
-                                                        <Icon name="share" className="text-[18px]" />
-                                                    </button>
-                                                </div>
+                                                {(() => {
+                                                    const isDeadlinePassed = prod.deadline && new Date(prod.deadline) <= new Date();
+                                                    const canBuy = prod.stock > 0 && !isDeadlinePassed;
+                                                    return (
+                                                        <div className="flex gap-3 pt-2">
+                                                            <button
+                                                                onClick={() => handleOpenBuyModal(prod)}
+                                                                disabled={!canBuy}
+                                                                className={`flex-1 py-3.5 rounded-[16px] font-bold text-[12.5px] transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
+                                                            >
+                                                                <Icon name={isDeadlinePassed ? 'timer_off' : 'add_shopping_cart'} className="text-[18px]" />
+                                                                {isDeadlinePassed ? 'Waktu Pembelian Habis' : prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
+                                                            </button>
+                                                            <button onClick={() => setSharingProduct(prod)} className="w-12 h-12 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-[16px] transition-all flex items-center justify-center active:scale-95" title="Bagikan">
+                                                                <Icon name="share" className="text-[18px]" />
+                                                            </button>
+                                                        </div>
+                                                    );
+                                                })()}
                                             </div>
                                         </div>
                                     ))}
