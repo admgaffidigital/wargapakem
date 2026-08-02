@@ -7382,6 +7382,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const [isUploading, setIsUploading] = useState(false);
             const [adminOrderFilter, setAdminOrderFilter] = useState('all');
             const [adminSearchQuery, setAdminSearchQuery] = useState('');
+            // Inline edit nama pemesan (admin)
+            const [editingBuyerName, setEditingBuyerName] = useState(null); // { orderId, value }
             // Track which product card has its description expanded
             const [expandedDescId, setExpandedDescId] = useState(null);
 
@@ -7445,6 +7447,15 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 setIsProductModalOpen(false);
                 setEditingProduct(null);
                 setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' });
+            };
+
+            const handleSaveBuyerName = (orderId) => {
+                if (!editingBuyerName || editingBuyerName.orderId !== orderId) return;
+                const newName = editingBuyerName.value.trim().toUpperCase();
+                if (!newName) { setEditingBuyerName(null); return; }
+                setOrders(prev => (prev || []).map(o => o.id === orderId ? { ...o, buyerName: newName } : o));
+                setEditingBuyerName(null);
+                showToast('Nama pemesan berhasil diperbarui.');
             };
 
             const handleEditProduct = (product) => {
@@ -7754,7 +7765,37 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <span className="text-[10px] font-bold text-slate-400">#TKT-{String(order.id).slice(-6)}</span>
                                                             <span className={`text-[9px] font-bold px-2.5 py-1 rounded-[6px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
-                                                        <h4 className="font-extrabold text-[15px] text-slate-800">{order.buyerName}</h4>
+
+                                                        {/* Nama Pemesan — inline edit oleh admin */}
+                                                        {editingBuyerName && editingBuyerName.orderId === order.id ? (
+                                                            <div className="flex items-center gap-2 mb-1">
+                                                                <input
+                                                                    autoFocus
+                                                                    type="text"
+                                                                    value={editingBuyerName.value}
+                                                                    onChange={e => setEditingBuyerName({ orderId: order.id, value: e.target.value.toUpperCase() })}
+                                                                    onKeyDown={e => { if (e.key === 'Enter') handleSaveBuyerName(order.id); if (e.key === 'Escape') setEditingBuyerName(null); }}
+                                                                    className="flex-1 bg-amber-50 border-2 border-amber-400 rounded-[10px] px-3 py-2 text-[14px] font-extrabold text-slate-800 uppercase outline-none focus:shadow-md tracking-wide"
+                                                                />
+                                                                <button onClick={() => handleSaveBuyerName(order.id)} className="w-8 h-8 rounded-[8px] bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shrink-0 transition-colors" title="Simpan">
+                                                                    <Icon name="check" className="text-[15px]" />
+                                                                </button>
+                                                                <button onClick={() => setEditingBuyerName(null)} className="w-8 h-8 rounded-[8px] bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center shrink-0 transition-colors" title="Batal">
+                                                                    <Icon name="close" className="text-[15px]" />
+                                                                </button>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="flex items-center gap-2 group mb-1">
+                                                                <h4 className="font-extrabold text-[15px] text-slate-800 uppercase tracking-wide flex-1">{order.buyerName}</h4>
+                                                                <button
+                                                                    onClick={() => setEditingBuyerName({ orderId: order.id, value: order.buyerName })}
+                                                                    className="opacity-0 group-hover:opacity-100 w-7 h-7 rounded-[7px] bg-amber-50 hover:bg-amber-100 text-amber-600 border border-amber-200 flex items-center justify-center shrink-0 transition-all"
+                                                                    title="Edit nama pemesan"
+                                                                >
+                                                                    <Icon name="edit" className="text-[13px]" />
+                                                                </button>
+                                                            </div>
+                                                        )}
                                                         <p className="text-[12px] font-bold text-google-blue mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
                                                         
                                                         <div className="mt-3 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
