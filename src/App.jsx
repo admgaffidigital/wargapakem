@@ -2163,145 +2163,153 @@ const getDirectImgUrl = (url) => {
             };
             
             return (
-                <div className="w-full min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 relative overflow-x-hidden font-sans">
+                <div className="w-full min-h-screen flex flex-col bg-transparent text-slate-800 relative overflow-x-hidden font-sans">
                     <FlagWavingBackground theme={theme} />
 
-                    {/* TOP NAVBAR */}
-                    <header className="w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 py-3.5 px-4 sm:px-6 md:px-8 flex items-center justify-between sticky top-0 z-50 no-print shadow-sm">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-[10px] bg-red-550 flex items-center justify-center shrink-0 shadow-inner overflow-hidden border border-red-500/25">
-                                <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-8 h-8 object-contain" />
+                    {/* FLOATING TOP NAVBAR */}
+                    <div className="sticky top-0 z-50 no-print w-full">
+                        <header className="bg-white/95 text-slate-800 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20">
+                            <div className="flex items-center gap-2.5 overflow-hidden">
+                                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-rose-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
+                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain" />
+                                </div>
+                                <div className="min-w-0">
+                                    <h1 className="text-[13px] sm:text-[15px] font-bold tracking-tight text-slate-900 leading-tight uppercase">PORTAL RT PAKEM</h1>
+                                    <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 truncate uppercase leading-none mt-0.5">{identity.name || 'Banyuanyar Gurah Kediri'}</p>
+                                </div>
                             </div>
-                            <div className="min-w-0">
-                                <h1 className="text-[14px] sm:text-[15px] font-black tracking-tight bg-gradient-to-r from-red-650 to-rose-650 bg-clip-text text-transparent uppercase leading-tight">Portal RT PAKEM</h1>
-                                <p className="text-[10px] font-bold text-slate-400 dark:text-slate-550 truncate uppercase leading-none mt-0.5">{identity.name || 'Banyuanyar Gurah Kediri'}</p>
+                            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
+                                <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 text-slate-700 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 shadow-sm" title="Toggle Tema">
+                                    <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" />
+                                </button>
+                                <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 text-slate-700 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-350 shadow-sm" title="Otorisasi Admin">
+                                    <Icon name="lock" className="text-[15px] sm:text-[16px]" />
+                                </button>
+                                <button onClick={() => onLogin('warga')} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-600 text-white rounded-full text-[10.5px] sm:text-[12px] font-bold flex items-center gap-1.5 shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40 transition-all duration-300 active:scale-95">
+                                    <Icon name="person" className="text-[14px] sm:text-[16px]" />
+                                    <span>Masuk Warga</span>
+                                </button>
                             </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 bg-slate-50 hover:bg-slate-100 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-650 dark:text-slate-300 rounded-[10px] flex justify-center items-center border border-slate-200 dark:border-slate-750 transition-all duration-300 active:scale-95" title="Toggle Tema">
-                                <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[14px]" />
-                            </button>
-                            <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="px-3.5 py-2 border border-slate-200 dark:border-slate-750 bg-slate-50 hover:bg-slate-100 dark:bg-slate-850 dark:hover:bg-slate-800 rounded-[10px] text-[11.5px] font-extrabold text-slate-650 dark:text-slate-300 flex items-center gap-1.5 transition-all">
-                                <Icon name="lock" className="text-[15px]" />
-                                <span className="hidden sm:inline">Admin Login</span>
-                            </button>
-                            <button onClick={() => onLogin('warga')} className="px-4 py-2 bg-red-650 hover:bg-red-700 text-white rounded-[10px] text-[11.5px] font-extrabold flex items-center gap-1.5 shadow-md shadow-red-650/15 transition-all">
-                                <Icon name="person" className="text-[15px]" />
-                                <span>Portal Warga</span>
-                            </button>
-                        </div>
-                    </header>
+                        </header>
+                    </div>
 
                     {/* MAIN LANDING CONTENT */}
                     {mode === 'select' ? (
-                        <div className="flex-1 flex flex-col z-10">
-                            {/* HERO SECTION */}
-                            <section className="relative py-16 px-4 text-center overflow-hidden flex flex-col items-center justify-center">
-                                <div className="absolute top-0 right-0 -mt-20 -mr-20 w-72 h-72 bg-red-500 opacity-5 rounded-full blur-3xl"></div>
-                                <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-64 h-64 bg-google-blue opacity-5 rounded-full blur-3xl"></div>
-                                
-                                <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-                                    <div className="inline-flex items-center gap-1.5 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/35 px-4 py-1.5 rounded-full text-red-650 dark:text-red-400 text-[10px] font-extrabold uppercase tracking-widest mx-auto w-fit">
-                                        <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-ping"></div>
-                                        <span>Portal Resmi Warga</span>
+                        <main className="flex-1 w-full max-w-5xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
+                            {/* HERO BANNER SECTION (MATCHES MAIN BANNER THEME) */}
+                            <div className="relative rounded-[32px] p-6 sm:p-10 text-white border-2 border-red-500/20 shadow-xl overflow-hidden bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark min-h-[240px] sm:min-h-[280px] flex items-center">
+                                <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white opacity-5 rounded-full blur-3xl"></div>
+                                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-google-blueLight opacity-10 rounded-full blur-2xl"></div>
+
+                                <div className="relative z-10 w-full text-left space-y-4 max-w-2xl">
+                                    <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
+                                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+                                        <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
                                     </div>
-                                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-none uppercase">
+                                    
+                                    <h2 className="text-2xl sm:text-3.5xl md:text-4.5xl font-extrabold tracking-tight leading-tight uppercase text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.5)]">
                                         Portal Layanan &amp; <br />
-                                        <span className="bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent">Informasi RT Pakem</span>
+                                        Informasi RT Pakem
                                     </h2>
-                                    <p className="text-[13px] sm:text-[14.5px] font-medium text-slate-550 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
-                                        Selamat datang di sistem informasi pelayanan warga digital RT Pakem, Banyuanyar, Gurah, Kediri. Menghadirkan transparansi data kas, arisan online, administrasi, dan info kegiatan warga.
+                                    <p className="text-[12.5px] sm:text-[13.5px] font-medium text-white/95 leading-relaxed [text-shadow:_0_1px_4px_rgba(0,0,0,0.5)]">
+                                        Selamat datang di sistem informasi pelayanan warga digital RT Pakem, Banyuanyar, Gurah, Kediri. Menghadirkan transparansi data kas, arisan bulanan online, administrasi lingkungan, dan kabar berita warga.
                                     </p>
-                                    <div className="pt-4 flex flex-wrap justify-center gap-3">
-                                        <button onClick={() => onLogin('warga')} className="px-6 py-3.5 bg-gradient-to-r from-red-650 to-rose-600 hover:from-red-700 hover:to-rose-650 text-white rounded-xl font-bold text-[13.5px] shadow-lg shadow-red-500/15 flex items-center gap-2 active:scale-95 transition-all">
-                                            <Icon name="login" className="text-[17px]" />
-                                            <span>Masuk ke Portal Warga</span>
+                                    <div className="pt-2 flex flex-wrap gap-3">
+                                        <button onClick={() => onLogin('warga')} className="px-5 py-3 bg-white hover:bg-slate-50 rounded-[12px] font-bold text-[12px] shadow-md flex items-center gap-2 active:scale-95 transition-all text-red-600 hover:text-red-700">
+                                            <Icon name="login" className="text-[16px]" fill="true" />
+                                            <span>Portal Warga</span>
                                         </button>
-                                        <a href="#berita" className="px-6 py-3.5 bg-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-850 text-slate-700 dark:text-slate-350 rounded-xl font-bold text-[13.5px] border border-slate-200 dark:border-slate-850 flex items-center gap-2 active:scale-95 transition-all">
-                                            <Icon name="campaign" className="text-[17px]" />
+                                        <a href="#berita" className="px-5 py-3 bg-white/20 hover:bg-white/30 text-white rounded-[12px] font-bold text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
+                                            <Icon name="campaign" className="text-[16px]" />
                                             <span>Berita Lingkungan</span>
                                         </a>
                                     </div>
                                 </div>
-                            </section>
+                            </div>
 
-                            {/* FEATURES PORTAL GRID */}
-                            <section className="py-12 bg-white/70 dark:bg-slate-900/35 border-y border-slate-200/80 dark:border-slate-850 px-4 sm:px-6 md:px-8">
-                                <div className="max-w-4xl mx-auto">
-                                    <h3 className="text-[11px] font-extrabold text-slate-400 uppercase tracking-widest text-center mb-8">Layanan Utama Portal Kami</h3>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                                        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200/80 dark:border-slate-850 shadow-sm space-y-2.5">
-                                            <div className="w-10 h-10 rounded-[10px] bg-red-50 dark:bg-red-950/20 text-red-550 flex items-center justify-center border border-red-100 dark:border-red-900/35">
-                                                <Icon name="campaign" className="text-[20px]" />
-                                            </div>
-                                            <h4 className="font-bold text-[14px] text-slate-800 dark:text-slate-100">Info Pengumuman</h4>
-                                            <p className="text-[11.5px] text-slate-500 leading-normal">Papan informasi digital pengumuman penting &amp; berita terkini dari pengurus RT.</p>
+                            {/* SERVICES GRID SECTION (SPACIOUS 2 COLUMNS) */}
+                            <section className="space-y-4 max-w-4xl mx-auto w-full">
+                                <h3 className="text-[11px] font-extrabold text-slate-400 uppercase tracking-widest text-center">Layanan Utama Portal Kami</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 transition-all duration-300">
+                                        <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
+                                            <Icon name="campaign" className="text-[24px]" />
                                         </div>
-                                        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200/80 dark:border-slate-850 shadow-sm space-y-2.5">
-                                            <div className="w-10 h-10 rounded-[10px] bg-amber-50 dark:bg-amber-950/20 text-amber-500 flex items-center justify-center border border-amber-100 dark:border-amber-900/35">
-                                                <Icon name="payments" className="text-[20px]" />
-                                            </div>
-                                            <h4 className="font-bold text-[14px] text-slate-800 dark:text-slate-100">Buku Kas Transparan</h4>
-                                            <p className="text-[11.5px] text-slate-500 leading-normal">Catatan keuangan kas RT yang dipantau real-time untuk transparansi lingkungan.</p>
+                                        <div>
+                                            <h4 className="font-extrabold text-[15px] text-slate-900">Info Pengumuman Resmi</h4>
+                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-300 leading-relaxed mt-1.5">Papan pengumuman penting, info rapat warga, &amp; berita lingkungan terkini dari pengurus RT.</p>
                                         </div>
-                                        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200/80 dark:border-slate-850 shadow-sm space-y-2.5">
-                                            <div className="w-10 h-10 rounded-[10px] bg-google-blueLight text-google-blueDark flex items-center justify-center border border-google-blue/20">
-                                                <Icon name="local_activity" className="text-[20px]" />
-                                            </div>
-                                            <h4 className="font-bold text-[14px] text-slate-800 dark:text-slate-100">Katalog Tiket &amp; COD</h4>
-                                            <p className="text-[11.5px] text-slate-500 leading-normal">Beli tiket jalan santai warga secara online dan lakukan pembayaran di tempat.</p>
+                                    </div>
+                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 transition-all duration-300">
+                                        <div className="w-12 h-12 rounded-[12px] bg-google-greenLight border border-google-green/20 flex items-center justify-center shrink-0 text-google-greenDark">
+                                            <Icon name="payments" className="text-[24px]" />
                                         </div>
-                                        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200/80 dark:border-slate-850 shadow-sm space-y-2.5">
-                                            <div className="w-10 h-10 rounded-[10px] bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 flex items-center justify-center border border-emerald-100 dark:border-emerald-900/35">
-                                                <Icon name="casino" className="text-[20px]" />
-                                            </div>
-                                            <h4 className="font-bold text-[14px] text-slate-800 dark:text-slate-100">Arisan RT Digital</h4>
-                                            <p className="text-[11.5px] text-slate-500 leading-normal">Pengundian dan monitoring pemenang arisan bulanan warga secara transparan.</p>
+                                        <div>
+                                            <h4 className="font-extrabold text-[15px] text-slate-900">Transparansi Uang Kas</h4>
+                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-300 leading-relaxed mt-1.5">Laporan kas masuk dan keluar RT yang dicatat rinci, terbuka, &amp; dipantau warga kapan saja.</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 transition-all duration-300">
+                                        <div className="w-12 h-12 rounded-[12px] bg-google-blueLight border border-google-blue/20 flex items-center justify-center shrink-0 text-google-blueDark">
+                                            <Icon name="local_activity" className="text-[24px]" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-extrabold text-[15px] text-slate-900">Katalog Tiket &amp; Event (COD)</h4>
+                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-300 leading-relaxed mt-1.5">Pembelian tiket jalan santai dan kegiatan RT secara online dengan metode COD.</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 transition-all duration-300">
+                                        <div className="w-12 h-12 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 flex items-center justify-center border border-rose-100 dark:border-rose-900/30">
+                                            <Icon name="casino" className="text-[24px]" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-extrabold text-[15px] text-slate-900">Sistem Arisan RT Digital</h4>
+                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-300 leading-relaxed mt-1.5">Pengundian berkala bulanan dan daftar riwayat pemenang arisan secara digital transparan.</p>
                                         </div>
                                     </div>
                                 </div>
                             </section>
 
-                            {/* PAPAN INFORMASI & BERITA LINGKUNGAN (BLOG) */}
-                            <section id="berita" className="py-16 px-4 max-w-4xl mx-auto w-full space-y-8">
+                            {/* BOARD OF INFORMATION (SPACIOUS 2 COLUMNS WITH HIGH CONTRAST) */}
+                            <section id="berita" className="space-y-6 pt-4 max-w-4xl mx-auto w-full">
                                 <div className="text-center space-y-1">
-                                    <h3 className="text-[11px] font-extrabold text-red-650 dark:text-red-400 uppercase tracking-widest">Informasi Lingkungan</h3>
-                                    <h2 className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-white tracking-tight">KABAR WARGA &amp; PENGUMUMAN</h2>
+                                    <h3 className="text-[11px] font-extrabold text-red-600 dark:text-red-400 uppercase tracking-widest">Informasi Lingkungan</h3>
+                                    <h2 className="text-2xl font-black text-slate-900 tracking-tight">KABAR WARGA &amp; PENGUMUMAN</h2>
                                 </div>
 
                                 {informasi.length === 0 ? (
-                                    <div className="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200/80 dark:border-slate-850 text-center shadow-sm max-w-md mx-auto">
+                                    <div className="bg-white rounded-[24px] border-2 border-slate-300 p-10 text-center max-w-md mx-auto">
                                         <Icon name="campaign" className="text-[32px] text-slate-300 mb-2" />
-                                        <p className="text-[12.5px] font-bold text-slate-700 dark:text-slate-350">Belum Ada Pengumuman</p>
-                                        <p className="text-[11px] text-slate-450 mt-0.5">Pengumuman penting dan kabar warga RT akan muncul di halaman ini.</p>
+                                        <p className="text-[13px] font-bold text-slate-900">Belum Ada Pengumuman</p>
+                                        <p className="text-[11.5px] text-slate-600 mt-0.5">Pengumuman penting dan kabar warga RT akan muncul di halaman ini.</p>
                                     </div>
                                 ) : (
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         {informasi.slice(0, 6).map(item => (
-                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/80 dark:border-slate-850 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-all duration-300">
+                                            <div key={item.id} className="bg-white rounded-[24px] border-2 border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:border-slate-400 transition-all duration-300">
                                                 <div>
                                                     {item.imageUrl ? (
-                                                        <div className="w-full h-36 bg-slate-100 overflow-hidden border-b border-slate-150">
+                                                        <div className="w-full h-48 bg-slate-100 overflow-hidden border-b-2 border-slate-200">
                                                             <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover" />
                                                         </div>
                                                     ) : (
-                                                        <div className="w-full h-36 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center border-b border-slate-150">
-                                                            <Icon name="newspaper" className="text-[36px] text-red-500/20" />
+                                                        <div className="w-full h-48 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center border-b-2 border-slate-200">
+                                                            <Icon name="newspaper" className="text-[42px] text-red-500/20" />
                                                         </div>
                                                     )}
-                                                    <div className="p-4.5 space-y-2">
-                                                        <div className="flex items-center gap-1.5 text-[9px] font-bold text-slate-400">
-                                                            <Icon name="event" className="text-[11px]" />
+                                                    <div className="p-6 space-y-3">
+                                                        <div className="flex items-center gap-1.5 text-[10.5px] font-extrabold text-slate-500 dark:text-slate-400">
+                                                            <Icon name="event" className="text-[13px]" />
                                                             <span>{item.date ? new Date(item.date).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : 'Tanggal -'}</span>
                                                         </div>
-                                                        <h4 className="font-extrabold text-[14px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-2">{item.title}</h4>
-                                                        <p className="text-[11.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3">{item.description}</p>
+                                                        <h4 className="font-extrabold text-[16px] text-slate-900 tracking-tight leading-snug line-clamp-1">{item.title}</h4>
+                                                        <p className="text-[13px] font-semibold text-slate-700 dark:text-slate-200 leading-relaxed line-clamp-3">{item.description}</p>
                                                     </div>
                                                 </div>
-                                                <div className="p-4.5 pt-0">
-                                                    <button onClick={() => onLogin('warga')} className="w-full bg-slate-50 hover:bg-slate-100 dark:bg-slate-850 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-750 text-slate-700 dark:text-slate-300 py-2 rounded-[8px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1">
+                                                <div className="p-6 pt-0">
+                                                    <button onClick={() => onLogin('warga')} className="inline-flex items-center gap-1.5 text-red-600 hover:text-red-700 font-black text-[12.5px] transition-all hover:underline group">
                                                         <span>Baca Selengkapnya</span>
-                                                        <Icon name="arrow_right_alt" className="text-[14px]" />
+                                                        <Icon name="arrow_right_alt" className="text-[16px] group-hover:translate-x-1 transition-transform" />
                                                     </button>
                                                 </div>
                                             </div>
@@ -2310,69 +2318,69 @@ const getDirectImgUrl = (url) => {
                                 )}
                             </section>
 
-                            {/* ADSENSE PLACEHOLDER (MEMBANTU MENARIK ROBOT ADSENSE) */}
-                            <section className="py-6 px-4 max-w-4xl mx-auto w-full text-center border-t border-slate-200/60 dark:border-slate-850">
-                                <p className="text-[9px] font-bold tracking-widest text-slate-350 dark:text-slate-600 uppercase mb-2">Halaman ini didukung penayangan informasi terverifikasi</p>
-                                <div className="mx-auto w-full max-w-2xl h-12 bg-slate-100/50 dark:bg-slate-900/30 rounded-lg border border-dashed border-slate-300 dark:border-slate-800 flex items-center justify-center text-slate-400 text-[10px] font-medium">
-                                    <Icon name="info" className="text-[12px] mr-1.5 text-slate-300" /> Informasi Layanan Digital RT Pakem, Gurah, Kediri.
+                            {/* ADSENSE PLACEHOLDER */}
+                            <section className="py-4 text-center border-t-2 border-slate-200/60 max-w-xl mx-auto w-full">
+                                <p className="text-[8.5px] font-bold tracking-widest text-slate-400 dark:text-slate-550 uppercase mb-2">Halaman ini didukung penayangan informasi terverifikasi</p>
+                                <div className="w-full h-11 bg-slate-50 rounded-[12px] border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-500 text-[10px] font-medium px-4">
+                                    <Icon name="info" className="text-[12px] mr-1.5 text-slate-400" /> Informasi Layanan Digital RT Pakem, Gurah, Kediri.
                                 </div>
                             </section>
-                        </div>
+                        </main>
                     ) : (
                         /* ADMIN PASSWORD LOGIN FORM */
                         <div className="flex-1 flex flex-col justify-center items-center p-4 z-10">
-                            <div className="relative overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-8 sm:p-10 rounded-2xl w-full max-w-sm text-center shadow-[0_20px_50px_rgba(239,68,68,0.04)] border border-red-500/20 hover:border-red-500/40 transition-all duration-500">
-                                <div className="h-1 w-full absolute top-0 left-0 bg-red-650"></div>
+                            <div className="relative overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-8 sm:p-10 rounded-[28px] border-2 border-red-500/20 shadow-xl w-full max-w-sm text-center">
+                                <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>
                                 <div className="mx-auto mt-4 mb-5 bg-red-50/50 w-24 h-24 rounded-full flex items-center justify-center border-2 border-red-500/20 shadow-inner overflow-hidden">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"} />
                                 </div>
-                                <h1 className="text-[18px] font-bold bg-gradient-to-r from-red-650 to-rose-550 bg-clip-text text-transparent mb-1 tracking-tight">Otorisasi Admin</h1>
-                                <p className="text-[12.5px] font-medium text-slate-500 mb-6 leading-snug">{identity.name}</p>
+                                <h1 className="text-[18px] font-bold bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent mb-1 tracking-tight">Otorisasi Admin</h1>
+                                <p className="text-[12.5px] font-medium text-slate-600 mb-6 leading-snug">{identity.name}</p>
                                 
                                 <div className="space-y-4">
                                     <div className="text-left">
                                         <label className="text-[9.5px] font-bold text-slate-400 block mb-1.5 ml-2 uppercase tracking-wider">Email Admin</label>
-                                        <input type="email" placeholder="Email Firebase Anda" value={email} onChange={(e) => { setEmail(e.target.value); setError(''); }} className="w-full bg-slate-50 border border-slate-350 focus:border-google-blue focus:bg-white focus:shadow-sm text-slate-800 rounded-xl px-4 py-3 text-[12.5px] font-medium outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
+                                        <input type="email" placeholder="Email Firebase Anda" value={email} onChange={(e) => { setEmail(e.target.value); setError(''); }} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-sm text-slate-800 rounded-[16px] px-4.5 py-3 text-[12.5px] font-medium outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
                                     </div>
                                     <div className="text-left">
                                         <label className="text-[9.5px] font-bold text-slate-400 block mb-1.5 ml-2 uppercase tracking-wider">Kata Sandi</label>
-                                        <input type="password" placeholder="Kata Sandi Firebase" value={password} onChange={(e) => { setPassword(e.target.value); setError(''); }} className="w-full bg-slate-50 border border-slate-355 focus:border-google-blue focus:bg-white focus:shadow-md text-slate-800 rounded-xl px-4 py-3 text-[12.5px] font-medium outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
+                                        <input type="password" placeholder="Kata Sandi Firebase" value={password} onChange={(e) => { setPassword(e.target.value); setError(''); }} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md text-slate-800 rounded-[16px] px-4.5 py-3 text-[12.5px] font-medium outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
                                     </div>
                                     <div className="mt-6 pt-3.5 border-t border-slate-200/50 text-center">
                                         <p className="text-[9px] text-slate-400 font-medium px-2 leading-relaxed">
                                             <Icon name="shield" className="text-[11px] inline mr-1" />
                                             Dilindungi enkripsi & keamanan tingkat lanjut. <br /> Segala bentuk pencurian data akan dipidanakan.
                                         </p>
-                                        <p className="text-[9px] text-slate-300 font-medium mt-1">&copy; 2026 Novan Restu Utomo</p>
+                                        <p className="text-[9px] text-slate-400 font-medium mt-1">&copy; 2026 Novan Restu Utomo</p>
                                     </div>
-                                    {error && <p className="text-[11px] text-google-redDark font-medium bg-google-redLight py-2.5 rounded-xl border border-google-red/20 shadow-sm flex items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[14px]"/> {error}</p>}
+                                    {error && <p className="text-[11px] text-red-700 font-medium bg-red-50 py-2.5 rounded-xl border border-red-200 shadow-sm flex items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[14px]"/> {error}</p>}
                                     <div className="flex gap-3 pt-3">
-                                        <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border border-slate-300 text-slate-700 py-3 rounded-xl font-bold text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
-                                        <button onClick={handleAdminLogin} className="flex-1 bg-google-blue text-white py-3 rounded-xl font-bold text-[12.5px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
+                                        <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3 rounded-xl font-bold text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
+                                        <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-xl font-bold text-[12.5px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    {/* LANDING FOOTER */}
-                    <footer className="w-full bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 px-4 sm:px-6 text-center z-10 relative">
+                    {/* LANDING FOOTER (COMPLIES WITH THEME VARIABLES) */}
+                    <footer className="w-[calc(100%-2rem)] max-w-5xl mx-auto rounded-[28px] border border-red-500/20 py-8 px-4 sm:px-6 text-center z-10 relative mb-6 bg-white">
                         <div className="max-w-4xl mx-auto space-y-4">
-                            <p className="text-[11px] text-slate-400 dark:text-slate-500 leading-relaxed">
+                            <p className="text-[11px] text-slate-500 leading-relaxed">
                                 Portal RT Pakem adalah sistem informasi manajemen kerukunan lingkungan RT 01 RW 01, Dusun Pakem, Desa Banyuanyar, Kec. Gurah, Kab. Kediri, Jawa Timur, Indonesia.
                             </p>
                             
                             {legalData?.enabled && (
-                                <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold text-google-blue">
+                                <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold text-red-600">
                                     <button onClick={() => setShowLegalModal('terms')} className="hover:underline flex items-center gap-1"><Icon name="gavel" className="text-[13px]"/> Syarat &amp; Ketentuan</button>
                                     <span className="text-slate-300">|</span>
                                     <button onClick={() => setShowLegalModal('privacy')} className="hover:underline flex items-center gap-1"><Icon name="privacy_tip" className="text-[13px]"/> Kebijakan Privasi</button>
                                 </div>
                             )}
 
-                            <div className="pt-4 border-t border-slate-200/60 dark:border-slate-850 flex flex-col sm:flex-row items-center justify-between gap-3">
-                                <p className="text-[11px] text-slate-400 dark:text-slate-550">&copy; 2026 Novan Restu Utomo. All rights reserved.</p>
-                                <div className="flex items-center gap-1 text-[10px] text-slate-400 dark:text-slate-550">
+                            <div className="pt-4 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <p className="text-[11px] text-slate-500">&copy; 2026 Novan Restu Utomo. All rights reserved.</p>
+                                <div className="flex items-center gap-1 text-[10px] text-slate-500">
                                     <Icon name="verified" className="text-[13px] text-emerald-500" fill="true" />
                                     <span>Google Adsense Ready &amp; indexed by Googlebot</span>
                                 </div>
@@ -8221,7 +8229,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 </div>
                                             )}
 
-                                            {productError && <div className="bg-red-50 text-red-650 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {productError}</div>}
+                                            {productError && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {productError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
                                             <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
@@ -8737,7 +8745,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <input type="text" value={buyForm.notes} onChange={e => setBuyForm({...buyForm, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Kaos Ukuran L / Minta diantar sore hari" />
                                             </div>
 
-                                            {wargaError && <div className="bg-red-50 text-red-650 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {wargaError}</div>}
+                                            {wargaError && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {wargaError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
                                             <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
