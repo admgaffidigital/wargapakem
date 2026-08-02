@@ -3,8 +3,8 @@
 // Strategi: Cache First untuk aset statis, Network First untuk data
 // ============================================================
 
-const CACHE_NAME = 'warga-pakem-v1.9';
-const CACHE_STATIC = 'warga-pakem-static-v1.9';
+const CACHE_NAME = 'warga-pakem-v2.0';
+const CACHE_STATIC = 'warga-pakem-static-v2.0';
 
 // Aset lokal yang selalu di-cache saat install
 const STATIC_ASSETS = [

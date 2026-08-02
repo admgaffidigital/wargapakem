@@ -7364,6 +7364,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const [buyForm, setBuyForm] = useState({ name: '', quantity: 1, notes: '', deliveryMethod: 'pickup', deliveryDay: '', deliveryTime: '' });
             const [wargaError, setWargaError] = useState('');
             const [myTicketsSearch, setMyTicketsSearch] = useState('');
+            const [buyersSearch, setBuyersSearch] = useState('');
             const [localSavedOrderIds, setLocalSavedOrderIds] = useState(() => {
                 try {
                     const saved = localStorage.getItem('wargapakem_my_tickets');
@@ -7645,6 +7646,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 return isMyOrder || isSearchMatch;
             });
 
+            // Daftar Pembeli (semua order non-cancelled, diurutkan terbaru)
+            const buyersList = (orders || []).filter(o => o && o.id && o.status !== 'cancelled');
+            const buyersTotalTickets = buyersList.reduce((sum, o) => sum + (o.quantity || 0), 0);
+            const buyersListFiltered = buyersSearch
+                ? buyersList.filter(o => (o.buyerName || '').toLowerCase().includes(buyersSearch.toLowerCase()))
+                : buyersList;
+
             // Statistics (Admin)
             const stats = useMemo(() => {
                 let totalSold = 0;
@@ -7923,11 +7931,15 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
 
                             {/* Warga Sub Tabs */}
-                            <div className="flex gap-2.5 border-b-2 border-slate-200/60 pb-3">
-                                <button onClick={() => setActiveSubTab('shop')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-md' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-305'}`}><Icon name="shopping_bag" className="text-[16px]" /> Beli Tiket</button>
-                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 relative ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-md' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-305'}`}>
+                            <div className="flex gap-2.5 border-b-2 border-slate-200/60 pb-3 overflow-x-auto">
+                                <button onClick={() => setActiveSubTab('shop')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 whitespace-nowrap ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-md' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-305'}`}><Icon name="shopping_bag" className="text-[16px]" /> Beli Tiket</button>
+                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 relative whitespace-nowrap ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-md' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-305'}`}>
                                     <Icon name="confirmation_number" className="text-[16px]" /> Tiket Saya
                                     {myTicketsFiltered.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-google-blue text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white">{myTicketsFiltered.length}</span>}
+                                </button>
+                                <button onClick={() => setActiveSubTab('buyers_list')} className={`px-5 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 relative whitespace-nowrap ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-md' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-305'}`}>
+                                    <Icon name="groups" className="text-[16px]" /> Daftar Pembeli
+                                    {buyersList.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-rose-500 text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white">{buyersList.length}</span>}
                                 </button>
                             </div>
 
@@ -8102,6 +8114,77 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     )}
                                                 </div>
                                             ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* Sub Tab: Daftar Pembeli */}
+                            {activeSubTab === 'buyers_list' && (
+                                <div className="space-y-5">
+                                    {/* Info Banner */}
+                                    <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 rounded-[20px] p-4 flex items-start gap-3">
+                                        <Icon name="info" className="text-[18px] text-google-blue shrink-0 mt-0.5" />
+                                        <p className="text-[12px] font-medium text-blue-800 dark:text-blue-300 leading-relaxed">
+                                            Daftar ini menampilkan semua warga yang telah memesan tiket (tidak termasuk yang dibatalkan). Total <span className="font-extrabold">{buyersList.length} pembeli</span> dengan <span className="font-extrabold">{buyersTotalTickets} tiket</span> telah dipesan.
+                                        </p>
+                                    </div>
+
+                                    {/* Search */}
+                                    <div className="relative">
+                                        <input type="text" placeholder="Cari nama pembeli..." value={buyersSearch} onChange={e => setBuyersSearch(e.target.value)} className="w-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 pl-11 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40 dark:text-slate-200" />
+                                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" /></div>
+                                        {buyersSearch && (
+                                            <button onClick={() => setBuyersSearch('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"><Icon name="close" className="text-[16px]" /></button>
+                                        )}
+                                    </div>
+
+                                    {buyersListFiltered.length === 0 ? (
+                                        <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 p-12 text-center rounded-[24px]">
+                                            <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
+                                                <Icon name="groups" className="text-[28px]" />
+                                            </div>
+                                            <p className="text-[13px] font-bold text-slate-800 dark:text-slate-200">{buyersSearch ? 'Tidak ada pembeli ditemukan.' : 'Belum ada yang memesan tiket.'}</p>
+                                            <p className="text-[11.5px] font-medium text-slate-400 mt-1">Jadilah yang pertama memesan tiket!</p>
+                                        </div>
+                                    ) : (
+                                        <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                                            {/* Header Tabel */}
+                                            <div className="grid grid-cols-12 gap-2 px-5 py-3 bg-slate-50 dark:bg-slate-850 border-b border-slate-200 dark:border-slate-800">
+                                                <div className="col-span-1 text-[9px] font-extrabold text-slate-400 uppercase tracking-wider text-center">#</div>
+                                                <div className="col-span-6 text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">Nama Pembeli</div>
+                                                <div className="col-span-3 text-[9px] font-extrabold text-slate-400 uppercase tracking-wider text-center">Jumlah</div>
+                                                <div className="col-span-2 text-[9px] font-extrabold text-slate-400 uppercase tracking-wider text-center">Tgl</div>
+                                            </div>
+                                            {/* Baris Pembeli */}
+                                            <div className="divide-y divide-slate-100 dark:divide-slate-800/60">
+                                                {buyersListFiltered.map((order, idx) => (
+                                                    <div key={order.id} className={`grid grid-cols-12 gap-2 px-5 py-3.5 items-center hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors ${order.status === 'completed' ? 'bg-emerald-50/40 dark:bg-emerald-950/10' : ''}`}>
+                                                        <div className="col-span-1 text-[10px] font-bold text-slate-400 text-center tabular-nums">{idx + 1}</div>
+                                                        <div className="col-span-6 min-w-0">
+                                                            <p className="text-[13px] font-extrabold text-slate-800 dark:text-slate-200 truncate leading-tight">{order.buyerName}</p>
+                                                            <p className="text-[10px] font-medium text-slate-400 dark:text-slate-500 truncate mt-0.5">{order.productName}</p>
+                                                        </div>
+                                                        <div className="col-span-3 text-center">
+                                                            <span className="inline-flex items-center gap-1 bg-google-blueLight dark:bg-blue-950/40 text-google-blueDark dark:text-blue-400 border border-google-blue/20 dark:border-blue-900/40 text-[11px] font-extrabold px-2.5 py-1 rounded-full">
+                                                                <Icon name="confirmation_number" className="text-[11px]" />
+                                                                {order.quantity}
+                                                            </span>
+                                                        </div>
+                                                        <div className="col-span-2 text-[9.5px] font-bold text-slate-400 text-center leading-tight">
+                                                            {order.timestamp ? order.timestamp.slice(5) : '-'}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            {/* Footer Ringkasan */}
+                                            <div className="px-5 py-3.5 bg-slate-50 dark:bg-slate-850 border-t-2 border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                                                <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">Total {buyersListFiltered.length} pembeli</span>
+                                                <span className="inline-flex items-center gap-1.5 bg-google-blue text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full">
+                                                    <Icon name="confirmation_number" className="text-[12px]" />
+                                                    {buyersListFiltered.reduce((sum, o) => sum + (o.quantity || 0), 0)} Tiket Dipesan
+                                                </span>
+                                            </div>
                                         </div>
                                     )}
                                 </div>
