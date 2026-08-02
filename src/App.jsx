@@ -8088,26 +8088,27 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
 
                             {/* Warga Sub Tabs */}
-                            <div className="grid grid-cols-4 gap-1.5 pb-1">
-                                <button onClick={() => setActiveSubTab('shop')} className={`relative py-3.5 px-1 rounded-[16px] font-bold text-[10.5px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
-                                    <Icon name="shopping_bag" className="text-[18px] sm:text-[20px]" />
-                                    <span className="truncate max-w-full text-center">Beli Tiket</span>
+                            <div className="flex gap-2 border-b-2 border-slate-150 dark:border-slate-800/80 pb-3 overflow-x-auto scrollbar-none whitespace-nowrap">
+                                <button onClick={() => setActiveSubTab('shop')} className={`px-4.5 py-2.5 rounded-full font-bold text-[12px] transition-all flex items-center gap-2 whitespace-nowrap shrink-0 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+                                    <Icon name="shopping_bag" className="text-[16px]" />
+                                    <span>Beli Tiket</span>
                                 </button>
-                                <button onClick={() => setActiveSubTab('my_tickets')} className={`relative py-3.5 px-1 rounded-[16px] font-bold text-[10.5px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
-                                    <Icon name="confirmation_number" className="text-[18px] sm:text-[20px]" />
-                                    <span className="truncate max-w-full text-center">Tiket Saya</span>
-                                    {myTicketsFiltered.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-rose-500 text-white text-[9px] min-w-[20px] h-5 px-1 rounded-full flex items-center justify-center font-bold border-2 border-white">{myTicketsFiltered.length}</span>}
+                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-4.5 py-2.5 rounded-full font-bold text-[12px] transition-all flex items-center gap-2 relative whitespace-nowrap shrink-0 ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+                                    <Icon name="confirmation_number" className="text-[16px]" />
+                                    <span>Tiket Saya</span>
+                                    {myTicketsFiltered.length > 0 && <span className="bg-rose-500 text-white text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold">{myTicketsFiltered.length}</span>}
                                 </button>
-                                <button onClick={() => setActiveSubTab('buyers_list')} className={`relative py-3.5 px-1 rounded-[16px] font-bold text-[10.5px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
-                                    <Icon name="groups" className="text-[18px] sm:text-[20px]" />
-                                    <span className="truncate max-w-full text-center">Daftar Pembeli</span>
-                                    {buyersList.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-rose-500 text-white text-[9px] min-w-[20px] h-5 px-1 rounded-full flex items-center justify-center font-bold border-2 border-white">{buyersList.length}</span>}
+                                <button onClick={() => setActiveSubTab('buyers_list')} className={`px-4.5 py-2.5 rounded-full font-bold text-[12px] transition-all flex items-center gap-2 relative whitespace-nowrap shrink-0 ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+                                    <Icon name="groups" className="text-[16px]" />
+                                    <span>Daftar Pembeli</span>
+                                    {buyersList.length > 0 && <span className="bg-rose-500 text-white text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold">{buyersList.length}</span>}
                                 </button>
-                                <button onClick={() => setActiveSubTab('archive')} className={`relative py-3.5 px-1 rounded-[16px] font-bold text-[10.5px] transition-all flex flex-col items-center justify-center gap-1.5 ${activeSubTab === 'archive' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
-                                    <Icon name="archive" className="text-[18px] sm:text-[20px]" />
-                                    <span className="truncate max-w-full text-center">Arsip Event</span>
+                                <button onClick={() => setActiveSubTab('archive')} className={`px-4.5 py-2.5 rounded-full font-bold text-[12px] transition-all flex items-center gap-2 whitespace-nowrap shrink-0 ${activeSubTab === 'archive' ? 'bg-google-blue text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+                                    <Icon name="archive" className="text-[16px]" />
+                                    <span>Arsip Event</span>
                                 </button>
                             </div>
+
 
 
                             {/* Sub Tab: Beli Tiket */}
