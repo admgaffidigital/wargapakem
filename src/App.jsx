@@ -8208,7 +8208,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <div key={order.id} className={`grid grid-cols-12 gap-2 px-5 py-3.5 items-center hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors ${order.status === 'completed' ? 'bg-emerald-50/40 dark:bg-emerald-950/10' : ''}`}>
                                                         <div className="col-span-1 text-[10px] font-bold text-slate-400 text-center tabular-nums">{idx + 1}</div>
                                                         <div className="col-span-6 min-w-0">
-                                                            <p className="text-[13px] font-extrabold text-slate-800 dark:text-slate-200 truncate leading-tight">{order.buyerName}</p>
+                                                            <p className="text-[13px] font-extrabold text-slate-800 dark:text-slate-200 truncate leading-tight uppercase tracking-wide">{order.buyerName}</p>
                                                             <p className="text-[10px] font-medium text-slate-400 dark:text-slate-500 truncate mt-0.5">{order.productName}</p>
                                                         </div>
                                                         <div className="col-span-3 text-center">
