@@ -7,7 +7,7 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: { sans: ['Outfit', 'Roboto', 'sans-serif'] },
+      fontFamily: { sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'] },
       colors: {
         google: {
           blue: '#ef4444', blueDark: '#b91c1c', blueLight: '#fee2e2',

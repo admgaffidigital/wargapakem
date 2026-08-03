@@ -2221,7 +2221,7 @@ const getDirectImgUrl = (url) => {
                                         <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
                                     </div>
                                     
-                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight uppercase text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.5)]">
+                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight uppercase text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.5)]">
                                         Portal Layanan &amp; <br />
                                         {identity.name || 'Informasi Warga'}
                                     </h2>
@@ -2270,14 +2270,14 @@ const getDirectImgUrl = (url) => {
 
                             {/* SERVICES GRID SECTION (SPACIOUS 4 COLUMNS) */}
                             <section className="space-y-4 max-w-6xl mx-auto w-full">
-                                <h3 className="text-[11px] font-extrabold text-slate-400 uppercase tracking-widest text-center">Layanan Utama Portal Kami</h3>
+                                <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest text-center">Layanan Utama Portal Kami</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                     <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
                                             <Icon name="campaign" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-extrabold text-[15px] text-slate-900 dark:text-white">Info Pengumuman Resmi</h4>
+                                            <h4 className="font-bold text-[15px] text-slate-900 dark:text-white">Info Pengumuman Resmi</h4>
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Papan pengumuman penting, info rapat warga, &amp; berita lingkungan terkini dari pengurus RT.</p>
                                         </div>
                                     </div>
@@ -2286,7 +2286,7 @@ const getDirectImgUrl = (url) => {
                                             <Icon name="payments" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-extrabold text-[15px] text-slate-900 dark:text-white">Transparansi Uang Kas</h4>
+                                            <h4 className="font-bold text-[15px] text-slate-900 dark:text-white">Transparansi Uang Kas</h4>
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Laporan kas masuk dan keluar RT yang dicatat rinci, terbuka, &amp; dipantau warga kapan saja.</p>
                                         </div>
                                     </div>
@@ -2295,7 +2295,7 @@ const getDirectImgUrl = (url) => {
                                             <Icon name="local_activity" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-extrabold text-[15px] text-slate-900 dark:text-white">Katalog Tiket &amp; Event (COD)</h4>
+                                            <h4 className="font-bold text-[15px] text-slate-900 dark:text-white">Katalog Tiket &amp; Event (COD)</h4>
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pembelian tiket jalan santai dan kegiatan RT secara online dengan metode COD.</p>
                                         </div>
                                     </div>
@@ -2304,7 +2304,7 @@ const getDirectImgUrl = (url) => {
                                             <Icon name="casino" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-extrabold text-[15px] text-slate-900 dark:text-white">Sistem Arisan RT Digital</h4>
+                                            <h4 className="font-bold text-[15px] text-slate-900 dark:text-white">Sistem Arisan RT Digital</h4>
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pengundian berkala bulanan dan daftar riwayat pemenang arisan secara digital transparan.</p>
                                         </div>
                                     </div>
@@ -2314,8 +2314,8 @@ const getDirectImgUrl = (url) => {
                             {/* BOARD OF INFORMATION (SPACIOUS 3 COLUMNS) */}
                             <section id="berita" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                 <div className="text-center space-y-1">
-                                    <h3 className="text-[11px] font-extrabold text-red-600 dark:text-red-400 uppercase tracking-widest">Informasi Lingkungan</h3>
-                                    <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">KABAR WARGA &amp; PENGUMUMAN</h2>
+                                    <h3 className="text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest">Informasi Lingkungan</h3>
+                                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">KABAR WARGA &amp; PENGUMUMAN</h2>
                                 </div>
 
                                 {informasi.length === 0 ? (
@@ -2339,16 +2339,16 @@ const getDirectImgUrl = (url) => {
                                                         </div>
                                                     )}
                                                     <div className="p-4 sm:p-6 space-y-3">
-                                                        <div className="flex items-center gap-1.5 text-[10.5px] font-extrabold text-slate-500 dark:text-slate-400">
+                                                        <div className="flex items-center gap-1.5 text-[10.5px] font-bold text-slate-500 dark:text-slate-400">
                                                             <Icon name="event" className="text-[13px]" />
                                                             <span>{item.date ? new Date(item.date).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : 'Tanggal -'}</span>
                                                         </div>
-                                                        <h4 className="font-extrabold text-[16px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2">{item.title}</h4>
+                                                        <h4 className="font-bold text-[16px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2">{item.title}</h4>
                                                         <p className="text-[13px] font-semibold text-slate-700 dark:text-slate-400 leading-relaxed line-clamp-3">{item.description}</p>
                                                     </div>
                                                 </div>
                                                 <div className="p-4 sm:p-6 pt-0 sm:pt-0">
-                                                    <span className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300 font-black text-[12.5px] transition-all">
+                                                    <span className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300 font-bold text-[12.5px] transition-all">
                                                         <span>Baca Selengkapnya</span>
                                                         <Icon name="arrow_forward" className="text-[14px] group-hover:translate-x-1 transition-transform" />
                                                     </span>
@@ -2363,8 +2363,8 @@ const getDirectImgUrl = (url) => {
                             {blogData && blogData.length > 0 && (
                                 <section id="blog" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-extrabold text-google-blue dark:text-blue-400 uppercase tracking-widest">Artikel & Konten Warga</h3>
-                                        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">BLOG WARGA RT</h2>
+                                        <h3 className="text-[11px] font-bold text-google-blue dark:text-blue-400 uppercase tracking-widest">Artikel & Konten Warga</h3>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">BLOG WARGA RT</h2>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {blogData.slice(0, 6).map(article => (
@@ -2379,14 +2379,14 @@ const getDirectImgUrl = (url) => {
                                                     </div>
                                                 )}
                                                 <div className="p-4 sm:p-5 flex flex-col flex-1">
-                                                    <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-slate-400 dark:text-slate-500 mb-2">
+                                                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-2">
                                                         <Icon name="event" className="text-[12px]" />
                                                         <span>{article.date ? new Date(article.date).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '-'}</span>
                                                         {article.likes > 0 && (
                                                             <span className="ml-auto flex items-center gap-1 text-red-400"><Icon name="favorite" className="text-[11px]" fill="true" />{article.likes}</span>
                                                         )}
                                                     </div>
-                                                    <h4 className="font-extrabold text-[14px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2 flex-1 mb-3">{article.title}</h4>
+                                                    <h4 className="font-bold text-[14px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2 flex-1 mb-3">{article.title}</h4>
                                                     <p className="text-[12px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 mb-3">{article.content}</p>
                                                     <span className="inline-flex items-center gap-1 text-google-blue font-bold text-[11.5px] group-hover:gap-2 transition-all">
                                                         Baca Artikel <Icon name="arrow_forward" className="text-[13px] group-hover:translate-x-1 transition-transform" />
@@ -2401,8 +2401,8 @@ const getDirectImgUrl = (url) => {
                             {/* UMKM WARGA SECTION - selalu tampil */}
                                 <section id="umkm" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-extrabold text-green-600 dark:text-green-400 uppercase tracking-widest">Produk &amp; Usaha Lokal</h3>
-                                        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">UMKM WARGA RT</h2>
+                                        <h3 className="text-[11px] font-bold text-green-600 dark:text-green-400 uppercase tracking-widest">Produk &amp; Usaha Lokal</h3>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">UMKM WARGA RT</h2>
                                     </div>
                                     {umkmData && umkmData.length > 0 ? (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2420,7 +2420,7 @@ const getDirectImgUrl = (url) => {
                                                         <span className="absolute top-3 left-3 bg-green-500 text-white text-[9.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">{item.category}</span>
                                                     </div>
                                                     <div className="p-5 space-y-2.5">
-                                                        <h4 className="font-extrabold text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-1">{item.name}</h4>
+                                                        <h4 className="font-bold text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-1">{item.name}</h4>
                                                         <div className="flex items-center text-slate-500 dark:text-slate-400 text-[12px] font-semibold">
                                                             <Icon name="person" className="text-[14px] mr-1 text-slate-400" />
                                                             <span>Pemilik: {item.owner}</span>
@@ -2454,8 +2454,8 @@ const getDirectImgUrl = (url) => {
                             {infoDesa?.enabled && (
                                 <section id="peta" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-extrabold text-red-600 dark:text-red-400 uppercase tracking-widest">Cakupan Wilayah &amp; Kontak Darurat</h3>
-                                        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">PETA DESA &amp; LAYANAN</h2>
+                                        <h3 className="text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest">Cakupan Wilayah &amp; Kontak Darurat</h3>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">PETA DESA &amp; LAYANAN</h2>
                                     </div>
                                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                                         {/* Peta Google Maps (Optimized Dynamic Load) */}
@@ -2470,7 +2470,7 @@ const getDirectImgUrl = (url) => {
                                                         backgroundPosition: '0 0, 10px 10px'
                                                     }}></div>
                                                     <Icon name="map" className="text-[44px] text-red-500/40 mb-3" />
-                                                    <h4 className="font-extrabold text-[14px] text-slate-800 dark:text-white">Peta Wilayah Desa Banyuanyar</h4>
+                                                    <h4 className="font-bold text-[14px] text-slate-800 dark:text-white">Peta Wilayah Desa Banyuanyar</h4>
                                                     <p className="text-[11.5px] text-slate-500 dark:text-slate-400 mt-1 max-w-sm leading-relaxed">Klik tombol di bawah untuk memuat Peta Google Maps secara interaktif tanpa memperlambat loading awal web.</p>
                                                     <button onClick={() => setShowMap(true)} className="mt-4 px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-[10px] text-[11.5px] font-bold flex items-center gap-1.5 shadow-md transition-all active:scale-95">
                                                         <Icon name="location_on" className="text-[14px]" />
@@ -2488,11 +2488,11 @@ const getDirectImgUrl = (url) => {
                                         <div className="space-y-4 flex flex-col">
                                             {/* Batas Administrasi */}
                                             <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm">
-                                                <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
+                                                <h4 className="font-bold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
                                                 <div className="grid grid-cols-2 gap-2.5">
                                                     {['utara', 'selatan', 'timur', 'barat'].map(arah => (
                                                         <div key={arah} className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-[12px] border border-slate-200 dark:border-slate-800/80">
-                                                            <p className="text-[8px] uppercase tracking-wider font-extrabold text-slate-400 mb-0.5">{arah}</p>
+                                                            <p className="text-[8px] uppercase tracking-wider font-bold text-slate-400 mb-0.5">{arah}</p>
                                                             <p className="font-bold text-[11px] text-slate-700 dark:text-slate-200 truncate">{infoDesa?.batas?.[arah] || '-'}</p>
                                                         </div>
                                                     ))}
@@ -2501,7 +2501,7 @@ const getDirectImgUrl = (url) => {
 
                                             {/* Kontak Darurat */}
                                             <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm flex-1 flex flex-col">
-                                                <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="contact_phone" className="text-red-500 text-[16px]"/> Layanan &amp; Kontak</h4>
+                                                <h4 className="font-bold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="contact_phone" className="text-red-500 text-[16px]"/> Layanan &amp; Kontak</h4>
                                                 {infoDesa?.kontak && infoDesa?.kontak?.length > 0 ? (
                                                     <div className="space-y-2 max-h-48 overflow-y-auto hide-scrollbar pr-0.5">
                                                         {infoDesa?.kontak?.map((k, i) => (
