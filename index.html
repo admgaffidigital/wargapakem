@@ -159,7 +159,36 @@ Build: Vite + React + Tailwind CSS
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
+          .then(function(registration) {
+            // Cek update setiap 30 detik agar selalu fresh
+            setInterval(function() {
+              registration.update();
+            }, 30 * 1000);
+
+            // Ketika SW baru ditemukan dan siap diinstall
+            registration.addEventListener('updatefound', function() {
+              var newWorker = registration.installing;
+              if (!newWorker) return;
+              newWorker.addEventListener('statechange', function() {
+                // SW baru sudah aktif (installed) → langsung reload halaman
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  console.log('[SW] Versi baru tersedia, memperbarui...');
+                  newWorker.postMessage({ type: 'SKIP_WAITING' });
+                }
+              });
+            });
+          })
           .catch(function () { /* silent fail */ });
+
+        // Ketika controller SW berubah (SW baru ambil alih) → reload halaman
+        var reloading = false;
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+          if (!reloading) {
+            reloading = true;
+            console.log('[SW] Update tersedia — memuat ulang halaman...');
+            window.location.reload();
+          }
+        });
       });
     }
     // Hook untuk React: sembunyikan loading screen saat app sudah siap

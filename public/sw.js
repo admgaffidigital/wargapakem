@@ -1,112 +1,153 @@
 // ============================================================
 // SERVICE WORKER — Portal Warga RT PAKEM
-// Strategi: Cache First untuk aset statis, Network First untuk data
+// Strategi:
+//   - index.html      → Network First (selalu coba jaringan, fallback cache)
+//   - Aset JS/CSS     → Cache First (sudah ada hash di nama file dari Vite)
+//   - CDN fonts/icons → Cache First (jarang berubah)
+//   - Firebase/API    → Bypass (tidak di-cache)
+//
+// Auto-update: SW baru langsung aktif (skipWaiting) → client reload otomatis
 // ============================================================
 
-const CACHE_NAME = 'warga-pakem-v1';
-const CACHE_STATIC = 'warga-pakem-static-v1';
+// Bump ini otomatis saat deploy melalui script inject-cache-version
+// atau biarkan apa adanya — logika di bawah sudah handle via timestamp hash
+const CACHE_VERSION = '__CACHE_VERSION__'; // diganti saat build (atau fallback ke 'v1')
+const CACHE_PREFIX = 'warga-pakem-';
+const CACHE_STATIC = CACHE_PREFIX + (CACHE_VERSION.startsWith('__') ? 'v1' : CACHE_VERSION);
+const CACHE_CDN    = CACHE_PREFIX + 'cdn-v1';
 
-// Aset lokal yang selalu di-cache saat install
-const STATIC_ASSETS = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    '/National_emblem_of_Indonesia_Garuda_Pancasila.svg',
-];
-
-// CDN library yang di-cache setelah pertama kali diakses
-const CDN_CACHEABLE = [
-    'cdn.jsdelivr.net',
+// CDN yang di-cache secara permanen
+const CDN_HOSTS = [
     'fonts.googleapis.com',
     'fonts.gstatic.com',
-    'cdn.tailwindcss.com',
+    'cdn.jsdelivr.net',
     'unpkg.com',
 ];
 
-// ===== INSTALL — Pre-cache aset lokal =====
+// Host Firebase — jangan pernah di-cache oleh SW
+const FIREBASE_HOSTS = [
+    'firebasedatabase.app',
+    'firebaseapp.com',
+    'firestore.googleapis.com',
+    'identitytoolkit.googleapis.com',
+    'securetoken.googleapis.com',
+];
+
+// ===== INSTALL — Ambil alih langsung (skipWaiting) =====
 self.addEventListener('install', (event) => {
-    console.log('[SW] Install - Pre-caching aset lokal...');
+    // Pre-cache halaman utama saja; aset JS/CSS sudah punya hash → tidak perlu di-list manual
     event.waitUntil(
         caches.open(CACHE_STATIC).then((cache) => {
-            return cache.addAll(STATIC_ASSETS).catch((err) => {
-                console.warn('[SW] Sebagian aset gagal di-cache:', err);
-            });
-        }).then(() => self.skipWaiting())
+            return cache.addAll([
+                '/manifest.json',
+                '/National_emblem_of_Indonesia_Garuda_Pancasila.svg',
+            ]).catch(() => {/* silent fail jika offline saat install */});
+        }).then(() => self.skipWaiting()) // <-- langsung aktif, tidak tunggu tab lama ditutup
     );
 });
 
-// ===== ACTIVATE — Hapus cache lama =====
+// ===== ACTIVATE — Bersihkan SEMUA cache versi lama =====
 self.addEventListener('activate', (event) => {
-    console.log('[SW] Activate - Membersihkan cache lama...');
     event.waitUntil(
         caches.keys().then((keys) => {
             return Promise.all(
                 keys
-                    .filter((key) => key !== CACHE_NAME && key !== CACHE_STATIC)
+                    .filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE_STATIC && key !== CACHE_CDN)
                     .map((key) => {
                         console.log('[SW] Menghapus cache lama:', key);
                         return caches.delete(key);
                     })
             );
-        }).then(() => self.clients.claim())
+        }).then(() => self.clients.claim()) // <-- ambil alih semua tab yang terbuka sekarang
     );
 });
 
-// ===== FETCH — Strategi caching =====
+// ===== FETCH — Strategi per jenis request =====
 self.addEventListener('fetch', (event) => {
-    const url = new URL(event.request.url);
+    const { request } = event;
+    const url = new URL(request.url);
 
-    // Abaikan request non-GET dan Firebase (data real-time)
-    if (event.request.method !== 'GET') return;
-    if (url.hostname.includes('firebasedatabase') ||
-        url.hostname.includes('firebaseapp') ||
-        url.hostname.includes('firestore') ||
-        url.hostname.includes('googleapis.com') && url.pathname.includes('firestore')) {
-        return; // Biarkan Firebase berjalan normal tanpa cache SW
-    }
+    // Abaikan request non-GET
+    if (request.method !== 'GET') return;
 
-    // CDN Library → Cache First (setelah pertama kali didownload, pakai cache)
-    const isCDN = CDN_CACHEABLE.some((host) => url.hostname.includes(host));
+    // Bypass Firebase & googleapis — biarkan berjalan langsung ke jaringan
+    const isFirebase = FIREBASE_HOSTS.some((h) => url.hostname.includes(h));
+    if (isFirebase) return;
+
+    // CDN (fonts, icons) → Cache First, fallback jaringan
+    const isCDN = CDN_HOSTS.some((h) => url.hostname.includes(h));
     if (isCDN) {
         event.respondWith(
-            caches.match(event.request).then((cached) => {
-                if (cached) return cached;
-                return fetch(event.request).then((response) => {
-                    if (!response || response.status !== 200 || response.type === 'opaque') {
-                        return response;
-                    }
-                    const clone = response.clone();
-                    caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-                    return response;
-                }).catch(() => cached); // fallback ke cache jika offline
-            })
+            caches.open(CACHE_CDN).then((cache) =>
+                cache.match(request).then((cached) => {
+                    if (cached) return cached;
+                    return fetch(request).then((res) => {
+                        if (res && res.status === 200) cache.put(request, res.clone());
+                        return res;
+                    }).catch(() => cached);
+                })
+            )
         );
         return;
     }
 
-    // Aset Lokal (index.html, SVG, manifest) → Stale While Revalidate
-    // Tampilkan cache dulu, update di background
-    if (url.pathname === '/' || url.pathname.endsWith('.html') ||
-        url.pathname.endsWith('.svg') || url.pathname.endsWith('.json') ||
-        url.pathname.endsWith('.js') || url.pathname.endsWith('.css')) {
+    // === index.html → Network First (SELALU coba jaringan) ===
+    // Ini yang memastikan warga selalu dapat versi terbaru!
+    const isHTML = url.pathname === '/' ||
+                   url.pathname.endsWith('.html') ||
+                   url.pathname === '/index.html';
+    if (isHTML) {
         event.respondWith(
-            caches.open(CACHE_STATIC).then((cache) => {
-                return cache.match(event.request).then((cached) => {
-                    const networkFetch = fetch(event.request).then((response) => {
-                        if (response && response.status === 200) {
-                            cache.put(event.request, response.clone());
-                        }
-                        return response;
-                    }).catch(() => cached);
-                    return cached || networkFetch;
-                });
-            })
+            fetch(request, { cache: 'no-store' }) // paksa ambil dari server
+                .then((res) => {
+                    if (res && res.status === 200) {
+                        // Update cache dengan versi terbaru
+                        caches.open(CACHE_STATIC).then((cache) => cache.put(request, res.clone()));
+                    }
+                    return res;
+                })
+                .catch(() =>
+                    // Offline fallback: gunakan cache
+                    caches.match(request).then((cached) => cached || caches.match('/'))
+                )
         );
         return;
     }
+
+    // === Aset JS/CSS dengan hash (Vite output) → Cache First ===
+    // File sudah punya hash di nama (misal: index-D14wl2mW.js) → aman di-cache selamanya
+    const isHashedAsset = url.pathname.startsWith('/assets/') &&
+        (url.pathname.includes('-') || url.pathname.match(/\.[a-f0-9]{8}\./));
+    if (isHashedAsset) {
+        event.respondWith(
+            caches.open(CACHE_STATIC).then((cache) =>
+                cache.match(request).then((cached) => {
+                    if (cached) return cached;
+                    return fetch(request).then((res) => {
+                        if (res && res.status === 200) cache.put(request, res.clone());
+                        return res;
+                    });
+                })
+            )
+        );
+        return;
+    }
+
+    // === Aset lain (SVG, manifest, dll) → Stale-While-Revalidate ===
+    event.respondWith(
+        caches.open(CACHE_STATIC).then((cache) =>
+            cache.match(request).then((cached) => {
+                const networkFetch = fetch(request).then((res) => {
+                    if (res && res.status === 200) cache.put(request, res.clone());
+                    return res;
+                }).catch(() => cached);
+                return cached || networkFetch;
+            })
+        )
+    );
 });
 
-// ===== MESSAGE — Force update dari halaman =====
+// ===== MESSAGE — Terima pesan dari halaman =====
 self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
