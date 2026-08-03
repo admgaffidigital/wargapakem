@@ -2083,10 +2083,12 @@ const getDirectImgUrl = (url) => {
                         const curvature = Math.cos(wavePhase); // -1 sampai 1
                         
                         if (curvature > 0) {
-                            const alpha = curvature * 0.15; 
+                            // Diperhalus signifikan (dari 0.15 ke 0.03) agar elegan dan bersih
+                            const alpha = curvature * 0.03; 
                             shadeGrad.addColorStop(xProgress, `rgba(255,255,255,${alpha})`);
                         } else {
-                            const alpha = -curvature * 0.25; 
+                            // Diperhalus signifikan (dari 0.25 ke 0.04) agar tidak seperti noda/smudge abu-abu di background putih
+                            const alpha = -curvature * 0.04; 
                             shadeGrad.addColorStop(xProgress, `rgba(0,0,0,${alpha})`);
                         }
                     }
@@ -2097,7 +2099,7 @@ const getDirectImgUrl = (url) => {
                     const shimX = W * (0.3 + Math.sin(time * 0.4) * 0.25);
                     const shimY = H * (0.3 + Math.cos(time * 0.3) * 0.15);
                     const grad = ctx.createRadialGradient(shimX, shimY, 0, shimX, shimY, W * 0.45);
-                    grad.addColorStop(0, 'rgba(255,255,255,0.08)');
+                    grad.addColorStop(0, 'rgba(255,255,255,0.04)'); // Lebih halus
                     grad.addColorStop(1, 'rgba(255,255,255,0)');
                     ctx.fillStyle = grad;
                     ctx.fillRect(0, 0, W, H);
@@ -2398,10 +2400,11 @@ const getDirectImgUrl = (url) => {
                             )}
 
                             {/* ADSENSE PLACEHOLDER */}
-                            <section className="py-4 text-center border-t-2 border-slate-200/60 max-w-xl mx-auto w-full">
-                                <p className="text-[8.5px] font-bold tracking-widest text-slate-400 dark:text-slate-550 uppercase mb-2">Halaman ini didukung penayangan informasi terverifikasi</p>
-                                <div className="w-full h-11 bg-slate-50 dark:bg-slate-800 rounded-[12px] border-2 border-dashed border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 text-[10px] font-medium px-4">
-                                    <Icon name="info" className="text-[12px] mr-1.5 text-slate-400" /> Informasi Layanan Digital RT Pakem, Gurah, Kediri.
+                            <section className="py-4 text-center border-t border-slate-200/30 max-w-xl mx-auto w-full px-4">
+                                <p className="text-[9px] font-extrabold tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-2">Informasi Layanan Digital Terverifikasi</p>
+                                <div className="w-full py-2.5 bg-slate-50/60 dark:bg-slate-800/40 rounded-[14px] border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center text-slate-550 dark:text-slate-400 text-[10.5px] font-semibold px-4 shadow-sm backdrop-blur-sm">
+                                    <Icon name="verified_user" className="text-[13px] mr-2 text-emerald-500" fill="true" />
+                                    <span>Layanan Resmi RT Pakem, Banyuanyar, Gurah, Kediri.</span>
                                 </div>
                             </section>
                         </main>
@@ -2444,25 +2447,25 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {/* LANDING FOOTER (COMPLIES WITH THEME VARIABLES) */}
-                    <footer className="w-[calc(100%-2rem)] max-w-5xl mx-auto rounded-[28px] border border-red-500/20 py-8 px-4 sm:px-6 text-center z-10 relative mb-6 bg-white">
+                    <footer className="w-[calc(100%-2rem)] max-w-5xl mx-auto rounded-[28px] border border-slate-100 dark:border-slate-800/80 py-8 px-6 sm:px-8 text-center z-10 relative mb-8 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
                         <div className="max-w-4xl mx-auto space-y-4">
-                            <p className="text-[11px] text-slate-500 leading-relaxed">
-                                {identity.name || 'Portal Warga'} adalah sistem informasi manajemen kerukunan lingkungan digital. {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
+                            <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
+                                <span className="font-bold text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah sistem informasi manajemen kerukunan lingkungan digital. {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
                             </p>
                             
                             {legalData?.enabled && (
-                                <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold text-red-600">
-                                    <button onClick={() => setShowLegalModal('terms')} className="hover:underline flex items-center gap-1"><Icon name="gavel" className="text-[13px]"/> Syarat &amp; Ketentuan</button>
-                                    <span className="text-slate-300">|</span>
-                                    <button onClick={() => setShowLegalModal('privacy')} className="hover:underline flex items-center gap-1"><Icon name="privacy_tip" className="text-[13px]"/> Kebijakan Privasi</button>
+                                <div className="flex flex-wrap items-center justify-center gap-5 text-[11px] font-extrabold text-red-600 dark:text-red-400 pt-1">
+                                    <button onClick={() => setShowLegalModal('terms')} className="hover:text-red-700 dark:hover:text-red-300 flex items-center gap-1.5 transition-colors"><Icon name="gavel" className="text-[13px]"/> Syarat &amp; Ketentuan</button>
+                                    <span className="text-slate-300 dark:text-slate-700">|</span>
+                                    <button onClick={() => setShowLegalModal('privacy')} className="hover:text-red-700 dark:hover:text-red-350 flex items-center gap-1.5 transition-colors"><Icon name="privacy_tip" className="text-[13px]"/> Kebijakan Privasi</button>
                                 </div>
                             )}
 
-                            <div className="pt-4 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between gap-3">
-                                <p className="text-[11px] text-slate-500">&copy; {new Date().getFullYear()} {identity.name || 'Portal RT Warga'}. All rights reserved.</p>
-                                <div className="flex items-center gap-1 text-[10px] text-slate-500">
+                            <div className="pt-5 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <p className="text-[11px] text-slate-400 dark:text-slate-500">&copy; {new Date().getFullYear()} {identity.name || 'Portal RT Warga'}. Hak Cipta Dilindungi.</p>
+                                <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-50/60 dark:bg-slate-800/40 px-3 py-1 rounded-full border border-slate-100 dark:border-slate-800/50">
                                     <Icon name="verified" className="text-[13px] text-emerald-500" fill="true" />
-                                    <span>Google Adsense Ready &amp; indexed by Googlebot</span>
+                                    <span>Google Adsense Ready &amp; Googlebot Indexed</span>
                                 </div>
                             </div>
                         </div>
