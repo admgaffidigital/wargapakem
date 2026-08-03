@@ -7840,7 +7840,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 const params = new URLSearchParams(window.location.search);
                 const productId = params.get('product');
                 if (productId && products.length > 0) {
-                    const prod = products.find(p => String(p.id) === productId);
+                    const prod = products.find(p => String(p.sku) === productId || String(p.id) === productId);
                     if (prod && prod.stock > 0) {
                         handleOpenBuyModal(prod);
                         // Hapus query params dari URL agar tidak memicu terus menerus
@@ -7852,7 +7852,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             const handleShareToSocial = (platform) => {
                 if (!sharingProduct) return;
-                const shareUrl = `${window.location.origin}${window.location.pathname}?page=tiket&product=${sharingProduct.id}`;
+                const skuOrId = sharingProduct.sku || sharingProduct.id;
+                const shareUrl = `${window.location.origin}${window.location.pathname}?page=tiket&product=${skuOrId}`;
                 const textMessage = `Yuk beli tiket *${sharingProduct.name}* Jalan Santai RT Pakem!%0AHarga: *${formatRp(sharingProduct.price)}*%0ALokasi Pengambilan: *${sharingProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}*%0A%0APesan online di sini: ${shareUrl}`;
 
                 switch (platform) {
@@ -7969,7 +7970,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     setProducts(prev => (prev || []).map(p => p.id === editId ? { ...p, ...productData } : p));
                     setModalConfig({ message: 'Produk tiket berhasil diperbarui.' });
                 } else {
-                    const newProduct = { id: Date.now(), sold: 0, ...productData };
+                    const sku = 'TKT-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+                    const newProduct = { id: Date.now(), sku, sold: 0, ...productData };
                     setProducts(prev => [newProduct, ...(prev || [])]);
                     setModalConfig({ message: 'Produk tiket baru berhasil ditambahkan.' });
                 }
@@ -8647,6 +8649,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 {/* Details */}
                                                 <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
                                                     <div className="space-y-3">
+                                                        {prod.sku && <p className="text-[10.5px] font-bold text-google-blue mb-[-4px] uppercase tracking-wider">SKU: {prod.sku}</p>}
                                                         <h4 className="font-extrabold text-[15px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-1">{prod.name}</h4>
                                                         
                                                         {/* Price and Sold Row */}
