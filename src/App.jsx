@@ -1660,8 +1660,20 @@ const getDirectImgUrl = (url) => {
                 window.addEventListener('hashchange', handleHashChange);
 
                 const params = new URLSearchParams(window.location.search);
+                const hasNocache = params.has('nocache');
+                const hasV = params.has('v');
+                const hasPage = params.has('page');
+
                 if (params.get('page') === 'tiket') {
                     window.location.hash = 'tiket';
+                }
+
+                if (hasNocache || hasV || hasPage) {
+                    const cleanUrl = new URL(window.location.href);
+                    cleanUrl.searchParams.delete('nocache');
+                    cleanUrl.searchParams.delete('v');
+                    cleanUrl.searchParams.delete('page');
+                    window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
                 }
 
                 handleHashChange(); 
@@ -1748,10 +1760,14 @@ const getDirectImgUrl = (url) => {
             const executeLogout = () => {
                 if (auth && signOut && userRole === 'admin') {
                     signOut(auth).then(() => {
-                        setIsLoggedIn(false); setUserRole(null); setActiveTab('menu'); window.location.hash = ''; setShowLogoutModal(false);
+                        setIsLoggedIn(false); setUserRole(null); setActiveTab('menu'); 
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                        setShowLogoutModal(false);
                     }).catch(console.error);
                 } else {
-                    setIsLoggedIn(false); setUserRole(null); setActiveTab('menu'); window.location.hash = ''; setShowLogoutModal(false);
+                    setIsLoggedIn(false); setUserRole(null); setActiveTab('menu'); 
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                    setShowLogoutModal(false);
                 }
             };
 
