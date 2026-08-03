@@ -1540,7 +1540,15 @@ const getDirectImgUrl = (url) => {
             
 
             
-            const [isLoggedIn, setIsLoggedIn] = useState(false);
+            // Inisialisasi langsung dari URL — link produk tiket bypass landing page
+            const [isLoggedIn, setIsLoggedIn] = useState(() => {
+                const p = new URLSearchParams(window.location.search);
+                return p.get('page') === 'tiket' && p.has('product');
+            });
+            const [userRoleInit] = useState(() => {
+                const p = new URLSearchParams(window.location.search);
+                return (p.get('page') === 'tiket' && p.has('product')) ? 'warga' : null;
+            });
             const [isCheckingAuth, setIsCheckingAuth] = useState(true);
             const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
 
@@ -1555,8 +1563,14 @@ const getDirectImgUrl = (url) => {
                 }
                 localStorage.setItem('theme', theme);
             }, [theme]);
-            const [userRole, setUserRole] = useState(null); 
-            const [activeTab, setActiveTab] = useState('menu'); 
+            const [userRole, setUserRole] = useState(() => {
+                const p = new URLSearchParams(window.location.search);
+                return (p.get('page') === 'tiket' && p.has('product')) ? 'warga' : null;
+            }); 
+            const [activeTab, setActiveTab] = useState(() => {
+                const p = new URLSearchParams(window.location.search);
+                return (p.get('page') === 'tiket') ? 'tiket' : 'menu';
+            }); 
             const [showLogoutModal, setShowLogoutModal] = useState(false);
             const [showLicenseModal, setShowLicenseModal] = useState(false);
             const [isOffline, setIsOffline] = useState(!navigator.onLine); 
@@ -1649,7 +1663,6 @@ const getDirectImgUrl = (url) => {
 
                 const handleAppInstalled = () => {
                     try { sessionStorage.setItem('pwa_banner_dismissed', '1'); } catch(e) {}
-                    console.log('[PWA] Aplikasi berhasil diinstall ke perangkat.');
                 };
                 window.addEventListener('appinstalled', handleAppInstalled);
                 
@@ -1662,29 +1675,28 @@ const getDirectImgUrl = (url) => {
                 window.addEventListener('hashchange', handleHashChange);
 
                 const params = new URLSearchParams(window.location.search);
-                const hasNocache = params.has('nocache');
-                const hasV = params.has('v');
-                const hasPage = params.has('page');
-                const hasProduct = params.has('product');
-                const isTicketProductLink = params.get('page') === 'tiket' && hasProduct;
+                const isTicketProductLink = params.get('page') === 'tiket' && params.has('product');
 
-                if (params.get('page') === 'tiket') {
-                    window.location.hash = 'tiket';
-                    if (hasProduct) {
-                        setIsLoggedIn(true);
-                        setUserRole('warga');
+                // Untuk link produk tiket: set hash ke tiket, biarkan query params tetap ada
+                // supaya useEffect produk bisa membaca ?product=XXX dan membuka modal
+                if (isTicketProductLink) {
+                    if (window.location.hash !== '#tiket') {
+                        window.location.hash = 'tiket';
                     }
+                } else {
+                    // Bersihkan query params yang tidak diperlukan (nocache, v, page)
+                    const hasNocache = params.has('nocache');
+                    const hasV = params.has('v');
+                    const hasPage = params.has('page');
+                    if (hasNocache || hasV || hasPage) {
+                        const cleanUrl = new URL(window.location.href);
+                        cleanUrl.searchParams.delete('nocache');
+                        cleanUrl.searchParams.delete('v');
+                        cleanUrl.searchParams.delete('page');
+                        window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
+                    }
+                    handleHashChange();
                 }
-
-                if ((hasNocache || hasV || hasPage) && !isTicketProductLink) {
-                    const cleanUrl = new URL(window.location.href);
-                    cleanUrl.searchParams.delete('nocache');
-                    cleanUrl.searchParams.delete('v');
-                    cleanUrl.searchParams.delete('page');
-                    window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
-                }
-
-                handleHashChange(); 
                 
                 return () => {
                     window.removeEventListener('online', handleOnline);
