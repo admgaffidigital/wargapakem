@@ -1618,6 +1618,27 @@ const getDirectImgUrl = (url) => {
             const [pinjamData, setPinjamData, l21] = useFirebaseSync('pinjam_inventaris', []);
             const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
             const [musicData, setMusicData, l23] = useFirebaseSync('music_config', { url: '', name: '', enabled: true });
+            
+            const defaultLandingConfig = {
+                servicesSubtitle: 'Layanan Utama Portal Kami',
+                newsSubtitle: 'Informasi Lingkungan',
+                newsTitle: 'KABAR WARGA & PENGUMUMAN',
+                newsEmptyTitle: 'Belum Ada Pengumuman',
+                newsEmptyDesc: 'Pengumuman penting dan kabar warga RT akan muncul di halaman ini.',
+                blogSubtitle: 'Artikel & Konten Warga',
+                blogTitle: 'BLOG WARGA RT',
+                umkmSubtitle: 'Produk & Usaha Lokal',
+                umkmTitle: 'UMKM WARGA RT',
+                umkmEmptyTitle: 'Belum Ada UMKM Terdaftar',
+                umkmEmptyDesc: 'Daftar usaha milik warga RT akan tampil di sini. Login sebagai Admin untuk menambahkan UMKM.',
+                mapSubtitle: 'Cakupan Wilayah & Kontak Darurat',
+                mapTitle: 'PETA DESA & LAYANAN',
+                sponsorSubtitle: 'Didukung Oleh',
+                footerInfoTitle: 'Informasi Layanan Digital Terverifikasi',
+                footerInfoDesc: 'Layanan Resmi RT Pakem, Banyuanyar, Gurah, Kediri.',
+                footerTagline: 'sistem informasi manajemen kerukunan lingkungan digital.'
+            };
+            const [landingConfig, setLandingConfig, l_landing] = useFirebaseSync('landing_config', defaultLandingConfig);
             const [sponsorsData, setSponsorsData, l24] = useFirebaseSync('sponsors_data', { enabled: false, sponsors: [] });
             const [infoDesa, setInfoDesa, l25] = useFirebaseSync('info_desa', {
                 enabled: true,
@@ -1742,7 +1763,7 @@ const getDirectImgUrl = (url) => {
                 }
                 return (
                     <>
-                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} umkmData={umkmData} infoDesa={infoDesa} onLogin={(role) => { 
+                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} umkmData={umkmData} infoDesa={infoDesa} landingConfig={landingConfig} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); 
                             const params = new URLSearchParams(window.location.search);
                             if (params.get('page') === 'tiket') {
@@ -1839,7 +1860,7 @@ const getDirectImgUrl = (url) => {
                     case 'tiket': return <Tiket products={ticketProducts} setProducts={setTicketProducts} orders={ticketOrders} setOrders={setTicketOrders} userRole={userRole} identity={identity} isProductsLoaded={lTicketProducts} />;
                     case 'laporan': return <Laporan history={meetingHistory} setMeetingHistory={setMeetingHistory} members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} cycleNumber={cycleNumber} identity={identity} userRole={userRole} />;
                     case 'pertemuan': return userRole === 'admin' ? <Pertemuan members={members} setMembers={setMembers} currentRound={currentRound} setCurrentRound={setCurrentRound} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} setMeetingHistory={setMeetingHistory} onFinish={() => changeTab('menu')} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} identity={identity} cycleNumber={cycleNumber} /> : null;
-                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} legalData={legalData} setLegalData={setLegalData} /> : null;
+                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} legalData={legalData} setLegalData={setLegalData} landingConfig={landingConfig} setLandingConfig={setLandingConfig} /> : null;
                     case 'infaq': return <Infaq infaqData={infaqData} setInfaqData={setInfaqData} userRole={userRole} identity={identity} />;
                     case 'pemenang': return <Pemenang members={members} />;
                     case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} />;
@@ -2179,7 +2200,7 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
@@ -2311,7 +2332,7 @@ const getDirectImgUrl = (url) => {
 
                             {/* SERVICES GRID SECTION (SPACIOUS 4 COLUMNS) */}
                             <section className="space-y-4 max-w-6xl mx-auto w-full">
-                                <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest text-center">Layanan Utama Portal Kami</h3>
+                                <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest text-center">{landingConfig.servicesSubtitle}</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                     <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
@@ -2355,15 +2376,15 @@ const getDirectImgUrl = (url) => {
                             {/* BOARD OF INFORMATION (SPACIOUS 3 COLUMNS) */}
                             <section id="berita" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                 <div className="text-center space-y-1">
-                                    <h3 className="text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest">Informasi Lingkungan</h3>
-                                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">KABAR WARGA &amp; PENGUMUMAN</h2>
+                                    <h3 className="text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.newsSubtitle}</h3>
+                                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.newsTitle}</h2>
                                 </div>
 
                                 {informasi.length === 0 ? (
                                     <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-10 text-center max-w-md mx-auto">
                                         <Icon name="campaign" className="text-[32px] text-slate-300 dark:text-slate-600 mb-2" />
-                                        <p className="text-[13px] font-bold text-slate-900 dark:text-white">Belum Ada Pengumuman</p>
-                                        <p className="text-[11.5px] text-slate-600 dark:text-slate-400 mt-0.5">Pengumuman penting dan kabar warga RT akan muncul di halaman ini.</p>
+                                        <p className="text-[13px] font-bold text-slate-900 dark:text-white">{landingConfig.newsEmptyTitle}</p>
+                                        <p className="text-[11.5px] text-slate-600 dark:text-slate-400 mt-0.5">{landingConfig.newsEmptyDesc}</p>
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2404,8 +2425,8 @@ const getDirectImgUrl = (url) => {
                             {blogData && blogData.length > 0 && (
                                 <section id="blog" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-google-blue dark:text-blue-400 uppercase tracking-widest">Artikel & Konten Warga</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">BLOG WARGA RT</h2>
+                                        <h3 className="text-[11px] font-bold text-google-blue dark:text-blue-400 uppercase tracking-widest">{landingConfig.blogSubtitle}</h3>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.blogTitle}</h2>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {blogData.slice(0, 6).map(article => (
@@ -2442,8 +2463,8 @@ const getDirectImgUrl = (url) => {
                             {/* UMKM WARGA SECTION - selalu tampil */}
                                 <section id="umkm" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-green-600 dark:text-green-400 uppercase tracking-widest">Produk &amp; Usaha Lokal</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">UMKM WARGA RT</h2>
+                                        <h3 className="text-[11px] font-bold text-green-600 dark:text-green-400 uppercase tracking-widest">{landingConfig.umkmSubtitle}</h3>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.umkmTitle}</h2>
                                     </div>
                                     {umkmData && umkmData.length > 0 ? (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2481,8 +2502,8 @@ const getDirectImgUrl = (url) => {
                                     ) : (
                                         <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-dashed border-green-200 dark:border-green-900/40 p-10 text-center max-w-md mx-auto">
                                             <Icon name="storefront" className="text-[36px] text-green-300 dark:text-green-700 mb-3" />
-                                            <p className="text-[14px] font-bold text-slate-800 dark:text-white">Belum Ada UMKM Terdaftar</p>
-                                            <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Daftar usaha milik warga RT akan tampil di sini. Login sebagai Admin untuk menambahkan UMKM.</p>
+                                            <p className="text-[14px] font-bold text-slate-800 dark:text-white">{landingConfig.umkmEmptyTitle}</p>
+                                            <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">{landingConfig.umkmEmptyDesc}</p>
                                             <button onClick={() => onLogin('warga')} className="mt-4 inline-flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-[10px] text-[12px] font-bold transition-all active:scale-95">
                                                 <Icon name="add_business" className="text-[15px]" />
                                                 <span>Daftarkan Usaha Anda</span>
@@ -2495,8 +2516,8 @@ const getDirectImgUrl = (url) => {
                             {infoDesa?.enabled && (
                                 <section id="peta" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest">Cakupan Wilayah &amp; Kontak Darurat</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">PETA DESA &amp; LAYANAN</h2>
+                                        <h3 className="text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.mapSubtitle}</h3>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.mapTitle}</h2>
                                     </div>
                                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                                         {/* Peta Google Maps (Optimized Dynamic Load) */}
@@ -2571,7 +2592,7 @@ const getDirectImgUrl = (url) => {
                             {/* SPONSOR SECTION DI LANDING PAGE */}
                             {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
                                 <section className="space-y-4 pt-4 max-w-6xl mx-auto w-full">
-                                    <p className="text-[9px] uppercase tracking-widest font-bold text-slate-400 text-center">Didukung Oleh</p>
+                                    <p className="text-[9px] uppercase tracking-widest font-bold text-slate-400 text-center">{landingConfig.sponsorSubtitle}</p>
                                     <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-6 sm:p-8">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
                                             {sponsorsData.sponsors.map((s, i) => (
@@ -2584,10 +2605,10 @@ const getDirectImgUrl = (url) => {
 
                             {/* ADSENSE PLACEHOLDER */}
                             <section className="py-4 text-center border-t border-slate-200/30 max-w-xl mx-auto w-full px-4">
-                                <p className="text-[9px] font-extrabold tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-2">Informasi Layanan Digital Terverifikasi</p>
+                                <p className="text-[9px] font-extrabold tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-2">{landingConfig.footerInfoTitle}</p>
                                 <div className="w-full py-2.5 bg-slate-50/60 dark:bg-slate-800/40 rounded-[14px] border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center text-slate-550 dark:text-slate-400 text-[10.5px] font-semibold px-4 shadow-sm ">
                                     <Icon name="verified_user" className="text-[13px] mr-2 text-emerald-500" fill="true" />
-                                    <span>Layanan Resmi RT Pakem, Banyuanyar, Gurah, Kediri.</span>
+                                    <span>{landingConfig.footerInfoDesc}</span>
                                 </div>
                             </section>
                         </main>
@@ -2629,7 +2650,7 @@ const getDirectImgUrl = (url) => {
                     <footer className="w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-[16px] sm:rounded-[28px] border border-slate-100 dark:border-slate-800/80 py-6 px-4 sm:py-8 sm:px-8 text-center z-10 relative mb-8 bg-white/90 dark:bg-slate-900/90 shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
                         <div className="max-w-4xl mx-auto space-y-4">
                             <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
-                                <span className="font-bold text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah sistem informasi manajemen kerukunan lingkungan digital. {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
+                                <span className="font-bold text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah {landingConfig.footerTagline} {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
                             </p>
                             
                             {legalData?.enabled && (
@@ -2641,10 +2662,10 @@ const getDirectImgUrl = (url) => {
                             )}
 
                             <div className="pt-5 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
-                                <p className="text-[11px] text-slate-400 dark:text-slate-500">&copy; {new Date().getFullYear()} {identity.name || 'Portal RT Warga'}. Hak Cipta Dilindungi.</p>
+                                <p className="text-[11px] text-slate-400 dark:text-slate-500">&copy; {new Date().getFullYear()} {identity.name || 'Portal RT Warga'}. {landingConfig.footerCopyright}</p>
                                 <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-50/60 dark:bg-slate-800/40 px-3 py-1 rounded-full border border-slate-100 dark:border-slate-800/50">
                                     <Icon name="verified" className="text-[13px] text-emerald-500" fill="true" />
-                                    <span>Google Adsense Ready &amp; Googlebot Indexed</span>
+                                    <span>{landingConfig.footerSeo}</span>
                                 </div>
                             </div>
                         </div>
@@ -6712,9 +6733,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
         function Pengaturan(props) {
             const { nominalArisan, setNominalArisan, nominalJimpitan, setNominalJimpitan, identity, setIdentity, setMembers, setMeetingHistory, currentRound, setCurrentRound, cycleNumber, setCycleNumber, jimpitanBalance, setJimpitanBalance, kasRtBalance, setKasRtBalance, kasRtTransactions, setKasRtTransactions, arisanPeriod, setArisanPeriod, bannerImage, setBannerImage,
             // State tambahan untuk reset menyeluruh (diteruskan dari App)
-            setIuranData, setGaleriData, setInventarisData, setInformasi, setNextMeeting, infoDesa, setInfoDesa, umkmData, setUmkmData } = props;
+            setIuranData, setGaleriData, setInventarisData, setInformasi, setNextMeeting, infoDesa, setInfoDesa, umkmData, setUmkmData, landingConfig, setLandingConfig } = props;
             
             const [formIdentity, setFormIdentity] = useState(identity);
+            const [formLanding, setFormLanding] = useState(landingConfig);
             const [formNominal, setFormNominal] = useState({ arisan: nominalArisan, jimpitan: nominalJimpitan });
             const [formPeriod, setFormPeriod] = useState(arisanPeriod);
             const [formSaldo, setFormSaldo] = useState({ jimpitan: jimpitanBalance, kasRt: kasRtBalance });
@@ -6736,6 +6758,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 { id: 'sponsor', title: 'Sponsor', icon: 'handshake', bg: 'bg-teal-100', text: 'text-teal-600', border: 'border-teal-200', hoverBorder: 'hover:border-teal-500', groupHoverBg: 'group-hover:bg-teal-500', groupHoverText: 'group-hover:text-teal-600', desc: 'Logo Sponsor RT' },
                 { id: 'legal', title: 'Kebijakan', icon: 'gavel', bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-300', hoverBorder: 'hover:border-slate-500', groupHoverBg: 'group-hover:bg-slate-500', groupHoverText: 'group-hover:text-slate-600', desc: 'Syarat & Privasi' },
                 { id: 'infodesa', title: 'Info Desa', icon: 'map', bg: 'bg-rose-100', text: 'text-rose-600', border: 'border-rose-200', hoverBorder: 'hover:border-rose-500', groupHoverBg: 'group-hover:bg-rose-500', groupHoverText: 'group-hover:text-rose-600', desc: 'Kontak & Batas Wilayah' },
+                { id: 'landing', title: 'Teks Beranda', icon: 'view_quilt', bg: 'bg-pink-100', text: 'text-pink-600', border: 'border-pink-200', hoverBorder: 'hover:border-pink-500', groupHoverBg: 'group-hover:bg-pink-500', groupHoverText: 'group-hover:text-pink-600', desc: 'Ubah teks landing page' },
                 { id: 'reset', title: 'Reset Sistem', icon: 'warning', bg: 'bg-red-100', text: 'text-red-600', border: 'border-red-200', hoverBorder: 'hover:border-red-500', groupHoverBg: 'group-hover:bg-red-500', groupHoverText: 'group-hover:text-red-600', desc: 'Hapus Semua Data' }
             ];
 
@@ -6769,6 +6792,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     setCycleNumber(Math.max(1, safeNumber(formRound.cycle))); 
                 }
                 if(type === 'banner') { setBannerImage(formBanner); }
+                if(type === 'landing') { setLandingConfig(formLanding); }
                 showAlert("Perubahan berhasil disimpan.");
             };
 
@@ -6967,6 +6991,30 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 </div>
                                             </div>
                                         )}
+                                    </div>
+                                </PengaturanSection>
+                            )}
+                            {activeMenu === 'landing' && (
+                                <PengaturanSection title="Teks Halaman Depan" onSave={() => handleSaveAll('landing')}>
+                                    <div className="space-y-4">
+                                        <div className="bg-slate-50 p-4 rounded-[16px] border border-slate-200 space-y-3">
+                                            <h4 className="text-[12px] font-bold text-slate-700">Seksi Berita &amp; Pengumuman</h4>
+                                            <div className="bg-white rounded-[12px] px-3 py-2 border border-slate-300 focus-within:border-google-blue"><label className="text-[9px] font-bold text-slate-500 block uppercase tracking-widest mb-1">Subjudul</label><input type="text" value={formLanding.newsSubtitle} onChange={e => setFormLanding({...formLanding, newsSubtitle: e.target.value})} className="w-full bg-transparent border-none text-[12px] font-medium outline-none text-slate-800" /></div>
+                                            <div className="bg-white rounded-[12px] px-3 py-2 border border-slate-300 focus-within:border-google-blue"><label className="text-[9px] font-bold text-slate-500 block uppercase tracking-widest mb-1">Judul Utama</label><input type="text" value={formLanding.newsTitle} onChange={e => setFormLanding({...formLanding, newsTitle: e.target.value})} className="w-full bg-transparent border-none text-[12px] font-medium outline-none text-slate-800" /></div>
+                                        </div>
+
+                                        <div className="bg-slate-50 p-4 rounded-[16px] border border-slate-200 space-y-3">
+                                            <h4 className="text-[12px] font-bold text-slate-700">Seksi UMKM</h4>
+                                            <div className="bg-white rounded-[12px] px-3 py-2 border border-slate-300 focus-within:border-google-blue"><label className="text-[9px] font-bold text-slate-500 block uppercase tracking-widest mb-1">Subjudul</label><input type="text" value={formLanding.umkmSubtitle} onChange={e => setFormLanding({...formLanding, umkmSubtitle: e.target.value})} className="w-full bg-transparent border-none text-[12px] font-medium outline-none text-slate-800" /></div>
+                                            <div className="bg-white rounded-[12px] px-3 py-2 border border-slate-300 focus-within:border-google-blue"><label className="text-[9px] font-bold text-slate-500 block uppercase tracking-widest mb-1">Judul Utama</label><input type="text" value={formLanding.umkmTitle} onChange={e => setFormLanding({...formLanding, umkmTitle: e.target.value})} className="w-full bg-transparent border-none text-[12px] font-medium outline-none text-slate-800" /></div>
+                                        </div>
+                                        
+                                        <div className="bg-slate-50 p-4 rounded-[16px] border border-slate-200 space-y-3">
+                                            <h4 className="text-[12px] font-bold text-slate-700">Bagian Footer (Bawah)</h4>
+                                            <div className="bg-white rounded-[12px] px-3 py-2 border border-slate-300 focus-within:border-google-blue"><label className="text-[9px] font-bold text-slate-500 block uppercase tracking-widest mb-1">Slogan / Tagline</label><input type="text" value={formLanding.footerTagline} onChange={e => setFormLanding({...formLanding, footerTagline: e.target.value})} className="w-full bg-transparent border-none text-[12px] font-medium outline-none text-slate-800" /></div>
+                                            <div className="bg-white rounded-[12px] px-3 py-2 border border-slate-300 focus-within:border-google-blue"><label className="text-[9px] font-bold text-slate-500 block uppercase tracking-widest mb-1">Judul Info Resmi</label><input type="text" value={formLanding.footerInfoTitle} onChange={e => setFormLanding({...formLanding, footerInfoTitle: e.target.value})} className="w-full bg-transparent border-none text-[12px] font-medium outline-none text-slate-800" /></div>
+                                            <div className="bg-white rounded-[12px] px-3 py-2 border border-slate-300 focus-within:border-google-blue"><label className="text-[9px] font-bold text-slate-500 block uppercase tracking-widest mb-1">Teks Bukti Verifikasi</label><input type="text" value={formLanding.footerInfoDesc} onChange={e => setFormLanding({...formLanding, footerInfoDesc: e.target.value})} className="w-full bg-transparent border-none text-[12px] font-medium outline-none text-slate-800" /></div>
+                                        </div>
                                     </div>
                                 </PengaturanSection>
                             )}
