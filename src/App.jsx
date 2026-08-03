@@ -2251,18 +2251,14 @@ const getDirectImgUrl = (url) => {
                                             <Icon name="campaign" className="text-[15px] sm:text-[16px]" />
                                             <span>Kabar Warga</span>
                                         </a>
-                                        {umkmData && umkmData.length > 0 && (
-                                            <a href="#umkm" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
-                                                <Icon name="storefront" className="text-[15px] sm:text-[16px]" />
-                                                <span>UMKM Warga</span>
-                                            </a>
-                                        )}
-                                        {infoDesa?.enabled && (
-                                            <a href="#peta" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
-                                                <Icon name="map" className="text-[15px] sm:text-[16px]" />
-                                                <span>Peta &amp; Kontak</span>
-                                            </a>
-                                        )}
+                                        <a href="#umkm" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
+                                            <Icon name="storefront" className="text-[15px] sm:text-[16px]" />
+                                            <span>UMKM Warga</span>
+                                        </a>
+                                        <a href="#peta" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
+                                            <Icon name="map" className="text-[15px] sm:text-[16px]" />
+                                            <span>Peta &amp; Kontak</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -2397,13 +2393,13 @@ const getDirectImgUrl = (url) => {
                                 </section>
                             )}
 
-                            {/* UMKM WARGA SECTION */}
-                            {umkmData && umkmData.length > 0 && (
+                            {/* UMKM WARGA SECTION - selalu tampil */}
                                 <section id="umkm" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-extrabold text-green-600 dark:text-green-400 uppercase tracking-widest">Produk &amp; Usaha Lokal</h3>
                                         <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">UMKM WARGA RT</h2>
                                     </div>
+                                    {umkmData && umkmData.length > 0 ? (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {umkmData.slice(0, 6).map(item => (
                                             <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-green-400 dark:hover:border-green-500 hover:shadow-lg transition-all duration-300 group">
@@ -2436,18 +2432,27 @@ const getDirectImgUrl = (url) => {
                                             </div>
                                         ))}
                                     </div>
+                                    ) : (
+                                        <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-dashed border-green-200 dark:border-green-900/40 p-10 text-center max-w-md mx-auto">
+                                            <Icon name="storefront" className="text-[36px] text-green-300 dark:text-green-700 mb-3" />
+                                            <p className="text-[14px] font-bold text-slate-800 dark:text-white">Belum Ada UMKM Terdaftar</p>
+                                            <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Daftar usaha milik warga RT akan tampil di sini. Login sebagai Admin untuk menambahkan UMKM.</p>
+                                            <button onClick={() => onLogin('warga')} className="mt-4 inline-flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-[10px] text-[12px] font-bold transition-all active:scale-95">
+                                                <Icon name="add_business" className="text-[15px]" />
+                                                <span>Daftarkan Usaha Anda</span>
+                                            </button>
+                                        </div>
+                                    )}
                                 </section>
-                            )}
 
-                            {/* PETA DESA & LAYANAN KELURAHAN */}
-                            {infoDesa?.enabled && (
+                            {/* PETA DESA & LAYANAN KELURAHAN - selalu tampil */}
                                 <section id="peta" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-extrabold text-red-600 dark:text-red-400 uppercase tracking-widest">Cakupan Wilayah &amp; Kontak Darurat</h3>
                                         <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">PETA DESA &amp; LAYANAN</h2>
                                     </div>
                                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                                        {/* Peta */}
+                                        {/* Peta Google Maps */}
                                         <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-4 shadow-sm overflow-hidden flex flex-col justify-between">
                                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[320px] rounded-[16px] border border-slate-200 dark:border-slate-800" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
                                             <div className="flex flex-wrap gap-3 mt-4 items-center justify-between text-[11px] font-bold text-slate-500 dark:text-slate-400 px-1">
@@ -2459,43 +2464,44 @@ const getDirectImgUrl = (url) => {
                                         {/* Batas & Kontak */}
                                         <div className="space-y-4 flex flex-col">
                                             {/* Batas Administrasi */}
-                                            {infoDesa?.batas && (
-                                                <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm">
-                                                    <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
-                                                    <div className="grid grid-cols-2 gap-2.5">
-                                                        {['utara', 'selatan', 'timur', 'barat'].map(arah => (
-                                                            <div key={arah} className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-[12px] border border-slate-200 dark:border-slate-800/80">
-                                                                <p className="text-[8px] uppercase tracking-wider font-extrabold text-slate-400 mb-0.5">{arah}</p>
-                                                                <p className="font-bold text-[11px] text-slate-700 dark:text-slate-200 truncate">{infoDesa?.batas?.[arah] || '-'}</p>
+                                            <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+                                                <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
+                                                <div className="grid grid-cols-2 gap-2.5">
+                                                    {['utara', 'selatan', 'timur', 'barat'].map(arah => (
+                                                        <div key={arah} className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-[12px] border border-slate-200 dark:border-slate-800/80">
+                                                            <p className="text-[8px] uppercase tracking-wider font-extrabold text-slate-400 mb-0.5">{arah}</p>
+                                                            <p className="font-bold text-[11px] text-slate-700 dark:text-slate-200 truncate">{infoDesa?.batas?.[arah] || '-'}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            {/* Kontak Darurat */}
+                                            <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm flex-1 flex flex-col">
+                                                <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="contact_phone" className="text-red-500 text-[16px]"/> Layanan &amp; Kontak</h4>
+                                                {infoDesa?.kontak && infoDesa?.kontak?.length > 0 ? (
+                                                    <div className="space-y-2 max-h-48 overflow-y-auto hide-scrollbar pr-0.5">
+                                                        {infoDesa?.kontak?.map((k, i) => (
+                                                            <div key={k.id || i} className={`flex justify-between items-center bg-${k.color}-50/50 dark:bg-${k.color}-950/20 border border-${k.color}-500/10 dark:border-${k.color}-800/20 px-3.5 py-2.5 rounded-[12px]`}>
+                                                                <div className="flex items-center gap-2 min-w-0">
+                                                                    <Icon name={k.icon || 'contact_phone'} className={`text-[15px] text-${k.color}-600 shrink-0`} fill="true"/>
+                                                                    <span className={`text-[11px] font-bold text-${k.color}-800 dark:text-${k.color}-300 truncate`}>{k.nama}</span>
+                                                                </div>
+                                                                <span className={`text-[11px] font-black text-${k.color}-750 dark:text-${k.color}-400 shrink-0`}>{k.telepon}</span>
                                                             </div>
                                                         ))}
                                                     </div>
-                                                </div>
-                                            )}
-
-                                            {/* Kontak Darurat */}
-                                            {infoDesa?.kontak && infoDesa?.kontak?.length > 0 && (
-                                                <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm flex-1 flex flex-col justify-between">
-                                                    <div>
-                                                        <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="contact_phone" className="text-red-500 text-[16px]"/> Layanan &amp; Kontak</h4>
-                                                        <div className="space-y-2 max-h-48 overflow-y-auto hide-scrollbar pr-0.5">
-                                                            {infoDesa?.kontak?.map((k, i) => (
-                                                                <div key={k.id || i} className={`flex justify-between items-center bg-${k.color}-50/50 dark:bg-${k.color}-950/20 border border-${k.color}-500/10 dark:border-${k.color}-800/20 px-3.5 py-2.5 rounded-[12px]`}>
-                                                                    <div className="flex items-center gap-2 min-w-0">
-                                                                        <Icon name={k.icon || 'contact_phone'} className={`text-[15px] text-${k.color}-600 shrink-0`} fill="true"/>
-                                                                        <span className={`text-[11px] font-bold text-${k.color}-800 dark:text-${k.color}-300 truncate`}>{k.nama}</span>
-                                                                    </div>
-                                                                    <span className={`text-[11px] font-black text-${k.color}-750 dark:text-${k.color}-400 shrink-0`}>{k.telepon}</span>
-                                                                </div>
-                                                            ))}
-                                                        </div>
+                                                ) : (
+                                                    <div className="flex-1 flex flex-col items-center justify-center text-center py-4">
+                                                        <Icon name="contact_phone" className="text-[28px] text-slate-300 dark:text-slate-600 mb-2" />
+                                                        <p className="text-[11.5px] font-bold text-slate-600 dark:text-slate-400">Kontak Darurat</p>
+                                                        <p className="text-[10.5px] text-slate-400 mt-0.5">Belum ada kontak darurat. Login Admin untuk menambahkan.</p>
                                                     </div>
-                                                </div>
-                                            )}
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </section>
-                            )}
 
                             {/* SPONSOR SECTION DI LANDING PAGE */}
                             {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
