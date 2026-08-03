@@ -7,14 +7,19 @@ Build: Vite + React + Tailwind CSS
 <html lang="id">
 <head>
   <meta charset='UTF-8'/>
-
   <meta content='width=device-width, initial-scale=1.0, viewport-fit=cover' name='viewport'/>
+
+  <!-- Color scheme — browser hint untuk faster initial paint -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="format-detection" content="telephone=no" />
+
   <title>Portal Warga RT - PAKEM | Banyuanyar Gurah Kediri</title>
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="Portal digital warga RT Pakem, Banyuanyar, Gurah, Kediri. Kelola arisan, keuangan kas RT, buku warga, galeri, pengaduan, dan informasi lingkungan secara mudah dan transparan." />
   <meta name="keywords" content="portal warga RT, Pakem, Banyuanyar, Gurah, Kediri, arisan, kas RT, aplikasi RT" />
   <meta name="author" content="Admin Warga RT PAKEM" />
+  <meta name="robots" content="index, follow" />
 
   <!-- Open Graph (WhatsApp, Facebook share preview) -->
   <meta property="og:title" content="Portal Warga RT - PAKEM | Banyuanyar Gurah Kediri" />
@@ -46,68 +51,115 @@ Build: Vite + React + Tailwind CSS
   <meta content="#dc2626" name="theme-color" />
   <meta content="#dc2626" name="background-color" />
 
-  <!-- DNS Prefetch & Preconnect -->
+  <!-- ================================================
+       CRITICAL RESOURCE HINTS
+       Preconnect percepat handshake ke server eksternal
+       ================================================ -->
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+
+  <!-- Firebase — percepat koneksi data real-time -->
+  <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://firebase.googleapis.com" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin="anonymous" />
+
+  <!-- DNS Prefetch sebagai fallback -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   <link rel="dns-prefetch" href="https://www.gstatic.com" />
+  <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
 
-  <!-- Fonts Asynchronous Loading (High Performance / Non-blocking) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&display=swap" media="print" onload="this.media='all'" />
+  <!-- ================================================
+       FONTS — Non-blocking async load
+       ================================================ -->
+
+  <!-- Font Outfit (primary UI font) — preload untuk LCP lebih cepat -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    fetchpriority="high" />
+
+  <!-- Load non-blocking via print trick -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+    media="print" onload="this.media='all'" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+    media="print" onload="this.media='all'" />
+
+  <!-- Fallback tanpa JS -->
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" />
   </noscript>
 
-  <!-- Loading screen style (inline agar tampil sebelum JS load) -->
+  <!-- ================================================
+       LOADING SCREEN — Inline CSS, zero external request
+       Spinner ringan menggantikan animasi pulse sebelumnya
+       ================================================ -->
   <style>
-    body { margin: 0; background: #dc2626; }
-    #loading-screen {
-      position: fixed; inset: 0; background: #dc2626;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; z-index: 99999;
+    *,*::before,*::after{box-sizing:border-box}
+    body{margin:0;background:#dc2626;font-family:system-ui,sans-serif}
+    #ls{
+      position:fixed;inset:0;background:#dc2626;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      z-index:99999;transition:opacity .4s ease;
     }
-    .loading-icon-wrap {
-      background: rgba(255,255,255,0.1); padding: 24px; border-radius: 50%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      animation: ldpulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    #ls.hidden{opacity:0;pointer-events:none}
+    .ls-ring{
+      width:80px;height:80px;border-radius:50%;
+      border:3px solid rgba(255,255,255,.2);
+      border-top-color:#fff;
+      animation:lspin .75s linear infinite;
     }
-    .loading-icon-wrap img { width: 100px; height: 100px; object-fit: contain; }
-    .loading-dots { margin-top: 24px; display: flex; align-items: center; gap: 8px; }
-    .loading-dots span {
-      width: 8px; height: 8px; background: white; border-radius: 50%;
-      animation: ldbounce 1.4s infinite ease-in-out both;
+    .ls-logo{
+      position:absolute;width:50px;height:50px;
+      top:50%;left:50%;transform:translate(-50%,-50%);
+      object-fit:contain;
     }
-    .loading-dots span:nth-child(2) { animation-delay: 0.16s; }
-    .loading-dots span:nth-child(3) { animation-delay: 0.32s; }
-    @keyframes ldpulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
-    @keyframes ldbounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+    .ls-wrap{position:relative;width:80px;height:80px;margin-bottom:18px}
+    .ls-text{
+      color:rgba(255,255,255,.8);
+      font-size:10px;font-weight:600;
+      letter-spacing:.14em;text-transform:uppercase;
+    }
+    @keyframes lspin{to{transform:rotate(360deg)}}
   </style>
 </head>
 <body>
   <div id="root">
-    <!-- Loading screen tampil sebelum React selesai mount -->
-    <div id="loading-screen">
-      <div class="loading-icon-wrap">
-        <img src="/National_emblem_of_Indonesia_Garuda_Pancasila.svg" alt="Garuda Pancasila" width="100" height="100" fetchpriority="high" />
+    <!-- Loading screen — muncul sebelum React mount -->
+    <div id="ls">
+      <div class="ls-wrap">
+        <div class="ls-ring"></div>
+        <img class="ls-logo"
+          src="/National_emblem_of_Indonesia_Garuda_Pancasila.svg"
+          alt="Memuat..."
+          width="50" height="50"
+          fetchpriority="high"
+          decoding="sync" />
       </div>
-      <div class="loading-dots">
-        <span></span><span></span><span></span>
-      </div>
+      <p class="ls-text">Memuat Portal Warga</p>
     </div>
   </div>
 
-  <!-- Service Worker -->
+  <!-- Service Worker — register setelah load agar tidak blokir LCP -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js')
-          .then(function (reg) { console.log('[SW] Terdaftar:', reg.scope); })
-          .catch(function (err) { console.warn('[SW] Gagal daftar:', err); });
+        navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
+          .catch(function () { /* silent fail */ });
       });
     }
+    // Hook untuk React: sembunyikan loading screen saat app sudah siap
+    window.__hideLs = function() {
+      var ls = document.getElementById('ls');
+      if (!ls) return;
+      ls.classList.add('hidden');
+      setTimeout(function(){ if(ls.parentNode) ls.parentNode.removeChild(ls); }, 450);
+    };
   </script>
 
   <!-- Vite entry point -->

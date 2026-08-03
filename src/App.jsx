@@ -1162,7 +1162,7 @@ const getDirectImgUrl = (url) => {
                                 <div key={item.id} className="bg-white rounded-[24px] border border-slate-300 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
                                     <div className="relative h-48 w-full bg-slate-100 overflow-hidden shrink-0">
                                         {item.imageUrl ? (
-                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"  loading="lazy" decoding="async"/>
                                         ) : (
                                             <div className="w-full h-full flex flex-col items-center justify-center text-slate-400">
                                                 <Icon name="image" className="text-4xl mb-2" />
@@ -1254,7 +1254,7 @@ const getDirectImgUrl = (url) => {
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-green-500" /><span className="font-medium">Memproses gambar...</span></div>
                                             ) : formData.imageUrl ? (
                                                 <div className="relative inline-block">
-                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm" />
+                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm"  loading="lazy" decoding="async"/>
                                                     <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-[6px] font-medium">Ganti</div>
                                                 </div>
                                             ) : (
@@ -1430,7 +1430,7 @@ const getDirectImgUrl = (url) => {
                                     
                                     {item.imageUrl && (
                                         <div className="mb-4 rounded-[10px] overflow-hidden bg-slate-100 h-48 border border-slate-300">
-                                            <img src={item.imageUrl} alt="Lampiran Laporan" className="w-full h-full object-cover" />
+                                            <img src={item.imageUrl} alt="Lampiran Laporan" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                         </div>
                                     )}
 
@@ -1497,7 +1497,7 @@ const getDirectImgUrl = (url) => {
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-blue-500" /><span className="font-medium">Memproses gambar...</span></div>
                                             ) : formData.imageUrl ? (
                                                 <div className="relative inline-block">
-                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm" />
+                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm"  loading="lazy" decoding="async"/>
                                                     <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-[6px] font-medium">Ganti</div>
                                                 </div>
                                             ) : (
@@ -2173,7 +2173,7 @@ const getDirectImgUrl = (url) => {
                         <header className="bg-white/95 text-slate-800 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20">
                             <div className="flex items-center gap-2.5 overflow-hidden">
                                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-rose-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
-                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain" />
+                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain"  loading="lazy" decoding="async"/>
                                 </div>
                                 <div className="min-w-0">
                                     <h1 className="text-[13px] sm:text-[15px] font-bold tracking-tight text-slate-900 leading-tight uppercase">{identity.name || 'Portal RT'}</h1>
@@ -2202,7 +2202,7 @@ const getDirectImgUrl = (url) => {
                             <div className={`relative rounded-[32px] p-6 sm:p-10 text-white border-2 border-red-500/20 shadow-xl overflow-hidden group min-h-[240px] sm:min-h-[300px] flex items-center ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark' : 'bg-slate-900'}`}>
                                 {bannerImage ? (
                                     <>
-                                        <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" />
+                                        <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"  loading="lazy" decoding="async"/>
                                         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/50 to-transparent z-0"></div>
                                     </>
                                 ) : (
@@ -2316,7 +2316,7 @@ const getDirectImgUrl = (url) => {
                                                 <div>
                                                     {item.imageUrl ? (
                                                         <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700">
-                                                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
                                                         </div>
                                                     ) : (
                                                         <div className="w-full h-48 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center border-b-2 border-slate-200 dark:border-slate-700">
@@ -2356,7 +2356,7 @@ const getDirectImgUrl = (url) => {
                                             <div key={article.id} className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col hover:border-google-blue/50 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...article, type: 'blog' })}>
                                                 {article.imageUrl ? (
                                                     <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700 shrink-0">
-                                                        <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                                        <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
                                                     </div>
                                                 ) : (
                                                     <div className="w-full h-40 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/20 dark:to-blue-900/10 flex items-center justify-center border-b-2 border-slate-200 dark:border-slate-700 shrink-0">
@@ -2390,7 +2390,7 @@ const getDirectImgUrl = (url) => {
                                     <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-6 sm:p-8">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
                                             {sponsorsData.sponsors.map((s, i) => (
-                                                <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[150px] object-contain opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-110" title={s.name} />
+                                                <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[150px] object-contain opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-110" title={s.name}  loading="lazy" decoding="async"/>
                                             ))}
                                         </div>
                                     </div>
@@ -2412,7 +2412,7 @@ const getDirectImgUrl = (url) => {
                             <div className="relative overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-8 sm:p-10 rounded-[28px] border-2 border-red-500/20 shadow-xl w-full max-w-sm text-center">
                                 <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>
                                 <div className="mx-auto mt-4 mb-5 bg-red-50/50 w-24 h-24 rounded-full flex items-center justify-center border-2 border-red-500/20 shadow-inner overflow-hidden">
-                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"} />
+                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"}  loading="lazy" decoding="async"/>
                                 </div>
                                 <h1 className="text-[18px] font-bold bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent mb-1 tracking-tight">Otorisasi Admin</h1>
                                 <p className="text-[12.5px] font-medium text-slate-600 mb-6 leading-snug">{identity.name}</p>
@@ -2488,7 +2488,7 @@ const getDirectImgUrl = (url) => {
                             {/* Gambar */}
                             {selectedArticle.imageUrl && (
                                 <div className="w-full h-52 bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
-                                    <img src={selectedArticle.imageUrl} alt={selectedArticle.title} className="w-full h-full object-cover" />
+                                    <img src={selectedArticle.imageUrl} alt={selectedArticle.title} className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                 </div>
                             )}
                             {/* Konten */}
@@ -2545,7 +2545,7 @@ const getDirectImgUrl = (url) => {
                     <div className={`relative rounded-[32px] p-6 sm:p-8 text-white border-2 border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden group min-h-[220px] sm:min-h-[260px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark dark:from-rose-950 dark:to-rose-900' : 'bg-slate-900'}`}>
                         {bannerImage && (
                             <>
-                                <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" />
+                                <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"  loading="lazy" decoding="async"/>
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent z-0"></div>
                             </>
                         )}
@@ -2605,7 +2605,7 @@ const getDirectImgUrl = (url) => {
                             <p className="text-[9px] uppercase tracking-widest font-medium text-slate-400 mb-4">Sponsored By</p>
                             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 items-center justify-items-center w-full max-w-5xl px-4 mx-auto">
                                 {sponsorsData.sponsors.map((s, i) => (
-                                    <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 lg:h-16 w-auto max-w-[90px] sm:max-w-[120px] md:max-w-[140px] lg:max-w-[160px] object-contain opacity-100 transition-all duration-300 hover:scale-110" title={s.name} />
+                                    <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 lg:h-16 w-auto max-w-[90px] sm:max-w-[120px] md:max-w-[140px] lg:max-w-[160px] object-contain opacity-100 transition-all duration-300 hover:scale-110" title={s.name}  loading="lazy" decoding="async"/>
                                 ))}
                             </div>
                         </div>
@@ -3353,7 +3353,7 @@ const getDirectImgUrl = (url) => {
                                         <div className={`flex items-center gap-4 bg-slate-50 border-2 ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                             <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
-                                                {isUploading ? <div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div> : formData.imageUrl ? <img src={formData.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview" /> : <Icon name="cloud_upload" className="text-[20px]" />}
+                                                {isUploading ? <div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div> : formData.imageUrl ? <img src={formData.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview"  loading="lazy" decoding="async"/> : <Icon name="cloud_upload" className="text-[20px]" />}
                                             </div>
                                             <div className="relative z-0 flex-1 min-w-0">
                                                 <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan G' : 'Pilih Gambar'}</p>
@@ -3919,7 +3919,7 @@ const getDirectImgUrl = (url) => {
                         {/* Foto */}
                         {prog.imageUrl && (
                             <div className="w-full bg-slate-100 rounded-[28px] overflow-hidden border-2 border-slate-300 flex items-center justify-center" style={{maxHeight:'300px'}}>
-                                <img src={prog.imageUrl} className="w-full object-contain" style={{maxHeight:'300px'}} alt={prog.judul} />
+                                <img src={prog.imageUrl} className="w-full object-contain" style={{maxHeight:'300px'}} alt={prog.judul}  loading="lazy" decoding="async"/>
                             </div>
                         )}
 
@@ -3987,7 +3987,7 @@ const getDirectImgUrl = (url) => {
                                             <div className="flex flex-wrap items-center gap-4 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] overflow-hidden hover:opacity-80 transition-opacity">
-                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti Transfer" />
+                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti Transfer"  loading="lazy" decoding="async"/>
                                                     </a>
                                                 ) : (
                                                     <div className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] flex items-center justify-center">
@@ -4051,7 +4051,7 @@ const getDirectImgUrl = (url) => {
                                             <div className="flex flex-wrap items-center gap-3 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] overflow-hidden hover:opacity-80 transition-opacity">
-                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti" />
+                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti"  loading="lazy" decoding="async"/>
                                                     </a>
                                                 ) : (
                                                     <div className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] flex items-center justify-center">
@@ -4218,7 +4218,7 @@ const getDirectImgUrl = (url) => {
                                                 <div className="w-8 h-8 border-2 border-google-green border-t-transparent rounded-full animate-spin mx-auto my-3" />
                                             ) : buktiUrl ? (
                                                 <div className="relative rounded-[12px] overflow-hidden border border-slate-300">
-                                                    <img src={buktiUrl} className="w-full h-32 object-cover" alt="Bukti Transfer" />
+                                                    <img src={buktiUrl} className="w-full h-32 object-cover" alt="Bukti Transfer"  loading="lazy" decoding="async"/>
                                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                                         <span className="text-white font-medium text-[11px] flex flex-wrap items-center gap-1"><Icon name="edit" className="text-[14px]"/> Ganti Foto</span>
                                                     </div>
@@ -4287,7 +4287,7 @@ const getDirectImgUrl = (url) => {
                                     <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                     <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 z-0">
                                         {isUploading ? <div className="w-5 h-5 border-2 border-google-green border-t-transparent rounded-full animate-spin" />
-                                            : form.imageUrl ? <img src={form.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview" />
+                                            : form.imageUrl ? <img src={form.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview"  loading="lazy" decoding="async"/>
                                             : <Icon name="cloud_upload" className="text-[20px] text-google-textVariant" />}
                                     </div>
                                     <div className="flex-1 z-0">
@@ -4545,7 +4545,7 @@ const getDirectImgUrl = (url) => {
                                 </div>
                                 <div className="overflow-y-auto flex-1 hide-scrollbar">
                                     <div className="w-full bg-slate-900 aspect-video flex items-center justify-center relative">
-                                        <img src={selectedPhoto.imageUrl} alt={selectedPhoto.title} className="w-full h-full object-contain" />
+                                        <img src={selectedPhoto.imageUrl} alt={selectedPhoto.title} className="w-full h-full object-contain"  loading="lazy" decoding="async"/>
                                     </div>
                                     <div className="p-6 sm:p-8 space-y-4">
                                         <div className="flex flex-wrap items-center gap-3">
@@ -4597,7 +4597,7 @@ const getDirectImgUrl = (url) => {
                                             </div>
                                             {formData.imageUrl && !isUploading && (
                                                 <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300">
-                                                    <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                                                    <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                 </div>
                                             )}
                                         </div>
@@ -4685,7 +4685,8 @@ const getDirectImgUrl = (url) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                         {data.map(item => (
                             <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 flex flex-col group">
-                                {item.imageUrl && <div className="w-full h-48 sm:h-56 bg-slate-100 relative shrink-0 border-b-2 border-slate-300 overflow-hidden"><img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" onError={(e) => { e.target.style.display = 'none'; }} /></div>}
+                                {item.imageUrl && <div className="w-full h-48 sm:h-56 bg-slate-100 relative shrink-0 border-b-2 border-slate-300 overflow-hidden"><img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} /></div>}
+
                                 <div className="p-6 sm:p-8 flex flex-col">
                                     <h3 className="text-[17px] sm:text-[18px] font-medium text-google-text leading-snug mb-4 group-hover:text-google-blue transition-colors tracking-tight">{item.title}</h3>
                                     <div className="flex flex-wrap items-center gap-2 mb-5 text-google-blueDark bg-google-blueLight self-start px-4 py-2 rounded-[10px] text-[11px] font-medium uppercase tracking-widest border-2 border-google-blue/30"><Icon name="calendar_today" className="text-[14px]" /><span>{parseLocalDate(item.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'})}</span></div>
@@ -4724,7 +4725,7 @@ const getDirectImgUrl = (url) => {
                                             </div>
                                             {formData.imageUrl && !isUploading && (
                                                 <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300 group">
-                                                    <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                                                    <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                     <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setFormData(prev => ({...prev, imageUrl: ''})); }} className="absolute top-0 right-0 bg-google-red/90 text-white w-full h-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><Icon name="delete" className="text-[14px]"/></button>
                                                 </div>
                                             )}
@@ -5447,7 +5448,7 @@ const getDirectImgUrl = (url) => {
                                                 </div>
                                                 {formData.receiptUrl && !isUploading && (
                                                     <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300 group">
-                                                        <img src={formData.receiptUrl} alt="Nota Preview" className="w-full h-full object-cover" />
+                                                        <img src={formData.receiptUrl} alt="Nota Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                     </div>
                                                 )}
                                             </div>
@@ -6426,7 +6427,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         {sponsorsData?.sponsors?.map((s, i) => (
                             <div key={i} className="flex items-center justify-between bg-white p-3 rounded-[12px] shadow-sm border border-slate-200 gap-3">
                             <div className="flex items-center gap-3 overflow-hidden">
-                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 p-1 border border-slate-200" onError={e => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>=+n+</text></svg>'; }} />
+                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 p-1 border border-slate-200" loading="lazy" decoding="async" onError={(e) => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>=+n+</text></svg>'; }} />
                                 <span className="text-[12px] font-medium text-google-text truncate">{s.name}</span>
                             </div>
                             <button onClick={() => {
@@ -6480,7 +6481,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         {/* Preview */}
                         {previewUrl && !isUploading && (
                         <div className="flex items-center gap-3 bg-white border-2 border-google-green/30 rounded-[14px] p-3 shadow-sm">
-                            <img src={previewUrl} alt="preview" className="h-10 max-w-[80px] object-contain rounded border border-slate-200 bg-slate-50 p-1" onError={e => e.target.style.display='none'} />
+                            <img src={previewUrl} alt="preview" className="h-10 max-w-[80px] object-contain rounded border border-slate-200 bg-slate-50 p-1" loading="lazy" decoding="async" onError={(e) => e.target.style.display='none'} />
                             <div className="flex-1 min-w-0">
                             <p className="text-[11px] font-medium text-google-green flex items-center gap-1"><Icon name="check_circle" className="text-[13px]"/>Logo siap disimpan</p>
                             <p className="text-[9px] text-google-textVariant truncate font-mono mt-0.5">{previewUrl.slice(0,60)}</p>
@@ -6728,7 +6729,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             {isUploadingLogo ? (
                                                 <div className="w-6 h-6 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div>
                                             ) : (
-                                                formIdentity.logoApp ? <img src={formIdentity.logoApp} className="w-full h-full object-contain p-2" alt="Logo" /> : <div className="flex flex-col items-center text-slate-400 group-hover:text-google-blue transition-colors"><Icon name="add_photo_alternate" className="text-[24px]" /><span className="text-[9px] font-medium mt-1">Upload</span></div>
+                                                formIdentity.logoApp ? <img src={formIdentity.logoApp} className="w-full h-full object-contain p-2" alt="Logo"  loading="lazy" decoding="async"/> : <div className="flex flex-col items-center text-slate-400 group-hover:text-google-blue transition-colors"><Icon name="add_photo_alternate" className="text-[24px]" /><span className="text-[9px] font-medium mt-1">Upload</span></div>
                                             )}
                                         </div>
                                     </div>
@@ -6773,7 +6774,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         </div>
                                         {formBanner && !isUploadingBanner && (
                                             <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border-2 border-slate-300 group">
-                                                <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover" />
+                                                <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                                     <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[11px] font-medium px-4 py-2 rounded-[12px] flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[14px]"/> Hapus</button>
                                                 </div>
@@ -7419,7 +7420,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <button onClick={() => setViewArticleId(null)} className="bg-white border-2 border-slate-300 text-google-text px-4 py-2 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
                         
                         <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border-2 border-slate-300">
-                            {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover" />}
+                            {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover"  loading="lazy" decoding="async"/>}
                             <div className="p-6 sm:p-8">
                                 <h2 className="text-2xl sm:text-3xl font-bold text-google-text mb-4 tracking-tight leading-tight">{article.title}</h2>
                                 <div className="flex items-center gap-4 text-[12px] font-medium text-google-textVariant mb-8 pb-6 border-b-2 border-slate-100">
@@ -7515,7 +7516,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 {article.imageUrl ? (
                                     <div className="w-full h-48 bg-slate-100 overflow-hidden relative">
                                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
-                                        <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                        <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
                                     </div>
                                 ) : (
                                     <div className="w-full h-48 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center relative overflow-hidden">
@@ -7565,7 +7566,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <p className="text-[11px] text-google-textVariant truncate">{formData.imageUrl ? "Klik untuk mengganti gambar" : "Maksimal 10MB"}</p>
                                             </div>
                                             {formData.imageUrl && !isUploading && (
-                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300"><img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" /></div>
+                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300"><img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/></div>
                                             )}
                                         </div>
                                     </div>
@@ -8241,7 +8242,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div key={prod.id} className="bg-white rounded-[24px] border-2 border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
                                             <div className="relative h-44 bg-slate-100 flex items-center justify-center border-b border-slate-200">
                                                 {prod.imageUrl ? (
-                                                    <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
+                                                    <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                 ) : (
                                                     <div className="text-slate-400 flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[11px] font-bold">Tidak ada foto</span></div>
                                                 )}
@@ -8336,7 +8337,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <p className="text-[11px] text-google-textVariant truncate">{productForm.imageUrl ? "Klik untuk mengganti" : "Maksimal 10MB"}</p>
                                                     </div>
                                                     {productForm.imageUrl && !isUploading && (
-                                                        <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300"><img src={productForm.imageUrl} alt="Preview" className="w-full h-full object-cover" /></div>
+                                                        <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300"><img src={productForm.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/></div>
                                                     )}
                                                 </div>
                                             </div>
@@ -8445,7 +8446,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 {/* Image Cover with Aspect-Ratio and overlays */}
                                                 <div className="relative w-full h-48 sm:h-52 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850">
                                                     {prod.imageUrl ? (
-                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"  loading="lazy" decoding="async"/>
                                                     ) : (
                                                         <div className="w-full h-full bg-gradient-to-tr from-rose-500/10 to-google-blue/10 flex flex-col items-center justify-center p-6 text-center">
                                                             <div className="w-14 h-14 rounded-[16px] bg-gradient-to-tr from-google-blue to-indigo-500 text-white flex items-center justify-center shadow-md mb-2">
@@ -8569,7 +8570,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 {/* Image Cover with Aspect-Ratio and overlays */}
                                                 <div className="relative w-full h-48 sm:h-52 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850 grayscale">
                                                     {prod.imageUrl ? (
-                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
+                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                     ) : (
                                                         <div className="w-full h-full bg-slate-100 dark:bg-slate-850 flex flex-col items-center justify-center p-6 text-center">
                                                             <div className="w-14 h-14 rounded-[16px] bg-slate-300 dark:bg-slate-700 text-slate-550 dark:text-slate-400 flex items-center justify-center shadow-md mb-2">
