@@ -1663,12 +1663,18 @@ const getDirectImgUrl = (url) => {
                 const hasNocache = params.has('nocache');
                 const hasV = params.has('v');
                 const hasPage = params.has('page');
+                const hasProduct = params.has('product');
+                const isTicketProductLink = params.get('page') === 'tiket' && hasProduct;
 
                 if (params.get('page') === 'tiket') {
                     window.location.hash = 'tiket';
+                    if (hasProduct) {
+                        setIsLoggedIn(true);
+                        setUserRole('warga');
+                    }
                 }
 
-                if (hasNocache || hasV || hasPage) {
+                if ((hasNocache || hasV || hasPage) && !isTicketProductLink) {
                     const cleanUrl = new URL(window.location.href);
                     cleanUrl.searchParams.delete('nocache');
                     cleanUrl.searchParams.delete('v');
