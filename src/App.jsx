@@ -4043,14 +4043,14 @@ const getDirectImgUrl = (url) => {
                                         </div>
                                         {/* Admin actions */}
                                         {userRole === 'admin' && (
-                                            <div className="flex flex-wrap gap-2 pt-3 border-t-2 border-slate-200 mt-1" onClick={e => e.stopPropagation()}>
+                                            <div className="flex gap-2 pt-3 border-t-2 border-slate-100 mt-1" onClick={e => e.stopPropagation()}>
                                                 <button onClick={() => { setForm({...item}); setEditingId(item.id); setErrorMsg(''); setView('form'); }}
-                                                    className="flex flex-wrap text-[11px] font-medium bg-slate-50 text-google-text border-2 border-slate-300 hover:border-google-blue hover:text-google-blue rounded-full py-2 flex flex-wrap items-center justify-center gap-1 active:scale-95 transition-all">
-                                                    <Icon name="edit" className="text-[13px]" />Edit
+                                                    className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95">
+                                                    <Icon name="edit" className="text-[14px]" /> Edit
                                                 </button>
                                                 <button onClick={() => setDeleteConfirmId(item.id)}
-                                                    className="flex flex-wrap text-[11px] font-medium bg-slate-50 text-google-red border-2 border-slate-300 hover:border-google-red/40 rounded-full py-2 flex flex-wrap items-center justify-center gap-1 active:scale-95 transition-all">
-                                                    <Icon name="delete" className="text-[13px]" />Hapus
+                                                    className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95">
+                                                    <Icon name="delete" className="text-[14px]" /> Hapus
                                                 </button>
                                             </div>
                                         )}
