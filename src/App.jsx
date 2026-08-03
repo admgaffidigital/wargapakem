@@ -1639,31 +1639,6 @@ const getDirectImgUrl = (url) => {
             const firebaseUnavailable = !db;
             const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l21 && l22 && l23 && l24 && l25 && lTicketProducts && lTicketOrders);
 
-            // Pulihkan produk tiket asli Banyuanyar jika ter-overwrite seeder palsu akibat offline
-            useEffect(() => {
-                if (db && lTicketProducts && ticketProducts) {
-                    const hasDefaultOnly = ticketProducts.length === 1 && ticketProducts[0].id === 1;
-                    const isEmpty = ticketProducts.length === 0;
-                    if (hasDefaultOnly || isEmpty) {
-                        console.log("[Restore] Memulihkan data tiket asli Banyuanyar ke Firestore...");
-                        setTicketProducts([
-                            {
-                                id: 1785500520683,
-                                sku: "TKT-20683",
-                                name: "Kupon Jalan Santai Kemerdekaan - Desa Banyuanyar",
-                                price: 2500,
-                                stock: 240,
-                                description: "Kupon resmi kegiatan Jalan Santai Kemerdekaan Desa Banyuanyar RT Pakem. Banyak doorprize menarik: Sepeda Gunung, Kulkas, TV, Kompor Gas, dan ratusan hadiah hiburan lainnya! Pengambilan langsung di TOKO MAS NOVAN.",
-                                imageUrl: "",
-                                sold: 10,
-                                pickupLocationName: "TOKO MAS NOVAN",
-                                pickupGeoUrl: "https://maps.app.goo.gl/ABN9FkxCj2HJ7cMg6"
-                            }
-                        ]);
-                    }
-                }
-            }, [db, lTicketProducts, ticketProducts]);
-
             useEffect(() => {
                 if (auth && onAuthStateChanged) {
                     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -7852,27 +7827,6 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
         /* ================= TIKET EVENTS / JALAN SANTAI COMPONENT ================= */
         function Tiket({ products = [], setProducts, orders = [], setOrders, userRole, isProductsLoaded = false }) {
-            // Seeding default product — hanya jika Firebase sudah selesai dimuat DAN data memang belum ada
-            // (bukan karena produk sengaja dihapus oleh admin)
-            useEffect(() => {
-                if (isProductsLoaded && (!products || products.length === 0)) {
-                    setProducts([
-                        {
-                            id: 1785500520683,
-                            sku: "TKT-20683",
-                            name: "Kupon Jalan Santai Kemerdekaan - Desa Banyuanyar",
-                            price: 2500,
-                            stock: 250,
-                            description: "Kupon resmi kegiatan Jalan Santai Kemerdekaan Desa Banyuanyar RT Pakem. Banyak doorprize menarik: Sepeda Gunung, Kulkas, TV, Kompor Gas, dan ratusan hadiah hiburan lainnya! Pengambilan langsung di TOKO MAS NOVAN.",
-                            imageUrl: "",
-                            sold: 0,
-                            pickupLocationName: "TOKO MAS NOVAN",
-                            pickupGeoUrl: "https://maps.app.goo.gl/ABN9FkxCj2HJ7cMg6"
-                        }
-                    ]);
-                }
-            }, [isProductsLoaded]);
-
             const [activeSubTab, setActiveSubTab] = useState(userRole === 'admin' ? 'orders' : 'shop');
             const [modalConfig, setModalConfig] = useState(null);
             const [sharingProduct, setSharingProduct] = useState(null);
