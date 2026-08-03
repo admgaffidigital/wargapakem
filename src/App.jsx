@@ -2334,7 +2334,7 @@ const getDirectImgUrl = (url) => {
                             <section className="space-y-4 max-w-6xl mx-auto w-full">
                                 <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest text-center">{landingConfig.servicesSubtitle}</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col items-center text-center justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
                                             <Icon name="campaign" className="text-[24px]" />
                                         </div>
@@ -2343,7 +2343,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Papan pengumuman penting, info rapat warga, &amp; berita lingkungan terkini dari pengurus RT.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col items-center text-center justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-greenLight border border-google-green/20 flex items-center justify-center shrink-0 text-google-greenDark">
                                             <Icon name="payments" className="text-[24px]" />
                                         </div>
@@ -2352,7 +2352,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Laporan kas masuk dan keluar RT yang dicatat rinci, terbuka, &amp; dipantau warga kapan saja.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col items-center text-center justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-blueLight border border-google-blue/20 flex items-center justify-center shrink-0 text-google-blueDark">
                                             <Icon name="local_activity" className="text-[24px]" />
                                         </div>
@@ -2361,7 +2361,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pembelian tiket jalan santai dan kegiatan RT secara online dengan metode COD.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col items-center text-center justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 flex items-center justify-center border border-rose-100 dark:border-rose-900/30">
                                             <Icon name="casino" className="text-[24px]" />
                                         </div>
