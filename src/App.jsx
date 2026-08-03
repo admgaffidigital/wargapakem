@@ -2459,14 +2459,14 @@ const getDirectImgUrl = (url) => {
                                         {/* Batas & Kontak */}
                                         <div className="space-y-4 flex flex-col">
                                             {/* Batas Administrasi */}
-                                            {infoDesa.batas && (
+                                            {infoDesa?.batas && (
                                                 <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm">
                                                     <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
                                                     <div className="grid grid-cols-2 gap-2.5">
                                                         {['utara', 'selatan', 'timur', 'barat'].map(arah => (
                                                             <div key={arah} className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-[12px] border border-slate-200 dark:border-slate-800/80">
                                                                 <p className="text-[8px] uppercase tracking-wider font-extrabold text-slate-400 mb-0.5">{arah}</p>
-                                                                <p className="font-bold text-[11px] text-slate-700 dark:text-slate-200 truncate">{infoDesa.batas[arah] || '-'}</p>
+                                                                <p className="font-bold text-[11px] text-slate-700 dark:text-slate-200 truncate">{infoDesa?.batas?.[arah] || '-'}</p>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -2474,12 +2474,12 @@ const getDirectImgUrl = (url) => {
                                             )}
 
                                             {/* Kontak Darurat */}
-                                            {infoDesa.kontak && infoDesa.kontak.length > 0 && (
+                                            {infoDesa?.kontak && infoDesa?.kontak?.length > 0 && (
                                                 <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm flex-1 flex flex-col justify-between">
                                                     <div>
                                                         <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="contact_phone" className="text-red-500 text-[16px]"/> Layanan &amp; Kontak</h4>
                                                         <div className="space-y-2 max-h-48 overflow-y-auto hide-scrollbar pr-0.5">
-                                                            {infoDesa.kontak.map((k, i) => (
+                                                            {infoDesa?.kontak?.map((k, i) => (
                                                                 <div key={k.id || i} className={`flex justify-between items-center bg-${k.color}-50/50 dark:bg-${k.color}-950/20 border border-${k.color}-500/10 dark:border-${k.color}-800/20 px-3.5 py-2.5 rounded-[12px]`}>
                                                                     <div className="flex items-center gap-2 min-w-0">
                                                                         <Icon name={k.icon || 'contact_phone'} className={`text-[15px] text-${k.color}-600 shrink-0`} fill="true"/>
