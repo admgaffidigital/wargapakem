@@ -111,10 +111,11 @@ self.addEventListener('fetch', (event) => {
             fetch(request, { cache: 'no-store' }) // paksa ambil dari server
                 .then((res) => {
                     if (res && res.status === 200) {
-                        // Update cache dengan versi terbaru
-                        caches.open(CACHE_STATIC).then((cache) => cache.put(request, res.clone()));
+                        // Clone DULU sebelum masuk ke cache, agar body original tetap utuh untuk dikembalikan
+                        const resToCache = res.clone();
+                        caches.open(CACHE_STATIC).then((cache) => cache.put(request, resToCache));
                     }
-                    return res;
+                    return res; // kembalikan response original (body masih utuh)
                 })
                 .catch(() =>
                     // Offline fallback: gunakan cache
