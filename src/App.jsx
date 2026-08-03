@@ -1548,8 +1548,10 @@ const getDirectImgUrl = (url) => {
                 const root = window.document.documentElement;
                 if (theme === 'dark') {
                     root.classList.add('dark');
+                    document.body.style.backgroundColor = '#0f172a';
                 } else {
                     root.classList.remove('dark');
+                    document.body.style.backgroundColor = '#f8fafc';
                 }
                 localStorage.setItem('theme', theme);
             }, [theme]);
@@ -1736,6 +1738,11 @@ const getDirectImgUrl = (url) => {
                             } else {
                                 window.location.hash = 'menu';
                             }
+                            // Bersihkan URL dari query params tanpa reload
+                            const cleanUrl = new URL(window.location.href);
+                            cleanUrl.searchParams.delete('page');
+                            cleanUrl.searchParams.delete('product');
+                            window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
                         }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
                         {showLegalModal && (
@@ -2584,14 +2591,10 @@ const getDirectImgUrl = (url) => {
                                 <h1 className="text-[18px] font-bold bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent mb-1 tracking-tight">Otorisasi Admin</h1>
                                 <p className="text-[12.5px] font-medium text-slate-600 mb-6 leading-snug">{identity.name}</p>
                                 
-                                <div className="space-y-5">
-                                    <div className="text-left">
-                                        <label className="text-[10.5px] font-semibold text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-wider">Email Admin</label>
-                                        <input type="email" placeholder="Email Firebase Anda" value={email} onChange={(e) => { setEmail(e.target.value); setError(''); }} className="w-full bg-slate-50/50 dark:bg-slate-900 border border-slate-250 dark:border-slate-700 focus:border-red-500 dark:focus:border-red-500 focus:bg-white dark:focus:bg-slate-950 focus:ring-4 focus:ring-red-500/10 text-[13.5px] text-slate-800 dark:text-white rounded-[12px] px-4 py-3 font-medium outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
-                                    </div>
-                                    <div className="text-left">
-                                        <label className="text-[10.5px] font-semibold text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-wider">Kata Sandi</label>
-                                        <input type="password" placeholder="Kata Sandi Firebase" value={password} onChange={(e) => { setPassword(e.target.value); setError(''); }} className="w-full bg-slate-50/50 dark:bg-slate-900 border border-slate-250 dark:border-slate-700 focus:border-red-500 dark:focus:border-red-500 focus:bg-white dark:focus:bg-slate-950 focus:ring-4 focus:ring-red-500/10 text-[13.5px] text-slate-800 dark:text-white rounded-[12px] px-4 py-3 font-medium outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
+                                <form onSubmit={handleAdminLogin} className="space-y-5 mt-2">
+                                    <div className="space-y-4">
+                                        <input type="email" placeholder="Email Akses Admin" value={email} onChange={e => {setEmail(e.target.value); setError('');}} className="w-full bg-slate-50/50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 p-4 text-[13.5px] font-medium outline-none rounded-[16px] focus:bg-white dark:focus:bg-slate-900 focus:border-google-blue dark:focus:border-google-blue focus:shadow-sm transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-800 dark:text-slate-100" />
+                                        <input type="password" placeholder="Kata Sandi Admin" value={password} onChange={e => {setPassword(e.target.value); setError('');}} className="w-full bg-slate-50/50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 p-4 text-[13.5px] font-medium outline-none rounded-[16px] focus:bg-white dark:focus:bg-slate-900 focus:border-google-blue dark:focus:border-google-blue focus:shadow-sm transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-800 dark:text-slate-100" />
                                     </div>
                                     <div className="mt-6 pt-3.5 border-t border-slate-200/50 text-center">
                                         <p className="text-[9px] text-slate-400 font-medium px-2 leading-relaxed">
@@ -2605,7 +2608,7 @@ const getDirectImgUrl = (url) => {
                                         <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3 rounded-xl font-bold text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
                                         <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-xl font-bold text-[12.5px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     )}

@@ -32,11 +32,13 @@
     
     /* Cegah Flash of Raw Text (FOUT) */
     visibility: hidden;
+    color: transparent !important;
 }
 
 /* Tampilkan ikon ketika font telah termuat sempurna */
 .icons-loaded .material-symbols-rounded {
     visibility: visible;
+    color: inherit !important;
 }
 
 /* ============================================================
