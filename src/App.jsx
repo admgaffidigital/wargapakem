@@ -1639,6 +1639,31 @@ const getDirectImgUrl = (url) => {
             const firebaseUnavailable = !db;
             const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l21 && l22 && l23 && l24 && l25 && lTicketProducts && lTicketOrders);
 
+            // Pulihkan produk tiket asli Banyuanyar jika ter-overwrite seeder palsu akibat offline
+            useEffect(() => {
+                if (db && lTicketProducts && ticketProducts) {
+                    const hasDefaultOnly = ticketProducts.length === 1 && ticketProducts[0].id === 1;
+                    const isEmpty = ticketProducts.length === 0;
+                    if (hasDefaultOnly || isEmpty) {
+                        console.log("[Restore] Memulihkan data tiket asli Banyuanyar ke Firestore...");
+                        setTicketProducts([
+                            {
+                                id: 1785500520683,
+                                sku: "TKT-20683",
+                                name: "Kupon Jalan Santai Kemerdekaan - Desa Banyuanyar",
+                                price: 2500,
+                                stock: 240,
+                                description: "Kupon resmi kegiatan Jalan Santai Kemerdekaan Desa Banyuanyar RT Pakem. Banyak doorprize menarik: Sepeda Gunung, Kulkas, TV, Kompor Gas, dan ratusan hadiah hiburan lainnya! Pengambilan langsung di TOKO MAS NOVAN.",
+                                imageUrl: "",
+                                sold: 10,
+                                pickupLocationName: "TOKO MAS NOVAN",
+                                pickupGeoUrl: "https://maps.app.goo.gl/ABN9FkxCj2HJ7cMg6"
+                            }
+                        ]);
+                    }
+                }
+            }, [db, lTicketProducts, ticketProducts]);
+
             useEffect(() => {
                 if (auth && onAuthStateChanged) {
                     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -7833,15 +7858,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 if (isProductsLoaded && (!products || products.length === 0)) {
                     setProducts([
                         {
-                            id: 1,
-                            name: "Tiket Jalan Santai RT Pakem",
-                            price: 5000,
+                            id: 1785500520683,
+                            sku: "TKT-20683",
+                            name: "Kupon Jalan Santai Kemerdekaan - Desa Banyuanyar",
+                            price: 2500,
                             stock: 250,
-                            description: "Tiket resmi kegiatan Jalan Santai memperingati HUT RI RT Pakem. Banyak doorprize menarik: Sepeda Gunung, Kulkas, TV, Kompor Gas, dan ratusan hadiah hiburan lainnya! Pengambilan langsung di lokasi yang telah ditetapkan.",
+                            description: "Kupon resmi kegiatan Jalan Santai Kemerdekaan Desa Banyuanyar RT Pakem. Banyak doorprize menarik: Sepeda Gunung, Kulkas, TV, Kompor Gas, dan ratusan hadiah hiburan lainnya! Pengambilan langsung di TOKO MAS NOVAN.",
                             imageUrl: "",
                             sold: 0,
-                            pickupLocationName: "Rumah Mas Novan / Rumah Pak RT",
-                            pickupGeoUrl: "https://maps.google.com"
+                            pickupLocationName: "TOKO MAS NOVAN",
+                            pickupGeoUrl: "https://maps.app.goo.gl/ABN9FkxCj2HJ7cMg6"
                         }
                     ]);
                 }
