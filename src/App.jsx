@@ -232,7 +232,7 @@ const getDirectImgUrl = (url) => {
                             to   { opacity: 1; transform: translateY(0); }
                         }
                     `}</style>
-                    <div className="bg-white rounded-[24px] shadow-2xl border-2 border-slate-300 p-4 sm:p-5 flex flex-wrap items-center gap-4 max-w-lg mx-auto">
+                    <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border-2 border-slate-300 dark:border-slate-700 p-4 sm:p-5 flex flex-wrap items-center gap-4 max-w-lg mx-auto">
                         {/* Ikon */}
                         <div className="w-14 h-14 rounded-[16px] shrink-0 flex items-center justify-center text-white font-medium text-[18px] shadow-md"
                              style={{ background: 'linear-gradient(135deg,#1a73e8,#0d47a1)' }}>
@@ -624,7 +624,7 @@ const getDirectImgUrl = (url) => {
             return (
                 <div className="fixed right-6 z-50 flex flex-col items-end no-print" style={{ bottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}>
                     {isOpen && (
-                        <div className="bg-white rounded-[24px] shadow-2xl border-2 border-slate-300 w-[320px] max-w-full sm:w-[380px] max-w-full overflow-hidden flex flex-col mb-4 max-h-[82vh]">
+                        <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border-2 border-slate-300 dark:border-slate-700 w-[320px] max-w-full sm:w-[380px] max-w-full overflow-hidden flex flex-col mb-4 max-h-[82vh]">
 
                             {/* Header */}
                             <div className={`text-white px-5 py-4 flex items-center justify-between shrink-0 ${mode === 'admin' ? 'bg-google-blue' : 'bg-google-green'}`}>
@@ -640,10 +640,10 @@ const getDirectImgUrl = (url) => {
 
                             {/* Mode Toggle */}
                             <div className="flex flex-wrap gap-0 border-b-2 border-slate-200 shrink-0">
-                                <button onClick={() => handleModeSwitch('warga')} className={`flex-1 py-2.5 text-[11px] font-medium flex items-center justify-center gap-1.5 transition-all ${mode === 'warga' ? 'bg-google-greenLight text-google-greenDark border-b-2 border-google-green' : 'bg-white text-slate-400 hover:bg-slate-50'}`}>
+                                <button onClick={() => handleModeSwitch('warga')} className={`flex-1 py-2.5 text-[11px] font-medium flex items-center justify-center gap-1.5 transition-all ${mode === 'warga' ? 'bg-google-greenLight text-google-greenDark border-b-2 border-google-green' : 'bg-white dark:bg-slate-900 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="group" className="text-[14px]" />Panduan Warga
                                 </button>
-                                <button onClick={() => handleModeSwitch('admin')} className={`flex-1 py-2.5 text-[11px] font-medium flex items-center justify-center gap-1.5 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-b-2 border-google-blue' : 'bg-white text-slate-400 hover:bg-slate-50'}`}>
+                                <button onClick={() => handleModeSwitch('admin')} className={`flex-1 py-2.5 text-[11px] font-medium flex items-center justify-center gap-1.5 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-b-2 border-google-blue' : 'bg-white dark:bg-slate-900 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="admin_panel_settings" className="text-[14px]" />Panduan Admin
                                 </button>
                             </div>
@@ -657,7 +657,7 @@ const getDirectImgUrl = (url) => {
                                                 <Icon name="support_agent" className="text-white text-[13px]" fill="true" />
                                             </div>
                                         )}
-                                        <div className={`p-3 rounded-[12px] max-w-[82%] leading-relaxed shadow-sm whitespace-pre-line font-medium ${msg.sender === 'user' ? (mode === 'admin' ? 'bg-google-blue' : 'bg-google-green') + ' text-white rounded-tr-sm text-[11px]' : 'bg-white text-google-text border border-slate-300 rounded-tl-sm text-[12.5px]'}`}>{msg.text}</div>
+                                        <div className={`p-3 rounded-[12px] max-w-[82%] leading-relaxed shadow-sm whitespace-pre-line font-medium ${msg.sender === 'user' ? (mode === 'admin' ? 'bg-google-blue' : 'bg-google-green') + ' text-white rounded-tr-sm text-[11px]' : 'bg-white dark:bg-slate-800 text-google-text dark:text-slate-100 border border-slate-300 dark:border-slate-700 rounded-tl-sm text-[12.5px]'}`}>{msg.text}</div>
                                     </div>
                                 ))}
                                 <div ref={messagesEndRef} />
@@ -665,21 +665,21 @@ const getDirectImgUrl = (url) => {
 
                             {/* Sub-topik */}
                             {activeMenu && (
-                                <div className="px-3 py-2 bg-white border-b border-slate-200 flex flex-wrap gap-1.5 shrink-0 max-h-36 overflow-y-auto hide-scrollbar">
+                                <div className="px-3 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex flex-wrap gap-1.5 shrink-0 max-h-36 overflow-y-auto hide-scrollbar">
                                     <p className="w-full text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-0.5">{currentKB[activeMenu].label}</p>
                                     {currentKB[activeMenu].topics.map((t, i) => (
                                         <button key={i} onClick={() => handleTopicClick(activeMenu, t)} className={`text-[10px] font-medium px-3 py-1.5 rounded-[12px] border active:scale-95 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-google-blue/30 hover:bg-google-blue hover:text-white' : 'bg-google-greenLight text-google-greenDark border-google-green/30 hover:bg-google-green hover:text-white'}`}>{t.label}</button>
                                     ))}
-                                    <button onClick={() => setActiveMenu(null)} className="text-[10px] font-medium bg-slate-100 text-slate-500 border border-slate-300 px-3 py-1.5 rounded-[12px] hover:bg-slate-200 active:scale-95 transition-all">G Tutup</button>
+                                    <button onClick={() => setActiveMenu(null)} className="text-[10px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-[12px] hover:bg-slate-200 dark:hover:bg-slate-750 active:scale-95 transition-all">G Tutup</button>
                                 </div>
                             )}
 
                             {/* Menu utama */}
                             {!activeMenu && (
-                                <div className="px-3 py-2 bg-white border-b border-slate-200 flex flex-wrap gap-1.5 shrink-0 max-h-28 overflow-y-auto hide-scrollbar">
+                                <div className="px-3 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex flex-wrap gap-1.5 shrink-0 max-h-28 overflow-y-auto hide-scrollbar">
                                     <p className="w-full text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-0.5">Pilih Topik:</p>
                                     {mainMenus.map(key => (
-                                        <button key={key} onClick={() => handleMenuClick(key)} className={`text-[10px] font-medium border-2 px-3 py-1.5 rounded-[12px] active:scale-95 transition-all flex items-center gap-1 ${mode === 'admin' ? 'bg-slate-50 text-google-text border-slate-300 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight' : 'bg-slate-50 text-google-text border-slate-300 hover:border-google-green hover:text-google-greenDark hover:bg-google-greenLight'}`}>
+                                        <button key={key} onClick={() => handleMenuClick(key)} className={`text-[10px] font-medium border-2 px-3 py-1.5 rounded-[12px] active:scale-95 transition-all flex items-center gap-1 ${mode === 'admin' ? 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight dark:hover:bg-slate-700' : 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-google-green hover:text-google-greenDark hover:bg-google-greenLight dark:hover:bg-slate-700'}`}>
                                             <Icon name={currentKB[key].icon} className="text-[12px]" />{currentKB[key].label.replace(/^[^\s]+\s/, '')}
                                         </button>
                                     ))}
@@ -687,13 +687,13 @@ const getDirectImgUrl = (url) => {
                             )}
 
                             {/* Input */}
-                            <div className="p-3 bg-white flex flex-wrap gap-2 shrink-0">
+                            <div className="p-3 bg-white dark:bg-slate-900 flex flex-wrap gap-2 shrink-0">
                                 <input
                                     type="text" value={inputText}
                                     onChange={e => setInputText(e.target.value)}
                                     onKeyDown={e => e.key === 'Enter' && handleSearch()}
                                     placeholder={mode === 'admin' ? 'Tanya fitur sistem...' : 'Tanya tentang arisan Anda...'}
-                                    className="flex-1 bg-slate-50 border-2 border-slate-300 focus:border-google-blue rounded-[10px] px-4 py-2 text-[11px] font-medium outline-none transition-colors"
+                                    className="flex-1 bg-slate-50 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 focus:border-google-blue dark:text-white rounded-[10px] px-4 py-2 text-[11px] font-medium outline-none transition-colors"
                                 />
                                 <button onClick={handleSearch} className={`w-9 h-9 text-white rounded-[12px] flex items-center justify-center active:scale-95 transition-all shrink-0 ${mode === 'admin' ? 'bg-google-blue hover:bg-google-blueDark' : 'bg-google-green hover:bg-google-greenDark'}`}>
                                     <Icon name="send" className="text-[14px]" />
@@ -1159,8 +1159,8 @@ const getDirectImgUrl = (url) => {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredData.map(item => (
-                                <div key={item.id} className="bg-white rounded-[24px] border border-slate-300 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
-                                    <div className="relative h-48 w-full bg-slate-100 overflow-hidden shrink-0">
+                                <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-300 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
+                                    <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                         {item.imageUrl ? (
                                             <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"  loading="lazy" decoding="async"/>
                                         ) : (
@@ -1184,14 +1184,14 @@ const getDirectImgUrl = (url) => {
                                         )}
                                     </div>
                                     <div className="p-6 flex flex-col flex-1">
-                                        <h3 className="font-medium text-xl text-slate-800 mb-1 line-clamp-1">{item.name}</h3>
-                                        <div className="flex items-center text-slate-500 text-sm mb-4 font-medium">
+                                        <h3 className="font-medium text-xl text-slate-800 dark:text-white mb-1 line-clamp-1">{item.name}</h3>
+                                        <div className="flex items-center text-slate-500 dark:text-slate-400 text-sm mb-4 font-medium">
                                             <Icon name="person" className="text-[14px] mr-1" /> {item.owner}
                                         </div>
-                                        <p className="text-slate-600 text-sm mb-6 line-clamp-3 leading-relaxed flex-1">
+                                        <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 line-clamp-3 leading-relaxed flex-1">
                                             {item.description || 'Tidak ada deskripsi.'}
                                         </p>
-                                        <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%20melihat%20usaha%20Anda%20di%20Portal%20Warga.%20Bisa%20tanya-tanya?`} target="_blank" rel="noopener noreferrer" className="mt-auto w-full bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border-2 border-green-200 hover:border-green-600 py-3 rounded-[10px] font-medium flex items-center justify-center gap-2 transition-all active:scale-95">
+                                        <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%20melihat%20usaha%20Anda%20di%20Portal%20Warga.%20Bisa%20tanya-tanya?`} target="_blank" rel="noopener noreferrer" className="mt-auto w-full bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 hover:bg-green-600 hover:text-white border-2 border-green-200 dark:border-green-800 hover:border-green-600 py-3 rounded-[10px] font-medium flex items-center justify-center gap-2 transition-all active:scale-95">
                                             <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                                             Hubungi Penjual
                                         </a>
@@ -1203,13 +1203,13 @@ const getDirectImgUrl = (url) => {
 
                     {isFormOpen && (
                         <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
-                            <div className="bg-white w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
-                                <div className="p-6 sm:p-8 border-b border-slate-200 flex items-center justify-between shrink-0 bg-gradient-to-r from-green-50 to-white rounded-t-[32px]">
-                                    <h2 className="text-2xl font-bold text-slate-800 tracking-tight flex items-center gap-2">
+                            <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
+                                <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-gradient-to-r from-green-50 to-white dark:from-green-950/10 dark:to-slate-900 rounded-t-[32px]">
+                                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                                         <Icon name="storefront" className="text-green-600" />
                                         {editingId ? 'Edit Data UMKM' : 'Tambah UMKM Baru'}
                                     </h2>
-                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 border border-slate-300 transition-all">
+                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-300 dark:border-slate-700 transition-all">
                                         <Icon name="close" />
                                     </button>
                                 </div>
@@ -1217,38 +1217,38 @@ const getDirectImgUrl = (url) => {
                                     {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
                                     
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Nama Usaha / Toko</label>
-                                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full border-2 border-slate-300 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="Contoh: Warung Barokah" />
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Usaha / Toko</label>
+                                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Contoh: Warung Barokah" />
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Nama Pemilik</label>
-                                        <input type="text" value={formData.owner} onChange={e => setFormData({...formData, owner: e.target.value})} className="w-full border-2 border-slate-300 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="Contoh: Bpk. Budi" />
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Pemilik</label>
+                                        <input type="text" value={formData.owner} onChange={e => setFormData({...formData, owner: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Contoh: Bpk. Budi" />
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Nomor WhatsApp</label>
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nomor WhatsApp</label>
                                         <div className="relative">
-                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 font-medium text-slate-500">+62</div>
-                                            <input type="number" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full border-2 border-slate-300 rounded-[12px] pl-12 pr-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700" placeholder="81234567890" />
+                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 font-medium text-slate-500 dark:text-slate-400">+62</div>
+                                            <input type="number" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-[12px] pl-12 pr-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="81234567890" />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-300 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none bg-white">
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Kategori</label>
+                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white appearance-none bg-white dark:bg-slate-800">
                                             {categories.filter(c => c !== 'Semua').map(c => <option key={c} value={c}>{c}</option>)}
                                         </select>
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Deskripsi Usaha</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="3" className="w-full border-2 border-slate-300 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 resize-none" placeholder="Menjual berbagai macam kebutuhan..."></textarea>
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Deskripsi Usaha</label>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="3" className="w-full bg-slate-50 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white resize-none" placeholder="Menjual berbagai macam kebutuhan..."></textarea>
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Foto (Opsional)</label>
-                                        <div className="border-2 border-dashed border-slate-400 rounded-[12px] p-6 text-center hover:bg-slate-50 transition-colors relative">
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Foto (Opsional)</label>
+                                        <div className="border-2 border-dashed border-slate-400 dark:border-slate-600 rounded-[12px] p-6 text-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative bg-white dark:bg-slate-800/40">
                                             <input type="file" accept="image/*" onChange={handleImageUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                                             {isUploading ? (
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-green-500" /><span className="font-medium">Memproses gambar...</span></div>
@@ -1258,13 +1258,13 @@ const getDirectImgUrl = (url) => {
                                                     <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-[6px] font-medium">Ganti</div>
                                                 </div>
                                             ) : (
-                                                <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400" /><span className="font-medium text-sm">Upload foto</span></div>
+                                                <div className="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400 dark:text-slate-500" /><span className="font-medium text-sm">Upload foto</span></div>
                                             )}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-6 sm:p-8 border-t border-slate-200 flex gap-3 shrink-0 bg-slate-50 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white text-slate-700 font-medium py-4 rounded-[12px] border-2 border-slate-300 hover:bg-slate-100">Batal</button>
+                                <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-[12px] border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-bold py-4 rounded-[12px] shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
                                 </div>
                             </div>
@@ -1273,19 +1273,19 @@ const getDirectImgUrl = (url) => {
 
                     {deleteConfirmId && (
                         <div className="fixed inset-0 bg-slate-900/60  z-[110] flex items-center justify-center p-4">
-                            <div className="bg-white max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up">
-                                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                            <div className="bg-white dark:bg-slate-900 max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up border border-slate-200 dark:border-slate-800">
+                                <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5">
                                     <Icon name="warning" className="text-[40px] text-red-500" />
                                 </div>
-                                <h3 className="text-xl font-bold text-slate-800 mb-2">Hapus UMKM?</h3>
-                                <p className="text-slate-500 font-medium mb-8">Data usaha yang dihapus tidak dapat dikembalikan. Yakin?</p>
+                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">Hapus UMKM?</h3>
+                                <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Data usaha yang dihapus tidak dapat dikembalikan. Yakin?</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 rounded-[12px] font-medium hover:bg-slate-200">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-[12px] font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
                                     <button onClick={() => {
                                         setUmkmData(umkmData.filter(item => item.id !== deleteConfirmId));
                                         setModalConfig && setModalConfig({ message: 'Data UMKM dihapus.' });
                                         setDeleteConfirmId(null);
-                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-full font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
+                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-[12px] font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -1457,41 +1457,41 @@ const getDirectImgUrl = (url) => {
 
                     {isFormOpen && (
                         <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
-                            <div className="bg-white w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
-                                <div className="p-6 sm:p-8 border-b border-slate-200 flex items-center justify-between shrink-0 bg-gradient-to-r from-blue-50 to-white rounded-t-[32px]">
-                                    <h2 className="text-2xl font-bold text-slate-800 tracking-tight flex items-center gap-2">
+                            <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
+                                <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-gradient-to-r from-blue-50 to-white dark:from-blue-950/10 dark:to-slate-900 rounded-t-[32px]">
+                                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                                         <Icon name="campaign" className="text-blue-600" /> Buat Laporan
                                     </h2>
-                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 border border-slate-300 transition-all"><Icon name="close" /></button>
+                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-300 dark:border-slate-700 transition-all"><Icon name="close" /></button>
                                 </div>
                                 <div className="p-6 sm:p-8 overflow-y-auto space-y-5">
                                     {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
                                     
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Judul Laporan</label>
-                                        <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full border-2 border-slate-300 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700" placeholder="Cth: Lampu jalan mati di Blok A" />
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Judul Laporan</label>
+                                        <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Cth: Lampu jalan mati di Blok A" />
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-300 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 appearance-none bg-white">
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Kategori</label>
+                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border-2 border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white appearance-none bg-white dark:bg-slate-800">
                                             {categories.map(c => <option key={c} value={c}>{c}</option>)}
                                         </select>
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Isi Laporan / Detail</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="4" className="w-full border-2 border-slate-300 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 resize-none" placeholder="Ceritakan detail masalah..."></textarea>
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Isi Laporan / Detail</label>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="4" className="w-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white resize-none" placeholder="Ceritakan detail masalah..."></textarea>
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Nama Pelapor (Opsional)</label>
-                                        <input type="text" value={formData.reporter} onChange={e => setFormData({...formData, reporter: e.target.value})} className="w-full border-2 border-slate-300 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700" placeholder="Kosongkan jika ingin anonim" />
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Pelapor (Opsional)</label>
+                                        <input type="text" value={formData.reporter} onChange={e => setFormData({...formData, reporter: e.target.value})} className="w-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Kosongkan jika ingin anonim" />
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-2">Lampiran Foto (Opsional)</label>
-                                        <div className="border-2 border-dashed border-slate-400 rounded-[12px] p-6 text-center hover:bg-slate-50 transition-colors relative">
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Lampiran Foto (Opsional)</label>
+                                        <div className="border-2 border-dashed border-slate-400 dark:border-slate-650 rounded-[12px] p-6 text-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative bg-white dark:bg-slate-800/40">
                                             <input type="file" accept="image/*" onChange={handleImageUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                                             {isUploading ? (
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-blue-500" /><span className="font-medium">Memproses gambar...</span></div>
@@ -1501,13 +1501,13 @@ const getDirectImgUrl = (url) => {
                                                     <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-[6px] font-medium">Ganti</div>
                                                 </div>
                                             ) : (
-                                                <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400" /><span className="font-medium text-sm">Upload foto bukti</span></div>
+                                                <div className="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400 dark:text-slate-500" /><span className="font-medium text-sm">Upload foto bukti</span></div>
                                             )}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-6 sm:p-8 border-t border-slate-200 flex gap-3 shrink-0 bg-slate-50 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white text-slate-700 font-medium py-4 rounded-[12px] border-2 border-slate-300 hover:bg-slate-100">Batal</button>
+                                <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-[12px] border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-bold py-4 rounded-[12px] shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
                                 </div>
                             </div>
@@ -1516,17 +1516,17 @@ const getDirectImgUrl = (url) => {
 
                     {deleteConfirmId && (
                         <div className="fixed inset-0 bg-slate-900/60  z-[110] flex items-center justify-center p-4">
-                            <div className="bg-white max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up">
-                                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5"><Icon name="warning" className="text-[40px] text-red-500" /></div>
-                                <h3 className="text-xl font-bold text-slate-800 mb-2">Hapus Laporan?</h3>
-                                <p className="text-slate-500 font-medium mb-8">Laporan yang dihapus tidak dapat dikembalikan. Yakin?</p>
+                            <div className="bg-white dark:bg-slate-900 max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up border border-slate-200 dark:border-slate-800">
+                                <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5"><Icon name="warning" className="text-[40px] text-red-500" /></div>
+                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">Hapus Laporan?</h3>
+                                <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Laporan yang dihapus tidak dapat dikembalikan. Yakin?</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 text-slate-700 rounded-[12px] font-medium hover:bg-slate-200">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-[12px] font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
                                     <button onClick={() => {
                                         setLaporanData((laporanData || []).filter(item => item.id !== deleteConfirmId));
                                         setModalConfig && setModalConfig({ message: 'Laporan dihapus.' });
                                         setDeleteConfirmId(null);
-                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-full font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
+                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-[12px] font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -1876,19 +1876,19 @@ const getDirectImgUrl = (url) => {
                     <PWAInstallBanner />
                     {showLicenseModal && (
                         <div className="fixed inset-0 bg-black/60  z-[100] flex justify-center items-center p-4 animate-fade-in">
-                            <div className="bg-white rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl animate-slide-up border-2 border-red-500/30 flex flex-col max-h-[85vh]">
-                                <div className="bg-red-50 px-6 py-5 border-b border-red-500/20 flex items-center justify-between shrink-0">
-                                    <h3 className="text-[14px] font-bold text-red-700 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-[12px] hover:bg-red-100 text-red-500 transition-colors"><Icon name="close" /></button>
+                            <div className="bg-white dark:bg-slate-900 rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl animate-slide-up border-2 border-red-500/30 dark:border-red-950/40 flex flex-col max-h-[85vh]">
+                                <div className="bg-red-50 dark:bg-red-950/20 px-6 py-5 border-b border-red-500/20 dark:border-red-900/30 flex items-center justify-between shrink-0">
+                                    <h3 className="text-[14px] font-bold text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-[12px] hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
                                 </div>
                                 <div className="p-6 md:p-8 overflow-y-auto hide-scrollbar">
-                                    <div className="prose prose-sm text-slate-600 text-justify leading-relaxed max-w-none">
-                                        <p className="font-medium text-slate-800 text-[13px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
+                                    <div className="prose prose-sm text-slate-600 dark:text-slate-350 text-justify leading-relaxed max-w-none">
+                                        <p className="font-medium text-slate-800 dark:text-slate-200 text-[13px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
                                         <p className="mb-3">Seluruh data di dalam sistem ini dilindungi secara ketat dan dikelola secara eksklusif oleh Admin Lingkungan.</p>
-                                        <p className="mb-4 text-red-600 font-medium bg-red-50 p-3 rounded-[10px] border border-red-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <strong>dilaporkan kepada pihak yang berwajib</strong> sesuai perundang-undangan yang berlaku.</p>
+                                        <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3 rounded-[10px] border border-red-100 dark:border-red-900/30-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <strong>dilaporkan kepada pihak yang berwajib</strong> sesuai perundang-undangan yang berlaku.</p>
                                         <p className="mb-6">Sistem ini diperuntukkan khusus untuk keperluan digitalisasi guna menunjang tata kelola lingkungan desa yang transparan dan akuntabel.</p>
                                         
-                                        <div className="border-t-2 border-dashed border-slate-300 pt-4 text-center">
+                                        <div className="border-t-2 border-dashed border-slate-300 dark:border-slate-700 pt-4 text-center">
                                             <p className="text-[11px] font-medium text-slate-400 mb-1">COPYRIGHT &copy; 2026</p>
                                             <p className="text-[10px] text-slate-400 mb-2">Sistem & lisensi ditandatangani secara digital oleh pengembang resmi:</p>
                                             <p className="text-[16px] font-bold tracking-widest bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent uppercase">Novan Restu Utomo</p>
@@ -1896,27 +1896,27 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                 </div>
                                 <div className="p-4 md:px-8 md:pb-8 pt-0 shrink-0">
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-4 rounded-[12px] font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 py-4 rounded-[12px] font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
                                 </div>
                             </div>
                         </div>
                     )}
                     {showLegalModal && (
                         <div className="fixed inset-0 bg-black/60  z-[100] flex justify-center items-center p-4 animate-fade-in">
-                            <div className="bg-white rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-200/50 max-h-[85vh]">
-                                <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
-                                    <h3 className="text-[14px] font-bold text-slate-800 flex items-center gap-2">
+                            <div className="bg-white dark:bg-slate-900 rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-200/50 dark:border-slate-850 max-h-[85vh]">
+                                <div className="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
+                                    <h3 className="text-[14px] font-bold text-slate-800 dark:text-white flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
                                         {showLegalModal === 'terms' ? 'Syarat & Ketentuan' : 'Kebijakan Privasi'}
                                     </h3>
-                                    <button onClick={() => setShowLegalModal(null)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-200 text-slate-500"><Icon name="close" /></button>
+                                    <button onClick={() => setShowLegalModal(null)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"><Icon name="close" /></button>
                                 </div>
                                 <div className="p-6 overflow-y-auto custom-scrollbar">
-                                    <div className="prose prose-sm text-slate-600 text-justify leading-relaxed whitespace-pre-wrap">
+                                    <div className="prose prose-sm text-slate-600 dark:text-slate-300 text-justify leading-relaxed whitespace-pre-wrap">
                                         {showLegalModal === 'terms' ? legalData?.terms : legalData?.privacy}
                                     </div>
                                 </div>
-                                <div className="p-4 border-t border-slate-200 shrink-0">
+                                <div className="p-4 border-t border-slate-200 dark:border-slate-800 shrink-0">
                                     <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-[10px] font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
                                 </div>
                             </div>
@@ -1930,12 +1930,12 @@ const getDirectImgUrl = (url) => {
 
                     {showLogoutModal && (
                         <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[20px] p-8 w-full max-w-sm text-center border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
-                                <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="logout" className="text-[40px] text-google-red" fill="true" /></div>
-                                <h3 className="text-2xl font-medium text-google-text mb-2">Keluar Sesi?</h3>
-                                <p className="text-[13px] text-google-textVariant mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white dark:bg-slate-900 rounded-[20px] p-8 w-full max-w-sm text-center border-2 border-slate-300 dark:border-slate-700 shadow-2xl transform scale-100 transition-transform">
+                                <div className="mb-5 bg-google-redLight dark:bg-red-950/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30 dark:border-red-900/20"><Icon name="logout" className="text-[40px] text-google-red" fill="true" /></div>
+                                <h3 className="text-2xl font-medium text-google-text dark:text-white mb-2">Keluar Sesi?</h3>
+                                <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white text-google-text py-3.5 px-6 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-slate-200 py-3.5 px-6 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 active:scale-95 transition-all shadow-sm">Batal</button>
                                     <button onClick={executeLogout} className="flex-1 bg-google-red text-white py-3.5 px-6 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-redDark border-2 border-google-redDark active:scale-95 transition-all">Ya, Keluar</button>
                                 </div>
                             </div>
@@ -1951,24 +1951,24 @@ const getDirectImgUrl = (url) => {
             const [tab, setTab] = useState('android');
             return (
                 <div className="fixed inset-0 bg-slate-900/70  z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-<div className="bg-white rounded-[32px] w-full max-w-xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-300" style={{ animation: 'slideUp 0.3s ease-out' }}>
-                        <div className="p-4 sm:p-5 md:p-6 border-b-2 border-slate-300 flex justify-between items-center bg-slate-50 rounded-t-[30px]">
-                            <h3 className="text-xl font-medium text-google-text flex flex-wrap items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
-                            <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 text-slate-500 hover:bg-slate-300 hover:text-google-text transition-all active:scale-95"><Icon name="close" /></button>
+                    <div className="bg-white dark:bg-slate-900 rounded-[32px] w-full max-w-xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-300 dark:border-slate-700" style={{ animation: 'slideUp 0.3s ease-out' }}>
+                        <div className="p-4 sm:p-5 md:p-6 border-b-2 border-slate-300 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-950 rounded-t-[30px]">
+                            <h3 className="text-xl font-medium text-google-text dark:text-white flex flex-wrap items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
+                            <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 hover:text-google-text dark:hover:text-white transition-all active:scale-95"><Icon name="close" /></button>
                         </div>
                         <div className="p-4 sm:p-5 md:p-6 overflow-y-auto flex-1">
-                            <p className="text-[13px] text-google-textVariant mb-6 font-medium">Aplikasi ini bisa diinstal langsung ke perangkat Anda (Android, iOS, maupun PC/Laptop) tanpa melalui App Store atau Play Store. Hemat memori dan cepat!</p>
+                            <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-6 font-medium">Aplikasi ini bisa diinstal langsung ke perangkat Anda (Android, iOS, maupun PC/Laptop) tanpa melalui App Store atau Play Store. Hemat memori dan cepat!</p>
                             
-                            <div className="flex bg-slate-100 p-1.5 rounded-[16px] mb-6 border-2 border-slate-300 shadow-inner">
-                                <button onClick={() => setTab('android')} className={`flex-1 py-2.5 rounded-[12px] text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'android' ? 'bg-white text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 hover:bg-slate-200'}`}><Icon name="android" className="text-[16px]" /> Android</button>
-                                <button onClick={() => setTab('ios')} className={`flex-1 py-2.5 rounded-[12px] text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'ios' ? 'bg-white text-google-text border-2 border-slate-400 shadow-sm' : 'text-slate-500 hover:bg-slate-200'}`}><Icon name="apple" className="text-[16px]" /> iOS</button>
-                                <button onClick={() => setTab('pc')} className={`flex-1 py-2.5 rounded-[12px] text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'pc' ? 'bg-white text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 hover:bg-slate-200'}`}><Icon name="laptop_mac" className="text-[16px]" /> PC/Laptop</button>
+                            <div className="flex bg-slate-100 dark:bg-slate-950 p-1.5 rounded-[16px] mb-6 border-2 border-slate-300 dark:border-slate-850 shadow-inner">
+                                <button onClick={() => setTab('android')} className={`flex-1 py-2.5 rounded-[12px] text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'android' ? 'bg-white dark:bg-slate-900 text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="android" className="text-[16px]" /> Android</button>
+                                <button onClick={() => setTab('ios')} className={`flex-1 py-2.5 rounded-[12px] text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'ios' ? 'bg-white dark:bg-slate-900 text-google-text dark:text-white border-2 border-slate-400 dark:border-slate-700 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="apple" className="text-[16px]" /> iOS</button>
+                                <button onClick={() => setTab('pc')} className={`flex-1 py-2.5 rounded-[12px] text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'pc' ? 'bg-white dark:bg-slate-900 text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="laptop_mac" className="text-[16px]" /> PC/Laptop</button>
                             </div>
 
                             {tab === 'android' && (
                                 <div className="space-y-4 animate-fadeIn">
-                                    <h4 className="font-medium text-google-text text-[13px]">Pengguna Google Chrome</h4>
-                                    <ol className="list-decimal pl-5 space-y-3 text-[13px] text-google-textVariant font-medium">
+                                    <h4 className="font-medium text-google-text dark:text-white text-[13px]">Pengguna Google Chrome</h4>
+                                    <ol className="list-decimal pl-5 space-y-3 text-[13px] text-google-textVariant dark:text-slate-300 font-medium">
                                         <li>Buka website ini di browser <b>Google Chrome</b>.</li>
                                         <li>Tunggu beberapa detik, akan muncul banner <b>"Pasang Aplikasi Ini"</b> di bagian bawah layar. Klik tombol <b>Install</b>.</li>
                                         <li>Atau, klik ikon <b>titik tiga</b> (G) di pojok kanan atas browser.</li>
@@ -1980,8 +1980,8 @@ const getDirectImgUrl = (url) => {
 
                             {tab === 'ios' && (
                                 <div className="space-y-4 animate-fadeIn">
-                                    <h4 className="font-medium text-google-text text-[13px]">Pengguna iPhone & iPad (Safari)</h4>
-                                    <ol className="list-decimal pl-5 space-y-3 text-[13px] text-google-textVariant font-medium">
+                                    <h4 className="font-medium text-google-text dark:text-white text-[13px]">Pengguna iPhone & iPad (Safari)</h4>
+                                    <ol className="list-decimal pl-5 space-y-3 text-[13px] text-google-textVariant dark:text-slate-300 font-medium">
                                         <li>Buka website ini menggunakan browser <b>Safari</b> (wajib).</li>
                                         <li>Ketuk ikon <b>Bagikan</b> <Icon name="ios_share" className="text-[14px] inline text-google-blue" /> (kotak dengan panah ke atas) di bagian bawah layar.</li>
                                         <li>Geser menu ke atas atau ke samping, cari dan ketuk <b>"Tambah ke Layar Utama"</b> (Add to Home Screen) <Icon name="add_box" className="text-[14px] inline text-slate-500" />.</li>
@@ -1993,8 +1993,8 @@ const getDirectImgUrl = (url) => {
 
                             {tab === 'pc' && (
                                 <div className="space-y-4 animate-fadeIn">
-                                    <h4 className="font-medium text-google-text text-[13px]">Pengguna PC/Laptop (Chrome / Edge)</h4>
-                                    <ol className="list-decimal pl-5 space-y-3 text-[13px] text-google-textVariant font-medium">
+                                    <h4 className="font-medium text-google-text dark:text-white text-[13px]">Pengguna PC/Laptop (Chrome / Edge)</h4>
+                                    <ol className="list-decimal pl-5 space-y-3 text-[13px] text-google-textVariant dark:text-slate-300 font-medium">
                                         <li>Buka website ini di <b>Google Chrome</b> atau <b>Microsoft Edge</b>.</li>
                                         <li>Perhatikan ujung kanan bilah alamat web (address bar).</li>
                                         <li>Klik ikon <b>Install</b> <Icon name="install_desktop" className="text-[14px] inline text-google-blue" /> yang muncul di sana.</li>
@@ -2004,7 +2004,7 @@ const getDirectImgUrl = (url) => {
                                 </div>
                             )}
                         </div>
-                        <div className="p-5 sm:p-6 md:p-8 border-t-2 border-slate-300 bg-slate-50 rounded-b-[30px] flex justify-end">
+                        <div className="p-5 sm:p-6 md:p-8 border-t-2 border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 rounded-b-[30px] flex justify-end">
                             <button onClick={onClose} className="bg-google-blue text-white px-6 py-3 rounded-[12px] font-medium text-[13px] shadow-md hover:bg-google-blueDark transition-all active:scale-95">Tutup Panduan</button>
                         </div>
                     </div>
@@ -6211,29 +6211,29 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     {editingHistoryId && (
                         <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-<div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left max-h-[90vh] flex flex-col border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
-                                <h3 className="text-2xl font-medium text-google-text mb-1 shrink-0 tracking-tight">Revisi Kehadiran</h3><p className="text-[13px] font-medium text-google-textVariant mb-6 shrink-0 leading-relaxed">Saldo akan disesuaikan otomatis mengikuti perubahan presensi ini.</p>
+                            <div className="bg-white dark:bg-slate-900 rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left max-h-[90vh] flex flex-col border-2 border-slate-300 dark:border-slate-700 shadow-2xl transform scale-100 transition-transform">
+                                <h3 className="text-2xl font-medium text-google-text dark:text-white mb-1 shrink-0 tracking-tight">Revisi Kehadiran</h3><p className="text-[13px] font-medium text-google-textVariant dark:text-slate-300 mb-6 shrink-0 leading-relaxed">Saldo akan disesuaikan otomatis mengikuti perubahan presensi ini.</p>
                                 <div className="overflow-y-auto space-y-4 flex-1 pb-4 pr-1 hide-scrollbar">
                                     {history.find(h => h.id === editingHistoryId)?.absensiDetails.map((member, idx) => (
-                                        <div key={idx} className={`flex flex-col gap-3 border-2 p-5 rounded-[24px] shadow-sm ${isNonaktif(member) ? 'border-slate-300 bg-slate-100 opacity-60' : 'border-slate-300 bg-slate-50'}`}>
-                                            <p className={`text-[14px] font-medium truncate tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text'}`}>{member.name}{isNonaktif(member) && <span className="text-[9px] ml-2 bg-slate-300 text-slate-500 px-2 py-0.5 rounded font-medium uppercase tracking-wider no-underline">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</p>
+                                        <div key={idx} className={`flex flex-col gap-3 border-2 p-5 rounded-[24px] shadow-sm ${isNonaktif(member) ? 'border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 opacity-60' : 'border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/40'}`}>
+                                            <p className={`text-[14px] font-medium truncate tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text dark:text-white'}`}>{member.name}{isNonaktif(member) && <span className="text-[9px] ml-2 bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded font-medium uppercase tracking-wider no-underline">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</p>
                                             {/* FIX BONUS-B: Warga Meninggal tidak punya toggle - bebas dari arisan */}
                                             {isNonaktif(member) ? (
-                                                <div className="flex flex-wrap items-center gap-2 px-4 py-3 rounded-[14px] bg-slate-200 border-2 border-slate-400">
-                                                    <Icon name="do_not_disturb" className="text-[16px] text-slate-400" />
-                                                    <span className="text-[11px] font-medium text-slate-500 uppercase tracking-widest">Bebas Arisan - Jimpitan saja</span>
+                                                <div className="flex flex-wrap items-center gap-2 px-4 py-3 rounded-[14px] bg-slate-200 dark:bg-slate-800 border-2 border-slate-400 dark:border-slate-700">
+                                                    <Icon name="do_not_disturb" className="text-[16px] text-slate-400 dark:text-slate-500" />
+                                                    <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest">Bebas Arisan - Jimpitan saja</span>
                                                 </div>
                                             ) : (
-                                            <div className="flex flex-wrap rounded-[16px] bg-slate-200/60 p-2 gap-2 border-2 border-slate-300 inset-shadow-sm">
+                                            <div className="flex flex-wrap rounded-[16px] bg-slate-200/60 dark:bg-slate-850 p-2 gap-2 border-2 border-slate-300 dark:border-slate-700 inset-shadow-sm">
                                                 {['Hadir', 'Musibah', 'Alfa'].map(stat => (
-                                                    <button key={stat} onClick={() => handleAttendanceChange(member.name, stat)} className={`flex-1 py-2.5 text-[10px] uppercase tracking-widest font-medium rounded-[10px] transition-all duration-300 border-2 ${tempAttendance[member.name] === stat ? (stat === 'Hadir' ? 'bg-google-green text-white shadow-md border-google-greenDark scale-105' : stat === 'Musibah' ? 'bg-google-yellowDark text-white shadow-md border-google-yellowDark scale-105' : 'bg-google-red text-white shadow-md border-google-redDark scale-105') : 'text-google-textVariant bg-transparent hover:bg-white border-transparent'}`}>{stat}</button>
+                                                    <button key={stat} onClick={() => handleAttendanceChange(member.name, stat)} className={`flex-1 py-2.5 text-[10px] uppercase tracking-widest font-medium rounded-[10px] transition-all duration-300 border-2 ${tempAttendance[member.name] === stat ? (stat === 'Hadir' ? 'bg-google-green text-white shadow-md border-google-greenDark scale-105' : stat === 'Musibah' ? 'bg-google-yellowDark text-white shadow-md border-google-yellowDark scale-105' : 'bg-google-red text-white shadow-md border-google-redDark scale-105') : 'text-google-textVariant dark:text-slate-400 bg-transparent hover:bg-white dark:hover:bg-slate-800 border-transparent'}`}>{stat}</button>
                                                 ))}
                                             </div>
                                             )}
                                         </div>
                                     ))}
                                 </div>
-                                <div className="flex flex-wrap gap-3 pt-6 border-t-2 border-slate-200 mt-2 shrink-0"><button onClick={() => setEditingHistoryId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={saveEditHistory} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center">Simpan Revisi</button></div>
+                                <div className="flex flex-wrap gap-3 pt-6 border-t-2 border-slate-200 dark:border-slate-800 mt-2 shrink-0"><button onClick={() => setEditingHistoryId(null)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border-2 border-slate-300 dark:border-slate-700 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={saveEditHistory} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center">Simpan Revisi</button></div>
                             </div>
                         </div>
                     )}
@@ -6286,51 +6286,51 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 <PengaturanSection title="Manajemen Info Layanan Desa" onSave={handleSave}>
                     <div className="space-y-6">
                         {/* Toggle Aktif */}
-                        <label className="flex items-center justify-between bg-slate-50 border-2 border-slate-300 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 transition-all duration-200">
+                        <label className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 dark:hover:bg-slate-850/20 transition-all duration-200">
                             <div>
-                                <p className="text-[13px] font-medium text-google-text">Aktifkan Info Desa</p>
-                                <p className="text-[11px] text-google-textVariant font-medium mt-0.5">Tampilkan bagian batas & kontak di Peta Desa</p>
+                                <p className="text-[13px] font-medium text-google-text dark:text-white">Aktifkan Info Desa</p>
+                                <p className="text-[11px] text-google-textVariant dark:text-slate-350 font-medium mt-0.5">Tampilkan bagian batas & kontak di Peta Desa</p>
                             </div>
                             <div className="relative">
                                 <input type="checkbox" className="sr-only peer" checked={localInfo.enabled} onChange={e => setLocalInfo({...localInfo, enabled: e.target.checked})} />
-                                <div className="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-google-blue after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-400 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                                <div className="w-11 h-6 bg-slate-300 dark:bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-google-blue after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-400 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                             </div>
                         </label>
 
                         {localInfo.enabled && (
                             <>
                                 {/* Batas Administrasi */}
-                                <div className="p-4 bg-slate-50 border-2 border-slate-300 rounded-[20px]">
-                                    <h4 className="font-medium text-[13px] text-google-text mb-4">Batas Administrasi</h4>
+                                <div className="p-4 bg-slate-50 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 rounded-[20px]">
+                                    <h4 className="font-medium text-[13px] text-google-text dark:text-white mb-4">Batas Administrasi</h4>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         {['utara', 'selatan', 'timur', 'barat'].map(arah => (
-                                            <div key={arah} className="bg-white rounded-[12px] px-4 py-2 border-2 border-slate-300 focus-within:border-google-blue transition-all">
-                                                <label className="text-[9px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">{arah}</label>
-                                                <input type="text" value={localInfo.batas?.[arah] || ''} onChange={e => updateBatas(arah, e.target.value)} className="w-full bg-transparent border-none text-[12px] font-medium outline-none p-0 text-google-text" placeholder={`Batas ${arah}`} />
+                                            <div key={arah} className="bg-white dark:bg-slate-800 rounded-[12px] px-4 py-2 border-2 border-slate-300 dark:border-slate-700 focus-within:border-google-blue transition-all">
+                                                <label className="text-[9px] font-medium text-google-textVariant dark:text-slate-400 block mb-1 uppercase tracking-widest">{arah}</label>
+                                                <input type="text" value={localInfo.batas?.[arah] || ''} onChange={e => updateBatas(arah, e.target.value)} className="w-full bg-transparent border-none text-[12px] font-medium outline-none p-0 text-google-text dark:text-white" placeholder={`Batas ${arah}`} />
                                             </div>
                                         ))}
                                     </div>
                                 </div>
 
                                 {/* Kontak Penting */}
-                                <div className="p-4 bg-slate-50 border-2 border-slate-300 rounded-[20px]">
-                                    <h4 className="font-medium text-[13px] text-google-text mb-4">Kontak Penting</h4>
+                                <div className="p-4 bg-slate-50 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 rounded-[20px]">
+                                    <h4 className="font-medium text-[13px] text-google-text dark:text-white mb-4">Kontak Penting</h4>
                                     <div className="space-y-3 mb-4">
                                         {localInfo.kontak?.map((k, idx) => {
                                             const idKey = k.id || k.nama;
                                             return (
-                                            <div key={idKey} className="flex flex-col sm:flex-row gap-3 bg-white p-3 rounded-[12px] border-2 border-slate-300 relative group">
+                                            <div key={idKey} className="flex flex-col sm:flex-row gap-3 bg-white dark:bg-slate-850 p-3 rounded-[12px] border-2 border-slate-300 dark:border-slate-750 relative group">
                                                 <div className="flex-1">
-                                                    <input type="text" value={k.nama} onChange={e => updateKontak(idKey, 'nama', e.target.value)} className="w-full bg-slate-50 border border-slate-300 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text mb-2" placeholder="Nama Layanan" />
-                                                    <input type="text" value={k.telepon} onChange={e => updateKontak(idKey, 'telepon', e.target.value)} className="w-full bg-slate-50 border border-slate-300 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text" placeholder="Nomor Telepon" />
+                                                    <input type="text" value={k.nama} onChange={e => updateKontak(idKey, 'nama', e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text dark:text-white mb-2" placeholder="Nama Layanan" />
+                                                    <input type="text" value={k.telepon} onChange={e => updateKontak(idKey, 'telepon', e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text dark:text-white" placeholder="Nomor Telepon" />
                                                 </div>
-                                                <button onClick={() => removeKontak(idKey)} className="self-end sm:self-center bg-red-50 text-red-600 p-2 rounded-[8px] hover:bg-red-100 transition-colors">
+                                                <button onClick={() => removeKontak(idKey)} className="self-end sm:self-center bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 p-2 rounded-[8px] hover:bg-red-100 transition-colors">
                                                     <Icon name="delete" className="text-[17px]" />
                                                 </button>
                                             </div>
                                         )})}
                                     </div>
-                                    <button onClick={addKontak} className="w-full py-3 border-2 border-dashed border-slate-400 rounded-[12px] text-google-textVariant font-medium text-[12px] hover:bg-slate-100 hover:text-google-blue hover:border-google-blue transition-all flex items-center justify-center gap-2">
+                                    <button onClick={addKontak} className="w-full py-3 border-2 border-dashed border-slate-400 dark:border-slate-650 rounded-[12px] text-google-textVariant dark:text-slate-400 font-medium text-[12px] hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-google-blue hover:border-google-blue transition-all flex items-center justify-center gap-2">
                                         <Icon name="add" className="text-[16px]" /> Tambah Kontak
                                     </button>
                                 </div>
@@ -6412,10 +6412,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             return (
             <PengaturanSection title="Manajemen Sponsor" onSave={() => showAlert('Pengaturan Sponsor berhasil disimpan.')}>
                 <div className="space-y-4">
-                <label className="flex items-center justify-between bg-slate-50 border-2 border-slate-300 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 transition-all duration-200">
+                 <label className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 dark:hover:bg-slate-850/20 transition-all duration-200">
                     <div>
-                    <p className="text-[13px] font-medium text-google-text">Aktifkan Tampilan Sponsor</p>
-                    <p className="text-[11px] text-google-textVariant font-medium mt-0.5">Tampilkan logo-logo sponsor di halaman utama</p>
+                    <p className="text-[13px] font-medium text-google-text dark:text-white">Aktifkan Tampilan Sponsor</p>
+                    <p className="text-[11px] text-google-textVariant dark:text-slate-350 font-medium mt-0.5">Tampilkan logo-logo sponsor di halaman utama</p>
                     </div>
                     <div className="relative">
                     <input type="checkbox" className="sr-only peer" checked={sponsorsData?.enabled || false} onChange={e => {
@@ -6423,21 +6423,20 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         // Functional update agar enabled tidak hilang saat onSnapshot tiba
                         setSponsorsData(prev => ({ ...prev, enabled: checked }));
                     }} />
-                    <div className="w-12 h-6 bg-slate-200 peer-checked:bg-google-blue rounded-full transition-colors peer"></div>
+                    <div className="w-12 h-6 bg-slate-200 dark:bg-slate-700 peer-checked:bg-google-blue rounded-full transition-colors peer"></div>
                     <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-6 peer"></div>
                     </div>
-                </label>
-
-                {sponsorsData?.enabled && (
-                    <div className="mt-2 p-4 border-2 border-slate-200 rounded-[16px] bg-slate-50 space-y-5">
+                 </label>
+                 {sponsorsData?.enabled && (
+                    <div className="mt-2 p-4 border-2 border-slate-200 dark:border-slate-800 rounded-[16px] bg-slate-50 dark:bg-slate-900 space-y-5">
                     <div>
-                        <p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-3">Daftar Sponsor</p>
+                        <p className="text-[10px] font-medium text-google-textVariant dark:text-slate-400 uppercase tracking-widest mb-3">Daftar Sponsor</p>
                         <div className="space-y-2">
                         {sponsorsData?.sponsors?.map((s, i) => (
-                            <div key={i} className="flex items-center justify-between bg-white p-3 rounded-[12px] shadow-sm border border-slate-200 gap-3">
+                            <div key={i} className="flex items-center justify-between bg-white dark:bg-slate-850 p-3 rounded-[12px] shadow-sm border border-slate-200 dark:border-slate-750 gap-3">
                             <div className="flex items-center gap-3 overflow-hidden">
-                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 p-1 border border-slate-200" loading="lazy" decoding="async" onError={(e) => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>=+n+</text></svg>'; }} />
-                                <span className="text-[12px] font-medium text-google-text truncate">{s.name}</span>
+                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 dark:bg-slate-800 p-1 border border-slate-200 dark:border-slate-700" loading="lazy" decoding="async" onError={(e) => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>=+n+</text></svg>'; }} />
+                                <span className="text-[12px] font-medium text-google-text dark:text-white truncate">{s.name}</span>
                             </div>
                             <button onClick={() => {
                                 const idx = i;
@@ -6446,26 +6445,26 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     const ns = [...(prev?.sponsors || [])]; ns.splice(idx, 1);
                                     return { ...prev, sponsors: ns };
                                 });
-                            }} className="text-google-red hover:bg-red-50 p-2 rounded-full transition-colors shrink-0"><Icon name="delete" className="text-[17px]" /></button>
+                            }} className="text-google-red hover:bg-red-50 dark:hover:bg-red-950/20 p-2 rounded-full transition-colors shrink-0"><Icon name="delete" className="text-[17px]" /></button>
                             </div>
                         ))}
                         {(!sponsorsData?.sponsors || sponsorsData.sponsors.length === 0) && (
-                            <p className="text-[11px] italic text-slate-400 text-center py-3">Belum ada sponsor. Tambahkan di bawah.</p>
+                            <p className="text-[11px] italic text-slate-400 dark:text-slate-500 text-center py-3">Belum ada sponsor. Tambahkan di bawah.</p>
                         )}
                         </div>
                     </div>
 
-                    <div className="pt-4 border-t-2 border-slate-300 space-y-4">
-                        <p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest">Tambah Sponsor Baru</p>
+                    <div className="pt-4 border-t-2 border-slate-300 dark:border-slate-700 space-y-4">
+                        <p className="text-[10px] font-medium text-google-textVariant dark:text-slate-400 uppercase tracking-widest">Tambah Sponsor Baru</p>
 
-                        <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm">
-                        <label className="text-[9px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Nama Sponsor</label>
-                        <input type="text" value={newName} onChange={e => setNewName(e.target.value)} placeholder="Misal: Bank BRI Cabang Pakem" className="w-full bg-transparent text-[13px] font-medium text-google-text placeholder:text-slate-300 outline-none" />
+                        <div className="bg-white dark:bg-slate-850 rounded-[16px] px-4 py-3 border-2 border-slate-300 dark:border-slate-700 focus-within:border-google-blue transition-all shadow-sm">
+                        <label className="text-[9px] font-medium text-google-textVariant dark:text-slate-400 block mb-1 uppercase tracking-widest">Nama Sponsor</label>
+                        <input type="text" value={newName} onChange={e => setNewName(e.target.value)} placeholder="Misal: Bank BRI Cabang Pakem" className="w-full bg-transparent text-[13px] font-medium text-google-text dark:text-white placeholder:text-slate-350 dark:placeholder:text-slate-550 outline-none" />
                         </div>
 
                         <div>
-                        <p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Logo / Gambar Sponsor</p>
-                        <label className={`relative w-full h-16 bg-white border-2 ${isUploading ? 'border-google-blue bg-google-blueLight/20' : 'border-slate-300 hover:border-google-blue/50'} rounded-[14px] flex items-center justify-center px-4 cursor-pointer transition-all duration-200 overflow-hidden`}>
+                        <p className="text-[9px] font-medium text-google-textVariant dark:text-slate-400 uppercase tracking-widest mb-2">Logo / Gambar Sponsor</p>
+                        <label className={`relative w-full h-16 bg-white dark:bg-slate-850 border-2 ${isUploading ? 'border-google-blue bg-google-blueLight/20 dark:bg-google-blueLight/10' : 'border-slate-300 dark:border-slate-700 hover:border-google-blue/50'} rounded-[14px] flex items-center justify-center px-4 cursor-pointer transition-all duration-200 overflow-hidden`}>
                             <input type="file" accept="image/*" onChange={e => uploadLogo(e.target.files[0])} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" />
                             {isUploading ? (
                             <div className="flex items-center gap-3 pointer-events-none">
@@ -6474,12 +6473,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
                             ) : (
                             <div className="flex items-center gap-3 pointer-events-none">
-                                <div className="w-10 h-10 bg-google-blueLight rounded-[12px] flex items-center justify-center border border-google-blue/30 shrink-0">
+                                <div className="w-10 h-10 bg-google-blueLight dark:bg-slate-800 rounded-[12px] flex items-center justify-center border border-google-blue/30 dark:border-slate-700 shrink-0">
                                 <Icon name="add_photo_alternate" className="text-google-blue text-[17px]" />
                                 </div>
                                 <div>
-                                <p className="font-medium text-[12px] text-google-text">{previewUrl ? 'Ganti Gambar Logo' : 'Pilih File Logo (Maks 2MB)'}</p>
-                                <p className="text-[10px] text-google-textVariant font-medium">PNG, JPG, SVG, WEBP G upload ke Google Drive</p>
+                                <p className="font-medium text-[12px] text-google-text dark:text-white">{previewUrl ? 'Ganti Gambar Logo' : 'Pilih File Logo (Maks 2MB)'}</p>
+                                <p className="text-[10px] text-google-textVariant dark:text-slate-400 font-medium">PNG, JPG, SVG, WEBP G upload ke Google Drive</p>
                                 </div>
                             </div>
                             )}
@@ -6489,23 +6488,23 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                         {/* Preview */}
                         {previewUrl && !isUploading && (
-                        <div className="flex items-center gap-3 bg-white border-2 border-google-green/30 rounded-[14px] p-3 shadow-sm">
-                            <img src={previewUrl} alt="preview" className="h-10 max-w-[80px] object-contain rounded border border-slate-200 bg-slate-50 p-1" loading="lazy" decoding="async" onError={(e) => e.target.style.display='none'} />
+                        <div className="flex items-center gap-3 bg-white dark:bg-slate-850 border-2 border-google-green/30 dark:border-google-green/45 rounded-[14px] p-3 shadow-sm">
+                            <img src={previewUrl} alt="preview" className="h-10 max-w-[80px] object-contain rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-1" loading="lazy" decoding="async" onError={(e) => e.target.style.display='none'} />
                             <div className="flex-1 min-w-0">
                             <p className="text-[11px] font-medium text-google-green flex items-center gap-1"><Icon name="check_circle" className="text-[13px]"/>Logo siap disimpan</p>
-                            <p className="text-[9px] text-google-textVariant truncate font-mono mt-0.5">{previewUrl.slice(0,60)}</p>
+                            <p className="text-[9px] text-google-textVariant dark:text-slate-400 truncate font-mono mt-0.5">{previewUrl.slice(0,60)}</p>
                             </div>
-                            <button onClick={() => { setNewUrl(''); setPreviewUrl(''); setUploadError(''); }} className="text-google-red hover:bg-red-50 p-1.5 rounded-[12px] transition-colors shrink-0"><Icon name="close" className="text-[14px]" /></button>
+                            <button onClick={() => { setNewUrl(''); setPreviewUrl(''); setUploadError(''); }} className="text-google-red hover:bg-red-50 dark:hover:bg-red-950/20 p-1.5 rounded-[12px] transition-colors shrink-0"><Icon name="close" className="text-[14px]" /></button>
                         </div>
                         )}
 
                         {/* Fallback URL manual */}
                         <details className="mt-1">
-                        <summary className="text-[10px] font-medium text-google-textVariant cursor-pointer select-none hover:text-google-blue transition-colors flex items-center gap-1.5">
+                        <summary className="text-[10px] font-medium text-google-textVariant dark:text-slate-400 cursor-pointer select-none hover:text-google-blue transition-colors flex items-center gap-1.5">
                             <Icon name="link" className="text-[13px]" /> Atau masukkan URL gambar secara manual
                         </summary>
-                        <div className="mt-2 bg-white rounded-[14px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm">
-                            <input type="text" value={newUrl} onChange={e => { setNewUrl(e.target.value); setPreviewUrl(e.target.value); }} placeholder="https://contoh.com/logo.png" className="w-full bg-transparent text-[12px] font-mono text-google-text placeholder:text-slate-300 outline-none" />
+                        <div className="mt-2 bg-white dark:bg-slate-850 rounded-[14px] px-4 py-3 border-2 border-slate-300 dark:border-slate-700 focus-within:border-google-blue transition-all shadow-sm">
+                            <input type="text" value={newUrl} onChange={e => { setNewUrl(e.target.value); setPreviewUrl(e.target.value); }} placeholder="https://contoh.com/logo.png" className="w-full bg-transparent text-[12px] font-mono text-google-text dark:text-white placeholder:text-slate-350 dark:placeholder:text-slate-550 outline-none" />
                         </div>
                         </details>
                     </div>
