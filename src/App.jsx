@@ -649,7 +649,7 @@ const getDirectImgUrl = (url) => {
                             </div>
 
                             {/* Chat area */}
-                            <div className="flex-1 overflow-y-auto p-4 sm:p-5 md:p-6 space-y-3 bg-slate-50 hide-scrollbar border-y border-slate-200" style={{fontSize:'13px'}}>
+                            <div className="flex-1 overflow-y-auto p-4 sm:p-5 md:p-4 sm:p-6 space-y-3 bg-slate-50 hide-scrollbar border-y border-slate-200" style={{fontSize:'13px'}}>
                                 {messages.map((msg, i) => (
                                     <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                                         {msg.sender === 'robot' && (
@@ -1821,7 +1821,7 @@ const getDirectImgUrl = (url) => {
                             </div>
                         )}
 
-                        <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-2rem)] max-w-6xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
+                        <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
                             <div className="max-w-6xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
@@ -2172,7 +2172,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
-                        <header className="bg-white/95 text-slate-800 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-2rem)] max-w-6xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20">
+                        <header className="bg-white/95 text-slate-800 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20">
                             <div className="flex items-center gap-2.5 overflow-hidden">
                                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-rose-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain"  loading="lazy" decoding="async"/>
@@ -2201,7 +2201,7 @@ const getDirectImgUrl = (url) => {
                     {mode === 'select' ? (
                         <main className="flex-1 w-full max-w-6xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
                             {/* HERO BANNER SECTION - menggunakan bannerImage dari Firebase jika ada */}
-                            <div className={`relative rounded-[32px] p-6 sm:p-10 text-white border-2 border-red-500/20 shadow-xl overflow-hidden group min-h-[240px] sm:min-h-[300px] flex items-center ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark' : 'bg-slate-900'}`}>
+                            <div className={`relative rounded-[16px] sm:rounded-[32px] p-5 sm:p-10 text-white border border-red-500/20 shadow-xl overflow-hidden group min-h-[240px] sm:min-h-[300px] flex items-center ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark' : 'bg-slate-900'}`}>
                                 {bannerImage ? (
                                     <>
                                         <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"  loading="lazy" decoding="async"/>
@@ -2256,10 +2256,10 @@ const getDirectImgUrl = (url) => {
                             </div>
 
                             {/* SERVICES GRID SECTION (SPACIOUS 4 COLUMNS) */}
-                            <section className="space-y-4 max-w-6xl px-6 mx-auto w-full">
+                            <section className="space-y-4 max-w-6xl mx-auto w-full">
                                 <h3 className="text-[11px] font-extrabold text-slate-400 uppercase tracking-widest text-center">Layanan Utama Portal Kami</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
                                             <Icon name="campaign" className="text-[24px]" />
                                         </div>
@@ -2268,7 +2268,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Papan pengumuman penting, info rapat warga, &amp; berita lingkungan terkini dari pengurus RT.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-greenLight border border-google-green/20 flex items-center justify-center shrink-0 text-google-greenDark">
                                             <Icon name="payments" className="text-[24px]" />
                                         </div>
@@ -2277,7 +2277,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Laporan kas masuk dan keluar RT yang dicatat rinci, terbuka, &amp; dipantau warga kapan saja.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-blueLight border border-google-blue/20 flex items-center justify-center shrink-0 text-google-blueDark">
                                             <Icon name="local_activity" className="text-[24px]" />
                                         </div>
@@ -2286,7 +2286,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pembelian tiket jalan santai dan kegiatan RT secara online dengan metode COD.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 flex items-center justify-center border border-rose-100 dark:border-rose-900/30">
                                             <Icon name="casino" className="text-[24px]" />
                                         </div>
@@ -2299,7 +2299,7 @@ const getDirectImgUrl = (url) => {
                             </section>
 
                             {/* BOARD OF INFORMATION (SPACIOUS 3 COLUMNS) */}
-                            <section id="berita" className="space-y-6 pt-4 max-w-6xl px-6 mx-auto w-full">
+                            <section id="berita" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                 <div className="text-center space-y-1">
                                     <h3 className="text-[11px] font-extrabold text-red-600 dark:text-red-400 uppercase tracking-widest">Informasi Lingkungan</h3>
                                     <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">KABAR WARGA &amp; PENGUMUMAN</h2>
@@ -2314,7 +2314,7 @@ const getDirectImgUrl = (url) => {
                                 ) : (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {informasi.slice(0, 6).map(item => (
-                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-red-400 dark:hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
+                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-red-400 dark:hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
                                                 <div>
                                                     {item.imageUrl ? (
                                                         <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700">
@@ -2325,7 +2325,7 @@ const getDirectImgUrl = (url) => {
                                                             <Icon name="newspaper" className="text-[42px] text-red-500/20" />
                                                         </div>
                                                     )}
-                                                    <div className="p-6 space-y-3">
+                                                    <div className="p-4 sm:p-6 space-y-3">
                                                         <div className="flex items-center gap-1.5 text-[10.5px] font-extrabold text-slate-500 dark:text-slate-400">
                                                             <Icon name="event" className="text-[13px]" />
                                                             <span>{item.date ? new Date(item.date).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : 'Tanggal -'}</span>
@@ -2334,7 +2334,7 @@ const getDirectImgUrl = (url) => {
                                                         <p className="text-[13px] font-semibold text-slate-700 dark:text-slate-400 leading-relaxed line-clamp-3">{item.description}</p>
                                                     </div>
                                                 </div>
-                                                <div className="p-6 pt-0">
+                                                <div className="p-4 sm:p-6 pt-0 sm:pt-0">
                                                     <span className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300 font-black text-[12.5px] transition-all">
                                                         <span>Baca Selengkapnya</span>
                                                         <Icon name="arrow_forward" className="text-[14px] group-hover:translate-x-1 transition-transform" />
@@ -2348,14 +2348,14 @@ const getDirectImgUrl = (url) => {
 
                             {/* BLOG / ARTIKEL WARGA SECTION */}
                             {blogData && blogData.length > 0 && (
-                                <section id="blog" className="space-y-6 pt-4 max-w-6xl px-6 mx-auto w-full">
+                                <section id="blog" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-extrabold text-google-blue dark:text-blue-400 uppercase tracking-widest">Artikel & Konten Warga</h3>
                                         <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">BLOG WARGA RT</h2>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {blogData.slice(0, 6).map(article => (
-                                            <div key={article.id} className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col hover:border-google-blue/50 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...article, type: 'blog' })}>
+                                            <div key={article.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col hover:border-google-blue/50 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...article, type: 'blog' })}>
                                                 {article.imageUrl ? (
                                                     <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700 shrink-0">
                                                         <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
@@ -2365,7 +2365,7 @@ const getDirectImgUrl = (url) => {
                                                         <Icon name="article" className="text-[40px] text-google-blue/20" />
                                                     </div>
                                                 )}
-                                                <div className="p-5 flex flex-col flex-1">
+                                                <div className="p-4 sm:p-5 flex flex-col flex-1">
                                                     <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-slate-400 dark:text-slate-500 mb-2">
                                                         <Icon name="event" className="text-[12px]" />
                                                         <span>{article.date ? new Date(article.date).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '-'}</span>
@@ -2387,7 +2387,7 @@ const getDirectImgUrl = (url) => {
 
                             {/* SPONSOR SECTION DI LANDING PAGE */}
                             {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
-                                <section className="space-y-4 pt-4 max-w-6xl px-6 mx-auto w-full">
+                                <section className="space-y-4 pt-4 max-w-6xl mx-auto w-full">
                                     <p className="text-[9px] uppercase tracking-widest font-bold text-slate-400 text-center">Didukung Oleh</p>
                                     <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-6 sm:p-8">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
@@ -2447,7 +2447,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {/* LANDING FOOTER (COMPLIES WITH THEME VARIABLES) */}
-                    <footer className="w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-[28px] border border-slate-100 dark:border-slate-800/80 py-8 px-6 sm:px-8 text-center z-10 relative mb-8 bg-white/90 dark:bg-slate-900/90  shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
+                    <footer className="w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-[16px] sm:rounded-[28px] border border-slate-100 dark:border-slate-800/80 py-6 px-4 sm:py-8 sm:px-8 text-center z-10 relative mb-8 bg-white/90 dark:bg-slate-900/90 shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
                         <div className="max-w-4xl mx-auto space-y-4">
                             <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
                                 <span className="font-bold text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah sistem informasi manajemen kerukunan lingkungan digital. {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
@@ -4355,7 +4355,7 @@ const getDirectImgUrl = (url) => {
                                 </div>
                                 <div className="space-y-3">
                                     {form.rekening.map((r, i) => (
-                                        <div key={i} className="bg-slate-50 border-2 border-slate-300 rounded-[18px] p-4 sm:p-5 md:p-6 space-y-3">
+                                        <div key={i} className="bg-slate-50 border-2 border-slate-300 rounded-[18px] p-4 sm:p-5 md:p-4 sm:p-6 space-y-3">
                                             <div className="flex items-center justify-between">
                                                 <p className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider">Rekening {i+1}</p>
                                                 {form.rekening.length > 1 && (
