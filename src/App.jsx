@@ -3480,9 +3480,9 @@ const getDirectImgUrl = (url) => {
 
                                         {/* Tombol admin */}
                                         {userRole === 'admin' && (
-                                            <div className="flex flex-wrap justify-end gap-2 mt-auto pt-2 border-t-2 border-slate-200">
-                                                <button onClick={() => openEditForm(item)} className="bg-slate-50 text-google-text border-2 border-slate-300 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight px-4 py-2.5 rounded-[12px] font-medium text-[11px] active:scale-95 transition-all flex flex-wrap items-center gap-1.5"><Icon name="edit" className="text-[13px]" />Edit</button>
-                                                <button onClick={() => setDeleteConfirmId(item.id)} className="bg-slate-50 text-google-red border-2 border-slate-300 hover:border-google-red/40 hover:bg-google-redLight px-4 py-2.5 rounded-[12px] font-medium text-[11px] active:scale-95 transition-all flex flex-wrap items-center gap-1.5"><Icon name="delete" className="text-[13px]" />Hapus</button>
+                                            <div className="flex gap-2 mt-auto pt-3 border-t-2 border-slate-100">
+                                                <button onClick={() => openEditForm(item)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                                <button onClick={() => setDeleteConfirmId(item.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                             </div>
                                         )}
                                     </div>
@@ -4875,9 +4875,9 @@ const getDirectImgUrl = (url) => {
                                     <p className="text-[13px] font-medium text-google-textVariant leading-relaxed mb-6 whitespace-pre-line flex-1">{item.description}</p>
                                     
                                     {userRole === 'admin' && (
-                                        <div className="flex flex-wrap justify-end gap-3 mt-auto pt-6 border-t-2 border-slate-200">
-                                            <button onClick={() => { setFormData(item); setEditingId(item.id); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white text-google-text border-2 border-slate-300 px-5 py-2.5 rounded-[12px] font-medium text-[12px] hover:border-google-blue hover:text-google-blue shadow-sm active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red border-2 border-slate-300 px-5 py-2.5 rounded-[12px] font-medium text-[12px] hover:border-google-red hover:bg-google-redLight shadow-sm active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                        <div className="flex gap-2 mt-auto pt-4 border-t-2 border-slate-100">
+                                            <button onClick={() => { setFormData(item); setEditingId(item.id); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                            <button onClick={() => setDeleteConfirmId(item.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                         </div>
                                     )}
                                 </div>
@@ -5083,8 +5083,8 @@ const getDirectImgUrl = (url) => {
                                 </div>
                                 {userRole === 'admin' && (
                                     <div className="flex flex-wrap items-center gap-2.5 shrink-0 border-t-2 sm:border-t-0 border-slate-200 pt-5 sm:pt-0 justify-end w-full sm:w-auto opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <button onClick={() => { setFormData(member); setEditingId(member.id); setIsFormOpen(true); setErrorMsg(''); }} className="bg-white text-google-text px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 border-slate-300 shadow-sm hover:border-google-blue hover:text-google-blue active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="edit" className="text-[14px]" /><span className="sm:hidden">Edit</span></button>
-                                        <button onClick={() => setDeleteConfirmId(member.id)} className="bg-white text-google-red px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 border-slate-300 shadow-sm hover:border-google-red hover:bg-google-redLight active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-1.5"><Icon name="delete" className="text-[14px]" /><span className="sm:hidden">Hapus</span></button>
+                                        <button onClick={() => { setFormData(member); setEditingId(member.id); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-5 py-2 rounded-[12px] font-medium text-[12px] hover:bg-google-blueDark shadow-sm active:scale-95 transition-all duration-300 flex items-center justify-center gap-1.5"><Icon name="edit" className="text-[14px]" /><span className="sm:hidden">Edit</span></button>
+                                        <button onClick={() => setDeleteConfirmId(member.id)} className="bg-google-red/10 text-google-red px-5 py-2 rounded-[12px] font-medium text-[12px] hover:bg-google-red hover:text-white shadow-sm active:scale-95 transition-all duration-300 flex items-center justify-center gap-1.5"><Icon name="delete" className="text-[14px]" /><span className="sm:hidden">Hapus</span></button>
                                     </div>
                                 )}
                             </div>
@@ -7722,9 +7722,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     </div>
                                     
                                     {userRole === 'admin' && (
-                                        <div className="flex gap-2 mt-4 pt-4 border-t border-slate-100" onClick={e => e.stopPropagation()}>
-                                            <button onClick={() => { setEditingId(article.id); setFormData({ title: article.title, content: article.content, imageUrl: article.imageUrl, date: article.date }); setIsFormOpen(true); }} className="flex-1 bg-slate-50 hover:bg-slate-100 text-google-blue border border-slate-200 px-3 py-2 rounded-[10px] text-[11px] font-medium transition-colors flex items-center justify-center gap-1"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                            <button onClick={() => setDeleteConfirmId(article.id)} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-100 px-3 py-2 rounded-[10px] text-[11px] font-medium transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                        <div className="flex gap-2 mt-4 pt-4 border-t-2 border-slate-100" onClick={e => e.stopPropagation()}>
+                                            <button onClick={() => { setEditingId(article.id); setFormData({ title: article.title, content: article.content, imageUrl: article.imageUrl, date: article.date }); setIsFormOpen(true); }} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                            <button onClick={() => setDeleteConfirmId(article.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                         </div>
                                     )}
                                 </div>
@@ -8437,10 +8437,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <div className="flex items-center gap-1 text-[10px] font-bold text-slate-500"><Icon name="location_on" className="text-[13px] text-google-blue" /> {prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</div>
                                                     </div>
                                                 </div>
-                                                <div className="flex gap-2 pt-3 border-t border-slate-100">
-                                                    <button onClick={() => handleEditProduct(prod)} className="flex-1 bg-slate-50 hover:bg-slate-100 text-google-blue border border-slate-200 py-2.5 rounded-[10px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                                    <button onClick={() => setSharingProduct(prod)} className="px-2.5 bg-slate-50 hover:bg-slate-150 text-slate-700 border border-slate-200 py-2.5 rounded-[10px] transition-colors flex items-center justify-center" title="Bagikan"><Icon name="share" className="text-[14px]" /></button>
-                                                    <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 py-2.5 rounded-[10px] text-[11px] font-bold transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                                <div className="flex gap-2 pt-3 border-t-2 border-slate-100 mt-1">
+                                                    <button onClick={() => handleEditProduct(prod)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                                    <button onClick={() => setSharingProduct(prod)} className="flex items-center justify-center px-4 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-[12px] py-2 transition-all active:scale-95 shadow-sm" title="Bagikan"><Icon name="share" className="text-[14px]" /></button>
+                                                    <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                                 </div>
                                             </div>
                                         </div>
