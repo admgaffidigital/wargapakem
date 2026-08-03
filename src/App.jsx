@@ -2242,15 +2242,27 @@ const getDirectImgUrl = (url) => {
                                             )}
                                         </div>
                                     )}
-                                    <div className="pt-2 flex flex-wrap gap-3">
-                                        <button onClick={() => onLogin('warga')} className="px-5 py-3 bg-white hover:bg-slate-50 rounded-[12px] font-bold text-[12px] shadow-md flex items-center gap-2 active:scale-95 transition-all text-red-600 hover:text-red-700">
-                                            <Icon name="login" className="text-[16px]" fill="true" />
+                                    <div className="pt-2 flex flex-wrap gap-2.5">
+                                        <button onClick={() => onLogin('warga')} className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white hover:bg-slate-50 rounded-[12px] font-bold text-[11px] sm:text-[12px] shadow-md flex items-center gap-2 active:scale-95 transition-all text-red-600 hover:text-red-700">
+                                            <Icon name="login" className="text-[15px] sm:text-[16px]" fill="true" />
                                             <span>Portal Warga</span>
                                         </button>
-                                        <a href="#berita" className="px-5 py-3 bg-white/20 hover:bg-white/30 text-white rounded-[12px] font-bold text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
-                                            <Icon name="campaign" className="text-[16px]" />
-                                            <span>Berita Lingkungan</span>
+                                        <a href="#berita" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
+                                            <Icon name="campaign" className="text-[15px] sm:text-[16px]" />
+                                            <span>Kabar Warga</span>
                                         </a>
+                                        {umkmData && umkmData.length > 0 && (
+                                            <a href="#umkm" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
+                                                <Icon name="storefront" className="text-[15px] sm:text-[16px]" />
+                                                <span>UMKM Warga</span>
+                                            </a>
+                                        )}
+                                        {infoDesa?.enabled && (
+                                            <a href="#peta" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
+                                                <Icon name="map" className="text-[15px] sm:text-[16px]" />
+                                                <span>Peta &amp; Kontak</span>
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -2381,6 +2393,106 @@ const getDirectImgUrl = (url) => {
                                                 </div>
                                             </div>
                                         ))}
+                                    </div>
+                                </section>
+                            )}
+
+                            {/* UMKM WARGA SECTION */}
+                            {umkmData && umkmData.length > 0 && (
+                                <section id="umkm" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                    <div className="text-center space-y-1">
+                                        <h3 className="text-[11px] font-extrabold text-green-600 dark:text-green-400 uppercase tracking-widest">Produk &amp; Usaha Lokal</h3>
+                                        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">UMKM WARGA RT</h2>
+                                    </div>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {umkmData.slice(0, 6).map(item => (
+                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-green-400 dark:hover:border-green-500 hover:shadow-lg transition-all duration-300 group">
+                                                <div>
+                                                    <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
+                                                        {item.imageUrl ? (
+                                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+                                                        ) : (
+                                                            <div className="w-full h-full bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-950/20 dark:to-green-900/10 flex items-center justify-center">
+                                                                <Icon name="storefront" className="text-[48px] text-green-500/20" />
+                                                            </div>
+                                                        )}
+                                                        <span className="absolute top-3 left-3 bg-green-500 text-white text-[9.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">{item.category}</span>
+                                                    </div>
+                                                    <div className="p-5 space-y-2.5">
+                                                        <h4 className="font-extrabold text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-1">{item.name}</h4>
+                                                        <div className="flex items-center text-slate-500 dark:text-slate-400 text-[12px] font-semibold">
+                                                            <Icon name="person" className="text-[14px] mr-1 text-slate-400" />
+                                                            <span>Pemilik: {item.owner}</span>
+                                                        </div>
+                                                        <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">{item.description || 'Tidak ada deskripsi usaha.'}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="p-5 pt-0">
+                                                    <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%20tertarik%20dengan%20usaha%20Anda%20di%20Portal%20Warga.`} target="_blank" rel="noopener noreferrer" className="w-full bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 hover:bg-green-600 hover:text-white border-2 border-green-200 dark:border-green-800 hover:border-green-600 py-3 rounded-[12px] font-bold text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
+                                                        <Icon name="chat" className="text-[16px]" />
+                                                        <span>Hubungi via WhatsApp</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+
+                            {/* PETA DESA & LAYANAN KELURAHAN */}
+                            {infoDesa?.enabled && (
+                                <section id="peta" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                    <div className="text-center space-y-1">
+                                        <h3 className="text-[11px] font-extrabold text-red-600 dark:text-red-400 uppercase tracking-widest">Cakupan Wilayah &amp; Kontak Darurat</h3>
+                                        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">PETA DESA &amp; LAYANAN</h2>
+                                    </div>
+                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                        {/* Peta */}
+                                        <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-4 shadow-sm overflow-hidden flex flex-col justify-between">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[320px] rounded-[16px] border border-slate-200 dark:border-slate-800" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
+                                            <div className="flex flex-wrap gap-3 mt-4 items-center justify-between text-[11px] font-bold text-slate-500 dark:text-slate-400 px-1">
+                                                <span className="flex items-center gap-1.5"><Icon name="explore" className="text-[14px]" /> Kode Pos: 64181</span>
+                                                <span className="flex items-center gap-1.5"><Icon name="info" className="text-[14px]" /> Google Maps Interaktif</span>
+                                            </div>
+                                        </div>
+
+                                        {/* Batas & Kontak */}
+                                        <div className="space-y-4 flex flex-col">
+                                            {/* Batas Administrasi */}
+                                            {infoDesa.batas && (
+                                                <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+                                                    <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
+                                                    <div className="grid grid-cols-2 gap-2.5">
+                                                        {['utara', 'selatan', 'timur', 'barat'].map(arah => (
+                                                            <div key={arah} className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-[12px] border border-slate-200 dark:border-slate-800/80">
+                                                                <p className="text-[8px] uppercase tracking-wider font-extrabold text-slate-400 mb-0.5">{arah}</p>
+                                                                <p className="font-bold text-[11px] text-slate-700 dark:text-slate-200 truncate">{infoDesa.batas[arah] || '-'}</p>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {/* Kontak Darurat */}
+                                            {infoDesa.kontak && infoDesa.kontak.length > 0 && (
+                                                <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm flex-1 flex flex-col justify-between">
+                                                    <div>
+                                                        <h4 className="font-extrabold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="contact_phone" className="text-red-500 text-[16px]"/> Layanan &amp; Kontak</h4>
+                                                        <div className="space-y-2 max-h-48 overflow-y-auto hide-scrollbar pr-0.5">
+                                                            {infoDesa.kontak.map((k, i) => (
+                                                                <div key={k.id || i} className={`flex justify-between items-center bg-${k.color}-50/50 dark:bg-${k.color}-950/20 border border-${k.color}-500/10 dark:border-${k.color}-800/20 px-3.5 py-2.5 rounded-[12px]`}>
+                                                                    <div className="flex items-center gap-2 min-w-0">
+                                                                        <Icon name={k.icon || 'contact_phone'} className={`text-[15px] text-${k.color}-600 shrink-0`} fill="true"/>
+                                                                        <span className={`text-[11px] font-bold text-${k.color}-800 dark:text-${k.color}-300 truncate`}>{k.nama}</span>
+                                                                    </div>
+                                                                    <span className={`text-[11px] font-black text-${k.color}-750 dark:text-${k.color}-400 shrink-0`}>{k.telepon}</span>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </section>
                             )}
