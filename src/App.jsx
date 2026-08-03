@@ -1710,7 +1710,7 @@ const getDirectImgUrl = (url) => {
                 }
                 return (
                     <>
-                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} informasi={informasi} onLogin={(role) => { 
+                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); 
                             const params = new URLSearchParams(window.location.search);
                             if (params.get('page') === 'tiket') {
@@ -2136,11 +2136,12 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme, informasi = [] }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [] }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
-            const [mode, setMode] = useState('select'); 
+            const [mode, setMode] = useState('select');
+            const [selectedArticle, setSelectedArticle] = useState(null); // modal detail informasi/blog
             const [error, setError] = useState('');
             
             const handleAdminLogin = async () => {
@@ -2163,6 +2164,7 @@ const getDirectImgUrl = (url) => {
             };
             
             return (
+                <>
                 <div className="w-full min-h-screen flex flex-col bg-transparent text-slate-800 relative overflow-x-hidden font-sans">
                     <FlagWavingBackground theme={theme} />
 
@@ -2196,10 +2198,19 @@ const getDirectImgUrl = (url) => {
                     {/* MAIN LANDING CONTENT */}
                     {mode === 'select' ? (
                         <main className="flex-1 w-full max-w-5xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
-                            {/* HERO BANNER SECTION (MATCHES MAIN BANNER THEME) */}
-                            <div className="relative rounded-[32px] p-6 sm:p-10 text-white border-2 border-red-500/20 shadow-xl overflow-hidden bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark min-h-[240px] sm:min-h-[280px] flex items-center">
-                                <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white opacity-5 rounded-full blur-3xl"></div>
-                                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-google-blueLight opacity-10 rounded-full blur-2xl"></div>
+                            {/* HERO BANNER SECTION - menggunakan bannerImage dari Firebase jika ada */}
+                            <div className={`relative rounded-[32px] p-6 sm:p-10 text-white border-2 border-red-500/20 shadow-xl overflow-hidden group min-h-[240px] sm:min-h-[300px] flex items-center ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark' : 'bg-slate-900'}`}>
+                                {bannerImage ? (
+                                    <>
+                                        <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" />
+                                        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/50 to-transparent z-0"></div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white opacity-5 rounded-full blur-3xl"></div>
+                                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-google-blueLight opacity-10 rounded-full blur-2xl"></div>
+                                    </>
+                                )}
 
                                 <div className="relative z-10 w-full text-left space-y-4 max-w-2xl">
                                     <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
@@ -2207,13 +2218,28 @@ const getDirectImgUrl = (url) => {
                                         <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
                                     </div>
                                     
-                                    <h2 className="text-2xl sm:text-3.5xl md:text-4.5xl font-extrabold tracking-tight leading-tight uppercase text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.5)]">
+                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight uppercase text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.5)]">
                                         Portal Layanan &amp; <br />
                                         {identity.name || 'Informasi Warga'}
                                     </h2>
                                     <p className="text-[12.5px] sm:text-[13.5px] font-medium text-white/95 leading-relaxed [text-shadow:_0_1px_4px_rgba(0,0,0,0.5)]">
                                         {identity.subtitle ? `Selamat datang di sistem informasi pelayanan warga digital ${identity.name}. ${identity.subtitle}` : `Selamat datang di sistem informasi pelayanan warga digital ${identity.name || 'RT Anda'}. Menghadirkan transparansi data kas, arisan bulanan online, administrasi lingkungan, dan kabar berita warga.`}
                                     </p>
+                                    {/* Info jumlah warga aktif */}
+                                    {members.length > 0 && (
+                                        <div className="flex flex-wrap gap-3">
+                                            <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white/90">
+                                                <Icon name="groups" className="text-[13px]" />
+                                                {members.filter(m => m.status !== 'Meninggal' && m.status !== 'Nonaktif').length} Warga Aktif
+                                            </div>
+                                            {informasi.length > 0 && (
+                                                <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white/90">
+                                                    <Icon name="campaign" className="text-[13px]" />
+                                                    {informasi.length} Pengumuman
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
                                     <div className="pt-2 flex flex-wrap gap-3">
                                         <button onClick={() => onLogin('warga')} className="px-5 py-3 bg-white hover:bg-slate-50 rounded-[12px] font-bold text-[12px] shadow-md flex items-center gap-2 active:scale-95 transition-all text-red-600 hover:text-red-700">
                                             <Icon name="login" className="text-[16px]" fill="true" />
@@ -2286,11 +2312,11 @@ const getDirectImgUrl = (url) => {
                                 ) : (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         {informasi.slice(0, 6).map(item => (
-                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-red-400 dark:hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
                                                 <div>
                                                     {item.imageUrl ? (
                                                         <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700">
-                                                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover" />
+                                                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                                         </div>
                                                     ) : (
                                                         <div className="w-full h-48 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center border-b-2 border-slate-200 dark:border-slate-700">
@@ -2302,21 +2328,74 @@ const getDirectImgUrl = (url) => {
                                                             <Icon name="event" className="text-[13px]" />
                                                             <span>{item.date ? new Date(item.date).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : 'Tanggal -'}</span>
                                                         </div>
-                                                        <h4 className="font-extrabold text-[16px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-1">{item.title}</h4>
+                                                        <h4 className="font-extrabold text-[16px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2">{item.title}</h4>
                                                         <p className="text-[13px] font-semibold text-slate-700 dark:text-slate-400 leading-relaxed line-clamp-3">{item.description}</p>
                                                     </div>
                                                 </div>
                                                 <div className="p-6 pt-0">
-                                                    <button onClick={() => onLogin('warga')} className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 font-black text-[12.5px] transition-all hover:underline group">
+                                                    <span className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300 font-black text-[12.5px] transition-all">
                                                         <span>Baca Selengkapnya</span>
                                                         <Icon name="arrow_forward" className="text-[14px] group-hover:translate-x-1 transition-transform" />
-                                                    </button>
+                                                    </span>
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
                                 )}
                             </section>
+
+                            {/* BLOG / ARTIKEL WARGA SECTION */}
+                            {blogData && blogData.length > 0 && (
+                                <section id="blog" className="space-y-6 pt-4 max-w-5xl px-6 mx-auto w-full">
+                                    <div className="text-center space-y-1">
+                                        <h3 className="text-[11px] font-extrabold text-google-blue dark:text-blue-400 uppercase tracking-widest">Artikel & Konten Warga</h3>
+                                        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">BLOG WARGA RT</h2>
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {blogData.slice(0, 6).map(article => (
+                                            <div key={article.id} className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col hover:border-google-blue/50 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...article, type: 'blog' })}>
+                                                {article.imageUrl ? (
+                                                    <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700 shrink-0">
+                                                        <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                                    </div>
+                                                ) : (
+                                                    <div className="w-full h-40 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/20 dark:to-blue-900/10 flex items-center justify-center border-b-2 border-slate-200 dark:border-slate-700 shrink-0">
+                                                        <Icon name="article" className="text-[40px] text-google-blue/20" />
+                                                    </div>
+                                                )}
+                                                <div className="p-5 flex flex-col flex-1">
+                                                    <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-slate-400 dark:text-slate-500 mb-2">
+                                                        <Icon name="event" className="text-[12px]" />
+                                                        <span>{article.date ? new Date(article.date).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '-'}</span>
+                                                        {article.likes > 0 && (
+                                                            <span className="ml-auto flex items-center gap-1 text-red-400"><Icon name="favorite" className="text-[11px]" fill="true" />{article.likes}</span>
+                                                        )}
+                                                    </div>
+                                                    <h4 className="font-extrabold text-[14px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2 flex-1 mb-3">{article.title}</h4>
+                                                    <p className="text-[12px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 mb-3">{article.content}</p>
+                                                    <span className="inline-flex items-center gap-1 text-google-blue font-bold text-[11.5px] group-hover:gap-2 transition-all">
+                                                        Baca Artikel <Icon name="arrow_forward" className="text-[13px] group-hover:translate-x-1 transition-transform" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+
+                            {/* SPONSOR SECTION DI LANDING PAGE */}
+                            {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
+                                <section className="space-y-4 pt-4 max-w-5xl px-6 mx-auto w-full">
+                                    <p className="text-[9px] uppercase tracking-widest font-bold text-slate-400 text-center">Didukung Oleh</p>
+                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-6 sm:p-8">
+                                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
+                                            {sponsorsData.sponsors.map((s, i) => (
+                                                <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[150px] object-contain opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-110" title={s.name} />
+                                            ))}
+                                        </div>
+                                    </div>
+                                </section>
+                            )}
 
                             {/* ADSENSE PLACEHOLDER */}
                             <section className="py-4 text-center border-t-2 border-slate-200/60 max-w-xl mx-auto w-full">
@@ -2326,6 +2405,7 @@ const getDirectImgUrl = (url) => {
                                 </div>
                             </section>
                         </main>
+
                     ) : (
                         /* ADMIN PASSWORD LOGIN FORM */
                         <div className="flex-1 flex flex-col justify-center items-center p-4 z-10">
@@ -2388,6 +2468,72 @@ const getDirectImgUrl = (url) => {
                         </div>
                     </footer>
                 </div>
+
+                {/* MODAL DETAIL ARTIKEL / INFORMASI */}
+                {selectedArticle && (
+                    <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/70 backdrop-blur-sm" onClick={(e) => { if (e.target === e.currentTarget) setSelectedArticle(null); }}>
+                        <div className="bg-white dark:bg-slate-900 w-full sm:max-w-2xl sm:rounded-[32px] rounded-t-[32px] shadow-2xl border-2 border-slate-200 dark:border-slate-700 flex flex-col max-h-[92vh] sm:max-h-[85vh] overflow-hidden animate-scale-up">
+                            {/* Header modal */}
+                            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700 shrink-0">
+                                <div className="flex items-center gap-2">
+                                    <div className={`w-7 h-7 rounded-full flex items-center justify-center ${selectedArticle.type === 'blog' ? 'bg-google-blueLight text-google-blueDark' : 'bg-red-50 text-red-600'}`}>
+                                        <Icon name={selectedArticle.type === 'blog' ? 'article' : 'campaign'} className="text-[14px]" fill="true" />
+                                    </div>
+                                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-slate-500">{selectedArticle.type === 'blog' ? 'Blog Warga' : 'Pengumuman'}</span>
+                                </div>
+                                <button onClick={() => setSelectedArticle(null)} className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-all active:scale-95">
+                                    <Icon name="close" className="text-[18px] text-slate-600 dark:text-slate-300" />
+                                </button>
+                            </div>
+                            {/* Gambar */}
+                            {selectedArticle.imageUrl && (
+                                <div className="w-full h-52 bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
+                                    <img src={selectedArticle.imageUrl} alt={selectedArticle.title} className="w-full h-full object-cover" />
+                                </div>
+                            )}
+                            {/* Konten */}
+                            <div className="overflow-y-auto flex-1 p-6 sm:p-8 space-y-4">
+                                <div className="flex items-center gap-2 text-[10.5px] font-bold text-slate-400">
+                                    <Icon name="event" className="text-[13px]" />
+                                    <span>{selectedArticle.date ? new Date(selectedArticle.date).toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) : '-'}</span>
+                                    {selectedArticle.likes > 0 && (
+                                        <span className="ml-auto flex items-center gap-1 text-red-400"><Icon name="favorite" className="text-[12px]" fill="true" />{selectedArticle.likes} suka</span>
+                                    )}
+                                </div>
+                                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">{selectedArticle.title}</h2>
+                                <div className="w-12 h-1 rounded-full bg-gradient-to-r from-red-500 to-rose-400"></div>
+                                <p className="text-[13.5px] font-medium text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
+                                    {selectedArticle.type === 'blog' ? selectedArticle.content : selectedArticle.description}
+                                </p>
+                                {/* Komentar blog */}
+                                {selectedArticle.type === 'blog' && selectedArticle.comments && selectedArticle.comments.length > 0 && (
+                                    <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                                        <p className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-3">{selectedArticle.comments.length} Komentar</p>
+                                        <div className="space-y-3">
+                                            {selectedArticle.comments.map(c => (
+                                                <div key={c.id} className="bg-slate-50 dark:bg-slate-800 rounded-[12px] p-3">
+                                                    <div className="flex items-center gap-2 mb-1">
+                                                        <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200">{c.name}</span>
+                                                        {c.role === 'Admin' && <span className="text-[9px] font-bold bg-google-blue text-white px-1.5 py-0.5 rounded-full">Admin</span>}
+                                                    </div>
+                                                    <p className="text-[12px] text-slate-600 dark:text-slate-400">{c.text}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                            {/* Footer modal */}
+                            <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-700 shrink-0">
+                                <button onClick={() => onLogin('warga')} className="w-full bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white py-3.5 rounded-[16px] font-bold text-[13px] flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all">
+                                    <Icon name="login" className="text-[16px]" fill="true" />
+                                    Masuk ke Portal Warga untuk Interaksi Lebih
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                </>
             );
         }
 
