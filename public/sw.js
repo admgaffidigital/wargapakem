@@ -35,14 +35,18 @@ const FIREBASE_HOSTS = [
 
 // ===== INSTALL — Ambil alih langsung (skipWaiting) =====
 self.addEventListener('install', (event) => {
-    // Pre-cache halaman utama saja; aset JS/CSS sudah punya hash → tidak perlu di-list manual
+    // Pre-cache halaman utama dan aset dasar agar PWA dapat bekerja offline
     event.waitUntil(
         caches.open(CACHE_STATIC).then((cache) => {
             return cache.addAll([
+                '/',
+                '/index.html',
                 '/manifest.json',
                 '/National_emblem_of_Indonesia_Garuda_Pancasila.svg',
-            ]).catch(() => {/* silent fail jika offline saat install */});
-        }).then(() => self.skipWaiting()) // <-- langsung aktif, tidak tunggu tab lama ditutup
+            ]).catch((err) => {
+                console.warn('[SW] Gagal pre-cache aset dasar:', err);
+            });
+        }).then(() => self.skipWaiting())
     );
 });
 
@@ -58,7 +62,7 @@ self.addEventListener('activate', (event) => {
                         return caches.delete(key);
                     })
             );
-        }).then(() => self.clients.claim()) // <-- ambil alih semua tab yang terbuka sekarang
+        }).then(() => self.clients.claim())
     );
 });
 
@@ -70,9 +74,15 @@ self.addEventListener('fetch', (event) => {
     // Abaikan request non-GET
     if (request.method !== 'GET') return;
 
-    // Bypass Firebase & googleapis — biarkan berjalan langsung ke jaringan
-    const isFirebase = FIREBASE_HOSTS.some((h) => url.hostname.includes(h));
-    if (isFirebase) return;
+    // Bypass Firebase & Google APIs — pastikan TIDAK DIINTERSEPSI oleh Service Worker
+    // long-polling dan gRPC Firebase harus langsung ke jaringan agar sinkronisasi real-time tidak rusak/eror
+    const isFirebaseOrGoogle = 
+        url.hostname.includes('firebase') || 
+        url.hostname.includes('firestore') || 
+        url.hostname.includes('googleapis.com') ||
+        url.hostname.includes('google-analytics.com');
+
+    if (isFirebaseOrGoogle) return;
 
     // CDN (fonts, icons) → Cache First, fallback jaringan
     const isCDN = CDN_HOSTS.some((h) => url.hostname.includes(h));
@@ -115,9 +125,8 @@ self.addEventListener('fetch', (event) => {
     }
 
     // === Aset JS/CSS dengan hash (Vite output) → Cache First ===
-    // File sudah punya hash di nama (misal: index-D14wl2mW.js) → aman di-cache selamanya
-    const isHashedAsset = url.pathname.startsWith('/assets/') &&
-        (url.pathname.includes('-') || url.pathname.match(/\.[a-f0-9]{8}\./));
+    // Semua file di /assets/ sudah dipastikan memiliki hash unik dari bundler Vite
+    const isHashedAsset = url.pathname.startsWith('/assets/');
     if (isHashedAsset) {
         event.respondWith(
             caches.open(CACHE_STATIC).then((cache) =>
