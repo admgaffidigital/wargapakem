@@ -7869,11 +7869,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 if (!sharingProduct) return;
                 const skuOrId = sharingProduct.sku || ('TKT-' + String(sharingProduct.id).substring(8));
                 const shareUrl = `${window.location.origin}${window.location.pathname}?page=tiket&product=${skuOrId}`;
-                const textMessage = `Yuk beli tiket *${sharingProduct.name}* Jalan Santai RT Pakem!%0AHarga: *${formatRp(sharingProduct.price)}*%0ALokasi Pengambilan: *${sharingProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}*%0A%0APesan online di sini: ${shareUrl}`;
+                
+                // Teks pesan yang akan dibagikan
+                const shareText = `Yuk beli tiket *${sharingProduct.name}* Jalan Santai RT Pakem!\nHarga: *${formatRp(sharingProduct.price)}*\nLokasi Pengambilan: *${sharingProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}*\n\nPesan online di sini: ${shareUrl}`;
 
                 switch (platform) {
                     case 'whatsapp':
-                        window.open(`https://api.whatsapp.com/send?text=${textMessage}`, '_blank');
+                        // PENTING: encodeURIComponent agar & dalam URL tidak dipotong oleh WhatsApp API
+                        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
                         break;
                     case 'telegram':
                         window.open(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(`Yuk beli tiket ${sharingProduct.name} Jalan Santai RT Pakem!`)}`, '_blank');
