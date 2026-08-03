@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // App.jsx - Portal Warga RT PAKEM
 // Dikonversi dari index.html (Babel CDN) ke Vite build system
 // ============================================================
@@ -3013,12 +3013,12 @@ const getDirectImgUrl = (url) => {
 
         function Dashboard({ members, setMembers, jimpitanBalance, kasRtBalance, currentRound, setCurrentRound, userRole, cycleNumber, setCycleNumber, changeTab, arisanPeriod }) {
             const [showResetModal, setShowResetModal] = useState(false);
-            const totalDebt = members.reduce((sum, m) => sum + (m.debt || 0), 0);
+            const totalDebt = members.reduce((sum, m) => sum + Number(m.debt || 0), 0);
             const redRecords = members.filter(m => m.redRecord).length;
             const arisanMembers = members.filter(m => m.status === 'Normal' && m.program !== 'IuranOnly');
             const winnersCount = arisanMembers.filter(m => m.hasWon).length;
             const isCycleComplete = winnersCount >= arisanMembers.length && arisanMembers.length > 0;
-            const saldoEfektifJimpitan = (jimpitanBalance || 0) + totalDebt;
+            const saldoEfektifJimpitan = Number(jimpitanBalance || 0) + totalDebt;
 
             return (
                 <div className="space-y-5 sm:space-y-6">
@@ -3045,7 +3045,7 @@ const getDirectImgUrl = (url) => {
                             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[6px] text-[9px] font-medium uppercase tracking-widest bg-white/10 text-slate-200 mb-3 border border-white/20 shadow-sm">
                                 <Icon name="account_balance_wallet" className="text-[13px]" /> Total Dana Kelolaan Global
                             </span>
-                            <p className="text-4xl sm:text-5xl font-medium text-white tracking-tight drop-shadow-md">{formatRp((kasRtBalance || 0) + (jimpitanBalance || 0))}</p>
+                            <p className="text-4xl sm:text-5xl font-medium text-white tracking-tight drop-shadow-md">{formatRp(Number(kasRtBalance || 0) + Number(jimpitanBalance || 0))}</p>
                             <p className="text-[12px] text-slate-400 font-medium mt-2">Gabungan Total Saldo Aktif Kas Utama RT + Kas Jimpitan Tunai.</p>
                         </div>
                     </div>
@@ -5034,7 +5034,7 @@ const getDirectImgUrl = (url) => {
                 showToast(`Berhasil menyetor ${formatRp(nominal)} ke Kas Warga.`);
             };
 
-            const calculateTotal = (obj) => { let total = 0; for(let k in obj) total += obj[k]; return total; };
+            const calculateTotal = (obj) => { let total = 0; for(let k in obj) total += Number(obj[k] || 0); return total; };
 
             if (view === 'form') {
                 return (
@@ -5295,6 +5295,12 @@ const getDirectImgUrl = (url) => {
                     
                     if (formData.type === 'Pemasukan') tempBalance += nominal;
                     else tempBalance -= nominal;
+                    
+                    // Koreksi kas jimpitan jika ini transaksi Mutasi Jimpitan
+                    if (oldTx.category === 'Mutasi Jimpitan') {
+                        const diffJimpitan = oldTx.amount - nominal;
+                        setJimpitanBalance(prev => prev + diffJimpitan);
+                    }
                     
                     setBalance(tempBalance);
                     setTransactions(transactions.map(t => t.id === editingId ? { ...formData, amount: nominal } : t));
@@ -5622,7 +5628,7 @@ const getDirectImgUrl = (url) => {
                 return { kasArisanTerkumpul, kasJimpitanTerkumpul, talanganJimpitan, pelunasanTunggakan, tunggakanBaru };
             }, [arisanMembers, attendance, nominalArisan, nominalJimpitan, selectedWinnerId, isCycleAlreadyComplete]);
 
-            const currentTotalDebt = useMemo(() => members.reduce((sum, m) => sum + (m.debt || 0), 0), [members]);
+            const currentTotalDebt = useMemo(() => members.reduce((sum, m) => sum + Number(m.debt || 0), 0), [members]);
             const deltaJimpitan = calculations.kasJimpitanTerkumpul + calculations.pelunasanTunggakan - calculations.talanganJimpitan;
             const projectedJimpitanCash = jimpitanBalance + deltaJimpitan;
             const projectedTotalDebt = currentTotalDebt + calculations.tunggakanBaru - calculations.pelunasanTunggakan;
@@ -5672,7 +5678,7 @@ const getDirectImgUrl = (url) => {
             };
 
             const handleSetHoliday = () => {
-                const totalDebtSnapshot = members.reduce((sum, m) => sum + (m.debt || 0), 0);
+                const totalDebtSnapshot = members.reduce((sum, m) => sum + Number(m.debt || 0), 0);
                 const formattedDate = parseLocalDate(meetingDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
                 
                 setMeetingHistory(prev => [{ id: Date.now(), round: currentRound, periode: formatBulanTahun(arisanPeriod), date: formattedDate, winner: '=n+ LIBUR (TIDAK ADA ARISAN)', kasArisanTerkumpul: 0, kasJimpitanMasuk: 0, pelunasanTunggakan: 0, talanganJimpitan: 0, tunggakanBaru: 0, saldoAkhirJimpitan: jimpitanBalance, totalTunggakanAkhir: totalDebtSnapshot, absensiDetails: [] }, ...prev]);
