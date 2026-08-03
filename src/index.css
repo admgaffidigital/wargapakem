@@ -29,6 +29,14 @@
     -webkit-font-feature-settings: 'liga' 1 !important;
     font-feature-settings: 'liga' 1 !important;
     -webkit-font-smoothing: antialiased;
+    
+    /* Cegah Flash of Raw Text (FOUT) */
+    visibility: hidden;
+}
+
+/* Tampilkan ikon ketika font telah termuat sempurna */
+.icons-loaded .material-symbols-rounded {
+    visibility: visible;
 }
 
 /* ============================================================
