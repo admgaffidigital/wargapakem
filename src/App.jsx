@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // App.jsx - Portal Warga RT PAKEM
 // Dikonversi dari index.html (Babel CDN) ke Vite build system
 // ============================================================
@@ -1104,7 +1104,7 @@ const getDirectImgUrl = (url) => {
             return (
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 ">
                             <div className="bg-white rounded-[16px] p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
@@ -1117,7 +1117,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     <div className="bg-gradient-to-br from-green-50 to-emerald-100/50 p-6 sm:p-10 rounded-[32px] border border-green-200/60 shadow-[0_8px_30px_rgba(34,197,94,0.12)] mb-8 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                        
                         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
                                 <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-[12px] mb-4 shadow-lg">
@@ -1149,7 +1149,7 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     {filteredData.length === 0 ? (
-                        <div className="bg-white/80 backdrop-blur-md rounded-[32px] p-12 text-center border-2 border-dashed border-slate-300 shadow-sm">
+                        <div className="bg-white/80  rounded-[32px] p-12 text-center border-2 border-dashed border-slate-300 shadow-sm">
                             <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <Icon name="store_off" className="text-[48px] text-slate-300" />
                             </div>
@@ -1169,7 +1169,7 @@ const getDirectImgUrl = (url) => {
                                                 <span className="text-sm font-medium">Tidak ada foto</span>
                                             </div>
                                         )}
-                                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[11px] font-medium text-green-700 shadow-sm border border-green-100 flex items-center gap-1">
+                                        <div className="absolute top-4 left-4 bg-white/90  px-3 py-1.5 rounded-full text-[11px] font-medium text-green-700 shadow-sm border border-green-100 flex items-center gap-1">
                                             <Icon name="sell" className="text-[13px]" /> {item.category}
                                         </div>
                                         {userRole === 'admin' && (
@@ -1202,7 +1202,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
                             <div className="bg-white w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
                                 <div className="p-6 sm:p-8 border-b border-slate-200 flex items-center justify-between shrink-0 bg-gradient-to-r from-green-50 to-white rounded-t-[32px]">
                                     <h2 className="text-2xl font-bold text-slate-800 tracking-tight flex items-center gap-2">
@@ -1272,7 +1272,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[110] flex items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-slate-900/60  z-[110] flex items-center justify-center p-4">
                             <div className="bg-white max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up">
                                 <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5">
                                     <Icon name="warning" className="text-[40px] text-red-500" />
@@ -1366,7 +1366,7 @@ const getDirectImgUrl = (url) => {
             return (
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 ">
                             <div className="bg-white rounded-[16px] p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
@@ -1379,7 +1379,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     <div className="bg-gradient-to-br from-indigo-50 to-blue-100/50 p-6 sm:p-10 rounded-[32px] border border-blue-200/60 shadow-[0_8px_30px_rgba(59,130,246,0.12)] mb-8 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                        
                         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
                                 <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-[12px] mb-4 shadow-lg">
@@ -1403,7 +1403,7 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     {filteredData.length === 0 ? (
-                        <div className="bg-white/80 backdrop-blur-md rounded-[32px] p-12 text-center border-2 border-dashed border-slate-300 shadow-sm">
+                        <div className="bg-white/80  rounded-[32px] p-12 text-center border-2 border-dashed border-slate-300 shadow-sm">
                             <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <Icon name="task_alt" className="text-[48px] text-slate-300" />
                             </div>
@@ -1456,7 +1456,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
                             <div className="bg-white w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
                                 <div className="p-6 sm:p-8 border-b border-slate-200 flex items-center justify-between shrink-0 bg-gradient-to-r from-blue-50 to-white rounded-t-[32px]">
                                     <h2 className="text-2xl font-bold text-slate-800 tracking-tight flex items-center gap-2">
@@ -1515,7 +1515,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[110] flex items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-slate-900/60  z-[110] flex items-center justify-center p-4">
                             <div className="bg-white max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up">
                                 <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5"><Icon name="warning" className="text-[40px] text-red-500" /></div>
                                 <h3 className="text-xl font-bold text-slate-800 mb-2">Hapus Laporan?</h3>
@@ -1677,7 +1677,7 @@ const getDirectImgUrl = (url) => {
             const changeTab = (tabId) => { window.location.hash = tabId; };
 
             const SpinnerComponent = (
-                <div className="fixed inset-0 z-[999] bg-slate-100/90 backdrop-blur-md flex justify-center items-center">
+                <div className="fixed inset-0 z-[999] bg-slate-100/90  flex justify-center items-center">
                     <div className="bg-white p-8 sm:p-10 rounded-[32px] shadow-2xl border-2 border-slate-300 flex flex-col items-center max-w-[300px] max-w-full w-[90%] relative overflow-hidden">
                         <div className="flex h-2 w-full absolute top-0 left-0">
                             <div className="w-1/4 bg-google-blue"></div>
@@ -1721,7 +1721,7 @@ const getDirectImgUrl = (url) => {
                         }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
                         {showLegalModal && (
-                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4 animate-fade-in">
+                        <div className="fixed inset-0 bg-black/60  z-[100] flex justify-center items-center p-4 animate-fade-in">
                             <div className="bg-white rounded-[32px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-200/50 max-h-[80vh]">
                                 <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-bold text-slate-800 flex items-center gap-2">
@@ -1821,8 +1821,8 @@ const getDirectImgUrl = (url) => {
                             </div>
                         )}
 
-                        <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
-                            <div className="max-w-5xl mx-auto flex items-center justify-between">
+                        <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-2rem)] max-w-6xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
+                            <div className="max-w-6xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
                                         <div className="bg-gradient-to-tr from-red-500 to-rose-600 text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40"><Icon name="home" className="text-[15px] sm:text-[17px]" fill="true" /></div>
@@ -1844,13 +1844,13 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     <main className="flex-1 w-full pt-5 md:pt-8 print:pb-0 print:pt-0" style={{paddingBottom: '10rem'}}>
-                        <div key={activeTab} className="max-w-5xl mx-auto px-4 sm:px-6 tab-fade-in pb-10">
+                        <div key={activeTab} className="max-w-6xl mx-auto px-4 sm:px-6 tab-fade-in pb-10">
                             {renderContent()}
                         </div>
                     </main>
 
                     <footer className="w-full text-center py-8 no-print border-t border-red-500/20 bg-gradient-to-b from-white/10 to-white/90 text-[12.5px] font-medium text-slate-500">
-                        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
+                        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
                             <p className="flex flex-wrap items-center gap-1.5 justify-center">
                                 <Icon name="flag" className="text-red-500 text-[14px] animate-pulse" fill="true" />
                                 - {new Date().getFullYear()} <span className="text-red-600 font-medium">WP LINGKUNGAN</span>. All rights reserved.
@@ -1875,7 +1875,7 @@ const getDirectImgUrl = (url) => {
                     <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
                     <PWAInstallBanner />
                     {showLicenseModal && (
-                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4 animate-fade-in">
+                        <div className="fixed inset-0 bg-black/60  z-[100] flex justify-center items-center p-4 animate-fade-in">
                             <div className="bg-white rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl animate-slide-up border-2 border-red-500/30 flex flex-col max-h-[85vh]">
                                 <div className="bg-red-50 px-6 py-5 border-b border-red-500/20 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-bold text-red-700 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
@@ -1902,7 +1902,7 @@ const getDirectImgUrl = (url) => {
                         </div>
                     )}
                     {showLegalModal && (
-                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4 animate-fade-in">
+                        <div className="fixed inset-0 bg-black/60  z-[100] flex justify-center items-center p-4 animate-fade-in">
                             <div className="bg-white rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-200/50 max-h-[85vh]">
                                 <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-bold text-slate-800 flex items-center gap-2">
@@ -1929,7 +1929,7 @@ const getDirectImgUrl = (url) => {
                     {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
 
                     {showLogoutModal && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[20px] p-8 w-full max-w-sm text-center border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="logout" className="text-[40px] text-google-red" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Keluar Sesi?</h3>
@@ -1950,7 +1950,7 @@ const getDirectImgUrl = (url) => {
         function PwaGuideModal({ onClose }) {
             const [tab, setTab] = useState('android');
             return (
-                <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                <div className="fixed inset-0 bg-slate-900/70  z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
 <div className="bg-white rounded-[32px] w-full max-w-xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-300" style={{ animation: 'slideUp 0.3s ease-out' }}>
                         <div className="p-4 sm:p-5 md:p-6 border-b-2 border-slate-300 flex justify-between items-center bg-slate-50 rounded-t-[30px]">
                             <h3 className="text-xl font-medium text-google-text flex flex-wrap items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
@@ -2172,7 +2172,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
-                        <header className="bg-white/95 text-slate-800 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-2rem)] max-w-5xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20">
+                        <header className="bg-white/95 text-slate-800 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-2rem)] max-w-6xl mx-auto mt-4 rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20">
                             <div className="flex items-center gap-2.5 overflow-hidden">
                                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-rose-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain"  loading="lazy" decoding="async"/>
@@ -2199,7 +2199,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* MAIN LANDING CONTENT */}
                     {mode === 'select' ? (
-                        <main className="flex-1 w-full max-w-5xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
+                        <main className="flex-1 w-full max-w-6xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
                             {/* HERO BANNER SECTION - menggunakan bannerImage dari Firebase jika ada */}
                             <div className={`relative rounded-[32px] p-6 sm:p-10 text-white border-2 border-red-500/20 shadow-xl overflow-hidden group min-h-[240px] sm:min-h-[300px] flex items-center ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark' : 'bg-slate-900'}`}>
                                 {bannerImage ? (
@@ -2209,13 +2209,13 @@ const getDirectImgUrl = (url) => {
                                     </>
                                 ) : (
                                     <>
-                                        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white opacity-5 rounded-full blur-3xl"></div>
-                                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-google-blueLight opacity-10 rounded-full blur-2xl"></div>
+                                        
+                                        
                                     </>
                                 )}
 
                                 <div className="relative z-10 w-full text-left space-y-4 max-w-2xl">
-                                    <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
+                                    <div className="inline-flex items-center gap-1.5 bg-white/20  px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
                                         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                         <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
                                     </div>
@@ -2230,12 +2230,12 @@ const getDirectImgUrl = (url) => {
                                     {/* Info jumlah warga aktif */}
                                     {members.length > 0 && (
                                         <div className="flex flex-wrap gap-3">
-                                            <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white/90">
+                                            <div className="inline-flex items-center gap-1.5 bg-white/15  px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white/90">
                                                 <Icon name="groups" className="text-[13px]" />
                                                 {members.filter(m => m.status !== 'Meninggal' && m.status !== 'Nonaktif').length} Warga Aktif
                                             </div>
                                             {informasi.length > 0 && (
-                                                <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white/90">
+                                                <div className="inline-flex items-center gap-1.5 bg-white/15  px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white/90">
                                                     <Icon name="campaign" className="text-[13px]" />
                                                     {informasi.length} Pengumuman
                                                 </div>
@@ -2255,10 +2255,10 @@ const getDirectImgUrl = (url) => {
                                 </div>
                             </div>
 
-                            {/* SERVICES GRID SECTION (SPACIOUS 2 COLUMNS) */}
-                            <section className="space-y-4 max-w-5xl px-6 mx-auto w-full">
+                            {/* SERVICES GRID SECTION (SPACIOUS 4 COLUMNS) */}
+                            <section className="space-y-4 max-w-6xl px-6 mx-auto w-full">
                                 <h3 className="text-[11px] font-extrabold text-slate-400 uppercase tracking-widest text-center">Layanan Utama Portal Kami</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                     <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
                                             <Icon name="campaign" className="text-[24px]" />
@@ -2298,8 +2298,8 @@ const getDirectImgUrl = (url) => {
                                 </div>
                             </section>
 
-                            {/* BOARD OF INFORMATION (SPACIOUS 2 COLUMNS WITH HIGH CONTRAST) */}
-                            <section id="berita" className="space-y-6 pt-4 max-w-5xl px-6 mx-auto w-full">
+                            {/* BOARD OF INFORMATION (SPACIOUS 3 COLUMNS) */}
+                            <section id="berita" className="space-y-6 pt-4 max-w-6xl px-6 mx-auto w-full">
                                 <div className="text-center space-y-1">
                                     <h3 className="text-[11px] font-extrabold text-red-600 dark:text-red-400 uppercase tracking-widest">Informasi Lingkungan</h3>
                                     <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">KABAR WARGA &amp; PENGUMUMAN</h2>
@@ -2312,7 +2312,7 @@ const getDirectImgUrl = (url) => {
                                         <p className="text-[11.5px] text-slate-600 dark:text-slate-400 mt-0.5">Pengumuman penting dan kabar warga RT akan muncul di halaman ini.</p>
                                     </div>
                                 ) : (
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {informasi.slice(0, 6).map(item => (
                                             <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-red-400 dark:hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
                                                 <div>
@@ -2348,7 +2348,7 @@ const getDirectImgUrl = (url) => {
 
                             {/* BLOG / ARTIKEL WARGA SECTION */}
                             {blogData && blogData.length > 0 && (
-                                <section id="blog" className="space-y-6 pt-4 max-w-5xl px-6 mx-auto w-full">
+                                <section id="blog" className="space-y-6 pt-4 max-w-6xl px-6 mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-extrabold text-google-blue dark:text-blue-400 uppercase tracking-widest">Artikel & Konten Warga</h3>
                                         <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">BLOG WARGA RT</h2>
@@ -2387,7 +2387,7 @@ const getDirectImgUrl = (url) => {
 
                             {/* SPONSOR SECTION DI LANDING PAGE */}
                             {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
-                                <section className="space-y-4 pt-4 max-w-5xl px-6 mx-auto w-full">
+                                <section className="space-y-4 pt-4 max-w-6xl px-6 mx-auto w-full">
                                     <p className="text-[9px] uppercase tracking-widest font-bold text-slate-400 text-center">Didukung Oleh</p>
                                     <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-6 sm:p-8">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
@@ -2402,7 +2402,7 @@ const getDirectImgUrl = (url) => {
                             {/* ADSENSE PLACEHOLDER */}
                             <section className="py-4 text-center border-t border-slate-200/30 max-w-xl mx-auto w-full px-4">
                                 <p className="text-[9px] font-extrabold tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-2">Informasi Layanan Digital Terverifikasi</p>
-                                <div className="w-full py-2.5 bg-slate-50/60 dark:bg-slate-800/40 rounded-[14px] border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center text-slate-550 dark:text-slate-400 text-[10.5px] font-semibold px-4 shadow-sm backdrop-blur-sm">
+                                <div className="w-full py-2.5 bg-slate-50/60 dark:bg-slate-800/40 rounded-[14px] border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center text-slate-550 dark:text-slate-400 text-[10.5px] font-semibold px-4 shadow-sm ">
                                     <Icon name="verified_user" className="text-[13px] mr-2 text-emerald-500" fill="true" />
                                     <span>Layanan Resmi RT Pakem, Banyuanyar, Gurah, Kediri.</span>
                                 </div>
@@ -2412,7 +2412,7 @@ const getDirectImgUrl = (url) => {
                     ) : (
                         /* ADMIN PASSWORD LOGIN FORM */
                         <div className="flex-1 flex flex-col justify-center items-center p-4 z-10">
-                            <div className="relative overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-8 sm:p-10 rounded-[28px] border-2 border-red-500/20 shadow-xl w-full max-w-sm text-center">
+                            <div className="relative overflow-hidden bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-[28px] border-2 border-red-500/20 shadow-xl w-full max-w-sm text-center">
                                 <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>
                                 <div className="mx-auto mt-4 mb-5 bg-red-50/50 w-24 h-24 rounded-full flex items-center justify-center border-2 border-red-500/20 shadow-inner overflow-hidden">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"}  loading="lazy" decoding="async"/>
@@ -2447,7 +2447,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {/* LANDING FOOTER (COMPLIES WITH THEME VARIABLES) */}
-                    <footer className="w-[calc(100%-2rem)] max-w-5xl mx-auto rounded-[28px] border border-slate-100 dark:border-slate-800/80 py-8 px-6 sm:px-8 text-center z-10 relative mb-8 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
+                    <footer className="w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-[28px] border border-slate-100 dark:border-slate-800/80 py-8 px-6 sm:px-8 text-center z-10 relative mb-8 bg-white/90 dark:bg-slate-900/90  shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
                         <div className="max-w-4xl mx-auto space-y-4">
                             <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
                                 <span className="font-bold text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah sistem informasi manajemen kerukunan lingkungan digital. {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
@@ -2474,7 +2474,7 @@ const getDirectImgUrl = (url) => {
 
                 {/* MODAL DETAIL ARTIKEL / INFORMASI */}
                 {selectedArticle && (
-                    <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/70 backdrop-blur-sm" onClick={(e) => { if (e.target === e.currentTarget) setSelectedArticle(null); }}>
+                    <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/70 " onClick={(e) => { if (e.target === e.currentTarget) setSelectedArticle(null); }}>
                         <div className="bg-white dark:bg-slate-900 w-full sm:max-w-2xl sm:rounded-[32px] rounded-t-[32px] shadow-2xl border-2 border-slate-200 dark:border-slate-700 flex flex-col max-h-[92vh] sm:max-h-[85vh] overflow-hidden animate-scale-up">
                             {/* Header modal */}
                             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700 shrink-0">
@@ -2553,11 +2553,11 @@ const getDirectImgUrl = (url) => {
                             </>
                         )}
 
-                        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-white opacity-5 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700 z-0"></div>
-                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-google-blueLight opacity-10 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700 delay-100 z-0"></div>
+                        
+                        
 
                         <div className="relative z-10 w-full text-left">
-                            <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full mb-3 border border-white/20 shadow-sm w-fit">
+                            <div className="inline-flex items-center gap-1.5 bg-white/20  px-3.5 py-1.5 rounded-full mb-3 border border-white/20 shadow-sm w-fit">
                                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                 <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Sistem Aktif</span>
                             </div>
@@ -3038,8 +3038,8 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-[32px] p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 border-2 border-slate-700 relative overflow-hidden group cursor-default">
-                        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-google-blue opacity-20 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
-                        <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-google-green opacity-20 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000 delay-100"></div>
+                        
+                        
 
                         <div className="relative z-10 w-full text-center sm:text-left">
                             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[6px] text-[9px] font-medium uppercase tracking-widest bg-white/10 text-slate-200 mb-3 border border-white/20 shadow-sm">
@@ -3086,7 +3086,7 @@ const getDirectImgUrl = (url) => {
 
                     <div className="bg-gradient-to-r from-google-yellowLight to-yellow-50 border-2 border-google-yellow/40 rounded-[32px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 shadow-sm hover:shadow-md transition-shadow">
                         <div><p className="text-[10px] font-medium text-google-yellowDark uppercase tracking-widest mb-1.5">Total Saldo Efektif Jimpitan</p><p className="text-3xl font-medium text-google-yellowDark tracking-tight">{formatRp(saldoEfektifJimpitan)}</p></div>
-                        <div className="flex flex-wrap items-center gap-3 bg-white/80 backdrop-blur-sm px-5 py-4 rounded-[24px] border-2 border-google-yellow/30 shadow-sm"><Icon name="info" className="text-[20px] text-google-yellowDark shrink-0" /><p className="text-[12px] font-medium text-google-yellowDark max-w-[220px] max-w-full leading-relaxed">Akumulasi aset utuh (Kas Tunai + Piutang Warga).</p></div>
+                        <div className="flex flex-wrap items-center gap-3 bg-white/80  px-5 py-4 rounded-[24px] border-2 border-google-yellow/30 shadow-sm"><Icon name="info" className="text-[20px] text-google-yellowDark shrink-0" /><p className="text-[12px] font-medium text-google-yellowDark max-w-[220px] max-w-full leading-relaxed">Akumulasi aset utuh (Kas Tunai + Piutang Warga).</p></div>
                     </div>
 
                     {redRecords > 0 && (
@@ -3097,7 +3097,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {showResetModal && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-left border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-blueLight w-16 h-16 rounded-full flex items-center justify-center border-2 border-google-blue/30"><Icon name="refresh" className="text-[32px] text-google-blue" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Mulai Siklus Baru?</h3>
@@ -3265,7 +3265,7 @@ const getDirectImgUrl = (url) => {
                                             <div className="absolute top-3 left-3 bg-google-red text-white px-2.5 py-1 rounded-[10px] font-medium text-[9px] shadow-sm flex flex-wrap items-center gap-1 uppercase tracking-wider"><Icon name="handshake" className="text-[11px]" />{sedangDipinjam} Dipinjam</div>
                                         )}
                                         {/* Badge total stok */}
-                                        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-google-text px-3 py-1.5 rounded-[10px] font-medium text-[11px] shadow-sm border border-slate-300 flex flex-wrap items-center gap-1.5">
+                                        <div className="absolute top-3 right-3 bg-white/95  text-google-text px-3 py-1.5 rounded-[10px] font-medium text-[11px] shadow-sm border border-slate-300 flex flex-wrap items-center gap-1.5">
                                             <Icon name="tag" className="text-[13px] text-google-yellowDark" />{totalStok} unit
                                         </div>
                                     </div>
@@ -3321,7 +3321,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal Form Tambah/Edit */}
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-2 border-slate-300 my-4">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Inventaris' : 'Tambah Inventaris'}</h3>
                                 <div className="space-y-5">
@@ -3379,7 +3379,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal konfirmasi hapus */}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Barang?</h3>
@@ -3677,7 +3677,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal konfirmasi kembali */}
                     {konfirmReturnId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
                                 {(() => { const p = pinjamData.find(x => x.id === konfirmReturnId); return p ? (<>
                                     <div className="mb-5 bg-google-greenLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="assignment_return" className="text-[40px] text-google-green" /></div>
@@ -3695,7 +3695,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal konfirmasi tolak */}
                     {konfirmRejectId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="cancel" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-xl font-medium text-google-text mb-2">Tolak Pengajuan?</h3>
@@ -3890,7 +3890,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal hapus */}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30">
                                     <Icon name="delete" className="text-[40px] text-google-red" />
@@ -4155,7 +4155,7 @@ const getDirectImgUrl = (url) => {
 
                         {/* Modal pembayaran */}
                         {showPayModal && (
-                            <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
+                            <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
                                 <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[28px] p-4 sm:p-5 md:p-6 w-full max-w-sm shadow-2xl border-2 border-slate-300 my-4">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[16px] font-medium text-google-text">Cara Pembayaran</h3>
@@ -4486,7 +4486,7 @@ const getDirectImgUrl = (url) => {
                                 <div onClick={() => setSelectedPhoto(item)} className="w-full aspect-[4/3] bg-slate-100 relative shrink-0 border-b border-slate-200 overflow-hidden flex items-center justify-center cursor-zoom-in">
                                     <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
                                     <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <div className="bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                        <div className="bg-white/90  p-3 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                             <Icon name="zoom_in" className="text-slate-800 text-[17px]"/>
                                         </div>
                                     </div>
@@ -4535,7 +4535,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* Lightbox / Detail Viewer Modal */}
                     {selectedPhoto && (
-                        <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 no-print">
+                        <div className="fixed inset-0 bg-slate-950/80  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="bg-white rounded-[32px] w-full max-w-2xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-300 overflow-hidden" style={{ animation: 'slideUp 0.3s ease-out' }}>
                                 <div className="p-4 sm:p-5 md:p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50 shrink-0">
                                     <div className="flex flex-wrap items-center gap-2">
@@ -4569,7 +4569,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* Upload / Edit Form Modal */}
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-2 border-slate-300 flex flex-col transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">
                                     {editingId ? 'Edit Dokumentasi' : 'Unggah Dokumentasi'}
@@ -4618,7 +4618,7 @@ const getDirectImgUrl = (url) => {
                     )}
                     
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Foto?</h3>
@@ -4708,7 +4708,7 @@ const getDirectImgUrl = (url) => {
                     {data.length === 0 && <div className="bg-white rounded-[32px] border-2 border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border-2 border-slate-300"><Icon name="campaign" className="text-[48px] text-slate-400" fill="true" /></div><h3 className="font-medium text-[17px] mb-2 text-google-text">Belum Ada Informasi</h3><p className="text-google-textVariant font-medium text-[13px]">Papan informasi warga masih kosong saat ini.</p></div>}
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
 <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl border-2 border-slate-300 flex flex-col max-h-[90vh] transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 shrink-0 tracking-tight">{editingId ? 'Edit Info Kegiatan' : 'Buat Info Baru'}</h3>
                                 <div className="space-y-5 overflow-y-auto pr-2 pb-2 hide-scrollbar">
@@ -4748,7 +4748,7 @@ const getDirectImgUrl = (url) => {
                     )}
                     
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Informasi?</h3>
@@ -4917,7 +4917,7 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}</h3>
                                 <div className="space-y-5">
@@ -4943,7 +4943,7 @@ const getDirectImgUrl = (url) => {
                         </div>
                     )}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="person_remove" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Warga?</h3>
@@ -4957,7 +4957,7 @@ const getDirectImgUrl = (url) => {
                     )}
                     
                     {previewMember && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity" onClick={() => setPreviewMember(null)}>
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity" onClick={() => setPreviewMember(null)}>
                             <div className="max-h-[90vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform relative" onClick={e => e.stopPropagation()}>
                                 <button onClick={() => setPreviewMember(null)} className="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-500 active:scale-95 transition-all"><Icon name="close" className="text-[17px]" /></button>
                                 
@@ -5143,7 +5143,7 @@ const getDirectImgUrl = (url) => {
                         </div>
 
                         {isTransferModalOpen && (
-                            <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                            <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                                 <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
                                     <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
                                     <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Setor ke Kas Warga</h3>
@@ -5213,7 +5213,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* FIX: Modal konfirmasi hapus agenda */}
                     {deleteConfirmAgendaId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Agenda?</h3>
@@ -5346,11 +5346,11 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     <div className="bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark text-white p-8 sm:p-12 rounded-[32px] border-2 border-google-blueDark shadow-xl relative overflow-hidden no-print group cursor-default">
-                        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-56 h-56 bg-white opacity-10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
-                        <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-48 h-48 bg-black opacity-10 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-1000 delay-100"></div>
-                        <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-google-blueLight opacity-20 rounded-full blur-3xl animate-pulse"></div>
+                        
+                        
+                        
                         <div className="relative z-10">
-                            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-full mb-5 shadow-sm">
+                            <div className="inline-flex items-center gap-2 bg-white/10  border border-white/30 px-4 py-2 rounded-full mb-5 shadow-sm">
                                 <Icon name="account_balance_wallet" className="text-[16px]"/>
                                 <span className="text-[10px] font-medium uppercase tracking-widest text-blue-50">Total Saldo Aktif</span>
                             </div>
@@ -5422,7 +5422,7 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     {isModalOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
                                 <div className={`mb-6 w-20 h-20 rounded-full flex items-center justify-center border-2 ${formData.type === 'Pemasukan' ? 'bg-google-greenLight text-google-green border-google-green/30' : 'bg-google-redLight text-google-red border-google-red/30'}`}><Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[36px]" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit' : 'Catat'} {formData.type}</h3>
@@ -5468,7 +5468,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {isTransferModalOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
                                 <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Pencairan Jimpitan</h3>
@@ -5781,7 +5781,7 @@ const getDirectImgUrl = (url) => {
                                 <div className="pt-8 flex justify-end no-print border-t-2 border-slate-200 mt-10"><button onClick={() => setStep(2)} className="bg-google-blue text-white px-10 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center gap-2">Lanjut Ke Rekapitulasi <Icon name="arrow_forward" className="text-[17px]"/></button></div>
                                 
                                 {showHolidayModal && (
-                                    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                                    <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                                         <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
                                             <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="event_busy" className="text-[48px] text-google-yellowDark" /></div>
                                             <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Liburkan Bulan Ini?</h3>
@@ -5821,7 +5821,7 @@ const getDirectImgUrl = (url) => {
                                 )}
                                 
                                 {showCashierModal && scannedMembers.length > 0 && (
-                                    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+                                    <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 no-print">
                                         <div className="bg-white rounded-[32px] p-6 w-full max-w-sm shadow-2xl border-2 border-slate-300 max-h-[95vh] flex flex-col">
                                             <h3 className="text-xl font-medium text-google-text mb-2 text-center">Kasir Pembayaran</h3>
                                             <div className="text-center mb-4">
@@ -5921,8 +5921,8 @@ const getDirectImgUrl = (url) => {
                                 <h3 className="text-3xl font-medium text-google-text mb-2 text-center tracking-tight">Tentukan Pemenang</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 text-center">Pilih warga yang akan menerima dana arisan putaran ini.</p>
                                 <div className="bg-gradient-to-br from-white to-slate-50 border-2 border-slate-300 rounded-[32px] p-8 sm:p-14 text-center shadow-lg relative overflow-hidden max-w-2xl mx-auto">
-                                    <div className="absolute top-0 right-0 w-40 h-40 bg-google-yellow opacity-10 rounded-full blur-3xl"></div>
-                                    <div className="absolute bottom-0 left-0 w-40 h-40 bg-google-blue opacity-10 rounded-full blur-3xl"></div>
+                                    
+                                    
                                     
                                     <div className="mb-8 relative z-10 animate-bounce" style={{ animationDuration: '2s' }}><Icon name="emoji_events" className="text-[100px] text-google-yellow drop-shadow-2xl" fill="true" /></div>
                                     
@@ -6204,7 +6204,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     </div>
 
                     {editingHistoryId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
 <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left max-h-[90vh] flex flex-col border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
                                 <h3 className="text-2xl font-medium text-google-text mb-1 shrink-0 tracking-tight">Revisi Kehadiran</h3><p className="text-[13px] font-medium text-google-textVariant mb-6 shrink-0 leading-relaxed">Saldo akan disesuaikan otomatis mengikuti perubahan presensi ini.</p>
                                 <div className="overflow-y-auto space-y-4 flex-1 pb-4 pr-1 hide-scrollbar">
@@ -6847,7 +6847,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
 
                     {modalConfig && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
                                 <div className="mb-6 bg-google-greenLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="check_circle" className="text-[48px] text-google-green" fill="true" /></div>
                                 <p className="text-google-text text-[17px] font-medium mb-8 leading-snug tracking-tight">{modalConfig.message}</p>
@@ -6856,7 +6856,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
                     )}
                     {confirmResetModal && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
+                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
                                 <h3 className="text-3xl font-medium text-google-red mb-2 tracking-tight">Reset Total?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tindakan ini permanen dan tidak bisa dibatalkan. Ketik kata <b className="text-google-red">RESET</b> di bawah ini.</p>
@@ -7093,7 +7093,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="space-y-6">
                             {/* Hari Ini / Selected Day Info */}
                             <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-300 shadow-sm relative overflow-hidden group">
-                                <div className="absolute -right-8 -top-8 w-44 h-44 bg-red-50/50 opacity-40 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700"></div>
+                                
                                 <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                     <Icon name="info" className="text-[16px] text-red-600" />
                                     Detail Tanggal
@@ -7497,7 +7497,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 <div className="space-y-6 tab-fade-in relative z-10 w-full animate-slide-up no-print">
                     <div className="bg-gradient-to-br from-google-yellow via-amber-400 to-orange-500 text-white p-8 sm:p-10 rounded-[32px] border-2 border-orange-600/20 shadow-lg relative overflow-hidden">
                         <div className="relative z-10">
-                            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-4 border border-white/30 shadow-sm">
+                            <div className="inline-flex items-center gap-2 bg-white/20  px-3.5 py-1.5 rounded-full mb-4 border border-white/30 shadow-sm">
                                 <Icon name="article" className="text-[14px] sm:text-[16px]" fill="true"/>
                                 <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest">Warta Warga</span>
                             </div>
@@ -7551,7 +7551,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 </div>
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
                             <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto hide-scrollbar border-2 border-slate-300 animate-slide-up">
                                 <h3 className="text-2xl font-bold text-google-text mb-6 tracking-tight">{editingId ? 'Edit Artikel' : 'Tulis Artikel Baru'}</h3>
                                 <div className="space-y-5">
@@ -7584,7 +7584,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
 
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
                             <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 animate-slide-up">
                                 <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-100 text-red-500"><Icon name="delete_forever" className="text-[48px]" fill="true" /></div>
                                 <h3 className="text-2xl font-bold text-google-text mb-2">Hapus Artikel?</h3>
@@ -8072,7 +8072,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             return (
                 <div className="animate-fade-in pb-24 max-w-6xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 ">
                             <div className="bg-white rounded-[28px] p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
@@ -8249,7 +8249,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 ) : (
                                                     <div className="text-slate-400 flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[11px] font-bold">Tidak ada foto</span></div>
                                                 )}
-                                                <div className="absolute top-3 right-3 bg-slate-900/75 text-white text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">Stok: {prod.stock}</div>
+                                                <div className="absolute top-3 right-3 bg-slate-900/75 text-white text-[10px] font-bold px-3 py-1.5 rounded-full ">Stok: {prod.stock}</div>
                                             </div>
                                             <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                                                 <div>
@@ -8280,7 +8280,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Modal Kelola Produk */}
                             {isProductModalOpen && (
-                                <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                                <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
                                     <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto border-2 border-slate-350 animate-scale-up">
                                         <h3 className="text-xl font-bold text-slate-800 mb-6 tracking-tight">{editingProduct ? 'Edit Produk Tiket' : 'Tambah Produk Tiket Baru'}</h3>
                                         <div className="space-y-4">
@@ -8397,7 +8397,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             <div className="bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark rounded-[28px] p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
                                 <div className="absolute inset-0 bg-black/10"></div>
                                 <div className="relative z-10">
-                                    <span className="bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border border-white/20">EVENT RT PAKEM</span>
+                                    <span className="bg-white/25  px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border border-white/20">EVENT RT PAKEM</span>
                                     <h2 className="text-2xl sm:text-3xl font-extrabold mt-3 tracking-tight">Katalog Tiket Jalan Santai</h2>
                                     <p className="text-[12px] sm:text-[13px] text-white/95 mt-1.5 max-w-xl leading-relaxed font-medium">
                                         Beli tiket jalan santai Anda secara online di sini! Silakan lakukan pembayaran di tempat (COD) langsung saat mengambil tiket di lokasi pengambilan yang telah ditentukan.
@@ -8459,12 +8459,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         </div>
                                                     )}
                                                     {/* Official Store Badge — top left */}
-                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-[8px] shadow-md shadow-amber-500/20 backdrop-blur-sm border border-white/20 tracking-wide">
+                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-[8px] shadow-md shadow-amber-500/20  border border-white/20 tracking-wide">
                                                         <Icon name="verified" className="text-[12px]" fill="true" />
                                                         OFFICIAL
                                                     </div>
                                                     {/* Stock Pill — top right */}
-                                                    <div className={`absolute top-3.5 right-3.5 text-[9.5px] font-extrabold px-2.5 py-1 rounded-[8px] backdrop-blur-md shadow-md border ${prod.stock > 0 ? 'bg-slate-900/75 dark:bg-slate-950/75 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20'}`}>
+                                                    <div className={`absolute top-3.5 right-3.5 text-[9.5px] font-extrabold px-2.5 py-1 rounded-[8px]  shadow-md border ${prod.stock > 0 ? 'bg-slate-900/75 dark:bg-slate-950/75 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20'}`}>
                                                         {prod.stock > 0 ? `Stok: ${prod.stock}` : 'Stok Habis'}
                                                     </div>
                                                     {/* Countdown Timer overlay — bottom right */}
@@ -8583,7 +8583,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         </div>
                                                     )}
                                                     {/* Archive Badge — top left */}
-                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 bg-slate-700/90 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-[8px] shadow-md backdrop-blur-sm tracking-wide">
+                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 bg-slate-700/90 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-[8px] shadow-md  tracking-wide">
                                                         <Icon name="archive" className="text-[12px]" fill="true" />
                                                         ARSIP
                                                     </div>
@@ -8794,7 +8794,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Modal Beli Tiket (Warga) */}
                             {isBuyModalOpen && selectedProduct && (
-                                <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+                                <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
                                     <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto border-2 border-slate-350 animate-scale-up">
                                         <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
                                             <h3 className="text-lg font-extrabold text-slate-800">Formulir Beli Tiket</h3>
@@ -8908,7 +8908,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
 
                     {confirmModal && (
-                        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[150] flex items-center justify-center p-4">
+                        <div className="fixed inset-0 bg-slate-900/60  z-[150] flex items-center justify-center p-4">
                             <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 animate-scale-up">
                                 <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-100 text-red-500">
                                     <Icon name="delete_forever" className="text-[40px]" fill="true" />
@@ -8924,7 +8924,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
 
                     {sharingProduct && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60  animate-fade-in">
                             <div className="bg-white dark:bg-slate-900 rounded-[32px] p-6 sm:p-8 max-w-sm w-full shadow-2xl animate-scale-up border border-slate-200 dark:border-slate-800">
                                 <div className="flex justify-between items-center mb-6 pb-3 border-b border-slate-100 dark:border-slate-800">
                                     <h3 className="text-lg font-extrabold text-slate-800 dark:text-slate-100 flex items-center gap-2"><Icon name="share" className="text-google-blue" /> Bagikan Tiket</h3>
