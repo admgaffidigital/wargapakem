@@ -2562,14 +2562,14 @@ const getDirectImgUrl = (url) => {
                                 <h1 className="text-[18px] font-bold bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent mb-1 tracking-tight">Otorisasi Admin</h1>
                                 <p className="text-[12.5px] font-medium text-slate-600 mb-6 leading-snug">{identity.name}</p>
                                 
-                                <div className="space-y-4">
+                                <div className="space-y-5">
                                     <div className="text-left">
-                                        <label className="text-[9.5px] font-bold text-slate-400 block mb-1.5 ml-2 uppercase tracking-wider">Email Admin</label>
-                                        <input type="email" placeholder="Email Firebase Anda" value={email} onChange={(e) => { setEmail(e.target.value); setError(''); }} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-sm text-slate-800 rounded-[16px] px-4.5 py-3 text-[12.5px] font-medium outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
+                                        <label className="text-[10.5px] font-semibold text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-wider">Email Admin</label>
+                                        <input type="email" placeholder="Email Firebase Anda" value={email} onChange={(e) => { setEmail(e.target.value); setError(''); }} className="w-full bg-slate-50/50 dark:bg-slate-900 border border-slate-250 dark:border-slate-700 focus:border-red-500 dark:focus:border-red-500 focus:bg-white dark:focus:bg-slate-950 focus:ring-4 focus:ring-red-500/10 text-[13.5px] text-slate-800 dark:text-white rounded-[12px] px-4 py-3 font-medium outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
                                     </div>
                                     <div className="text-left">
-                                        <label className="text-[9.5px] font-bold text-slate-400 block mb-1.5 ml-2 uppercase tracking-wider">Kata Sandi</label>
-                                        <input type="password" placeholder="Kata Sandi Firebase" value={password} onChange={(e) => { setPassword(e.target.value); setError(''); }} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md text-slate-800 rounded-[16px] px-4.5 py-3 text-[12.5px] font-medium outline-none transition-all placeholder:font-medium placeholder:text-slate-400" />
+                                        <label className="text-[10.5px] font-semibold text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-wider">Kata Sandi</label>
+                                        <input type="password" placeholder="Kata Sandi Firebase" value={password} onChange={(e) => { setPassword(e.target.value); setError(''); }} className="w-full bg-slate-50/50 dark:bg-slate-900 border border-slate-250 dark:border-slate-700 focus:border-red-500 dark:focus:border-red-500 focus:bg-white dark:focus:bg-slate-950 focus:ring-4 focus:ring-red-500/10 text-[13.5px] text-slate-800 dark:text-white rounded-[12px] px-4 py-3 font-medium outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500" />
                                     </div>
                                     <div className="mt-6 pt-3.5 border-t border-slate-200/50 text-center">
                                         <p className="text-[9px] text-slate-400 font-medium px-2 leading-relaxed">

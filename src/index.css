@@ -548,3 +548,21 @@ img {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(148, 163, 184, 0.7);
 }
+
+/* Custom Autofill Styles for clean input fields */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #f8fafc inset !important; /* slate-50 background */
+    -webkit-text-fill-color: #0f172a !important; /* slate-900 text */
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover, 
+.dark input:-webkit-autofill:focus, 
+.dark input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #0f172a inset !important; /* slate-900 background */
+    -webkit-text-fill-color: #f8fafc !important; /* slate-50 text */
+}
