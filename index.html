@@ -75,24 +75,19 @@ Build: Vite + React + Tailwind CSS
        FONTS — Non-blocking async load
        ================================================ -->
 
-  <!-- Font Outfit (primary UI font) — preload untuk LCP lebih cepat -->
+  <!-- Fonts Preload — LCP & Icon rendering instant -->
   <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
     fetchpriority="high" />
-
-  <!-- Load non-blocking via print trick -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
-    media="print" onload="this.media='all'" />
-  <link rel="stylesheet"
+  <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
-    media="print" onload="this.media='all'" />
+    fetchpriority="high" />
 
-  <!-- Fallback tanpa JS -->
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" />
-  </noscript>
+  <!-- Stylesheet links -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" />
 
   <!-- ================================================
        LOADING SCREEN — Inline CSS, zero external request
