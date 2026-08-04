@@ -1935,7 +1935,7 @@ const getDirectImgUrl = (url) => {
                 }
                 return (
                     <>
-                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} umkmData={umkmData} infoDesa={infoDesa} landingConfig={landingConfig} onLogin={(role) => { 
+                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} umkmData={umkmData} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); 
                             const params = new URLSearchParams(window.location.search);
                             if (params.get('page') === 'tiket') {
@@ -2374,7 +2374,7 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
