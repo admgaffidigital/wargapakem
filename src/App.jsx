@@ -2737,12 +2737,12 @@ const getDirectImgUrl = (url) => {
                                         <h3 className="text-[11px] font-bold text-google-yellowDark dark:text-yellow-400 uppercase tracking-widest">Selamat Kepada Pemenang</h3>
                                         <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">PEMENANG ARISAN PUTARAN TERBARU</h2>
                                     </div>
-                                    <div className="relative bg-gradient-to-br from-amber-50/80 via-white to-amber-50/30 dark:from-slate-900 dark:to-slate-900/80 rounded-[28px] border border-amber-200/80 dark:border-amber-950/40 p-6 sm:p-8 shadow-[0_8px_30px_rgba(244,180,0,0.03)] hover:shadow-[0_8px_30px_rgba(244,180,0,0.06)] transition-all duration-300 overflow-hidden flex flex-col md:flex-row gap-6 items-center justify-between">
+                                    <div className="relative bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm transition-all duration-300 overflow-hidden flex flex-col md:flex-row gap-6 items-center justify-between">
                                         {/* Background decoration */}
                                         <div className="absolute -top-10 -right-10 w-40 h-40 bg-google-yellow opacity-10 rounded-full blur-2xl"></div>
                                         
                                         <div className="flex items-center gap-5 relative z-10 w-full md:w-auto">
-                                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-google-yellow to-amber-500 text-white flex items-center justify-center shrink-0 border-2 border-white/60 shadow-[0_8px_20px_rgba(244,180,0,0.3)] animate-bounce-slow">
+                                            <div className="w-16 h-16 rounded-2xl bg-google-yellow text-white flex items-center justify-center shrink-0 border border-slate-200 dark:border-slate-700 animate-bounce-slow">
                                                 <Icon name="emoji_events" className="text-[32px]" fill="true" />
                                             </div>
                                             <div>
@@ -9612,7 +9612,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                     <button 
                                         type="submit" 
-                                        className="w-full bg-gradient-to-r from-google-green to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white py-4 rounded-[16px] font-bold text-[13px] flex items-center justify-center gap-2 shadow-[0_8px_25px_rgba(52,168,83,0.2)] active:scale-95 transition-all mt-4"
+                                        className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-[16px] font-bold text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
                                     >
                                         <Icon name="send" />
                                         <span>Ajukan Gabung Grup</span>
@@ -9668,7 +9668,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             href={inviteLink} 
                                             target="_blank" 
                                             rel="noopener noreferrer"
-                                            className="w-full bg-gradient-to-r from-google-green to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white py-4 rounded-[16px] font-bold text-[13px] flex items-center justify-center gap-2 shadow-[0_8px_25px_rgba(52,168,83,0.3)] active:scale-95 transition-all mt-4"
+                                            className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-[16px] font-bold text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
                                         >
                                             <Icon name="forum" />
                                             <span>Gabung Grup WhatsApp Sekarang</span>
@@ -9705,7 +9705,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-3">
                                         <button 
                                             onClick={handleResetRequest} 
-                                            className="flex-1 bg-gradient-to-r from-google-blue to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-3.5 rounded-xl font-bold text-[12.5px] hover:shadow-md active:scale-95 transition-all shadow-sm"
+                                            className="flex-1 bg-google-blue hover:bg-blue-600 text-white py-3.5 rounded-xl font-bold text-[12.5px] active:scale-95 transition-all shadow-sm"
                                         >
                                             Ajukan Ulang / Koreksi Data
                                         </button>
