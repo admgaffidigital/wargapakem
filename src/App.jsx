@@ -1831,7 +1831,8 @@ const getDirectImgUrl = (url) => {
                     const hash = window.location.hash.replace('#', '');
                     if (hash) setActiveTab(hash);
                     else setActiveTab('menu');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    if (typeof setSelectedArticle === 'function') setSelectedArticle(null);
                 };
                 window.addEventListener('hashchange', handleHashChange);
 
@@ -1887,7 +1888,10 @@ const getDirectImgUrl = (url) => {
                 }
             }, [landingConfig?.adsenseClientId]);
 
-            const changeTab = (tabId) => { window.location.hash = tabId; };
+            const changeTab = (tabId) => { 
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.location.hash = tabId; 
+            };
 
             const SpinnerComponent = (
                 <div className="fixed inset-0 z-[999] bg-slate-100/90  flex justify-center items-center">
