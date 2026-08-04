@@ -2802,11 +2802,11 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                                         {/* Peta Google Maps (Optimized Dynamic Load) */}
-                                        <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-4 shadow-sm overflow-hidden flex flex-col justify-between min-h-[380px]">
+                                        <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-4 shadow-sm overflow-hidden flex flex-col justify-between min-h-[380px]">
                                             {showMap ? (
                                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[320px] rounded-[16px] border border-slate-200 dark:border-slate-800" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
                                             ) : (
-                                                <div className="w-full h-[320px] rounded-[16px] bg-slate-50 dark:bg-slate-950 border border-slate-250 dark:border-slate-800 flex flex-col items-center justify-center text-center p-6 relative overflow-hidden">
+                                                <div className="w-full h-[320px] rounded-[16px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center p-6 relative overflow-hidden">
                                                     <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" style={{
                                                         backgroundImage: `radial-gradient(circle, #000 10%, transparent 11%), radial-gradient(circle, #000 10%, transparent 11%)`,
                                                         backgroundSize: '20px 20px',
@@ -2830,7 +2830,7 @@ const getDirectImgUrl = (url) => {
                                         {/* Batas & Kontak */}
                                         <div className="space-y-4 flex flex-col">
                                             {/* Batas Administrasi */}
-                                            <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+                                            <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
                                                 <h4 className="font-bold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
                                                 <div className="grid grid-cols-2 gap-2.5">
                                                     {['utara', 'selatan', 'timur', 'barat'].map(arah => (
@@ -2843,7 +2843,7 @@ const getDirectImgUrl = (url) => {
                                             </div>
 
                                             {/* Kontak Darurat */}
-                                            <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-5 shadow-sm flex-1 flex flex-col">
+                                            <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-5 shadow-sm flex-1 flex flex-col">
                                                 <h4 className="font-bold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="contact_phone" className="text-red-500 text-[16px]"/> Layanan &amp; Kontak</h4>
                                                 {infoDesa?.kontak && infoDesa?.kontak?.length > 0 ? (
                                                     <div className="space-y-2 max-h-48 overflow-y-auto hide-scrollbar pr-0.5">
@@ -2897,7 +2897,7 @@ const getDirectImgUrl = (url) => {
                     ) : (
                         /* ADMIN PASSWORD LOGIN FORM */
                         <div className="flex-1 flex flex-col justify-center items-center p-4 z-10">
-                            <div className="relative overflow-hidden bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-[28px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-full max-w-sm text-center">
+                            <div className="relative overflow-hidden bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm w-full max-w-sm text-center">
                                 <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>
                                 <div className="mx-auto mt-4 mb-5 bg-red-50/50 w-24 h-24 rounded-full flex items-center justify-center border-2 border-red-500/20 shadow-inner overflow-hidden">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"}  loading="lazy" decoding="async"/>
