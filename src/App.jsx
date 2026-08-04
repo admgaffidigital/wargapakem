@@ -2395,7 +2395,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
-                        <header className="bg-white/80 backdrop-blur-md text-slate-800 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-between relative z-20">
+                        <header className="bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-100 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-between relative z-20">
                             <div className="flex items-center gap-2.5 overflow-hidden">
                                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-red-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain"  loading="lazy" decoding="async"/>
@@ -2438,7 +2438,7 @@ const getDirectImgUrl = (url) => {
                                 )}
 
                                 <div className="relative z-10 w-full text-left space-y-4 max-w-2xl">
-                                    <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
+                                    <div className="inline-flex items-center gap-1.5 bg-black/20 px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
                                         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                         <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
                                     </div>
@@ -2753,7 +2753,7 @@ const getDirectImgUrl = (url) => {
                             {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
                                 <section className="space-y-4 pt-4 max-w-6xl mx-auto w-full">
                                     <p className="text-[9px] uppercase tracking-widest font-bold text-slate-400 text-center">{landingConfig.sponsorSubtitle}</p>
-                                    <div className="bg-slate-50/50 dark:bg-slate-900/30 rounded-[32px] border border-slate-200 dark:border-slate-700 p-6 sm:p-8 backdrop-blur-sm">
+                                    <div className="bg-white/90 dark:bg-slate-900/90 rounded-[32px] border border-slate-200 dark:border-slate-700 p-6 sm:p-8">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
                                             {sponsorsData.sponsors.map((s, i) => (
                                                 <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[150px] object-contain opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110 grayscale hover:grayscale-0" title={s.name}  loading="lazy" decoding="async"/>
@@ -2776,7 +2776,7 @@ const getDirectImgUrl = (url) => {
                     ) : (
                         /* ADMIN PASSWORD LOGIN FORM */
                         <div className="flex-1 flex flex-col justify-center items-center p-4 z-10">
-                            <div className="relative overflow-hidden bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-[28px] border-2 border-red-500/20 shadow-xl w-full max-w-sm text-center">
+                            <div className="relative overflow-hidden bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-[28px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-full max-w-sm text-center">
                                 <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>
                                 <div className="mx-auto mt-4 mb-5 bg-red-50/50 w-24 h-24 rounded-full flex items-center justify-center border-2 border-red-500/20 shadow-inner overflow-hidden">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"}  loading="lazy" decoding="async"/>
@@ -2943,10 +2943,10 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {/* AREA GRID MENU */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5">
-                        {NavItems.map((item, idx) => (
-                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
-                                <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-6">
+                            {NavItems.map((item, idx) => (
+                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
+                                <div className="absolute inset-0 bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 
                                 <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-[14px] sm:rounded-[16px] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md border border-white/60 ${item.bg} ${item.color.replace('border-2', '')}`}>
                                     <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/10 to-black/5 rounded-[14px] sm:rounded-[16px]"></div>
@@ -7041,8 +7041,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const renderGridMenu = () => (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {pengaturanMenus.map(menu => (
-                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white rounded-[24px] p-5 sm:p-6 border-2 border-slate-300 shadow-sm ${menu.hoverBorder} hover:shadow-lg cursor-pointer transition-all duration-300 group flex flex-col items-center text-center gap-4`}>
-                            <div className={`w-14 h-14 ${menu.bg} ${menu.text} rounded-[16px] flex items-center justify-center border-2 ${menu.border} group-hover:scale-110 ${menu.groupHoverBg} group-hover:text-white transition-all duration-300`}>
+                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white dark:bg-slate-900 rounded-[24px] p-5 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 cursor-pointer transition-all duration-300 group flex flex-col items-center text-center gap-4`}>
+                            <div className={`w-14 h-14 ${menu.bg} ${menu.text} rounded-[16px] flex items-center justify-center border ${menu.border} group-hover:scale-110 ${menu.groupHoverBg} group-hover:text-white transition-all duration-300`}>
                                 <Icon name={menu.icon} className="text-[24px]" fill="true" />
                             </div>
                             <div>
