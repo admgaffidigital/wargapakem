@@ -91,16 +91,30 @@ Build: Vite + React + Tailwind CSS
 
   <!-- Font Loading Detector - Cegah FOUT (Flash of Unstyled Text) -->
   <script>
-    if ('fonts' in document) {
-      Promise.race([
-        document.fonts.load('1em "Material Symbols Rounded"'),
-        new Promise(resolve => setTimeout(resolve, 1000))
-      ]).then(function() {
+    (function() {
+      var isLoaded = false;
+      function setLoaded() {
+        if (isLoaded) return;
+        isLoaded = true;
         document.documentElement.classList.add('icons-loaded');
-      });
-    } else {
-      document.documentElement.classList.add('icons-loaded');
-    }
+      }
+
+      if ('fonts' in document) {
+        // Tunggu semua stylesheet terurai dan muat font
+        document.fonts.ready.then(function() {
+          if (document.fonts.check('1em "Material Symbols Rounded"')) {
+            setLoaded();
+          } else {
+            document.fonts.load('1em "Material Symbols Rounded"').then(setLoaded).catch(setLoaded);
+          }
+        }).catch(setLoaded);
+
+        // Fallback maksimal 2.5 detik agar ikon tetap muncul jika koneksi lambat
+        setTimeout(setLoaded, 2500);
+      } else {
+        setLoaded();
+      }
+    })();
   </script>
 
   <!-- ================================================
