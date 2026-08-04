@@ -2395,9 +2395,9 @@ const getDirectImgUrl = (url) => {
 
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
-                        <header className="bg-white/95 text-slate-800 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20">
+                        <header className="bg-white/80 backdrop-blur-md text-slate-800 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-between relative z-20">
                             <div className="flex items-center gap-2.5 overflow-hidden">
-                                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-rose-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
+                                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-red-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain"  loading="lazy" decoding="async"/>
                                 </div>
                                 <div className="min-w-0">
@@ -2424,11 +2424,11 @@ const getDirectImgUrl = (url) => {
                     {mode === 'select' ? (
                         <main className="flex-1 w-full max-w-6xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
                             {/* HERO BANNER SECTION - menggunakan bannerImage dari Firebase jika ada */}
-                            <div className={`relative rounded-[16px] sm:rounded-[32px] p-5 sm:p-10 text-white border border-red-500/20 shadow-xl overflow-hidden group min-h-[240px] sm:min-h-[300px] flex items-center ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark' : 'bg-slate-900'}`}>
+                            <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-12 text-white border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-center ${!bannerImage ? 'bg-gradient-to-br from-red-600 via-rose-600 to-red-800' : 'bg-slate-900'}`}>
                                 {bannerImage ? (
                                     <>
                                         <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"  loading="lazy" decoding="async"/>
-                                        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/50 to-transparent z-0"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/60 to-transparent z-0"></div>
                                     </>
                                 ) : (
                                     <>
@@ -2438,12 +2438,12 @@ const getDirectImgUrl = (url) => {
                                 )}
 
                                 <div className="relative z-10 w-full text-left space-y-4 max-w-2xl">
-                                    <div className="inline-flex items-center gap-1.5 bg-white/20  px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
+                                    <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
                                         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                         <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
                                     </div>
                                     
-                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight uppercase text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.5)]">
+                                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight uppercase text-white [text-shadow:_0_4px_12px_rgba(0,0,0,0.4)]">
                                         Portal Layanan &amp; <br />
                                         {identity.name || 'Informasi Warga'}
                                     </h2>
@@ -2494,7 +2494,7 @@ const getDirectImgUrl = (url) => {
                             <section className="space-y-4 max-w-6xl mx-auto w-full">
                                 <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest text-center">{landingConfig.servicesSubtitle}</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col items-center text-center justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
                                             <Icon name="campaign" className="text-[24px]" />
                                         </div>
@@ -2503,7 +2503,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Papan pengumuman penting, info rapat warga, &amp; berita lingkungan terkini dari pengurus RT.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col items-center text-center justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-greenLight border border-google-green/20 flex items-center justify-center shrink-0 text-google-greenDark">
                                             <Icon name="payments" className="text-[24px]" />
                                         </div>
@@ -2512,7 +2512,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Laporan kas masuk dan keluar RT yang dicatat rinci, terbuka, &amp; dipantau warga kapan saja.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col items-center text-center justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-blueLight border border-google-blue/20 flex items-center justify-center shrink-0 text-google-blueDark">
                                             <Icon name="local_activity" className="text-[24px]" />
                                         </div>
@@ -2521,7 +2521,7 @@ const getDirectImgUrl = (url) => {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pembelian tiket jalan santai dan kegiatan RT secara online dengan metode COD.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-5 sm:p-6 shadow-sm flex flex-col items-center text-center justify-between space-y-4 hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 flex items-center justify-center border border-rose-100 dark:border-rose-900/30">
                                             <Icon name="casino" className="text-[24px]" />
                                         </div>
@@ -2549,14 +2549,14 @@ const getDirectImgUrl = (url) => {
                                 ) : (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {informasi.slice(0, 6).map(item => (
-                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-red-400 dark:hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
+                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-slate-200 dark:hover:border-slate-700 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
                                                 <div>
                                                     {item.imageUrl ? (
-                                                        <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700">
+                                                        <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden">
                                                             <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
                                                         </div>
                                                     ) : (
-                                                        <div className="w-full h-48 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center border-b-2 border-slate-200 dark:border-slate-700">
+                                                        <div className="w-full h-48 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center">
                                                             <Icon name="newspaper" className="text-[42px] text-red-500/20" />
                                                         </div>
                                                     )}
@@ -2590,13 +2590,13 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {blogData.slice(0, 6).map(article => (
-                                            <a href={`/?page=blog&article=${article.id}`} key={article.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col hover:border-google-blue/50 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={(e) => { e.preventDefault(); setSelectedArticle({ ...article, type: 'blog' }); }}>
+                                            <a href={`/?page=blog&article=${article.id}`} key={article.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:border-slate-200 dark:hover:border-slate-700 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={(e) => { e.preventDefault(); setSelectedArticle({ ...article, type: 'blog' }); }}>
                                                 {article.imageUrl ? (
-                                                    <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700 shrink-0">
+                                                    <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                                         <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
                                                     </div>
                                                 ) : (
-                                                    <div className="w-full h-40 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/20 dark:to-blue-900/10 flex items-center justify-center border-b-2 border-slate-200 dark:border-slate-700 shrink-0">
+                                                    <div className="w-full h-40 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/20 dark:to-blue-900/10 flex items-center justify-center shrink-0">
                                                         <Icon name="article" className="text-[40px] text-google-blue/20" />
                                                     </div>
                                                 )}
@@ -2629,7 +2629,7 @@ const getDirectImgUrl = (url) => {
                                     {umkmData && umkmData.length > 0 ? (
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {umkmData.slice(0, 6).map(item => (
-                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col justify-between hover:border-green-400 dark:hover:border-green-500 hover:shadow-lg transition-all duration-300 group">
+                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-green-200 dark:hover:border-green-700 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 group">
                                                 <div>
                                                     <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                                         {item.imageUrl ? (
@@ -2660,11 +2660,11 @@ const getDirectImgUrl = (url) => {
                                         ))}
                                     </div>
                                     ) : (
-                                        <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-dashed border-green-200 dark:border-green-900/40 p-10 text-center max-w-md mx-auto">
+                                        <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-dashed border-green-200 dark:border-green-900/40 p-10 text-center max-w-md mx-auto shadow-sm">
                                             <Icon name="storefront" className="text-[36px] text-green-300 dark:text-green-700 mb-3" />
                                             <p className="text-[14px] font-bold text-slate-800 dark:text-white">{landingConfig.umkmEmptyTitle}</p>
                                             <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">{landingConfig.umkmEmptyDesc}</p>
-                                            <button onClick={() => onLogin('warga')} className="mt-4 inline-flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-[10px] text-[12px] font-bold transition-all active:scale-95">
+                                            <button onClick={() => onLogin('warga')} className="mt-4 inline-flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-[10px] text-[12px] font-bold transition-all active:scale-95 shadow-[0_4px_12px_rgba(34,197,94,0.3)]">
                                                 <Icon name="add_business" className="text-[15px]" />
                                                 <span>Daftarkan Usaha Anda</span>
                                             </button>
@@ -2753,10 +2753,10 @@ const getDirectImgUrl = (url) => {
                             {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
                                 <section className="space-y-4 pt-4 max-w-6xl mx-auto w-full">
                                     <p className="text-[9px] uppercase tracking-widest font-bold text-slate-400 text-center">{landingConfig.sponsorSubtitle}</p>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-700 p-6 sm:p-8">
+                                    <div className="bg-slate-50/50 dark:bg-slate-900/30 rounded-[32px] border border-slate-100 dark:border-slate-800/50 p-6 sm:p-8 backdrop-blur-sm">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
                                             {sponsorsData.sponsors.map((s, i) => (
-                                                <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[150px] object-contain opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-110" title={s.name}  loading="lazy" decoding="async"/>
+                                                <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[150px] object-contain opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110 grayscale hover:grayscale-0" title={s.name}  loading="lazy" decoding="async"/>
                                             ))}
                                         </div>
                                     </div>
