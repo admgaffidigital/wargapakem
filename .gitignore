@@ -31,4 +31,6 @@ convert_to_app.ps1
 # Old agent scripts
 *.py
 *.txt
+!public/robots.txt
+!public/ads.txt
 test_upload.js

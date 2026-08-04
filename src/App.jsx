@@ -1669,14 +1669,18 @@ const getDirectImgUrl = (url) => {
             
 
             
-            // Inisialisasi langsung dari URL — link produk tiket bypass landing page
+            // Inisialisasi langsung dari URL — link produk tiket / artikel blog bypass landing page
             const [isLoggedIn, setIsLoggedIn] = useState(() => {
                 const p = new URLSearchParams(window.location.search);
-                return p.get('page') === 'tiket' && p.has('product');
+                const isTicket = p.get('page') === 'tiket' && p.has('product');
+                const isBlog = p.get('page') === 'blog' && p.has('article');
+                return isTicket || isBlog;
             });
             const [userRoleInit] = useState(() => {
                 const p = new URLSearchParams(window.location.search);
-                return (p.get('page') === 'tiket' && p.has('product')) ? 'warga' : null;
+                const isTicket = p.get('page') === 'tiket' && p.has('product');
+                const isBlog = p.get('page') === 'blog' && p.has('article');
+                return (isTicket || isBlog) ? 'warga' : null;
             });
             const [isCheckingAuth, setIsCheckingAuth] = useState(true);
             const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
@@ -1694,11 +1698,17 @@ const getDirectImgUrl = (url) => {
             }, [theme]);
             const [userRole, setUserRole] = useState(() => {
                 const p = new URLSearchParams(window.location.search);
-                return (p.get('page') === 'tiket' && p.has('product')) ? 'warga' : null;
+                const isTicket = p.get('page') === 'tiket' && p.has('product');
+                const isBlog = p.get('page') === 'blog' && p.has('article');
+                return (isTicket || isBlog) ? 'warga' : null;
             }); 
             const [activeTab, setActiveTab] = useState(() => {
                 const p = new URLSearchParams(window.location.search);
-                return (p.get('page') === 'tiket') ? 'tiket' : 'menu';
+                const isTicket = p.get('page') === 'tiket' && p.has('product');
+                const isBlog = p.get('page') === 'blog' && p.has('article');
+                if (isTicket) return 'tiket';
+                if (isBlog) return 'blog';
+                return 'menu';
             }); 
             const [showLogoutModal, setShowLogoutModal] = useState(false);
             const [showLicenseModal, setShowLicenseModal] = useState(false);
@@ -1765,7 +1775,8 @@ const getDirectImgUrl = (url) => {
                 sponsorSubtitle: 'Didukung Oleh',
                 footerInfoTitle: 'Informasi Layanan Digital Terverifikasi',
                 footerInfoDesc: 'Layanan Resmi RT Pakem, Banyuanyar, Gurah, Kediri.',
-                footerTagline: 'sistem informasi manajemen kerukunan lingkungan digital.'
+                footerTagline: 'sistem informasi manajemen kerukunan lingkungan digital.',
+                adsenseClientId: ''
             };
             const [landingConfig, setLandingConfig, l_landing] = useFirebaseSync('landing_config', defaultLandingConfig);
             const [sponsorsData, setSponsorsData, l24] = useFirebaseSync('sponsors_data', { enabled: false, sponsors: [] });
@@ -1826,12 +1837,17 @@ const getDirectImgUrl = (url) => {
 
                 const params = new URLSearchParams(window.location.search);
                 const isTicketProductLink = params.get('page') === 'tiket' && params.has('product');
+                const isBlogArticleLink = params.get('page') === 'blog' && params.has('article');
 
                 // Untuk link produk tiket: set hash ke tiket, biarkan query params tetap ada
                 // supaya useEffect produk bisa membaca ?product=XXX dan membuka modal
                 if (isTicketProductLink) {
                     if (window.location.hash !== '#tiket') {
                         window.location.hash = 'tiket';
+                    }
+                } else if (isBlogArticleLink) {
+                    if (window.location.hash !== '#blog') {
+                        window.location.hash = 'blog';
                     }
                 } else {
                     // Bersihkan query params yang tidak diperlukan (nocache, v, page)
@@ -1855,6 +1871,20 @@ const getDirectImgUrl = (url) => {
                     window.removeEventListener('hashchange', handleHashChange);
                 };
             }, []);
+
+            useEffect(() => {
+                if (landingConfig?.adsenseClientId) {
+                    const existingScript = document.querySelector('script[src*="adsbygoogle.js"]');
+                    if (!existingScript) {
+                        const script = document.createElement('script');
+                        script.async = true;
+                        script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${landingConfig.adsenseClientId}`;
+                        script.crossOrigin = 'anonymous';
+                        document.head.appendChild(script);
+                        console.log(`[AdSense] Script injected for client: ${landingConfig.adsenseClientId}`);
+                    }
+                }
+            }, [landingConfig?.adsenseClientId]);
 
             const changeTab = (tabId) => { window.location.hash = tabId; };
 
@@ -1977,7 +2007,7 @@ const getDirectImgUrl = (url) => {
                     case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} setShowPwaGuide={setShowPwaGuide} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
                     case 'dashboard': return <Dashboard members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} currentRound={currentRound} setCurrentRound={setCurrentRound} userRole={userRole} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} changeTab={changeTab} arisanPeriod={arisanPeriod} />;
                     case 'informasi': return <Informasi data={informasi} setData={setInformasi} userRole={userRole} />;
-                    case 'blog': return <Blog blogData={blogData} setBlogData={setBlogData} userRole={userRole} identity={identity} />;
+                    case 'blog': return <Blog blogData={blogData} setBlogData={setBlogData} userRole={userRole} identity={identity} initialArticleId={new URLSearchParams(window.location.search).get('article')} />;
                     case 'warga': return <WargaList members={members} setMembers={setMembers} userRole={userRole} identity={identity} cycleNumber={cycleNumber} currentRound={currentRound} arisanPeriod={arisanPeriod} />;
                     case 'galery': return <Galeri data={galeriData} setData={setGaleriData} userRole={userRole} />;
                     case 'inventaris': return <Inventaris data={inventarisData} setData={setInventarisData} userRole={userRole} pinjamData={pinjamData} />;
@@ -2559,7 +2589,7 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {blogData.slice(0, 6).map(article => (
-                                            <div key={article.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col hover:border-google-blue/50 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...article, type: 'blog' })}>
+                                            <a href={`/?page=blog&article=${article.id}`} key={article.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border-2 border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col hover:border-google-blue/50 hover:shadow-lg transition-all duration-300 cursor-pointer group" onClick={(e) => { e.preventDefault(); setSelectedArticle({ ...article, type: 'blog' }); }}>
                                                 {article.imageUrl ? (
                                                     <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden border-b-2 border-slate-200 dark:border-slate-700 shrink-0">
                                                         <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
@@ -2583,7 +2613,7 @@ const getDirectImgUrl = (url) => {
                                                         Baca Artikel <Icon name="arrow_forward" className="text-[13px] group-hover:translate-x-1 transition-transform" />
                                                     </span>
                                                 </div>
-                                            </div>
+                                            </a>
                                         ))}
                                     </div>
                                 </section>
@@ -7144,6 +7174,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Info Resmi</label><input type="text" value={formLanding.footerInfoTitle} onChange={e => setFormLanding({...formLanding, footerInfoTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Teks Bukti Verifikasi</label><input type="text" value={formLanding.footerInfoDesc} onChange={e => setFormLanding({...formLanding, footerInfoDesc: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                         </div>
+
+                                        <div className="bg-slate-50 p-4 sm:p-5 rounded-[20px] border-2 border-slate-200 space-y-4">
+                                            <h4 className="text-[13px] font-medium text-google-text">Integrasi Google AdSense</h4>
+                                            <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Google AdSense Publisher ID</label><input type="text" value={formLanding.adsenseClientId || ''} onChange={e => setFormLanding({...formLanding, adsenseClientId: e.target.value})} placeholder="Contoh: ca-pub-XXXXXXXXXXXXXXXX" className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                            <p className="text-[11px] text-slate-500 leading-normal flex items-start gap-1">
+                                                <Icon name="info" className="text-[13px] text-google-blue shrink-0 mt-0.5" /> Masukkan Publisher ID Anda untuk mengaktifkan iklan otomatis (Auto Ads). Pastikan Anda menyetujui penempatan iklan di dasbor Google AdSense Anda.
+                                            </p>
+                                        </div>
                                     </div>
                                 </PengaturanSection>
                             )}
@@ -7666,18 +7704,43 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             );
         }
 
-        function Blog({ blogData, setBlogData, userRole, identity }) {
+        function Blog({ blogData, setBlogData, userRole, identity, initialArticleId }) {
             const [isFormOpen, setIsFormOpen] = useState(false);
             const [editingId, setEditingId] = useState(null);
             const [formData, setFormData] = useState({ title: '', content: '', imageUrl: '', date: getLocalDate() });
             const [errorMsg, setErrorMsg] = useState('');
             const [isUploading, setIsUploading] = useState(false);
             const [deleteConfirmId, setDeleteConfirmId] = useState(null);
-            const [viewArticleId, setViewArticleId] = useState(null);
+            const [viewArticleId, setViewArticleId] = useState(initialArticleId || null);
             const [commentName, setCommentName] = useState('');
             const [commentText, setCommentText] = useState('');
             const [replyText, setReplyText] = useState('');
             const [replyToId, setReplyToId] = useState(null);
+
+            useEffect(() => {
+                if (initialArticleId) {
+                    setViewArticleId(initialArticleId);
+                }
+            }, [initialArticleId]);
+
+            const handleShareBlog = (article) => {
+                const shareUrl = `${window.location.origin}${window.location.pathname}?page=blog&article=${article.id}`;
+                const shareText = `Baca artikel menarik: *${article.title}* di Portal Warga RT Pakem!\n\nLink: ${shareUrl}`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: article.title,
+                        text: `Baca artikel: ${article.title}`,
+                        url: shareUrl
+                    }).catch(() => {});
+                } else {
+                    navigator.clipboard.writeText(shareUrl).then(() => {
+                        showToast('Tautan artikel berhasil disalin ke papan klip!');
+                    }).catch(() => {
+                        showToast('Gagal menyalin tautan.', 'error');
+                    });
+                }
+            };
 
             const handleImageUpload = (e) => {
                 const file = e.target.files[0];
@@ -7781,8 +7844,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 
                 return (
                     <div className="space-y-6 tab-fade-in relative z-10 w-full animate-slide-up no-print">
-                        <button onClick={() => setViewArticleId(null)} className="bg-white border-2 border-slate-300 text-google-text px-4 py-2 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
-                        
+                        <button onClick={() => { setViewArticleId(null); const url = new URL(window.location.href); url.searchParams.delete('page'); url.searchParams.delete('article'); window.history.replaceState({}, document.title, url.pathname + url.hash); }} className="bg-white border-2 border-slate-300 text-google-text px-4 py-2 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
                         <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border-2 border-slate-300">
                             {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover"  loading="lazy" decoding="async"/>}
                             <div className="p-6 sm:p-8">
@@ -7795,8 +7857,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     {article.content}
                                 </div>
                                 
-                                <div className="mt-10 pt-6 border-t-2 border-slate-100 flex items-center justify-between">
+                                <div className="mt-10 pt-6 border-t-2 border-slate-100 flex items-center gap-3">
                                     <button onClick={() => handleLike(article.id)} className="flex items-center gap-2 px-5 py-2.5 rounded-[16px] bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 transition-colors active:scale-95"><Icon name="favorite" fill="true" className="text-[20px]" /> <span className="font-bold">{article.likes || 0} Suka</span></button>
+                                    <button onClick={() => handleShareBlog(article)} className="flex items-center gap-2 px-5 py-2.5 rounded-[16px] bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 transition-colors active:scale-95"><Icon name="share" className="text-[20px]" /> <span className="font-bold">Bagikan</span></button>
                                 </div>
                             </div>
                         </div>
@@ -7876,7 +7939,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {blogData.map(article => (
-                            <div key={article.id} className="bg-white rounded-[24px] border-2 border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-yellow/40 transition-all duration-300 group flex flex-col cursor-pointer" onClick={() => setViewArticleId(article.id)}>
+                            <a href={`/?page=blog&article=${article.id}`} key={article.id} className="bg-white rounded-[24px] border-2 border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-yellow/40 transition-all duration-300 group flex flex-col cursor-pointer" onClick={(e) => { e.preventDefault(); setViewArticleId(article.id); }}>
                                 {article.imageUrl ? (
                                     <div className="w-full h-48 bg-slate-100 overflow-hidden relative">
                                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
@@ -7905,7 +7968,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         </div>
                                     )}
                                 </div>
-                            </div>
+                            </a>
                         ))}
                     </div>
                     {blogData.length === 0 && <div className="bg-white rounded-[24px] border-2 border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border-2 border-slate-300"><Icon name="article" className="text-[48px] text-slate-400" /></div><h3 className="font-bold text-[18px] text-google-text mb-2">Belum Ada Artikel</h3><p className="text-google-textVariant font-medium text-[13px]">Artikel atau blog yang diterbitkan oleh Admin akan muncul di sini.</p></div>}
