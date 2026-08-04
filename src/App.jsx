@@ -2267,7 +2267,7 @@ const getDirectImgUrl = (url) => {
 
                     // 3. Tambahkan bayangan kain 3D dengan Linear Gradient yang sangat halus
                     const shadeGrad = ctx.createLinearGradient(0, 0, W, 0);
-                    const shadeStops = W < 768 ? 20 : 40; 
+                    const shadeStops = W < 768 ? 10 : 20; 
                     for (let i = 0; i <= shadeStops; i++) {
                         const xProgress = i / shadeStops;
                         const wavePhase = xProgress * Math.PI * 3.5 - time * 1.8;
