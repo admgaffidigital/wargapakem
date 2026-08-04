@@ -2689,12 +2689,12 @@ const getDirectImgUrl = (url) => {
 
                             {/* JADWAL AGENDA RT MENDATANG */}
                             {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
-                                <section className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                <section className="space-y-6 pt-10 pb-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-bold text-google-blue dark:text-blue-400 uppercase tracking-widest">Jadwal & Agenda RT</h3>
                                         <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">KEGIATAN WARGA RT</h2>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[28px] border-2 border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300">
                                         <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between">
                                             <div className="space-y-4 flex-1">
                                                 <div className="flex flex-wrap items-center gap-3">
@@ -2720,7 +2720,7 @@ const getDirectImgUrl = (url) => {
                                                 </div>
                                             </div>
                                             <div className="shrink-0 flex items-center justify-center">
-                                                <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-gradient-to-r from-google-blue to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3.5 px-6 rounded-xl text-[12px] shadow-[0_8px_25px_rgba(26,115,232,0.2)] hover:shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2">
+                                                <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-google-blue hover:bg-google-blueDark text-white font-bold py-3.5 px-6 rounded-xl text-[12px] shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
                                                     <Icon name="login" />
                                                     <span>Masuk Untuk Absen</span>
                                                 </button>
@@ -2732,12 +2732,12 @@ const getDirectImgUrl = (url) => {
 
                             {/* SPOTLIGHT PEMENANG ARISAN TERBARU */}
                             {latestWinner && (
-                                <section className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                <section className="space-y-6 pt-10 pb-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-bold text-google-yellowDark dark:text-yellow-400 uppercase tracking-widest">Selamat Kepada Pemenang</h3>
                                         <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">PEMENANG ARISAN PUTARAN TERBARU</h2>
                                     </div>
-                                    <div className="relative bg-gradient-to-r from-google-yellowLight via-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/15 rounded-[28px] border-2 border-google-yellow/30 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 overflow-hidden flex flex-col md:flex-row gap-6 items-center justify-between">
+                                    <div className="relative bg-gradient-to-br from-amber-50/80 via-white to-amber-50/30 dark:from-slate-900 dark:to-slate-900/80 rounded-[28px] border border-amber-200/80 dark:border-amber-950/40 p-6 sm:p-8 shadow-[0_8px_30px_rgba(244,180,0,0.03)] hover:shadow-[0_8px_30px_rgba(244,180,0,0.06)] transition-all duration-300 overflow-hidden flex flex-col md:flex-row gap-6 items-center justify-between">
                                         {/* Background decoration */}
                                         <div className="absolute -top-10 -right-10 w-40 h-40 bg-google-yellow opacity-10 rounded-full blur-2xl"></div>
                                         
@@ -2753,7 +2753,7 @@ const getDirectImgUrl = (url) => {
                                         </div>
                                         
                                         <div className="shrink-0 relative z-10 w-full md:w-auto flex items-center justify-center">
-                                            <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-white hover:bg-slate-50 text-slate-700 font-bold py-3.5 px-6 rounded-xl text-[12px] border-2 border-slate-350 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
+                                            <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3.5 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
                                                 <Icon name="groups" />
                                                 <span>Lihat Semua Pemenang</span>
                                             </button>
