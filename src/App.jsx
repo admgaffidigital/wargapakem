@@ -1802,11 +1802,6 @@ const getDirectImgUrl = (url) => {
             const firebaseUnavailable = !db;
             const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l21 && l22 && l23 && l24 && l25 && lTicketProducts && lTicketOrders && l_waRequests);
 
-            const latestWinner = useMemo(() => {
-                return (members || [])
-                    .filter(m => m.hasWon && m.wonRound)
-                    .sort((a, b) => Number(b.wonRound) - Number(a.wonRound))[0];
-            }, [members]);
 
             useEffect(() => {
                 if (auth && onAuthStateChanged) {
@@ -2382,6 +2377,12 @@ const getDirectImgUrl = (url) => {
             const [selectedArticle, setSelectedArticle] = useState(null); // modal detail informasi/blog
             const [error, setError] = useState('');
             const [showMap, setShowMap] = useState(false); // Lazy-load Google Maps
+            
+            const latestWinner = useMemo(() => {
+                return (members || [])
+                    .filter(m => m.hasWon && m.wonRound)
+                    .sort((a, b) => Number(b.wonRound) - Number(a.wonRound))[0];
+            }, [members]);
             
             const handleAdminLogin = async () => {
                 if (!email || !password) return setError('Email dan Password wajib diisi.');
