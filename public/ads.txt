@@ -1,3 +1,1 @@
-# Google AdSense ads.txt
-# Ganti ca-pub-0000000000000000 dengan Publisher ID Google AdSense Anda setelah disetujui.
-# Format: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-2636322336243340, DIRECT, f08c47fec0942fa0

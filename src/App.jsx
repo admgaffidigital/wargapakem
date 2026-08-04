@@ -1776,7 +1776,7 @@ const getDirectImgUrl = (url) => {
                 footerInfoTitle: 'Informasi Layanan Digital Terverifikasi',
                 footerInfoDesc: 'Layanan Resmi RT Pakem, Banyuanyar, Gurah, Kediri.',
                 footerTagline: 'sistem informasi manajemen kerukunan lingkungan digital.',
-                adsenseClientId: ''
+                adsenseClientId: 'ca-pub-2636322336243340'
             };
             const [landingConfig, setLandingConfig, l_landing] = useFirebaseSync('landing_config', defaultLandingConfig);
             const [sponsorsData, setSponsorsData, l24] = useFirebaseSync('sponsors_data', { enabled: false, sponsors: [] });
@@ -1873,15 +1873,16 @@ const getDirectImgUrl = (url) => {
             }, []);
 
             useEffect(() => {
-                if (landingConfig?.adsenseClientId) {
+                const clientId = landingConfig?.adsenseClientId || 'ca-pub-2636322336243340';
+                if (clientId) {
                     const existingScript = document.querySelector('script[src*="adsbygoogle.js"]');
                     if (!existingScript) {
                         const script = document.createElement('script');
                         script.async = true;
-                        script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${landingConfig.adsenseClientId}`;
+                        script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`;
                         script.crossOrigin = 'anonymous';
                         document.head.appendChild(script);
-                        console.log(`[AdSense] Script injected for client: ${landingConfig.adsenseClientId}`);
+                        console.log(`[AdSense] Script injected for client: ${clientId}`);
                     }
                 }
             }, [landingConfig?.adsenseClientId]);
