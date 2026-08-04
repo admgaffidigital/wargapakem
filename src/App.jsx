@@ -2377,6 +2377,9 @@ const getDirectImgUrl = (url) => {
             const [selectedArticle, setSelectedArticle] = useState(null); // modal detail informasi/blog
             const [error, setError] = useState('');
             const [showMap, setShowMap] = useState(false); // Lazy-load Google Maps
+            const [limitInformasi, setLimitInformasi] = useState(6);
+            const [limitBlog, setLimitBlog] = useState(6);
+            const [limitUmkm, setLimitUmkm] = useState(6);
             
             const latestWinner = useMemo(() => {
                 return (members || [])
@@ -2410,7 +2413,7 @@ const getDirectImgUrl = (url) => {
 
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
-                        <header className="bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-100 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-between relative z-20">
+                        <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-between relative z-20">
                             <div className="flex items-center gap-2.5 overflow-hidden">
                                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-red-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain" fetchpriority="high" decoding="async"/>
@@ -2562,8 +2565,9 @@ const getDirectImgUrl = (url) => {
                                         <p className="text-[11.5px] text-slate-600 dark:text-slate-400 mt-0.5">{landingConfig.newsEmptyDesc}</p>
                                     </div>
                                 ) : (
+                                    <>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {informasi.slice(0, 6).map(item => (
+                                        {informasi.slice(0, limitInformasi).map(item => (
                                             <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
                                                 <div>
                                                     {item.imageUrl ? (
@@ -2593,6 +2597,15 @@ const getDirectImgUrl = (url) => {
                                             </div>
                                         ))}
                                     </div>
+                                    {informasi.length > limitInformasi && (
+                                        <div className="flex justify-center pt-6">
+                                            <button onClick={() => setLimitInformasi(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                                <Icon name="expand_more" />
+                                                <span>Lihat Lebih Banyak Pengumuman</span>
+                                            </button>
+                                        </div>
+                                    )}
+                                    </>
                                 )}
                             </section>
 
@@ -2604,7 +2617,7 @@ const getDirectImgUrl = (url) => {
                                         <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.blogTitle}</h2>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {blogData.slice(0, 6).map(article => (
+                                        {blogData.slice(0, limitBlog).map(article => (
                                             <a href={`/?page=blog&article=${article.id}`} key={article.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={(e) => { e.preventDefault(); setSelectedArticle({ ...article, type: 'blog' }); }}>
                                                 {article.imageUrl ? (
                                                     <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
@@ -2632,6 +2645,14 @@ const getDirectImgUrl = (url) => {
                                             </a>
                                         ))}
                                     </div>
+                                    {blogData.length > limitBlog && (
+                                        <div className="flex justify-center pt-6">
+                                            <button onClick={() => setLimitBlog(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                                <Icon name="expand_more" />
+                                                <span>Lihat Lebih Banyak Artikel</span>
+                                            </button>
+                                        </div>
+                                    )}
                                 </section>
                             )}
 
@@ -2642,8 +2663,9 @@ const getDirectImgUrl = (url) => {
                                         <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.umkmTitle}</h2>
                                     </div>
                                     {umkmData && umkmData.length > 0 ? (
+                                    <>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {umkmData.slice(0, 6).map(item => (
+                                        {umkmData.slice(0, limitUmkm).map(item => (
                                             <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-green-300 dark:hover:border-green-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 group">
                                                 <div>
                                                     <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
@@ -2666,7 +2688,7 @@ const getDirectImgUrl = (url) => {
                                                     </div>
                                                 </div>
                                                 <div className="p-5 pt-0">
-                                                    <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%20tertarik%20dengan%20usaha%20Anda%20di%20Portal%20Warga.`} target="_blank" rel="noopener noreferrer" className="w-full bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 hover:bg-green-600 hover:text-white border-2 border-green-200 dark:border-green-800 hover:border-green-600 py-3 rounded-[12px] font-bold text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
+                                                    <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%2520tertarik%2520dengan%2520usaha%2520Anda%2520di%2520Portal%2520Warga.`} target="_blank" rel="noopener noreferrer" className="w-full bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 hover:bg-green-600 hover:text-white border-2 border-green-200 dark:border-green-800 hover:border-green-600 py-3 rounded-[12px] font-bold text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
                                                         <Icon name="chat" className="text-[16px]" />
                                                         <span>Hubungi via WhatsApp</span>
                                                     </a>
@@ -2674,6 +2696,15 @@ const getDirectImgUrl = (url) => {
                                             </div>
                                         ))}
                                     </div>
+                                    {umkmData.length > limitUmkm && (
+                                        <div className="flex justify-center pt-6">
+                                            <button onClick={() => setLimitUmkm(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                                <Icon name="expand_more" />
+                                                <span>Lihat Lebih Banyak Usaha</span>
+                                            </button>
+                                        </div>
+                                    )}
+                                    </>
                                     ) : (
                                         <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-dashed border-green-200 dark:border-green-900/40 p-10 text-center max-w-md mx-auto shadow-sm">
                                             <Icon name="storefront" className="text-[36px] text-green-300 dark:text-green-700 mb-3" />
@@ -2843,7 +2874,7 @@ const getDirectImgUrl = (url) => {
                             {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
                                 <section className="space-y-4 pt-4 max-w-6xl mx-auto w-full">
                                     <p className="text-[9px] uppercase tracking-widest font-bold text-slate-400 text-center">{landingConfig.sponsorSubtitle}</p>
-                                    <div className="bg-white/90 dark:bg-slate-900/90 rounded-[32px] border border-slate-200 dark:border-slate-700 p-6 sm:p-8">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-700 p-6 sm:p-8">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
                                             {sponsorsData.sponsors.map((s, i) => (
                                                 <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[150px] object-contain opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110 grayscale hover:grayscale-0" title={s.name}  loading="lazy" decoding="async"/>
@@ -2897,7 +2928,7 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {/* LANDING FOOTER (COMPLIES WITH THEME VARIABLES) */}
-                    <footer className="w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-700 py-6 px-4 sm:py-8 sm:px-8 text-center z-10 relative mb-8 bg-white/90 dark:bg-slate-900/90 shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
+                    <footer className="w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-700 py-6 px-4 sm:py-8 sm:px-8 text-center z-10 relative mb-8 bg-white dark:bg-slate-900 shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
                         <div className="max-w-4xl mx-auto space-y-4">
                             <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
                                 <span className="font-bold text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah {landingConfig.footerTagline} {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
@@ -8921,7 +8952,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
 
                             {/* Warga Sub Tabs */}
-                            <div className="bg-white/95 dark:bg-slate-900/95 border-2 border-slate-200 dark:border-slate-800 p-2 rounded-[24px] shadow-sm flex gap-2 overflow-x-auto scrollbar-none whitespace-nowrap items-center">
+                            <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 p-2 rounded-[24px] shadow-sm flex gap-2 overflow-x-auto scrollbar-none whitespace-nowrap items-center">
                                 <button onClick={() => setActiveSubTab('shop')} className={`px-4 py-2.5 rounded-[16px] font-bold text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="shopping_bag" className="text-[15px]" />
                                     <span>Beli Tiket</span>
