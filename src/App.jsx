@@ -1802,6 +1802,12 @@ const getDirectImgUrl = (url) => {
             const firebaseUnavailable = !db;
             const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l21 && l22 && l23 && l24 && l25 && lTicketProducts && lTicketOrders && l_waRequests);
 
+            const latestWinner = useMemo(() => {
+                return (members || [])
+                    .filter(m => m.hasWon && m.wonRound)
+                    .sort((a, b) => Number(b.wonRound) - Number(a.wonRound))[0];
+            }, [members]);
+
             useEffect(() => {
                 if (auth && onAuthStateChanged) {
                     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -2679,6 +2685,81 @@ const getDirectImgUrl = (url) => {
                                         </div>
                                     )}
                                 </section>
+
+                            {/* JADWAL AGENDA RT MENDATANG */}
+                            {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
+                                <section className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                    <div className="text-center space-y-1">
+                                        <h3 className="text-[11px] font-bold text-google-blue dark:text-blue-400 uppercase tracking-widest">Jadwal & Agenda RT</h3>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">KEGIATAN WARGA RT</h2>
+                                    </div>
+                                    <div className="bg-white dark:bg-slate-900 rounded-[28px] border-2 border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300">
+                                        <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between">
+                                            <div className="space-y-4 flex-1">
+                                                <div className="flex flex-wrap items-center gap-3">
+                                                    <div className="bg-blue-50 dark:bg-blue-950/20 text-google-blue border border-blue-100 dark:border-blue-900/40 rounded-xl px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                                                        <Icon name="event" className="text-[14px]" />
+                                                        <span>Pertemuan RT Terdekat</span>
+                                                    </div>
+                                                </div>
+                                                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white leading-snug">{nextMeeting.notes || 'Pertemuan Rutin Warga RT Pakem'}</h3>
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[12.5px] font-medium text-slate-600 dark:text-slate-400">
+                                                    <div className="flex items-center gap-2">
+                                                        <Icon name="calendar_today" className="text-google-blue text-[16px]" />
+                                                        <span>Hari/Tanggal: <strong className="font-bold text-slate-850 dark:text-slate-100">{nextMeeting.date}</strong></span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <Icon name="schedule" className="text-google-blue text-[16px]" />
+                                                        <span>Waktu/Jam: <strong className="font-bold text-slate-850 dark:text-slate-100">{nextMeeting.time} WIB</strong></span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 sm:col-span-2">
+                                                        <Icon name="location_on" className="text-google-blue text-[16px]" />
+                                                        <span>Tempat/Lokasi: <strong className="font-bold text-slate-850 dark:text-slate-100">{nextMeeting.location}</strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="shrink-0 flex items-center justify-center">
+                                                <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-gradient-to-r from-google-blue to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3.5 px-6 rounded-xl text-[12px] shadow-[0_8px_25px_rgba(26,115,232,0.2)] hover:shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2">
+                                                    <Icon name="login" />
+                                                    <span>Masuk Untuk Absen</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            )}
+
+                            {/* SPOTLIGHT PEMENANG ARISAN TERBARU */}
+                            {latestWinner && (
+                                <section className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                    <div className="text-center space-y-1">
+                                        <h3 className="text-[11px] font-bold text-google-yellowDark dark:text-yellow-400 uppercase tracking-widest">Selamat Kepada Pemenang</h3>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">PEMENANG ARISAN PUTARAN TERBARU</h2>
+                                    </div>
+                                    <div className="relative bg-gradient-to-r from-google-yellowLight via-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/15 rounded-[28px] border-2 border-google-yellow/30 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 overflow-hidden flex flex-col md:flex-row gap-6 items-center justify-between">
+                                        {/* Background decoration */}
+                                        <div className="absolute -top-10 -right-10 w-40 h-40 bg-google-yellow opacity-10 rounded-full blur-2xl"></div>
+                                        
+                                        <div className="flex items-center gap-5 relative z-10 w-full md:w-auto">
+                                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-google-yellow to-amber-500 text-white flex items-center justify-center shrink-0 border-2 border-white/60 shadow-[0_8px_20px_rgba(244,180,0,0.3)] animate-bounce-slow">
+                                                <Icon name="emoji_events" className="text-[32px]" fill="true" />
+                                            </div>
+                                            <div>
+                                                <p className="text-[10px] font-black text-google-yellowDark uppercase tracking-widest">Putaran Ke-{latestWinner.wonRound}</p>
+                                                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">{latestWinner.name}</h3>
+                                                <p className="text-[11.5px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">Ditetapkan sebagai pemenang arisan pada siklus ke-{cycleNumber || 1}</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="shrink-0 relative z-10 w-full md:w-auto flex items-center justify-center">
+                                            <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-white hover:bg-slate-50 text-slate-700 font-bold py-3.5 px-6 rounded-xl text-[12px] border-2 border-slate-350 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
+                                                <Icon name="groups" />
+                                                <span>Lihat Semua Pemenang</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </section>
+                            )}
 
                             {/* PETA DESA & LAYANAN KELURAHAN - dikontrol sesuai pengaturan admin */}
                             {infoDesa?.enabled && (
