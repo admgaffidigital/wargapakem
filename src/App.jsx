@@ -9399,6 +9399,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
         // KOMPONEN GRUP WHATSAPP (WARGA & ADMIN PERSATUAN)
         // ============================================================
         function WaGroup({ requests = [], setRequests, userRole, inviteLink }) {
+            const safeRequests = Array.isArray(requests) ? requests : [];
+
             const [name, setName] = useState('');
             const [whatsapp, setWhatsapp] = useState('');
             const [errorMsg, setErrorMsg] = useState('');
@@ -9407,7 +9409,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             // Baca ID dari localStorage untuk mengenali request Warga di browser ini
             const [myRequestId, setMyRequestId] = useState(() => localStorage.getItem('wa_group_request_id') || '');
 
-            const myRequest = requests.find(r => r.id === myRequestId);
+            const myRequest = safeRequests.find(r => r.id === myRequestId);
 
             const handleRequestSubmit = (e) => {
                 e.preventDefault();
@@ -9430,7 +9432,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     timestamp: new Date().toISOString()
                 };
 
-                const updatedRequests = [newRequest, ...requests];
+                const updatedRequests = [newRequest, ...safeRequests];
                 setRequests(updatedRequests);
                 localStorage.setItem('wa_group_request_id', newId);
                 setMyRequestId(newId);
@@ -9441,7 +9443,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             };
 
             const handleCancelRequest = () => {
-                const updatedRequests = requests.filter(r => r.id !== myRequestId);
+                const updatedRequests = safeRequests.filter(r => r.id !== myRequestId);
                 setRequests(updatedRequests);
                 localStorage.removeItem('wa_group_request_id');
                 setMyRequestId('');
@@ -9454,25 +9456,25 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             };
 
             const handleApprove = (id) => {
-                const updatedRequests = requests.map(r => r.id === id ? { ...r, status: 'approved' } : r);
+                const updatedRequests = safeRequests.map(r => r.id === id ? { ...r, status: 'approved' } : r);
                 setRequests(updatedRequests);
                 showToast('Permintaan gabung grup WhatsApp disetujui.');
             };
 
             const handleReject = (id) => {
-                const updatedRequests = requests.map(r => r.id === id ? { ...r, status: 'rejected' } : r);
+                const updatedRequests = safeRequests.map(r => r.id === id ? { ...r, status: 'rejected' } : r);
                 setRequests(updatedRequests);
                 showToast('Permintaan gabung grup WhatsApp ditolak.');
             };
 
             const handleResetStatus = (id) => {
-                const updatedRequests = requests.map(r => r.id === id ? { ...r, status: 'pending' } : r);
+                const updatedRequests = safeRequests.map(r => r.id === id ? { ...r, status: 'pending' } : r);
                 setRequests(updatedRequests);
                 showToast('Status permintaan diubah kembali menjadi Menunggu.');
             };
 
             const handleDeleteRequest = (id) => {
-                const updatedRequests = requests.filter(r => r.id !== id);
+                const updatedRequests = safeRequests.filter(r => r.id !== id);
                 setRequests(updatedRequests);
                 showToast('Data pengajuan telah dihapus.');
             };
@@ -9634,8 +9636,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             }
 
             // Render Admin View
-            const pendingRequests = requests.filter(r => r.status === 'pending');
-            const processedRequests = requests.filter(r => r.status !== 'pending');
+            const pendingRequests = safeRequests.filter(r => r.status === 'pending');
+            const processedRequests = safeRequests.filter(r => r.status !== 'pending');
 
             return (
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-6">
@@ -9643,7 +9645,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div>
                             <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">Verifikasi Grup WhatsApp</h2>
                             <p className="text-[13px] font-medium text-slate-500 dark:text-slate-400 mt-1">
-                                Kelola pengajuan gabung grup WhatsApp warga RT. Total {requests.length} pengajuan.
+                                Kelola pengajuan gabung grup WhatsApp warga RT. Total {safeRequests.length} pengajuan.
                             </p>
                         </div>
                         {inviteLink ? (
