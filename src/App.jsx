@@ -2402,7 +2402,7 @@ const getDirectImgUrl = (url) => {
                         <header className="bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-100 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-between relative z-20">
                             <div className="flex items-center gap-2.5 overflow-hidden">
                                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-red-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
-                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain"  loading="lazy" decoding="async"/>
+                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain" fetchpriority="high" decoding="async"/>
                                 </div>
                                 <div className="min-w-0">
                                     <h1 className="text-[13px] sm:text-[15px] font-bold tracking-tight text-slate-900 leading-tight uppercase">{identity.name || 'Portal RT'}</h1>
@@ -2431,7 +2431,7 @@ const getDirectImgUrl = (url) => {
                             <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-12 text-white border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-center ${!bannerImage ? 'bg-gradient-to-br from-red-600 via-rose-600 to-red-800' : 'bg-slate-900'}`}>
                                 {bannerImage ? (
                                     <>
-                                        <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"  loading="lazy" decoding="async"/>
+                                        <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" fetchpriority="high" decoding="async"/>
                                         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/60 to-transparent z-0"></div>
                                     </>
                                 ) : (
