@@ -4,7 +4,8 @@
 // ============================================================
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import {
-    db, auth, doc, onSnapshot, setDoc,
+    db, auth, doc, onSnapshot, setDoc, getDoc, deleteDoc,
+    collection, query, where,
     signInWithEmailAndPassword, signOut, onAuthStateChanged
 } from './firebase.js';
 
@@ -150,6 +151,134 @@ const getDirectImgUrl = (url) => {
                     return valueToStore;
                 });
             }, [key]);
+
+            return [data, updateData, isLoaded];
+        }
+
+        function useFirebaseArticlesSync(isAdmin) {
+            const [data, setData] = useState(() => {
+                try {
+                    const cached = localStorage.getItem('arisan_rt_blog_articles');
+                    if (cached !== null) return JSON.parse(cached);
+                } catch (e) {}
+                return [];
+            });
+            const [isLoaded, setIsLoaded] = useState(false);
+            const dataRef = useRef(data);
+            const migrationRunRef = useRef(false);
+
+            useEffect(() => {
+                dataRef.current = data;
+            }, [data]);
+
+            useEffect(() => {
+                if (!db) {
+                    setIsLoaded(true);
+                    return;
+                }
+
+                // 1. Jalankan migrasi data lama sekali saja saat pertama kali dimuat dan terdeteksi sebagai admin
+                if (isAdmin && !migrationRunRef.current) {
+                    migrationRunRef.current = true;
+                    const oldBlogDocRef = doc(db, 'arisan_rt', 'blog');
+                    getDoc(oldBlogDocRef).then((oldDocSnap) => {
+                        if (oldDocSnap.exists()) {
+                            const oldData = oldDocSnap.data();
+                            if (oldData && Array.isArray(oldData.value) && oldData.value.length > 0) {
+                                console.log(`[Migration] Ditemukan ${oldData.value.length} data blog lama. Memulai migrasi...`);
+                                
+                                const migrationPromises = oldData.value.map(article => {
+                                    const articleDocRef = doc(db, 'arisan_rt', 'blog_article_' + article.id);
+                                    return setDoc(articleDocRef, {
+                                        ...article,
+                                        type: 'blog_article'
+                                    }, { merge: false });
+                                });
+
+                                Promise.all(migrationPromises).then(() => {
+                                    console.log('[Migration] Migrasi data blog berhasil. Menghapus dokumen blog lama...');
+                                    setDoc(oldBlogDocRef, { value: [] }, { merge: false })
+                                        .catch(err => console.error('[Migration] Gagal mengosongkan blog lama:', err));
+                                }).catch(err => {
+                                    console.error('[Migration] Gagal memigrasi beberapa blog:', err);
+                                    showToast(`Gagal migrasi data lama: ${err.message || err}`, 'error');
+                                });
+                            }
+                        }
+                    }).catch(err => {
+                        console.error('[Migration] Gagal mengecek data blog lama:', err);
+                    });
+                }
+            }, [isAdmin]);
+
+            useEffect(() => {
+                if (!db) {
+                    setIsLoaded(true);
+                    return;
+                }
+
+                // 2. Query realtime sync untuk semua dokumen ber-type: 'blog_article'
+                const blogQuery = query(collection(db, 'arisan_rt'), where('type', '==', 'blog_article'));
+                const unsubscribe = onSnapshot(blogQuery, (querySnapshot) => {
+                    const articles = [];
+                    querySnapshot.forEach((docSnap) => {
+                        articles.push(docSnap.data());
+                    });
+                    
+                    articles.sort((a, b) => {
+                        const dateA = new Date(a.date || 0);
+                        const dateB = new Date(b.date || 0);
+                        if (dateB - dateA !== 0) return dateB - dateA;
+                        return String(b.id).localeCompare(String(a.id));
+                    });
+
+                    setData(articles);
+                    try { localStorage.setItem('arisan_rt_blog_articles', JSON.stringify(articles)); } catch (e) {}
+                    setIsLoaded(true);
+                }, (error) => {
+                    console.warn(`[Sync Error] Gagal memuat blog_articles:`, error.message);
+                    setIsLoaded(true);
+                });
+
+                return () => unsubscribe();
+            }, []);
+
+            const updateData = useCallback((newValue) => {
+                const prevData = dataRef.current;
+                const valueToStore = typeof newValue === 'function' ? newValue(prevData) : newValue;
+                
+                try { localStorage.setItem('arisan_rt_blog_articles', JSON.stringify(valueToStore)); } catch (e) {}
+
+                setData(valueToStore);
+
+                if (db) {
+                    // 1. Cari yang ditambahkan atau diubah
+                    valueToStore.forEach(art => {
+                        const oldArt = prevData.find(b => b.id === art.id);
+                        if (!oldArt || JSON.stringify(oldArt) !== JSON.stringify(art)) {
+                            const articleDocRef = doc(db, 'arisan_rt', 'blog_article_' + art.id);
+                            setDoc(articleDocRef, { ...art, type: 'blog_article' }, { merge: false })
+                                .catch(err => {
+                                    console.error(`[Firebase] Gagal menyimpan blog_article_${art.id}:`, err);
+                                    showToast(`Gagal menyimpan: ${err.message || err}`, 'error');
+                                });
+                        }
+                    });
+
+                    // 2. Cari yang dihapus
+                    prevData.forEach(art => {
+                        const stillExists = valueToStore.some(b => b.id === art.id);
+                        if (!stillExists) {
+                            const articleDocRef = doc(db, 'arisan_rt', 'blog_article_' + art.id);
+                            deleteDoc(articleDocRef)
+                                .catch(err => {
+                                    console.error(`[Firebase] Gagal menghapus blog_article_${art.id}:`, err);
+                                    showToast(`Gagal menghapus: ${err.message || err}`, 'error');
+                                });
+                        }
+                    });
+                }
+            }, []);
 
             return [data, updateData, isLoaded];
         }
@@ -1601,7 +1730,7 @@ const getDirectImgUrl = (url) => {
             }, [identity?.logoApp]);
             const [nextMeeting, setNextMeeting, l13] = useFirebaseSync('next_meeting', { date: 'Belum dijadwalkan', time: '-', location: '-', notes: '-' });
             const [informasi, setInformasi, l14] = useFirebaseSync('informasi', []);
-            const [blogData, setBlogData] = useFirebaseSync('blog', []);
+            const [blogData, setBlogData] = useFirebaseArticlesSync(userRole === 'admin');
             const defaultLegal = {
                 enabled: true,
                 terms: "1. Akses Portal: Portal ini hanya diperuntukkan bagi warga lingkungan yang terdaftar sah. Dilarang membagikan akses login kepada pihak luar.\n2. Penggunaan Fitur: Warga dilarang menyalahgunakan fitur portal untuk menyebarkan hoaks, ujaran kebencian, atau pelanggaran hukum.\n3. Hak Admin: Admin (Pengurus Lingkungan) berhak memblokir akun warga yang terbukti melanggar aturan atau memalsukan data.\n4. Validitas Data: Warga bertanggung jawab penuh atas kebenaran data yang diunggah.",
@@ -7562,8 +7691,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     img.src = reader.result;
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
-                        const MAX_WIDTH = 1200;
-                        const MAX_HEIGHT = 1200;
+                        const MAX_WIDTH = 800;
+                        const MAX_HEIGHT = 800;
                         let width = img.width;
                         let height = img.height;
 
@@ -7575,7 +7704,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         canvas.width = width; canvas.height = height;
                         const ctx = canvas.getContext('2d');
                         ctx.drawImage(img, 0, 0, width, height);
-                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.6);
                         setFormData({ ...formData, imageUrl: compressedDataUrl });
                         setIsUploading(false);
                     };
