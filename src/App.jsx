@@ -515,6 +515,40 @@ const getDirectImgUrl = (url) => {
                         { label: 'Sistem Infaq Warga', answer: `Infaq dikelola terpisah dari Kas Warga dan Jimpitan.\n\nSaat ini ada ${infaqData?.filter(i => i.status === 'PENDING').length || 0} donasi Infaq yang menunggu persetujuan (PENDING). Total donasi disetujui: Rp ${(infaqData?.filter(i => i.status === 'APPROVED').reduce((sum, i) => sum + parseInt(i.nominal || 0), 0) || 0).toLocaleString('id-ID')}.` },
                         { label: 'Manajemen Inventaris', answer: `RT memiliki ${inventarisData?.length || 0} jenis barang inventaris.\n\nJika ada yang meminjam, gunakan menu "Pinjam Inventaris". Saat ini ada ${pinjamData?.filter(p => p.status === 'DIPINJAM').length || 0} transaksi barang yang sedang dipinjam warga.` }
                     ]
+                },
+                umkm_blog: {
+                    label: '= UMKM & Blog', icon: 'storefront',
+                    intro: 'Manajemen UMKM warga dan Blog.',
+                    topics: [
+                        { label: 'Pasar UMKM', answer: `Fitur untuk mengelola lapak UMKM warga. Admin bisa melihat daftar usaha yang sudah didaftarkan.` },
+                        { label: 'Blog Warga', answer: `Warga bisa menulis artikel/blog. Admin dapat memoderasi tulisan yang ada di sistem jika diperlukan.` }
+                    ]
+                },
+                galeri_peta: {
+                    label: '= Galeri & Peta', icon: 'photo_library',
+                    intro: 'Dokumentasi kegiatan dan denah lokasi warga.',
+                    topics: [
+                        { label: 'Galeri Foto', answer: `Tempat menyimpan foto-foto dokumentasi kegiatan RT (kerja bakti, lomba, dll). Warga bisa melihat dan mengunduh foto.` },
+                        { label: 'Peta Desa', answer: `Menampilkan titik lokasi rumah warga yang sudah mendaftarkan koordinat GPS-nya. Memudahkan kurir atau tamu mencari alamat.` }
+                    ]
+                },
+                lapor_tiket: {
+                    label: '= Lapor & Tiket', icon: 'report_problem',
+                    intro: 'Pengaduan masyarakat dan manajemen tiket.',
+                    topics: [
+                        { label: 'Lapor / Pengaduan', answer: `Menerima laporan atau keluhan dari warga. Admin dapat melihat, memantau, dan memperbarui status penanganan laporan (misalnya: Selesai).` },
+                        { label: 'Sistem Tiket', answer: `Fitur penjualan/distribusi tiket untuk acara RT. Admin bisa mengatur kuota, harga, dan memvalidasi tiket masuk.` }
+                    ]
+                },
+                komunikasi_hiburan: {
+                    label: '= Info, WA & Hiburan', icon: 'forum',
+                    intro: 'Info Warga, Grup WA, Kalender, dan Musik.',
+                    topics: [
+                        { label: 'Info Warga & Pengumuman', answer: `Menu Informasi digunakan untuk membuat pengumuman resmi RT yang muncul di beranda.` },
+                        { label: 'Grup WhatsApp', answer: `Tautan cepat menuju Grup WA RT resmi.` },
+                        { label: 'Musik Warga', answer: `Fitur khusus Admin untuk memutar musik pengiring selama kegiatan RT berlangsung.` },
+                        { label: 'Jadwal & Kalender', answer: `Mencatat agenda kegiatan RT yang akan datang dan menampilkannya dalam format kalender bulanan.` }
+                    ]
                 }
             };
 
@@ -680,6 +714,31 @@ const getDirectImgUrl = (url) => {
                             label: 'Bagaimana Cara Meminjam Barang RT?',
                             answer: `Jika Anda butuh meminjam barang (misal: kursi untuk hajatan):\n\n1. Lihat ketersediaan barang di menu "Inventaris"\n2. Hubungi Admin RT untuk serah terima\n3. Admin akan mencatat pinjaman Anda di menu "Pinjam Inventaris"\n\nBarang harus dikembalikan dalam kondisi baik sesuai kesepakatan!`
                         }
+                    ]
+                },
+                umkm_tiket: {
+                    label: '= UMKM & Tiket', icon: 'storefront',
+                    intro: 'Dukung usaha tetangga dan tiket acara.',
+                    topics: [
+                        { label: 'Pasar UMKM', answer: `Menu UMKM adalah etalase digital usaha warga. Jika Anda butuh sesuatu, coba cari di sini dulu sebelum beli di luar. Bisa langsung chat WA ke penjual!` },
+                        { label: 'Beli Tiket', answer: `Jika ada acara RT berbayar (misal jalan sehat), Anda bisa memesan tiket langsung di aplikasi tanpa harus antri ke panitia.` }
+                    ]
+                },
+                lapor_blog: {
+                    label: '= Lapor & Blog', icon: 'report_problem',
+                    intro: 'Layanan interaktif untuk keluhan dan cerita.',
+                    topics: [
+                        { label: 'Lapor Keluhan', answer: `Lampu jalan mati? Selokan mampet? Gunakan menu "Lapor" untuk mengirim laporan ke pengurus RT. Anda bisa mengecek progres tindak lanjutnya.` },
+                        { label: 'Blog Warga', answer: `Di menu "Blog Warga", Anda bisa membaca tulisan dari tetangga lain atau membagikan cerita Anda sendiri. Jangan lupa beri like dan komentar positif!` }
+                    ]
+                },
+                komunikasi_peta: {
+                    label: '= Komunikasi & Peta', icon: 'forum',
+                    intro: 'Peta rumah warga dan info Grup WA.',
+                    topics: [
+                        { label: 'Peta Lokasi', answer: `Gunakan menu Peta Desa untuk melihat denah rumah warga. Sangat berguna jika Anda mencari rumah tetangga.` },
+                        { label: 'Grup WhatsApp', answer: `Jika Anda belum masuk grup RT, klik menu "Grup WA" untuk langsung bergabung tanpa harus repot meminta link admin.` },
+                        { label: 'Kalender', answer: `Gunakan menu Kalender untuk melihat agenda kegiatan kita dalam format kalender bulanan yang mudah dipahami.` }
                     ]
                 }
             };
