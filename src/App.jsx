@@ -5756,6 +5756,7 @@ const getDirectImgUrl = (url) => {
 
         function BukuKas({ balance, setBalance, transactions, setTransactions, userRole, identity, jimpitanBalance, setJimpitanBalance }) {
             // Komponen BukuKas untuk pencatatan transaksi Kas RT Utama
+            const [filterMonth, setFilterMonth] = useState('Semua');
             const [isModalOpen, setIsModalOpen] = useState(false);
             const [selectedImage, setSelectedImage] = useState(null);
             const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
@@ -5776,6 +5777,12 @@ const getDirectImgUrl = (url) => {
                 });
                 return groups;
             }, [transactions]);
+
+            const availableMonths = Object.keys(groupedTransactions);
+            const displayedTransactions = useMemo(() => {
+                if (filterMonth === 'Semua') return transactions;
+                return groupedTransactions[filterMonth] || [];
+            }, [filterMonth, transactions, groupedTransactions]);
 
             // Upload Nota Kas RT: Canvas compress G base64 G Firestore (tanpa GAS)
             const handleImageUpload = async (e) => {
@@ -5844,20 +5851,26 @@ const getDirectImgUrl = (url) => {
                 <div className="space-y-6 print:p-0">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Buku Kas Utama</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Catatan riwayat transaksi operasional RT.</p></div>
-                        <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-slate-300 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[16px]" /> <span>Cetak Laporan</span></button>
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+                            <select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="bg-slate-50 border-2 border-slate-300 text-google-text text-[13px] font-medium rounded-[12px] px-4 py-3.5 outline-none focus:border-google-blue w-full sm:w-auto cursor-pointer">
+                                <option value="Semua">Semua Bulan</option>
+                                {availableMonths.map((m, i) => <option key={i} value={m}>{m}</option>)}
+                            </select>
+                            <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-slate-300 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[16px]" /> <span>Cetak Laporan</span></button>
+                        </div>
                     </div>
 
                     <div className="hidden print-only">
                         <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || ''}</h1></div>
-                        <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Buku Kas Umum</h2><p className="text-[11pt]">Per Tanggal: {new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'})}</p></div>
+                        <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Buku Kas Umum</h2><p className="text-[11pt]">{filterMonth !== 'Semua' ? `Periode: ${filterMonth}` : `Per Tanggal: ${new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'})}`}</p></div>
                         <table className="print-table">
                             <thead><tr><th width="5%">No</th><th width="15%">Tanggal</th><th width="40%">Uraian Transaksi</th><th width="20%">Pemasukan</th><th width="20%">Pengeluaran</th></tr></thead>
                             <tbody>
-                                {transactions.length === 0 ? <tr><td colSpan="5" className="text-center font-medium">Nihil / Belum ada transaksi</td></tr> : transactions.map((t, idx) => (
+                                {displayedTransactions.length === 0 ? <tr><td colSpan="5" className="text-center font-medium">Nihil / Belum ada transaksi</td></tr> : displayedTransactions.map((t, idx) => (
                                     <tr key={t.id}><td className="text-center font-medium">{idx + 1}</td><td className="text-center font-medium">{parseLocalDate(t.date).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year:'numeric'})}</td><td className="font-medium">{t.description} {t.category ? `(${t.category})` : ''}</td><td className="text-right font-medium">{t.type === 'Pemasukan' ? formatRp(t.amount) : '-'}</td><td className="text-right font-medium">{t.type === 'Pengeluaran' ? formatRp(t.amount) : '-'}</td></tr>
                                 ))}
                             </tbody>
-                            <tfoot><tr><th colSpan="3" className="text-right">SALDO AKHIR KAS WARGA</th><th colSpan="2" className="text-center" style={{fontSize: '12pt'}}>{formatRp(balance)}</th></tr></tfoot>
+                            <tfoot><tr><th colSpan="3" className="text-right">SALDO TOTAL KAS WARGA SAAT INI</th><th colSpan="2" className="text-center" style={{fontSize: '12pt'}}>{formatRp(balance)}</th></tr></tfoot>
                         </table>
                         <div className="ttd-container">
                             <div className="ttd-box"><p>Mengetahui,</p><p>Ketua RT</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
