@@ -10067,7 +10067,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     const [productForm, setProductForm] = useState({ 
         judul: '', deskripsi: '', imageUrl: '', isPublished: true, 
         grosirMinQty: '', grosirPrice: '', 
-        variants: [{ id: generateId(), name: 'Default', price: 0 }] 
+        variants: [{ id: Date.now(), name: 'Default', price: 0 }] 
     });
     const [isUploading, setIsUploading] = useState(false);
     const [activeOrderTab, setActiveOrderTab] = useState('Menunggu'); // 'Menunggu' | 'Diproses' | 'Selesai' | 'Dibatalkan'
@@ -10150,7 +10150,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
         if (cartItemCount === 0) return showToast('Keranjang kosong.', 'error');
         
         const newOrder = {
-            id: generateId(),
+            id: Date.now(),
             wargaName: checkoutForm.namaWarga,
             phone: checkoutForm.noWa,
             address: checkoutForm.alamat,
@@ -10174,7 +10174,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             setTokoProducts(tokoProducts.map(p => p.id === editingProduct.id ? { ...p, ...productForm } : p));
             showToast('Produk diperbarui.');
         } else {
-            setTokoProducts([...tokoProducts, { id: generateId(), createdAt: new Date().toISOString(), ...productForm }]);
+            setTokoProducts([...tokoProducts, { id: Date.now(), createdAt: new Date().toISOString(), ...productForm }]);
             showToast('Produk baru ditambahkan.');
         }
         setIsFormOpen(false);
@@ -10336,7 +10336,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <h2 className="text-xl font-bold text-slate-800 tracking-tight">Kelola Katalog Produk</h2>
                 </div>
                 <button onClick={() => {
-                    setProductForm({ judul: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: generateId(), name: 'Reguler', price: 0 }] });
+                    setProductForm({ judul: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] });
                     setEditingProduct(null); setIsFormOpen(true);
                 }} className="bg-google-blue text-white px-5 py-2.5 rounded-[12px] font-bold text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-2 active:scale-95">
                     <Icon name="add" className="text-[18px]" /> Produk Baru
@@ -10381,7 +10381,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <div className="bg-slate-50 p-4 sm:p-5 rounded-[20px] border-2 border-slate-200 space-y-4">
                                 <div className="flex justify-between items-center border-b border-slate-200 pb-2">
                                     <h4 className="font-bold text-slate-700">Varian & Harga</h4>
-                                    <button onClick={() => setProductForm({...productForm, variants: [...productForm.variants, { id: generateId(), name: '', price: 0 }]})} className="text-xs font-bold text-google-blue hover:underline flex items-center gap-1"><Icon name="add" className="text-[14px]" /> Tambah Varian</button>
+                                    <button onClick={() => setProductForm({...productForm, variants: [...productForm.variants, { id: Date.now(), name: '', price: 0 }]})} className="text-xs font-bold text-google-blue hover:underline flex items-center gap-1"><Icon name="add" className="text-[14px]" /> Tambah Varian</button>
                                 </div>
                                 {productForm.variants.map((v, i) => (
                                     <div key={v.id} className="flex gap-2 items-start">
@@ -10601,6 +10601,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 // =====================================================
 
 export default App;
+
 
 
 
