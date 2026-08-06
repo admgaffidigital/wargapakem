@@ -5370,7 +5370,11 @@ const getDirectImgUrl = (url) => {
 
                     {printMode === 'buku' && (
                         <div className="hidden print-only">
-                            <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1><p>{identity?.subtitle || ''}</p></div>
+                            <div className="kop-surat">
+                                <div className="kop-surat-logo"><img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" /></div>
+                                <div className="kop-surat-text"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1>{identity?.subtitle && <p>{identity.subtitle}</p>}</div>
+                                <div className="kop-surat-logo-right"></div>
+                            </div>
                             <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Buku Induk &amp; Evaluasi Warga</h2><p className="text-[11pt]">Siklus Ke-{cycleNumber || 1} | Putaran Ke-{currentRound} | Periode: {formatBulanTahun(arisanPeriod)}</p></div>
                             <table className="print-table">
                                 <thead><tr><th width="5%">No</th><th width="30%">Nama Warga</th><th width="15%">Program</th><th width="15%">Status Arisan</th><th width="15%">Tunggakan</th><th width="20%">Keterangan</th></tr></thead>
@@ -5594,7 +5598,11 @@ const getDirectImgUrl = (url) => {
                         </div>
 
                         <div className="hidden print-only">
-                            <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || ''}</h1></div>
+                            <div className="kop-surat">
+                                <div className="kop-surat-logo"><img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" /></div>
+                                <div className="kop-surat-text"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1>{identity?.subtitle && <p>{identity.subtitle}</p>}</div>
+                                <div className="kop-surat-logo-right"></div>
+                            </div>
                             <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Penerimaan Iuran Umum</h2><p className="text-[11pt]">Agenda: <strong>{selectedAgenda.title}</strong></p></div>
                             <div style={{marginBottom:'15px', fontSize:'11pt'}}><p>Target Minimal per Warga: <strong>{formatRp(selectedAgenda.minAmount)}</strong></p><p>Total Terkumpul: <strong>{formatRp(totalTerkumpul)}</strong></p></div>
                             <table className="print-table">
@@ -5861,7 +5869,11 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     <div className="hidden print-only">
-                        <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || ''}</h1></div>
+                        <div className="kop-surat">
+                            <div className="kop-surat-logo"><img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" /></div>
+                            <div className="kop-surat-text"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1>{identity?.subtitle && <p>{identity.subtitle}</p>}</div>
+                            <div className="kop-surat-logo-right"></div>
+                        </div>
                         <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Buku Kas Umum</h2><p className="text-[11pt]">{filterMonth !== 'Semua' ? `Periode: ${filterMonth}` : `Per Tanggal: ${new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'})}`}</p></div>
                         <table className="print-table">
                             <thead><tr><th width="5%">No</th><th width="15%">Tanggal</th><th width="40%">Uraian Transaksi</th><th width="20%">Pemasukan</th><th width="20%">Pengeluaran</th></tr></thead>
@@ -6265,7 +6277,7 @@ const getDirectImgUrl = (url) => {
                                     </div>
                                 </div>
                                 <div className="hidden print-only">
-                                    <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1></div>
+                                    <div className="kop-surat"><div className="kop-surat-logo"><img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" /></div><div className="kop-surat-text"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || "Aplikasi Arisan"}</h1>{identity?.subtitle && <p>{identity.subtitle}</p>}</div><div className="kop-surat-logo-right"></div></div>
                                     <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Daftar Hadir Pertemuan Arisan</h2><p className="text-[11pt]">Siklus Ke-{cycleNumber || 1} | Putaran Ke-{currentRound} | Periode: {formatBulanTahun(arisanPeriod)}</p></div>
                                     <table className="print-table">
                                         <thead><tr><th width="5%">No</th><th width="35%">Nama Warga</th><th width="20%">Status Arisan</th><th width="20%">Tunggakan Sebelumnya</th><th width="20%">Tanda Tangan</th></tr></thead>
@@ -6692,7 +6704,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 )}
 
                     <div className="hidden print-only">
-                        <div className="kop-surat"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || ''}</h1><p>{identity?.subtitle || ''}</p></div>
+                        <div className="kop-surat">
+                            <div className="kop-surat-logo"><img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" /></div>
+                            <div className="kop-surat-text"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1>{identity?.subtitle && <p>{identity.subtitle}</p>}</div>
+                            <div className="kop-surat-logo-right"></div>
+                        </div>
                         <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Laporan Pertemuan &amp; Arisan</h2><p className="text-[11pt]">Siklus Ke-{cycleNumber} {filterMonth !== 'Semua' ? `| Bulan: ${filterMonth}` : ''}</p></div>
                         {displayedHistory.length === 0 ? <p className="text-center italic font-medium">Belum ada arsip pada filter ini.</p> : displayedHistory.map((record, idx) => (
                             <div key={record.id} style={{ marginBottom: '30px', pageBreakInside: 'avoid' }}>
@@ -9887,6 +9903,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
 // Default export untuk digunakan di main.jsx
 export default App;
+
 
 
 

@@ -155,9 +155,13 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     .print-table th, .print-table td { border: 2px solid black !important; padding: 8px; text-align: left; }
     .print-table th { background-color: #cbd5e1 !important; font-weight: bold; text-align: center; }
     .text-right { text-align: right !important; } .text-center { text-align: center !important; }
-    .kop-surat { text-align: center; border-bottom: 4px solid black; padding-bottom: 12px; margin-bottom: 20px; }
-    .kop-surat h1 { font-size: 16pt; font-weight: bold; margin: 0; text-transform: uppercase; color: black !important; }
-    .kop-surat p { font-size: 11pt; margin: 4px 0 0 0; color: black !important; font-weight: bold; }
+    .kop-surat { display: flex; align-items: center; justify-content: space-between; border-bottom: 5px double black; padding-bottom: 15px; margin-bottom: 20px; }
+    .kop-surat-logo { width: 80px; height: 80px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .kop-surat-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .kop-surat-text { flex-grow: 1; text-align: center; padding: 0 15px; }
+    .kop-surat-text h1 { font-size: 16pt; font-weight: bold; margin: 0; text-transform: uppercase; color: black !important; line-height: 1.2; }
+    .kop-surat-text p { font-size: 11pt; margin: 6px 0 0 0; color: black !important; font-weight: normal; }
+    .kop-surat-logo-right { width: 80px; height: 80px; flex-shrink: 0; }
     .ttd-container { margin-top: 40px; display: flex; justify-content: space-between; page-break-inside: avoid; }
     .ttd-box { width: 220px; text-align: center; font-size: 11pt; font-weight: bold; }
     .ttd-space { height: 80px; }
