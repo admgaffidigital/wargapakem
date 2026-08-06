@@ -1915,32 +1915,6 @@ const getDirectImgUrl = (url) => {
                 
                 const handleHashChange = () => {
                     const hash = window.location.hash.replace('#', '');
-                    if (hash) setActiveTab(hash);
-                    else setActiveTab('menu');
-                    
-                    if (typeof setSelectedArticle === 'function') setSelectedArticle(null);
-                };
-                window.addEventListener('hashchange', handleHashChange);
-
-                const params = new URLSearchParams(window.location.search);
-                const isTicketProductLink = params.get('page') === 'tiket' && params.has('product');
-                const isBlogArticleLink = params.get('page') === 'blog' && params.has('article');
-
-                // Untuk link produk tiket: set hash ke tiket, biarkan query params tetap ada
-                // supaya useEffect produk bisa membaca ?product=XXX dan membuka modal
-                if (isTicketProductLink) {
-                    if (window.location.hash !== '#tiket') {
-                        window.location.hash = 'tiket';
-                    }
-                } else if (isBlogArticleLink) {
-                    if (window.location.hash !== '#blog') {
-                        window.location.hash = 'blog';
-                    }
-                } else {
-                    // Bersihkan query params yang tidak diperlukan (nocache, v, page)
-                    const hasNocache = params.has('nocache');
-                    const hasV = params.has('v');
-                    const hasPage = params.has('page');
                     if (hasNocache || hasV || hasPage) {
                         const cleanUrl = new URL(window.location.href);
                         cleanUrl.searchParams.delete('nocache');
@@ -10050,7 +10024,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 // Default export untuk digunakan di main.jsx
 // =====================================================
 // =====================================================
-// KOMPONEN TOKO / OFFICIAL STORE - FULLY RESPONSIVE (DARK MODE SUPPORT & 1:1 RATIO)
+// =====================================================
+// KOMPONEN TOKO / OFFICIAL STORE - FULLY RESPONSIVE (DARK MODE SUPPORT, 1:1 RATIO, & SKU SYSTEM)
 // =====================================================
 function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRole, identity, changeTab }) {
     const [view, setView] = useState('list');
@@ -10068,10 +10043,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     const cartItemCount = Object.keys(cart).length;
     const cartTotal = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
 
+    // Cek redirect / direct link dari Landing Page atau mount
     useEffect(() => {
-        const openId = sessionStorage.getItem('openTokoProductId');
-        if (openId && tokoProducts.length > 0) {
-            const p = tokoProducts.find(i => i.id === openId);
+        const openIdOrSku = sessionStorage.getItem('openTokoProductId');
+        if (openIdOrSku && tokoProducts.length > 0) {
+            const p = tokoProducts.find(i => String(i.id) === String(openIdOrSku) || String(i.sku) === String(openIdOrSku));
             if (p) { setSelectedProduct(p); setSelectedVariant(p.variants[0] || null); setOrderQty(1); setView('detail'); }
             sessionStorage.removeItem('openTokoProductId');
         }
@@ -10112,8 +10088,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
     const saveProduct = () => {
         if (!productForm.judul || productForm.variants.length === 0) return showToast('Judul & minimal 1 varian wajib diisi.', 'error');
-        if (editingProduct) { setTokoProducts(tokoProducts.map(p => p.id === editingProduct.id ? { ...p, ...productForm } : p)); showToast('Produk diperbarui.'); }
-        else { setTokoProducts([...tokoProducts, { id: Date.now(), createdAt: new Date().toISOString(), ...productForm }]); showToast('Produk baru ditambahkan.'); }
+        
+        // Generate SKU otomatis jika belum ada
+        const sku = productForm.sku || `SKU-${Date.now().toString(36).toUpperCase()}`;
+
+        if (editingProduct) { setTokoProducts(tokoProducts.map(p => p.id === editingProduct.id ? { ...p, ...productForm, sku } : p)); showToast('Produk diperbarui.'); }
+        else { setTokoProducts([...tokoProducts, { id: Date.now(), createdAt: new Date().toISOString(), ...productForm, sku }]); showToast('Produk baru ditambahkan.'); }
         setIsFormOpen(false); setEditingProduct(null);
     };
 
@@ -10155,12 +10135,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                         {item.product.imageUrl ? <img src={item.product.imageUrl} className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover shrink-0" /> : <div className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0"><Icon name="storefront" className="text-slate-400 text-[16px]" /></div>}
                                         <div className="min-w-0">
                                             <p className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white line-clamp-1">{item.product.judul}</p>
-                                            <p className="text-[10px] sm:text-[11px] font-medium text-slate-500 dark:text-slate-400">{item.variant.name} &bull; {item.qty}x {formatRp(item.price)}</p>
+                                            <p className="text-[10px] sm:text-[11px] font-medium text-slate-505 dark:text-slate-400">{item.variant.name} &bull; {item.qty}x {formatRp(item.price)}</p>
                                         </div>
                                     </div>
                                     <div className="text-right shrink-0">
                                         <p className="text-xs sm:text-sm font-bold text-google-green dark:text-google-greenLight">{formatRp(item.price * item.qty)}</p>
-                                        <button onClick={() => { const nc = {...cart}; delete nc[key]; setCart(nc); }} className="text-[10px] sm:text-[11px] text-red-500 font-medium hover:underline mt-0.5">Hapus</button>
+                                        <button onClick={() => { const nc = {...cart}; delete nc[key]; setCart(nc); }} className="text-[10px] sm:text-[11px] text-red-505 font-medium hover:underline mt-0.5">Hapus</button>
                                     </div>
                                 </div>
                             ))}
@@ -10186,7 +10166,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         ].map(f => (
                             <div key={f.key}>
                                 <label className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 block">{f.label}</label>
-                                <input type={f.type} value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-google-green dark:focus:border-green-500 text-slate-800 dark:text-white rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors" placeholder={f.placeholder} />
+                                <input type={f.type} value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-205 dark:border-slate-700 focus:border-google-green dark:focus:border-green-505 text-slate-800 dark:text-white rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors" placeholder={f.placeholder} />
                             </div>
                         ))}
                         {[
@@ -10195,7 +10175,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         ].map(f => (
                             <div key={f.key}>
                                 <label className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 block">{f.label}</label>
-                                <textarea rows="2" value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-google-green dark:focus:border-green-500 text-slate-800 dark:text-white rounded-[12px] px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none" placeholder={f.placeholder} />
+                                <textarea rows="2" value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-205 dark:border-slate-700 focus:border-google-green dark:focus:border-green-505 text-slate-800 dark:text-white rounded-[12px] px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none" placeholder={f.placeholder} />
                             </div>
                         ))}
                         <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-755 text-white font-bold py-3 sm:py-3.5 rounded-[12px] shadow-[0_4px_12px_rgba(34,197,94,0.3)] active:scale-95 transition-all text-sm">
@@ -10220,11 +10200,30 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             ? <img src={selectedProduct.imageUrl} className="absolute inset-0 w-full h-full object-cover" alt={selectedProduct.judul} />
                             : <div className="absolute inset-0 flex items-center justify-center"><Icon name="storefront" className="text-[56px] text-slate-300 dark:text-slate-650" /></div>}
                         {selectedProduct.grosirMinQty > 0 && <span className="absolute top-3 left-3 bg-yellow-400 text-yellow-900 text-[9px] font-bold uppercase px-2.5 py-1 rounded-full shadow">Grosir Tersedia</span>}
+                        
+                        {/* Tombol Share */}
+                        <button onClick={(e) => {
+                            e.stopPropagation();
+                            const cleanUrl = new URL(window.location.origin + window.location.pathname);
+                            cleanUrl.searchParams.set('page', 'toko');
+                            cleanUrl.searchParams.set('product', selectedProduct.sku || selectedProduct.id);
+                            navigator.clipboard.writeText(cleanUrl.toString());
+                            showToast('Tautan produk berhasil disalin!');
+                        }} className="absolute top-3 right-3 w-8 h-8 bg-white/95 dark:bg-slate-900/95 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-google-blue hover:bg-white dark:hover:bg-slate-850 transition-colors shadow-sm" title="Bagikan Produk">
+                            <Icon name="share" className="text-[14px]" />
+                        </button>
                     </div>
                     {/* Info & Aksi */}
                     <div className="lg:w-1/2 p-4 sm:p-6 lg:p-8 space-y-5">
                         <div>
-                            <h1 className="text-lg sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight mb-2">{selectedProduct.judul}</h1>
+                            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                <h1 className="text-lg sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight">{selectedProduct.judul}</h1>
+                                {selectedProduct.sku && (
+                                    <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-bold px-2.5 py-1 rounded-md border border-slate-205 dark:border-slate-700">
+                                        {selectedProduct.sku}
+                                    </span>
+                                )}
+                            </div>
                             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-wrap">{selectedProduct.deskripsi}</p>
                         </div>
                         {/* Pilih Varian */}
@@ -10288,11 +10287,17 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         {/* Kolom Kiri */}
                         <div className="space-y-4">
                             <div>
-                                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 block">Nama / Judul Produk *</label>
+                                <label className="text-xs font-bold text-slate-505 dark:text-slate-400 mb-1.5 block">Nama / Judul Produk *</label>
                                 <input type="text" value={productForm.judul} onChange={e => setProductForm({...productForm, judul: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Beras Premium 5Kg..." />
                             </div>
+                            {productForm.sku && (
+                                <div>
+                                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 block">Kode SKU Produk (Otomatis)</label>
+                                    <input type="text" value={productForm.sku} readOnly className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-4 py-2 text-sm font-bold text-slate-500 dark:text-slate-400 outline-none cursor-not-allowed" />
+                                </div>
+                            )}
                             <div>
-                                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 block">Deskripsi Produk</label>
+                                <label className="text-xs font-bold text-slate-550 dark:text-slate-400 mb-1.5 block">Deskripsi Produk</label>
                                 <textarea rows="3" value={productForm.deskripsi} onChange={e => setProductForm({...productForm, deskripsi: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none text-slate-800 dark:text-white" placeholder="Deskripsi produk..." />
                             </div>
                             {/* Upload Gambar */}
@@ -10330,7 +10335,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 {productForm.variants.map((v, i) => (
                                     <div key={v.id} className="flex gap-2 items-center">
                                         <input type="text" value={v.name} onChange={e => { const nv = [...productForm.variants]; nv[i].name = e.target.value; setProductForm({...productForm, variants: nv}); }} placeholder="Nama Varian" className="flex-1 bg-white dark:bg-slate-800 border border-slate-350 dark:border-slate-700 rounded-[8px] px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white" />
-                                        <input type="number" value={v.price} onChange={e => { const nv = [...productForm.variants]; nv[i].price = safeNumber(e.target.value); setProductForm({...productForm, variants: nv}); }} placeholder="Harga" className="flex-1 bg-white dark:bg-slate-800 border border-slate-350 dark:border-slate-700 rounded-[8px] px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white" />
+                                        <input type="number" value={v.price} onChange={e => { const nv = [...productForm.variants]; nv[i].price = safeNumber(e.target.value); setProductForm({...productForm, variants: nv}); }} placeholder="Harga" className="flex-1 bg-white dark:bg-slate-800 border border-slate-355 dark:border-slate-700 rounded-[8px] px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-505 text-slate-800 dark:text-white" />
                                         {productForm.variants.length > 1 && <button onClick={() => setProductForm({...productForm, variants: productForm.variants.filter(va => va.id !== v.id)})} className="w-7 h-7 shrink-0 bg-red-100 dark:bg-red-950/30 text-red-650 rounded-[8px] flex items-center justify-center hover:bg-red-200"><Icon name="close" className="text-[14px]" /></button>}
                                     </div>
                                 ))}
@@ -10354,7 +10359,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     </div>
                     <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-800 justify-end">
                         <button onClick={() => { setIsFormOpen(false); setEditingProduct(null); }} className="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold rounded-[12px] hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all border border-slate-350 dark:border-slate-750 text-sm">Batal</button>
-                        <button onClick={saveProduct} className="px-5 py-2.5 bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold rounded-[12px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md text-sm">Simpan Produk</button>
+                        <button onClick={saveProduct} className="px-5 py-2.5 bg-google-blue text-white font-bold rounded-[12px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md text-sm">Simpan Produk</button>
                     </div>
                 </div>
             )}
@@ -10370,17 +10375,20 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 {p.imageUrl ? <img src={p.imageUrl} className="w-16 h-16 rounded-xl object-cover shrink-0 border border-slate-200 dark:border-slate-850" /> : <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-xl shrink-0 flex items-center justify-center"><Icon name="storefront" className="text-slate-400 dark:text-slate-650" /></div>}
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-start justify-between gap-2">
-                                        <p className="font-bold text-sm text-slate-800 dark:text-white line-clamp-1">{p.judul}</p>
-                                        <span className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span>
+                                        <div>
+                                            <p className="font-bold text-sm text-slate-800 dark:text-white line-clamp-1">{p.judul}</p>
+                                            {p.sku && <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 mt-0.5">{p.sku}</p>}
+                                        </div>
+                                        <span className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase ${p.isPublished ? 'bg-green-105 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span>
                                     </div>
-                                    <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-1 space-y-0.5">
+                                    <div className="text-[11px] text-slate-505 dark:text-slate-400 font-medium mt-1 space-y-0.5">
                                         {p.variants.slice(0,2).map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-bold text-slate-700 dark:text-slate-355">{formatRp(v.price)}</span></div>)}
                                         {p.variants.length > 2 && <div className="text-slate-400 dark:text-slate-550">+{p.variants.length-2} varian lainnya</div>}
                                     </div>
-                                    {p.grosirMinQty > 0 && <span className="inline-block mt-1.5 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-bold rounded">Grosir Aktif</span>}
+                                    {p.grosirMinQty > 0 && <span className="inline-block mt-1.5 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-955/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-bold rounded">Grosir</span>}
                                     <div className="flex gap-2 mt-3">
-                                        <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
-                                        <button onClick={() => { if(window.confirm('Yakin hapus?')) setTokoProducts(tokoProducts.filter(x => x.id !== p.id)); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-600 dark:text-red-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
+                                        <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-955/20 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
+                                        <button onClick={() => { if(window.confirm('Yakin hapus?')) setTokoProducts(tokoProducts.filter(x => x.id !== p.id)); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-405 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
                                     </div>
                                 </div>
                             </div>
@@ -10391,11 +10399,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse min-w-[680px]">
                                 <thead><tr className="bg-slate-50 dark:bg-slate-850 border-b-2 border-slate-205 dark:border-slate-800 text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                    <th className="p-4 w-12 text-center text-slate-500 dark:text-slate-400">No</th>
-                                    <th className="p-4 text-slate-500 dark:text-slate-400">Info Produk</th>
-                                    <th className="p-4 text-slate-500 dark:text-slate-400">Varian & Harga</th>
-                                    <th className="p-4 text-center text-slate-500 dark:text-slate-400">Status</th>
-                                    <th className="p-4 text-right text-slate-500 dark:text-slate-400">Aksi</th>
+                                    <th className="p-4 w-12 text-center text-slate-505 dark:text-slate-400">No</th>
+                                    <th className="p-4 text-slate-505 dark:text-slate-400">Info Produk</th>
+                                    <th className="p-4 text-slate-505 dark:text-slate-400">Varian & Harga</th>
+                                    <th className="p-4 text-center text-slate-505 dark:text-slate-400">Status</th>
+                                    <th className="p-4 text-right text-slate-505 dark:text-slate-400">Aksi</th>
                                 </tr></thead>
                                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                                     {tokoProducts.length === 0 ? <tr><td colSpan="5" className="p-10 text-center text-slate-400 font-medium">Belum ada produk.</td></tr>
@@ -10404,17 +10412,20 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                             <td className="p-4 text-center font-bold text-slate-400 text-sm">{idx+1}</td>
                                             <td className="p-4">
                                                 <div className="flex items-center gap-3">
-                                                    {p.imageUrl ? <img src={p.imageUrl} className="w-12 h-12 rounded-xl object-cover border border-slate-200 dark:border-slate-800 shrink-0" /> : <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-xl shrink-0 flex items-center justify-center"><Icon name="storefront" className="text-slate-400 dark:text-slate-650" /></div>}
+                                                    {p.imageUrl ? <img src={p.imageUrl} className="w-12 h-12 rounded-xl object-cover border border-slate-200 dark:border-slate-800 shrink-0" /> : <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-xl shrink-0 flex items-center justify-center"><Icon name="storefront" className="text-slate-400" /></div>}
                                                     <div>
                                                         <p className="font-bold text-sm text-slate-800 dark:text-white">{p.judul}</p>
-                                                        {p.grosirMinQty > 0 && <span className="inline-block mt-1 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-bold rounded uppercase">Grosir Aktif</span>}
+                                                        <div className="flex flex-wrap items-center gap-1.5 mt-1">
+                                                            {p.sku && <span className="text-[9px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-500 px-1.5 py-0.5 rounded">{p.sku}</span>}
+                                                            {p.grosirMinQty > 0 && <span className="inline-block px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-bold rounded uppercase">Grosir Aktif</span>}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="p-4 text-xs font-medium text-slate-600 dark:text-slate-300 space-y-1">{p.variants.map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-bold text-slate-800 dark:text-white">{formatRp(v.price)}</span></div>)}</td>
                                             <td className="p-4 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
                                             <td className="p-4 text-right space-x-2">
-                                                <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="p-2 bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-450 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
+                                                <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="p-2 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
                                                 <button onClick={() => { if(window.confirm('Yakin hapus?')) setTokoProducts(tokoProducts.filter(x => x.id !== p.id)); }} className="p-2 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
                                             </td>
                                         </tr>
@@ -10435,7 +10446,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             {/* Tab Status */}
             <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
                 {['Menunggu', 'Diproses', 'Diantar', 'Selesai', 'Dibatalkan'].map(tab => (
-                    <button key={tab} onClick={() => setActiveOrderTab(tab)} className={`shrink-0 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-bold text-[11px] sm:text-xs transition-all border-2 ${activeOrderTab === tab ? 'bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 border-slate-800 dark:border-slate-200 shadow-md' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-850 hover:border-slate-400'}`}>
+                    <button key={tab} onClick={() => setActiveOrderTab(tab)} className={`shrink-0 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-bold text-[11px] sm:text-xs transition-all border-2 ${activeOrderTab === tab ? 'bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 border-slate-800 dark:border-slate-200 shadow-md' : 'bg-white dark:bg-slate-900 text-slate-650 dark:text-slate-400 border-slate-200 dark:border-slate-850 hover:border-slate-400'}`}>
                         {tab} <span className={`${activeOrderTab === tab ? 'opacity-70' : 'opacity-50'}`}>({tokoOrders.filter(o => o.status === tab).length})</span>
                     </button>
                 ))}
@@ -10450,12 +10461,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <h4 className="font-bold text-slate-800 dark:text-white text-sm">{order.wargaName}</h4>
                                 <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium mt-0.5">{parseLocalDate(order.orderDate).toLocaleString('id-ID', {dateStyle:'short', timeStyle:'short'})}</p>
                             </div>
-                            <span className={`px-2 py-1 rounded-md text-[9px] font-bold uppercase shrink-0 ml-2 ${order.status === 'Menunggu' ? 'bg-yellow-100 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-400' : order.status === 'Diproses' ? 'bg-blue-100 dark:bg-blue-950/20 text-blue-800 dark:text-blue-450' : order.status === 'Diantar' ? 'bg-purple-100 dark:bg-purple-950/20 text-purple-800 dark:text-purple-400' : order.status === 'Selesai' ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-red-100 dark:bg-red-955/20 text-red-800 dark:text-red-400'}`}>{order.status}</span>
+                            <span className={`px-2 py-1 rounded-md text-[9px] font-bold uppercase shrink-0 ml-2 ${order.status === 'Menunggu' ? 'bg-yellow-105 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-400' : order.status === 'Diproses' ? 'bg-blue-100 dark:bg-blue-950/20 text-blue-800 dark:text-blue-455' : order.status === 'Diantar' ? 'bg-purple-100 dark:bg-purple-950/20 text-purple-800 dark:text-purple-400' : order.status === 'Selesai' ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-red-100 dark:bg-red-955/20 text-red-800 dark:text-red-400'}`}>{order.status}</span>
                         </div>
                         <div className="text-xs font-medium text-slate-600 dark:text-slate-350 space-y-1.5 border-t border-slate-100 dark:border-slate-850 pt-3">
                             <p className="flex gap-2 items-center"><Icon name="call" className="text-[13px] text-slate-400 shrink-0" /><a href={`https://wa.me/${order.phone}`} target="_blank" className="text-google-blue hover:underline truncate">{order.phone}</a></p>
                             <p className="flex gap-2 items-start"><Icon name="location_on" className="text-[13px] text-slate-400 shrink-0 mt-0.5" /><span className="leading-relaxed line-clamp-2">{order.address}</span></p>
-                            {order.notes && <p className="flex gap-2 items-start"><Icon name="note" className="text-[13px] text-slate-400 shrink-0 mt-0.5" /><span className="italic text-slate-500 dark:text-slate-450 line-clamp-2">"{order.notes}"</span></p>}
+                            {order.notes && <p className="flex gap-2 items-start"><Icon name="note" className="text-[13px] text-slate-400 shrink-0 mt-0.5" /><span className="italic text-slate-505 dark:text-slate-455 line-clamp-2">"{order.notes}"</span></p>}
                         </div>
                         <div className="bg-slate-50 dark:bg-slate-850 p-3 rounded-xl border border-slate-100 dark:border-slate-800 space-y-1.5">
                             {order.items.map((it, i) => (
@@ -10472,7 +10483,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             {order.status === 'Menunggu' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diproses'} : o))} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Proses</button>}
                             {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Mulai Antar</button>}
                             {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Selesai ✓</button>}
-                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { if(window.confirm('Batalkan pesanan?')) setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)); }} className="px-3 bg-white dark:bg-slate-800 border border-red-200 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-lg text-xs font-bold transition-colors">Batal</button>}
+                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { if(window.confirm('Batalkan pesanan?')) setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-lg text-xs font-bold transition-colors">Batal</button>}
                         </div>
                     </div>
                 ))}
@@ -10509,23 +10520,38 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 </div>
             </div>
 
-            {/* Grid Produk — 1:1 Aspect Ratio */}
+            {/* Grid Produk — 1:1 Aspect Ratio & SKU Share System */}
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
                 {tokoProducts.filter(p => p.isPublished).length === 0 ? (
                     <div className="col-span-full py-16 text-center text-slate-400 dark:text-slate-500 font-medium text-sm bg-white dark:bg-slate-900 rounded-[20px] border border-dashed border-slate-200 dark:border-slate-800">Belum ada produk yang dijual saat ini.</div>
                 ) : tokoProducts.filter(p => p.isPublished).map(item => (
                     <div key={item.id} onClick={() => { setSelectedProduct(item); setSelectedVariant(item.variants[0] || null); setOrderQty(1); setView('detail'); }}
-                        className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[20px] border border-slate-200 dark:border-slate-850 shadow-sm hover:shadow-lg overflow-hidden flex flex-col justify-between hover:border-google-green/60 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
+                        className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[20px] border border-slate-200 dark:border-slate-850 shadow-sm hover:shadow-lg overflow-hidden flex flex-col justify-between hover:border-google-green/60 hover:-translate-y-1 transition-all duration-300 group cursor-pointer font-sans">
                         {/* Gambar - 1:1 Ratio */}
                         <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                             {item.imageUrl
                                 ? <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
                                 : <Icon name="storefront" className="text-[40px] sm:text-[48px] text-slate-300 dark:text-slate-600" />}
-                            {item.grosirMinQty > 0 && <span className="absolute top-2 left-2 bg-yellow-400 text-yellow-900 text-[8px] sm:text-[9px] font-bold uppercase px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">Grosir</span>}
+                            {item.grosirMinQty > 0 && <span className="absolute top-2 left-2 bg-yellow-400 text-yellow-900 text-[8px] sm:text-[9px] font-bold uppercase px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-sm">Grosir</span>}
+                            
+                            {/* Tombol Share */}
+                            <button onClick={(e) => {
+                                e.stopPropagation();
+                                const cleanUrl = new URL(window.location.origin + window.location.pathname);
+                                cleanUrl.searchParams.set('page', 'toko');
+                                cleanUrl.searchParams.set('product', item.sku || item.id);
+                                navigator.clipboard.writeText(cleanUrl.toString());
+                                showToast('Tautan produk berhasil disalin!');
+                            }} className="absolute top-2 right-2 w-7 h-7 bg-white/95 dark:bg-slate-900/95 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-google-blue hover:bg-white dark:hover:bg-slate-850 transition-colors shadow-sm" title="Bagikan Produk">
+                                <Icon name="share" className="text-[13px]" />
+                            </button>
                         </div>
                         {/* Info */}
                         <div className="p-3 sm:p-4 space-y-1 flex-1">
                             <h4 className="font-bold text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-green transition-colors">{item.judul}</h4>
+                            <div className="flex flex-wrap items-center gap-1">
+                                {item.sku && <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-850 px-1 py-0.5 rounded">{item.sku}</span>}
+                            </div>
                             <p className="text-[11px] sm:text-[12px] font-medium text-slate-400 dark:text-slate-500 line-clamp-1 sm:line-clamp-2">{item.deskripsi}</p>
                         </div>
                         {/* Footer */}
@@ -10534,7 +10560,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Mulai dari</p>
                                 <p className="text-[13px] sm:text-[14px] font-black text-google-green dark:text-google-greenLight">{formatRp(Math.min(...item.variants.map(v => v.price)))}</p>
                             </div>
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-50 dark:bg-slate-800 text-google-green dark:text-google-greenLight border border-slate-205 dark:border-slate-750 rounded-full flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors shrink-0">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-55 dark:bg-slate-800 text-google-green dark:text-google-greenLight border border-slate-205 dark:border-slate-750 rounded-full flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors shrink-0">
                                 <Icon name="shopping_bag" className="text-[15px] sm:text-[18px]" />
                             </div>
                         </div>
