@@ -7,6 +7,12 @@
    ============================================================ */
 @tailwind base;
 @tailwind components;
+
+@layer components {
+    button, [class*="rounded-full"] {
+        @apply justify-center text-center;
+    }
+}
 @tailwind utilities;
 
 /* ============================================================
