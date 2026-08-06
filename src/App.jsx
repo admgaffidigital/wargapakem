@@ -79,7 +79,13 @@ const getDirectImgUrl = (url) => {
             useEffect(() => {
                 const handler = (e) => {
                     const id = Date.now() + Math.random();
-                    setToasts(prev => [...prev, { id, message: e.detail.message, type: e.detail.type }]);
+                    setToasts(prev => [...prev, { id, message: e.detail.message, type: e.detail.type, closing: false }]);
+                    
+                    // Mark for closing animation
+                    setTimeout(() => {
+                        setToasts(prev => prev.map(t => t.id === id ? { ...t, closing: true } : t));
+                    }, 2700);
+                    
                     setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 3000);
                 };
                 window.addEventListener('app:toast', handler);
@@ -89,14 +95,25 @@ const getDirectImgUrl = (url) => {
             if (toasts.length === 0) return null;
 
             return (
-                <div className="fixed left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 no-print w-[92%] sm:w-auto items-center"
-                     style={{ top: 'calc(0.75rem + env(safe-area-inset-top, 0px))' }}>
-                    <style>{`@keyframes toastSlideIn { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }`}</style>
+                <div className="fixed left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-3 no-print w-fit min-w-[280px] max-w-[90vw] items-center pointer-events-none"
+                     style={{ bottom: 'calc(3rem + env(safe-area-inset-bottom, 0px))' }}>
+                    <style>{`
+                        @keyframes toastSlideUp { 
+                            0% { opacity: 0; transform: translateY(20px) scale(0.95); } 
+                            100% { opacity: 1; transform: translateY(0) scale(1); } 
+                        }
+                        @keyframes toastFadeOut {
+                            0% { opacity: 1; transform: translateY(0) scale(1); }
+                            100% { opacity: 0; transform: translateY(10px) scale(0.95); }
+                        }
+                    `}</style>
                     {toasts.map(t => (
-                        <div key={t.id} className={`flex items-center gap-2.5 px-5 py-3.5 rounded-[16px] shadow-2xl border-2 font-medium text-[12px] max-w-sm sm:max-w-md ${t.type === 'error' ? 'bg-google-red text-white border-google-redDark' : 'bg-google-green text-white border-google-greenDark'}`}
-                             style={{ animation: 'toastSlideIn 0.3s ease-out' }}>
-                            <Icon name={t.type === 'error' ? 'error' : 'check_circle'} className="text-[17px]" fill="true" />
-                            <span>{t.message}</span>
+                        <div key={t.id} className={`flex items-center gap-3 px-2 py-2 pr-5 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.4)] border backdrop-blur-xl font-bold text-[12px] sm:text-[13px] w-full ${t.type === 'error' ? 'bg-red-600/95 text-white border-red-500/50' : 'bg-slate-900/95 dark:bg-white/95 text-white dark:text-slate-800 border-slate-700/50 dark:border-slate-300/50'}`}
+                             style={{ animation: t.closing ? 'toastFadeOut 0.3s forwards ease-in' : 'toastSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+                            <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 shadow-inner ${t.type === 'error' ? 'bg-white/20' : 'bg-google-green/20 dark:bg-google-green/20'}`}>
+                                <Icon name={t.type === 'error' ? 'warning' : 'task_alt'} className={`text-[16px] sm:text-[18px] ${t.type === 'error' ? 'text-white' : 'text-google-greenLight dark:text-google-greenDark'}`} />
+                            </div>
+                            <span className="flex-1 text-center tracking-wide">{t.message}</span>
                         </div>
                     ))}
                 </div>
