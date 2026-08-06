@@ -134,14 +134,18 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
    CETAK / PRINT — Format Surat Resmi A4
    ============================================================ */
 @media print {
-    @page { size: A4; margin: 1.5cm 2cm; }
-    body {
+    @page { size: A4 portrait; margin: 1.5cm; }
+    html, body, #root {
+        width: 100% !important;
+        height: auto !important;
         background-color: white !important;
         color: black !important;
         font-family: 'Times New Roman', Times, serif !important;
         display: block !important;
-        margin: 0;
-        padding: 0;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        box-sizing: border-box !important;
     }
     .no-print { display: none !important; }
     .print-only { display: block !important; }
