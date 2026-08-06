@@ -5335,7 +5335,7 @@ const getDirectImgUrl = (url) => {
                                         <tr key={m.id}>
                                             <td className="text-center font-medium">{idx + 1}</td>
                                             <td className="font-medium">{m.name} {m.status === 'Meninggal' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Wafat</span>}{m.status === 'Nonaktif' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Nonaktif</span>}</td>
-                                            <td className="text-center font-medium">{m.program === 'IuranOnly' ? 'Iuran Saja' : 'Arisan + Iuran'}</td>
+                                            <td className="text-center font-medium">{m.program === 'IuranOnly' ? 'Iuran Saja' : (m.program === 'ArisanOnly' ? 'Arisan Saja (Bebas Jimpitan)' : 'Arisan + Iuran')}</td>
                                             <td className="text-center font-medium">{m.program === 'IuranOnly' ? '-' : (m.hasWon ? `Menang (Put.${m.wonRound})` : 'Belum')}</td>
                                             <td className="text-right font-medium">{m.debt > 0 ? formatRp(m.debt) : '-'}</td><td></td>
                                         </tr>
@@ -5377,7 +5377,7 @@ const getDirectImgUrl = (url) => {
                                     <div className="flex-1 min-w-0">
                                         <h3 className={`font-medium text-[16px] truncate transition-colors tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text group-hover:text-google-blueDark'}`}>{member.name} {isNonaktif(member) && <span className="text-[9px] uppercase tracking-wider bg-slate-100 text-slate-500 px-2.5 py-1 rounded-[6px] ml-2 font-medium border-2 border-slate-300 align-middle">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</h3>
                                         <div className="flex flex-wrap items-center gap-2.5 mt-2.5 text-[10px] uppercase tracking-wider">
-                                            <span className={`px-3 py-1.5 rounded-[6px] font-medium border-2 ${member.program === 'IuranOnly' ? 'bg-slate-50 text-google-textVariant border-slate-300' : 'bg-google-blue/10 text-google-blueDark border-google-blue/30'}`}>{member.program === 'IuranOnly' ? 'Hanya Iuran' : 'Arisan & Iuran'}</span>
+                                            <span className={`px-3 py-1.5 rounded-[6px] font-medium border-2 ${member.program === 'IuranOnly' ? 'bg-slate-50 text-google-textVariant border-slate-300' : (member.program === 'ArisanOnly' ? 'bg-google-yellowLight text-google-yellowDark border-google-yellow/40' : 'bg-google-blue/10 text-google-blueDark border-google-blue/30')}`}>{member.program === 'IuranOnly' ? 'Hanya Iuran' : (member.program === 'ArisanOnly' ? 'Arisan Saja (Bebas Jimpitan)' : 'Arisan & Iuran')}</span>
                                             {member.program !== 'IuranOnly' && (member.hasWon ? <span className="bg-google-blue text-white px-3 py-1.5 rounded-[6px] font-medium shadow-sm border-2 border-google-blueDark flex flex-wrap items-center gap-1"><Icon name="emoji_events" className="text-[13px]"/> Menang Put. {member.wonRound}</span> : <span className="text-google-textVariant px-3 py-1.5 rounded-[6px] bg-slate-100 font-medium border-2 border-slate-300">Belum Menang</span>)}
                                             {member.debt > 0 ? <span className="bg-google-redLight text-google-redDark px-3 py-1.5 rounded-[6px] font-medium border-2 border-google-red/40 animate-pulse flex flex-wrap items-center gap-1.5"><Icon name="warning" className="text-[13px]"/> Tunggakan {formatRp(member.debt)}</span> : <span className="bg-google-greenLight text-google-greenDark px-3 py-1.5 rounded-[6px] font-medium border-2 border-google-green/40 flex flex-wrap items-center gap-1.5"><Icon name="check_circle" className="text-[13px]"/> Aman</span>}
                                         </div>
@@ -5403,7 +5403,7 @@ const getDirectImgUrl = (url) => {
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}</h3>
                                 <div className="space-y-5">
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Program Keikutsertaan</label><select value={formData.program || 'Arisan'} onChange={e => setFormData({...formData, program: e.target.value, hasWon: false, wonRound: ''})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Arisan">Full (Arisan &amp; Iuran)</option><option value="IuranOnly">Hanya Iuran Umum Saja</option></select></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Program Keikutsertaan</label><select value={formData.program || 'Arisan'} onChange={e => setFormData({...formData, program: e.target.value, hasWon: false, wonRound: ''})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Arisan">Full (Arisan &amp; Iuran)</option><option value="IuranOnly">Hanya Iuran Umum Saja</option><option value="ArisanOnly">Arisan Saja (Bebas Jimpitan)</option></select></div>
                                     <div className="flex flex-wrap gap-5">
                                         <div className="flex-1"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Status</label><select value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Normal">Aktif</option><option value="Meninggal">Meninggal / Wafat</option><option value="Nonaktif">Nonaktif / Pindah</option></select></div>
                                         <div className="flex-1"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tunggakan (Rp)</label><input type="number" min="0" value={formData.debt} onChange={e => {setFormData({...formData, debt: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
@@ -6061,7 +6061,10 @@ const getDirectImgUrl = (url) => {
                 
                 let totalTagihanGabungan = 0;
                 scannedMembers.forEach(m => {
-                    const tagihanBulanIni = (m.program === 'IuranOnly' ? 0 : nominalArisan) + nominalJimpitan;
+                    let tagihanBulanIni = 0;
+                    if (m.program === 'Arisan') tagihanBulanIni = nominalArisan + nominalJimpitan;
+                    else if (m.program === 'ArisanOnly') tagihanBulanIni = nominalArisan;
+                    else if (m.program === 'IuranOnly') tagihanBulanIni = nominalJimpitan;
                     totalTagihanGabungan += tagihanBulanIni + (m.debt || 0);
                 });
                 
@@ -6094,8 +6097,16 @@ const getDirectImgUrl = (url) => {
                     const att = attendance[m.id];
                     if (!att) return; // guard: warga belum ada di attendance (ditambah setelah form buka)
                     if (isNonaktif(m)) { if (att.status === 'Hadir') kasJimpitanTerkumpul += nominalJimpitan; return; } // Nonaktif/Meninggal: hanya jimpitan
-                    if (att.status === 'Hadir') { kasArisanTerkumpul += nominalArisan; kasJimpitanTerkumpul += nominalJimpitan; if (m.debt > 0 && att.payDebt) pelunasanTunggakan += m.debt; } 
-                    else if (att.status === 'Alfa' || att.status === 'Musibah') { talanganJimpitan += nominalArisan; kasArisanTerkumpul += nominalArisan; tunggakanBaru += (nominalArisan + nominalJimpitan); }
+                    if (att.status === 'Hadir') { 
+                        kasArisanTerkumpul += nominalArisan; 
+                        if (m.program !== 'ArisanOnly') kasJimpitanTerkumpul += nominalJimpitan; 
+                        if (m.debt > 0 && att.payDebt) pelunasanTunggakan += m.debt; 
+                    } 
+                    else if (att.status === 'Alfa' || att.status === 'Musibah') { 
+                        talanganJimpitan += nominalArisan; 
+                        kasArisanTerkumpul += nominalArisan; 
+                        tunggakanBaru += (m.program === 'ArisanOnly' ? nominalArisan : (nominalArisan + nominalJimpitan)); 
+                    }
                 });
                 // LOGIKA ARISAN: Pemenang tidak membayar ke dirinya sendiri.
                 // Kurangi nominalArisan pemenang dari total yang diserahkan, KECUALI
@@ -6138,10 +6149,11 @@ const getDirectImgUrl = (url) => {
                         return updatedM;
                     } // Nonaktif/Meninggal: catat status asli, bebas arisan
                     absensiDetails.push({ name: m.name, status: att.status });
+                    const tagihanBaru = m.program === 'ArisanOnly' ? nominalArisan : (nominalArisan + nominalJimpitan);
                     if (att.status === 'Hadir') { updatedM.redRecord = false; if (att.payDebt) updatedM.debt = 0; } 
-                    else if (att.status === 'Alfa') { updatedM.debt = (updatedM.debt || 0) + (nominalArisan + nominalJimpitan); updatedM.redRecord = true; } 
+                    else if (att.status === 'Alfa') { updatedM.debt = (updatedM.debt || 0) + tagihanBaru; updatedM.redRecord = true; } 
                     // Musibah = halangan valid (sakit/musibah), punya tunggakan tapi TIDAK masuk rapor merah
-                    else if (att.status === 'Musibah') { updatedM.debt = (updatedM.debt || 0) + (nominalArisan + nominalJimpitan); }
+                    else if (att.status === 'Musibah') { updatedM.debt = (updatedM.debt || 0) + tagihanBaru; }
                     return updatedM;
                 });
                 
