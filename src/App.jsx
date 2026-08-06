@@ -1890,7 +1890,7 @@ const getDirectImgUrl = (url) => {
                         if (user && user.uid === '7kGABJkj7APXHPtyVQUHQeoz0Cy1') {
                             setUserRole('admin');
                             setIsLoggedIn(true);
-                            if (window.location.hash === '') window.location.hash = 'menu';
+                            if (window.location.hash === '') if (sessionStorage.getItem('openInfaqId')) { window.location.hash = 'infaq'; } else { window.location.hash = 'menu'; }
                         }
                         setIsCheckingAuth(false);
                     });
@@ -2011,13 +2011,13 @@ const getDirectImgUrl = (url) => {
                 }
                 return (
                     <>
-                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} umkmData={umkmData} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} onLogin={(role) => { 
+                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} umkmData={umkmData} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} infaqData={infaqData} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); 
                             const params = new URLSearchParams(window.location.search);
                             if (params.get('page') === 'tiket') {
                                 window.location.hash = 'tiket';
                             } else {
-                                window.location.hash = 'menu';
+                                if (sessionStorage.getItem('openInfaqId')) { window.location.hash = 'infaq'; } else { window.location.hash = 'menu'; }
                             }
                             // Bersihkan URL dari query params tanpa reload
                             const cleanUrl = new URL(window.location.href);
@@ -2451,7 +2451,7 @@ const getDirectImgUrl = (url) => {
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber, infaqData = [] }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
@@ -2462,6 +2462,7 @@ const getDirectImgUrl = (url) => {
             const [limitInformasi, setLimitInformasi] = useState(6);
             const [limitBlog, setLimitBlog] = useState(6);
             const [limitUmkm, setLimitUmkm] = useState(6);
+            const [limitInfaq, setLimitInfaq] = useState(3);
             
             const latestWinner = useMemo(() => {
                 return (members || [])
@@ -2732,6 +2733,62 @@ const getDirectImgUrl = (url) => {
                                             <button onClick={() => setLimitBlog(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Artikel</span>
+                                            </button>
+                                        </div>
+                                    )}
+                                </section>
+                            )}
+
+                                                        {/* INFAQ SECTION */}
+                            {infaqData && infaqData.length > 0 && (
+                                <section id="infaq" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                    <div className="text-center space-y-1">
+                                        <h3 className="text-[11px] font-bold text-google-green dark:text-green-400 uppercase tracking-widest">Program Amal & Sosial</h3>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">SALURKAN INFAQ ANDA</h2>
+                                    </div>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {infaqData.slice(0, limitInfaq).map(item => {
+                                            const p = item.danaTarget ? Math.min(100, Math.round(((item.danaTerkumpul || 0) / item.danaTarget) * 100)) : null;
+                                            return (
+                                                <div key={item.id} onClick={() => { sessionStorage.setItem('openInfaqId', item.id); onLogin('warga'); }} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl overflow-hidden flex flex-col justify-between hover:border-google-green/50 hover:-translate-y-1.5 transition-all duration-300 group cursor-pointer">
+                                                    <div>
+                                                        <div className="relative h-40 w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
+                                                            {item.imageUrl ? (
+                                                                <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+                                                            ) : (
+                                                                <Icon name="volunteer_activism" className="text-[48px] text-google-green/30" fill="true" />
+                                                            )}
+                                                        </div>
+                                                        <div className="p-5 space-y-3">
+                                                            <h4 className="font-bold text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-green transition-colors">{item.judul}</h4>
+                                                            <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">{item.deskripsi}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="p-5 pt-0 space-y-4">
+                                                        <div>
+                                                            <div className="flex items-center justify-between mb-1">
+                                                                <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">Terkumpul</span>
+                                                                {p !== null && <span className="text-[11px] font-bold text-google-green">{p}%</span>}
+                                                            </div>
+                                                            <p className="text-[15px] font-bold text-google-green tracking-tight">Rp {(item.danaTerkumpul || 0).toLocaleString('id-ID')}</p>
+                                                            {item.danaTarget > 0 && (
+                                                                <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full mt-2 overflow-hidden">
+                                                                    <div className="h-full bg-google-green rounded-full transition-all duration-700" style={{width: `${p}%`}} />
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                        <button className="w-full bg-google-green/10 text-google-green hover:bg-google-green hover:text-white border-2 border-google-green/20 hover:border-google-green py-2.5 rounded-[12px] font-bold text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
+                                                            <Icon name="volunteer_activism" className="text-[16px]" fill="true" /> Donasi Sekarang
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                    {infaqData.length > limitInfaq && (
+                                        <div className="flex justify-center pt-2">
+                                            <button onClick={() => setLimitInfaq(prev => prev + 3)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                                <Icon name="expand_more" /> Lihat Semua Program
                                             </button>
                                         </div>
                                     )}
@@ -4280,6 +4337,23 @@ const getDirectImgUrl = (url) => {
             const [tipeNama, setTipeNama]            = useState('nama'); // 'nama' | 'tanpanama' | 'hambaalah'
             const [showPayModal, setShowPayModal]   = useState(false);
             const [selectedRek, setSelectedRek]     = useState(0);
+
+            // Cek jika ada perintah buka Infaq dari Landing Page
+            useEffect(() => {
+                const openId = sessionStorage.getItem('openInfaqId');
+                if (openId && infaqData.length > 0) {
+                    const prog = infaqData.find(i => i.id === openId);
+                    if (prog) {
+                        setSelected(prog);
+                        setView('detail');
+                        setNominalInput('');
+                        setNamaInfaq('');
+                        setTipeNama('nama');
+                        setSelectedRek(0);
+                    }
+                    sessionStorage.removeItem('openInfaqId');
+                }
+            }, [infaqData]);
 
             // Tambahan State Warga: Upload Bukti
             const [buktiUrl, setBuktiUrl]           = useState('');
@@ -9903,6 +9977,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
 // Default export untuk digunakan di main.jsx
 export default App;
+
+
+
 
 
 
