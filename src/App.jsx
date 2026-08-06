@@ -331,7 +331,7 @@ const getDirectImgUrl = (url) => {
         const formatBulanTahun = (yyyy_mm) => {
             if (!yyyy_mm) return '-'; const [year, month] = yyyy_mm.split('-'); return new Date(year, month - 1).toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
         };
-        const safeNumber = (val) => isNaN(Math.abs(Number(val))) ? 0 : Math.abs(Number(val));
+        const safeNumber = (val) => val === '' ? '' : (isNaN(Math.abs(Number(val))) ? 0 : Math.abs(Number(val)));
         // FIX LOGIKA-2: Helper parse tanggal lokal (hindari timezone off-by-one UTC)
         const parseLocalDate = (dateStr) => { if (!dateStr) return new Date(); const [y, m, d] = dateStr.split('-'); return new Date(+y, +m - 1, +d); };
         // Helper: cek apakah warga nonaktif (Meninggal ATAU Nonaktif/Pindah) - bebas dari arisan
