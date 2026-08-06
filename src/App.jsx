@@ -1915,13 +1915,34 @@ const getDirectImgUrl = (url) => {
                 
                 const handleHashChange = () => {
                     const hash = window.location.hash.replace('#', '');
-                    if (hasNocache || hasV || hasPage) {
-                        const cleanUrl = new URL(window.location.href);
-                        cleanUrl.searchParams.delete('nocache');
-                        cleanUrl.searchParams.delete('v');
-                        cleanUrl.searchParams.delete('page');
-                        window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
+                    if (hash) {
+                        setActiveTab(hash);
                     }
+                };
+                window.addEventListener('hashchange', handleHashChange);
+                
+                const p = new URLSearchParams(window.location.search);
+                const hasNocache = p.has('nocache');
+                const hasV = p.has('v');
+                const hasPage = p.has('page');
+                
+                if (p.get('page') === 'toko' && p.has('product')) {
+                    sessionStorage.setItem('openTokoProductId', p.get('product'));
+                    setIsLoggedIn(true);
+                    setUserRole('warga');
+                    setActiveTab('toko');
+                }
+                
+                if (hasNocache || hasV || hasPage) {
+                    const cleanUrl = new URL(window.location.href);
+                    cleanUrl.searchParams.delete('nocache');
+                    cleanUrl.searchParams.delete('v');
+                    cleanUrl.searchParams.delete('page');
+                    window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
+                }
+                
+                // Cek awal hash
+                if (window.location.hash) {
                     handleHashChange();
                 }
                 
@@ -10574,4 +10595,5 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
 
 export default App;
+
 
