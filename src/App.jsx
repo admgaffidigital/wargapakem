@@ -10061,6 +10061,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     const [productForm, setProductForm] = useState({ judul: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Default', price: 0 }] });
     const [isUploading, setIsUploading] = useState(false);
     const [activeOrderTab, setActiveOrderTab] = useState('Menunggu');
+    const [tokoConfirm, setTokoConfirm] = useState(null); // { message, onConfirm }
 
     const cartItemCount = Object.keys(cart).length;
     const cartTotal = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -10415,7 +10416,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     {p.grosirMinQty > 0 && <span className="inline-block mt-1.5 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-955/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-bold rounded">Grosir</span>}
                                     <div className="flex gap-2 mt-3">
                                         <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-955/20 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
-                                        <button onClick={() => { if(window.confirm('Yakin hapus?')) setTokoProducts(tokoProducts.filter(x => x.id !== p.id)); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-405 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
+                                        <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-405 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
                                     </div>
                                 </div>
                             </div>
@@ -10453,7 +10454,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                             <td className="p-4 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
                                             <td className="p-4 text-right space-x-2">
                                                 <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="p-2 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
-                                                <button onClick={() => { if(window.confirm('Yakin hapus?')) setTokoProducts(tokoProducts.filter(x => x.id !== p.id)); }} className="p-2 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
+                                                <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="p-2 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
                                             </td>
                                         </tr>
                                     ))}
@@ -10510,8 +10511,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             {order.status === 'Menunggu' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diproses'} : o))} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Proses</button>}
                             {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Mulai Antar</button>}
                             {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Selesai ✓</button>}
-                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { if(window.confirm('Batalkan pesanan?')) setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-lg text-xs font-bold transition-colors">Batal</button>}
-                            <button onClick={() => { if(window.confirm('Hapus pesanan ini secara permanen?')) setTokoOrders(tokoOrders.filter(o => o.id !== order.id)); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-lg text-xs font-bold transition-colors flex items-center justify-center" title="Hapus Permanen">
+                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)) }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-lg text-xs font-bold transition-colors">Batal</button>}
+                            <button onClick={() => { setTokoConfirm({ message: 'Hapus pesanan ini secara permanen?', onConfirm: () => setTokoOrders(tokoOrders.filter(o => o.id !== order.id)) }); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-lg text-xs font-bold transition-colors flex items-center justify-center" title="Hapus Permanen">
                                 <Icon name="delete" className="text-[15px]" />
                             </button>
                         </div>
@@ -10523,6 +10524,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
     // ===== DEFAULT VIEW: GRID KATALOG PRODUK =====
     return (
+        <>
         <div className="space-y-5">
             {/* Header Toko */}
             <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-sm">
@@ -10598,6 +10600,24 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 ))}
             </div>
         </div>
+
+        {/* Modern Confirm Modal */}
+        {tokoConfirm && (
+            <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                <div className="w-full max-w-xs text-center modal-card animate-modal-in p-7">
+                    <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Icon name="warning" className="text-[32px] text-red-500" fill="true" />
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">{tokoConfirm.message}</p>
+                    <div className="flex gap-3">
+                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold text-sm transition-colors">Ya, Lanjutkan</button>
+                    </div>
+                </div>
+            </div>
+        )}
+        </>
     );
 }
 // =====================================================
