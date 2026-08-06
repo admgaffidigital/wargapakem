@@ -10505,6 +10505,9 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Mulai Antar</button>}
                             {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Selesai ✓</button>}
                             {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { if(window.confirm('Batalkan pesanan?')) setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-lg text-xs font-bold transition-colors">Batal</button>}
+                            <button onClick={() => { if(window.confirm('Hapus pesanan ini secara permanen?')) setTokoOrders(tokoOrders.filter(o => o.id !== order.id)); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-lg text-xs font-bold transition-colors flex items-center justify-center" title="Hapus Permanen">
+                                <Icon name="delete" className="text-[15px]" />
+                            </button>
                         </div>
                     </div>
                 ))}
