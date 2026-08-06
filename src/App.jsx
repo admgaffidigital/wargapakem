@@ -10301,6 +10301,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
     // ===== VIEW: ADMIN - KELOLA PRODUK =====
     if (view === 'admin-products') return (
+        <>
         <div className="space-y-5">
             <PageHeader title="Kelola Katalog Produk" subtitle="Tambah, edit, dan hapus produk toko" onBack={() => setView('list')}>
                 <button onClick={() => { setProductForm({ judul: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-[12px] font-bold text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
@@ -10465,10 +10466,29 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 </>
             )}
         </div>
+
+        {/* Modern Confirm Modal */}
+        {tokoConfirm && (
+            <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                <div className="w-full max-w-xs text-center modal-card animate-modal-in p-7">
+                    <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Icon name="warning" className="text-[32px] text-red-500" fill="true" />
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">{tokoConfirm.message}</p>
+                    <div className="flex gap-3">
+                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold text-sm transition-colors">Ya, Lanjutkan</button>
+                    </div>
+                </div>
+            </div>
+        )}
+        </>
     );
 
     // ===== VIEW: ADMIN - KELOLA PESANAN =====
     if (view === 'admin-orders') return (
+        <>
         <div className="space-y-5">
             <PageHeader title="Pesanan Masuk" subtitle="Kelola dan pantau status pesanan warga" onBack={() => setView('list')} />
             {/* Tab Status */}
@@ -10520,6 +10540,24 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 ))}
             </div>
         </div>
+
+        {/* Modern Confirm Modal */}
+        {tokoConfirm && (
+            <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                <div className="w-full max-w-xs text-center modal-card animate-modal-in p-7">
+                    <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Icon name="warning" className="text-[32px] text-red-500" fill="true" />
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">{tokoConfirm.message}</p>
+                    <div className="flex gap-3">
+                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold text-sm transition-colors">Ya, Lanjutkan</button>
+                    </div>
+                </div>
+            </div>
+        )}
+        </>
     );
 
     // ===== DEFAULT VIEW: GRID KATALOG PRODUK =====
