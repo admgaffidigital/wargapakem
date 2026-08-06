@@ -2003,6 +2003,7 @@ const getDirectImgUrl = (url) => {
                             cleanUrl.searchParams.delete('product');
                             window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
                         }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
+                        <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
                         {showLegalModal && (
                         <div className="fixed inset-0 bg-black/60  z-[100] flex justify-center items-center p-4 animate-fade-in">
