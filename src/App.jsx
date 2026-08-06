@@ -3542,7 +3542,7 @@ const getDirectImgUrl = (url) => {
                                     <h4 className="text-[14px] font-medium text-red-700 dark:text-red-300 mt-0.5">{nextPrayer.name} pukul {nextPrayer.time}</h4>
                                 </div>
                             </div>
-                            <div className="bg-white/80 dark:bg-red-900/40 border border-red-500/30 dark:border-red-500/30 px-5 py-2.5 rounded-full shadow-sm text-center">
+                            <div className="bg-white/80 dark:bg-red-900/40 border border-red-500/30 dark:border-red-500/30 px-5 py-2.5 rounded-[12px] shadow-sm text-center">
                                 <span className="text-[11px] font-medium text-red-800 dark:text-red-200 uppercase tracking-wider block">Waktu Mundur</span>
                                 <span className="text-[13px] font-bold text-red-600 dark:text-red-300 font-mono">{timeRemaining}</span>
                             </div>
@@ -4372,7 +4372,7 @@ const getDirectImgUrl = (url) => {
                         </div>
                         {userRole === 'admin' && (
                             <button onClick={() => { setForm(emptyForm); setEditingId(null); setErrorMsg(''); setView('form'); }}
-                                className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-full font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all shrink-0">
+                                className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all shrink-0">
                                 <Icon name="add" className="text-[16px]" />Buat Program Infaq
                             </button>
                         )}
@@ -4384,7 +4384,7 @@ const getDirectImgUrl = (url) => {
                             const p = pct(item);
                             return (
                                 <div key={item.id} onClick={() => { setSelected(item); setView('detail'); setNominalInput(''); setNamaInfaq(''); setTipeNama('nama'); setSelectedRek(0); }}
-                                    className="bg-white rounded-[28px] overflow-hidden border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-green/50 transition-all duration-300 cursor-pointer group flex flex-col">
+                                    className="bg-white rounded-[24px] sm:rounded-[32px] overflow-hidden border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-green/50 transition-all duration-300 cursor-pointer group flex flex-col">
                                     {/* Foto */}
                                     <div className="w-full bg-slate-100 flex items-center justify-center overflow-hidden shrink-0" style={{minHeight:'160px', maxHeight:'220px'}}>
                                         {item.imageUrl
@@ -4450,7 +4450,7 @@ const getDirectImgUrl = (url) => {
                                 <div className="flex flex-wrap gap-3">
                                     <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
                                     <button onClick={() => { setInfaqData(infaqData.filter(i => i.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Program infaq dihapus.'); }}
-                                        className="flex-1 bg-google-red text-white px-4 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Hapus</button>
+                                        className="flex-1 bg-google-red text-white px-4 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4471,13 +4471,13 @@ const getDirectImgUrl = (url) => {
 
                         {/* Foto */}
                         {prog.imageUrl && (
-                            <div className="w-full bg-slate-100 rounded-[28px] overflow-hidden border-2 border-slate-300 flex items-center justify-center" style={{maxHeight:'300px'}}>
+                            <div className="w-full bg-slate-100 rounded-[24px] sm:rounded-[32px] overflow-hidden border-2 border-slate-300 flex items-center justify-center" style={{maxHeight:'300px'}}>
                                 <img src={prog.imageUrl} className="w-full object-contain" style={{maxHeight:'300px'}} alt={prog.judul}  loading="lazy" decoding="async"/>
                             </div>
                         )}
 
                         {/* Judul & dana */}
-                        <div className="bg-white rounded-[28px] border-2 border-slate-300 shadow-sm p-4 sm:p-5 md:p-6">
+                        <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm p-4 sm:p-5 md:p-6">
                             <h2 className="text-[18px] font-medium text-google-text mb-2 tracking-tight">{prog.judul}</h2>
                             <p className="text-[13px] text-google-textVariant font-medium leading-relaxed mb-4">{prog.deskripsi}</p>
                             {/* Progress dana */}
@@ -4507,7 +4507,7 @@ const getDirectImgUrl = (url) => {
 
                         {/* Admin: update dana */}
                         {userRole === 'admin' && (
-                            <div className="bg-white rounded-[28px] border-2 border-google-blue/30 shadow-sm p-4 sm:p-5 md:p-6">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-google-blue/30 shadow-sm p-4 sm:p-5 md:p-6">
                                 <h3 className="text-[13px] font-medium text-google-text mb-3 flex flex-wrap items-center gap-2">
                                     <Icon name="edit" className="text-[16px] text-google-blue" />Perbarui Dana Terkumpul
                                 </h3>
@@ -4530,7 +4530,7 @@ const getDirectImgUrl = (url) => {
 
                         {/* Admin: Panel Approval Bukti Transfer */}
                         {userRole === 'admin' && (prog.donasi || []).length > 0 && (
-                            <div className="bg-white rounded-[28px] border-2 border-google-yellow/30 shadow-sm p-4 sm:p-5 md:p-6">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-google-yellow/30 shadow-sm p-4 sm:p-5 md:p-6">
                                 <h3 className="text-[15px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2">
                                     <Icon name="verified_user" className="text-[18px] text-google-yellow" fill="true" />Persetujuan Bukti Bayar
                                 </h3>
@@ -4563,7 +4563,7 @@ const getDirectImgUrl = (url) => {
                                                             setInfaqData(infaqData.map(i => i.id === prog.id ? updatedProg : i));
                                                             setSelected(updatedProg);
                                                             showToast('Bukti disetujui. Dana bertambah otomatis!');
-                                                        }} className="bg-google-green text-white px-4 py-2 rounded-full font-medium text-[11px] border-2 border-google-greenDark shadow-sm hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center gap-1">
+                                                        }} className="bg-google-green text-white px-4 py-2 rounded-[12px] font-medium text-[11px] border-2 border-google-greenDark shadow-sm hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center gap-1">
                                                             <Icon name="check" className="text-[13px]"/>Setujui
                                                         </button>
                                                         <button onClick={() => {
@@ -4572,7 +4572,7 @@ const getDirectImgUrl = (url) => {
                                                             setInfaqData(infaqData.map(i => i.id === prog.id ? updatedProg : i));
                                                             setSelected(updatedProg);
                                                             showToast('Bukti ditolak.', 'error');
-                                                        }} className="bg-white text-google-red px-4 py-2 rounded-full font-medium text-[11px] border-2 border-google-red/30 shadow-sm hover:bg-google-redLight active:scale-95 transition-all flex flex-wrap items-center gap-1">
+                                                        }} className="bg-white text-google-red px-4 py-2 rounded-[12px] font-medium text-[11px] border-2 border-google-red/30 shadow-sm hover:bg-google-redLight active:scale-95 transition-all flex flex-wrap items-center gap-1">
                                                             <Icon name="close" className="text-[13px]"/>Tolak
                                                         </button>
                                                     </>
@@ -4594,7 +4594,7 @@ const getDirectImgUrl = (url) => {
 
                         {/* Riwayat Donasi G Tampil untuk SEMUA user (Warga & Admin) */}
                         {(prog.donasi || []).length > 0 && userRole !== 'admin' && (
-                            <div className="bg-white rounded-[28px] border-2 border-slate-300 shadow-sm p-4 sm:p-5 md:p-6">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm p-4 sm:p-5 md:p-6">
                                 <h3 className="text-[15px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2">
                                     <Icon name="receipt_long" className="text-[18px] text-google-blue" fill="true" />Riwayat Donasi Anda
                                 </h3>
@@ -4632,7 +4632,7 @@ const getDirectImgUrl = (url) => {
 
                         {/* Tujuan & manfaat */}
                         {(prog.tujuan || prog.manfaat) && (
-                            <div className="bg-white rounded-[28px] border-2 border-slate-300 shadow-sm p-4 sm:p-5 md:p-6 space-y-4">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm p-4 sm:p-5 md:p-6 space-y-4">
                                 {prog.tujuan && (
                                     <div>
                                         <p className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 flex flex-wrap items-center gap-1.5"><Icon name="flag" className="text-[13px] text-google-blue" />Tujuan Program</p>
@@ -4649,7 +4649,7 @@ const getDirectImgUrl = (url) => {
                         )}
 
                         {/* Form infaq warga */}
-                        <div className="bg-white rounded-[28px] border-2 border-google-green/30 shadow-sm p-4 sm:p-5 md:p-6 space-y-5">
+                        <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-google-green/30 shadow-sm p-4 sm:p-5 md:p-6 space-y-5">
                             <h3 className="text-[15px] font-medium text-google-text flex flex-wrap items-center gap-2">
                                 <Icon name="volunteer_activism" className="text-[18px] text-google-green" fill="true" />Tunaikan Infaq
                             </h3>
@@ -4696,7 +4696,7 @@ const getDirectImgUrl = (url) => {
                                         <p className="text-[16px] font-medium text-google-green mt-0.5">{formatRp(safeNumber(nominalInput))}</p>
                                     </div>
                                     <button onClick={() => setShowPayModal(true)}
-                                        className="bg-google-green text-white px-5 py-3 rounded-full font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center gap-1.5 shrink-0">
+                                        className="bg-google-green text-white px-5 py-3 rounded-[12px] font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center gap-1.5 shrink-0">
                                         <Icon name="payments" className="text-[16px]" />Bayar
                                     </button>
                                 </div>
@@ -4706,7 +4706,7 @@ const getDirectImgUrl = (url) => {
                         {/* Modal pembayaran */}
                         {showPayModal && (
                             <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
-                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[28px] p-4 sm:p-5 md:p-6 w-full max-w-sm shadow-2xl border-2 border-slate-300 my-4">
+                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[24px] sm:rounded-[32px] p-4 sm:p-5 md:p-6 w-full max-w-sm shadow-2xl border-2 border-slate-300 my-4">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[16px] font-medium text-google-text">Cara Pembayaran</h3>
                                         <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border-2 border-slate-300 rounded-[12px] flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
@@ -4827,7 +4827,7 @@ const getDirectImgUrl = (url) => {
                         <Icon name="arrow_back" className="text-[17px]" />Kembali
                     </button>
 
-                    <div className="bg-white rounded-[32px] border-2 border-slate-300 shadow-sm p-6 sm:p-8">
+                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                         <h3 className="text-[17px] font-medium text-google-text mb-6 tracking-tight">
                             {editingId ? 'Gn+ Edit Program Infaq' : 'GP Buat Program Infaq Baru'}
                         </h3>
@@ -5895,7 +5895,7 @@ const getDirectImgUrl = (url) => {
                         
                         
                         <div className="relative z-10">
-                            <div className="inline-flex items-center gap-2 bg-white/10  border border-white/30 px-4 py-2 rounded-full mb-5 shadow-sm">
+                            <div className="inline-flex items-center gap-2 bg-white/10  border border-white/30 px-4 py-2 rounded-[12px] mb-5 shadow-sm">
                                 <Icon name="account_balance_wallet" className="text-[16px]"/>
                                 <span className="text-[10px] font-medium uppercase tracking-widest text-blue-50">Total Saldo Aktif</span>
                             </div>
@@ -9903,6 +9903,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
 // Default export untuk digunakan di main.jsx
 export default App;
+
+
 
 
 
