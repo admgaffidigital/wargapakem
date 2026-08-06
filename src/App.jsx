@@ -5773,6 +5773,7 @@ const getDirectImgUrl = (url) => {
         function BukuKas({ balance, setBalance, transactions, setTransactions, userRole, identity, jimpitanBalance, setJimpitanBalance }) {
             // Komponen BukuKas untuk pencatatan transaksi Kas RT Utama
             const [isModalOpen, setIsModalOpen] = useState(false);
+            const [selectedImage, setSelectedImage] = useState(null);
             const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
             const [transferAmount, setTransferAmount] = useState('');
             const [formData, setFormData] = useState({ type: 'Pengeluaran', category: 'Pembelian Barang', description: '', amount: '', date: getLocalDate(), receiptUrl: null });
@@ -5938,7 +5939,7 @@ const getDirectImgUrl = (url) => {
                                                 <p className="font-medium text-[14px] text-google-text truncate mb-1.5">{t.description}</p>
                                                 <div className="flex flex-wrap items-center gap-2">
                                                     <p className="text-[11px] font-medium text-google-textVariant bg-slate-50 border border-slate-300 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5"><Icon name="label" className="text-[13px]" /> {t.category} &bull; {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
-                                                    {t.receiptUrl && <a href={t.receiptUrl} target="_blank" rel="noopener noreferrer" className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</a>}
+                                                    {t.receiptUrl && <button onClick={() => setSelectedImage(t.receiptUrl)} className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</button>}
                                                 </div>
                                             </div>
                                         </div>
@@ -6031,6 +6032,17 @@ const getDirectImgUrl = (url) => {
                                     <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                     <button onClick={handleTransferJimpitan} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border-2 border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
                                 </div>
+                            </div>
+                        </div>
+                        </div>
+                    )}
+
+                    {/* IMAGE VIEWER MODAL */}
+                    {selectedImage && (
+                        <div className="fixed inset-0 bg-slate-900/90 z-[100] flex justify-center items-center p-4 transition-opacity" onClick={() => setSelectedImage(null)}>
+                            <div className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center justify-center animate-fadeIn" onClick={e => e.stopPropagation()}>
+                                <button onClick={() => setSelectedImage(null)} className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors border border-white/20"><Icon name="close" className="text-[24px]" /></button>
+                                <img src={selectedImage} alt="Bukti Transaksi" className="max-w-full max-h-[85vh] object-contain rounded-[12px] shadow-2xl" />
                             </div>
                         </div>
                     )}
