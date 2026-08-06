@@ -24,6 +24,50 @@ const getDirectImgUrl = (url) => {
             return <span className={`material-symbols-rounded shrink-0 select-none flex items-center justify-center ${className}`} style={{ fontVariationSettings: fill === 'true' ? "'FILL' 1" : "'FILL' 0", lineHeight: '1em', width: '1em', height: '1em' }} aria-hidden="true">{name}</span>;
         }
 
+        const GOOGLE_DRIVE_API_URL = "https://script.google.com/macros/s/AKfycbxYi3xmw3jsotb-pcipK4uRITqrIcNf-9CJ66Oa_ZjFpVw9R2q6w1zX7UlabKHAK_m0/exec";
+
+        const uploadToGoogleDrive = async (file, maxSize = 1200, quality = 0.82) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const img = new Image();
+                    img.onload = async () => {
+                        const canvas = document.createElement('canvas');
+                        let w = img.width, h = img.height;
+                        if (w > h && w > maxSize) { h *= maxSize / w; w = maxSize; }
+                        else if (h >= w && h > maxSize) { w *= maxSize / h; h = maxSize; }
+                        canvas.width = w; canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        const compressedBase64 = canvas.toDataURL('image/webp', quality);
+                        
+                        try {
+                            const response = await fetch(GOOGLE_DRIVE_API_URL, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                                body: JSON.stringify({
+                                    filename: file.name.split('.')[0] + '.webp',
+                                    mimeType: 'image/webp',
+                                    fileData: compressedBase64
+                                })
+                            });
+                            const data = await response.json();
+                            if (data.status === 'success') {
+                                resolve(data.url);
+                            } else {
+                                reject(data.message || 'Gagal upload ke Google Drive');
+                            }
+                        } catch (error) {
+                            reject('Koneksi upload gagal: ' + error.message);
+                        }
+                    };
+                    img.onerror = () => reject('Gagal memproses gambar');
+                    img.src = reader.result;
+                };
+                reader.onerror = () => reject('Gagal membaca file');
+                reader.readAsDataURL(file);
+            });
+        };
+
         /* ================= TOAST NOTIFICATION (GLOBAL) ================= */
         function showToast(message, type = 'success') {
             window.dispatchEvent(new CustomEvent('app:toast', { detail: { message, type } }));
@@ -1251,32 +1295,20 @@ const getDirectImgUrl = (url) => {
                 setIsFormOpen(true);
             };
 
-            const handleImageUpload = (e) => {
+            const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
                 if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
                 setIsUploading(true); setErrorMsg('');
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        let width = img.width;
-                        let height = img.height;
-                        const MAX_SIZE = 800;
-                        if (width > height && width > MAX_SIZE) { height *= MAX_SIZE / width; width = MAX_SIZE; }
-                        else if (height > MAX_SIZE) { width *= MAX_SIZE / height; height = MAX_SIZE; }
-                        canvas.width = width; canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
-                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.6);
-                        setFormData({ ...formData, imageUrl: compressedDataUrl });
-                        setIsUploading(false);
-                    };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 800, 0.6);
+                    setFormData({ ...formData, imageUrl: url });
+                } catch(error) {
+                    setErrorMsg(error);
+                } finally {
+                    setIsUploading(false);
+                }
             };
 
             const filteredData = (umkmData || []).filter(item => {
@@ -1503,30 +1535,20 @@ const getDirectImgUrl = (url) => {
                 setModalConfig && setModalConfig({ message: 'Laporan berhasil dikirim.' });
             };
 
-            const handleImageUpload = (e) => {
+            const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
                 if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran maksimal 10MB!');
                 setIsUploading(true); setErrorMsg('');
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        let width = img.width; let height = img.height;
-                        const MAX = 800;
-                        if (width > height && width > MAX) { height *= MAX / width; width = MAX; }
-                        else if (height > MAX) { width *= MAX / height; height = MAX; }
-                        canvas.width = width; canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
-                        setFormData({ ...formData, imageUrl: canvas.toDataURL('image/jpeg', 0.6) });
-                        setIsUploading(false);
-                    };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 800, 0.6);
+                    setFormData({ ...formData, imageUrl: url });
+                } catch(error) {
+                    setErrorMsg(error);
+                } finally {
+                    setIsUploading(false);
+                }
             };
 
             const changeStatus = (id, newStatus) => {
@@ -3706,40 +3728,19 @@ const getDirectImgUrl = (url) => {
                 setErrorMsg('');
             };
 
-            const handleImageUpload = (e) => {
+            const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (file.size > 2 * 1024 * 1024) return setErrorMsg('Ukuran foto maksimal 2MB!');
                 setIsUploading(true);
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const img = new Image();
-                    img.onload = () => {
-                        // Kompres via canvas agar base64 aman untuk Firestore (<1MB limit)
-                        const MAX_DIM = 800;
-                        let { width, height } = img;
-                        if (width > MAX_DIM || height > MAX_DIM) {
-                            if (width > height) { height = Math.round(height * MAX_DIM / width); width = MAX_DIM; }
-                            else { width = Math.round(width * MAX_DIM / height); height = MAX_DIM; }
-                        }
-                        const canvas = document.createElement('canvas');
-                        canvas.width = width; canvas.height = height;
-                        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-                        // Kurangi kualitas bertahap sampai di bawah 900KB
-                        let quality = 0.85;
-                        let compressed = canvas.toDataURL('image/jpeg', quality);
-                        while (compressed.length > 900000 && quality > 0.3) {
-                            quality -= 0.1;
-                            compressed = canvas.toDataURL('image/jpeg', quality);
-                        }
-                        setFormData(prev => ({...prev, imageUrl: compressed}));
-                        setIsUploading(false);
-                    };
-                    img.onerror = () => { setErrorMsg('Gagal memproses gambar.'); setIsUploading(false); };
-                    img.src = reader.result;
-                };
-                reader.onerror = () => { setErrorMsg('Gagal membaca file.'); setIsUploading(false); };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 800, 0.85);
+                    setFormData(prev => ({...prev, imageUrl: url}));
+                } catch (error) {
+                    setErrorMsg(error);
+                } finally {
+                    setIsUploading(false);
+                }
             };
 
             const openEditForm = (item) => {
@@ -4287,27 +4288,35 @@ const getDirectImgUrl = (url) => {
             const NOMINAL_CEPAT = [10000, 25000, 50000, 100000, 250000, 500000];
 
             // ---- Handler Warga: Upload Bukti ----
-            const handleBuktiUpload = (e) => {
+            const handleBuktiUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (file.size > 2 * 1024 * 1024) return showToast('Ukuran foto maks 2MB!', 'error');
                 setIsUploadingBukti(true);
-                const reader = new FileReader();
-                reader.onloadend = () => { setBuktiUrl(reader.result); setIsUploadingBukti(false); };
-                reader.onerror  = () => { showToast('Gagal membaca file.', 'error'); setIsUploadingBukti(false); };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 800, 0.8);
+                    setBuktiUrl(url);
+                } catch(error) {
+                    showToast(error, 'error');
+                } finally {
+                    setIsUploadingBukti(false);
+                }
             };
 
             // ---- Handler Admin ----
-            const handleImageUpload = (e) => {
+            const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (file.size > 2 * 1024 * 1024) return setErrorMsg('Ukuran foto maks 2MB!');
                 setIsUploading(true);
-                const reader = new FileReader();
-                reader.onloadend = () => { setForm(p => ({...p, imageUrl: reader.result})); setIsUploading(false); };
-                reader.onerror  = () => { setErrorMsg('Gagal membaca file.'); setIsUploading(false); };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 800, 0.8);
+                    setForm(p => ({...p, imageUrl: url}));
+                } catch(error) {
+                    setErrorMsg(error);
+                } finally {
+                    setIsUploading(false);
+                }
             };
 
             const handleSaveProgram = () => {
@@ -4975,32 +4984,20 @@ const getDirectImgUrl = (url) => {
             };
 
             // Upload Galeri: Canvas compress G base64 G Firestore (tanpa GAS)
-            const handleImageUpload = (e) => {
+            const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
                 if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
                 setIsUploading(true); setErrorMsg('');
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX = 1200;
-                        let w = img.width, h = img.height;
-                        if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
-                        else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
-                        canvas.width = w; canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        const compressed = canvas.toDataURL('image/webp', 0.82);
-                        setFormData(prev => ({ ...prev, imageUrl: compressed }));
-                        setIsUploading(false);
-                    };
-                    img.onerror = () => { setErrorMsg('Gagal memproses gambar.'); setIsUploading(false); };
-                    img.src = reader.result;
-                };
-                reader.onerror = () => { setErrorMsg('Gagal membaca file.'); setIsUploading(false); };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 1200, 0.82);
+                    setFormData(prev => ({ ...prev, imageUrl: url }));
+                } catch(error) {
+                    setErrorMsg(error);
+                } finally {
+                    setIsUploading(false);
+                }
             };
 
             return (
@@ -5190,33 +5187,20 @@ const getDirectImgUrl = (url) => {
                 setIsFormOpen(false);
             };
 
-            const handleImageUpload = (e) => {
-                // Upload Informasi: Canvas compress G base64 G Firestore (tanpa GAS)
+            const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) { setErrorMsg('File harus berupa gambar!'); return; }
                 if (file.size > 10 * 1024 * 1024) { setErrorMsg('Ukuran file maksimal 10MB!'); return; }
                 setIsUploading(true); setErrorMsg('');
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX = 1200;
-                        let w = img.width, h = img.height;
-                        if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
-                        else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
-                        canvas.width = w; canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        const compressed = canvas.toDataURL('image/webp', 0.82);
-                        setFormData(prev => ({ ...prev, imageUrl: compressed }));
-                        setIsUploading(false);
-                    };
-                    img.onerror = () => { setErrorMsg('Gagal memproses gambar.'); setIsUploading(false); };
-                    img.src = reader.result;
-                };
-                reader.onerror = () => { setErrorMsg('Gagal membaca file gambar.'); setIsUploading(false); };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 1200, 0.82);
+                    setFormData(prev => ({ ...prev, imageUrl: url }));
+                } catch(error) {
+                    setErrorMsg(error);
+                } finally {
+                    setIsUploading(false);
+                }
             };
 
             return (
@@ -5794,32 +5778,20 @@ const getDirectImgUrl = (url) => {
             }, [transactions]);
 
             // Upload Nota Kas RT: Canvas compress G base64 G Firestore (tanpa GAS)
-            const handleImageUpload = (e) => {
+            const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
                 if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
                 setIsUploading(true); setErrorMsg('');
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX = 1200;
-                        let w = img.width, h = img.height;
-                        if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
-                        else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
-                        canvas.width = w; canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        const compressed = canvas.toDataURL('image/webp', 0.82);
-                        setFormData(prev => ({ ...prev, receiptUrl: compressed }));
-                        setIsUploading(false);
-                    };
-                    img.onerror = () => { setErrorMsg('Gagal memproses gambar nota.'); setIsUploading(false); };
-                    img.src = reader.result;
-                };
-                reader.onerror = () => { setErrorMsg('Gagal membaca file nota.'); setIsUploading(false); };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 1200, 0.82);
+                    setFormData(prev => ({ ...prev, receiptUrl: url }));
+                } catch(error) {
+                    setErrorMsg(error);
+                } finally {
+                    setIsUploading(false);
+                }
             };
 
             const handleSave = () => {
@@ -6033,7 +6005,6 @@ const getDirectImgUrl = (url) => {
                                     <button onClick={handleTransferJimpitan} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border-2 border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     )}
 
@@ -6914,50 +6885,22 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const [uploadError, setUploadError] = useState('');
 
             // Gunakan base64 dengan kompresi Canvas agar ukuran sangat kecil (< 50KB) dan aman masuk Firestore
-            const uploadLogo = (file) => {
+            const uploadLogo = async (file) => {
                 if (!file) return;
                 if (!file.type.match('image.*')) { showAlert('Gagal: File harus berupa gambar!'); return; }
                 if (file.size > 5 * 1024 * 1024) { showAlert('Gagal: Ukuran gambar awal maksimal 5MB!'); return; }
                 setIsUploading(true); setUploadError('');
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX_WIDTH = 400;
-                        const MAX_HEIGHT = 400;
-                        let width = img.width;
-                        let height = img.height;
-
-                        if (width > height) {
-                            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
-                        } else {
-                            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
-                        }
-                        canvas.width = width;
-                        canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
-                        const compressedBase64 = canvas.toDataURL('image/webp', 0.8);
-                        
-                        setNewUrl(compressedBase64);
-                        setPreviewUrl(compressedBase64);
-                        setUploadError('');
-                        setIsUploading(false);
-                    };
-                    img.onerror = () => {
-                        setUploadError('Gagal memproses gambar.');
-                        showAlert('Gagal memproses gambar logo.');
-                        setIsUploading(false);
-                    };
-                    img.src = reader.result;
-                };
-                reader.onerror = () => {
-                    setUploadError('Gagal membaca file.');
-                    showAlert('Gagal membaca file logo.');
+                try {
+                    const url = await uploadToGoogleDrive(file, 400, 0.8);
+                    setNewUrl(url);
+                    setPreviewUrl(url);
+                    setUploadError('');
+                } catch(error) {
+                    setUploadError(error);
+                    showAlert(error);
+                } finally {
                     setIsUploading(false);
-                };
-                reader.readAsDataURL(file);
+                }
             };
 
             const handleAdd = () => {
@@ -7190,60 +7133,38 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             };
 
             // Upload Banner: Canvas compress G base64 G Firestore (tanpa GAS)
-            const handleLogoUpload = (e) => {
+            const handleLogoUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) return showAlert('Gagal: File harus berupa gambar!');
                 if (file.size > 2 * 1024 * 1024) return showAlert('Gagal: Ukuran file maksimal 2MB!');
                 setIsUploadingLogo(true);
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX = 400;
-                        let w = img.width, h = img.height;
-                        if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
-                        else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
-                        canvas.width = w; canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        const compressed = canvas.toDataURL('image/webp', 0.9);
-                        setFormIdentity({...formIdentity, logoApp: compressed});
-                        setIsUploadingLogo(false);
-                        showAlert('Logo berhasil diunggah! Klik "Simpan Profil" untuk menerapkan.');
-                    };
-                    img.src = reader.result;
-                };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 400, 0.9);
+                    setFormIdentity({...formIdentity, logoApp: url});
+                    showAlert('Logo berhasil diunggah! Klik "Simpan Profil" untuk menerapkan.');
+                } catch(error) {
+                    showAlert(error);
+                } finally {
+                    setIsUploadingLogo(false);
+                }
             };
 
-            const handleBannerUpload = (e) => {
+            const handleBannerUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) return showAlert('Gagal: File harus berupa gambar!');
                 if (file.size > 10 * 1024 * 1024) return showAlert('Gagal: Ukuran file maksimal 10MB!');
                 setIsUploadingBanner(true);
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX = 1600;
-                        let w = img.width, h = img.height;
-                        if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
-                        else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
-                        canvas.width = w; canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        const compressed = canvas.toDataURL('image/webp', 0.85);
-                        setFormBanner(compressed);
-                        setIsUploadingBanner(false);
-                        showAlert('Gambar berhasil diproses! Klik "Simpan Banner" untuk menerapkan.');
-                    };
-                    img.onerror = () => { showAlert('Gagal memproses gambar banner.'); setIsUploadingBanner(false); };
-                    img.src = reader.result;
-                };
-                reader.onerror = () => { showAlert('Gagal membaca file gambar banner.'); setIsUploadingBanner(false); };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 1600, 0.85);
+                    setFormBanner(url);
+                    showAlert('Gambar berhasil diproses! Klik "Simpan Banner" untuk menerapkan.');
+                } catch(error) {
+                    showAlert(error);
+                } finally {
+                    setIsUploadingBanner(false);
+                }
             };
             const renderGridMenu = () => (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -7962,37 +7883,20 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 }
             };
 
-            const handleImageUpload = (e) => {
+            const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
                 if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
                 setIsUploading(true); setErrorMsg('');
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const img = new Image();
-                    img.src = reader.result;
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX_WIDTH = 800;
-                        const MAX_HEIGHT = 800;
-                        let width = img.width;
-                        let height = img.height;
-
-                        if (width > height) {
-                            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
-                        } else {
-                            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
-                        }
-                        canvas.width = width; canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
-                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.6);
-                        setFormData({ ...formData, imageUrl: compressedDataUrl });
-                        setIsUploading(false);
-                    };
-                };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 800, 0.6);
+                    setFormData({ ...formData, imageUrl: url });
+                } catch(error) {
+                    setErrorMsg(error);
+                } finally {
+                    setIsUploading(false);
+                }
             };
 
             const handleSave = () => {
@@ -8374,32 +8278,20 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             // Track which product card has its description expanded
             const [expandedDescId, setExpandedDescId] = useState(null);
 
-            const handleProductImageUpload = (e) => {
+            const handleProductImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
                 if (!file.type.match('image.*')) return setProductError('File harus berupa gambar!');
                 if (file.size > 10 * 1024 * 1024) return setProductError('Ukuran file maksimal 10MB!');
                 setIsUploading(true); setProductError('');
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        let width = img.width;
-                        let height = img.height;
-                        const MAX_SIZE = 600;
-                        if (width > height && width > MAX_SIZE) { height *= MAX_SIZE / width; width = MAX_SIZE; }
-                        else if (height > MAX_SIZE) { width *= MAX_SIZE / height; height = MAX_SIZE; }
-                        canvas.width = width; canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
-                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.6);
-                        setProductForm(prev => ({ ...prev, imageUrl: compressedDataUrl }));
-                        setIsUploading(false);
-                    };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+                try {
+                    const url = await uploadToGoogleDrive(file, 600, 0.6);
+                    setProductForm(prev => ({ ...prev, imageUrl: url }));
+                } catch (error) {
+                    setProductError(error);
+                } finally {
+                    setIsUploading(false);
+                }
             };
 
             const handleSaveProduct = () => {
