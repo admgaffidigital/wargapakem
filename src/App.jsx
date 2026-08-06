@@ -9,7 +9,7 @@ import {
     signInWithEmailAndPassword, signOut, onAuthStateChanged
 } from './firebase.js';
 
-const getDirectImgUrl = (url) => {
+        const getDirectImgUrl = (url) => {
             if (!url) return '';
             const driveMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
             if (driveMatch) {
@@ -17,7 +17,7 @@ const getDirectImgUrl = (url) => {
             }
             return url;
         };
-        
+
         const getLocalDate = () => { const offset = new Date().getTimezoneOffset() * 60000; return new Date(Date.now() - offset).toISOString().split('T')[0]; };
         
         function Icon({ name, className = "text-[17px]", fill = "false" }) {
@@ -79,14 +79,11 @@ const getDirectImgUrl = (url) => {
             useEffect(() => {
                 const handler = (e) => {
                     const id = Date.now() + Math.random();
-                    setToasts(prev => [...prev, { id, message: e.detail.message, type: e.detail.type, closing: false }]);
-                    
-                    // Mark for closing animation
+                    setToasts(prev => [...prev, { id, message: e.detail.message, type: e.detail.type || 'success', closing: false }]);
                     setTimeout(() => {
                         setToasts(prev => prev.map(t => t.id === id ? { ...t, closing: true } : t));
                     }, 2700);
-                    
-                    setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 3000);
+                    setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 3100);
                 };
                 window.addEventListener('app:toast', handler);
                 return () => window.removeEventListener('app:toast', handler);
@@ -94,28 +91,34 @@ const getDirectImgUrl = (url) => {
 
             if (toasts.length === 0) return null;
 
+            const configs = {
+                success: { icon: 'task_alt', bg: 'from-emerald-500 to-green-600', iconBg: 'bg-white/20', shadow: 'shadow-emerald-600/40' },
+                error:   { icon: 'error',    bg: 'from-rose-500 to-red-600',      iconBg: 'bg-white/20', shadow: 'shadow-red-600/40' },
+                info:    { icon: 'info',     bg: 'from-blue-500 to-indigo-600',   iconBg: 'bg-white/20', shadow: 'shadow-blue-600/40' },
+                warning: { icon: 'warning',  bg: 'from-amber-400 to-orange-500',  iconBg: 'bg-white/20', shadow: 'shadow-orange-500/40' },
+            };
+
             return (
-                <div className="fixed left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-3 no-print w-fit min-w-[280px] max-w-[90vw] items-center pointer-events-none"
-                     style={{ bottom: 'calc(3rem + env(safe-area-inset-bottom, 0px))' }}>
-                    <style>{`
-                        @keyframes toastSlideUp { 
-                            0% { opacity: 0; transform: translateY(20px) scale(0.95); } 
-                            100% { opacity: 1; transform: translateY(0) scale(1); } 
-                        }
-                        @keyframes toastFadeOut {
-                            0% { opacity: 1; transform: translateY(0) scale(1); }
-                            100% { opacity: 0; transform: translateY(10px) scale(0.95); }
-                        }
-                    `}</style>
-                    {toasts.map(t => (
-                        <div key={t.id} className={`flex items-center gap-3 px-2 py-2 pr-5 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.4)] border backdrop-blur-xl font-bold text-[12px] sm:text-[13px] w-full ${t.type === 'error' ? 'bg-red-600/95 text-white border-red-500/50' : 'bg-slate-900/95 dark:bg-white/95 text-white dark:text-slate-800 border-slate-700/50 dark:border-slate-300/50'}`}
-                             style={{ animation: t.closing ? 'toastFadeOut 0.3s forwards ease-in' : 'toastSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-                            <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 shadow-inner ${t.type === 'error' ? 'bg-white/20' : 'bg-google-green/20 dark:bg-google-green/20'}`}>
-                                <Icon name={t.type === 'error' ? 'warning' : 'task_alt'} className={`text-[16px] sm:text-[18px] ${t.type === 'error' ? 'text-white' : 'text-google-greenLight dark:text-google-greenDark'}`} />
+                <div
+                    className="fixed left-1/2 -translate-x-1/2 z-[9999] flex flex-col-reverse gap-2.5 no-print items-center pointer-events-none"
+                    style={{ bottom: 'calc(4rem + env(safe-area-inset-bottom, 0px))', width: 'min(92vw, 400px)' }}
+                >
+                    {toasts.map(t => {
+                        const cfg = configs[t.type] || configs.success;
+                        return (
+                            <div
+                                key={t.id}
+                                className={`w-full flex items-center gap-3 pl-2 pr-4 py-2 rounded-2xl border border-white/20 bg-gradient-to-r ${cfg.bg} shadow-2xl ${cfg.shadow} text-white`}
+                                style={{ animation: t.closing ? 'toastPopOut 0.35s cubic-bezier(0.4,0,1,1) forwards' : 'toastPopIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards' }}
+                            >
+                                <div className={`w-9 h-9 rounded-xl ${cfg.iconBg} flex items-center justify-center shrink-0`}>
+                                    <Icon name={cfg.icon} className="text-[18px] text-white" fill="true" />
+                                </div>
+                                <p className="flex-1 text-[13px] font-semibold leading-snug tracking-wide">{t.message}</p>
+                                <div className="w-1.5 h-1.5 rounded-full bg-white/40 shrink-0" />
                             </div>
-                            <span className="flex-1 text-center tracking-wide">{t.message}</span>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             );
         }
@@ -130,46 +133,32 @@ const getDirectImgUrl = (url) => {
                 return typeof initialValue === 'function' ? initialValue() : initialValue;
             });
             const [isLoaded, setIsLoaded] = useState(false);
-            // Ref untuk mencegah onSnapshot menimpa state saat sedang ada proses simpan aktif.
-            // persistentLocalCache bisa rollback snapshot ke data lama jika write belum terkonfirmasi server.
             const pendingWriteRef = useRef(false);
             const pendingValueRef = useRef(undefined);
 
             useEffect(() => {
-                if (!db) {
-                    setIsLoaded(true);
-                    return;
-                }
+                if (!db) { setIsLoaded(true); return; }
                 const docRef = doc(db, 'arisan_rt', key);
                 const unsubscribe = onSnapshot(docRef, (snapshot) => {
-                    // Jika sedang ada write yang tertunda, periksa apakah snapshot ini
-                    // adalah rollback (data lama) atau konfirmasi (data baru).
                     if (pendingWriteRef.current && pendingValueRef.current !== undefined) {
                         if (snapshot.exists()) {
                             const incoming = snapshot.data().value;
-                            // Bandingkan dengan nilai yang sedang kita tulis.
-                            // Jika sama → write terkonfirmasi, hapus pending flag.
-                            // Jika beda → ini rollback, abaikan snapshot ini.
                             const expected = JSON.stringify(pendingValueRef.current);
                             const got      = JSON.stringify(incoming);
                             if (expected === got) {
-                                // Write terkonfirmasi server ✓
                                 pendingWriteRef.current  = false;
                                 pendingValueRef.current  = undefined;
                                 try { localStorage.setItem('arisan_rt_' + key, got); } catch(e) {}
                             }
-                            // Jika beda, jangan overwrite — biarkan state optimistic tetap
                         }
                         setIsLoaded(true);
                         return;
                     }
-
                     if (snapshot.exists()) {
                         const val = snapshot.data().value;
                         setData(val);
                         try { localStorage.setItem('arisan_rt_' + key, JSON.stringify(val)); } catch(e) {}
                     } else {
-                        // Dokumen belum ada di Firestore — coba pakai localStorage sebelum reset
                         try {
                             const cached = localStorage.getItem('arisan_rt_' + key);
                             if (cached !== null) { setData(JSON.parse(cached)); setIsLoaded(true); return; }
@@ -188,25 +177,19 @@ const getDirectImgUrl = (url) => {
             const updateData = useCallback((newValue) => {
                 setData(prevData => {
                     const valueToStore = typeof newValue === 'function' ? newValue(prevData) : newValue;
-                    // Simpan ke localStorage sebelum kirim ke Firestore
                     try { localStorage.setItem('arisan_rt_' + key, JSON.stringify(valueToStore)); } catch(e) {}
                     if (db) {
-                        // Tandai bahwa ada write aktif agar onSnapshot tidak rollback
                         pendingWriteRef.current = true;
                         pendingValueRef.current = valueToStore;
                         const docRef     = doc(db, 'arisan_rt', key);
                         const safeValue  = valueToStore === undefined ? null : valueToStore;
                         const sanitized  = JSON.parse(JSON.stringify(safeValue));
                         setDoc(docRef, { value: sanitized }, { merge: false })
-                            .then(() => {
-                                // Write berhasil — biarkan onSnapshot mengkonfirmasi
-                            })
                             .catch(err => {
                                 console.error('[Firebase] setDoc gagal:', err);
                                 pendingWriteRef.current = false;
                                 pendingValueRef.current = undefined;
                                 showToast('Gagal menyimpan ke server. Cek koneksi internet!', 'error');
-                                // Data tetap aman di localStorage
                             });
                     }
                     return valueToStore;
@@ -1341,8 +1324,8 @@ const getDirectImgUrl = (url) => {
             return (
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 ">
-                            <div className="bg-white rounded-[16px] p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="glass rounded-[16px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
                                 </div>
@@ -1439,8 +1422,8 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
-                            <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="w-full max-w-lg rounded-[32px] flex flex-col max-h-[90vh] modal-card animate-modal-in">
                                 <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-gradient-to-r from-green-50 to-white dark:from-green-950/10 dark:to-slate-900 rounded-t-[32px]">
                                     <h2 className="text-2xl font-bold text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                                         <Icon name="storefront" className="text-green-600" />
@@ -1509,8 +1492,8 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-[110] flex items-center justify-center p-4">
-                            <div className="bg-white dark:bg-slate-900 max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up border border-slate-200 dark:border-slate-800">
+                        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="max-w-sm w-full rounded-[28px] p-8 text-center -slate-200 dark:-slate-800 modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5">
                                     <Icon name="warning" className="text-[40px] text-red-500" />
                                 </div>
@@ -1593,8 +1576,8 @@ const getDirectImgUrl = (url) => {
             return (
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 ">
-                            <div className="bg-white rounded-[16px] p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[16px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
                                 </div>
@@ -1683,8 +1666,8 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
-                            <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-[32px] shadow-2xl flex flex-col max-h-[90vh]">
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="w-full max-w-lg rounded-[32px] flex flex-col max-h-[90vh] modal-card animate-modal-in">
                                 <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-gradient-to-r from-blue-50 to-white dark:from-blue-950/10 dark:to-slate-900 rounded-t-[32px]">
                                     <h2 className="text-2xl font-bold text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                                         <Icon name="campaign" className="text-blue-600" /> Buat Laporan
@@ -1742,8 +1725,8 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-[110] flex items-center justify-center p-4">
-                            <div className="bg-white dark:bg-slate-900 max-w-sm w-full rounded-[28px] shadow-2xl p-8 text-center animate-scale-up border border-slate-200 dark:border-slate-800">
+                        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="max-w-sm w-full rounded-[28px] p-8 text-center -slate-200 dark:-slate-800 modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5"><Icon name="warning" className="text-[40px] text-red-500" /></div>
                                 <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">Hapus Laporan?</h3>
                                 <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Laporan yang dihapus tidak dapat dikembalikan. Yakin?</p>
@@ -1992,8 +1975,8 @@ const getDirectImgUrl = (url) => {
             };
 
             const SpinnerComponent = (
-                <div className="fixed inset-0 z-[999] bg-slate-100/90  flex justify-center items-center">
-                    <div className="bg-white p-8 sm:p-10 rounded-[32px] shadow-2xl border-2 border-slate-300 flex flex-col items-center max-w-[300px] max-w-full w-[90%] relative overflow-hidden">
+                <div className="fixed inset-0 z-[999] flex justify-center items-center modal-backdrop animate-backdrop-in">
+                    <div className="p-8 sm:p-10 rounded-[32px] -slate-300 flex flex-col items-center max-w-[300px] max-w-full w-[90%] relative overflow-hidden modal-card animate-modal-in">
                         <div className="flex h-2 w-full absolute top-0 left-0">
                             <div className="w-1/4 bg-google-blue"></div>
                             <div className="w-1/4 bg-google-red"></div>
@@ -2042,8 +2025,8 @@ const getDirectImgUrl = (url) => {
                         <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
                         {showLegalModal && (
-                        <div className="fixed inset-0 bg-black/60  z-[100] flex justify-center items-center p-4 animate-fade-in">
-                            <div className="bg-white rounded-[32px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-200/50 max-h-[80vh]">
+                        <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[32px] w-full max-w-lg overflow-hidden flex flex-col -slate-200/50 max-h-[80vh] modal-card animate-modal-in">
                                 <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-bold text-slate-800 flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
@@ -2204,8 +2187,8 @@ const getDirectImgUrl = (url) => {
                     <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
                     <PWAInstallBanner />
                     {showLicenseModal && (
-                        <div className="fixed inset-0 bg-black/60  z-[100] flex justify-center items-center p-4 animate-fade-in">
-                            <div className="bg-white dark:bg-slate-900 rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl animate-slide-up border-2 border-red-500/30 dark:border-red-950/40 flex flex-col max-h-[85vh]">
+                        <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[20px] w-full max-w-lg overflow-hidden -red-500/30 dark:-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-red-50 dark:bg-red-950/20 px-6 py-5 border-b border-red-500/20 dark:border-red-900/30 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-bold text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
                                     <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-[12px] hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
@@ -2231,8 +2214,8 @@ const getDirectImgUrl = (url) => {
                         </div>
                     )}
                     {showLegalModal && (
-                        <div className="fixed inset-0 bg-black/60  z-[100] flex justify-center items-center p-4 animate-fade-in">
-                            <div className="bg-white dark:bg-slate-900 rounded-[20px] w-full max-w-lg overflow-hidden shadow-2xl flex flex-col border-2 border-slate-200/50 dark:border-slate-850 max-h-[85vh]">
+                        <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[20px] w-full max-w-lg overflow-hidden flex flex-col -slate-200/50 dark:-slate-850 max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-bold text-slate-800 dark:text-white flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
@@ -2258,8 +2241,8 @@ const getDirectImgUrl = (url) => {
                     {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
 
                     {showLogoutModal && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white dark:bg-slate-900 rounded-[20px] p-8 w-full max-w-sm text-center border-2 border-slate-300 dark:border-slate-700 shadow-2xl transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar glass rounded-[20px] p-8 w-full max-w-sm text-center -slate-300 dark:-slate-700 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight dark:bg-red-950/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30 dark:border-red-900/20"><Icon name="logout" className="text-[40px] text-google-red" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-2">Keluar Sesi?</h3>
                                 <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
@@ -2279,8 +2262,8 @@ const getDirectImgUrl = (url) => {
         function PwaGuideModal({ onClose }) {
             const [tab, setTab] = useState('android');
             return (
-                <div className="fixed inset-0 bg-slate-900/70  z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                    <div className="bg-white dark:bg-slate-900 rounded-[32px] w-full max-w-xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-300 dark:border-slate-700" style={{ animation: 'slideUp 0.3s ease-out' }}>
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                    <div className="rounded-[32px] w-full max-w-xl flex flex-col max-h-[90vh] -slate-300 dark:-slate-700 modal-card animate-modal-in" style={{ animation: 'slideUp 0.3s ease-out' }}>
                         <div className="p-4 sm:p-5 md:p-6 border-b-2 border-slate-300 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-950 rounded-t-[30px]">
                             <h3 className="text-xl font-medium text-google-text dark:text-white flex flex-wrap items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
                             <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 hover:text-google-text dark:hover:text-white transition-all active:scale-95"><Icon name="close" /></button>
@@ -2461,7 +2444,7 @@ const getDirectImgUrl = (url) => {
             return (
                                 <canvas
                     ref={canvasRef}
-                    className="fixed inset-0 pointer-events-none no-print"
+                    className="fixed inset-0 pointer-events-none no-print modal-backdrop animate-backdrop-in"
                     style={{ zIndex: -1, width: '100%', height: '100%' }}
                 />
             );
@@ -3178,8 +3161,8 @@ const getDirectImgUrl = (url) => {
 
                 {/* MODAL DETAIL ARTIKEL / INFORMASI */}
                 {selectedArticle && (
-                    <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/70 " onClick={(e) => { if (e.target === e.currentTarget) setSelectedArticle(null); }}>
-                        <div className="bg-white dark:bg-slate-900 w-full sm:max-w-2xl sm:rounded-[32px] rounded-t-[32px] shadow-2xl border-2 border-slate-200 dark:border-slate-700 flex flex-col max-h-[92vh] sm:max-h-[85vh] overflow-hidden animate-scale-up">
+                    <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop animate-backdrop-in" onClick={(e) => { if (e.target === e.currentTarget) setSelectedArticle(null); }}>
+                        <div className="w-full sm:max-w-2xl sm:rounded-[32px] rounded-t-[32px] -slate-200 dark:-slate-700 flex flex-col max-h-[92vh] sm:max-h-[85vh] overflow-hidden modal-card animate-modal-in">
                             {/* Header modal */}
                             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700 shrink-0">
                                 <div className="flex items-center gap-2">
@@ -3801,8 +3784,8 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {showResetModal && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-left border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-left -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-blueLight w-16 h-16 rounded-full flex items-center justify-center border-2 border-google-blue/30"><Icon name="refresh" className="text-[32px] text-google-blue" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Mulai Siklus Baru?</h3>
                                 <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-5 sm:p-6 md:p-8 rounded-[24px] border-2 border-slate-300"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
@@ -4004,8 +3987,8 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal Form Tambah/Edit */}
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-2 border-slate-300 my-4">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md -slate-300 my-4 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Inventaris' : 'Tambah Inventaris'}</h3>
                                 <div className="space-y-5">
 
@@ -4062,8 +4045,8 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal konfirmasi hapus */}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Barang?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Barang ini akan dihapus permanen dari daftar inventaris RT.</p>
@@ -4360,8 +4343,8 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal konfirmasi kembali */}
                     {konfirmReturnId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-5 md:p-6 modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 {(() => { const p = pinjamData.find(x => x.id === konfirmReturnId); return p ? (<>
                                     <div className="mb-5 bg-google-greenLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="assignment_return" className="text-[40px] text-google-green" /></div>
                                     <h3 className="text-xl font-medium text-google-text mb-2">Konfirmasi Pengembalian</h3>
@@ -4378,8 +4361,8 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal konfirmasi tolak */}
                     {konfirmRejectId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-5 md:p-6 modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="cancel" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-xl font-medium text-google-text mb-2">Tolak Pengajuan?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-6">Pengajuan pinjam ini akan dihapus dari daftar.</p>
@@ -4598,8 +4581,8 @@ const getDirectImgUrl = (url) => {
 
                     {/* Modal hapus */}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-5 md:p-6 modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30">
                                     <Icon name="delete" className="text-[40px] text-google-red" />
                                 </div>
@@ -4863,8 +4846,8 @@ const getDirectImgUrl = (url) => {
 
                         {/* Modal pembayaran */}
                         {showPayModal && (
-                            <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-5 md:p-6">
-                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[24px] sm:rounded-[32px] p-4 sm:p-5 md:p-6 w-full max-w-sm shadow-2xl border-2 border-slate-300 my-4">
+                            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-5 md:p-6 modal-backdrop animate-backdrop-in">
+                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[24px] sm:rounded-[32px] p-4 sm:p-5 md:p-6 w-full max-w-sm -slate-300 my-4 modal-card animate-modal-in">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[16px] font-medium text-google-text">Cara Pembayaran</h3>
                                         <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border-2 border-slate-300 rounded-[12px] flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
@@ -5231,8 +5214,8 @@ const getDirectImgUrl = (url) => {
 
                     {/* Lightbox / Detail Viewer Modal */}
                     {selectedPhoto && (
-                        <div className="fixed inset-0 bg-slate-950/80  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
-                            <div className="bg-white rounded-[32px] w-full max-w-2xl shadow-2xl flex flex-col max-h-[90vh] border-2 border-slate-300 overflow-hidden" style={{ animation: 'slideUp 0.3s ease-out' }}>
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[32px] w-full max-w-2xl flex flex-col max-h-[90vh] -slate-300 overflow-hidden modal-card animate-modal-in" style={{ animation: 'slideUp 0.3s ease-out' }}>
                                 <div className="p-4 sm:p-5 md:p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50 shrink-0">
                                     <div className="flex flex-wrap items-center gap-2">
                                         <Icon name="image" className="text-red-600" />
@@ -5265,8 +5248,8 @@ const getDirectImgUrl = (url) => {
 
                     {/* Upload / Edit Form Modal */}
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-2 border-slate-300 flex flex-col transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md -slate-300 flex flex-col modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">
                                     {editingId ? 'Edit Dokumentasi' : 'Unggah Dokumentasi'}
                                 </h3>
@@ -5314,8 +5297,8 @@ const getDirectImgUrl = (url) => {
                     )}
                     
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Foto?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Foto ini akan dihapus dari galeri warga.</p>
@@ -5391,8 +5374,8 @@ const getDirectImgUrl = (url) => {
                     {data.length === 0 && <div className="bg-white rounded-[32px] border-2 border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border-2 border-slate-300"><Icon name="campaign" className="text-[48px] text-slate-400" fill="true" /></div><h3 className="font-medium text-[17px] mb-2 text-google-text">Belum Ada Informasi</h3><p className="text-google-textVariant font-medium text-[13px]">Papan informasi warga masih kosong saat ini.</p></div>}
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
-<div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl border-2 border-slate-300 flex flex-col max-h-[90vh] transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
+<div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg -slate-300 flex flex-col max-h-[90vh] modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 shrink-0 tracking-tight">{editingId ? 'Edit Info Kegiatan' : 'Buat Info Baru'}</h3>
                                 <div className="space-y-5 overflow-y-auto pr-2 pb-2 hide-scrollbar">
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan judul..." /></div>
@@ -5431,8 +5414,8 @@ const getDirectImgUrl = (url) => {
                     )}
                     
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Informasi?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Konten ini akan dihapus secara permanen dari layar warga.</p>
@@ -5604,8 +5587,8 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-md border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md -slate-300 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}</h3>
                                 <div className="space-y-5">
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
@@ -5630,8 +5613,8 @@ const getDirectImgUrl = (url) => {
                         </div>
                     )}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="person_remove" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Warga?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Data warga dan riwayatnya akan dihapus permanen.</p>
@@ -5644,8 +5627,8 @@ const getDirectImgUrl = (url) => {
                     )}
                     
                     {previewMember && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity" onClick={() => setPreviewMember(null)}>
-                            <div className="max-h-[90vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform relative" onClick={e => e.stopPropagation()}>
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in" onClick={() => setPreviewMember(null)}>
+                            <div className="max-h-[90vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center -slate-300 relative modal-card animate-modal-in" onClick={e => e.stopPropagation()}>
                                 <button onClick={() => setPreviewMember(null)} className="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-500 active:scale-95 transition-all"><Icon name="close" className="text-[17px]" /></button>
                                 
                                 <div className="mb-4">
@@ -5834,8 +5817,8 @@ const getDirectImgUrl = (url) => {
                         </div>
 
                         {isTransferModalOpen && (
-                            <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
+                            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                     <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
                                     <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Setor ke Kas Warga</h3>
                                     <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Mutasi dana fisik dari Iuran ke Saldo Buku Kas Utama.</p>
@@ -5904,8 +5887,8 @@ const getDirectImgUrl = (url) => {
 
                     {/* FIX: Modal konfirmasi hapus agenda */}
                     {deleteConfirmAgendaId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Agenda?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Agenda iuran beserta seluruh data pembayaran warga akan dihapus permanen.</p>
@@ -6125,8 +6108,8 @@ const getDirectImgUrl = (url) => {
                     </div>
 
                     {isModalOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left -slate-300 modal-card animate-modal-in">
                                 <div className={`mb-6 w-20 h-20 rounded-full flex items-center justify-center border-2 ${formData.type === 'Pemasukan' ? 'bg-google-greenLight text-google-green border-google-green/30' : 'bg-google-redLight text-google-red border-google-red/30'}`}><Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[36px]" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit' : 'Catat'} {formData.type}</h3>
                                 <div className="space-y-5">
@@ -6171,8 +6154,8 @@ const getDirectImgUrl = (url) => {
                     )}
 
                     {isTransferModalOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Pencairan Jimpitan</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tarik dana dari kas Jimpitan Fisik ke Kas Utama RT.</p>
@@ -6193,8 +6176,8 @@ const getDirectImgUrl = (url) => {
 
                     {/* IMAGE VIEWER MODAL */}
                     {selectedImage && (
-                        <div className="fixed inset-0 bg-slate-900/90 z-[100] flex justify-center items-center p-4 transition-opacity" onClick={() => setSelectedImage(null)}>
-                            <div className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center justify-center animate-fadeIn" onClick={e => e.stopPropagation()}>
+                        <div className="fixed inset-0 z-[100] flex justify-center items-center p-4 transition-opacity modal-backdrop animate-backdrop-in" onClick={() => setSelectedImage(null)}>
+                            <div className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center justify-center animate-fadeIn modal-card animate-modal-in" onClick={e => e.stopPropagation()}>
                                 <button onClick={() => setSelectedImage(null)} className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors border border-white/20"><Icon name="close" className="text-[24px]" /></button>
                                 <img src={selectedImage} alt="Bukti Transaksi" className="max-w-full max-h-[85vh] object-contain rounded-[12px] shadow-2xl" />
                             </div>
@@ -6506,8 +6489,8 @@ const getDirectImgUrl = (url) => {
                                 <div className="pt-8 flex justify-end no-print border-t-2 border-slate-200 mt-10"><button onClick={() => setStep(2)} className="bg-google-blue text-white px-10 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center gap-2">Lanjut Ke Rekapitulasi <Icon name="arrow_forward" className="text-[17px]"/></button></div>
                                 
                                 {showHolidayModal && (
-                                    <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                                        <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center border-2 border-slate-300 shadow-2xl transform scale-100 transition-transform">
+                                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                                        <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                             <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="event_busy" className="text-[48px] text-google-yellowDark" /></div>
                                             <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Liburkan Bulan Ini?</h3>
                                             <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Periode <b className="text-google-text">{formatBulanTahun(arisanPeriod)}</b> akan ditandai sebagai bulan libur.</p>
@@ -6521,8 +6504,8 @@ const getDirectImgUrl = (url) => {
                                 )}
                                 
                                 {isScannerOpen && (
-                                    <div className="fixed inset-0 bg-slate-900/90 z-50 flex flex-col p-4 sm:p-6 no-print overflow-y-auto hide-scrollbar">
-                                        <div className="flex justify-between items-center mb-6 shrink-0">
+                                    <div className="fixed inset-0 z-50 flex flex-col p-4 sm:p-6 no-print overflow-y-auto hide-scrollbar modal-backdrop animate-backdrop-in">
+                                        <div className="flex justify-between items-center mb-6 shrink-0 modal-card animate-modal-in">
                                             <h3 className="text-white font-medium text-xl sm:text-2xl">Scan Barcode Warga</h3>
                                             <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white p-2 rounded-[12px] hover:bg-white/40"><Icon name="close" className="text-[20px]" /></button>
                                         </div>
@@ -6546,8 +6529,8 @@ const getDirectImgUrl = (url) => {
                                 )}
                                 
                                 {showCashierModal && scannedMembers.length > 0 && (
-                                    <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 no-print">
-                                        <div className="bg-white rounded-[32px] p-6 w-full max-w-sm shadow-2xl border-2 border-slate-300 max-h-[95vh] flex flex-col">
+                                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 no-print modal-backdrop animate-backdrop-in">
+                                        <div className="rounded-[32px] p-6 w-full max-w-sm -slate-300 max-h-[95vh] flex flex-col modal-card animate-modal-in">
                                             <h3 className="text-xl font-medium text-google-text mb-2 text-center">Kasir Pembayaran</h3>
                                             <div className="text-center mb-4">
                                                 <p className="text-[13px] text-google-textVariant font-medium">{scannedMembers.length} Warga (Gandengan)</p>
@@ -6933,8 +6916,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     </div>
 
                     {editingHistoryId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="bg-white dark:bg-slate-900 rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left max-h-[90vh] flex flex-col border-2 border-slate-300 dark:border-slate-700 shadow-2xl transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left max-h-[90vh] flex flex-col -slate-300 dark:-slate-700 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-1 shrink-0 tracking-tight">Revisi Kehadiran</h3><p className="text-[13px] font-medium text-google-textVariant dark:text-slate-300 mb-6 shrink-0 leading-relaxed">Saldo akan disesuaikan otomatis mengikuti perubahan presensi ini.</p>
                                 <div className="overflow-y-auto space-y-4 flex-1 pb-4 pr-1 hide-scrollbar">
                                     {history.find(h => h.id === editingHistoryId)?.absensiDetails.map((member, idx) => (
@@ -7574,8 +7557,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
 
                     {modalConfig && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-6 bg-google-greenLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="check_circle" className="text-[48px] text-google-green" fill="true" /></div>
                                 <p className="text-google-text text-[17px] font-medium mb-8 leading-snug tracking-tight">{modalConfig.message}</p>
                                 <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue text-white px-8 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark hover:bg-google-blueDark active:scale-95 transition-all duration-300 shadow-md">Tutup Pesan</button>
@@ -7583,8 +7566,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
                     )}
                     {confirmResetModal && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white rounded-[32px] p-8 w-full max-w-sm text-left shadow-2xl border-2 border-slate-300 transform scale-100 transition-transform">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-left -slate-300 modal-card animate-modal-in">
                                 <h3 className="text-3xl font-medium text-google-red mb-2 tracking-tight">Reset Total?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tindakan ini permanen dan tidak bisa dibatalkan. Ketik kata <b className="text-google-red">RESET</b> di bawah ini.</p>
                                 <div className="bg-slate-50 rounded-[16px] px-5 py-4 border-2 border-google-red/40 focus-within:border-google-red focus-within:bg-white focus-within:shadow-md transition-all mb-8"><input type="text" value={resetPromptInput} onChange={e => setResetPromptInput(e.target.value)} className="w-full bg-transparent border-none text-[18px] outline-none p-0 text-google-redDark uppercase tracking-widest font-medium placeholder:text-google-red/30" placeholder="RESET" /></div>
@@ -8287,8 +8270,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 </div>
 
                     {isFormOpen && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
-                            <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto hide-scrollbar border-2 border-slate-300 animate-slide-up">
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto hide-scrollbar -slate-300 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-bold text-google-text mb-6 tracking-tight">{editingId ? 'Edit Artikel' : 'Tulis Artikel Baru'}</h3>
                                 <div className="space-y-5">
                                     <div><label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest block mb-2 ml-1">Judul Artikel</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all" placeholder="Tulis judul yang menarik..." /></div>
@@ -8320,8 +8303,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
 
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
-                            <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 animate-slide-up">
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-100 text-red-500"><Icon name="delete_forever" className="text-[48px]" fill="true" /></div>
                                 <h3 className="text-2xl font-bold text-google-text mb-2">Hapus Artikel?</h3>
                                 <p className="text-[13px] text-slate-500 mb-8 leading-relaxed">Artikel ini dan semua komentar di dalamnya akan dihapus secara permanen. Anda yakin?</p>
@@ -8782,8 +8765,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             return (
                 <div className="animate-fade-in pb-24 max-w-6xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 ">
-                            <div className="bg-white rounded-[28px] p-8 max-w-sm w-full text-center shadow-2xl animate-scale-up">
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[28px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
                                 </div>
@@ -8990,8 +8973,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Modal Kelola Produk */}
                             {isProductModalOpen && (
-                                <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
-                                    <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto border-2 border-slate-350 animate-scale-up">
+                                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                                    <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto -slate-350 modal-card animate-modal-in">
                                         <h3 className="text-xl font-bold text-slate-800 mb-6 tracking-tight">{editingProduct ? 'Edit Produk Tiket' : 'Tambah Produk Tiket Baru'}</h3>
                                         <div className="space-y-4">
                                             <div>
@@ -9505,8 +9488,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Modal Beli Tiket (Warga) */}
                             {isBuyModalOpen && selectedProduct && (
-                                <div className="fixed inset-0 bg-slate-900/60  z-[100] flex items-center justify-center p-4">
-                                    <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto border-2 border-slate-350 animate-scale-up">
+                                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                                    <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto -slate-350 modal-card animate-modal-in">
                                         <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
                                             <h3 className="text-lg font-extrabold text-slate-800">Formulir Beli Tiket</h3>
                                             <button onClick={() => setIsBuyModalOpen(false)} className="w-8 h-8 rounded-full border border-slate-300 text-slate-400 hover:bg-slate-100 flex items-center justify-center"><Icon name="close" /></button>
@@ -9619,8 +9602,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
 
                     {confirmModal && (
-                        <div className="fixed inset-0 bg-slate-900/60  z-[150] flex items-center justify-center p-4">
-                            <div className="bg-white rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border-2 border-slate-300 animate-scale-up">
+                        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-100 text-red-500">
                                     <Icon name="delete_forever" className="text-[40px]" fill="true" />
                                 </div>
@@ -9635,8 +9618,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
 
                     {sharingProduct && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60  animate-fade-in">
-                            <div className="bg-white dark:bg-slate-900 rounded-[32px] p-6 sm:p-8 max-w-sm w-full shadow-2xl animate-scale-up border border-slate-200 dark:border-slate-800">
+                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 max-w-sm w-full -slate-200 dark:-slate-800 modal-card animate-modal-in">
                                 <div className="flex justify-between items-center mb-6 pb-3 border-b border-slate-100 dark:border-slate-800">
                                     <h3 className="text-lg font-extrabold text-slate-800 dark:text-slate-100 flex items-center gap-2"><Icon name="share" className="text-google-blue" /> Bagikan Tiket</h3>
                                     <button onClick={() => setSharingProduct(null)} className="w-8 h-8 rounded-full border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"><Icon name="close" /></button>
