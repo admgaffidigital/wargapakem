@@ -2880,7 +2880,7 @@ import {
                                                                 url.searchParams.set('page', 'toko');
                                                                 url.searchParams.set('product', item.id);
                                                                 navigator.clipboard.writeText(url.toString());
-                                                                alert('Link produk disalin!');
+                                                                showToast('Tautan produk berhasil disalin!');
                                                             }} className="absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-slate-600 hover:text-google-blue hover:bg-white transition-colors shadow-sm" title="Bagikan Produk">
                                                                 <Icon name="share" className="text-[14px]" />
                                                             </button>
@@ -10069,8 +10069,13 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
         const openIdOrSku = sessionStorage.getItem('openTokoProductId');
         if (openIdOrSku && tokoProducts.length > 0) {
             const p = tokoProducts.find(i => String(i.id) === String(openIdOrSku) || String(i.sku) === String(openIdOrSku));
-            if (p) { setSelectedProduct(p); setSelectedVariant(p.variants[0] || null); setOrderQty(1); setView('detail'); }
-            sessionStorage.removeItem('openTokoProductId');
+            if (p) { 
+                setSelectedProduct(p); 
+                setSelectedVariant(p.variants[0] || null); 
+                setOrderQty(1); 
+                setView('detail'); 
+                sessionStorage.removeItem('openTokoProductId');
+            }
         }
     }, [tokoProducts]);
 
