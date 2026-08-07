@@ -10120,7 +10120,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     const [checkoutForm, setCheckoutForm] = useState({ namaWarga: '', noWa: '', alamat: '', catatan: '' });
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [editingProduct, setEditingProduct] = useState(null);
-    const [productForm, setProductForm] = useState({ judul: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Default', price: 0 }] });
+    const [productForm, setProductForm] = useState({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Default', price: 0 }] });
     const [isUploading, setIsUploading] = useState(false);
     const [activeOrderTab, setActiveOrderTab] = useState('Menunggu');
     const [tokoConfirm, setTokoConfirm] = useState(null); // { message, onConfirm }
@@ -10366,7 +10366,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
         <>
         <div className="space-y-5">
             <PageHeader title="Kelola Katalog Produk" subtitle="Tambah, edit, dan hapus produk toko" onBack={() => setView('list')}>
-                <button onClick={() => { setProductForm({ judul: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-[12px] font-bold text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
+                <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-[12px] font-bold text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
                     <Icon name="add" className="text-[16px] sm:text-[18px]" /> <span className="hidden sm:inline">Produk</span> Baru
                 </button>
             </PageHeader>
@@ -10380,6 +10380,18 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <div>
                                 <label className="text-xs font-bold text-slate-505 dark:text-slate-400 mb-1.5 block">Nama / Judul Produk *</label>
                                 <input type="text" value={productForm.judul} onChange={e => setProductForm({...productForm, judul: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Beras Premium 5Kg..." />
+                            </div>
+                            <div>
+                                <label className="text-xs font-bold text-slate-505 dark:text-slate-400 mb-1.5 block">Kategori Produk</label>
+                                <select value={productForm.kategori || ''} onChange={e => setProductForm({...productForm, kategori: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white">
+                                    <option value="" disabled>Pilih Kategori...</option>
+                                    <option value="Sembako & Kebutuhan Harian">Sembako & Kebutuhan Harian</option>
+                                    <option value="Makanan & Minuman">Makanan & Minuman</option>
+                                    <option value="Pakaian & Fashion">Pakaian & Fashion</option>
+                                    <option value="Elektronik & Gadget">Elektronik & Gadget</option>
+                                    <option value="Jasa & Layanan">Jasa & Layanan</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
                             </div>
                             {productForm.sku && (
                                 <div>
@@ -10424,10 +10436,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     <button onClick={() => setProductForm({...productForm, variants: [...productForm.variants, { id: Date.now(), name: '', price: 0 }]})} className="text-xs font-bold text-google-blue flex items-center gap-0.5 hover:underline"><Icon name="add" className="text-[14px]" />Tambah</button>
                                 </div>
                                 {productForm.variants.map((v, i) => (
-                                    <div key={v.id} className="flex gap-2 items-center">
-                                        <input type="text" value={v.name} onChange={e => { const nv = [...productForm.variants]; nv[i].name = e.target.value; setProductForm({...productForm, variants: nv}); }} placeholder="Nama Varian" className="flex-1 bg-white dark:bg-slate-800 border border-slate-350 dark:border-slate-700 rounded-[8px] px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white" />
-                                        <input type="number" value={v.price} onChange={e => { const nv = [...productForm.variants]; nv[i].price = safeNumber(e.target.value); setProductForm({...productForm, variants: nv}); }} placeholder="Harga" className="flex-1 bg-white dark:bg-slate-800 border border-slate-355 dark:border-slate-700 rounded-[8px] px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-505 text-slate-800 dark:text-white" />
-                                        {productForm.variants.length > 1 && <button onClick={() => setProductForm({...productForm, variants: productForm.variants.filter(va => va.id !== v.id)})} className="w-7 h-7 shrink-0 bg-red-100 dark:bg-red-950/30 text-red-650 rounded-[8px] flex items-center justify-center hover:bg-red-200"><Icon name="close" className="text-[14px]" /></button>}
+                                    <div key={v.id} className="flex flex-col sm:flex-row gap-2 sm:items-center">
+                                        <input type="text" value={v.name} onChange={e => { const nv = [...productForm.variants]; nv[i].name = e.target.value; setProductForm({...productForm, variants: nv}); }} placeholder="Nama Varian" className="w-full sm:flex-1 bg-white dark:bg-slate-800 border border-slate-350 dark:border-slate-700 rounded-[8px] px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white" />
+                                        <div className="flex gap-2 w-full sm:w-auto sm:flex-1 items-center">
+                                            <input type="number" value={v.price} onChange={e => { const nv = [...productForm.variants]; nv[i].price = safeNumber(e.target.value); setProductForm({...productForm, variants: nv}); }} placeholder="Harga" className="w-full flex-1 bg-white dark:bg-slate-800 border border-slate-355 dark:border-slate-700 rounded-[8px] px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-505 text-slate-800 dark:text-white" />
+                                            {productForm.variants.length > 1 && <button onClick={() => setProductForm({...productForm, variants: productForm.variants.filter(va => va.id !== v.id)})} className="w-7 h-7 shrink-0 bg-red-100 dark:bg-red-950/30 text-red-650 rounded-[8px] flex items-center justify-center hover:bg-red-200"><Icon name="close" className="text-[14px]" /></button>}
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -10435,7 +10449,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <div className="bg-yellow-50 dark:bg-yellow-950/10 p-4 rounded-[20px] border border-yellow-200 dark:border-yellow-900/30 space-y-3">
                                 <h4 className="font-bold text-yellow-800 dark:text-yellow-500 text-sm flex items-center gap-1.5"><Icon name="sell" className="text-[16px]" />Harga Grosir (Opsional)</h4>
                                 <p className="text-[11px] text-yellow-700 dark:text-yellow-600 font-medium leading-relaxed">Warga yang membeli ≥ Qty ini akan otomatis mendapat harga grosir.</p>
-                                <div className="grid grid-cols-2 gap-2">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                                     <div>
                                         <label className="text-[10px] font-bold text-yellow-700 dark:text-yellow-500 mb-1 block">Min. Qty</label>
                                         <input type="number" value={productForm.grosirMinQty} onChange={e => setProductForm({...productForm, grosirMinQty: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-yellow-350 dark:border-yellow-900/40 rounded-[8px] px-3 py-2 text-sm font-bold outline-none focus:border-yellow-500 text-slate-800 dark:text-white" placeholder="cth: 5" />
