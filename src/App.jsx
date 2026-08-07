@@ -2635,20 +2635,13 @@ import {
                             </section>
 
                             {/* BOARD OF INFORMATION (SPACIOUS 3 COLUMNS) */}
-                            <section id="berita" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
-                                <div className="text-center space-y-1">
-                                    <h3 className="text-[11px] font-medium text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.newsSubtitle}</h3>
-                                    <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.newsTitle}</h2>
-                                </div>
-
-                                {informasi.length === 0 ? (
-                                    <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-10 text-center max-w-md mx-auto">
-                                        <Icon name="campaign" className="text-[32px] text-slate-300 dark:text-slate-600 mb-2" />
-                                        <p className="text-[13px] font-medium text-slate-900 dark:text-white">{landingConfig.newsEmptyTitle}</p>
-                                        <p className="text-[11.5px] text-slate-600 dark:text-slate-400 mt-0.5">{landingConfig.newsEmptyDesc}</p>
+                            {informasi && informasi.length > 0 && (
+                                <section id="berita" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                    <div className="text-center space-y-1">
+                                        <h3 className="text-[11px] font-medium text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.newsSubtitle}</h3>
+                                        <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.newsTitle}</h2>
                                     </div>
-                                ) : (
-                                    <>
+
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {informasi.slice(0, limitInformasi).map(item => (
                                             <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
@@ -2688,9 +2681,8 @@ import {
                                             </button>
                                         </div>
                                     )}
-                                    </>
-                                )}
-                            </section>
+                                </section>
+                            )}
 
                             {/* BLOG / ARTIKEL WARGA SECTION */}
                             {blogData && blogData.length > 0 && (
@@ -2795,14 +2787,13 @@ import {
                                 </section>
                             )}
 
-                            {/* UMKM WARGA SECTION - selalu tampil */}
+                            {/* UMKM WARGA SECTION */}
+                            {umkmData && umkmData.length > 0 && (
                                 <section id="umkm" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-green-600 dark:text-green-400 uppercase tracking-widest">{landingConfig.umkmSubtitle}</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.umkmTitle}</h2>
                                     </div>
-                                    {umkmData && umkmData.length > 0 ? (
-                                    <>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {umkmData.slice(0, limitUmkm).map(item => (
                                             <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-green-300 dark:hover:border-green-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 group">
@@ -2843,21 +2834,10 @@ import {
                                             </button>
                                         </div>
                                     )}
-                                    </>
-                                    ) : (
-                                        <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-dashed border-green-200 dark:border-green-900/40 p-10 text-center max-w-md mx-auto shadow-sm">
-                                            <Icon name="storefront" className="text-[36px] text-green-300 dark:text-green-700 mb-3" />
-                                            <p className="text-[14px] font-medium text-slate-800 dark:text-white">{landingConfig.umkmEmptyTitle}</p>
-                                            <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">{landingConfig.umkmEmptyDesc}</p>
-                                            <button onClick={() => onLogin('warga')} className="mt-4 inline-flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-[10px] text-[12px] font-medium transition-all active:scale-95 shadow-[0_4px_12px_rgba(34,197,94,0.3)]">
-                                                <Icon name="add_business" className="text-[15px]" />
-                                                <span>Daftarkan Usaha Anda</span>
-                                            </button>
-                                        </div>
-                                    )}
                                 </section>
-                                {/* TOKO OFFICIAL SECTION */}
-                                <section id="toko" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                            )}
+                            {/* TOKO OFFICIAL SECTION */}
+                            <section id="toko" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-google-blue dark:text-google-blueLight uppercase tracking-widest">Layanan E-Commerce RT</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">Official Store</h2>
@@ -3289,18 +3269,7 @@ import {
                     
                                         
 
-                    
-                    {/* SPONSORED BY */}
-                    {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
-                        <div className="flex flex-col items-center justify-center mt-20 mb-8 animate-fadeIn">
-                            <p className="text-[9px] uppercase tracking-widest font-medium text-slate-400 mb-4">Sponsored By</p>
-                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 items-center justify-items-center w-full max-w-6xl px-4 mx-auto">
-                                {sponsorsData.sponsors.map((s, i) => (
-                                    <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 lg:h-16 w-auto max-w-[90px] sm:max-w-[120px] md:max-w-[140px] lg:max-w-[160px] object-contain opacity-100 transition-all duration-300 hover:scale-110" title={s.name}  loading="lazy" decoding="async"/>
-                                ))}
-                            </div>
-                        </div>
-                    )}
+
     
                     {userRole !== 'admin' && (
                         <div className="flex justify-center mt-16 mb-4">
