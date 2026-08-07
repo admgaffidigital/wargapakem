@@ -114,7 +114,7 @@ import {
                                 <div className={`w-9 h-9 rounded-xl ${cfg.iconBg} flex items-center justify-center shrink-0`}>
                                     <Icon name={cfg.icon} className="text-[18px] text-white" fill="true" />
                                 </div>
-                                <p className="flex-1 text-[13px] font-semibold leading-snug tracking-wide">{t.message}</p>
+                                <p className="flex-1 text-[13px] font-medium leading-snug tracking-wide">{t.message}</p>
                                 <div className="w-1.5 h-1.5 rounded-full bg-white/40 shrink-0" />
                             </div>
                         );
@@ -408,7 +408,7 @@ import {
                     <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border-2 border-slate-300 dark:border-slate-700 p-4 sm:p-5 flex flex-wrap items-center gap-4 max-w-lg mx-auto">
                         {/* Ikon */}
                         <div className="w-14 h-14 rounded-[16px] shrink-0 flex items-center justify-center text-white font-medium text-[18px] shadow-md"
-                             style={{ background: 'linear-gradient(135deg,#1a73e8,#0d47a1)' }}>
+                             style={{ background: 'linear-gradient(135deg,#e11d48,#be123c)' }}>
                             RT
                         </div>
                         {/* Teks */}
@@ -1343,7 +1343,7 @@ import {
                                 <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-[12px] mb-4 shadow-lg">
                                     <Icon name="storefront" />
                                 </div>
-                                <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight mb-2">Pasar Warga RT</h1>
+                                <h1 className="text-3xl sm:text-4xl font-medium text-slate-800 tracking-tight mb-2">Pasar Warga RT</h1>
                                 <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Direktori usaha milik warga RT. Dukung UMKM lokal dengan berbelanja dari tetangga sendiri.</p>
                             </div>
                             {userRole === 'admin' && (
@@ -1425,7 +1425,7 @@ import {
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="w-full max-w-lg rounded-[32px] flex flex-col max-h-[90vh] modal-card animate-modal-in">
                                 <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-gradient-to-r from-green-50 to-white dark:from-green-950/10 dark:to-slate-900 rounded-t-[32px]">
-                                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
+                                    <h2 className="text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                                         <Icon name="storefront" className="text-green-600" />
                                         {editingId ? 'Edit Data UMKM' : 'Tambah UMKM Baru'}
                                     </h2>
@@ -1485,7 +1485,7 @@ import {
                                 </div>
                                 <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
                                     <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-[12px] border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-bold py-4 rounded-[12px] shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-medium py-4 rounded-[12px] shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
                                 </div>
                             </div>
                         </div>
@@ -1497,7 +1497,7 @@ import {
                                 <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5">
                                     <Icon name="warning" className="text-[40px] text-red-500" />
                                 </div>
-                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">Hapus UMKM?</h3>
+                                <h3 className="text-xl font-medium text-slate-800 dark:text-white mb-2">Hapus UMKM?</h3>
                                 <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Data usaha yang dihapus tidak dapat dikembalikan. Yakin?</p>
                                 <div className="flex gap-3">
                                     <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-[12px] font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
@@ -1595,7 +1595,7 @@ import {
                                 <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-[12px] mb-4 shadow-lg">
                                     <Icon name="campaign" />
                                 </div>
-                                <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight mb-2">Lapor</h1>
+                                <h1 className="text-3xl sm:text-4xl font-medium text-slate-800 tracking-tight mb-2">Lapor</h1>
                                 <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Sistem Pengaduan dan Aspirasi Warga. Laporkan keluhan atau berikan saran untuk lingkungan kita.</p>
                             </div>
                             <button onClick={() => setIsFormOpen(true)} className="w-full md:w-auto bg-blue-600 text-white px-8 py-4 rounded-[12px] font-medium text-[13px] shadow-[0_8px_25px_rgba(37,99,235,0.3)] hover:bg-blue-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
@@ -1635,7 +1635,7 @@ import {
                                             </button>
                                         )}
                                     </div>
-                                    <h3 className="text-xl font-bold text-slate-800 mb-2">{item.title}</h3>
+                                    <h3 className="text-xl font-medium text-slate-800 mb-2">{item.title}</h3>
                                     <p className="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-4">{item.description}</p>
                                     
                                     {item.imageUrl && (
@@ -1669,7 +1669,7 @@ import {
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="w-full max-w-lg rounded-[32px] flex flex-col max-h-[90vh] modal-card animate-modal-in">
                                 <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-gradient-to-r from-blue-50 to-white dark:from-blue-950/10 dark:to-slate-900 rounded-t-[32px]">
-                                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
+                                    <h2 className="text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                                         <Icon name="campaign" className="text-blue-600" /> Buat Laporan
                                     </h2>
                                     <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-300 dark:border-slate-700 transition-all"><Icon name="close" /></button>
@@ -1718,7 +1718,7 @@ import {
                                 </div>
                                 <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
                                     <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-[12px] border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-bold py-4 rounded-[12px] shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-medium py-4 rounded-[12px] shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
                                 </div>
                             </div>
                         </div>
@@ -1728,7 +1728,7 @@ import {
                         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="max-w-sm w-full rounded-[28px] p-8 text-center -slate-200 dark:-slate-800 modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5"><Icon name="warning" className="text-[40px] text-red-500" /></div>
-                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">Hapus Laporan?</h3>
+                                <h3 className="text-xl font-medium text-slate-800 dark:text-white mb-2">Hapus Laporan?</h3>
                                 <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Laporan yang dihapus tidak dapat dikembalikan. Yakin?</p>
                                 <div className="flex gap-3">
                                     <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-[12px] font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
@@ -2028,7 +2028,7 @@ import {
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
                             <div className="rounded-[32px] w-full max-w-lg overflow-hidden flex flex-col -slate-200/50 max-h-[80vh] modal-card animate-modal-in">
                                 <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
-                                    <h3 className="text-[14px] font-bold text-slate-800 flex items-center gap-2">
+                                    <h3 className="text-[14px] font-medium text-slate-800 flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
                                         {showLegalModal === 'terms' ? 'Syarat & Ketentuan' : 'Kebijakan Privasi'}
                                     </h3>
@@ -2143,7 +2143,7 @@ import {
                                         <button onClick={() => changeTab('menu')} className="w-9 h-9 sm:w-10 sm:h-10 bg-white text-google-text border-2 border-slate-300 hover:text-red-600 hover:border-red-500/40 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[15px] sm:text-[17px]" /></button>
                                     )}
                                     <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
-                                        <h1 className="text-[13px] sm:text-[16px] font-bold truncate leading-tight tracking-tight text-slate-800">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
+                                        <h1 className="text-[13px] sm:text-[16px] font-medium truncate leading-tight tracking-tight text-slate-800">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
                                         {activeTab === 'menu' && <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse shrink-0"></span>}
                                     </div>
                                 </div>
@@ -2191,7 +2191,7 @@ import {
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
                             <div className="rounded-[20px] w-full max-w-lg overflow-hidden -red-500/30 dark:-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-red-50 dark:bg-red-950/20 px-6 py-5 border-b border-red-500/20 dark:border-red-900/30 flex items-center justify-between shrink-0">
-                                    <h3 className="text-[14px] font-bold text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
+                                    <h3 className="text-[14px] font-medium text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
                                     <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-[12px] hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
                                 </div>
                                 <div className="p-6 md:p-8 overflow-y-auto hide-scrollbar">
@@ -2204,7 +2204,7 @@ import {
                                         <div className="border-t-2 border-dashed border-slate-300 dark:border-slate-700 pt-4 text-center">
                                             <p className="text-[11px] font-medium text-slate-400 mb-1">COPYRIGHT &copy; 2026</p>
                                             <p className="text-[10px] text-slate-400 mb-2">Sistem & lisensi ditandatangani secara digital oleh pengembang resmi:</p>
-                                            <p className="text-[16px] font-bold tracking-widest bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent uppercase">Novan Restu Utomo</p>
+                                            <p className="text-[16px] font-medium tracking-widest bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent uppercase">Novan Restu Utomo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -2218,7 +2218,7 @@ import {
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
                             <div className="rounded-[20px] w-full max-w-lg overflow-hidden flex flex-col -slate-200/50 dark:-slate-850 max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
-                                    <h3 className="text-[14px] font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                    <h3 className="text-[14px] font-medium text-slate-800 dark:text-white flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
                                         {showLegalModal === 'terms' ? 'Syarat & Ketentuan' : 'Kebijakan Privasi'}
                                     </h3>
@@ -2502,8 +2502,8 @@ import {
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain" fetchpriority="high" decoding="async"/>
                                 </div>
                                 <div className="min-w-0">
-                                    <h1 className="text-[13px] sm:text-[15px] font-bold tracking-tight text-slate-900 leading-tight uppercase">{identity.name || 'Portal RT'}</h1>
-                                    <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 truncate uppercase leading-none mt-0.5">{identity.subtitle || 'Sistem Informasi Warga'}</p>
+                                    <h1 className="text-[13px] sm:text-[15px] font-medium tracking-tight text-slate-900 leading-tight uppercase">{identity.name || 'Portal RT'}</h1>
+                                    <p className="text-[9px] sm:text-[10px] font-medium text-slate-500 truncate uppercase leading-none mt-0.5">{identity.subtitle || 'Sistem Informasi Warga'}</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
@@ -2513,7 +2513,7 @@ import {
                                 <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 text-slate-700 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-350 shadow-sm" title="Otorisasi Admin">
                                     <Icon name="lock" className="text-[15px] sm:text-[16px]" />
                                 </button>
-                                <button onClick={() => onLogin('warga')} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-600 text-white rounded-full text-[10.5px] sm:text-[12px] font-bold flex items-center gap-1.5 shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40 transition-all duration-300 active:scale-95">
+                                <button onClick={() => onLogin('warga')} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-600 text-white rounded-full text-[10.5px] sm:text-[12px] font-medium flex items-center gap-1.5 shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40 transition-all duration-300 active:scale-95">
                                     <Icon name="person" className="text-[14px] sm:text-[16px]" />
                                     <span>Masuk Warga</span>
                                 </button>
@@ -2541,10 +2541,10 @@ import {
                                 <div className="relative z-10 w-full text-left space-y-4 max-w-2xl">
                                     <div className="inline-flex items-center gap-1.5 bg-black/20 px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
                                         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
-                                        <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
+                                        <span className="text-[9px] font-medium uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
                                     </div>
                                     
-                                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight uppercase text-white [text-shadow:_0_4px_12px_rgba(0,0,0,0.4)]">
+                                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight leading-tight uppercase text-white [text-shadow:_0_4px_12px_rgba(0,0,0,0.4)]">
                                         Portal Layanan &amp; <br />
                                         {identity.name || 'Informasi Warga'}
                                     </h2>
@@ -2554,12 +2554,12 @@ import {
                                     {/* Info jumlah warga aktif */}
                                     {members.length > 0 && (
                                         <div className="flex flex-wrap gap-3">
-                                            <div className="inline-flex items-center gap-1.5 bg-white/15  px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white/90">
+                                            <div className="inline-flex items-center gap-1.5 bg-white/15  px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-medium text-white/90">
                                                 <Icon name="groups" className="text-[13px]" />
                                                 {members.filter(m => m.status !== 'Meninggal' && m.status !== 'Nonaktif').length} Warga Aktif
                                             </div>
                                             {informasi.length > 0 && (
-                                                <div className="inline-flex items-center gap-1.5 bg-white/15  px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white/90">
+                                                <div className="inline-flex items-center gap-1.5 bg-white/15  px-3 py-1.5 rounded-full border border-white/20 text-[10px] font-medium text-white/90">
                                                     <Icon name="campaign" className="text-[13px]" />
                                                     {informasi.length} Pengumuman
                                                 </div>
@@ -2567,22 +2567,22 @@ import {
                                         </div>
                                     )}
                                     <div className="pt-2 flex flex-wrap gap-2.5">
-                                        <button onClick={() => onLogin('warga')} className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white hover:bg-slate-50 rounded-[12px] font-bold text-[11px] sm:text-[12px] shadow-md flex items-center gap-2 active:scale-95 transition-all text-red-600 hover:text-red-700">
+                                        <button onClick={() => onLogin('warga')} className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white hover:bg-slate-50 rounded-[12px] font-medium text-[11px] sm:text-[12px] shadow-md flex items-center gap-2 active:scale-95 transition-all text-red-600 hover:text-red-700">
                                             <Icon name="login" className="text-[15px] sm:text-[16px]" fill="true" />
                                             <span>Portal Warga</span>
                                         </button>
-                                        <a href="#berita" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
+                                        <a href="#berita" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-medium text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
                                             <Icon name="campaign" className="text-[15px] sm:text-[16px]" />
                                             <span>Kabar Warga</span>
                                         </a>
                                          {umkmData && umkmData.length > 0 && (
-                                            <a href="#umkm" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
+                                            <a href="#umkm" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-medium text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
                                                 <Icon name="storefront" className="text-[15px] sm:text-[16px]" />
                                                 <span>UMKM Warga</span>
                                             </a>
                                          )}
                                          {infoDesa?.enabled && (
-                                            <a href="#peta" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-bold text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
+                                            <a href="#peta" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-[12px] font-medium text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
                                                 <Icon name="map" className="text-[15px] sm:text-[16px]" />
                                                 <span>Peta &amp; Kontak</span>
                                             </a>
@@ -2593,14 +2593,14 @@ import {
 
                             {/* SERVICES GRID SECTION (SPACIOUS 4 COLUMNS) */}
                             <section className="space-y-4 max-w-6xl mx-auto w-full">
-                                <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest text-center">{landingConfig.servicesSubtitle}</h3>
+                                <h3 className="text-[11px] font-medium text-slate-400 uppercase tracking-widest text-center">{landingConfig.servicesSubtitle}</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                     <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
                                             <Icon name="campaign" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-[15px] text-slate-900 dark:text-white">Info Pengumuman Resmi</h4>
+                                            <h4 className="font-medium text-[15px] text-slate-900 dark:text-white">Info Pengumuman Resmi</h4>
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Papan pengumuman penting, info rapat warga, &amp; berita lingkungan terkini dari pengurus RT.</p>
                                         </div>
                                     </div>
@@ -2609,7 +2609,7 @@ import {
                                             <Icon name="payments" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-[15px] text-slate-900 dark:text-white">Transparansi Uang Kas</h4>
+                                            <h4 className="font-medium text-[15px] text-slate-900 dark:text-white">Transparansi Uang Kas</h4>
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Laporan kas masuk dan keluar RT yang dicatat rinci, terbuka, &amp; dipantau warga kapan saja.</p>
                                         </div>
                                     </div>
@@ -2618,7 +2618,7 @@ import {
                                             <Icon name="local_activity" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-[15px] text-slate-900 dark:text-white">Katalog Tiket &amp; Event (COD)</h4>
+                                            <h4 className="font-medium text-[15px] text-slate-900 dark:text-white">Katalog Tiket &amp; Event (COD)</h4>
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pembelian tiket jalan santai dan kegiatan RT secara online dengan metode COD.</p>
                                         </div>
                                     </div>
@@ -2627,7 +2627,7 @@ import {
                                             <Icon name="casino" className="text-[24px]" />
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-[15px] text-slate-900 dark:text-white">Sistem Arisan RT Digital</h4>
+                                            <h4 className="font-medium text-[15px] text-slate-900 dark:text-white">Sistem Arisan RT Digital</h4>
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pengundian berkala bulanan dan daftar riwayat pemenang arisan secara digital transparan.</p>
                                         </div>
                                     </div>
@@ -2637,14 +2637,14 @@ import {
                             {/* BOARD OF INFORMATION (SPACIOUS 3 COLUMNS) */}
                             <section id="berita" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                 <div className="text-center space-y-1">
-                                    <h3 className="text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.newsSubtitle}</h3>
-                                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.newsTitle}</h2>
+                                    <h3 className="text-[11px] font-medium text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.newsSubtitle}</h3>
+                                    <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.newsTitle}</h2>
                                 </div>
 
                                 {informasi.length === 0 ? (
                                     <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-300 dark:border-slate-700 p-10 text-center max-w-md mx-auto">
                                         <Icon name="campaign" className="text-[32px] text-slate-300 dark:text-slate-600 mb-2" />
-                                        <p className="text-[13px] font-bold text-slate-900 dark:text-white">{landingConfig.newsEmptyTitle}</p>
+                                        <p className="text-[13px] font-medium text-slate-900 dark:text-white">{landingConfig.newsEmptyTitle}</p>
                                         <p className="text-[11.5px] text-slate-600 dark:text-slate-400 mt-0.5">{landingConfig.newsEmptyDesc}</p>
                                     </div>
                                 ) : (
@@ -2663,16 +2663,16 @@ import {
                                                         </div>
                                                     )}
                                                     <div className="p-4 sm:p-6 space-y-3">
-                                                        <div className="flex items-center gap-1.5 text-[10.5px] font-bold text-slate-500 dark:text-slate-400">
+                                                        <div className="flex items-center gap-1.5 text-[10.5px] font-medium text-slate-500 dark:text-slate-400">
                                                             <Icon name="event" className="text-[13px]" />
                                                             <span>{item.date ? new Date(item.date).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : 'Tanggal -'}</span>
                                                         </div>
-                                                        <h4 className="font-bold text-[16px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2">{item.title}</h4>
-                                                        <p className="text-[13px] font-semibold text-slate-700 dark:text-slate-400 leading-relaxed line-clamp-3">{item.description}</p>
+                                                        <h4 className="font-medium text-[16px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2">{item.title}</h4>
+                                                        <p className="text-[13px] font-medium text-slate-700 dark:text-slate-400 leading-relaxed line-clamp-3">{item.description}</p>
                                                     </div>
                                                 </div>
                                                 <div className="p-4 sm:p-6 pt-0 sm:pt-0">
-                                                    <span className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300 font-bold text-[12.5px] transition-all">
+                                                    <span className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300 font-medium text-[12.5px] transition-all">
                                                         <span>Baca Selengkapnya</span>
                                                         <Icon name="arrow_forward" className="text-[14px] group-hover:translate-x-1 transition-transform" />
                                                     </span>
@@ -2682,7 +2682,7 @@ import {
                                     </div>
                                     {informasi.length > limitInformasi && (
                                         <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitInformasi(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitInformasi(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Pengumuman</span>
                                             </button>
@@ -2696,8 +2696,8 @@ import {
                             {blogData && blogData.length > 0 && (
                                 <section id="blog" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-google-blue dark:text-blue-400 uppercase tracking-widest">{landingConfig.blogSubtitle}</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.blogTitle}</h2>
+                                        <h3 className="text-[11px] font-medium text-google-blue dark:text-blue-400 uppercase tracking-widest">{landingConfig.blogSubtitle}</h3>
+                                        <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.blogTitle}</h2>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {blogData.slice(0, limitBlog).map(article => (
@@ -2712,16 +2712,16 @@ import {
                                                     </div>
                                                 )}
                                                 <div className="p-4 sm:p-5 flex flex-col flex-1">
-                                                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-2">
+                                                    <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-400 dark:text-slate-500 mb-2">
                                                         <Icon name="event" className="text-[12px]" />
                                                         <span>{article.date ? new Date(article.date).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '-'}</span>
                                                         {article.likes > 0 && (
                                                             <span className="ml-auto flex items-center gap-1 text-red-400"><Icon name="favorite" className="text-[11px]" fill="true" />{article.likes}</span>
                                                         )}
                                                     </div>
-                                                    <h4 className="font-bold text-[14px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2 flex-1 mb-3">{article.title}</h4>
+                                                    <h4 className="font-medium text-[14px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2 flex-1 mb-3">{article.title}</h4>
                                                     <p className="text-[12px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 mb-3">{article.content}</p>
-                                                    <span className="inline-flex items-center gap-1 text-google-blue font-bold text-[11.5px] group-hover:gap-2 transition-all">
+                                                    <span className="inline-flex items-center gap-1 text-google-blue font-medium text-[11.5px] group-hover:gap-2 transition-all">
                                                         Baca Artikel <Icon name="arrow_forward" className="text-[13px] group-hover:translate-x-1 transition-transform" />
                                                     </span>
                                                 </div>
@@ -2730,7 +2730,7 @@ import {
                                     </div>
                                     {blogData.length > limitBlog && (
                                         <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitBlog(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitBlog(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Artikel</span>
                                             </button>
@@ -2743,8 +2743,8 @@ import {
                             {infaqData && infaqData.length > 0 && (
                                 <section id="infaq" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-google-green dark:text-green-400 uppercase tracking-widest">Program Amal & Sosial</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">SALURKAN INFAQ ANDA</h2>
+                                        <h3 className="text-[11px] font-medium text-google-green dark:text-green-400 uppercase tracking-widest">Program Amal & Sosial</h3>
+                                        <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">SALURKAN INFAQ ANDA</h2>
                                     </div>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {infaqData.slice(0, limitInfaq).map(item => {
@@ -2760,24 +2760,24 @@ import {
                                                             )}
                                                         </div>
                                                         <div className="p-5 space-y-3">
-                                                            <h4 className="font-bold text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-green transition-colors">{item.judul}</h4>
+                                                            <h4 className="font-medium text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-green transition-colors">{item.judul}</h4>
                                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">{item.deskripsi}</p>
                                                         </div>
                                                     </div>
                                                     <div className="p-5 pt-0 space-y-4">
                                                         <div>
                                                             <div className="flex items-center justify-between mb-1">
-                                                                <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">Terkumpul</span>
-                                                                {p !== null && <span className="text-[11px] font-bold text-google-green">{p}%</span>}
+                                                                <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Terkumpul</span>
+                                                                {p !== null && <span className="text-[11px] font-medium text-google-green">{p}%</span>}
                                                             </div>
-                                                            <p className="text-[15px] font-bold text-google-green tracking-tight">Rp {(item.danaTerkumpul || 0).toLocaleString('id-ID')}</p>
+                                                            <p className="text-[15px] font-medium text-google-green tracking-tight">Rp {(item.danaTerkumpul || 0).toLocaleString('id-ID')}</p>
                                                             {item.danaTarget > 0 && (
                                                                 <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full mt-2 overflow-hidden">
                                                                     <div className="h-full bg-google-green rounded-full transition-all duration-700" style={{width: `${p}%`}} />
                                                                 </div>
                                                             )}
                                                         </div>
-                                                        <button className="w-full bg-google-green/10 text-google-green hover:bg-google-green hover:text-white border-2 border-google-green/20 hover:border-google-green py-2.5 rounded-[12px] font-bold text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
+                                                        <button className="w-full bg-google-green/10 text-google-green hover:bg-google-green hover:text-white border-2 border-google-green/20 hover:border-google-green py-2.5 rounded-[12px] font-medium text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
                                                             <Icon name="volunteer_activism" className="text-[16px]" fill="true" /> Donasi Sekarang
                                                         </button>
                                                     </div>
@@ -2787,7 +2787,7 @@ import {
                                     </div>
                                     {infaqData.length > limitInfaq && (
                                         <div className="flex justify-center pt-2">
-                                            <button onClick={() => setLimitInfaq(prev => prev + 3)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitInfaq(prev => prev + 3)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" /> Lihat Semua Program
                                             </button>
                                         </div>
@@ -2798,8 +2798,8 @@ import {
                             {/* UMKM WARGA SECTION - selalu tampil */}
                                 <section id="umkm" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-green-600 dark:text-green-400 uppercase tracking-widest">{landingConfig.umkmSubtitle}</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.umkmTitle}</h2>
+                                        <h3 className="text-[11px] font-medium text-green-600 dark:text-green-400 uppercase tracking-widest">{landingConfig.umkmSubtitle}</h3>
+                                        <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.umkmTitle}</h2>
                                     </div>
                                     {umkmData && umkmData.length > 0 ? (
                                     <>
@@ -2815,11 +2815,11 @@ import {
                                                                 <Icon name="storefront" className="text-[48px] text-green-500/20" />
                                                             </div>
                                                         )}
-                                                        <span className="absolute top-3 left-3 bg-green-500 text-white text-[9.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">{item.category}</span>
+                                                        <span className="absolute top-3 left-3 bg-green-500 text-white text-[9.5px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">{item.category}</span>
                                                     </div>
                                                     <div className="p-5 space-y-2.5">
-                                                        <h4 className="font-bold text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-1">{item.name}</h4>
-                                                        <div className="flex items-center text-slate-500 dark:text-slate-400 text-[12px] font-semibold">
+                                                        <h4 className="font-medium text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-1">{item.name}</h4>
+                                                        <div className="flex items-center text-slate-500 dark:text-slate-400 text-[12px] font-medium">
                                                             <Icon name="person" className="text-[14px] mr-1 text-slate-400" />
                                                             <span>Pemilik: {item.owner}</span>
                                                         </div>
@@ -2827,7 +2827,7 @@ import {
                                                     </div>
                                                 </div>
                                                 <div className="p-5 pt-0">
-                                                    <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%2520tertarik%2520dengan%2520usaha%2520Anda%2520di%2520Portal%2520Warga.`} target="_blank" rel="noopener noreferrer" className="w-full bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 hover:bg-green-600 hover:text-white border-2 border-green-200 dark:border-green-800 hover:border-green-600 py-3 rounded-[12px] font-bold text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
+                                                    <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%2520tertarik%2520dengan%2520usaha%2520Anda%2520di%2520Portal%2520Warga.`} target="_blank" rel="noopener noreferrer" className="w-full bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 hover:bg-green-600 hover:text-white border-2 border-green-200 dark:border-green-800 hover:border-green-600 py-3 rounded-[12px] font-medium text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
                                                         <Icon name="chat" className="text-[16px]" />
                                                         <span>Hubungi via WhatsApp</span>
                                                     </a>
@@ -2837,7 +2837,7 @@ import {
                                     </div>
                                     {umkmData.length > limitUmkm && (
                                         <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitUmkm(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitUmkm(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Usaha</span>
                                             </button>
@@ -2847,9 +2847,9 @@ import {
                                     ) : (
                                         <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-dashed border-green-200 dark:border-green-900/40 p-10 text-center max-w-md mx-auto shadow-sm">
                                             <Icon name="storefront" className="text-[36px] text-green-300 dark:text-green-700 mb-3" />
-                                            <p className="text-[14px] font-bold text-slate-800 dark:text-white">{landingConfig.umkmEmptyTitle}</p>
+                                            <p className="text-[14px] font-medium text-slate-800 dark:text-white">{landingConfig.umkmEmptyTitle}</p>
                                             <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">{landingConfig.umkmEmptyDesc}</p>
-                                            <button onClick={() => onLogin('warga')} className="mt-4 inline-flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-[10px] text-[12px] font-bold transition-all active:scale-95 shadow-[0_4px_12px_rgba(34,197,94,0.3)]">
+                                            <button onClick={() => onLogin('warga')} className="mt-4 inline-flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-[10px] text-[12px] font-medium transition-all active:scale-95 shadow-[0_4px_12px_rgba(34,197,94,0.3)]">
                                                 <Icon name="add_business" className="text-[15px]" />
                                                 <span>Daftarkan Usaha Anda</span>
                                             </button>
@@ -2859,8 +2859,8 @@ import {
                                 {/* TOKO OFFICIAL SECTION */}
                                 <section id="toko" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-google-blue dark:text-google-blueLight uppercase tracking-widest">Layanan E-Commerce RT</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Official Store</h2>
+                                        <h3 className="text-[11px] font-medium text-google-blue dark:text-google-blueLight uppercase tracking-widest">Layanan E-Commerce RT</h3>
+                                        <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">Official Store</h2>
                                         <p className="text-slate-500 dark:text-slate-400 font-medium text-sm mt-1">Layanan belanja hemat, gratis ongkir, bayar di tempat (COD).</p>
                                     </div>
                                     {tokoProducts && tokoProducts.filter(p => p.isPublished).length > 0 ? (
@@ -2875,7 +2875,7 @@ import {
                                                             ) : (
                                                                 <Icon name="storefront" className="text-[48px] text-slate-300 dark:text-slate-600" />
                                                             )}
-                                                            {item.grosirMinQty > 0 && <span className="absolute top-3 left-3 bg-yellow-400 text-yellow-900 text-[9.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">Grosir Tersedia</span>}
+                                                            {item.grosirMinQty > 0 && <span className="absolute top-3 left-3 bg-yellow-400 text-yellow-900 text-[9.5px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">Grosir Tersedia</span>}
                                                             <button onClick={() => {
                                                                 const url = new URL(window.location.href);
                                                                 url.searchParams.set('page', 'toko');
@@ -2887,19 +2887,19 @@ import {
                                                             </button>
                                                         </div>
                                                         <div className="p-5 space-y-2">
-                                                            <h4 className="font-bold text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-blue transition-colors">{item.judul}</h4>
+                                                            <h4 className="font-medium text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-blue transition-colors">{item.judul}</h4>
                                                             <p className="text-[12px] font-medium text-slate-500 dark:text-slate-400 line-clamp-2">{item.deskripsi}</p>
                                                         </div>
                                                     </div>
                                                     <div className="p-5 pt-0 mt-auto border-t border-slate-100 dark:border-slate-800 pt-4 flex justify-between items-center">
                                                         <div>
-                                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Mulai dari</p>
-                                                            <p className="text-[14px] font-black text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
+                                                            <p className="text-[10px] font-medium text-slate-400 uppercase tracking-widest">Mulai dari</p>
+                                                            <p className="text-[14px] font-medium text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
                                                         </div>
                                                         <button onClick={() => {
                                                             sessionStorage.setItem('openTokoProductId', item.id);
                                                             onLogin('warga');
-                                                        }} className="px-4 py-2 bg-google-blue hover:bg-google-blueDark text-white rounded-full text-xs font-bold transition-colors shadow-sm flex items-center gap-1 active:scale-95">
+                                                        }} className="px-4 py-2 bg-google-blue hover:bg-google-blueDark text-white rounded-full text-xs font-medium transition-colors shadow-sm flex items-center gap-1 active:scale-95">
                                                             <Icon name="shopping_cart" className="text-[14px]" /> Beli
                                                         </button>
                                                     </div>
@@ -2908,7 +2908,7 @@ import {
                                         </div>
                                         {tokoProducts.filter(p => p.isPublished).length > 6 && (
                                             <div className="text-center mt-8">
-                                                <button onClick={() => onLogin('warga')} className="px-6 py-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-google-blue dark:text-google-blueLight rounded-full text-sm font-bold border-2 border-google-blue/30 hover:border-google-blue transition-all active:scale-95">
+                                                <button onClick={() => onLogin('warga')} className="px-6 py-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-google-blue dark:text-google-blueLight rounded-full text-sm font-medium border-2 border-google-blue/30 hover:border-google-blue transition-all active:scale-95">
                                                     Lihat Semua Produk
                                                 </button>
                                             </div>
@@ -2919,7 +2919,7 @@ import {
                                             <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
                                                 <Icon name="storefront" className="text-[32px] text-slate-400 dark:text-slate-500" />
                                             </div>
-                                            <h4 className="text-lg font-bold text-slate-700 dark:text-slate-300 mb-2">Toko Masih Kosong</h4>
+                                            <h4 className="text-lg font-medium text-slate-700 dark:text-slate-300 mb-2">Toko Masih Kosong</h4>
                                             <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-sm mx-auto">Belum ada produk yang dijual saat ini. Pengurus RT akan segera menambahkan produk menarik di sini.</p>
                                         </div>
                                     )}
@@ -2929,36 +2929,36 @@ import {
                             {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
                                 <section className="space-y-6 pt-10 pb-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-google-blue dark:text-blue-400 uppercase tracking-widest">Jadwal & Agenda RT</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">KEGIATAN WARGA RT</h2>
+                                        <h3 className="text-[11px] font-medium text-google-blue dark:text-blue-400 uppercase tracking-widest">Jadwal & Agenda RT</h3>
+                                        <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">KEGIATAN WARGA RT</h2>
                                     </div>
                                     <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300">
                                         <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between">
                                             <div className="space-y-4 flex-1">
                                                 <div className="flex flex-wrap items-center gap-3">
-                                                    <div className="bg-blue-50 dark:bg-blue-950/20 text-google-blue border border-blue-100 dark:border-blue-900/40 rounded-xl px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                                                    <div className="bg-blue-50 dark:bg-blue-950/20 text-google-blue border border-blue-100 dark:border-blue-900/40 rounded-xl px-3 py-1.5 text-[11px] font-medium uppercase tracking-wider flex items-center gap-1.5">
                                                         <Icon name="event" className="text-[14px]" />
                                                         <span>Pertemuan RT Terdekat</span>
                                                     </div>
                                                 </div>
-                                                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white leading-snug">{nextMeeting.notes || 'Pertemuan Rutin Warga RT Pakem'}</h3>
+                                                <h3 className="text-lg sm:text-xl font-medium text-slate-800 dark:text-white leading-snug">{nextMeeting.notes || 'Pertemuan Rutin Warga RT Pakem'}</h3>
                                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[12.5px] font-medium text-slate-600 dark:text-slate-400">
                                                     <div className="flex items-center gap-2">
                                                         <Icon name="calendar_today" className="text-google-blue text-[16px]" />
-                                                        <span>Hari/Tanggal: <strong className="font-bold text-slate-850 dark:text-slate-100">{nextMeeting.date}</strong></span>
+                                                        <span>Hari/Tanggal: <strong className="font-medium text-slate-850 dark:text-slate-100">{nextMeeting.date}</strong></span>
                                                     </div>
                                                     <div className="flex items-center gap-2">
                                                         <Icon name="schedule" className="text-google-blue text-[16px]" />
-                                                        <span>Waktu/Jam: <strong className="font-bold text-slate-850 dark:text-slate-100">{nextMeeting.time} WIB</strong></span>
+                                                        <span>Waktu/Jam: <strong className="font-medium text-slate-850 dark:text-slate-100">{nextMeeting.time} WIB</strong></span>
                                                     </div>
                                                     <div className="flex items-center gap-2 sm:col-span-2">
                                                         <Icon name="location_on" className="text-google-blue text-[16px]" />
-                                                        <span>Tempat/Lokasi: <strong className="font-bold text-slate-850 dark:text-slate-100">{nextMeeting.location}</strong></span>
+                                                        <span>Tempat/Lokasi: <strong className="font-medium text-slate-850 dark:text-slate-100">{nextMeeting.location}</strong></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="shrink-0 flex items-center justify-center">
-                                                <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-google-blue hover:bg-google-blueDark text-white font-bold py-3.5 px-6 rounded-xl text-[12px] shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
+                                                <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-google-blue hover:bg-google-blueDark text-white font-medium py-3.5 px-6 rounded-xl text-[12px] shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
                                                     <Icon name="login" />
                                                     <span>Masuk Untuk Absen</span>
                                                 </button>
@@ -2972,8 +2972,8 @@ import {
                             {latestWinner && (
                                 <section className="space-y-6 pt-10 pb-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-google-yellowDark dark:text-yellow-400 uppercase tracking-widest">Selamat Kepada Pemenang</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">PEMENANG ARISAN PUTARAN TERBARU</h2>
+                                        <h3 className="text-[11px] font-medium text-google-yellowDark dark:text-yellow-400 uppercase tracking-widest">Selamat Kepada Pemenang</h3>
+                                        <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">PEMENANG ARISAN PUTARAN TERBARU</h2>
                                     </div>
                                     <div className="relative bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm transition-all duration-300 overflow-hidden flex flex-col md:flex-row gap-6 items-center justify-between">
                                         {/* Background decoration */}
@@ -2984,14 +2984,14 @@ import {
                                                 <Icon name="emoji_events" className="text-[32px]" fill="true" />
                                             </div>
                                             <div>
-                                                <p className="text-[10px] font-black text-google-yellowDark uppercase tracking-widest">Putaran Ke-{latestWinner.wonRound}</p>
-                                                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">{latestWinner.name}</h3>
+                                                <p className="text-[10px] font-medium text-google-yellowDark uppercase tracking-widest">Putaran Ke-{latestWinner.wonRound}</p>
+                                                <h3 className="text-lg sm:text-xl font-medium text-slate-800 dark:text-slate-100 tracking-tight">{latestWinner.name}</h3>
                                                 <p className="text-[11.5px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">Ditetapkan sebagai pemenang arisan pada siklus ke-{cycleNumber || 1}</p>
                                             </div>
                                         </div>
                                         
                                         <div className="shrink-0 relative z-10 w-full md:w-auto flex items-center justify-center">
-                                            <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-3.5 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
+                                            <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3.5 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
                                                 <Icon name="groups" />
                                                 <span>Lihat Semua Pemenang</span>
                                             </button>
@@ -3004,8 +3004,8 @@ import {
                             {infoDesa?.enabled && (
                                 <section id="peta" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.mapSubtitle}</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{landingConfig.mapTitle}</h2>
+                                        <h3 className="text-[11px] font-medium text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.mapSubtitle}</h3>
+                                        <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.mapTitle}</h2>
                                     </div>
                                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                                         {/* Peta Google Maps (Optimized Dynamic Load) */}
@@ -3020,15 +3020,15 @@ import {
                                                         backgroundPosition: '0 0, 10px 10px'
                                                     }}></div>
                                                     <Icon name="map" className="text-[44px] text-red-500/40 mb-3" />
-                                                    <h4 className="font-bold text-[14px] text-slate-800 dark:text-white">Peta Wilayah Desa Banyuanyar</h4>
+                                                    <h4 className="font-medium text-[14px] text-slate-800 dark:text-white">Peta Wilayah Desa Banyuanyar</h4>
                                                     <p className="text-[11.5px] text-slate-500 dark:text-slate-400 mt-1 max-w-sm leading-relaxed">Klik tombol di bawah untuk memuat Peta Google Maps secara interaktif tanpa memperlambat loading awal web.</p>
-                                                    <button onClick={() => setShowMap(true)} className="mt-4 px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-[10px] text-[11.5px] font-bold flex items-center gap-1.5 shadow-md transition-all active:scale-95">
+                                                    <button onClick={() => setShowMap(true)} className="mt-4 px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-[10px] text-[11.5px] font-medium flex items-center gap-1.5 shadow-md transition-all active:scale-95">
                                                         <Icon name="location_on" className="text-[14px]" />
                                                         <span>Muat Peta Interaktif</span>
                                                     </button>
                                                 </div>
                                             )}
-                                            <div className="flex flex-wrap gap-3 mt-4 items-center justify-between text-[11px] font-bold text-slate-500 dark:text-slate-400 px-1">
+                                            <div className="flex flex-wrap gap-3 mt-4 items-center justify-between text-[11px] font-medium text-slate-500 dark:text-slate-400 px-1">
                                                 <span className="flex items-center gap-1.5"><Icon name="explore" className="text-[14px]" /> Kode Pos: 64181</span>
                                                 <span className="flex items-center gap-1.5"><Icon name="info" className="text-[14px]" /> Google Maps Interaktif</span>
                                             </div>
@@ -3038,12 +3038,12 @@ import {
                                         <div className="space-y-4 flex flex-col">
                                             {/* Batas Administrasi */}
                                             <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
-                                                <h4 className="font-bold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
+                                                <h4 className="font-medium text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
                                                 <div className="grid grid-cols-2 gap-2.5">
                                                     {['utara', 'selatan', 'timur', 'barat'].map(arah => (
                                                         <div key={arah} className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-[12px] border border-slate-200 dark:border-slate-800/80">
-                                                            <p className="text-[8px] uppercase tracking-wider font-bold text-slate-400 mb-0.5">{arah}</p>
-                                                            <p className="font-bold text-[11px] text-slate-700 dark:text-slate-200 truncate">{infoDesa?.batas?.[arah] || '-'}</p>
+                                                            <p className="text-[8px] uppercase tracking-wider font-medium text-slate-400 mb-0.5">{arah}</p>
+                                                            <p className="font-medium text-[11px] text-slate-700 dark:text-slate-200 truncate">{infoDesa?.batas?.[arah] || '-'}</p>
                                                         </div>
                                                     ))}
                                                 </div>
@@ -3051,23 +3051,23 @@ import {
 
                                             {/* Kontak Darurat */}
                                             <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-5 shadow-sm flex-1 flex flex-col">
-                                                <h4 className="font-bold text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="contact_phone" className="text-red-500 text-[16px]"/> Layanan &amp; Kontak</h4>
+                                                <h4 className="font-medium text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="contact_phone" className="text-red-500 text-[16px]"/> Layanan &amp; Kontak</h4>
                                                 {infoDesa?.kontak && infoDesa?.kontak?.length > 0 ? (
                                                     <div className="space-y-2 max-h-48 overflow-y-auto hide-scrollbar pr-0.5">
                                                         {infoDesa?.kontak?.map((k, i) => (
                                                             <div key={k.id || i} className={`flex justify-between items-center bg-${k.color}-50/50 dark:bg-${k.color}-950/20 border border-${k.color}-500/10 dark:border-${k.color}-800/20 px-3.5 py-2.5 rounded-[12px]`}>
                                                                 <div className="flex items-center gap-2 min-w-0">
                                                                     <Icon name={k.icon || 'contact_phone'} className={`text-[15px] text-${k.color}-600 shrink-0`} fill="true"/>
-                                                                    <span className={`text-[11px] font-bold text-${k.color}-800 dark:text-${k.color}-300 truncate`}>{k.nama}</span>
+                                                                    <span className={`text-[11px] font-medium text-${k.color}-800 dark:text-${k.color}-300 truncate`}>{k.nama}</span>
                                                                 </div>
-                                                                <span className={`text-[11px] font-black text-${k.color}-750 dark:text-${k.color}-400 shrink-0`}>{k.telepon}</span>
+                                                                <span className={`text-[11px] font-medium text-${k.color}-750 dark:text-${k.color}-400 shrink-0`}>{k.telepon}</span>
                                                             </div>
                                                         ))}
                                                     </div>
                                                 ) : (
                                                     <div className="flex-1 flex flex-col items-center justify-center text-center py-4">
                                                         <Icon name="contact_phone" className="text-[28px] text-slate-300 dark:text-slate-600 mb-2" />
-                                                        <p className="text-[11.5px] font-bold text-slate-600 dark:text-slate-400">Kontak Darurat</p>
+                                                        <p className="text-[11.5px] font-medium text-slate-600 dark:text-slate-400">Kontak Darurat</p>
                                                         <p className="text-[10.5px] text-slate-400 mt-0.5">Belum ada kontak darurat. Login Admin untuk menambahkan.</p>
                                                     </div>
                                                 )}
@@ -3080,7 +3080,7 @@ import {
                             {/* SPONSOR SECTION DI LANDING PAGE */}
                             {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
                                 <section className="space-y-4 pt-4 max-w-6xl mx-auto w-full">
-                                    <p className="text-[9px] uppercase tracking-widest font-bold text-slate-400 text-center">{landingConfig.sponsorSubtitle}</p>
+                                    <p className="text-[9px] uppercase tracking-widest font-medium text-slate-400 text-center">{landingConfig.sponsorSubtitle}</p>
                                     <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-700 p-6 sm:p-8">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
                                             {sponsorsData.sponsors.map((s, i) => (
@@ -3093,8 +3093,8 @@ import {
 
                             {/* ADSENSE PLACEHOLDER */}
                             <section className="py-4 text-center border-t border-slate-200/30 max-w-xl mx-auto w-full px-4">
-                                <p className="text-[9px] font-extrabold tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-2">{landingConfig.footerInfoTitle}</p>
-                                <div className="w-full py-2.5 bg-slate-50/60 dark:bg-slate-800/40 rounded-[14px] border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center text-slate-550 dark:text-slate-400 text-[10.5px] font-semibold px-4 shadow-sm ">
+                                <p className="text-[9px] font-medium tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-2">{landingConfig.footerInfoTitle}</p>
+                                <div className="w-full py-2.5 bg-slate-50/60 dark:bg-slate-800/40 rounded-[14px] border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center text-slate-550 dark:text-slate-400 text-[10.5px] font-medium px-4 shadow-sm ">
                                     <Icon name="verified_user" className="text-[13px] mr-2 text-emerald-500" fill="true" />
                                     <span>{landingConfig.footerInfoDesc}</span>
                                 </div>
@@ -3109,7 +3109,7 @@ import {
                                 <div className="mx-auto mt-4 mb-5 bg-red-50/50 w-24 h-24 rounded-full flex items-center justify-center border-2 border-red-500/20 shadow-inner overflow-hidden">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"}  loading="lazy" decoding="async"/>
                                 </div>
-                                <h1 className="text-[18px] font-bold bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent mb-1 tracking-tight">Otorisasi Admin</h1>
+                                <h1 className="text-[18px] font-medium bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent mb-1 tracking-tight">Otorisasi Admin</h1>
                                 <p className="text-[12.5px] font-medium text-slate-600 mb-6 leading-snug">{identity.name}</p>
                                 
                                 <form onSubmit={handleAdminLogin} className="space-y-5 mt-2">
@@ -3126,8 +3126,8 @@ import {
                                     </div>
                                     {error && <p className="text-[11px] text-red-700 font-medium bg-red-50 py-2.5 rounded-xl border border-red-200 shadow-sm flex items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[14px]"/> {error}</p>}
                                     <div className="flex gap-3 pt-3">
-                                        <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3 rounded-xl font-bold text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
-                                        <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-xl font-bold text-[12.5px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
+                                        <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3 rounded-xl font-medium text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
+                                        <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-xl font-medium text-[12.5px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
                                     </div>
                                 </form>
                             </div>
@@ -3138,11 +3138,11 @@ import {
                     <footer className="w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-700 py-6 px-4 sm:py-8 sm:px-8 text-center z-10 relative mb-8 bg-white dark:bg-slate-900 shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
                         <div className="max-w-6xl mx-auto space-y-4">
                             <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
-                                <span className="font-bold text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah {landingConfig.footerTagline} {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
+                                <span className="font-medium text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah {landingConfig.footerTagline} {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
                             </p>
                             
                             {legalData?.enabled && (
-                                <div className="flex flex-wrap items-center justify-center gap-5 text-[11px] font-extrabold text-red-600 dark:text-red-400 pt-1">
+                                <div className="flex flex-wrap items-center justify-center gap-5 text-[11px] font-medium text-red-600 dark:text-red-400 pt-1">
                                     <button onClick={() => setShowLegalModal('terms')} className="hover:text-red-700 dark:hover:text-red-300 flex items-center gap-1.5 transition-colors"><Icon name="gavel" className="text-[13px]"/> Syarat &amp; Ketentuan</button>
                                     <span className="text-slate-300 dark:text-slate-700">|</span>
                                     <button onClick={() => setShowLegalModal('privacy')} className="hover:text-red-700 dark:hover:text-red-350 flex items-center gap-1.5 transition-colors"><Icon name="privacy_tip" className="text-[13px]"/> Kebijakan Privasi</button>
@@ -3151,7 +3151,7 @@ import {
 
                             <div className="pt-5 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
                                 <p className="text-[11px] text-slate-400 dark:text-slate-500">&copy; {new Date().getFullYear()} {identity.name || 'Portal RT Warga'}. {landingConfig.footerCopyright}</p>
-                                <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-50/60 dark:bg-slate-800/40 px-3 py-1 rounded-full border border-slate-100 dark:border-slate-800/50">
+                                <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-500 dark:text-slate-400 bg-slate-50/60 dark:bg-slate-800/40 px-3 py-1 rounded-full border border-slate-100 dark:border-slate-800/50">
                                     <Icon name="verified" className="text-[13px] text-emerald-500" fill="true" />
                                     <span>{landingConfig.footerSeo}</span>
                                 </div>
@@ -3170,7 +3170,7 @@ import {
                                     <div className={`w-7 h-7 rounded-full flex items-center justify-center ${selectedArticle.type === 'blog' ? 'bg-google-blueLight text-google-blueDark' : 'bg-red-50 text-red-600'}`}>
                                         <Icon name={selectedArticle.type === 'blog' ? 'article' : 'campaign'} className="text-[14px]" fill="true" />
                                     </div>
-                                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-slate-500">{selectedArticle.type === 'blog' ? 'Blog Warga' : 'Pengumuman'}</span>
+                                    <span className="text-[11px] font-medium uppercase tracking-widest text-slate-500">{selectedArticle.type === 'blog' ? 'Blog Warga' : 'Pengumuman'}</span>
                                 </div>
                                 <button onClick={() => setSelectedArticle(null)} className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-all active:scale-95">
                                     <Icon name="close" className="text-[18px] text-slate-600 dark:text-slate-300" />
@@ -3184,14 +3184,14 @@ import {
                             )}
                             {/* Konten */}
                             <div className="overflow-y-auto flex-1 p-6 sm:p-8 space-y-4">
-                                <div className="flex items-center gap-2 text-[10.5px] font-bold text-slate-400">
+                                <div className="flex items-center gap-2 text-[10.5px] font-medium text-slate-400">
                                     <Icon name="event" className="text-[13px]" />
                                     <span>{selectedArticle.date ? new Date(selectedArticle.date).toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) : '-'}</span>
                                     {selectedArticle.likes > 0 && (
                                         <span className="ml-auto flex items-center gap-1 text-red-400"><Icon name="favorite" className="text-[12px]" fill="true" />{selectedArticle.likes} suka</span>
                                     )}
                                 </div>
-                                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">{selectedArticle.title}</h2>
+                                <h2 className="text-xl sm:text-2xl font-medium text-slate-900 dark:text-white tracking-tight leading-tight">{selectedArticle.title}</h2>
                                 <div className="w-12 h-1 rounded-full bg-gradient-to-r from-red-500 to-rose-400"></div>
                                 <p className="text-[13.5px] font-medium text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                                     {selectedArticle.type === 'blog' ? selectedArticle.content : selectedArticle.description}
@@ -3199,13 +3199,13 @@ import {
                                 {/* Komentar blog */}
                                 {selectedArticle.type === 'blog' && selectedArticle.comments && selectedArticle.comments.length > 0 && (
                                     <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
-                                        <p className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-3">{selectedArticle.comments.length} Komentar</p>
+                                        <p className="text-[10px] font-medium uppercase tracking-widest text-slate-400 mb-3">{selectedArticle.comments.length} Komentar</p>
                                         <div className="space-y-3">
                                             {selectedArticle.comments.map(c => (
                                                 <div key={c.id} className="bg-slate-50 dark:bg-slate-800 rounded-[12px] p-3">
                                                     <div className="flex items-center gap-2 mb-1">
-                                                        <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200">{c.name}</span>
-                                                        {c.role === 'Admin' && <span className="text-[9px] font-bold bg-google-blue text-white px-1.5 py-0.5 rounded-full">Admin</span>}
+                                                        <span className="text-[11px] font-medium text-slate-800 dark:text-slate-200">{c.name}</span>
+                                                        {c.role === 'Admin' && <span className="text-[9px] font-medium bg-google-blue text-white px-1.5 py-0.5 rounded-full">Admin</span>}
                                                     </div>
                                                     <p className="text-[12px] text-slate-600 dark:text-slate-400">{c.text}</p>
                                                 </div>
@@ -3216,7 +3216,7 @@ import {
                             </div>
                             {/* Footer modal */}
                             <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-700 shrink-0">
-                                <button onClick={() => onLogin('warga')} className="w-full bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white py-3.5 rounded-[16px] font-bold text-[13px] flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all">
+                                <button onClick={() => onLogin('warga')} className="w-full bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white py-3.5 rounded-[16px] font-medium text-[13px] flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all">
                                     <Icon name="login" className="text-[16px]" fill="true" />
                                     Masuk ke Portal Warga untuk Interaksi Lebih
                                 </button>
@@ -3247,10 +3247,10 @@ import {
                         <div className="relative z-10 w-full text-left">
                             <div className="inline-flex items-center gap-1.5 bg-white/20  px-3.5 py-1.5 rounded-full mb-3 border border-white/20 shadow-sm w-fit">
                                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
-                                <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Sistem Aktif</span>
+                                <span className="text-[9px] font-medium uppercase tracking-widest text-white/90">Sistem Aktif</span>
                             </div>
                             
-                            <h2 className="text-2xl sm:text-3xl font-bold mb-1.5 tracking-tight text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.6)]">
+                            <h2 className="text-2xl sm:text-3xl font-medium mb-1.5 tracking-tight text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.6)]">
                                 Halo, {userRole === 'admin' ? 'Admin!' : 'Warga!'}
                             </h2>
                             <p className="text-[12.5px] sm:text-[13px] font-medium text-white/95 leading-relaxed [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">
@@ -3281,7 +3281,7 @@ import {
                                     <Icon name={item.icon} className="relative z-10 text-[26px] sm:text-[30px] drop-shadow-sm" fill="true" />
                                 </div>
                                 
-                                <span className="relative z-10 text-[12.5px] sm:text-[13px] font-bold text-google-textVariant group-hover:text-google-blueDark transition-colors tracking-tight">{item.label}</span>
+                                <span className="relative z-10 text-[12.5px] sm:text-[13px] font-medium text-google-textVariant group-hover:text-google-blueDark transition-colors tracking-tight">{item.label}</span>
                             </button>
                         ))}
                     </div>
@@ -3669,7 +3669,7 @@ import {
                             </div>
                             <div className="bg-white/80 dark:bg-red-900/40 border border-red-500/30 dark:border-red-500/30 px-5 py-2.5 rounded-[12px] shadow-sm text-center">
                                 <span className="text-[11px] font-medium text-red-800 dark:text-red-200 uppercase tracking-wider block">Waktu Mundur</span>
-                                <span className="text-[13px] font-bold text-red-600 dark:text-red-300 font-mono">{timeRemaining}</span>
+                                <span className="text-[13px] font-medium text-red-600 dark:text-red-300 font-mono">{timeRemaining}</span>
                             </div>
                         </div>
                     )}
@@ -3690,7 +3690,7 @@ import {
                                         <Icon name={p.icon} className="text-[17px]" fill="true"/>
                                     </div>
                                     <p className={`text-[11px] font-medium ${isUpcoming ? 'text-white' : 'text-google-textVariant'}`}>{p.name}</p>
-                                    <p className={`text-[14px] font-bold mt-1 font-mono ${isUpcoming ? 'text-white' : 'text-google-text'}`}>{p.time}</p>
+                                    <p className={`text-[14px] font-medium mt-1 font-mono ${isUpcoming ? 'text-white' : 'text-google-text'}`}>{p.time}</p>
                                 </div>
                             );
                         })}
@@ -4161,7 +4161,7 @@ import {
                                 {userRole === 'admin' && (
                                     <button onClick={() => setView(view === 'admin' ? 'list' : 'admin')} className={`flex items-center gap-2 px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 transition-all active:scale-95 ${view === 'admin' ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-300 hover:border-google-blue'}`}>
                                         <Icon name="admin_panel_settings" className="text-[16px]" />Panel Admin
-                                        {pendingList.length > 0 && <span className="bg-google-red text-white text-[9px] font-bold px-2 py-0.5 rounded-[10px]">{pendingList.length}</span>}
+                                        {pendingList.length > 0 && <span className="bg-google-red text-white text-[9px] font-medium px-2 py-0.5 rounded-[10px]">{pendingList.length}</span>}
                                     </button>
                                 )}
                                 <button onClick={() => { setView('form'); setErrorMsg(''); }} className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all">
@@ -5237,7 +5237,7 @@ import {
                                                 {parseLocalDate(selectedPhoto.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}
                                             </span>
                                         </div>
-                                        <h3 className="text-2xl font-bold text-google-text leading-tight tracking-tight">{selectedPhoto.title}</h3>
+                                        <h3 className="text-2xl font-medium text-google-text leading-tight tracking-tight">{selectedPhoto.title}</h3>
                                         <div className="bg-slate-50 border border-slate-300/60 p-5 sm:p-6 md:p-8 rounded-[22px] text-google-textVariant text-[13px] leading-relaxed font-medium whitespace-pre-line">
                                             {selectedPhoto.description || 'Tidak ada deskripsi rinci untuk kegiatan ini.'}
                                         </div>
@@ -5524,7 +5524,7 @@ import {
                                     {members.length === 0 ? <tr><td colSpan="6" className="text-center font-medium">Belum ada data.</td></tr> : members.map((m, idx) => (
                                         <tr key={m.id}>
                                             <td className="text-center font-medium">{idx + 1}</td>
-                                            <td className="font-medium">{m.name} {m.status === 'Meninggal' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Wafat</span>}{m.status === 'Nonaktif' && <span style={{fontSize:'9px', background:'#eee', padding:'2px'}}>Nonaktif</span>}</td>
+                                            <td className="font-medium">{m.name} {m.status === 'Meninggal' && <span className="text-[9px] bg-slate-200 px-1 rounded-sm text-slate-600">Wafat</span>}{m.status === 'Nonaktif' && <span className="text-[9px] bg-slate-200 px-1 rounded-sm text-slate-600">Nonaktif</span>}</td>
                                             <td className="text-center font-medium">{m.program === 'IuranOnly' ? 'Iuran Saja' : (m.program === 'ArisanOnly' ? 'Arisan Saja (Bebas Jimpitan)' : (m.program === 'JimpitanOnly' ? 'Jimpitan & Iuran Umum' : 'Arisan, Iuran & Jimpitan'))}</td>
                                             <td className="text-center font-medium">{m.program === 'IuranOnly' || m.program === 'JimpitanOnly' ? '-' : (m.hasWon ? `Menang (Put.${m.wonRound})` : 'Belum')}</td>
                                             <td className="text-right font-medium">{m.debt > 0 ? formatRp(m.debt) : '-'}</td><td></td>
@@ -6067,7 +6067,7 @@ import {
                         {Object.keys(groupedTransactions).map((monthYear) => (
                             <div key={monthYear} className="space-y-4">
                                 <div className="flex items-center gap-3 mb-2 px-2 pt-2">
-                                    <h4 className="text-[12px] font-bold text-slate-800 uppercase tracking-widest">{monthYear}</h4>
+                                    <h4 className="text-[12px] font-medium text-slate-800 uppercase tracking-widest">{monthYear}</h4>
                                     <div className="h-px bg-slate-300 flex-1"></div>
                                 </div>
                                 {groupedTransactions[monthYear].map((t) => (
@@ -6689,10 +6689,10 @@ labels: labels,
 datasets: [{
 label: 'Saldo Jimpitan (Rp)',
 data: dataPoints,
-borderColor: '#1a73e8',
-backgroundColor: 'rgba(26, 115, 232, 0.1)',
+borderColor: '#e11d48',
+backgroundColor: 'rgba(225, 29, 72, 0.1)',
 borderWidth: 3,
-pointBackgroundColor: '#1a73e8',
+pointBackgroundColor: '#e11d48',
 pointBorderColor: '#fff',
 pointBorderWidth: 2,
 pointRadius: 5,
@@ -7489,7 +7489,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             {activeMenu === 'whatsapp' && (
                                 <PengaturanSection title="Setelan Grup WhatsApp" onSave={() => handleSaveAll('whatsapp')}>
                                     <div className="bg-white dark:bg-slate-900 rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm">
-                                        <label className="text-[10px] font-bold text-google-textVariant block mb-1 uppercase tracking-widest">Link Undangan Grup WhatsApp (Invite Link)</label>
+                                        <label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Link Undangan Grup WhatsApp (Invite Link)</label>
                                         <input type="text" value={formLanding.whatsappGroupLink || ''} onChange={e => setFormLanding({...formLanding, whatsappGroupLink: e.target.value})} placeholder="Contoh: https://chat.whatsapp.com/..." className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-slate-800 dark:text-slate-100 placeholder:text-slate-400" />
                                     </div>
                                     <p className="text-[11px] text-slate-500 leading-normal flex items-start gap-1">
@@ -7508,7 +7508,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="w-12 h-12 rounded-[12px] bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 border border-slate-300"><Icon name="gavel" className="text-[20px]" /></div>
                                         <div>
-                                            <h2 className="text-[16px] md:text-[17px] font-bold text-slate-800 tracking-tight">Hukum & Kebijakan</h2>
+                                            <h2 className="text-[16px] md:text-[17px] font-medium text-slate-800 tracking-tight">Hukum & Kebijakan</h2>
                                             <p className="text-[12px] text-slate-500 font-medium">Syarat & Ketentuan serta Privasi</p>
                                         </div>
                                     </div>
@@ -8003,7 +8003,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <Icon name={k.icon || 'contact_phone'} className={`text-[16px] text-${k.color}-600`} fill="true"/>
                                             <span className={`text-[12px] font-medium text-${k.color}-800`}>{k.nama}</span>
                                         </div>
-                                        <span className={`text-[12px] font-bold text-${k.color}-700`}>{k.telepon}</span>
+                                        <span className={`text-[12px] font-medium text-${k.color}-700`}>{k.telepon}</span>
                                     </div>
                                 ))}
                                 {(!infoDesa.kontak || infoDesa.kontak.length === 0) && (
@@ -8144,7 +8144,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border-2 border-slate-300">
                             {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover"  loading="lazy" decoding="async"/>}
                             <div className="p-6 sm:p-8">
-                                <h2 className="text-2xl sm:text-3xl font-bold text-google-text mb-4 tracking-tight leading-tight">{article.title}</h2>
+                                <h2 className="text-2xl sm:text-3xl font-medium text-google-text mb-4 tracking-tight leading-tight">{article.title}</h2>
                                 <div className="flex items-center gap-4 text-[12px] font-medium text-google-textVariant mb-8 pb-6 border-b-2 border-slate-100">
                                     <span className="flex items-center gap-1.5"><Icon name="calendar_today" className="text-[14px]"/> {parseLocalDate(article.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'})}</span>
                                     <span className="flex items-center gap-1.5"><Icon name="person" className="text-[14px]"/> Ditulis oleh Admin</span>
@@ -8154,17 +8154,17 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 </div>
                                 
                                 <div className="mt-10 pt-6 border-t-2 border-slate-100 flex items-center gap-3">
-                                    <button onClick={() => handleLike(article.id)} className="flex items-center gap-2 px-5 py-2.5 rounded-[16px] bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 transition-colors active:scale-95"><Icon name="favorite" fill="true" className="text-[20px]" /> <span className="font-bold">{article.likes || 0} Suka</span></button>
-                                    <button onClick={() => handleShareBlog(article)} className="flex items-center gap-2 px-5 py-2.5 rounded-[16px] bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 transition-colors active:scale-95"><Icon name="share" className="text-[20px]" /> <span className="font-bold">Bagikan</span></button>
+                                    <button onClick={() => handleLike(article.id)} className="flex items-center gap-2 px-5 py-2.5 rounded-[16px] bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 transition-colors active:scale-95"><Icon name="favorite" fill="true" className="text-[20px]" /> <span className="font-medium">{article.likes || 0} Suka</span></button>
+                                    <button onClick={() => handleShareBlog(article)} className="flex items-center gap-2 px-5 py-2.5 rounded-[16px] bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 transition-colors active:scale-95"><Icon name="share" className="text-[20px]" /> <span className="font-medium">Bagikan</span></button>
                                 </div>
                             </div>
                         </div>
 
                         <div className="bg-white rounded-[24px] p-6 sm:p-8 shadow-sm border-2 border-slate-300">
-                            <h3 className="text-xl font-bold text-google-text mb-6">Komentar Warga ({article.comments?.length || 0})</h3>
+                            <h3 className="text-xl font-medium text-google-text mb-6">Komentar Warga ({article.comments?.length || 0})</h3>
                             
                             <div className="mb-8 p-5 bg-slate-50 rounded-[16px] border border-slate-200">
-                                <h4 className="text-[13px] font-bold text-google-text mb-3">Tulis Komentar</h4>
+                                <h4 className="text-[13px] font-medium text-google-text mb-3">Tulis Komentar</h4>
                                 <input type="text" value={commentName} onChange={e => setCommentName(e.target.value)} placeholder="Nama Anda (Misal: Budi RT 01)" className="w-full bg-white border border-slate-300 p-3 rounded-[12px] text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all" />
                                 <textarea value={commentText} onChange={e => setCommentText(e.target.value)} placeholder="Tulis pendapat atau pertanyaan Anda..." className="w-full bg-white border border-slate-300 p-3 rounded-[12px] text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all resize-none h-24"></textarea>
                                 {errorMsg && <p className="text-red-500 text-[12px] font-medium mb-3">{errorMsg}</p>}
@@ -8175,9 +8175,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 {(article.comments || []).map(c => (
                                     <div key={c.id} className="bg-white border-2 border-slate-100 p-5 rounded-[16px]">
                                         <div className="flex items-center gap-3 mb-2">
-                                            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold">{c.name.charAt(0).toUpperCase()}</div>
+                                            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-medium">{c.name.charAt(0).toUpperCase()}</div>
                                             <div>
-                                                <p className="font-bold text-[14px] text-google-text">{c.name} {c.role === 'Admin' && <span className="bg-google-blueLight text-google-blueDark px-2 py-0.5 rounded-[4px] text-[10px] ml-2">Admin</span>}</p>
+                                                <p className="font-medium text-[14px] text-google-text">{c.name} {c.role === 'Admin' && <span className="bg-google-blueLight text-google-blueDark px-2 py-0.5 rounded-[4px] text-[10px] ml-2">Admin</span>}</p>
                                                 <p className="text-[11px] text-google-textVariant">{new Date(c.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric', hour: '2-digit', minute:'2-digit'})}</p>
                                             </div>
                                         </div>
@@ -8185,7 +8185,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         
                                         {(c.replies || []).map(r => (
                                             <div key={r.id} className="mt-3 ml-6 pl-4 border-l-2 border-google-blue/30 bg-google-blueLight/30 p-3 rounded-r-[12px]">
-                                                <p className="font-bold text-[12px] text-google-blueDark flex items-center gap-1.5"><Icon name="admin_panel_settings" className="text-[14px]" /> Balasan Admin</p>
+                                                <p className="font-medium text-[12px] text-google-blueDark flex items-center gap-1.5"><Icon name="admin_panel_settings" className="text-[14px]" /> Balasan Admin</p>
                                                 <p className="text-[13px] text-slate-700 mt-1 whitespace-pre-wrap">{r.text}</p>
                                             </div>
                                         ))}
@@ -8219,9 +8219,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="relative z-10">
                             <div className="inline-flex items-center gap-2 bg-white/20  px-3.5 py-1.5 rounded-full mb-4 border border-white/30 shadow-sm">
                                 <Icon name="article" className="text-[14px] sm:text-[16px]" fill="true"/>
-                                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest">Warta Warga</span>
+                                <span className="text-[9px] sm:text-[10px] font-medium uppercase tracking-widest">Warta Warga</span>
                             </div>
-                            <h2 className="text-3xl sm:text-4xl font-bold mb-3 tracking-tight [text-shadow:_0_2px_10px_rgba(0,0,0,0.2)]">Blog & Artikel</h2>
+                            <h2 className="text-3xl sm:text-4xl font-medium mb-3 tracking-tight [text-shadow:_0_2px_10px_rgba(0,0,0,0.2)]">Blog & Artikel</h2>
                             <p className="text-[13px] sm:text-[14px] font-medium text-white/90 max-w-lg leading-relaxed">Berita, pengumuman, dan cerita menarik dari lingkungan kita.</p>
                         </div>
                         <Icon name="newspaper" className="absolute -bottom-6 -right-6 text-[140px] text-white opacity-20 transform -rotate-12" fill="true" />
@@ -8248,7 +8248,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 )}
                                 <div className="p-6 flex flex-col flex-1">
                                     <p className="text-[11px] font-medium text-google-textVariant mb-2 flex items-center gap-1.5"><Icon name="calendar_today" className="text-[13px]"/> {parseLocalDate(article.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
-                                    <h3 className="font-bold text-[16px] text-google-text mb-3 line-clamp-2 leading-snug group-hover:text-google-blue transition-colors">{article.title}</h3>
+                                    <h3 className="font-medium text-[16px] text-google-text mb-3 line-clamp-2 leading-snug group-hover:text-google-blue transition-colors">{article.title}</h3>
                                     <p className="text-[13px] text-slate-500 line-clamp-3 flex-1 mb-4 leading-relaxed whitespace-pre-wrap">{article.content}</p>
                                     <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
                                         <div className="flex gap-4">
@@ -8267,25 +8267,25 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </a>
                         ))}
                     </div>
-                    {blogData.length === 0 && <div className="bg-white rounded-[24px] border-2 border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border-2 border-slate-300"><Icon name="article" className="text-[48px] text-slate-400" /></div><h3 className="font-bold text-[18px] text-google-text mb-2">Belum Ada Artikel</h3><p className="text-google-textVariant font-medium text-[13px]">Artikel atau blog yang diterbitkan oleh Admin akan muncul di sini.</p></div>}
+                    {blogData.length === 0 && <div className="bg-white rounded-[24px] border-2 border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border-2 border-slate-300"><Icon name="article" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2">Belum Ada Artikel</h3><p className="text-google-textVariant font-medium text-[13px]">Artikel atau blog yang diterbitkan oleh Admin akan muncul di sini.</p></div>}
                 </div>
 
                     {isFormOpen && (
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto hide-scrollbar -slate-300 modal-card animate-modal-in">
-                                <h3 className="text-2xl font-bold text-google-text mb-6 tracking-tight">{editingId ? 'Edit Artikel' : 'Tulis Artikel Baru'}</h3>
+                                <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Artikel' : 'Tulis Artikel Baru'}</h3>
                                 <div className="space-y-5">
-                                    <div><label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest block mb-2 ml-1">Judul Artikel</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all" placeholder="Tulis judul yang menarik..." /></div>
-                                    <div><label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest block mb-2 ml-1">Isi Konten</label><textarea value={formData.content} onChange={e => {setFormData({...formData, content: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all h-48 resize-y" placeholder="Tulis cerita atau informasi lengkap di sini..."></textarea></div>
+                                    <div><label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Judul Artikel</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all" placeholder="Tulis judul yang menarik..." /></div>
+                                    <div><label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Isi Konten</label><textarea value={formData.content} onChange={e => {setFormData({...formData, content: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all h-48 resize-y" placeholder="Tulis cerita atau informasi lengkap di sini..."></textarea></div>
                                     <div>
-                                        <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest block mb-2 ml-1">Upload Gambar Cover (Opsional)</label>
+                                        <label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Upload Gambar Cover (Opsional)</label>
                                         <div className={`flex items-center gap-4 bg-slate-50 border-2 ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                             <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
                                                 {isUploading ? <div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div> : <Icon name="image" className="text-[20px]" />}
                                             </div>
                                             <div className="relative z-0 flex-1 min-w-0">
-                                                <p className="font-bold text-[13px] text-google-text truncate">{isUploading ? "Mengunggah..." : (formData.imageUrl ? "Gambar Siap" : "Pilih Gambar")}</p>
+                                                <p className="font-medium text-[13px] text-google-text truncate">{isUploading ? "Mengunggah..." : (formData.imageUrl ? "Gambar Siap" : "Pilih Gambar")}</p>
                                                 <p className="text-[11px] text-google-textVariant truncate">{formData.imageUrl ? "Klik untuk mengganti gambar" : "Maksimal 10MB"}</p>
                                             </div>
                                             {formData.imageUrl && !isUploading && (
@@ -8296,8 +8296,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     {errorMsg && <div className="bg-red-50 text-red-600 px-4 py-3.5 rounded-[12px] text-[12px] font-medium flex items-center gap-2 border border-red-200"><Icon name="error" /> {errorMsg}</div>}
                                 </div>
                                 <div className="flex gap-3 mt-8 pt-6 border-t border-slate-100">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-1/3 bg-white text-google-text border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all active:scale-95 shadow-sm">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Terbitkan</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-1/3 bg-white text-google-text border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 transition-all active:scale-95 shadow-sm">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Terbitkan</button>
                                 </div>
                             </div>
                         </div>
@@ -8307,11 +8307,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-100 text-red-500"><Icon name="delete_forever" className="text-[48px]" fill="true" /></div>
-                                <h3 className="text-2xl font-bold text-google-text mb-2">Hapus Artikel?</h3>
+                                <h3 className="text-2xl font-medium text-google-text mb-2">Hapus Artikel?</h3>
                                 <p className="text-[13px] text-slate-500 mb-8 leading-relaxed">Artikel ini dan semua komentar di dalamnya akan dihapus secara permanen. Anda yakin?</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 bg-white border-2 border-slate-300 text-google-text px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
-                                    <button onClick={() => handleDelete(deleteConfirmId)} className="flex-1 bg-red-500 text-white border-2 border-red-600 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-red-600 active:scale-95 transition-all shadow-md">Hapus Permanen</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 bg-white border-2 border-slate-300 text-google-text px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={() => handleDelete(deleteConfirmId)} className="flex-1 bg-red-500 text-white border-2 border-red-600 px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-red-600 active:scale-95 transition-all shadow-md">Hapus Permanen</button>
                                 </div>
                             </div>
                         </div>
@@ -8344,7 +8344,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             if (timeLeft.expired) {
                 return (
-                    <div className="flex items-center gap-1.5 bg-red-500 text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full shadow-md">
+                    <div className="flex items-center gap-1.5 bg-red-500 text-white text-[10px] font-medium px-3 py-1.5 rounded-full shadow-md">
                         <Icon name="timer_off" className="text-[13px]" fill="true" />
                         Pembelian Ditutup
                     </div>
@@ -8353,7 +8353,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             const urgent = timeLeft.days === 0;
             return (
-                <div className={`flex items-center gap-1.5 text-[10px] font-extrabold px-3 py-1.5 rounded-full shadow-md ${urgent ? 'bg-rose-500 text-white animate-pulse' : 'bg-amber-400 text-amber-950'}`}>
+                <div className={`flex items-center gap-1.5 text-[10px] font-medium px-3 py-1.5 rounded-full shadow-md ${urgent ? 'bg-rose-500 text-white animate-pulse' : 'bg-amber-400 text-amber-950'}`}>
                     <Icon name="timer" className="text-[13px]" fill="true" />
                     {timeLeft.days > 0 && <span>{timeLeft.days}h </span>}
                     <span>{String(timeLeft.hours).padStart(2,'0')}:{String(timeLeft.mins).padStart(2,'0')}:{String(timeLeft.secs).padStart(2,'0')}</span>
@@ -8771,7 +8771,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
                                 </div>
-                                <h3 className="text-xl font-bold text-slate-800 mb-2">Berhasil</h3>
+                                <h3 className="text-xl font-medium text-slate-800 mb-2">Berhasil</h3>
                                 <p className="text-slate-650 font-medium mb-8 text-[13px]">{modalConfig.message}</p>
                                 <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white font-medium py-3.5 rounded-[12px] transition-all">Tutup</button>
                             </div>
@@ -8786,22 +8786,22 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="bg-white p-6 rounded-[24px] border-2 border-slate-200 shadow-sm flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-[14px] bg-google-blueLight border border-google-blue/30 text-google-blueDark flex items-center justify-center shrink-0"><Icon name="trending_up" className="text-[24px]" /></div>
                                     <div>
-                                        <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Total Tiket Terjual</p>
-                                        <h4 className="text-xl font-bold text-slate-800">{stats.totalSold} <span className="text-[11px] font-medium text-slate-500">Tiket</span></h4>
+                                        <p className="text-[10px] uppercase tracking-wider font-medium text-slate-400">Total Tiket Terjual</p>
+                                        <h4 className="text-xl font-medium text-slate-800">{stats.totalSold} <span className="text-[11px] font-medium text-slate-500">Tiket</span></h4>
                                     </div>
                                 </div>
                                 <div className="bg-white p-6 rounded-[24px] border-2 border-slate-200 shadow-sm flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-[14px] bg-emerald-50 border border-emerald-200 text-emerald-500 flex items-center justify-center shrink-0"><Icon name="payments" className="text-[24px]" /></div>
                                     <div>
-                                        <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Total Pendapatan</p>
-                                        <h4 className="text-xl font-bold text-slate-800">{formatRp(stats.revenue)}</h4>
+                                        <p className="text-[10px] uppercase tracking-wider font-medium text-slate-400">Total Pendapatan</p>
+                                        <h4 className="text-xl font-medium text-slate-800">{formatRp(stats.revenue)}</h4>
                                     </div>
                                 </div>
                                 <div className="bg-white p-6 rounded-[24px] border-2 border-slate-200 shadow-sm flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-[14px] bg-amber-50 border border-amber-205 text-amber-500 flex items-center justify-center shrink-0"><Icon name="schedule" className="text-[24px]" /></div>
                                     <div>
-                                        <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Pesanan Pending</p>
-                                        <h4 className="text-xl font-bold text-slate-800">{stats.pendingCount} <span className="text-[11px] font-medium text-slate-500">Pesanan</span></h4>
+                                        <p className="text-[10px] uppercase tracking-wider font-medium text-slate-400">Pesanan Pending</p>
+                                        <h4 className="text-xl font-medium text-slate-800">{stats.pendingCount} <span className="text-[11px] font-medium text-slate-500">Pesanan</span></h4>
                                     </div>
                                 </div>
                             </div>
@@ -8809,11 +8809,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             {/* Sub Navigation */}
                             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
                                 <div className="flex gap-2">
-                                    <button onClick={() => setActiveSubTab('orders')} className={`px-4 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'orders' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="receipt_long" /> Pesanan Masuk</button>
-                                    <button onClick={() => setActiveSubTab('products')} className={`px-4 py-2.5 rounded-[12px] font-bold text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'products' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="inventory_2" /> Kelola Produk</button>
+                                    <button onClick={() => setActiveSubTab('orders')} className={`px-4 py-2.5 rounded-[12px] font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'orders' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="receipt_long" /> Pesanan Masuk</button>
+                                    <button onClick={() => setActiveSubTab('products')} className={`px-4 py-2.5 rounded-[12px] font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'products' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="inventory_2" /> Kelola Produk</button>
                                 </div>
                                 {activeSubTab === 'products' && (
-                                    <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-google-blue hover:bg-google-blueDark text-white px-4 py-2.5 rounded-[12px] font-bold text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
+                                    <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-google-blue hover:bg-google-blueDark text-white px-4 py-2.5 rounded-[12px] font-medium text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
                                 )}
                             </div>
 
@@ -8827,13 +8827,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         </div>
                                         <div className="flex gap-1.5 overflow-x-auto pb-1.5 sm:pb-0 shrink-0">
                                             {['all', 'pending', 'processed', 'completed', 'cancelled'].map(status => (
-                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-[12px] text-[11px] font-bold border-2 transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-google-blueLight text-google-blueDark border-google-blue/30' : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
+                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-[12px] text-[11px] font-medium border-2 transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-google-blueLight text-google-blueDark border-google-blue/30' : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
                                             ))}
                                         </div>
                                     </div>
 
                                     {filteredOrders.length === 0 ? (
-                                        <div className="bg-white border-2 border-slate-200 p-12 text-center rounded-[24px]"><div className="w-16 h-16 bg-slate-50 border border-slate-250 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400"><Icon name="receipt" className="text-[28px]" /></div><p className="text-[13px] font-bold text-slate-800">Tidak ada pesanan ditemukan.</p></div>
+                                        <div className="bg-white border-2 border-slate-200 p-12 text-center rounded-[24px]"><div className="w-16 h-16 bg-slate-50 border border-slate-250 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400"><Icon name="receipt" className="text-[28px]" /></div><p className="text-[13px] font-medium text-slate-800">Tidak ada pesanan ditemukan.</p></div>
                                     ) : (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             {filteredOrders.map(order => (
@@ -8845,17 +8845,17 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                     <Icon name="receipt_long" className="text-[16px]" />
                                                                 </div>
                                                                 <div>
-                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ID Pesanan</p>
-                                                                    <p className="text-[12px] font-extrabold text-slate-700">#TKT-{String(order.id).slice(-6)}</p>
+                                                                    <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wider">ID Pesanan</p>
+                                                                    <p className="text-[12px] font-medium text-slate-700">#TKT-{String(order.id).slice(-6)}</p>
                                                                 </div>
                                                             </div>
-                                                            <span className={`text-[10px] font-bold px-3 py-1.5 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
+                                                            <span className={`text-[10px] font-medium px-3 py-1.5 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
 
                                                         <div className="bg-slate-50 rounded-[14px] p-4 border border-slate-100 space-y-3">
                                                             <div className="flex justify-between items-start">
                                                                 <div className="flex-1">
-                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Pemesan</p>
+                                                                    <p className="text-[10px] font-medium text-slate-400 uppercase">Pemesan</p>
                                                                     {/* Nama Pemesan — inline edit oleh admin */}
                                                                     {editingBuyerName && editingBuyerName.orderId === order.id ? (
                                                                         <div className="flex items-center gap-2 mt-1">
@@ -8865,7 +8865,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                                 value={editingBuyerName.value}
                                                                                 onChange={e => setEditingBuyerName({ orderId: order.id, value: e.target.value.toUpperCase() })}
                                                                                 onKeyDown={e => { if (e.key === 'Enter') handleSaveBuyerName(order.id); if (e.key === 'Escape') setEditingBuyerName(null); }}
-                                                                                className="flex-1 bg-amber-50 border-2 border-amber-400 rounded-[10px] px-3 py-1.5 text-[14px] font-extrabold text-slate-800 uppercase outline-none focus:shadow-md tracking-wide"
+                                                                                className="flex-1 bg-amber-50 border-2 border-amber-400 rounded-[10px] px-3 py-1.5 text-[14px] font-medium text-slate-800 uppercase outline-none focus:shadow-md tracking-wide"
                                                                             />
                                                                             <button onClick={() => handleSaveBuyerName(order.id)} className="w-7 h-7 rounded-[8px] bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shrink-0 transition-colors" title="Simpan">
                                                                                 <Icon name="check" className="text-[14px]" />
@@ -8876,7 +8876,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                         </div>
                                                                     ) : (
                                                                         <div className="flex items-center gap-2 group mt-0.5">
-                                                                            <h4 className="font-extrabold text-[15px] text-slate-800 uppercase tracking-wide">{order.buyerName}</h4>
+                                                                            <h4 className="font-medium text-[15px] text-slate-800 uppercase tracking-wide">{order.buyerName}</h4>
                                                                             <button
                                                                                 onClick={() => setEditingBuyerName({ orderId: order.id, value: order.buyerName })}
                                                                                 className="opacity-0 group-hover:opacity-100 w-6 h-6 rounded-[6px] bg-amber-50 hover:bg-amber-100 text-amber-600 border border-amber-200 flex items-center justify-center shrink-0 transition-all"
@@ -8888,14 +8888,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                     )}
                                                                 </div>
                                                                 <div className="text-right ml-2 shrink-0">
-                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Total</p>
-                                                                    <p className="text-[14px] font-black text-rose-600">{formatRp(order.totalPrice)}</p>
+                                                                    <p className="text-[10px] font-medium text-slate-400 uppercase">Total</p>
+                                                                    <p className="text-[14px] font-medium text-rose-600">{formatRp(order.totalPrice)}</p>
                                                                 </div>
                                                             </div>
 
                                                             <div className="pt-2 border-t border-slate-200">
-                                                                <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">Rincian Tiket</p>
-                                                                <p className="text-[12.5px] font-bold text-slate-700">{order.productName} <span className="text-slate-500 font-medium">x{order.quantity} Pcs</span></p>
+                                                                <p className="text-[10px] font-medium text-slate-400 uppercase mb-1">Rincian Tiket</p>
+                                                                <p className="text-[12.5px] font-medium text-slate-700">{order.productName} <span className="text-slate-500 font-medium">x{order.quantity} Pcs</span></p>
                                                             </div>
                                                         </div>
 
@@ -8906,7 +8906,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                         <Icon name="local_shipping" className="text-[13px] text-rose-500" />
                                                                     </div>
                                                                     <div>
-                                                                        <span className="font-bold text-slate-800">Diantar ke Rumah</span>
+                                                                        <span className="font-medium text-slate-800">Diantar ke Rumah</span>
                                                                         <p className="text-[11px] text-slate-500 mt-0.5">Waktu: {order.deliveryDay || '-'}, {order.deliveryTime || '-'}</p>
                                                                     </div>
                                                                 </div>
@@ -8916,10 +8916,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                         <Icon name="location_on" className="text-[13px] text-rose-500" />
                                                                     </div>
                                                                     <div>
-                                                                        <span className="font-bold text-slate-800">Ambil Sendiri</span>
+                                                                        <span className="font-medium text-slate-800">Ambil Sendiri</span>
                                                                         <p className="text-[11px] text-slate-500 mt-0.5">{order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}</p>
                                                                         {order.pickupGeoUrl && (
-                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1 text-rose-600 hover:underline inline-flex items-center gap-1 font-bold"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
+                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1 text-rose-600 hover:underline inline-flex items-center gap-1 font-medium"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
                                                                         )}
                                                                     </div>
                                                                 </div>
@@ -8927,13 +8927,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             {order.notes && (
                                                                 <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-amber-50 p-3 rounded-[12px] border border-amber-100">
                                                                     <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-amber-500" />
-                                                                    <span><span className="font-bold text-slate-800">Catatan:</span> {order.notes}</span>
+                                                                    <span><span className="font-medium text-slate-800">Catatan:</span> {order.notes}</span>
                                                                 </div>
                                                             )}
                                                         </div>
 
                                                         <div className="flex items-center justify-between mt-4">
-                                                            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
+                                                            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
                                                                 <Icon name="event" className="text-[13px]" /> {order.timestamp}
                                                             </div>
                                                         </div>
@@ -8943,16 +8943,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     {order.status !== 'completed' && order.status !== 'cancelled' ? (
                                                         <div className="flex gap-2 border-t border-slate-200 pt-3.5">
                                                             {order.status === 'pending' && (
-                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
                                                             )}
                                                             {order.status === 'processed' && (
-                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
                                                             )}
-                                                            <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
+                                                            <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
                                                         </div>
                                                     ) : (
                                                         <div className="flex gap-2 border-t border-slate-200 pt-3.5">
-                                                            <button onClick={() => handleDeleteOrderLog(order.id)} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus Log Pesanan</button>
+                                                            <button onClick={() => handleDeleteOrderLog(order.id)} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus Log Pesanan</button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -8971,24 +8971,24 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 {prod.imageUrl ? (
                                                     <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                 ) : (
-                                                    <div className="text-slate-400 flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[11px] font-bold">Tidak ada foto</span></div>
+                                                    <div className="text-slate-400 flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[11px] font-medium">Tidak ada foto</span></div>
                                                 )}
-                                                <div className="absolute top-3 right-3 bg-slate-900/75 text-white text-[10px] font-bold px-3 py-1.5 rounded-full ">Stok: {prod.stock}</div>
+                                                <div className="absolute top-3 right-3 bg-slate-900/75 text-white text-[10px] font-medium px-3 py-1.5 rounded-full ">Stok: {prod.stock}</div>
                                             </div>
                                             <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                                                 <div>
-                                                    <h4 className="font-extrabold text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
-                                                    <p className="text-[12px] font-bold text-google-blue mt-1">{formatRp(prod.price)}</p>
+                                                    <h4 className="font-medium text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
+                                                    <p className="text-[12px] font-medium text-google-blue mt-1">{formatRp(prod.price)}</p>
                                                     <p className={`text-[11.5px] font-medium text-slate-500 mt-2 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     {(prod.description || '').length > 80 && (
-                                                        <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-bold text-google-blue hover:underline">
+                                                        <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-medium text-google-blue hover:underline">
                                                             {expandedDescId === prod.id ? '↑ Tutup' : '↓ Selengkapnya'}
                                                         </button>
                                                     )}
                                                     
                                                     <div className="mt-3 space-y-1.5">
-                                                        <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 bg-slate-50 px-2.5 py-1.5 rounded-[8px] w-fit border border-slate-200"><Icon name="shopping_bag" className="text-[13px]" /> Terjual: {prod.sold || 0} Pcs</div>
-                                                        <div className="flex items-center gap-1 text-[10px] font-bold text-slate-500"><Icon name="location_on" className="text-[13px] text-google-blue" /> {prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</div>
+                                                        <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-400 bg-slate-50 px-2.5 py-1.5 rounded-[8px] w-fit border border-slate-200"><Icon name="shopping_bag" className="text-[13px]" /> Terjual: {prod.sold || 0} Pcs</div>
+                                                        <div className="flex items-center gap-1 text-[10px] font-medium text-slate-500"><Icon name="location_on" className="text-[13px] text-google-blue" /> {prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</div>
                                                     </div>
                                                 </div>
                                                 <div className="flex gap-2 pt-3 border-t-2 border-slate-100 mt-1">
@@ -9006,40 +9006,40 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             {isProductModalOpen && (
                                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                                     <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto -slate-350 modal-card animate-modal-in">
-                                        <h3 className="text-xl font-bold text-slate-800 mb-6 tracking-tight">{editingProduct ? 'Edit Produk Tiket' : 'Tambah Produk Tiket Baru'}</h3>
+                                        <h3 className="text-xl font-medium text-slate-800 mb-6 tracking-tight">{editingProduct ? 'Edit Produk Tiket' : 'Tambah Produk Tiket Baru'}</h3>
                                         <div className="space-y-4">
                                             <div>
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Tiket / Produk</label>
+                                                <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Tiket / Produk</label>
                                                 <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Tiket Jalan Santai RT Pakem" />
                                             </div>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
-                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Harga (Rp)</label>
+                                                    <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Harga (Rp)</label>
                                                     <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 5000" />
                                                 </div>
                                                 <div>
-                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Stok Tiket</label>
+                                                    <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Stok Tiket</label>
                                                     <input type="number" value={productForm.stock} onChange={e => setProductForm({...productForm, stock: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 100" />
                                                 </div>
                                             </div>
                                             
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
-                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lokasi Pengambilan</label>
+                                                    <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lokasi Pengambilan</label>
                                                     <input type="text" value={productForm.pickupLocationName} onChange={e => setProductForm({...productForm, pickupLocationName: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Rumah Mas Novan / Rumah Pak RT" />
                                                 </div>
                                                 <div>
-                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Link Google Maps Lokasi</label>
+                                                    <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Link Google Maps Lokasi</label>
                                                     <input type="text" value={productForm.pickupGeoUrl} onChange={e => setProductForm({...productForm, pickupGeoUrl: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: https://maps.google.com/..." />
                                                 </div>
                                             </div>
 
                                             <div>
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Deskripsi Tiket</label>
+                                                <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Deskripsi Tiket</label>
                                                 <textarea value={productForm.description} onChange={e => setProductForm({...productForm, description: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all h-24 resize-none" placeholder="Tuliskan info doorprize, aturan, jadwal, dll..."></textarea>
                                             </div>
                                             <div className="bg-rose-50 border-2 border-rose-200 rounded-[16px] p-4 space-y-2">
-                                                <label className="text-[10px] font-bold text-rose-500 uppercase tracking-wider flex items-center gap-1.5">
+                                                <label className="text-[10px] font-medium text-rose-500 uppercase tracking-wider flex items-center gap-1.5">
                                                     <Icon name="timer" className="text-[14px]" fill="true" /> Batas Waktu Pembelian (Deadline)
                                                 </label>
                                                 <input
@@ -9053,14 +9053,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 </p>
                                             </div>
                                             <div>
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Upload Foto Cover (Opsional)</label>
+                                                <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Upload Foto Cover (Opsional)</label>
                                                 <div className={`flex items-center gap-4 bg-slate-50 border-2 ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                                     <input type="file" accept="image/*" onChange={handleProductImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                                     <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
                                                         {isUploading ? <div className="w-5 h-5 border-2 border-google-blue border-t-transparent rounded-full animate-spin"></div> : <Icon name="image" className="text-[20px]" />}
                                                     </div>
                                                     <div className="relative z-0 flex-1 min-w-0">
-                                                        <p className="font-bold text-[13px] text-google-text truncate">{isUploading ? "Mengunggah..." : (productForm.imageUrl ? "Gambar Siap" : "Pilih Gambar")}</p>
+                                                        <p className="font-medium text-[13px] text-google-text truncate">{isUploading ? "Mengunggah..." : (productForm.imageUrl ? "Gambar Siap" : "Pilih Gambar")}</p>
                                                         <p className="text-[11px] text-google-textVariant truncate">{productForm.imageUrl ? "Klik untuk mengganti" : "Maksimal 10MB"}</p>
                                                     </div>
                                                     {productForm.imageUrl && !isUploading && (
@@ -9079,7 +9079,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         className="w-4.5 h-4.5 text-google-blue rounded border-slate-300 focus:ring-google-blue"
                                                     />
                                                     <div className="flex-1">
-                                                        <span className="text-[12.5px] font-bold text-slate-800">Arsipkan Event ini</span>
+                                                        <span className="text-[12.5px] font-medium text-slate-800">Arsipkan Event ini</span>
                                                         <p className="text-[10px] text-slate-500 font-medium leading-tight">Pindahkan event ini dari daftar aktif ke riwayat arsip event</p>
                                                     </div>
                                                 </label>
@@ -9091,12 +9091,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <button
                                                         type="button"
                                                         onClick={() => handleResetSales(editingProduct.id)}
-                                                        className="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-250 py-3 rounded-[14px] text-[11.5px] font-bold transition-colors flex items-center justify-center gap-1.5"
+                                                        className="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-250 py-3 rounded-[14px] text-[11.5px] font-medium transition-colors flex items-center justify-center gap-1.5"
                                                     >
                                                         <Icon name="restart_alt" className="text-[16px]" />
                                                         Reset Penjualan & Pembelian (Hapus Riwayat)
                                                     </button>
-                                                    <p className="text-[9px] text-slate-400 font-bold ml-1 mt-1 flex items-start gap-1">
+                                                    <p className="text-[9px] text-slate-400 font-medium ml-1 mt-1 flex items-start gap-1">
                                                         <Icon name="warning" className="text-[11px] text-amber-500 shrink-0" />
                                                         PENTING: Seluruh pesanan masuk (order) untuk produk ini akan dihapus permanen dari sistem.
                                                     </p>
@@ -9106,8 +9106,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             {productError && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {productError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
-                                            <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
-                                            <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
+                                            <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
+                                            <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
                                         </div>
 
                                     </div>
@@ -9121,8 +9121,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             <div className="bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark rounded-[28px] p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
                                 <div className="absolute inset-0 bg-black/10"></div>
                                 <div className="relative z-10">
-                                    <span className="bg-white/25  px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border border-white/20">EVENT RT PAKEM</span>
-                                    <h2 className="text-2xl sm:text-3xl font-extrabold mt-3 tracking-tight">Katalog Tiket Jalan Santai</h2>
+                                    <span className="bg-white/25  px-3 py-1 rounded-full text-[10px] font-medium tracking-widest uppercase border border-white/20">EVENT RT PAKEM</span>
+                                    <h2 className="text-2xl sm:text-3xl font-medium mt-3 tracking-tight">Katalog Tiket Jalan Santai</h2>
                                     <p className="text-[12px] sm:text-[13px] text-white/95 mt-1.5 max-w-xl leading-relaxed font-medium">
                                         Beli tiket jalan santai Anda secara online di sini! Silakan lakukan pembayaran di tempat (COD) langsung saat mengambil tiket di lokasi pengambilan yang telah ditentukan.
                                     </p>
@@ -9131,21 +9131,21 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Warga Sub Tabs */}
                             <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 p-2 rounded-[24px] shadow-sm flex gap-2 overflow-x-auto scrollbar-none whitespace-nowrap items-center">
-                                <button onClick={() => setActiveSubTab('shop')} className={`px-4 py-2.5 rounded-[16px] font-bold text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('shop')} className={`px-4 py-2.5 rounded-[16px] font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="shopping_bag" className="text-[15px]" />
                                     <span>Beli Tiket</span>
                                 </button>
-                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-4 py-2.5 rounded-[16px] font-bold text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-4 py-2.5 rounded-[16px] font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="confirmation_number" className="text-[15px]" />
                                     <span>Tiket Saya</span>
-                                    {myTicketsFiltered.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-bold px-1.5 py-0.5 rounded-[8px] shrink-0 ml-1 leading-none">{myTicketsFiltered.length}</span>}
+                                    {myTicketsFiltered.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-medium px-1.5 py-0.5 rounded-[8px] shrink-0 ml-1 leading-none">{myTicketsFiltered.length}</span>}
                                 </button>
-                                <button onClick={() => setActiveSubTab('buyers_list')} className={`px-4 py-2.5 rounded-[16px] font-bold text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('buyers_list')} className={`px-4 py-2.5 rounded-[16px] font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="groups" className="text-[15px]" />
                                     <span>Daftar Pembeli</span>
-                                    {buyersList.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-bold px-1.5 py-0.5 rounded-[8px] shrink-0 ml-1 leading-none">{buyersList.length}</span>}
+                                    {buyersList.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-medium px-1.5 py-0.5 rounded-[8px] shrink-0 ml-1 leading-none">{buyersList.length}</span>}
                                 </button>
-                                <button onClick={() => setActiveSubTab('archive')} className={`px-4 py-2.5 rounded-[16px] font-bold text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'archive' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('archive')} className={`px-4 py-2.5 rounded-[16px] font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'archive' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="archive" className="text-[15px]" />
                                     <span>Arsip Event</span>
                                 </button>
@@ -9163,7 +9163,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-250 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
                                             <Icon name="local_activity" className="text-[28px]" />
                                         </div>
-                                        <p className="text-[13px] font-bold text-slate-800 dark:text-slate-200">Tidak ada event tiket aktif saat ini.</p>
+                                        <p className="text-[13px] font-medium text-slate-800 dark:text-slate-200">Tidak ada event tiket aktif saat ini.</p>
                                         <p className="text-[11.5px] text-slate-500 dark:text-slate-400 mt-1">Silakan kunjungi tab "Arsip Event" untuk melihat riwayat event sebelumnya.</p>
                                     </div>
                                 ) : (
@@ -9179,16 +9179,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <div className="w-14 h-14 rounded-[16px] bg-gradient-to-tr from-google-blue to-indigo-500 text-white flex items-center justify-center shadow-md mb-2">
                                                                 <Icon name="local_activity" className="text-[26px]" />
                                                             </div>
-                                                            <span className="text-[10px] font-extrabold uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
+                                                            <span className="text-[10px] font-medium uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
                                                         </div>
                                                     )}
                                                     {/* Official Store Badge — top left */}
-                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-[8px] shadow-md shadow-amber-500/20  border border-white/20 tracking-wide">
+                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9px] font-medium px-2.5 py-1 rounded-[8px] shadow-md shadow-amber-500/20  border border-white/20 tracking-wide">
                                                         <Icon name="verified" className="text-[12px]" fill="true" />
                                                         OFFICIAL
                                                     </div>
                                                     {/* Stock Pill — top right */}
-                                                    <div className={`absolute top-3.5 right-3.5 text-[9.5px] font-extrabold px-2.5 py-1 rounded-[8px]  shadow-md border ${prod.stock > 0 ? 'bg-slate-900/75 dark:bg-slate-950/75 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20'}`}>
+                                                    <div className={`absolute top-3.5 right-3.5 text-[9.5px] font-medium px-2.5 py-1 rounded-[8px]  shadow-md border ${prod.stock > 0 ? 'bg-slate-900/75 dark:bg-slate-950/75 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20'}`}>
                                                         {prod.stock > 0 ? `Stok: ${prod.stock}` : 'Stok Habis'}
                                                     </div>
                                                     {/* Countdown Timer overlay — bottom right */}
@@ -9202,14 +9202,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 {/* Details */}
                                                 <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
                                                     <div className="space-y-3">
-                                                        <p className="text-[10.5px] font-bold text-google-blue mb-[-4px] uppercase tracking-wider">SKU: {prod.sku || ('TKT-' + String(prod.id).substring(8))}</p>
-                                                        <h4 className="font-extrabold text-[15px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-1">{prod.name}</h4>
+                                                        <p className="text-[10.5px] font-medium text-google-blue mb-[-4px] uppercase tracking-wider">SKU: {prod.sku || ('TKT-' + String(prod.id).substring(8))}</p>
+                                                        <h4 className="font-medium text-[15px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-1">{prod.name}</h4>
                                                         
                                                         {/* Price and Sold Row */}
                                                         <div className="flex items-center justify-between">
-                                                            <span className="text-base sm:text-lg font-black text-rose-550 dark:text-rose-450">{formatRp(prod.price)}</span>
+                                                            <span className="text-base sm:text-lg font-medium text-rose-550 dark:text-rose-450">{formatRp(prod.price)}</span>
                                                             {(prod.sold || 0) > 0 && (
-                                                                <span className="inline-flex items-center gap-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 text-[10px] font-bold px-2.5 py-1 rounded-[8px]">
+                                                                <span className="inline-flex items-center gap-1 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 text-[10px] font-medium px-2.5 py-1 rounded-[8px]">
                                                                     <Icon name="trending_up" className="text-[11px]" />
                                                                     {prod.sold} Terjual
                                                                 </span>
@@ -9220,7 +9220,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         {prod.deadline && (() => {
                                                             const isExp = new Date(prod.deadline) <= new Date();
                                                             return (
-                                                                <div className={`text-[10.5px] font-bold flex items-center gap-1.5 p-2.5 rounded-lg border ${isExp ? 'bg-rose-50/50 border-rose-100 text-rose-600 dark:bg-rose-950/10 dark:border-rose-900/30' : 'bg-amber-50/50 border-amber-100 text-amber-600 dark:bg-amber-950/10 dark:border-amber-900/30'}`}>
+                                                                <div className={`text-[10.5px] font-medium flex items-center gap-1.5 p-2.5 rounded-lg border ${isExp ? 'bg-rose-50/50 border-rose-100 text-rose-600 dark:bg-rose-950/10 dark:border-rose-900/30' : 'bg-amber-50/50 border-amber-100 text-amber-600 dark:bg-amber-950/10 dark:border-amber-900/30'}`}>
                                                                     <Icon name={isExp ? 'timer_off' : 'event'} className="text-[14px]" />
                                                                     <span>{isExp ? 'Pembelian telah ditutup' : `Batas pembelian: ${new Date(prod.deadline).toLocaleString('id-ID', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' })}`}</span>
                                                                 </div>
@@ -9229,7 +9229,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                                         <p className={`text-[12px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-2'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
                                                         {(prod.description || '').length > 80 && (
-                                                            <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-bold text-google-blue dark:text-blue-400 hover:underline flex items-center gap-0.5">
+                                                            <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-medium text-google-blue dark:text-blue-400 hover:underline flex items-center gap-0.5">
                                                                 <Icon name={expandedDescId === prod.id ? 'expand_less' : 'expand_more'} className="text-[14px]" />
                                                                 {expandedDescId === prod.id ? 'Tutup' : 'Selengkapnya'}
                                                             </button>
@@ -9242,8 +9242,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                     <Icon name="location_on" className="text-[16px]" />
                                                                 </div>
                                                                 <div className="min-w-0">
-                                                                    <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Lokasi Pengambilan</p>
-                                                                    <p className="text-[11.5px] font-extrabold text-slate-700 dark:text-slate-300 truncate leading-tight mt-0.5">{prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
+                                                                    <p className="text-[8px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider">Lokasi Pengambilan</p>
+                                                                    <p className="text-[11.5px] font-medium text-slate-700 dark:text-slate-300 truncate leading-tight mt-0.5">{prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
                                                                 </div>
                                                             </div>
                                                             {prod.pickupGeoUrl && (
@@ -9263,7 +9263,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                 <button
                                                                     onClick={() => handleOpenBuyModal(prod)}
                                                                     disabled={!canBuy}
-                                                                    className={`flex-1 py-3 rounded-xl font-bold text-[12.5px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
+                                                                    className={`flex-1 py-3 rounded-xl font-medium text-[12.5px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
                                                                 >
                                                                     <Icon name={isDeadlinePassed ? 'timer_off' : 'add_shopping_cart'} className="text-[16px]" />
                                                                     {isDeadlinePassed ? 'Pembelian Ditutup' : prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
@@ -9288,7 +9288,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-250 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
                                             <Icon name="archive" className="text-[28px]" />
                                         </div>
-                                        <p className="text-[13px] font-bold text-slate-800 dark:text-slate-200">Tidak ada arsip event saat ini.</p>
+                                        <p className="text-[13px] font-medium text-slate-800 dark:text-slate-200">Tidak ada arsip event saat ini.</p>
                                         <p className="text-[11.5px] text-slate-500 dark:text-slate-400 mt-1">Seluruh event yang telah selesai atau diarsipkan akan muncul di sini sebagai riwayat kegiatan.</p>
                                     </div>
                                 ) : (
@@ -9304,11 +9304,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <div className="w-14 h-14 rounded-[16px] bg-slate-300 dark:bg-slate-700 text-slate-550 dark:text-slate-400 flex items-center justify-center shadow-md mb-2">
                                                                 <Icon name="local_activity" className="text-[26px]" />
                                                             </div>
-                                                            <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-450 dark:text-slate-500">Tiket Jalan Santai</span>
+                                                            <span className="text-[10px] font-medium uppercase tracking-widest text-slate-450 dark:text-slate-500">Tiket Jalan Santai</span>
                                                         </div>
                                                     )}
                                                     {/* Archive Badge — top left */}
-                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 bg-slate-700/90 text-white text-[9px] font-extrabold px-2.5 py-1 rounded-[8px] shadow-md  tracking-wide">
+                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 bg-slate-700/90 text-white text-[9px] font-medium px-2.5 py-1 rounded-[8px] shadow-md  tracking-wide">
                                                         <Icon name="archive" className="text-[12px]" fill="true" />
                                                         ARSIP
                                                     </div>
@@ -9317,13 +9317,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 {/* Details */}
                                                 <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
                                                     <div className="space-y-3">
-                                                        <h4 className="font-extrabold text-[15px] text-slate-650 dark:text-slate-350 tracking-tight leading-snug line-clamp-1 uppercase">{prod.name}</h4>
+                                                        <h4 className="font-medium text-[15px] text-slate-650 dark:text-slate-350 tracking-tight leading-snug line-clamp-1 uppercase">{prod.name}</h4>
                                                         
                                                         {/* Price and Sold Row */}
                                                         <div className="flex items-center justify-between">
-                                                            <span className="text-base sm:text-lg font-bold text-slate-400 line-through">{formatRp(prod.price)}</span>
+                                                            <span className="text-base sm:text-lg font-medium text-slate-400 line-through">{formatRp(prod.price)}</span>
                                                             {(prod.sold || 0) > 0 && (
-                                                                <span className="inline-flex items-center gap-1 bg-slate-150 dark:bg-slate-850 border border-slate-200 dark:border-slate-750 text-slate-400 dark:text-slate-500 text-[10px] font-bold px-2.5 py-1 rounded-[8px]">
+                                                                <span className="inline-flex items-center gap-1 bg-slate-150 dark:bg-slate-850 border border-slate-200 dark:border-slate-750 text-slate-400 dark:text-slate-500 text-[10px] font-medium px-2.5 py-1 rounded-[8px]">
                                                                     <Icon name="trending_up" className="text-[11px]" />
                                                                     {prod.sold} Terjual
                                                                 </span>
@@ -9331,7 +9331,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         </div>
 
                                                         {/* Status selesai box */}
-                                                        <div className="text-[10.5px] font-bold flex items-center gap-1.5 p-2.5 rounded-lg border bg-rose-50/50 border-rose-100 text-rose-600 dark:bg-rose-950/10 dark:border-rose-900/30">
+                                                        <div className="text-[10.5px] font-medium flex items-center gap-1.5 p-2.5 rounded-lg border bg-rose-50/50 border-rose-100 text-rose-600 dark:bg-rose-950/10 dark:border-rose-900/30">
                                                             <Icon name="timer_off" className="text-[14px]" />
                                                             <span>Event Selesai / Pembelian Ditutup</span>
                                                         </div>
@@ -9343,7 +9343,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <div className="flex gap-2.5 pt-2">
                                                         <button
                                                             disabled
-                                                            className="flex-1 py-3 rounded-xl font-bold text-[12.5px] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed flex items-center justify-center gap-1.5"
+                                                            className="flex-1 py-3 rounded-xl font-medium text-[12.5px] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed flex items-center justify-center gap-1.5"
                                                         >
                                                             <Icon name="lock" className="text-[16px]" />
                                                             Event Selesai / Diarsipkan
@@ -9366,14 +9366,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" /></div>
                                         </div>
                                         {myTicketsSearch && (
-                                            <button onClick={() => setMyTicketsSearch('')} className="bg-white border border-slate-300 text-slate-650 hover:bg-slate-100 px-4 py-3 rounded-[16px] text-[11px] font-bold transition-all">Reset</button>
+                                            <button onClick={() => setMyTicketsSearch('')} className="bg-white border border-slate-300 text-slate-650 hover:bg-slate-100 px-4 py-3 rounded-[16px] text-[11px] font-medium transition-all">Reset</button>
                                         )}
                                     </div>
 
                                     {myTicketsFiltered.length === 0 ? (
                                         <div className="bg-white border-2 border-slate-200 p-12 text-center rounded-[24px]">
                                             <div className="w-16 h-16 bg-slate-50 border border-slate-200 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400"><Icon name="confirmation_number" className="text-[28px]" /></div>
-                                            <p className="text-[13px] font-bold text-slate-800">Belum ada tiket yang terdaftar.</p>
+                                            <p className="text-[13px] font-medium text-slate-800">Belum ada tiket yang terdaftar.</p>
                                             <p className="text-[11.5px] font-medium text-slate-400 mt-1 max-w-sm mx-auto">Silakan beli tiket di tab "Beli Tiket" atau gunakan pencarian nama jika Anda membuat pesanan di perangkat lain.</p>
                                         </div>
                                     ) : (
@@ -9387,28 +9387,28 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                     <Icon name="receipt_long" className="text-[16px]" />
                                                                 </div>
                                                                 <div>
-                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ID Pesanan</p>
-                                                                    <p className="text-[12px] font-extrabold text-slate-700">#TKT-{String(order.id).slice(-6)}</p>
+                                                                    <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wider">ID Pesanan</p>
+                                                                    <p className="text-[12px] font-medium text-slate-700">#TKT-{String(order.id).slice(-6)}</p>
                                                                 </div>
                                                             </div>
-                                                            <span className={`text-[10px] font-bold px-3 py-1.5 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
+                                                            <span className={`text-[10px] font-medium px-3 py-1.5 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
                                                         
                                                         <div className="bg-slate-50 rounded-[14px] p-4 border border-slate-100 space-y-3">
                                                             <div className="flex justify-between items-start">
                                                                 <div>
-                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Pemesan</p>
-                                                                    <h4 className="font-extrabold text-[15px] text-slate-800">{order.buyerName}</h4>
+                                                                    <p className="text-[10px] font-medium text-slate-400 uppercase">Pemesan</p>
+                                                                    <h4 className="font-medium text-[15px] text-slate-800">{order.buyerName}</h4>
                                                                 </div>
                                                                 <div className="text-right">
-                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Total Harga</p>
-                                                                    <p className="text-[14px] font-black text-rose-600">{formatRp(order.totalPrice)}</p>
+                                                                    <p className="text-[10px] font-medium text-slate-400 uppercase">Total Harga</p>
+                                                                    <p className="text-[14px] font-medium text-rose-600">{formatRp(order.totalPrice)}</p>
                                                                 </div>
                                                             </div>
                                                             
                                                             <div className="pt-2 border-t border-slate-200">
-                                                                <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">Rincian Tiket</p>
-                                                                <p className="text-[13px] font-bold text-slate-700">{order.productName} <span className="text-slate-500 font-medium">x{order.quantity} Pcs</span></p>
+                                                                <p className="text-[10px] font-medium text-slate-400 uppercase mb-1">Rincian Tiket</p>
+                                                                <p className="text-[13px] font-medium text-slate-700">{order.productName} <span className="text-slate-500 font-medium">x{order.quantity} Pcs</span></p>
                                                             </div>
                                                         </div>
                                                         
@@ -9419,7 +9419,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                         <Icon name="local_shipping" className="text-[13px] text-rose-500" />
                                                                     </div>
                                                                     <div>
-                                                                        <span className="font-bold text-slate-800">Diantar ke Rumah</span>
+                                                                        <span className="font-medium text-slate-800">Diantar ke Rumah</span>
                                                                         <p className="text-[11px] text-slate-500 mt-0.5">Waktu: {order.deliveryDay || '-'}, {order.deliveryTime || '-'}</p>
                                                                     </div>
                                                                 </div>
@@ -9429,10 +9429,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                         <Icon name="location_on" className="text-[13px] text-rose-500" />
                                                                     </div>
                                                                     <div>
-                                                                        <span className="font-bold text-slate-800">Ambil Sendiri</span>
+                                                                        <span className="font-medium text-slate-800">Ambil Sendiri</span>
                                                                         <p className="text-[11px] text-slate-500 mt-0.5">{order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}</p>
                                                                         {order.pickupGeoUrl && (
-                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1 text-rose-600 hover:underline inline-flex items-center gap-1 font-bold"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
+                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1 text-rose-600 hover:underline inline-flex items-center gap-1 font-medium"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
                                                                         )}
                                                                     </div>
                                                                 </div>
@@ -9441,16 +9441,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             {order.notes && (
                                                                 <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-amber-50 p-3 rounded-[12px] border border-amber-100">
                                                                     <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-amber-500" />
-                                                                    <span><span className="font-bold text-slate-800">Catatan Anda:</span> {order.notes}</span>
+                                                                    <span><span className="font-medium text-slate-800">Catatan Anda:</span> {order.notes}</span>
                                                                 </div>
                                                             )}
                                                         </div>
                                                         
                                                         <div className="flex items-center justify-between mt-4">
-                                                            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
+                                                            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
                                                                 <Icon name="event" className="text-[13px]" /> {order.timestamp}
                                                             </div>
-                                                            <div className="flex items-center gap-1 text-[10px] text-emerald-600 font-bold">
+                                                            <div className="flex items-center gap-1 text-[10px] text-emerald-600 font-medium">
                                                                 <Icon name="payments" className="text-[13px]" /> Bayar COD
                                                             </div>
                                                         </div>
@@ -9468,7 +9468,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                         setConfirmModal(null);
                                                                     }
                                                                 });
-                                                            }} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-bold py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Batalkan Pesanan</button>
+                                                            }} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Batalkan Pesanan</button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -9485,7 +9485,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 rounded-[20px] p-4 flex items-start gap-3">
                                         <Icon name="info" className="text-[18px] text-google-blue shrink-0 mt-0.5" />
                                         <p className="text-[12px] font-medium text-blue-800 dark:text-blue-300 leading-relaxed">
-                                            Daftar ini menampilkan semua warga yang telah memesan tiket (tidak termasuk yang dibatalkan). Total <span className="font-extrabold">{buyersList.length} pembeli</span> dengan <span className="font-extrabold">{buyersTotalTickets} tiket</span> telah dipesan.
+                                            Daftar ini menampilkan semua warga yang telah memesan tiket (tidak termasuk yang dibatalkan). Total <span className="font-medium">{buyersList.length} pembeli</span> dengan <span className="font-medium">{buyersTotalTickets} tiket</span> telah dipesan.
                                         </p>
                                     </div>
 
@@ -9503,34 +9503,34 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
                                                 <Icon name="groups" className="text-[28px]" />
                                             </div>
-                                            <p className="text-[13px] font-bold text-slate-800 dark:text-slate-200">{buyersSearch ? 'Tidak ada pembeli ditemukan.' : 'Belum ada yang memesan tiket.'}</p>
+                                            <p className="text-[13px] font-medium text-slate-800 dark:text-slate-200">{buyersSearch ? 'Tidak ada pembeli ditemukan.' : 'Belum ada yang memesan tiket.'}</p>
                                             <p className="text-[11.5px] font-medium text-slate-400 mt-1">Jadilah yang pertama memesan tiket!</p>
                                         </div>
                                     ) : (
                                         <div className="bg-white dark:bg-slate-900 rounded-[24px] border-2 border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
                                             {/* Header Tabel */}
                                             <div className="grid grid-cols-12 gap-2 px-5 py-3 bg-slate-50 dark:bg-slate-850 border-b border-slate-200 dark:border-slate-800">
-                                                <div className="col-span-1 text-[9px] font-extrabold text-slate-400 uppercase tracking-wider text-center">#</div>
-                                                <div className="col-span-6 text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">Nama Pembeli</div>
-                                                <div className="col-span-3 text-[9px] font-extrabold text-slate-400 uppercase tracking-wider text-center">Jumlah</div>
-                                                <div className="col-span-2 text-[9px] font-extrabold text-slate-400 uppercase tracking-wider text-center">Tgl</div>
+                                                <div className="col-span-1 text-[9px] font-medium text-slate-400 uppercase tracking-wider text-center">#</div>
+                                                <div className="col-span-6 text-[9px] font-medium text-slate-400 uppercase tracking-wider">Nama Pembeli</div>
+                                                <div className="col-span-3 text-[9px] font-medium text-slate-400 uppercase tracking-wider text-center">Jumlah</div>
+                                                <div className="col-span-2 text-[9px] font-medium text-slate-400 uppercase tracking-wider text-center">Tgl</div>
                                             </div>
                                             {/* Baris Pembeli */}
                                             <div className="divide-y divide-slate-100 dark:divide-slate-800/60">
                                                 {buyersListFiltered.map((order, idx) => (
                                                     <div key={order.id} className={`grid grid-cols-12 gap-2 px-5 py-3.5 items-center hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors ${order.status === 'completed' ? 'bg-emerald-50/40 dark:bg-emerald-950/10' : ''}`}>
-                                                        <div className="col-span-1 text-[10px] font-bold text-slate-400 text-center tabular-nums">{idx + 1}</div>
+                                                        <div className="col-span-1 text-[10px] font-medium text-slate-400 text-center tabular-nums">{idx + 1}</div>
                                                         <div className="col-span-6 min-w-0">
-                                                            <p className="text-[13px] font-extrabold text-slate-800 dark:text-slate-200 truncate leading-tight uppercase tracking-wide">{order.buyerName}</p>
+                                                            <p className="text-[13px] font-medium text-slate-800 dark:text-slate-200 truncate leading-tight uppercase tracking-wide">{order.buyerName}</p>
                                                             <p className="text-[10px] font-medium text-slate-400 dark:text-slate-500 truncate mt-0.5">{order.productName}</p>
                                                         </div>
                                                         <div className="col-span-3 text-center">
-                                                            <span className="inline-flex items-center gap-1 bg-google-blueLight dark:bg-blue-950/40 text-google-blueDark dark:text-blue-400 border border-google-blue/20 dark:border-blue-900/40 text-[11px] font-extrabold px-2.5 py-1 rounded-full">
+                                                            <span className="inline-flex items-center gap-1 bg-google-blueLight dark:bg-blue-950/40 text-google-blueDark dark:text-blue-400 border border-google-blue/20 dark:border-blue-900/40 text-[11px] font-medium px-2.5 py-1 rounded-full">
                                                                 <Icon name="confirmation_number" className="text-[11px]" />
                                                                 {order.quantity}
                                                             </span>
                                                         </div>
-                                                        <div className="col-span-2 text-[9.5px] font-bold text-slate-400 text-center leading-tight">
+                                                        <div className="col-span-2 text-[9.5px] font-medium text-slate-400 text-center leading-tight">
                                                             {order.timestamp ? order.timestamp.slice(5) : '-'}
                                                         </div>
                                                     </div>
@@ -9538,8 +9538,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             </div>
                                             {/* Footer Ringkasan */}
                                             <div className="px-5 py-3.5 bg-slate-50 dark:bg-slate-850 border-t-2 border-slate-200 dark:border-slate-700 flex items-center justify-between">
-                                                <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">Total {buyersListFiltered.length} pembeli</span>
-                                                <span className="inline-flex items-center gap-1.5 bg-google-blue text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full">
+                                                <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Total {buyersListFiltered.length} pembeli</span>
+                                                <span className="inline-flex items-center gap-1.5 bg-google-blue text-white text-[11px] font-medium px-3 py-1.5 rounded-full">
                                                     <Icon name="confirmation_number" className="text-[12px]" />
                                                     {buyersListFiltered.reduce((sum, o) => sum + (o.quantity || 0), 0)} Tiket Dipesan
                                                 </span>
@@ -9554,25 +9554,25 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                                     <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto -slate-350 modal-card animate-modal-in">
                                         <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
-                                            <h3 className="text-lg font-extrabold text-slate-800">Formulir Beli Tiket</h3>
+                                            <h3 className="text-lg font-medium text-slate-800">Formulir Beli Tiket</h3>
                                             <button onClick={() => setIsBuyModalOpen(false)} className="w-8 h-8 rounded-full border border-slate-300 text-slate-400 hover:bg-slate-100 flex items-center justify-center"><Icon name="close" /></button>
                                         </div>
                                         <div className="space-y-4">
                                             <div className="bg-google-blueLight border border-google-blue/20 rounded-[16px] p-4 text-[12px] text-google-blueDark">
-                                                <p className="font-extrabold">{selectedProduct.name}</p>
+                                                <p className="font-medium">{selectedProduct.name}</p>
                                                 <p className="font-medium text-slate-500 mt-0.5">Harga: {formatRp(selectedProduct.price)} / tiket</p>
                                                 <p className="font-medium text-slate-500">Tersedia: {selectedProduct.stock} tiket</p>
                                             </div>
 
                                             {/* Pilihan Metode Penerimaan Tiket */}
                                             <div>
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Metode Penerimaan Tiket</label>
+                                                <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Metode Penerimaan Tiket</label>
                                                 <div className="grid grid-cols-2 gap-3">
-                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'pickup' })} className={`p-4 rounded-[20px] border-2 font-bold text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'pickup' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'pickup' })} className={`p-4 rounded-[20px] border-2 font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'pickup' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
                                                         <Icon name="store" className="text-[20px]" />
                                                         <span>Ambil Sendiri (COD)</span>
                                                     </button>
-                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-[20px] border-2 font-bold text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-105'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-[20px] border-2 font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-105'}`}>
                                                         <Icon name="local_shipping" className="text-[20px]" />
                                                         <span>Antar ke Rumah (COD)</span>
                                                     </button>
@@ -9584,11 +9584,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <div className="animate-fade-in bg-slate-50 border border-slate-200 p-4 rounded-[16px] space-y-3">
                                                     <div className="grid grid-cols-2 gap-3">
                                                         <div>
-                                                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Hari Pengantaran</label>
+                                                            <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Hari Pengantaran</label>
                                                             <input type="text" value={buyForm.deliveryDay} onChange={e => setBuyForm({...buyForm, deliveryDay: e.target.value})} className="w-full bg-white border-2 border-slate-300 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Sabtu / Hari ini" />
                                                         </div>
                                                         <div>
-                                                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Jam Pengantaran</label>
+                                                            <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Jam Pengantaran</label>
                                                             <input type="text" value={buyForm.deliveryTime} onChange={e => setBuyForm({...buyForm, deliveryTime: e.target.value})} className="w-full bg-white border-2 border-slate-300 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Jam 4 Sore / Malam" />
                                                         </div>
                                                     </div>
@@ -9599,13 +9599,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <div className="flex items-start gap-2">
                                                         <Icon name="info" className="text-[18px] shrink-0 mt-0.5" />
                                                         <div>
-                                                            <p className="font-bold">Informasi Pengambilan & Pembayaran:</p>
+                                                            <p className="font-medium">Informasi Pengambilan & Pembayaran:</p>
                                                             <p className="font-medium mt-1">Pembayaran dilakukan secara tunai / bayar di tempat (COD) saat mengambil tiket langsung di:</p>
-                                                            <p className="font-extrabold mt-1 text-[13px] flex items-center gap-1">
+                                                            <p className="font-medium mt-1 text-[13px] flex items-center gap-1">
                                                                 <Icon name="location_on" className="text-[14px]" /> {selectedProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}
                                                             </p>
                                                             {selectedProduct.pickupGeoUrl && (
-                                                                <a href={selectedProduct.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-bold underline hover:text-emerald-900"><Icon name="map" className="text-[13px]" /> Petunjuk Arah Google Maps</a>
+                                                                <a href={selectedProduct.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium underline hover:text-emerald-900"><Icon name="map" className="text-[13px]" /> Petunjuk Arah Google Maps</a>
                                                             )}
                                                         </div>
                                                     </div>
@@ -9613,34 +9613,34 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             )}
 
                                             <div>
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lengkap Pembeli</label>
+                                                <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lengkap Pembeli</label>
                                                 <input type="text" value={buyForm.name} onChange={e => setBuyForm({...buyForm, name: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Budi RT 02" />
                                             </div>
 
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
-                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Jumlah Tiket</label>
+                                                    <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Jumlah Tiket</label>
                                                     <div className="flex items-center gap-0 bg-slate-50 border-2 border-slate-300 rounded-[16px] overflow-hidden focus-within:border-google-blue/50 focus-within:shadow-md transition-all">
                                                         <button
                                                             type="button"
                                                             onClick={() => setBuyForm(f => ({ ...f, quantity: Math.max(1, (f.quantity || 1) - 1) }))}
-                                                            className="w-14 h-14 flex items-center justify-center text-slate-500 hover:bg-red-50 hover:text-red-500 active:scale-90 transition-all text-xl font-bold flex-shrink-0 select-none"
+                                                            className="w-14 h-14 flex items-center justify-center text-slate-500 hover:bg-red-50 hover:text-red-500 active:scale-90 transition-all text-xl font-medium flex-shrink-0 select-none"
                                                         >−</button>
-                                                        <span className="flex-1 text-center text-[18px] font-extrabold text-slate-800 select-none tabular-nums">
+                                                        <span className="flex-1 text-center text-[18px] font-medium text-slate-800 select-none tabular-nums">
                                                             {buyForm.quantity || 1}
                                                         </span>
                                                         <button
                                                             type="button"
                                                             onClick={() => setBuyForm(f => ({ ...f, quantity: Math.min(selectedProduct.stock, (f.quantity || 1) + 1) }))}
                                                             disabled={(buyForm.quantity || 1) >= selectedProduct.stock}
-                                                            className="w-14 h-14 flex items-center justify-center text-slate-500 hover:bg-green-50 hover:text-google-green active:scale-90 transition-all text-xl font-bold flex-shrink-0 select-none disabled:opacity-30 disabled:cursor-not-allowed"
+                                                            className="w-14 h-14 flex items-center justify-center text-slate-500 hover:bg-green-50 hover:text-google-green active:scale-90 transition-all text-xl font-medium flex-shrink-0 select-none disabled:opacity-30 disabled:cursor-not-allowed"
                                                         >+</button>
                                                     </div>
-                                                    <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">Stok tersedia: <span className="text-google-blue font-bold">{selectedProduct.stock}</span> tiket</p>
+                                                    <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">Stok tersedia: <span className="text-google-blue font-medium">{selectedProduct.stock}</span> tiket</p>
                                                 </div>
                                                 <div>
-                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Total Pembayaran</label>
-                                                    <div className="w-full bg-google-blueLight border-2 border-google-blue/20 p-4 text-[15px] font-extrabold text-google-blue rounded-[16px] flex items-center justify-center h-14">
+                                                    <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Total Pembayaran</label>
+                                                    <div className="w-full bg-google-blueLight border-2 border-google-blue/20 p-4 text-[15px] font-medium text-google-blue rounded-[16px] flex items-center justify-center h-14">
                                                         {formatRp(Number(buyForm.quantity || 1) * selectedProduct.price)}
                                                     </div>
                                                     <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">{formatRp(selectedProduct.price)} × {buyForm.quantity || 1} tiket</p>
@@ -9648,15 +9648,15 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             </div>
 
                                             <div>
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 ml-1">Catatan Tambahan (Opsional)</label>
+                                                <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Catatan Tambahan (Opsional)</label>
                                                 <input type="text" value={buyForm.notes} onChange={e => setBuyForm({...buyForm, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Kaos Ukuran L / Minta diantar sore hari" />
                                             </div>
 
                                             {wargaError && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {wargaError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
-                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
-                                            <button onClick={handlePlaceOrder} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-bold text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
+                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
+                                            <button onClick={handlePlaceOrder} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
                                         </div>
                                     </div>
                                 </div>
@@ -9670,11 +9670,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-100 text-red-500">
                                     <Icon name="delete_forever" className="text-[40px]" fill="true" />
                                 </div>
-                                <h3 className="text-xl font-black text-slate-800 mb-2">{confirmModal.title}</h3>
+                                <h3 className="text-xl font-medium text-slate-800 mb-2">{confirmModal.title}</h3>
                                 <p className="text-[12.5px] font-medium text-slate-500 mb-6 leading-relaxed">{confirmModal.message}</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setConfirmModal(null)} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3.5 rounded-[16px] font-bold text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
-                                    <button onClick={confirmModal.onConfirm} className="flex-1 bg-red-500 hover:bg-red-650 text-white py-3.5 rounded-[16px] font-bold text-[13px] active:scale-95 transition-all shadow-md">{confirmModal.confirmText || 'Hapus'}</button>
+                                    <button onClick={() => setConfirmModal(null)} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={confirmModal.onConfirm} className="flex-1 bg-red-500 hover:bg-red-650 text-white py-3.5 rounded-[16px] font-medium text-[13px] active:scale-95 transition-all shadow-md">{confirmModal.confirmText || 'Hapus'}</button>
                                 </div>
                             </div>
                         </div>
@@ -9684,30 +9684,30 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
                             <div className="rounded-[32px] p-6 sm:p-8 max-w-sm w-full -slate-200 dark:-slate-800 modal-card animate-modal-in">
                                 <div className="flex justify-between items-center mb-6 pb-3 border-b border-slate-100 dark:border-slate-800">
-                                    <h3 className="text-lg font-extrabold text-slate-800 dark:text-slate-100 flex items-center gap-2"><Icon name="share" className="text-google-blue" /> Bagikan Tiket</h3>
+                                    <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 flex items-center gap-2"><Icon name="share" className="text-google-blue" /> Bagikan Tiket</h3>
                                     <button onClick={() => setSharingProduct(null)} className="w-8 h-8 rounded-full border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"><Icon name="close" /></button>
                                 </div>
 
                                 <div className="mb-6 bg-slate-50 dark:bg-slate-950 p-4 rounded-[20px] border border-slate-205 dark:border-slate-800">
-                                    <h4 className="font-extrabold text-[14px] text-slate-800 dark:text-slate-250 line-clamp-1">{sharingProduct.name}</h4>
-                                    <p className="text-[12px] font-bold text-google-blue mt-0.5">{formatRp(sharingProduct.price)}</p>
+                                    <h4 className="font-medium text-[14px] text-slate-800 dark:text-slate-250 line-clamp-1">{sharingProduct.name}</h4>
+                                    <p className="text-[12px] font-medium text-google-blue mt-0.5">{formatRp(sharingProduct.price)}</p>
                                     <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-1.5 flex items-center gap-1"><Icon name="location_on" className="text-[13px] text-google-blue" /> {sharingProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
                                 </div>
 
                                 <div className="space-y-2.5">
-                                    <button onClick={() => handleShareToSocial('whatsapp')} className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                    <button onClick={() => handleShareToSocial('whatsapp')} className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                         <Icon name="chat" className="text-[18px]" /> WhatsApp
                                     </button>
-                                    <button onClick={() => handleShareToSocial('telegram')} className="w-full bg-[#0088cc] hover:bg-[#0077b3] text-white font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                    <button onClick={() => handleShareToSocial('telegram')} className="w-full bg-[#0088cc] hover:bg-[#0077b3] text-white font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                         <Icon name="send" className="text-[18px] rotate-[-30deg] mt-[-2px]" /> Telegram
                                     </button>
-                                    <button onClick={() => handleShareToSocial('facebook')} className="w-full bg-[#1877F2] hover:bg-[#1566d4] text-white font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                    <button onClick={() => handleShareToSocial('facebook')} className="w-full bg-[#1877F2] hover:bg-[#1566d4] text-white font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                         <Icon name="facebook" className="text-[18px]" /> Facebook
                                     </button>
-                                    <button onClick={() => handleShareToSocial('twitter')} className="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                    <button onClick={() => handleShareToSocial('twitter')} className="w-full bg-slate-900 hover:bg-slate-950 text-white font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                         <Icon name="close" className="text-[18px]" /> X (Twitter)
                                     </button>
-                                    <button onClick={() => handleShareToSocial('copy')} className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-205 font-bold py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 active:scale-95">
+                                    <button onClick={() => handleShareToSocial('copy')} className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-205 font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 active:scale-95">
                                         <Icon name="content_copy" className="text-[18px]" /> Salin Tautan
                                     </button>
                                 </div>
@@ -9818,7 +9818,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950/20 text-google-green flex items-center justify-center mx-auto border border-green-100 dark:border-green-900/40">
                                         <Icon name="forum" className="text-[32px]" fill="true" />
                                     </div>
-                                    <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-800 dark:text-slate-100">Gabung Grup WhatsApp Warga</h2>
+                                    <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Gabung Grup WhatsApp Warga</h2>
                                     <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed">
                                         Grup resmi WhatsApp digunakan untuk membagikan pengumuman penting, info kegiatan lingkungan, dan koordinasi antar warga secara cepat.
                                     </p>
@@ -9826,7 +9826,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                 <form onSubmit={handleRequestSubmit} className="space-y-4 pt-2">
                                     <div className="bg-slate-50 dark:bg-slate-800/40 rounded-[16px] px-4 py-3 border border-slate-200 dark:border-slate-700/60 focus-within:border-google-blue focus-within:ring-1 focus-within:ring-google-blue transition-all">
-                                        <label className="text-[10px] font-bold text-slate-400 dark:text-slate-500 block mb-1 uppercase tracking-widest">Nama Lengkap Sesuai KTP</label>
+                                        <label className="text-[10px] font-medium text-slate-400 dark:text-slate-500 block mb-1 uppercase tracking-widest">Nama Lengkap Sesuai KTP</label>
                                         <input 
                                             type="text" 
                                             value={name} 
@@ -9837,7 +9837,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     </div>
 
                                     <div className="bg-slate-50 dark:bg-slate-800/40 rounded-[16px] px-4 py-3 border border-slate-200 dark:border-slate-700/60 focus-within:border-google-blue focus-within:ring-1 focus-within:ring-google-blue transition-all">
-                                        <label className="text-[10px] font-bold text-slate-400 dark:text-slate-500 block mb-1 uppercase tracking-widest">Nomor WhatsApp Aktif</label>
+                                        <label className="text-[10px] font-medium text-slate-400 dark:text-slate-500 block mb-1 uppercase tracking-widest">Nomor WhatsApp Aktif</label>
                                         <input 
                                             type="text" 
                                             value={whatsapp} 
@@ -9853,7 +9853,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                     <button 
                                         type="submit" 
-                                        className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-[16px] font-bold text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
+                                        className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-[16px] font-medium text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
                                     >
                                         <Icon name="send" />
                                         <span>Ajukan Gabung Grup</span>
@@ -9873,18 +9873,18 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <Icon name="schedule" className="text-[32px]" fill="true" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Sedang Ditinjau ⏳</h2>
+                                        <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Sedang Ditinjau ⏳</h2>
                                         <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed max-w-sm mx-auto">
-                                            Halo <strong className="font-bold text-slate-800 dark:text-slate-150">{myRequest.name}</strong> ({myRequest.whatsapp}), pengajuan gabung grup WhatsApp Anda sedang diperiksa oleh Admin RT.
+                                            Halo <strong className="font-medium text-slate-800 dark:text-slate-150">{myRequest.name}</strong> ({myRequest.whatsapp}), pengajuan gabung grup WhatsApp Anda sedang diperiksa oleh Admin RT.
                                         </p>
-                                        <p className="text-[11px] text-amber-600 dark:text-amber-500 font-bold bg-amber-50 dark:bg-amber-950/30 py-2.5 px-4 rounded-xl border border-amber-100 dark:border-amber-900/20 inline-block mt-2">
+                                        <p className="text-[11px] text-amber-600 dark:text-amber-500 font-medium bg-amber-50 dark:bg-amber-950/30 py-2.5 px-4 rounded-xl border border-amber-100 dark:border-amber-900/20 inline-block mt-2">
                                             Estimasi verifikasi dalam 1 x 24 jam.
                                         </p>
                                     </div>
                                     <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-3">
                                         <button 
                                             onClick={handleCancelRequest} 
-                                            className="flex-1 bg-white dark:bg-slate-950 border border-slate-350 dark:border-slate-700 text-slate-700 dark:text-slate-300 py-3.5 rounded-xl font-bold text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm"
+                                            className="flex-1 bg-white dark:bg-slate-950 border border-slate-350 dark:border-slate-700 text-slate-700 dark:text-slate-300 py-3.5 rounded-xl font-medium text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm"
                                         >
                                             Batalkan Pengajuan
                                         </button>
@@ -9898,9 +9898,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <Icon name="verified" className="text-[32px]" fill="true" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Disetujui! 🎉</h2>
+                                        <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Disetujui! 🎉</h2>
                                         <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed max-w-sm mx-auto">
-                                            Selamat <strong className="font-bold text-slate-800 dark:text-slate-150">{myRequest.name}</strong>, Admin telah menyetujui akses masuk grup WhatsApp Warga RT.
+                                            Selamat <strong className="font-medium text-slate-800 dark:text-slate-150">{myRequest.name}</strong>, Admin telah menyetujui akses masuk grup WhatsApp Warga RT.
                                         </p>
                                     </div>
                                     
@@ -9909,13 +9909,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             href={inviteLink} 
                                             target="_blank" 
                                             rel="noopener noreferrer"
-                                            className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-[16px] font-bold text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
+                                            className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-[16px] font-medium text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
                                         >
                                             <Icon name="forum" />
                                             <span>Gabung Grup WhatsApp Sekarang</span>
                                         </a>
                                     ) : (
-                                        <div className="bg-red-50 dark:bg-red-950/30 text-google-red p-4 rounded-xl border border-red-200 text-[11.5px] font-semibold">
+                                        <div className="bg-red-50 dark:bg-red-950/30 text-google-red p-4 rounded-xl border border-red-200 text-[11.5px] font-medium">
                                             Link grup belum diatur oleh Admin. Silakan hubungi pengurus RT Anda.
                                         </div>
                                     )}
@@ -9923,7 +9923,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
                                         <button 
                                             onClick={handleResetRequest} 
-                                            className="text-slate-500 hover:text-slate-700 text-[11px] font-bold hover:underline"
+                                            className="text-slate-500 hover:text-slate-700 text-[11px] font-medium hover:underline"
                                         >
                                             Gabung dengan Nomor Lain / Daftar Ulang
                                         </button>
@@ -9937,16 +9937,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <Icon name="cancel" className="text-[32px]" fill="true" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Ditolak 🚫</h2>
+                                        <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Ditolak 🚫</h2>
                                         <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed max-w-sm mx-auto">
-                                            Maaf <strong className="font-bold text-slate-800 dark:text-slate-150">{myRequest.name}</strong>, pengajuan Anda untuk bergabung ke grup WhatsApp ditolak oleh Admin. 
+                                            Maaf <strong className="font-medium text-slate-800 dark:text-slate-150">{myRequest.name}</strong>, pengajuan Anda untuk bergabung ke grup WhatsApp ditolak oleh Admin. 
                                         </p>
                                         <p className="text-[11px] text-slate-400 mt-1">Pastikan data nama dan nomor Anda valid sesuai keanggotaan warga.</p>
                                     </div>
                                     <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-3">
                                         <button 
                                             onClick={handleResetRequest} 
-                                            className="flex-1 bg-google-blue hover:bg-blue-600 text-white py-3.5 rounded-xl font-bold text-[12.5px] active:scale-95 transition-all shadow-sm"
+                                            className="flex-1 bg-google-blue hover:bg-blue-600 text-white py-3.5 rounded-xl font-medium text-[12.5px] active:scale-95 transition-all shadow-sm"
                                         >
                                             Ajukan Ulang / Koreksi Data
                                         </button>
@@ -9966,18 +9966,18 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-6">
                     <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
-                            <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">Verifikasi Grup WhatsApp</h2>
+                            <h2 className="text-2xl font-medium text-slate-800 dark:text-slate-100 tracking-tight">Verifikasi Grup WhatsApp</h2>
                             <p className="text-[13px] font-medium text-slate-500 dark:text-slate-400 mt-1">
                                 Kelola pengajuan gabung grup WhatsApp warga RT. Total {safeRequests.length} pengajuan.
                             </p>
                         </div>
                         {inviteLink ? (
-                            <div className="bg-green-50 dark:bg-green-950/20 text-google-green text-[11px] font-bold py-2.5 px-4 rounded-xl border border-green-100 dark:border-green-900/40 flex items-center gap-1.5 shrink-0">
+                            <div className="bg-green-50 dark:bg-green-950/20 text-google-green text-[11px] font-medium py-2.5 px-4 rounded-xl border border-green-100 dark:border-green-900/40 flex items-center gap-1.5 shrink-0">
                                 <Icon name="check_circle" className="text-[14px]" />
                                 Link Grup Aktif: <a href={inviteLink} target="_blank" rel="noopener noreferrer" className="underline hover:text-green-700">{inviteLink.substring(0, 30)}...</a>
                             </div>
                         ) : (
-                            <div className="bg-red-50 dark:bg-red-950/20 text-google-red text-[11px] font-bold py-2.5 px-4 rounded-xl border border-red-100 dark:border-red-900/40 flex items-center gap-1.5 shrink-0">
+                            <div className="bg-red-50 dark:bg-red-950/20 text-google-red text-[11px] font-medium py-2.5 px-4 rounded-xl border border-red-100 dark:border-red-900/40 flex items-center gap-1.5 shrink-0">
                                 <Icon name="warning" className="text-[14px]" />
                                 Link grup belum diset di Setelan Admin!
                             </div>
@@ -9987,14 +9987,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     <div className="flex border-b border-slate-200 dark:border-slate-800 gap-6">
                         <button 
                             onClick={() => setActiveSubTab('active')} 
-                            className={`pb-3 font-bold text-[13px] relative transition-colors ${activeSubTab === 'active' ? 'text-google-blue' : 'text-slate-400 hover:text-slate-600'}`}
+                            className={`pb-3 font-medium text-[13px] relative transition-colors ${activeSubTab === 'active' ? 'text-google-blue' : 'text-slate-400 hover:text-slate-600'}`}
                         >
                             <span>Permintaan Aktif ({pendingRequests.length})</span>
                             {activeSubTab === 'active' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-google-blue rounded-full"></div>}
                         </button>
                         <button 
                             onClick={() => setActiveSubTab('history')} 
-                            className={`pb-3 font-bold text-[13px] relative transition-colors ${activeSubTab === 'history' ? 'text-google-blue' : 'text-slate-400 hover:text-slate-600'}`}
+                            className={`pb-3 font-medium text-[13px] relative transition-colors ${activeSubTab === 'history' ? 'text-google-blue' : 'text-slate-400 hover:text-slate-600'}`}
                         >
                             <span>Riwayat Proses ({processedRequests.length})</span>
                             {activeSubTab === 'history' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-google-blue rounded-full"></div>}
@@ -10012,8 +10012,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 {pendingRequests.map(r => (
                                     <div key={r.id} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-4 hover:shadow-md transition-shadow">
                                         <div className="space-y-1.5">
-                                            <h3 className="font-bold text-slate-800 dark:text-slate-100 text-[14.5px] truncate">{r.name}</h3>
-                                            <p className="text-[12px] font-bold text-google-blue flex items-center gap-1">
+                                            <h3 className="font-medium text-slate-800 dark:text-slate-100 text-[14.5px] truncate">{r.name}</h3>
+                                            <p className="text-[12px] font-medium text-google-blue flex items-center gap-1">
                                                 <Icon name="call" className="text-[13px]" /> {r.whatsapp}
                                             </p>
                                             <p className="text-[10px] font-medium text-slate-400 flex items-center gap-1">
@@ -10024,13 +10024,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div className="flex gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
                                             <button 
                                                 onClick={() => handleReject(r.id)} 
-                                                className="flex-1 bg-red-50 hover:bg-red-100 text-google-red py-2.5 rounded-xl text-[11px] font-bold border border-red-200/50 transition-colors active:scale-95"
+                                                className="flex-1 bg-red-50 hover:bg-red-100 text-google-red py-2.5 rounded-xl text-[11px] font-medium border border-red-200/50 transition-colors active:scale-95"
                                             >
                                                 Tolak
                                             </button>
                                             <button 
                                                 onClick={() => handleApprove(r.id)} 
-                                                className="flex-1 bg-google-green hover:bg-green-600 text-white py-2.5 rounded-xl text-[11px] font-bold transition-colors active:scale-95 shadow-[0_4px_12px_rgba(52,168,83,0.2)]"
+                                                className="flex-1 bg-google-green hover:bg-green-600 text-white py-2.5 rounded-xl text-[11px] font-medium transition-colors active:scale-95 shadow-[0_4px_12px_rgba(52,168,83,0.2)]"
                                             >
                                                 Setujui
                                             </button>
@@ -10050,7 +10050,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-left border-collapse">
                                         <thead>
-                                            <tr className="bg-slate-50 dark:bg-slate-800/50 text-[10px] font-bold text-slate-400 block-none uppercase tracking-widest border-b border-slate-200 dark:border-slate-800">
+                                            <tr className="bg-slate-50 dark:bg-slate-800/50 text-[10px] font-medium text-slate-400 block-none uppercase tracking-widest border-b border-slate-200 dark:border-slate-800">
                                                 <th className="px-6 py-4">Nama Lengkap</th>
                                                 <th className="px-6 py-4">Nomor WhatsApp</th>
                                                 <th className="px-6 py-4">Tanggal Diajukan</th>
@@ -10061,16 +10061,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-[12.5px] font-medium text-slate-700 dark:text-slate-350">
                                             {processedRequests.map(r => (
                                                 <tr key={r.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-850/50 transition-colors">
-                                                    <td className="px-6 py-4 font-bold text-slate-800 dark:text-slate-100">{r.name}</td>
-                                                    <td className="px-6 py-4 text-google-blue font-bold">{r.whatsapp}</td>
+                                                    <td className="px-6 py-4 font-medium text-slate-800 dark:text-slate-100">{r.name}</td>
+                                                    <td className="px-6 py-4 text-google-blue font-medium">{r.whatsapp}</td>
                                                     <td className="px-6 py-4 text-slate-400">{formatDate(r.timestamp)}</td>
                                                     <td className="px-6 py-4">
                                                         {r.status === 'approved' ? (
-                                                            <span className="inline-flex items-center gap-1 bg-green-50 dark:bg-green-950/20 text-google-green text-[10px] font-bold px-2.5 py-1 rounded-full border border-green-200 dark:border-green-900/40">
+                                                            <span className="inline-flex items-center gap-1 bg-green-50 dark:bg-green-950/20 text-google-green text-[10px] font-medium px-2.5 py-1 rounded-full border border-green-200 dark:border-green-900/40">
                                                                 <Icon name="check" className="text-[12px]" /> Disetujui
                                                             </span>
                                                         ) : (
-                                                            <span className="inline-flex items-center gap-1 bg-red-50 dark:bg-red-950/20 text-google-red text-[10px] font-bold px-2.5 py-1 rounded-full border border-red-200 dark:border-red-900/40">
+                                                            <span className="inline-flex items-center gap-1 bg-red-50 dark:bg-red-950/20 text-google-red text-[10px] font-medium px-2.5 py-1 rounded-full border border-red-200 dark:border-red-900/40">
                                                                 <Icon name="close" className="text-[12px]" /> Ditolak
                                                             </span>
                                                         )}
@@ -10196,7 +10196,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <Icon name="arrow_back" className="text-[18px]" />
                 </button>
                 <div className="min-w-0">
-                    <h2 className="text-base sm:text-xl font-bold text-slate-800 dark:text-white tracking-tight truncate">{title}</h2>
+                    <h2 className="text-base sm:text-xl font-medium text-slate-800 dark:text-white tracking-tight truncate">{title}</h2>
                     {subtitle && <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5 hidden sm:block">{subtitle}</p>}
                 </div>
             </div>
@@ -10211,52 +10211,52 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             {cartItemCount === 0 ? (
                 <div className="bg-white dark:bg-slate-900 p-10 sm:p-16 rounded-[24px] border border-slate-200 dark:border-slate-800 text-center shadow-sm">
                     <Icon name="shopping_cart" className="text-[56px] text-slate-300 dark:text-slate-700 mb-3" />
-                    <p className="font-bold text-slate-500 dark:text-slate-400 text-sm">Keranjang masih kosong.</p>
-                    <button onClick={() => setView('list')} className="mt-4 px-5 py-2 bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-750 text-white rounded-full font-bold text-xs transition-all">Lihat Produk</button>
+                    <p className="font-medium text-slate-500 dark:text-slate-400 text-sm">Keranjang masih kosong.</p>
+                    <button onClick={() => setView('list')} className="mt-4 px-5 py-2 bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-750 text-white rounded-full font-medium text-xs transition-all">Lihat Produk</button>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {/* Ringkasan Pesanan */}
                     <div className="space-y-4">
                         <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-                            <h3 className="font-bold text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-3">Ringkasan Pesanan</h3>
+                            <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-3">Ringkasan Pesanan</h3>
                             {Object.entries(cart).map(([key, item]) => (
                                 <div key={key} className="flex gap-3 justify-between items-start border-b border-slate-100 dark:border-slate-800 pb-3 last:border-0 last:pb-0">
                                     <div className="flex gap-2 sm:gap-3 items-center flex-1 min-w-0">
                                         {item.product.imageUrl ? <img src={item.product.imageUrl} className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover shrink-0" /> : <div className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0"><Icon name="storefront" className="text-slate-400 text-[16px]" /></div>}
                                         <div className="min-w-0">
-                                            <p className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white line-clamp-1">{item.product.judul}</p>
+                                            <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-white line-clamp-1">{item.product.judul}</p>
                                             <p className="text-[10px] sm:text-[11px] font-medium text-slate-505 dark:text-slate-400">{item.variant.name} &bull; {item.qty}x {formatRp(item.price)}</p>
                                         </div>
                                     </div>
                                     <div className="text-right shrink-0">
-                                        <p className="text-xs sm:text-sm font-bold text-google-green dark:text-google-greenLight">{formatRp(item.price * item.qty)}</p>
+                                        <p className="text-xs sm:text-sm font-medium text-google-green dark:text-google-greenLight">{formatRp(item.price * item.qty)}</p>
                                         <button onClick={() => { const nc = {...cart}; delete nc[key]; setCart(nc); }} className="text-[10px] sm:text-[11px] text-red-505 font-medium hover:underline mt-0.5">Hapus</button>
                                     </div>
                                 </div>
                             ))}
                             <div className="bg-slate-50 dark:bg-slate-850 px-4 py-3 rounded-xl flex justify-between items-center border border-slate-200 dark:border-slate-800">
-                                <span className="font-bold text-slate-600 dark:text-slate-300 text-sm">Total Belanja</span>
-                                <span className="text-base sm:text-lg font-black text-google-green dark:text-google-greenLight">{formatRp(cartTotal)}</span>
+                                <span className="font-medium text-slate-600 dark:text-slate-300 text-sm">Total Belanja</span>
+                                <span className="text-base sm:text-lg font-medium text-google-green dark:text-google-greenLight">{formatRp(cartTotal)}</span>
                             </div>
                         </div>
                         <div className="bg-google-greenLight/20 dark:bg-google-greenDark/10 border border-google-green/30 p-4 rounded-[16px] flex gap-3 items-start">
                             <Icon name="local_shipping" className="text-google-green text-[20px] shrink-0 mt-0.5" />
                             <div>
-                                <p className="font-bold text-google-greenDark dark:text-google-greenLight text-sm">Gratis Ongkir & COD</p>
+                                <p className="font-medium text-google-greenDark dark:text-google-greenLight text-sm">Gratis Ongkir & COD</p>
                                 <p className="text-xs text-google-greenDark/80 dark:text-google-greenLight/80 mt-0.5 leading-relaxed">Pesanan diantar langsung ke rumah Anda. Pembayaran tunai saat barang tiba.</p>
                             </div>
                         </div>
                     </div>
                     {/* Form Pengiriman */}
                     <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-                        <h3 className="font-bold text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-3">Data Pengiriman</h3>
+                        <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-3">Data Pengiriman</h3>
                         {[
                             { label: 'Nama Lengkap Pemesan *', key: 'namaWarga', type: 'text', placeholder: 'Nama Anda...' },
                             { label: 'Nomor WhatsApp *', key: 'noWa', type: 'number', placeholder: '08xx...' },
                         ].map(f => (
                             <div key={f.key}>
-                                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 block">{f.label}</label>
+                                <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">{f.label}</label>
                                 <input type={f.type} value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-205 dark:border-slate-700 focus:border-google-green dark:focus:border-green-505 text-slate-800 dark:text-white rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors" placeholder={f.placeholder} />
                             </div>
                         ))}
@@ -10265,11 +10265,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             { label: 'Catatan (Opsional)', key: 'catatan', placeholder: 'Cth: Diantar sore hari...' },
                         ].map(f => (
                             <div key={f.key}>
-                                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 block">{f.label}</label>
+                                <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">{f.label}</label>
                                 <textarea rows="2" value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-205 dark:border-slate-700 focus:border-google-green dark:focus:border-green-505 text-slate-800 dark:text-white rounded-[12px] px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none" placeholder={f.placeholder} />
                             </div>
                         ))}
-                        <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-755 text-white font-bold py-3 sm:py-3.5 rounded-[12px] shadow-[0_4px_12px_rgba(34,197,94,0.3)] active:scale-95 transition-all text-sm">
+                        <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-755 text-white font-medium py-3 sm:py-3.5 rounded-[12px] shadow-[0_4px_12px_rgba(34,197,94,0.3)] active:scale-95 transition-all text-sm">
                             ✓ Buat Pesanan & Bayar COD
                         </button>
                     </div>
@@ -10290,7 +10290,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         {selectedProduct.imageUrl
                             ? <img src={selectedProduct.imageUrl} className="absolute inset-0 w-full h-full object-cover" alt={selectedProduct.judul} />
                             : <div className="absolute inset-0 flex items-center justify-center"><Icon name="storefront" className="text-[56px] text-slate-300 dark:text-slate-650" /></div>}
-                        {selectedProduct.grosirMinQty > 0 && <span className="absolute top-3 left-3 bg-yellow-400 text-yellow-900 text-[9px] font-bold uppercase px-2.5 py-1 rounded-full shadow">Grosir Tersedia</span>}
+                        {selectedProduct.grosirMinQty > 0 && <span className="absolute top-3 left-3 bg-yellow-400 text-yellow-900 text-[9px] font-medium uppercase px-2.5 py-1 rounded-full shadow">Grosir Tersedia</span>}
                         
                         {/* Tombol Share */}
                         <button onClick={(e) => {
@@ -10308,15 +10308,15 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <div className="lg:w-1/2 p-4 sm:p-6 lg:p-8 space-y-5">
                         <div>
                             <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                                <h1 className="text-lg sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight">{selectedProduct.judul}</h1>
+                                <h1 className="text-lg sm:text-2xl font-medium text-slate-800 dark:text-white tracking-tight">{selectedProduct.judul}</h1>
                                 {selectedProduct.sku && (
-                                    <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-bold px-2.5 py-1 rounded-md border border-slate-205 dark:border-slate-700">
+                                    <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-medium px-2.5 py-1 rounded-md border border-slate-205 dark:border-slate-700">
                                         {selectedProduct.sku}
                                     </span>
                                 )}
                             </div>
                             {selectedProduct.kategori && (
-                                <span className="inline-block bg-google-blue/10 text-google-blue dark:bg-blue-900/30 dark:text-blue-400 px-2.5 py-1 rounded-md text-[10px] font-bold mb-3 uppercase tracking-wider border border-google-blue/20">
+                                <span className="inline-block bg-google-blue/10 text-google-blue dark:bg-blue-900/30 dark:text-blue-400 px-2.5 py-1 rounded-md text-[10px] font-medium mb-3 uppercase tracking-wider border border-google-blue/20">
                                     {selectedProduct.kategori}
                                 </span>
                             )}
@@ -10324,11 +10324,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         </div>
                         {/* Pilih Varian */}
                         <div>
-                            <label className="text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 block">Pilih Varian</label>
+                            <label className="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 block">Pilih Varian</label>
                             <div className="flex flex-wrap gap-2">
                                 {selectedProduct.variants.map(v => (
                                     <button key={v.id} onClick={() => setSelectedVariant(v)}
-                                        className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-[10px] sm:rounded-[12px] font-bold text-xs sm:text-sm border-2 transition-all active:scale-95 ${selectedVariant?.id === v.id ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-750 hover:border-google-blue/50'}`}>
+                                        className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-[10px] sm:rounded-[12px] font-medium text-xs sm:text-sm border-2 transition-all active:scale-95 ${selectedVariant?.id === v.id ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-750 hover:border-google-blue/50'}`}>
                                         {v.name} &bull; {formatRp(v.price)}
                                     </button>
                                 ))}
@@ -10336,9 +10336,9 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         </div>
                         {/* Qty */}
                         <div>
-                            <label className="text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 block">Jumlah Beli (Qty)</label>
+                            <label className="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 block">Jumlah Beli (Qty)</label>
                             <div className="flex items-center gap-3">
-                                <input type="number" step="0.1" min="0.1" value={orderQty} onChange={e => setOrderQty(e.target.value)} className="w-20 sm:w-24 bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white rounded-[12px] px-2 sm:px-3 py-2 sm:py-2.5 text-center font-bold text-sm outline-none" />
+                                <input type="number" step="0.1" min="0.1" value={orderQty} onChange={e => setOrderQty(e.target.value)} className="w-20 sm:w-24 bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white rounded-[12px] px-2 sm:px-3 py-2 sm:py-2.5 text-center font-medium text-sm outline-none" />
                                 <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Bisa desimal (cth: 1.5)</span>
                             </div>
                             {selectedProduct.grosirMinQty > 0 && selectedProduct.grosirPrice > 0 && (
@@ -10346,7 +10346,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     <Icon name="sell" className="text-google-yellowDark text-[16px] shrink-0 mt-0.5" />
                                     <p className="text-[11px] text-google-yellowDark dark:text-google-yellowLight font-medium leading-relaxed">
                                         Beli <strong>{selectedProduct.grosirMinQty}</strong>+ dapat harga grosir: <strong>{formatRp(selectedProduct.grosirPrice)}</strong>/varian
-                                        {safeNumber(orderQty) >= safeNumber(selectedProduct.grosirMinQty) && <span className="ml-2 bg-green-500 text-white px-2 py-0.5 rounded-full text-[10px] font-bold">✓ Aktif!</span>}
+                                        {safeNumber(orderQty) >= safeNumber(selectedProduct.grosirMinQty) && <span className="ml-2 bg-green-500 text-white px-2 py-0.5 rounded-full text-[10px] font-medium">✓ Aktif!</span>}
                                     </p>
                                 </div>
                             )}
@@ -10354,10 +10354,10 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         {/* Subtotal & CTA */}
                         <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
                             <div className="flex justify-between items-center mb-3">
-                                <span className="font-bold text-slate-600 dark:text-slate-300 text-sm">Subtotal</span>
-                                <span className="text-lg sm:text-xl font-black text-google-green dark:text-google-greenLight">{formatRp(effPrice * safeNumber(orderQty))}</span>
+                                <span className="font-medium text-slate-600 dark:text-slate-300 text-sm">Subtotal</span>
+                                <span className="text-lg sm:text-xl font-medium text-google-green dark:text-google-greenLight">{formatRp(effPrice * safeNumber(orderQty))}</span>
                             </div>
-                            <button onClick={addToCart} className="w-full bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-3 sm:py-3.5 rounded-[12px] shadow-[0_4px_12px_rgba(26,115,232,0.3)] active:scale-95 transition-all text-sm flex justify-center items-center gap-2">
+                            <button onClick={addToCart} className="w-full bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium py-3 sm:py-3.5 rounded-[12px] shadow-[0_4px_12px_rgba(26,115,232,0.3)] active:scale-95 transition-all text-sm flex justify-center items-center gap-2">
                                 <Icon name="add_shopping_cart" className="text-[18px]" /> Tambah ke Keranjang
                             </button>
                         </div>
@@ -10372,23 +10372,23 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
         <>
         <div className="space-y-5">
             <PageHeader title="Kelola Katalog Produk" subtitle="Tambah, edit, dan hapus produk toko" onBack={() => setView('list')}>
-                <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-[12px] font-bold text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
+                <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-[12px] font-medium text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
                     <Icon name="add" className="text-[16px] sm:text-[18px]" /> <span className="hidden sm:inline">Produk</span> Baru
                 </button>
             </PageHeader>
 
             {isFormOpen && (
                 <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 lg:p-8 rounded-[20px] sm:rounded-[28px] border-2 border-google-blue dark:border-blue-600 shadow-lg space-y-5">
-                    <h3 className="font-bold text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-200 dark:border-slate-800 pb-3">{editingProduct ? '✏️ Edit Produk' : '➕ Produk Baru'}</h3>
+                    <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-200 dark:border-slate-800 pb-3">{editingProduct ? '✏️ Edit Produk' : '➕ Produk Baru'}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         {/* Kolom Kiri */}
                         <div className="space-y-4">
                             <div>
-                                <label className="text-xs font-bold text-slate-505 dark:text-slate-400 mb-1.5 block">Nama / Judul Produk *</label>
+                                <label className="text-xs font-medium text-slate-505 dark:text-slate-400 mb-1.5 block">Nama / Judul Produk *</label>
                                 <input type="text" value={productForm.judul} onChange={e => setProductForm({...productForm, judul: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Beras Premium 5Kg..." />
                             </div>
                             <div>
-                                <label className="text-xs font-bold text-slate-505 dark:text-slate-400 mb-1.5 block">Kategori Produk</label>
+                                <label className="text-xs font-medium text-slate-505 dark:text-slate-400 mb-1.5 block">Kategori Produk</label>
                                 <input list="kategori-options" type="text" value={productForm.kategori || ''} onChange={e => setProductForm({...productForm, kategori: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Pilih atau Ketik Kategori Baru..." />
                                 <datalist id="kategori-options">
                                     <option value="Sembako & Kebutuhan Harian" />
@@ -10403,17 +10403,17 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             </div>
                             {productForm.sku && (
                                 <div>
-                                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 block">Kode SKU Produk (Otomatis)</label>
-                                    <input type="text" value={productForm.sku} readOnly className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-4 py-2 text-sm font-bold text-slate-500 dark:text-slate-400 outline-none cursor-not-allowed" />
+                                    <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Kode SKU Produk (Otomatis)</label>
+                                    <input type="text" value={productForm.sku} readOnly className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 outline-none cursor-not-allowed" />
                                 </div>
                             )}
                             <div>
-                                <label className="text-xs font-bold text-slate-550 dark:text-slate-400 mb-1.5 block">Deskripsi Produk</label>
+                                <label className="text-xs font-medium text-slate-550 dark:text-slate-400 mb-1.5 block">Deskripsi Produk</label>
                                 <textarea rows="3" value={productForm.deskripsi} onChange={e => setProductForm({...productForm, deskripsi: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none text-slate-800 dark:text-white" placeholder="Deskripsi produk..." />
                             </div>
                             {/* Upload Gambar */}
                             <div>
-                                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 block">Gambar Produk (Auto GDrive)</label>
+                                <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Gambar Produk (Auto GDrive)</label>
                                 <div className={`flex items-center gap-3 bg-slate-50 dark:bg-slate-805 border-2 ${isUploading ? 'border-google-blue' : productForm.imageUrl ? 'border-google-green' : 'border-slate-200 dark:border-slate-750'} p-3 rounded-[16px] relative overflow-hidden transition-all`}>
                                     <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                     <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white dark:bg-slate-800 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 dark:border-slate-700 z-0 overflow-hidden">
@@ -10422,7 +10422,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                             : <Icon name="cloud_upload" className="text-[22px] text-slate-400" />}
                                     </div>
                                     <div className="z-0 flex-1 min-w-0">
-                                        <p className="font-bold text-sm text-slate-700 dark:text-slate-300 truncate">{isUploading ? 'Mengunggah...' : productForm.imageUrl ? '✓ Gambar Tersimpan' : 'Ketuk untuk pilih gambar'}</p>
+                                        <p className="font-medium text-sm text-slate-700 dark:text-slate-300 truncate">{isUploading ? 'Mengunggah...' : productForm.imageUrl ? '✓ Gambar Tersimpan' : 'Ketuk untuk pilih gambar'}</p>
                                         <p className="text-[10px] text-slate-450 dark:text-slate-400 font-medium mt-0.5">Otomatis diupload & dikompresi</p>
                                     </div>
                                 </div>
@@ -10430,7 +10430,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <label className="flex items-center gap-3 cursor-pointer p-3.5 bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 rounded-[12px] hover:border-google-blue transition-colors">
                                 <input type="checkbox" checked={productForm.isPublished} onChange={e => setProductForm({...productForm, isPublished: e.target.checked})} className="w-5 h-5 accent-google-blue rounded" />
                                 <div>
-                                    <p className="font-bold text-sm text-slate-700 dark:text-slate-300">Publikasikan ke Warga</p>
+                                    <p className="font-medium text-sm text-slate-700 dark:text-slate-300">Publikasikan ke Warga</p>
                                     <p className="text-[10px] text-slate-400 font-medium">Produk akan tampil di halaman warga & landing page</p>
                                 </div>
                             </label>
@@ -10440,8 +10440,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             {/* Varian & Harga */}
                             <div className="bg-slate-50 dark:bg-slate-805 p-4 rounded-[20px] border border-slate-200 dark:border-slate-750 space-y-3">
                                 <div className="flex justify-between items-center">
-                                    <h4 className="font-bold text-slate-700 dark:text-slate-300 text-sm">Varian & Harga</h4>
-                                    <button onClick={() => setProductForm({...productForm, variants: [...productForm.variants, { id: Date.now(), name: '', price: 0 }]})} className="text-xs font-bold text-google-blue flex items-center gap-0.5 hover:underline"><Icon name="add" className="text-[14px]" />Tambah</button>
+                                    <h4 className="font-medium text-slate-700 dark:text-slate-300 text-sm">Varian & Harga</h4>
+                                    <button onClick={() => setProductForm({...productForm, variants: [...productForm.variants, { id: Date.now(), name: '', price: 0 }]})} className="text-xs font-medium text-google-blue flex items-center gap-0.5 hover:underline"><Icon name="add" className="text-[14px]" />Tambah</button>
                                 </div>
                                 {productForm.variants.map((v, i) => (
                                     <div key={v.id} className="flex flex-col sm:flex-row gap-2 sm:items-center">
@@ -10455,24 +10455,24 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             </div>
                             {/* Grosir */}
                             <div className="bg-yellow-50 dark:bg-yellow-950/10 p-4 rounded-[20px] border border-yellow-200 dark:border-yellow-900/30 space-y-3">
-                                <h4 className="font-bold text-yellow-800 dark:text-yellow-500 text-sm flex items-center gap-1.5"><Icon name="sell" className="text-[16px]" />Harga Grosir (Opsional)</h4>
+                                <h4 className="font-medium text-yellow-800 dark:text-yellow-500 text-sm flex items-center gap-1.5"><Icon name="sell" className="text-[16px]" />Harga Grosir (Opsional)</h4>
                                 <p className="text-[11px] text-yellow-700 dark:text-yellow-600 font-medium leading-relaxed">Warga yang membeli ≥ Qty ini akan otomatis mendapat harga grosir.</p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                                     <div>
-                                        <label className="text-[10px] font-bold text-yellow-700 dark:text-yellow-500 mb-1 block">Min. Qty</label>
-                                        <input type="number" value={productForm.grosirMinQty} onChange={e => setProductForm({...productForm, grosirMinQty: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-yellow-350 dark:border-yellow-900/40 rounded-[8px] px-3 py-2 text-sm font-bold outline-none focus:border-yellow-500 text-slate-800 dark:text-white" placeholder="cth: 5" />
+                                        <label className="text-[10px] font-medium text-yellow-700 dark:text-yellow-500 mb-1 block">Min. Qty</label>
+                                        <input type="number" value={productForm.grosirMinQty} onChange={e => setProductForm({...productForm, grosirMinQty: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-yellow-350 dark:border-yellow-900/40 rounded-[8px] px-3 py-2 text-sm font-medium outline-none focus:border-yellow-500 text-slate-800 dark:text-white" placeholder="cth: 5" />
                                     </div>
                                     <div>
-                                        <label className="text-[10px] font-bold text-yellow-700 dark:text-yellow-500 mb-1 block">Harga Grosir</label>
-                                        <input type="number" value={productForm.grosirPrice} onChange={e => setProductForm({...productForm, grosirPrice: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-yellow-350 dark:border-yellow-900/40 rounded-[8px] px-3 py-2 text-sm font-bold outline-none focus:border-yellow-500 text-slate-800 dark:text-white" placeholder="Rp..." />
+                                        <label className="text-[10px] font-medium text-yellow-700 dark:text-yellow-500 mb-1 block">Harga Grosir</label>
+                                        <input type="number" value={productForm.grosirPrice} onChange={e => setProductForm({...productForm, grosirPrice: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-yellow-350 dark:border-yellow-900/40 rounded-[8px] px-3 py-2 text-sm font-medium outline-none focus:border-yellow-500 text-slate-800 dark:text-white" placeholder="Rp..." />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-800 justify-end">
-                        <button onClick={() => { setIsFormOpen(false); setEditingProduct(null); }} className="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold rounded-[12px] hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all border border-slate-350 dark:border-slate-750 text-sm">Batal</button>
-                        <button onClick={saveProduct} className="px-5 py-2.5 bg-google-blue text-white font-bold rounded-[12px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md text-sm">Simpan Produk</button>
+                        <button onClick={() => { setIsFormOpen(false); setEditingProduct(null); }} className="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium rounded-[12px] hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all border border-slate-350 dark:border-slate-750 text-sm">Batal</button>
+                        <button onClick={saveProduct} className="px-5 py-2.5 bg-google-blue text-white font-medium rounded-[12px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md text-sm">Simpan Produk</button>
                     </div>
                 </div>
             )}
@@ -10489,19 +10489,19 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-start justify-between gap-2">
                                         <div>
-                                            <p className="font-bold text-sm text-slate-800 dark:text-white line-clamp-1">{p.judul}</p>
-                                            {p.sku && <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 mt-0.5">{p.sku}</p>}
+                                            <p className="font-medium text-sm text-slate-800 dark:text-white line-clamp-1">{p.judul}</p>
+                                            {p.sku && <p className="text-[9px] font-medium text-slate-400 dark:text-slate-500 mt-0.5">{p.sku}</p>}
                                         </div>
-                                        <span className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase ${p.isPublished ? 'bg-green-105 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span>
+                                        <span className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-medium uppercase ${p.isPublished ? 'bg-green-105 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span>
                                     </div>
                                     <div className="text-[11px] text-slate-505 dark:text-slate-400 font-medium mt-1 space-y-0.5">
-                                        {p.variants.slice(0,2).map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-bold text-slate-700 dark:text-slate-355">{formatRp(v.price)}</span></div>)}
+                                        {p.variants.slice(0,2).map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-medium text-slate-700 dark:text-slate-355">{formatRp(v.price)}</span></div>)}
                                         {p.variants.length > 2 && <div className="text-slate-400 dark:text-slate-550">+{p.variants.length-2} varian lainnya</div>}
                                     </div>
-                                    {p.grosirMinQty > 0 && <span className="inline-block mt-1.5 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-955/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-bold rounded">Grosir</span>}
+                                    {p.grosirMinQty > 0 && <span className="inline-block mt-1.5 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-955/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-medium rounded">Grosir</span>}
                                     <div className="flex gap-2 mt-3">
-                                        <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-955/20 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
-                                        <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-405 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
+                                        <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-955/20 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-medium flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
+                                        <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-405 rounded-lg text-xs font-medium flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
                                     </div>
                                 </div>
                             </div>
@@ -10511,7 +10511,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <div className="hidden md:block bg-white dark:bg-slate-900 rounded-[24px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse min-w-[780px]">
-                                <thead><tr className="bg-slate-50 dark:bg-slate-850 border-b-2 border-slate-205 dark:border-slate-800 text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                <thead><tr className="bg-slate-50 dark:bg-slate-850 border-b-2 border-slate-205 dark:border-slate-800 text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                                     <th className="p-4 w-12 text-center text-slate-505 dark:text-slate-400">No</th>
                                     <th className="p-4 text-slate-505 dark:text-slate-400">Info Produk</th>
                                     <th className="p-4 text-slate-505 dark:text-slate-400">Kategori</th>
@@ -10523,26 +10523,26 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     {tokoProducts.length === 0 ? <tr><td colSpan="6" className="p-10 text-center text-slate-400 font-medium">Belum ada produk.</td></tr>
                                     : tokoProducts.map((p, idx) => (
                                         <tr key={p.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors">
-                                            <td className="p-4 text-center font-bold text-slate-400 text-sm">{idx+1}</td>
+                                            <td className="p-4 text-center font-medium text-slate-400 text-sm">{idx+1}</td>
                                             <td className="p-4">
                                                 <div className="flex items-center gap-3">
                                                     {p.imageUrl ? <img src={p.imageUrl} className="w-12 h-12 rounded-xl object-cover border border-slate-200 dark:border-slate-800 shrink-0" /> : <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-xl shrink-0 flex items-center justify-center"><Icon name="storefront" className="text-slate-400" /></div>}
                                                     <div>
-                                                        <p className="font-bold text-sm text-slate-800 dark:text-white">{p.judul}</p>
+                                                        <p className="font-medium text-sm text-slate-800 dark:text-white">{p.judul}</p>
                                                         <div className="flex flex-wrap items-center gap-1.5 mt-1">
-                                                            {p.sku && <span className="text-[9px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-500 px-1.5 py-0.5 rounded">{p.sku}</span>}
-                                                            {p.grosirMinQty > 0 && <span className="inline-block px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-bold rounded uppercase">Grosir Aktif</span>}
+                                                            {p.sku && <span className="text-[9px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 px-1.5 py-0.5 rounded">{p.sku}</span>}
+                                                            {p.grosirMinQty > 0 && <span className="inline-block px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-medium rounded uppercase">Grosir Aktif</span>}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="p-4">
-                                                <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-1.5 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 whitespace-nowrap inline-block">
+                                                <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 whitespace-nowrap inline-block">
                                                     {p.kategori || 'Belum Diatur'}
                                                 </span>
                                             </td>
-                                            <td className="p-4 text-xs font-medium text-slate-600 dark:text-slate-300 space-y-1">{p.variants.map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-bold text-slate-800 dark:text-white">{formatRp(v.price)}</span></div>)}</td>
-                                            <td className="p-4 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
+                                            <td className="p-4 text-xs font-medium text-slate-600 dark:text-slate-300 space-y-1">{p.variants.map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-medium text-slate-800 dark:text-white">{formatRp(v.price)}</span></div>)}</td>
+                                            <td className="p-4 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-medium uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
                                             <td className="p-4 text-right space-x-2">
                                                 <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="p-2 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
                                                 <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="p-2 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
@@ -10564,11 +10564,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Icon name="warning" className="text-[32px] text-red-500" fill="true" />
                     </div>
-                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
+                    <h3 className="text-lg font-medium text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
                     <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">{tokoConfirm.message}</p>
                     <div className="flex gap-3">
-                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
-                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold text-sm transition-colors">Ya, Lanjutkan</button>
+                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium text-sm transition-colors">Ya, Lanjutkan</button>
                     </div>
                 </div>
             </div>
@@ -10584,7 +10584,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             {/* Tab Status */}
             <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
                 {['Menunggu', 'Diproses', 'Diantar', 'Selesai', 'Dibatalkan'].map(tab => (
-                    <button key={tab} onClick={() => setActiveOrderTab(tab)} className={`shrink-0 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-bold text-[11px] sm:text-xs transition-all border-2 ${activeOrderTab === tab ? 'bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 border-slate-800 dark:border-slate-200 shadow-md' : 'bg-white dark:bg-slate-900 text-slate-650 dark:text-slate-400 border-slate-200 dark:border-slate-850 hover:border-slate-400'}`}>
+                    <button key={tab} onClick={() => setActiveOrderTab(tab)} className={`shrink-0 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-medium text-[11px] sm:text-xs transition-all border-2 ${activeOrderTab === tab ? 'bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 border-slate-800 dark:border-slate-200 shadow-md' : 'bg-white dark:bg-slate-900 text-slate-650 dark:text-slate-400 border-slate-200 dark:border-slate-850 hover:border-slate-400'}`}>
                         {tab} <span className={`${activeOrderTab === tab ? 'opacity-70' : 'opacity-50'}`}>({tokoOrders.filter(o => o.status === tab).length})</span>
                     </button>
                 ))}
@@ -10600,27 +10600,27 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     <Icon name="receipt_long" className="text-[16px]" />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Order ID</p>
-                                    <p className="text-[12px] font-extrabold text-slate-700 dark:text-slate-300">#TK-{String(order.id).slice(-6)}</p>
+                                    <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wider">Order ID</p>
+                                    <p className="text-[12px] font-medium text-slate-700 dark:text-slate-300">#TK-{String(order.id).slice(-6)}</p>
                                 </div>
                             </div>
-                            <span className={`px-3 py-1 rounded-[8px] text-[9px] font-bold uppercase shrink-0 border ${order.status === 'Menunggu' ? 'bg-amber-50 border-amber-200 text-amber-700' : order.status === 'Diproses' ? 'bg-blue-50 border-blue-200 text-blue-700' : order.status === 'Diantar' ? 'bg-purple-50 border-purple-200 text-purple-700' : order.status === 'Selesai' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-red-50 border-red-200 text-red-700'}`}>{order.status}</span>
+                            <span className={`px-3 py-1 rounded-[8px] text-[9px] font-medium uppercase shrink-0 border ${order.status === 'Menunggu' ? 'bg-amber-50 border-amber-200 text-amber-700' : order.status === 'Diproses' ? 'bg-blue-50 border-blue-200 text-blue-700' : order.status === 'Diantar' ? 'bg-purple-50 border-purple-200 text-purple-700' : order.status === 'Selesai' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-red-50 border-red-200 text-red-700'}`}>{order.status}</span>
                         </div>
                         
                         <div className="bg-slate-50 dark:bg-slate-805 rounded-[14px] p-4 border border-slate-100 dark:border-slate-800 space-y-3">
                             <div className="flex justify-between items-start">
                                 <div className="flex-1">
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Pemesan</p>
-                                    <h4 className="font-extrabold text-[15px] text-slate-800 dark:text-slate-100 mt-0.5">{order.wargaName}</h4>
+                                    <p className="text-[10px] font-medium text-slate-400 uppercase">Pemesan</p>
+                                    <h4 className="font-medium text-[15px] text-slate-800 dark:text-slate-100 mt-0.5">{order.wargaName}</h4>
                                 </div>
                                 <div className="text-right shrink-0">
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Total</p>
-                                    <p className="text-[14px] font-black text-rose-600 dark:text-rose-500">{formatRp(order.totalAmount)}</p>
+                                    <p className="text-[10px] font-medium text-slate-400 uppercase">Total</p>
+                                    <p className="text-[14px] font-medium text-rose-600 dark:text-rose-500">{formatRp(order.totalAmount)}</p>
                                 </div>
                             </div>
                             
                             <div className="pt-3 border-t border-slate-200 dark:border-slate-750">
-                                <p className="text-[10px] font-bold text-slate-400 uppercase mb-2">Rincian Belanja</p>
+                                <p className="text-[10px] font-medium text-slate-400 uppercase mb-2">Rincian Belanja</p>
                                 <div className="space-y-2">
                                     {order.items.map((it, idx) => (
                                         <div key={idx} className="flex gap-2 items-start text-xs">
@@ -10628,7 +10628,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                                 {it.product.imageUrl ? <img src={it.product.imageUrl} className="w-full h-full object-cover rounded-[6px]" /> : <Icon name="storefront" className="text-[14px] text-slate-400" />}
                                             </div>
                                             <div className="flex-1 min-w-0 pt-0.5">
-                                                <p className="font-bold text-slate-700 dark:text-slate-200 line-clamp-1">{it.product.judul}</p>
+                                                <p className="font-medium text-slate-700 dark:text-slate-200 line-clamp-1">{it.product.judul}</p>
                                                 <p className="text-[10px] font-medium text-slate-500">{it.variant.name} &bull; {it.qty}x {formatRp(it.price)}</p>
                                             </div>
                                         </div>
@@ -10643,7 +10643,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     <Icon name="local_shipping" className="text-[13px] text-rose-500" />
                                 </div>
                                 <div className="flex-1">
-                                    <span className="font-bold text-slate-800 dark:text-white">Alamat Pengiriman</span>
+                                    <span className="font-medium text-slate-800 dark:text-white">Alamat Pengiriman</span>
                                     <p className="text-[11px] text-slate-500 dark:text-slate-450 mt-1">{order.address}</p>
                                 </div>
                             </div>
@@ -10653,31 +10653,31 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     <div className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
                                         <Icon name="call" className="text-[13px] text-slate-500" />
                                     </div>
-                                    <span className="font-bold text-slate-800 dark:text-white">WhatsApp</span>
+                                    <span className="font-medium text-slate-800 dark:text-white">WhatsApp</span>
                                 </div>
-                                <a href={`https://wa.me/${order.phone.replace(/^0/,'62')}`} target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:underline font-extrabold">{order.phone}</a>
+                                <a href={`https://wa.me/${order.phone.replace(/^0/,'62')}`} target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:underline font-medium">{order.phone}</a>
                             </div>
 
                             {order.notes && (
                                 <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-amber-50 dark:bg-amber-950/20 p-3 rounded-[12px] border border-amber-100 dark:border-amber-900/30">
                                     <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-amber-500" />
-                                    <span><span className="font-bold text-slate-800 dark:text-white">Catatan:</span> {order.notes}</span>
+                                    <span><span className="font-medium text-slate-800 dark:text-white">Catatan:</span> {order.notes}</span>
                                 </div>
                             )}
                         </div>
                         
                         <div className="flex items-center justify-between mt-2 mb-3">
-                            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
+                            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
                                 <Icon name="event" className="text-[13px]" /> {parseLocalDate(order.orderDate).toLocaleString('id-ID', {dateStyle:'short', timeStyle:'short'})}
                             </div>
                         </div>
 
                         <div className="flex gap-2 mt-auto pt-1">
-                            {order.status === 'Menunggu' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diproses'} : o))} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Proses</button>}
-                            {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Mulai Antar</button>}
-                            {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Selesai ✓</button>}
-                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)) }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-lg text-xs font-bold transition-colors">Batal</button>}
-                            <button onClick={() => { setTokoConfirm({ message: 'Hapus pesanan ini secara permanen?', onConfirm: () => setTokoOrders(tokoOrders.filter(o => o.id !== order.id)) }); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-lg text-xs font-bold transition-colors flex items-center justify-center" title="Hapus Permanen">
+                            {order.status === 'Menunggu' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diproses'} : o))} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-xs font-medium transition-colors">Proses</button>}
+                            {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg text-xs font-medium transition-colors">Mulai Antar</button>}
+                            {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-xs font-medium transition-colors">Selesai ✓</button>}
+                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)) }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-lg text-xs font-medium transition-colors">Batal</button>}
+                            <button onClick={() => { setTokoConfirm({ message: 'Hapus pesanan ini secara permanen?', onConfirm: () => setTokoOrders(tokoOrders.filter(o => o.id !== order.id)) }); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-lg text-xs font-medium transition-colors flex items-center justify-center" title="Hapus Permanen">
                                 <Icon name="delete" className="text-[15px]" />
                             </button>
                         </div>
@@ -10693,11 +10693,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Icon name="warning" className="text-[32px] text-red-500" fill="true" />
                     </div>
-                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
+                    <h3 className="text-lg font-medium text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
                     <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">{tokoConfirm.message}</p>
                     <div className="flex gap-3">
-                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
-                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold text-sm transition-colors">Ya, Lanjutkan</button>
+                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium text-sm transition-colors">Ya, Lanjutkan</button>
                     </div>
                 </div>
             </div>
@@ -10713,23 +10713,23 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-sm">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <h2 className="text-xl sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
+                        <h2 className="text-xl sm:text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                             <Icon name="storefront" className="text-google-green text-[26px] sm:text-3xl" fill="true" /> Official Store
                         </h2>
                         <p className="text-xs sm:text-sm font-medium text-slate-505 dark:text-slate-400 mt-1">Layanan belanja hemat, gratis ongkir, bayar di tempat (COD).</p>
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
                         {userRole === 'admin' && (<>
-                            <button onClick={() => setView('admin-products')} className="px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-google-blue dark:text-google-blueLight border-2 border-google-blue dark:border-google-blue/40 rounded-[12px] font-bold text-xs hover:bg-google-blue hover:text-white dark:hover:bg-google-blue transition-all">Kelola Katalog</button>
-                            <button onClick={() => setView('admin-orders')} className="relative px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-yellow-750 dark:text-yellow-450 border-2 border-yellow-405 dark:border-yellow-600/50 rounded-[12px] font-bold text-xs hover:bg-yellow-400 hover:text-white dark:hover:bg-yellow-500 transition-all">
+                            <button onClick={() => setView('admin-products')} className="px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-google-blue dark:text-google-blueLight border-2 border-google-blue dark:border-google-blue/40 rounded-[12px] font-medium text-xs hover:bg-google-blue hover:text-white dark:hover:bg-google-blue transition-all">Kelola Katalog</button>
+                            <button onClick={() => setView('admin-orders')} className="relative px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-yellow-750 dark:text-yellow-450 border-2 border-yellow-405 dark:border-yellow-600/50 rounded-[12px] font-medium text-xs hover:bg-yellow-400 hover:text-white dark:hover:bg-yellow-500 transition-all">
                                 Pesanan
-                                {tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length > 0 && <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center text-[9px] font-bold animate-bounce">{tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length}</span>}
+                                {tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length > 0 && <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center text-[9px] font-medium animate-bounce">{tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length}</span>}
                             </button>
                         </>)}
-                        <button onClick={() => setView('cart')} className="px-3 sm:px-5 py-2 sm:py-2.5 bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-[12px] font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5 active:scale-95">
+                        <button onClick={() => setView('cart')} className="px-3 sm:px-5 py-2 sm:py-2.5 bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-[12px] font-medium text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5 active:scale-95">
                             <Icon name="shopping_cart" className="text-[16px] sm:text-[18px]" />
                             <span>Keranjang</span>
-                            {cartItemCount > 0 && <span className="bg-white text-google-green px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold">{cartItemCount}</span>}
+                            {cartItemCount > 0 && <span className="bg-white text-google-green px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-medium">{cartItemCount}</span>}
                         </button>
                     </div>
                 </div>
@@ -10739,12 +10739,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             {Array.from(new Set(tokoProducts.filter(p => p.isPublished).map(p => p.kategori).filter(Boolean))).length > 0 && (
                 <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
                     <button onClick={() => setSelectedCategory('Semua')}
-                        className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all border-2 ${selectedCategory === 'Semua' ? 'bg-google-blue text-white border-google-blueDark shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-google-blue/40'}`}>
+                        className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all border-2 ${selectedCategory === 'Semua' ? 'bg-google-blue text-white border-google-blueDark shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-google-blue/40'}`}>
                         Semua
                     </button>
                     {Array.from(new Set(tokoProducts.filter(p => p.isPublished).map(p => p.kategori).filter(Boolean))).map(kat => (
                         <button key={kat} onClick={() => setSelectedCategory(kat)}
-                            className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all border-2 ${selectedCategory === kat ? 'bg-google-blue text-white border-google-blueDark shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-google-blue/40'}`}>
+                            className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all border-2 ${selectedCategory === kat ? 'bg-google-blue text-white border-google-blueDark shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-google-blue/40'}`}>
                             {kat}
                         </button>
                     ))}
@@ -10763,7 +10763,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             {item.imageUrl
                                 ? <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
                                 : <Icon name="storefront" className="text-[40px] sm:text-[48px] text-slate-300 dark:text-slate-600" />}
-                            {item.grosirMinQty > 0 && <span className="absolute top-2 left-2 bg-yellow-400 text-yellow-900 text-[8px] sm:text-[9px] font-bold uppercase px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-sm">Grosir</span>}
+                            {item.grosirMinQty > 0 && <span className="absolute top-2 left-2 bg-yellow-400 text-yellow-900 text-[8px] sm:text-[9px] font-medium uppercase px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-sm">Grosir</span>}
                             
                             {/* Tombol Share */}
                             <button onClick={(e) => {
@@ -10779,17 +10779,17 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         </div>
                         {/* Info */}
                         <div className="p-3 sm:p-4 space-y-1 flex-1">
-                            <h4 className="font-bold text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-green transition-colors">{item.judul}</h4>
+                            <h4 className="font-medium text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-green transition-colors">{item.judul}</h4>
                             <div className="flex flex-wrap items-center gap-1">
-                                {item.sku && <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-850 px-1 py-0.5 rounded">{item.sku}</span>}
+                                {item.sku && <span className="text-[9px] font-medium text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-850 px-1 py-0.5 rounded">{item.sku}</span>}
                             </div>
                             <p className="text-[11px] sm:text-[12px] font-medium text-slate-400 dark:text-slate-500 line-clamp-1 sm:line-clamp-2">{item.deskripsi}</p>
                         </div>
                         {/* Footer */}
                         <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-2 border-t border-slate-100 dark:border-slate-850 flex justify-between items-center gap-2">
                             <div>
-                                <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Mulai dari</p>
-                                <p className="text-[13px] sm:text-[14px] font-black text-google-green dark:text-google-greenLight">{formatRp(Math.min(...item.variants.map(v => v.price)))}</p>
+                                <p className="text-[9px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-widest">Mulai dari</p>
+                                <p className="text-[13px] sm:text-[14px] font-medium text-google-green dark:text-google-greenLight">{formatRp(Math.min(...item.variants.map(v => v.price)))}</p>
                             </div>
                             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-55 dark:bg-slate-800 text-google-green dark:text-google-greenLight border border-slate-205 dark:border-slate-750 rounded-full flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors shrink-0">
                                 <Icon name="shopping_bag" className="text-[15px] sm:text-[18px]" />
@@ -10807,11 +10807,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Icon name="warning" className="text-[32px] text-red-500" fill="true" />
                     </div>
-                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
+                    <h3 className="text-lg font-medium text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
                     <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">{tokoConfirm.message}</p>
                     <div className="flex gap-3">
-                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
-                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold text-sm transition-colors">Ya, Lanjutkan</button>
+                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium text-sm transition-colors">Ya, Lanjutkan</button>
                     </div>
                 </div>
             </div>
