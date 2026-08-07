@@ -1232,7 +1232,7 @@ import {
                     <div className="bg-google-yellowLight rounded-[24px] p-5 sm:p-6 md:p-8 border-2 border-google-yellow/40 flex flex-wrap items-start gap-3">
                         <Icon name="info" className="text-[17px] text-google-yellowDark shrink-0 mt-0.5" fill="true" />
                         <ul className="text-[11px] font-medium text-google-yellowDark/90 space-y-1 list-disc list-inside">
-                            <li>Musik <strong>hanya memutar</strong> untuk pengguna login sebagai <strong>Warga</strong>.</li>
+                            <li>Musik <span className="underline decoration-dotted">hanya memutar</span> untuk pengguna login sebagai <span className="underline decoration-dotted">Warga</span>.</li>
                             <li>Admin tidak mendengar musik saat login sebagai Admin.</li>
                             <li>Browser mobile kadang memblokir autoplay G warga cukup tap layar sekali.</li>
                             <li>Gunakan file audio bebas hak cipta atau milik sendiri.</li>
@@ -2056,7 +2056,7 @@ import {
                                     <div className="prose prose-sm text-slate-600 dark:text-slate-350 text-justify leading-relaxed max-w-none">
                                         <p className="font-medium text-slate-800 dark:text-slate-200 text-[13px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
                                         <p className="mb-3">Seluruh data di dalam sistem ini dilindungi secara ketat dan dikelola secara eksklusif oleh Admin Lingkungan.</p>
-                                        <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3 rounded-[10px] border border-red-100 dark:border-red-900/30-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <strong>dilaporkan kepada pihak yang berwajib</strong> sesuai perundang-undangan yang berlaku.</p>
+                                        <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3 rounded-[10px] border border-red-100 dark:border-red-900/30-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <span className="underline underline-offset-2 decoration-red-400">dilaporkan kepada pihak yang berwajib</span> sesuai perundang-undangan yang berlaku.</p>
                                         <p className="mb-6">Sistem ini diperuntukkan khusus untuk keperluan digitalisasi guna menunjang tata kelola lingkungan desa yang transparan dan akuntabel.</p>
                                         
                                         <div className="border-t-2 border-dashed border-slate-300 dark:border-slate-700 pt-4 text-center">
@@ -2225,7 +2225,7 @@ import {
                                     <div className="prose prose-sm text-slate-600 dark:text-slate-350 text-justify leading-relaxed max-w-none">
                                         <p className="font-medium text-slate-800 dark:text-slate-200 text-[13px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
                                         <p className="mb-3">Seluruh data di dalam sistem ini dilindungi secara ketat dan dikelola secara eksklusif oleh Admin Lingkungan.</p>
-                                        <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3 rounded-[10px] border border-red-100 dark:border-red-900/30-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <strong>dilaporkan kepada pihak yang berwajib</strong> sesuai perundang-undangan yang berlaku.</p>
+                                        <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3 rounded-[10px] border border-red-100 dark:border-red-900/30-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <span className="underline underline-offset-2 decoration-red-400">dilaporkan kepada pihak yang berwajib</span> sesuai perundang-undangan yang berlaku.</p>
                                         <p className="mb-6">Sistem ini diperuntukkan khusus untuk keperluan digitalisasi guna menunjang tata kelola lingkungan desa yang transparan dan akuntabel.</p>
                                         
                                         <div className="border-t-2 border-dashed border-slate-300 dark:border-slate-700 pt-4 text-center">
@@ -3773,7 +3773,7 @@ import {
                     {redRecords > 0 && (
                         <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex items-start space-x-5 border-2 border-google-redDark shadow-lg hover:shadow-xl transition-shadow animate-pulse" style={{ animationDuration: '3s' }}>
                             <Icon name="warning" className="text-[36px] shrink-0 drop-shadow-md" fill="true" />
-                            <div><h4 className="text-[16px] font-medium mb-1.5 tracking-tight">Peringatan: Tunggakan Terdeteksi</h4><p className="text-[13px] font-medium text-red-50 leading-relaxed">Terdapat <strong>{redRecords} warga</strong> dengan catatan rapor merah.</p></div>
+                            <div><h4 className="text-[16px] font-medium mb-1.5 tracking-tight">Peringatan: Tunggakan Terdeteksi</h4><p className="text-[13px] font-medium text-red-50 leading-relaxed">Terdapat <span className="underline underline-offset-2">{redRecords} warga</span> dengan catatan rapor merah.</p></div>
                         </div>
                     )}
 
@@ -10338,7 +10338,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <div className="bg-google-yellowLight/20 border border-google-yellow/40 p-3 rounded-xl flex gap-2 items-start mt-3">
                                     <Icon name="sell" className="text-google-yellowDark text-[16px] shrink-0 mt-0.5" />
                                     <p className="text-[11px] text-google-yellowDark dark:text-google-yellowLight font-medium leading-relaxed">
-                                        Beli <strong>{selectedProduct.grosirMinQty}</strong>+ dapat harga grosir: <strong>{formatRp(selectedProduct.grosirPrice)}</strong>/varian
+                                        Beli <span className="underline underline-offset-1">{selectedProduct.grosirMinQty}</span>+ dapat harga grosir: <span className="underline underline-offset-1">{formatRp(selectedProduct.grosirPrice)}</span>/varian
                                         {safeNumber(orderQty) >= safeNumber(selectedProduct.grosirMinQty) && <span className="ml-2 bg-green-500 text-white px-2 py-0.5 rounded-full text-[10px] font-medium">✓ Aktif!</span>}
                                     </p>
                                 </div>
