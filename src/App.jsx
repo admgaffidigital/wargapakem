@@ -2891,9 +2891,14 @@ import {
                                                                 <Icon name="share" className="text-[12px] sm:text-[14px]" />
                                                             </button>
                                                         </div>
-                                                        <div className="p-3 sm:p-5 space-y-1 sm:space-y-2">
+                                                        <div className="p-3 sm:p-5 space-y-1 sm:space-y-2 flex-1 flex flex-col">
                                                             <h4 className="font-medium text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-blue transition-colors">{item.judul}</h4>
                                                             <p className="text-[10px] sm:text-[12px] font-medium text-slate-500 dark:text-slate-400 line-clamp-2">{item.deskripsi}</p>
+                                                            <div className="flex flex-wrap items-center gap-1.5 pt-2 mt-auto">
+                                                                <span className="flex items-center gap-0.5 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-blue-200/60 dark:border-blue-800 uppercase tracking-wider"><Icon name="verified" className="text-[11px]" /> Official</span>
+                                                                <span className="flex items-center gap-0.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-800 uppercase tracking-wider"><Icon name="local_shipping" className="text-[11px]" /> Gratis Ongkir</span>
+                                                                <span className="flex items-center gap-0.5 bg-orange-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-orange-200/60 dark:border-orange-800 uppercase tracking-wider"><Icon name="payments" className="text-[11px]" /> COD</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div className="p-3 sm:p-5 pt-0 mt-auto border-t border-slate-100 dark:border-slate-800 pt-3 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
@@ -10766,12 +10771,17 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             </button>
                         </div>
                         {/* Info */}
-                        <div className="p-3 sm:p-4 space-y-1 flex-1">
+                        <div className="p-3 sm:p-4 space-y-1 flex-1 flex flex-col">
                             <h4 className="font-medium text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-green transition-colors">{item.judul}</h4>
                             <div className="flex flex-wrap items-center gap-1">
                                 {item.sku && <span className="text-[9px] font-medium text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-850 px-1 py-0.5 rounded">{item.sku}</span>}
                             </div>
                             <p className="text-[11px] sm:text-[12px] font-medium text-slate-400 dark:text-slate-500 line-clamp-1 sm:line-clamp-2">{item.deskripsi}</p>
+                            <div className="flex flex-wrap items-center gap-1.5 pt-2 mt-auto">
+                                <span className="flex items-center gap-0.5 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-blue-200/60 dark:border-blue-800 uppercase tracking-wider"><Icon name="verified" className="text-[11px]" /> Official</span>
+                                <span className="flex items-center gap-0.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-800 uppercase tracking-wider"><Icon name="local_shipping" className="text-[11px]" /> Gratis Ongkir</span>
+                                <span className="flex items-center gap-0.5 bg-orange-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-orange-200/60 dark:border-orange-800 uppercase tracking-wider"><Icon name="payments" className="text-[11px]" /> COD</span>
+                            </div>
                         </div>
                         {/* Footer */}
                         <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-2 border-t border-slate-100 dark:border-slate-850 flex justify-between items-center gap-2">
