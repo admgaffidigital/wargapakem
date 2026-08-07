@@ -2870,48 +2870,48 @@ import {
                                     </div>
                                     {tokoProducts && tokoProducts.filter(p => p.isPublished).length > 0 ? (
                                         <>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                            {tokoProducts.filter(p => p.isPublished).slice(0, 6).map(item => (
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+                                            {tokoProducts.filter(p => p.isPublished).slice(0, 8).map(item => (
                                                 <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-google-blue dark:hover:border-google-blue hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 group">
                                                     <div>
                                                         <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                                                             {item.imageUrl ? (
                                                                 <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
                                                             ) : (
-                                                                <Icon name="storefront" className="text-[48px] text-slate-300 dark:text-slate-600" />
+                                                                <Icon name="storefront" className="text-[32px] sm:text-[48px] text-slate-300 dark:text-slate-600" />
                                                             )}
-                                                            {item.grosirMinQty > 0 && <span className="absolute top-3 left-3 bg-yellow-400 text-yellow-900 text-[9.5px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">Grosir Tersedia</span>}
+                                                            {item.grosirMinQty > 0 && <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-yellow-400 text-yellow-900 text-[8px] sm:text-[9.5px] font-medium uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-sm">Grosir</span>}
                                                             <button onClick={() => {
                                                                 const url = new URL(window.location.href);
                                                                 url.searchParams.set('page', 'toko');
                                                                 url.searchParams.set('product', item.id);
                                                                 navigator.clipboard.writeText(url.toString());
                                                                 showToast('Tautan produk berhasil disalin!');
-                                                            }} className="absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-slate-600 hover:text-google-blue hover:bg-white transition-colors shadow-sm" title="Bagikan Produk">
-                                                                <Icon name="share" className="text-[14px]" />
+                                                            }} className="absolute top-2 right-2 sm:top-3 sm:right-3 w-7 h-7 sm:w-8 sm:h-8 bg-white/90 rounded-full flex items-center justify-center text-slate-600 hover:text-google-blue hover:bg-white transition-colors shadow-sm" title="Bagikan Produk">
+                                                                <Icon name="share" className="text-[12px] sm:text-[14px]" />
                                                             </button>
                                                         </div>
-                                                        <div className="p-5 space-y-2">
-                                                            <h4 className="font-medium text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-blue transition-colors">{item.judul}</h4>
-                                                            <p className="text-[12px] font-medium text-slate-500 dark:text-slate-400 line-clamp-2">{item.deskripsi}</p>
+                                                        <div className="p-3 sm:p-5 space-y-1 sm:space-y-2">
+                                                            <h4 className="font-medium text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-blue transition-colors">{item.judul}</h4>
+                                                            <p className="text-[10px] sm:text-[12px] font-medium text-slate-500 dark:text-slate-400 line-clamp-2">{item.deskripsi}</p>
                                                         </div>
                                                     </div>
-                                                    <div className="p-5 pt-0 mt-auto border-t border-slate-100 dark:border-slate-800 pt-4 flex justify-between items-center">
+                                                    <div className="p-3 sm:p-5 pt-0 mt-auto border-t border-slate-100 dark:border-slate-800 pt-3 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
                                                         <div>
-                                                            <p className="text-[10px] font-medium text-slate-400 uppercase tracking-widest">Mulai dari</p>
-                                                            <p className="text-[14px] font-medium text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
+                                                            <p className="text-[9px] sm:text-[10px] font-medium text-slate-400 uppercase tracking-widest">Mulai dari</p>
+                                                            <p className="text-[12px] sm:text-[14px] font-medium text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
                                                         </div>
                                                         <button onClick={() => {
                                                             sessionStorage.setItem('openTokoProductId', item.id);
                                                             onLogin('warga');
-                                                        }} className="px-4 py-2 bg-google-blue hover:bg-google-blueDark text-white rounded-full text-xs font-medium transition-colors shadow-sm flex items-center gap-1 active:scale-95">
-                                                            <Icon name="shopping_cart" className="text-[14px]" /> Beli
+                                                        }} className="px-3 py-1.5 sm:px-4 sm:py-2 w-full sm:w-auto flex justify-center bg-google-blue hover:bg-google-blueDark text-white rounded-full text-[11px] sm:text-xs font-medium transition-colors shadow-sm flex items-center gap-1 active:scale-95">
+                                                            <Icon name="shopping_cart" className="text-[12px] sm:text-[14px]" /> <span className="hidden sm:inline">Beli</span>
                                                         </button>
                                                     </div>
                                                 </div>
                                             ))}
                                         </div>
-                                        {tokoProducts.filter(p => p.isPublished).length > 6 && (
+                                        {tokoProducts.filter(p => p.isPublished).length > 8 && (
                                             <div className="text-center mt-8">
                                                 <button onClick={() => onLogin('warga')} className="px-6 py-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-google-blue dark:text-google-blueLight rounded-full text-sm font-medium border-2 border-google-blue/30 hover:border-google-blue transition-all active:scale-95">
                                                     Lihat Semua Produk
