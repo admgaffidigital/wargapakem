@@ -2008,7 +2008,7 @@ import {
                 }
                 return (
                     <>
-                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} umkmData={umkmData} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} infaqData={infaqData} tokoProducts={tokoProducts} onLogin={(role) => { 
+                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} setShowLicenseModal={setShowLicenseModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} umkmData={umkmData} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} infaqData={infaqData} tokoProducts={tokoProducts} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); 
                             const params = new URLSearchParams(window.location.search);
                             if (params.get('page') === 'tiket') {
@@ -2451,7 +2451,7 @@ import {
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber, infaqData = [], tokoProducts = [] }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, setShowLicenseModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber, infaqData = [], tokoProducts = [] }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
@@ -2496,21 +2496,24 @@ import {
 
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
-                        <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3.5 px-4 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-between relative z-20">
-                            <div className="flex items-center gap-2.5 overflow-hidden">
-                                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-red-500 to-red-600 text-white shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
-                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className="w-6 h-6 object-contain" fetchpriority="high" decoding="async"/>
+                        <header className="bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-100 py-3 sm:py-4 px-3 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 dark:border-red-900/40 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20 backdrop-blur-sm">
+                            <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
+                                <div className="bg-gradient-to-tr from-red-500 to-rose-600 text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
+                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" className="w-6 h-6 object-contain" fetchpriority="high" decoding="async"/>
                                 </div>
-                                <div className="min-w-0">
-                                    <h1 className="text-[13px] sm:text-[15px] font-medium tracking-tight text-slate-900 leading-tight uppercase">{identity.name || 'Portal RT'}</h1>
-                                    <p className="text-[9px] sm:text-[10px] font-medium text-slate-500 truncate uppercase leading-none mt-0.5">{identity.subtitle || 'Sistem Informasi Warga'}</p>
+                                <div className="flex flex-col justify-center min-w-0">
+                                    <div className="flex items-center gap-1.5 sm:gap-2">
+                                        <h1 className="text-[13px] sm:text-[16px] font-medium truncate leading-tight tracking-tight text-slate-800 dark:text-slate-100">{identity.name || 'Portal RT'}</h1>
+                                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse shrink-0"></span>
+                                    </div>
+                                    <p className="text-[9px] sm:text-[10px] font-medium text-slate-500 dark:text-slate-400 truncate uppercase leading-none mt-0.5">{identity.subtitle || 'Sistem Informasi Warga'}</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
-                                <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 text-slate-700 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 shadow-sm" title="Toggle Tema">
+                                <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 dark:border-slate-700 shadow-sm" title="Toggle Tema">
                                     <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" />
                                 </button>
-                                <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 text-slate-700 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-350 shadow-sm" title="Otorisasi Admin">
+                                <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-350 dark:border-slate-700 shadow-sm" title="Otorisasi Admin">
                                     <Icon name="lock" className="text-[15px] sm:text-[16px]" />
                                 </button>
                                 <button onClick={() => onLogin('warga')} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-600 text-white rounded-full text-[10.5px] sm:text-[12px] font-medium flex items-center gap-1.5 shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40 transition-all duration-300 active:scale-95">
@@ -2525,21 +2528,16 @@ import {
                     {mode === 'select' ? (
                         <main className="flex-1 w-full max-w-6xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
                             {/* HERO BANNER SECTION - menggunakan bannerImage dari Firebase jika ada */}
-                            <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-12 text-white border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-center ${!bannerImage ? 'bg-gradient-to-br from-red-600 via-rose-600 to-red-800' : 'bg-slate-900'}`}>
-                                {bannerImage ? (
+                            <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-red-600 via-rose-600 to-red-800' : 'bg-slate-900'}`}>
+                                {bannerImage && (
                                     <>
                                         <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" fetchpriority="high" decoding="async"/>
-                                        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/60 to-transparent z-0"></div>
-                                    </>
-                                ) : (
-                                    <>
-                                        
-                                        
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent z-0"></div>
                                     </>
                                 )}
 
-                                <div className="relative z-10 w-full text-left space-y-4 max-w-2xl">
-                                    <div className="inline-flex items-center gap-1.5 bg-black/20 px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
+                                <div className="relative z-10 w-full text-left space-y-3 max-w-2xl pb-2">
+                                    <div className="inline-flex items-center gap-1.5 bg-black/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
                                         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                         <span className="text-[9px] font-medium uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
                                     </div>
@@ -3114,30 +3112,27 @@ import {
                         </div>
                     )}
 
-                    {/* LANDING FOOTER (COMPLIES WITH THEME VARIABLES) */}
-                    <footer className="w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-700 py-6 px-4 sm:py-8 sm:px-8 text-center z-10 relative mb-8 bg-white dark:bg-slate-900 shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
-                        <div className="max-w-6xl mx-auto space-y-4">
-                            <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
-                                <span className="font-medium text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah {landingConfig.footerTagline} {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
+                    {/* LANDING FOOTER (MATCHES GLOBAL FOOTER) */}
+                    <footer className="w-full text-center py-8 no-print border-t border-red-500/20 bg-gradient-to-b from-white/10 to-white/90 dark:from-slate-900/10 dark:to-slate-900/90 text-[12.5px] font-medium text-slate-500 mt-10 z-10 relative">
+                        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
+                            <p className="flex flex-wrap items-center gap-1.5 justify-center">
+                                <Icon name="flag" className="text-red-500 text-[14px] animate-pulse" fill="true" />
+                                - {new Date().getFullYear()} <span className="text-red-600 font-medium">WP LINGKUNGAN</span>. All rights reserved.
                             </p>
-                            
-                            {legalData?.enabled && (
-                                <div className="flex flex-wrap items-center justify-center gap-5 text-[11px] font-medium text-red-600 dark:text-red-400 pt-1">
-                                    <button onClick={() => setShowLegalModal('terms')} className="hover:text-red-700 dark:hover:text-red-300 flex items-center gap-1.5 transition-colors"><Icon name="gavel" className="text-[13px]"/> Syarat &amp; Ketentuan</button>
-                                    <span className="text-slate-300 dark:text-slate-700">|</span>
-                                    <button onClick={() => setShowLegalModal('privacy')} className="hover:text-red-700 dark:hover:text-red-350 flex items-center gap-1.5 transition-colors"><Icon name="privacy_tip" className="text-[13px]"/> Kebijakan Privasi</button>
-                                </div>
-                            )}
-
-                            <div className="pt-5 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
-                                <p className="text-[11px] text-slate-400 dark:text-slate-500">&copy; {new Date().getFullYear()} {identity.name || 'Portal RT Warga'}. {landingConfig.footerCopyright}</p>
-                                <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-500 dark:text-slate-400 bg-slate-50/60 dark:bg-slate-800/40 px-3 py-1 rounded-full border border-slate-100 dark:border-slate-800/50">
-                                    <Icon name="verified" className="text-[13px] text-emerald-500" fill="true" />
-                                    <span>{landingConfig.footerSeo}</span>
-                                </div>
-                            </div>
+                            <button onClick={() => setShowLicenseModal && setShowLicenseModal(true)} className="flex flex-wrap items-center justify-center gap-1.5 hover:text-red-500 transition-colors active:scale-95 group">
+                                <Icon name="lock" className="text-[13px] group-hover:scale-110 transition-transform" /> <span className="underline decoration-dashed underline-offset-4">&copy; 2026 Keamanan Data & Hak Cipta</span>
+                            </button>
                         </div>
                     </footer>
+                    {legalData?.enabled && (
+                        <div className="w-full text-center pb-6 no-print bg-white dark:bg-slate-950 z-10 relative">
+                            <div className="flex flex-wrap items-center justify-center gap-4 text-[10px] font-medium text-google-blue dark:text-blue-400">
+                                <button onClick={() => setShowLegalModal('terms')} className="hover:underline">Syarat & Ketentuan</button>
+                                <span className="text-slate-300 dark:text-slate-700">|</span>
+                                <button onClick={() => setShowLegalModal('privacy')} className="hover:underline">Kebijakan Privasi</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* MODAL DETAIL ARTIKEL / INFORMASI */}
@@ -3213,7 +3208,7 @@ import {
                 <div className="space-y-6 sm:space-y-8 max-w-6xl mx-auto mt-2">
                     
                     {/* --- AREA BANNER UTAMA --- */}
-                    <div className={`relative rounded-[32px] p-6 sm:p-8 text-white border-2 border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden group min-h-[220px] sm:min-h-[260px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark dark:from-rose-950 dark:to-rose-900' : 'bg-slate-900'}`}>
+                    <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[220px] sm:min-h-[280px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-red-600 via-rose-600 to-red-800' : 'bg-slate-900'}`}>
                         {bannerImage && (
                             <>
                                 <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"  loading="lazy" decoding="async"/>
@@ -3221,19 +3216,16 @@ import {
                             </>
                         )}
 
-                        
-                        
-
-                        <div className="relative z-10 w-full text-left">
-                            <div className="inline-flex items-center gap-1.5 bg-white/20  px-3.5 py-1.5 rounded-full mb-3 border border-white/20 shadow-sm w-fit">
+                        <div className="relative z-10 w-full text-left pb-2">
+                            <div className="inline-flex items-center gap-1.5 bg-black/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full mb-3 border border-white/20 shadow-sm w-fit">
                                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                 <span className="text-[9px] font-medium uppercase tracking-widest text-white/90">Sistem Aktif</span>
                             </div>
                             
-                            <h2 className="text-2xl sm:text-3xl font-medium mb-1.5 tracking-tight text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.6)]">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-2 tracking-tight text-white uppercase [text-shadow:_0_4px_12px_rgba(0,0,0,0.4)]">
                                 Halo, {userRole === 'admin' ? 'Admin!' : 'Warga!'}
                             </h2>
-                            <p className="text-[12.5px] sm:text-[13px] font-medium text-white/95 leading-relaxed [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">
+                            <p className="text-[12.5px] sm:text-[13px] font-medium text-white/95 leading-relaxed max-w-2xl [text-shadow:_0_1px_4px_rgba(0,0,0,0.5)]">
                                 {identity.subtitle}
                             </p>
                         </div>
