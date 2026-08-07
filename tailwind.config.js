@@ -10,10 +10,10 @@ export default {
       fontFamily: { sans: ['Outfit', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'] },
       colors: {
         google: {
-          blue: '#2563eb', blueDark: '#1d4ed8', blueLight: '#dbeafe',
-          red: '#e11d48', redDark: '#be123c', redLight: '#ffe4e6',
+          blue: '#e11d48', blueDark: '#be123c', blueLight: '#ffe4e6', // Solid Red
+          red: '#e11d48', redDark: '#be123c', redLight: '#ffe4e6', // Solid Red
           yellow: '#f59e0b', yellowDark: '#d97706', yellowLight: '#fef3c7',
-          green: '#10b981', greenDark: '#047857', greenLight: '#d1fae5',
+          green: '#e11d48', greenDark: '#be123c', greenLight: '#ffe4e6', // Jadikan hijau menjadi Solid Red juga
           surface: '#ffffff', text: '#0f172a', textVariant: '#475569',
         }
       },

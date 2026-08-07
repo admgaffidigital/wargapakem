@@ -92,10 +92,10 @@ import {
             if (toasts.length === 0) return null;
 
             const configs = {
-                success: { icon: 'task_alt', bg: 'from-emerald-500 to-green-600', iconBg: 'bg-white/20', shadow: 'shadow-emerald-600/40' },
-                error:   { icon: 'error',    bg: 'from-rose-500 to-red-600',      iconBg: 'bg-white/20', shadow: 'shadow-red-600/40' },
-                info:    { icon: 'info',     bg: 'from-blue-500 to-indigo-600',   iconBg: 'bg-white/20', shadow: 'shadow-blue-600/40' },
-                warning: { icon: 'warning',  bg: 'from-amber-400 to-orange-500',  iconBg: 'bg-white/20', shadow: 'shadow-orange-500/40' },
+                success: { icon: 'task_alt', bg: 'bg-google-red', iconBg: 'bg-white/20', shadow: 'shadow-md' },
+                error:   { icon: 'error',    bg: 'bg-google-red', iconBg: 'bg-white/20', shadow: 'shadow-md' },
+                info:    { icon: 'info',     bg: 'bg-google-red', iconBg: 'bg-white/20', shadow: 'shadow-md' },
+                warning: { icon: 'warning',  bg: 'bg-google-yellow', iconBg: 'bg-white/20', shadow: 'shadow-md' },
             };
 
             return (
@@ -108,7 +108,7 @@ import {
                         return (
                             <div
                                 key={t.id}
-                                className={`w-full flex items-center gap-3 pl-2 pr-4 py-2 rounded-2xl border border-white/20 bg-gradient-to-r ${cfg.bg} shadow-2xl ${cfg.shadow} text-white`}
+                                className={`w-full flex items-center gap-3 pl-2 pr-4 py-2 rounded-2xl border border-white/20 ${cfg.bg} shadow-2xl ${cfg.shadow} text-white`}
                                 style={{ animation: t.closing ? 'toastPopOut 0.35s cubic-bezier(0.4,0,1,1) forwards' : 'toastPopIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards' }}
                             >
                                 <div className={`w-9 h-9 rounded-xl ${cfg.iconBg} flex items-center justify-center shrink-0`}>
