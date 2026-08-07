@@ -2070,8 +2070,8 @@ import {
                 { id: 'warga', icon: 'group', label: 'Buku Warga', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'galery', icon: 'photo_library', label: 'Galeri', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-400' },
                 { id: 'inventaris', icon: 'inventory_2', label: 'Inventaris', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
-                { id: 'umkm', icon: 'storefront', label: 'UMKM', bg: 'bg-green-100', color: 'text-green-700 border-2 border-green-500' },
-                { id: 'toko', icon: 'local_mall', label: 'Toko Warga', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
+                { id: 'umkm', icon: 'storefront', label: 'UMKM Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
+                { id: 'toko', icon: 'local_mall', label: 'Official Store', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 { id: 'pengaduan', icon: 'report_problem', label: 'Lapor', bg: 'bg-blue-100', color: 'text-blue-700 border-2 border-blue-500' },
                 { id: 'blog', icon: 'article', label: 'Blog Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
                 { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
@@ -2083,7 +2083,7 @@ import {
                 { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border-2 border-google-yellow' },
                 { id: 'kegiatan', icon: 'event', label: 'Jadwal', bg: 'bg-google-blueLight', color: 'text-google-blueDark border-2 border-google-blue' },
                 { id: 'kalender', icon: 'calendar_month', label: 'Kalender', bg: 'bg-google-redLight', color: 'text-google-redDark border-2 border-google-red' },
-                { id: 'peta', icon: 'map', label: 'Peta Desa', bg: 'bg-slate-100', color: 'text-google-text border-2 border-slate-400' },
+                { id: 'peta', icon: 'map', label: 'Peta Lokasi', bg: 'bg-slate-100 dark:bg-slate-800', color: 'text-slate-600 dark:text-slate-300 border-2 border-slate-300 dark:border-slate-700' },
                 { id: 'wagroup', icon: 'forum', label: 'Grup WA', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
                 ...(userRole === 'admin' ? [
                     { id: 'pertemuan', icon: 'checklist', label: 'Absen Arisan', bg: 'bg-google-greenLight', color: 'text-google-greenDark border-2 border-google-green' },
@@ -2860,8 +2860,8 @@ import {
                                 <section id="toko" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-bold text-google-blue dark:text-google-blueLight uppercase tracking-widest">Layanan E-Commerce RT</h3>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Toko Official Warga</h2>
-                                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Belanja hemat, gratis ongkir, bayar di tempat (COD).</p>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Official Store</h2>
+                                        <p className="text-slate-500 dark:text-slate-400 font-medium text-sm mt-1">Layanan belanja hemat, gratis ongkir, bayar di tempat (COD).</p>
                                     </div>
                                     {tokoProducts && tokoProducts.filter(p => p.isPublished).length > 0 ? (
                                         <>
@@ -10686,7 +10686,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                         <h2 className="text-xl sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
-                            <Icon name="storefront" className="text-google-green text-[26px] sm:text-3xl" fill="true" /> Toko Official Warga
+                            <Icon name="storefront" className="text-google-green text-[26px] sm:text-3xl" fill="true" /> Official Store
                         </h2>
                         <p className="text-xs sm:text-sm font-medium text-slate-505 dark:text-slate-400 mt-1">Layanan belanja hemat, gratis ongkir, bayar di tempat (COD).</p>
                     </div>
