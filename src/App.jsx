@@ -10205,7 +10205,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
     // ===== VIEW: KERANJANG =====
     if (view === 'cart') return (
-        <div className="space-y-5 max-w-3xl mx-auto">
+        <div className="space-y-5 max-w-4xl mx-auto">
             <PageHeader title="Keranjang Belanja" subtitle="Review & checkout pesanan Anda" onBack={() => setView('list')} />
             {cartItemCount === 0 ? (
                 <div className="bg-white dark:bg-slate-900 p-10 sm:p-16 rounded-[24px] border border-slate-200 dark:border-slate-800 text-center shadow-sm">
@@ -10281,7 +10281,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     if (view === 'detail' && selectedProduct) {
         const effPrice = selectedProduct.grosirMinQty > 0 && orderQty >= selectedProduct.grosirMinQty && selectedProduct.grosirPrice > 0 ? selectedProduct.grosirPrice : (selectedVariant?.price || 0);
         return (
-            <div className="space-y-5 max-w-4xl mx-auto">
+            <div className="space-y-5 max-w-6xl mx-auto">
                 <PageHeader title="Detail Produk" onBack={() => setView('list')} />
                 <div className="bg-white dark:bg-slate-900 rounded-[20px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col lg:flex-row">
                     {/* Gambar Produk - Aspect Square */}
