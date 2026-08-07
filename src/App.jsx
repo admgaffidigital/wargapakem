@@ -2045,6 +2045,33 @@ import {
                             </div>
                         </div>
                     )}
+                    {showLicenseModal && (
+                        <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
+                            <div className="rounded-[20px] w-full max-w-lg overflow-hidden -red-500/30 dark:-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
+                                <div className="bg-red-50 dark:bg-red-950/20 px-6 py-5 border-b border-red-500/20 dark:border-red-900/30 flex items-center justify-between shrink-0">
+                                    <h3 className="text-[14px] font-medium text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-[12px] hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
+                                </div>
+                                <div className="p-6 md:p-8 overflow-y-auto hide-scrollbar">
+                                    <div className="prose prose-sm text-slate-600 dark:text-slate-350 text-justify leading-relaxed max-w-none">
+                                        <p className="font-medium text-slate-800 dark:text-slate-200 text-[13px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
+                                        <p className="mb-3">Seluruh data di dalam sistem ini dilindungi secara ketat dan dikelola secara eksklusif oleh Admin Lingkungan.</p>
+                                        <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3 rounded-[10px] border border-red-100 dark:border-red-900/30-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <strong>dilaporkan kepada pihak yang berwajib</strong> sesuai perundang-undangan yang berlaku.</p>
+                                        <p className="mb-6">Sistem ini diperuntukkan khusus untuk keperluan digitalisasi guna menunjang tata kelola lingkungan desa yang transparan dan akuntabel.</p>
+                                        
+                                        <div className="border-t-2 border-dashed border-slate-300 dark:border-slate-700 pt-4 text-center">
+                                            <p className="text-[11px] font-medium text-slate-400 mb-1">COPYRIGHT &copy; 2026</p>
+                                            <p className="text-[10px] text-slate-400 mb-2">Sistem & lisensi ditandatangani secara digital oleh pengembang resmi:</p>
+                                            <p className="text-[16px] font-medium tracking-widest bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent uppercase">Novan Restu Utomo</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-4 md:px-8 md:pb-8 pt-0 shrink-0">
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 py-4 rounded-[12px] font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <ToastContainer />
                     </>
                 );
