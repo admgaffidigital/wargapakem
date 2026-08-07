@@ -8837,74 +8837,104 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     ) : (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             {filteredOrders.map(order => (
-                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border-2 border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
+                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-shadow">
                                                     <div>
-                                                        <div className="flex items-center justify-between mb-2.5">
-                                                            <span className="text-[10px] font-bold text-slate-400">#TKT-{String(order.id).slice(-6)}</span>
-                                                            <span className={`text-[9px] font-bold px-2.5 py-1 rounded-[6px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
+                                                        <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-3">
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
+                                                                    <Icon name="receipt_long" className="text-[16px]" />
+                                                                </div>
+                                                                <div>
+                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ID Pesanan</p>
+                                                                    <p className="text-[12px] font-extrabold text-slate-700">#TKT-{String(order.id).slice(-6)}</p>
+                                                                </div>
+                                                            </div>
+                                                            <span className={`text-[10px] font-bold px-3 py-1.5 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
 
-                                                        {/* Nama Pemesan — inline edit oleh admin */}
-                                                        {editingBuyerName && editingBuyerName.orderId === order.id ? (
-                                                            <div className="flex items-center gap-2 mb-1">
-                                                                <input
-                                                                    autoFocus
-                                                                    type="text"
-                                                                    value={editingBuyerName.value}
-                                                                    onChange={e => setEditingBuyerName({ orderId: order.id, value: e.target.value.toUpperCase() })}
-                                                                    onKeyDown={e => { if (e.key === 'Enter') handleSaveBuyerName(order.id); if (e.key === 'Escape') setEditingBuyerName(null); }}
-                                                                    className="flex-1 bg-amber-50 border-2 border-amber-400 rounded-[10px] px-3 py-2 text-[14px] font-extrabold text-slate-800 uppercase outline-none focus:shadow-md tracking-wide"
-                                                                />
-                                                                <button onClick={() => handleSaveBuyerName(order.id)} className="w-8 h-8 rounded-[8px] bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shrink-0 transition-colors" title="Simpan">
-                                                                    <Icon name="check" className="text-[15px]" />
-                                                                </button>
-                                                                <button onClick={() => setEditingBuyerName(null)} className="w-8 h-8 rounded-[8px] bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center shrink-0 transition-colors" title="Batal">
-                                                                    <Icon name="close" className="text-[15px]" />
-                                                                </button>
+                                                        <div className="bg-slate-50 rounded-[14px] p-4 border border-slate-100 space-y-3">
+                                                            <div className="flex justify-between items-start">
+                                                                <div className="flex-1">
+                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Pemesan</p>
+                                                                    {/* Nama Pemesan — inline edit oleh admin */}
+                                                                    {editingBuyerName && editingBuyerName.orderId === order.id ? (
+                                                                        <div className="flex items-center gap-2 mt-1">
+                                                                            <input
+                                                                                autoFocus
+                                                                                type="text"
+                                                                                value={editingBuyerName.value}
+                                                                                onChange={e => setEditingBuyerName({ orderId: order.id, value: e.target.value.toUpperCase() })}
+                                                                                onKeyDown={e => { if (e.key === 'Enter') handleSaveBuyerName(order.id); if (e.key === 'Escape') setEditingBuyerName(null); }}
+                                                                                className="flex-1 bg-amber-50 border-2 border-amber-400 rounded-[10px] px-3 py-1.5 text-[14px] font-extrabold text-slate-800 uppercase outline-none focus:shadow-md tracking-wide"
+                                                                            />
+                                                                            <button onClick={() => handleSaveBuyerName(order.id)} className="w-7 h-7 rounded-[8px] bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shrink-0 transition-colors" title="Simpan">
+                                                                                <Icon name="check" className="text-[14px]" />
+                                                                            </button>
+                                                                            <button onClick={() => setEditingBuyerName(null)} className="w-7 h-7 rounded-[8px] bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center shrink-0 transition-colors" title="Batal">
+                                                                                <Icon name="close" className="text-[14px]" />
+                                                                            </button>
+                                                                        </div>
+                                                                    ) : (
+                                                                        <div className="flex items-center gap-2 group mt-0.5">
+                                                                            <h4 className="font-extrabold text-[15px] text-slate-800 uppercase tracking-wide">{order.buyerName}</h4>
+                                                                            <button
+                                                                                onClick={() => setEditingBuyerName({ orderId: order.id, value: order.buyerName })}
+                                                                                className="opacity-0 group-hover:opacity-100 w-6 h-6 rounded-[6px] bg-amber-50 hover:bg-amber-100 text-amber-600 border border-amber-200 flex items-center justify-center shrink-0 transition-all"
+                                                                                title="Edit nama pemesan"
+                                                                            >
+                                                                                <Icon name="edit" className="text-[12px]" />
+                                                                            </button>
+                                                                        </div>
+                                                                    )}
+                                                                </div>
+                                                                <div className="text-right ml-2 shrink-0">
+                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Total</p>
+                                                                    <p className="text-[14px] font-black text-rose-600">{formatRp(order.totalPrice)}</p>
+                                                                </div>
                                                             </div>
-                                                        ) : (
-                                                            <div className="flex items-center gap-2 group mb-1">
-                                                                <h4 className="font-extrabold text-[15px] text-slate-800 uppercase tracking-wide flex-1">{order.buyerName}</h4>
-                                                                <button
-                                                                    onClick={() => setEditingBuyerName({ orderId: order.id, value: order.buyerName })}
-                                                                    className="opacity-0 group-hover:opacity-100 w-7 h-7 rounded-[7px] bg-amber-50 hover:bg-amber-100 text-amber-600 border border-amber-200 flex items-center justify-center shrink-0 transition-all"
-                                                                    title="Edit nama pemesan"
-                                                                >
-                                                                    <Icon name="edit" className="text-[13px]" />
-                                                                </button>
+
+                                                            <div className="pt-2 border-t border-slate-200">
+                                                                <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">Rincian Tiket</p>
+                                                                <p className="text-[12.5px] font-bold text-slate-700">{order.productName} <span className="text-slate-500 font-medium">x{order.quantity} Pcs</span></p>
                                                             </div>
-                                                        )}
-                                                        <p className="text-[12px] font-bold text-google-blue mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
-                                                        
-                                                        <div className="mt-3 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
+                                                        </div>
+
+                                                        <div className="mt-4 space-y-2">
                                                             {order.deliveryMethod === 'delivery' ? (
-                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
-                                                                    <Icon name="local_shipping" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
-                                                                    <span>
-                                                                        <span className="font-bold text-slate-700">Metode:</span> Diantar ke Rumah
-                                                                        <br />
-                                                                        <span className="font-bold text-slate-700">Waktu Antar:</span> {order.deliveryDay || '-'}, {order.deliveryTime || '-'}
-                                                                    </span>
+                                                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-white p-3 rounded-[12px] border border-slate-200">
+                                                                    <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center shrink-0">
+                                                                        <Icon name="local_shipping" className="text-[13px] text-rose-500" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span className="font-bold text-slate-800">Diantar ke Rumah</span>
+                                                                        <p className="text-[11px] text-slate-500 mt-0.5">Waktu: {order.deliveryDay || '-'}, {order.deliveryTime || '-'}</p>
+                                                                    </div>
                                                                 </div>
                                                             ) : (
-                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
-                                                                    <Icon name="location_on" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
-                                                                    <span>
-                                                                        <span className="font-bold text-slate-700">Lokasi Pengambilan:</span> {order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}
+                                                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-white p-3 rounded-[12px] border border-slate-200">
+                                                                    <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center shrink-0">
+                                                                        <Icon name="location_on" className="text-[13px] text-rose-500" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span className="font-bold text-slate-800">Ambil Sendiri</span>
+                                                                        <p className="text-[11px] text-slate-500 mt-0.5">{order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}</p>
                                                                         {order.pickupGeoUrl && (
-                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-google-blue hover:underline inline-flex items-center gap-0.5"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
+                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1 text-rose-600 hover:underline inline-flex items-center gap-1 font-bold"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
                                                                         )}
-                                                                    </span>
+                                                                    </div>
                                                                 </div>
                                                             )}
                                                             {order.notes && (
-                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium bg-slate-50 p-2.5 rounded-[8px] border border-slate-200">
-                                                                    <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-slate-400" />
-                                                                    <span><span className="font-bold text-slate-600">Catatan:</span> {order.notes}</span>
+                                                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-amber-50 p-3 rounded-[12px] border border-amber-100">
+                                                                    <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-amber-500" />
+                                                                    <span><span className="font-bold text-slate-800">Catatan:</span> {order.notes}</span>
                                                                 </div>
                                                             )}
+                                                        </div>
+
+                                                        <div className="flex items-center justify-between mt-4">
                                                             <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
-                                                                <Icon name="event" className="text-[13px]" /> Tanggal Order: {order.timestamp}
+                                                                <Icon name="event" className="text-[13px]" /> {order.timestamp}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -9349,47 +9379,79 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     ) : (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             {myTicketsFiltered.map(order => (
-                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border-2 border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
+                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-shadow">
                                                     <div>
-                                                        <div className="flex items-center justify-between mb-2.5">
-                                                            <span className="text-[10px] font-bold text-slate-400">ID Pesanan: #TKT-{String(order.id).slice(-6)}</span>
-                                                            <span className={`text-[9px] font-bold px-2.5 py-1 rounded-[6px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
+                                                        <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-3">
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
+                                                                    <Icon name="receipt_long" className="text-[16px]" />
+                                                                </div>
+                                                                <div>
+                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ID Pesanan</p>
+                                                                    <p className="text-[12px] font-extrabold text-slate-700">#TKT-{String(order.id).slice(-6)}</p>
+                                                                </div>
+                                                            </div>
+                                                            <span className={`text-[10px] font-bold px-3 py-1.5 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
-                                                        <h4 className="font-extrabold text-[15px] text-slate-800 dark:text-slate-100">{order.buyerName}</h4>
-                                                        <p className="text-[12.5px] font-extrabold text-google-blue mt-1">{order.productName} ({order.quantity} Pcs) - {formatRp(order.totalPrice)}</p>
                                                         
-                                                        <div className="mt-3.5 space-y-1.5 border-t border-dashed border-slate-200 pt-3">
+                                                        <div className="bg-slate-50 rounded-[14px] p-4 border border-slate-100 space-y-3">
+                                                            <div className="flex justify-between items-start">
+                                                                <div>
+                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Pemesan</p>
+                                                                    <h4 className="font-extrabold text-[15px] text-slate-800">{order.buyerName}</h4>
+                                                                </div>
+                                                                <div className="text-right">
+                                                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Total Harga</p>
+                                                                    <p className="text-[14px] font-black text-rose-600">{formatRp(order.totalPrice)}</p>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div className="pt-2 border-t border-slate-200">
+                                                                <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">Rincian Tiket</p>
+                                                                <p className="text-[13px] font-bold text-slate-700">{order.productName} <span className="text-slate-500 font-medium">x{order.quantity} Pcs</span></p>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div className="mt-4 space-y-2">
                                                             {order.deliveryMethod === 'delivery' ? (
-                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
-                                                                    <Icon name="local_shipping" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
-                                                                    <span>
-                                                                        <span className="font-bold text-slate-700">Metode:</span> Diantar ke Rumah
-                                                                        <br />
-                                                                        <span className="font-bold text-slate-700">Waktu Antar:</span> {order.deliveryDay || '-'}, {order.deliveryTime || '-'}
-                                                                    </span>
+                                                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-white p-3 rounded-[12px] border border-slate-200">
+                                                                    <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center shrink-0">
+                                                                        <Icon name="local_shipping" className="text-[13px] text-rose-500" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span className="font-bold text-slate-800">Diantar ke Rumah</span>
+                                                                        <p className="text-[11px] text-slate-500 mt-0.5">Waktu: {order.deliveryDay || '-'}, {order.deliveryTime || '-'}</p>
+                                                                    </div>
                                                                 </div>
                                                             ) : (
-                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium">
-                                                                    <Icon name="location_on" className="text-[14px] mt-0.5 shrink-0 text-google-blue" />
-                                                                    <span>
-                                                                        <span className="font-bold text-slate-700">Lokasi Pengambilan:</span> {order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}
+                                                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-white p-3 rounded-[12px] border border-slate-200">
+                                                                    <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center shrink-0">
+                                                                        <Icon name="location_on" className="text-[13px] text-rose-500" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span className="font-bold text-slate-800">Ambil Sendiri</span>
+                                                                        <p className="text-[11px] text-slate-500 mt-0.5">{order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}</p>
                                                                         {order.pickupGeoUrl && (
-                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-google-blue hover:underline inline-flex items-center gap-0.5"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
+                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1 text-rose-600 hover:underline inline-flex items-center gap-1 font-bold"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
                                                                         )}
-                                                                    </span>
+                                                                    </div>
                                                                 </div>
                                                             )}
+                                                            
                                                             {order.notes && (
-                                                                <div className="flex items-start gap-1.5 text-[11px] text-slate-500 font-medium bg-slate-50 p-2.5 rounded-[8px] border border-slate-200">
-                                                                    <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-slate-400" />
-                                                                    <span><span className="font-bold text-slate-600">Catatan Anda:</span> {order.notes}</span>
+                                                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-amber-50 p-3 rounded-[12px] border border-amber-100">
+                                                                    <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-amber-500" />
+                                                                    <span><span className="font-bold text-slate-800">Catatan Anda:</span> {order.notes}</span>
                                                                 </div>
                                                             )}
+                                                        </div>
+                                                        
+                                                        <div className="flex items-center justify-between mt-4">
                                                             <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
-                                                                <Icon name="event" className="text-[13px]" /> Tanggal Pesan: {order.timestamp}
+                                                                <Icon name="event" className="text-[13px]" /> {order.timestamp}
                                                             </div>
-                                                            <div className="flex items-center gap-1.5 text-[10px] text-emerald-700 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-950/30 px-2 py-1 rounded-[6px] w-fit border border-emerald-100 dark:border-emerald-900/30">
-                                                                <Icon name="payments" className="text-[13px]" /> Pembayaran COD (Di tempat)
+                                                            <div className="flex items-center gap-1 text-[10px] text-emerald-600 font-bold">
+                                                                <Icon name="payments" className="text-[13px]" /> Bayar COD
                                                             </div>
                                                         </div>
                                                     </div>
@@ -10503,30 +10565,85 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 {tokoOrders.filter(o => o.status === activeOrderTab).length === 0 ? (
                     <div className="col-span-full text-center py-12 text-slate-400 font-medium bg-white dark:bg-slate-900 rounded-[20px] border border-dashed border-slate-200 dark:border-slate-800 text-sm">Tidak ada pesanan di tab ini.</div>
                 ) : tokoOrders.filter(o => o.status === activeOrderTab).sort((a,b) => new Date(b.orderDate) - new Date(a.orderDate)).map(order => (
-                    <div key={order.id} className="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 flex flex-col">
-                        <div className="flex justify-between items-start">
-                            <div>
-                                <h4 className="font-bold text-slate-800 dark:text-white text-sm">{order.wargaName}</h4>
-                                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium mt-0.5">{parseLocalDate(order.orderDate).toLocaleString('id-ID', {dateStyle:'short', timeStyle:'short'})}</p>
-                            </div>
-                            <span className={`px-2 py-1 rounded-md text-[9px] font-bold uppercase shrink-0 ml-2 ${order.status === 'Menunggu' ? 'bg-yellow-105 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-400' : order.status === 'Diproses' ? 'bg-blue-100 dark:bg-blue-950/20 text-blue-800 dark:text-blue-455' : order.status === 'Diantar' ? 'bg-purple-100 dark:bg-purple-950/20 text-purple-800 dark:text-purple-400' : order.status === 'Selesai' ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-red-100 dark:bg-red-955/20 text-red-800 dark:text-red-400'}`}>{order.status}</span>
-                        </div>
-                        <div className="text-xs font-medium text-slate-600 dark:text-slate-350 space-y-1.5 border-t border-slate-100 dark:border-slate-850 pt-3">
-                            <p className="flex gap-2 items-center"><Icon name="call" className="text-[13px] text-slate-400 shrink-0" /><a href={`https://wa.me/${order.phone}`} target="_blank" className="text-google-blue hover:underline truncate">{order.phone}</a></p>
-                            <p className="flex gap-2 items-start"><Icon name="location_on" className="text-[13px] text-slate-400 shrink-0 mt-0.5" /><span className="leading-relaxed line-clamp-2">{order.address}</span></p>
-                            {order.notes && <p className="flex gap-2 items-start"><Icon name="note" className="text-[13px] text-slate-400 shrink-0 mt-0.5" /><span className="italic text-slate-505 dark:text-slate-455 line-clamp-2">"{order.notes}"</span></p>}
-                        </div>
-                        <div className="bg-slate-50 dark:bg-slate-850 p-3 rounded-xl border border-slate-100 dark:border-slate-800 space-y-1.5">
-                            {order.items.map((it, i) => (
-                                <div key={i} className="flex justify-between text-xs gap-2">
-                                    <span className="font-bold text-slate-700 dark:text-slate-300 truncate">{it.qty}× {it.product.judul} <span className="text-slate-400 font-normal">({it.variant.name})</span></span>
-                                    <span className="font-medium text-slate-650 dark:text-slate-350 shrink-0">{formatRp(it.price * it.qty)}</span>
+                    <div key={order.id} className="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 flex flex-col hover:shadow-md transition-shadow">
+                        <div className="flex justify-between items-start border-b border-slate-100 dark:border-slate-800 pb-3">
+                            <div className="flex items-center gap-2">
+                                <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+                                    <Icon name="receipt_long" className="text-[16px]" />
                                 </div>
-                            ))}
-                            <div className="flex justify-between text-sm font-black text-google-green dark:text-google-greenLight pt-2 border-t border-slate-200 dark:border-slate-800">
-                                <span>Total COD</span><span>{formatRp(order.totalAmount)}</span>
+                                <div>
+                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Order ID</p>
+                                    <p className="text-[12px] font-extrabold text-slate-700 dark:text-slate-300">#TK-{String(order.id).slice(-6)}</p>
+                                </div>
+                            </div>
+                            <span className={`px-3 py-1 rounded-[8px] text-[9px] font-bold uppercase shrink-0 border ${order.status === 'Menunggu' ? 'bg-amber-50 border-amber-200 text-amber-700' : order.status === 'Diproses' ? 'bg-blue-50 border-blue-200 text-blue-700' : order.status === 'Diantar' ? 'bg-purple-50 border-purple-200 text-purple-700' : order.status === 'Selesai' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-red-50 border-red-200 text-red-700'}`}>{order.status}</span>
+                        </div>
+                        
+                        <div className="bg-slate-50 dark:bg-slate-805 rounded-[14px] p-4 border border-slate-100 dark:border-slate-800 space-y-3">
+                            <div className="flex justify-between items-start">
+                                <div className="flex-1">
+                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Pemesan</p>
+                                    <h4 className="font-extrabold text-[15px] text-slate-800 dark:text-slate-100 mt-0.5">{order.wargaName}</h4>
+                                </div>
+                                <div className="text-right shrink-0">
+                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Total</p>
+                                    <p className="text-[14px] font-black text-rose-600 dark:text-rose-500">{formatRp(order.totalAmount)}</p>
+                                </div>
+                            </div>
+                            
+                            <div className="pt-3 border-t border-slate-200 dark:border-slate-750">
+                                <p className="text-[10px] font-bold text-slate-400 uppercase mb-2">Rincian Belanja</p>
+                                <div className="space-y-2">
+                                    {order.items.map((it, idx) => (
+                                        <div key={idx} className="flex gap-2 items-start text-xs">
+                                            <div className="w-8 h-8 rounded-[8px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center shrink-0 p-0.5">
+                                                {it.product.imageUrl ? <img src={it.product.imageUrl} className="w-full h-full object-cover rounded-[6px]" /> : <Icon name="storefront" className="text-[14px] text-slate-400" />}
+                                            </div>
+                                            <div className="flex-1 min-w-0 pt-0.5">
+                                                <p className="font-bold text-slate-700 dark:text-slate-200 line-clamp-1">{it.product.judul}</p>
+                                                <p className="text-[10px] font-medium text-slate-500">{it.variant.name} &bull; {it.qty}x {formatRp(it.price)}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
+
+                        <div className="mt-4 space-y-2 flex-1">
+                            <div className="flex items-start gap-2 text-[11.5px] text-slate-600 dark:text-slate-300 font-medium bg-white dark:bg-slate-900 p-3 rounded-[12px] border border-slate-200 dark:border-slate-750">
+                                <div className="w-6 h-6 rounded-full bg-rose-50 dark:bg-rose-950/30 flex items-center justify-center shrink-0">
+                                    <Icon name="local_shipping" className="text-[13px] text-rose-500" />
+                                </div>
+                                <div className="flex-1">
+                                    <span className="font-bold text-slate-800 dark:text-white">Alamat Pengiriman</span>
+                                    <p className="text-[11px] text-slate-500 dark:text-slate-450 mt-1">{order.address}</p>
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-center justify-between gap-2 text-[11.5px] font-medium bg-white dark:bg-slate-900 p-3 rounded-[12px] border border-slate-200 dark:border-slate-750">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
+                                        <Icon name="call" className="text-[13px] text-slate-500" />
+                                    </div>
+                                    <span className="font-bold text-slate-800 dark:text-white">WhatsApp</span>
+                                </div>
+                                <a href={`https://wa.me/${order.phone.replace(/^0/,'62')}`} target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:underline font-extrabold">{order.phone}</a>
+                            </div>
+
+                            {order.notes && (
+                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-amber-50 dark:bg-amber-950/20 p-3 rounded-[12px] border border-amber-100 dark:border-amber-900/30">
+                                    <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-amber-500" />
+                                    <span><span className="font-bold text-slate-800 dark:text-white">Catatan:</span> {order.notes}</span>
+                                </div>
+                            )}
+                        </div>
+                        
+                        <div className="flex items-center justify-between mt-2 mb-3">
+                            <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-bold">
+                                <Icon name="event" className="text-[13px]" /> {parseLocalDate(order.orderDate).toLocaleString('id-ID', {dateStyle:'short', timeStyle:'short'})}
+                            </div>
+                        </div>
+
                         <div className="flex gap-2 mt-auto pt-1">
                             {order.status === 'Menunggu' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diproses'} : o))} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Proses</button>}
                             {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg text-xs font-bold transition-colors">Mulai Antar</button>}
