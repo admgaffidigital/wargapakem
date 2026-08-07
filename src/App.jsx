@@ -2134,8 +2134,8 @@ import {
                             </div>
                         )}
 
-                        <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
-                            <div className="max-w-6xl mx-auto flex items-center justify-between">
+                        <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
+                            <div className="max-w-7xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
                                         <div className="bg-gradient-to-tr from-red-500 to-rose-600 text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40"><Icon name="home" className="text-[15px] sm:text-[17px]" fill="true" /></div>
@@ -2148,7 +2148,7 @@ import {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
-                                    <span className={`text-[8px] sm:text-[9px] font-medium px-2 py-1 sm:px-3 sm:py-1.5 rounded-[6px] uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/30' : 'bg-slate-50 text-slate-600 border-slate-300'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
+                                    <span className={`text-[8px] sm:text-[9px] font-medium px-2 py-1 sm:px-3 py-1.5 rounded-[6px] uppercase tracking-widest border-2 ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/30' : 'bg-slate-50 text-slate-600 border-slate-300'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
                                     <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 text-slate-600 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 shadow-sm" title="Toggle Tema"><Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" /></button>
                                     <button onClick={() => setShowLogoutModal(true)} className="w-9 h-9 sm:w-10 sm:h-10 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-red-500/30 shadow-sm"><Icon name="logout" className="text-[15px] sm:text-[16px]" /></button>
                                 </div>
@@ -2157,7 +2157,7 @@ import {
                     </div>
 
                     <main className="flex-1 w-full pt-5 md:pt-8 print:pb-0 print:pt-0" style={{paddingBottom: '10rem'}}>
-                        <div key={activeTab} className="max-w-6xl mx-auto px-4 sm:px-6 tab-fade-in pb-10">
+                        <div key={activeTab} className="max-w-7xl mx-auto px-4 sm:px-6 tab-fade-in pb-10">
                             {renderContent()}
                         </div>
                     </main>
@@ -10124,6 +10124,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     const [isUploading, setIsUploading] = useState(false);
     const [activeOrderTab, setActiveOrderTab] = useState('Menunggu');
     const [tokoConfirm, setTokoConfirm] = useState(null); // { message, onConfirm }
+    const [selectedCategory, setSelectedCategory] = useState('Semua');
 
     const cartItemCount = Object.keys(cart).length;
     const cartTotal = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -10314,6 +10315,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     </span>
                                 )}
                             </div>
+                            {selectedProduct.kategori && (
+                                <span className="inline-block bg-google-blue/10 text-google-blue dark:bg-blue-900/30 dark:text-blue-400 px-2.5 py-1 rounded-md text-[10px] font-bold mb-3 uppercase tracking-wider border border-google-blue/20">
+                                    {selectedProduct.kategori}
+                                </span>
+                            )}
                             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-wrap">{selectedProduct.deskripsi}</p>
                         </div>
                         {/* Pilih Varian */}
@@ -10504,16 +10510,17 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     {/* Desktop Table (>= md) */}
                     <div className="hidden md:block bg-white dark:bg-slate-900 rounded-[24px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
                         <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse min-w-[680px]">
+                            <table className="w-full text-left border-collapse min-w-[780px]">
                                 <thead><tr className="bg-slate-50 dark:bg-slate-850 border-b-2 border-slate-205 dark:border-slate-800 text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                                     <th className="p-4 w-12 text-center text-slate-505 dark:text-slate-400">No</th>
                                     <th className="p-4 text-slate-505 dark:text-slate-400">Info Produk</th>
+                                    <th className="p-4 text-slate-505 dark:text-slate-400">Kategori</th>
                                     <th className="p-4 text-slate-505 dark:text-slate-400">Varian & Harga</th>
                                     <th className="p-4 text-center text-slate-505 dark:text-slate-400">Status</th>
                                     <th className="p-4 text-right text-slate-505 dark:text-slate-400">Aksi</th>
                                 </tr></thead>
                                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                                    {tokoProducts.length === 0 ? <tr><td colSpan="5" className="p-10 text-center text-slate-400 font-medium">Belum ada produk.</td></tr>
+                                    {tokoProducts.length === 0 ? <tr><td colSpan="6" className="p-10 text-center text-slate-400 font-medium">Belum ada produk.</td></tr>
                                     : tokoProducts.map((p, idx) => (
                                         <tr key={p.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors">
                                             <td className="p-4 text-center font-bold text-slate-400 text-sm">{idx+1}</td>
@@ -10528,6 +10535,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </td>
+                                            <td className="p-4">
+                                                <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-1.5 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 whitespace-nowrap inline-block">
+                                                    {p.kategori || 'Belum Diatur'}
+                                                </span>
                                             </td>
                                             <td className="p-4 text-xs font-medium text-slate-600 dark:text-slate-300 space-y-1">{p.variants.map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-bold text-slate-800 dark:text-white">{formatRp(v.price)}</span></div>)}</td>
                                             <td className="p-4 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
@@ -10723,11 +10735,27 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 </div>
             </div>
 
+            {/* Kategori Tabs */}
+            {Array.from(new Set(tokoProducts.filter(p => p.isPublished).map(p => p.kategori).filter(Boolean))).length > 0 && (
+                <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+                    <button onClick={() => setSelectedCategory('Semua')}
+                        className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all border-2 ${selectedCategory === 'Semua' ? 'bg-google-blue text-white border-google-blueDark shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-google-blue/40'}`}>
+                        Semua
+                    </button>
+                    {Array.from(new Set(tokoProducts.filter(p => p.isPublished).map(p => p.kategori).filter(Boolean))).map(kat => (
+                        <button key={kat} onClick={() => setSelectedCategory(kat)}
+                            className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all border-2 ${selectedCategory === kat ? 'bg-google-blue text-white border-google-blueDark shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-google-blue/40'}`}>
+                            {kat}
+                        </button>
+                    ))}
+                </div>
+            )}
+
             {/* Grid Produk — 1:1 Aspect Ratio & SKU Share System */}
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
-                {tokoProducts.filter(p => p.isPublished).length === 0 ? (
+                {tokoProducts.filter(p => p.isPublished && (selectedCategory === 'Semua' || p.kategori === selectedCategory)).length === 0 ? (
                     <div className="col-span-full py-16 text-center text-slate-400 dark:text-slate-500 font-medium text-sm bg-white dark:bg-slate-900 rounded-[20px] border border-dashed border-slate-200 dark:border-slate-800">Belum ada produk yang dijual saat ini.</div>
-                ) : tokoProducts.filter(p => p.isPublished).map(item => (
+                ) : tokoProducts.filter(p => p.isPublished && (selectedCategory === 'Semua' || p.kategori === selectedCategory)).map(item => (
                     <div key={item.id} onClick={() => { setSelectedProduct(item); setSelectedVariant(item.variants[0] || null); setOrderQty(1); setView('detail'); }}
                         className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[20px] border border-slate-200 dark:border-slate-850 shadow-sm hover:shadow-lg overflow-hidden flex flex-col justify-between hover:border-google-green/60 hover:-translate-y-1 transition-all duration-300 group cursor-pointer font-sans">
                         {/* Gambar - 1:1 Ratio */}
