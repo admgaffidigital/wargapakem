@@ -3136,7 +3136,7 @@ import {
 
                     {/* LANDING FOOTER (COMPLIES WITH THEME VARIABLES) */}
                     <footer className="w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-[16px] sm:rounded-[28px] border border-slate-200 dark:border-slate-700 py-6 px-4 sm:py-8 sm:px-8 text-center z-10 relative mb-8 bg-white dark:bg-slate-900 shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
-                        <div className="max-w-4xl mx-auto space-y-4">
+                        <div className="max-w-6xl mx-auto space-y-4">
                             <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
                                 <span className="font-bold text-slate-700 dark:text-slate-200">{identity.name || 'Portal Warga'}</span> adalah {landingConfig.footerTagline} {identity.subtitle || 'Menghadirkan transparansi administrasi dan informasi warga.'}
                             </p>
@@ -3230,7 +3230,7 @@ import {
 
         function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setShowPwaGuide, sponsorsData, nextMeeting }) {
             return (
-                <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto mt-2">
+                <div className="space-y-6 sm:space-y-8 max-w-6xl mx-auto mt-2">
                     
                     {/* --- AREA BANNER UTAMA --- */}
                     <div className={`relative rounded-[32px] p-6 sm:p-8 text-white border-2 border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden group min-h-[220px] sm:min-h-[260px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark dark:from-rose-950 dark:to-rose-900' : 'bg-slate-900'}`}>
@@ -3294,7 +3294,7 @@ import {
                     {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
                         <div className="flex flex-col items-center justify-center mt-20 mb-8 animate-fadeIn">
                             <p className="text-[9px] uppercase tracking-widest font-medium text-slate-400 mb-4">Sponsored By</p>
-                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 items-center justify-items-center w-full max-w-5xl px-4 mx-auto">
+                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 items-center justify-items-center w-full max-w-6xl px-4 mx-auto">
                                 {sponsorsData.sponsors.map((s, i) => (
                                     <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 lg:h-16 w-auto max-w-[90px] sm:max-w-[120px] md:max-w-[140px] lg:max-w-[160px] object-contain opacity-100 transition-all duration-300 hover:scale-110" title={s.name}  loading="lazy" decoding="async"/>
                                 ))}
@@ -5733,7 +5733,7 @@ import {
                 const sisa = totalTerkumpul - transferred;
 
                 return (
-                    <div className="space-y-6 max-w-5xl mx-auto">
+                    <div className="space-y-6 max-w-6xl mx-auto">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                             <div className="flex flex-wrap items-center gap-5"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><div><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda.title}</h2><p className="text-[13px] font-medium text-google-textVariant mt-1">Kelola Penyetoran Warga</p></div></div>
                             {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
@@ -6395,7 +6395,7 @@ import {
             };
 
             return (
-                <div className="bg-white rounded-[32px] overflow-hidden max-w-5xl mx-auto border-2 border-slate-300 shadow-xl">
+                <div className="bg-white rounded-[32px] overflow-hidden max-w-6xl mx-auto border-2 border-slate-300 shadow-xl">
                     <div className="bg-slate-50 px-8 py-6 flex items-center justify-between no-print border-b border-slate-300 relative">
                         {[1, 2, 3].map(num => (<div key={num} className="flex flex-col items-center relative z-10"><div className={`w-12 h-12 rounded-full flex items-center justify-center font-medium text-[16px] border-2 transition-all duration-500 ${step >= num ? 'bg-google-blue text-white border-google-blueDark shadow-md scale-110' : 'bg-white text-slate-400 border-slate-400'}`}>{num}</div></div>))}
                         <div className="absolute left-16 right-16 h-2 bg-slate-200 top-[45px] z-0 rounded-full overflow-hidden"><div className="h-full bg-google-blue transition-all duration-700 ease-in-out" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%' }}></div></div>
@@ -7585,7 +7585,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             // FIX: Urutkan dari putaran terbaru ke terlama agar urutannya sama dengan Riwayat Pertemuan Arisan
             const winners = members.filter(m => m.hasWon).sort((a, b) => b.wonRound - a.wonRound);
             return (
-                <div className="space-y-6 max-w-4xl mx-auto">
+                <div className="space-y-6 max-w-6xl mx-auto">
                     <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row justify-between items-center border-2 border-slate-300 shadow-sm text-center sm:text-left gap-5">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Daftar Pemenang Arisan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Warga yang telah menerima dana pada siklus aktif saat ini.</p></div>
                         <div className="w-16 h-16 bg-google-yellowLight rounded-[20px] flex items-center justify-center border-2 border-google-yellow/40 shrink-0 shadow-sm"><Icon name="emoji_events" className="text-[32px] text-google-yellowDark" fill="true" /></div>
@@ -7782,7 +7782,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             }
 
             return (
-                <div className="space-y-6 max-w-5xl mx-auto">
+                <div className="space-y-6 max-w-6xl mx-auto">
                     {/* Header */}
                     <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
                         <div className="text-center md:text-left">
@@ -7952,7 +7952,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
         function PetaDesa({ infoDesa }) {
 
             return (
-                <div className="space-y-6 max-w-5xl mx-auto tab-fade-in">
+                <div className="space-y-6 max-w-6xl mx-auto tab-fade-in">
                     <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
                         <div className="text-center md:text-left">
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
@@ -10205,7 +10205,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
     // ===== VIEW: KERANJANG =====
     if (view === 'cart') return (
-        <div className="space-y-5 max-w-4xl mx-auto">
+        <div className="space-y-5 max-w-6xl mx-auto">
             <PageHeader title="Keranjang Belanja" subtitle="Review & checkout pesanan Anda" onBack={() => setView('list')} />
             {cartItemCount === 0 ? (
                 <div className="bg-white dark:bg-slate-900 p-10 sm:p-16 rounded-[24px] border border-slate-200 dark:border-slate-800 text-center shadow-sm">
