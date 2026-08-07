@@ -10383,15 +10383,17 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             </div>
                             <div>
                                 <label className="text-xs font-bold text-slate-505 dark:text-slate-400 mb-1.5 block">Kategori Produk</label>
-                                <select value={productForm.kategori || ''} onChange={e => setProductForm({...productForm, kategori: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white">
-                                    <option value="" disabled>Pilih Kategori...</option>
-                                    <option value="Sembako & Kebutuhan Harian">Sembako & Kebutuhan Harian</option>
-                                    <option value="Makanan & Minuman">Makanan & Minuman</option>
-                                    <option value="Pakaian & Fashion">Pakaian & Fashion</option>
-                                    <option value="Elektronik & Gadget">Elektronik & Gadget</option>
-                                    <option value="Jasa & Layanan">Jasa & Layanan</option>
-                                    <option value="Lainnya">Lainnya</option>
-                                </select>
+                                <input list="kategori-options" type="text" value={productForm.kategori || ''} onChange={e => setProductForm({...productForm, kategori: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Pilih atau Ketik Kategori Baru..." />
+                                <datalist id="kategori-options">
+                                    <option value="Sembako & Kebutuhan Harian" />
+                                    <option value="Makanan & Minuman" />
+                                    <option value="Pakaian & Fashion" />
+                                    <option value="Elektronik & Gadget" />
+                                    <option value="Jasa & Layanan" />
+                                    {Array.from(new Set(tokoProducts.map(p => p.kategori).filter(Boolean))).map(kat => (
+                                        <option key={kat} value={kat} />
+                                    ))}
+                                </datalist>
                             </div>
                             {productForm.sku && (
                                 <div>
