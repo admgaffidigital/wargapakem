@@ -2017,6 +2017,9 @@ import {
                                 window.location.hash = 'tiket';
                             } else if (sessionStorage.getItem('openTokoProductId') || sessionStorage.getItem('addToCartProductId')) {
                                 window.location.hash = 'toko';
+                            } else if (sessionStorage.getItem('openTab')) {
+                                window.location.hash = sessionStorage.getItem('openTab');
+                                sessionStorage.removeItem('openTab');
                             } else {
                                 if (sessionStorage.getItem('openInfaqId')) { window.location.hash = 'infaq'; } else { window.location.hash = 'menu'; }
                             }
@@ -3010,7 +3013,10 @@ import {
                                         </div>
                                         
                                         <div className="shrink-0 relative z-10 w-full md:w-auto flex items-center justify-center">
-                                            <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3.5 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
+                                            <button onClick={() => {
+                                                sessionStorage.setItem('openTab', 'pemenang');
+                                                onLogin('warga');
+                                            }} className="w-full md:w-auto bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3.5 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
                                                 <Icon name="groups" />
                                                 <span>Lihat Semua Pemenang</span>
                                             </button>
