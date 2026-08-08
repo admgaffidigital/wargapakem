@@ -21,7 +21,7 @@
             ]
         },
         {
-            "source": "/National_emblem_of_Indonesia_Garuda_Pancasila.svg",
+            "source": "/(National_emblem_of_Indonesia_Garuda_Pancasila|pwa-icon).svg",
             "headers": [
                 { "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }
             ]
