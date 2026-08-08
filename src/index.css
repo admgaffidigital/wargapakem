@@ -701,26 +701,20 @@ input:-webkit-autofill:active {
 }
 
 /* ============================================================
-   NATIVE UI OVERRIDES: Flat design, thick borders, no shadows
+   NATIVE UI OVERRIDES: Flat design, subtle borders, no shadows
    ============================================================ */
 
-/* Pertebal hanya garis tepi kartu utama/panel box & input form (bukan garis pemisah/list/tabel) */
-[class*="rounded-"][class*="border-"],
-[class*="rounded-"].border,
-input, select, textarea {
-    border-width: 2px !important;
-}
+/* Gunakan ketebalan border default 1px — tipis, bersih, tidak menekan konten */
+/* Warna garis pembatas dibuat halus dan tidak terlalu kontras */
+.border-slate-100 { border-color: #f1f5f9 !important; } /* sangat terang, untuk divider dalam konten */
+.border-slate-200 { border-color: #e2e8f0 !important; } /* tipis & halus untuk kartu & panel */
+.border-slate-300 { border-color: #cbd5e1 !important; } /* sedikit lebih tegas untuk tabel/form */
+.border-slate-400 { border-color: #94a3b8 !important; }
 
-/* Buat warna garis pembatas (border) kontras tapi halus di mode light & dark */
-.border-slate-100 { border-color: #e2e8f0 !important; } /* slate-200 (dividers halus) */
-.border-slate-200 { border-color: #cbd5e1 !important; } /* slate-300 (kartu & panel) */
-.border-slate-300 { border-color: #94a3b8 !important; } /* slate-400 (tabel/form tegas) */
-.border-slate-400 { border-color: #64748b !important; } /* slate-500 */
-
-.dark .border-slate-700 { border-color: #334155 !important; } /* slate-700 */
-.dark .border-slate-800 { border-color: #1e293b !important; } /* slate-800 */
-.dark .border-slate-850 { border-color: #0f172a !important; } /* slate-900 */
-.dark .border-slate-900 { border-color: #020617 !important; }
+.dark .border-slate-700 { border-color: #2d3748 !important; }
+.dark .border-slate-800 { border-color: #1e293b !important; }
+.dark .border-slate-850 { border-color: #172033 !important; }
+.dark .border-slate-900 { border-color: #0f172a !important; }
 
 /* Sembunyikan bayangan secara mutlak di seluruh elemen */
 * {
