@@ -491,14 +491,14 @@ import {
                     intro: 'Menu Warga adalah pusat data seluruh anggota G nama, program, status, dan tunggakan.',
                     topics: [
                         { label: 'Program Keikutsertaan', answer: `Ada 4 jenis program warga:\n\n👉 Full (Arisan, Iuran & Jimpitan) -> ikut semua kegiatan.\n\n👉 Hanya Iuran Umum -> bayar iuran umum saja.\n\n👉 Arisan Saja (Bebas Jimpitan) -> khusus lansia dsb.\n\n👉 Jimpitan & Iuran Umum -> tanpa arisan.\n\nPilih sesuai kesepakatan saat mendaftar.` },
-                        { label: 'Status Warga (3 jenis)', answer: `= Aktif G ikut semua kewajiban.\n\nGÜ½ Meninggal / Wafat G bebas arisan, TETAP wajib jimpitan Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}. Kartu di Absen otomatis abu-abu.\n\n= Nonaktif / Pindah G sama seperti Meninggal, bebas arisan.\n\nUbah status lewat tombol Edit di daftar warga.` },
+                        { label: 'Status Warga (3 jenis)', answer: `✅ Aktif → ikut semua kewajiban.\n\n🕊️ Meninggal / Wafat → bebas arisan, TETAP wajib jimpitan Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}. Kartu di Absen otomatis abu-abu.\n\n❌ Nonaktif / Pindah → sama seperti Meninggal, bebas arisan.\n\nUbah status lewat tombol Edit di daftar warga.` },
                         { label: 'Tunggakan Warga', answer: `Tunggakan timbul otomatis saat warga Alfa atau Musibah.\n\nBesaran = Arisan + Jimpitan = Rp ${((nominalArisan||10000)+(nominalJimpitan||2000)).toLocaleString('id-ID')} per bulan absen.\n\nLunas saat warga hadir + centang "Lunasi Tunggakan?" di form Absen.` },
                         { label: 'Rapor Merah vs Musibah', answer: `= Rapor Merah (Alfa) G tidak hadir tanpa alasan. Dapat tanda merah di dashboard.\n\n= Musibah G berhalangan karena alasan valid (sakit, musibah). Punya tunggakan tapi TIDAK dapat rapor merah.\n\nMusibah = toleransi, Alfa = peringatan.` },
-                        { label: 'Tambah / Edit / Hapus Warga', answer: `GP Tambah G isi nama, program, status. Nama harus unik karena jadi identifikasi di absensi.\n\nGn+ Edit G ubah data termasuk status dan koreksi tunggakan manual.\n\n=n+ Hapus G ada konfirmasi. Tidak bisa dipulihkan.` }
+                        { label: 'Tambah / Edit / Hapus Warga', answer: `➕ Tambah → isi nama, program, status. Nama harus unik karena jadi identifikasi di absensi.\n\n✏️ Edit → ubah data termasuk status dan koreksi tunggakan manual.\n\n🗑️ Hapus → ada konfirmasi. Tidak bisa dipulihkan.` }
                     ]
                 },
                 pertemuan: {
-                    label: '=n+ Absen Arisan', icon: 'how_to_reg',
+                    label: '📋 Absen Arisan', icon: 'how_to_reg',
                     intro: 'Form absen 3 langkah: konfirmasi periode G catat kehadiran G pilih pemenang.',
                     topics: [
                         { label: 'Alur 3 Langkah', answer: `Step 1 G Konfirmasi periode & tanggal.\nStep 2 G Klik status tiap warga: Hadir / Musibah / Alfa. Warga Meninggal/Nonaktif otomatis abu-abu.\nStep 3 G Pilih pemenang dari daftar eligible (belum pernah menang siklus ini).` },
@@ -543,13 +543,13 @@ import {
                     ]
                 },
                 pengaturan: {
-                    label: 'Gn+ Pengaturan', icon: 'settings',
+                    label: '⚙️ Pengaturan', icon: 'settings',
                     intro: 'Konfigurasi sistem: nominal, identitas, koreksi saldo, PIN, reset.',
                     topics: [
                         { label: 'Nominal Arisan & Jimpitan', answer: `Arisan: Rp ${(nominalArisan||10000).toLocaleString('id-ID')} | Jimpitan: Rp ${(nominalJimpitan||2000).toLocaleString('id-ID')}.\n\nPerubahan berlaku mulai pertemuan berikutnya. Riwayat lama tetap memakai nominal lama.` },
                         { label: 'Koreksi Saldo Manual', answer: `Kas Warga: perbedaan dicatat otomatis sebagai transaksi "Penyesuaian Saldo Awal" di Buku Kas.\nJimpitan: langsung ubah tanpa entry transaksi.\n\nGunakan jika ada perbedaan antara sistem dan uang fisik.` },
                         { label: 'Kalibrasi Putaran & Siklus', answer: `Koreksi nomor putaran dan siklus jika ada kesalahan (misal migrasi dari sistem lama).\n\nPutaran saat ini: ${currentRound||1} | Siklus: ${cycleNumber||1}.` },
-                        { label: 'Factory Reset', answer: `Menghapus SEMUA data: warga, riwayat, saldo, iuran, galeri, inventaris.\n\nKetik "RESET" untuk konfirmasi. Gn+ TIDAK BISA DIBATALKAN. PIN admin tetap tidak berubah agar admin masih bisa login setelah reset.` }
+                        { label: 'Factory Reset', answer: `Menghapus SEMUA data: warga, riwayat, saldo, iuran, galeri, inventaris.\n\nKetik "RESET" untuk konfirmasi. ⚠️ TIDAK BISA DIBATALKAN. PIN admin tetap tidak berubah agar admin masih bisa login setelah reset.` }
                     ]
                 },
                 infaq_inventaris: {
@@ -649,7 +649,7 @@ import {
                     ]
                 },
                 tunggakan: {
-                    label: 'Gn+ Tunggakan Saya', icon: 'warning',
+                    label: '⚠️ Tunggakan Saya', icon: 'warning',
                     intro: 'Penjelasan kenapa bisa ada tunggakan, apa artinya, dan bagaimana cara melunasinya.',
                     topics: [
                         {
@@ -712,7 +712,7 @@ import {
                     topics: [
                         {
                             label: 'Apa arti tanda di nama saya?',
-                            answer: `Di menu "Buku Warga", setiap warga punya tanda:\n\n= BERSIH G tidak ada tunggakan, kehadiran bagus.\n= HUTANG Rp X,XXX G ada tunggakan yang harus segera dilunasi.\nGÜ½ WAFAT G status telah diubah admin (tidak lagi aktif di arisan).\nGÜ¬ NONAKTIF G pindah atau tidak aktif lagi.\n\nTanda merah kecil (G) di samping nama = warga punya rapor merah dari Alfa.`
+                            answer: `Di menu "Buku Warga", setiap warga punya tanda:\n\n✅ BERSIH → tidak ada tunggakan, kehadiran bagus.\n⚠️ HUTANG Rp X,XXX → ada tunggakan yang harus segera dilunasi.\n🕊️ WAFAT → status telah diubah admin (tidak lagi aktif di arisan).\n❌ NONAKTIF → pindah atau tidak aktif lagi.\n\nTanda merah kecil di samping nama = warga punya rapor merah dari Alfa.`
                         },
                         {
                             label: 'Saya baru bergabung, apa yang perlu saya tahu?',
@@ -720,7 +720,7 @@ import {
                         },
                         {
                             label: 'Bagaimana cara cek status arisan saya?',
-                            answer: `Buka menu "Pemenang" di beranda G cari nama Anda:\n\nG Nama ADA di daftar = Anda SUDAH menang di siklus ini. Selamat!\nGÅ¦ Nama TIDAK ADA = Anda belum mendapat giliran, masih akan diundi bulan mendatang.\n\nBuka menu "Buku Warga" untuk cek tunggakan dan status terkini Anda.`
+                            answer: `Buka menu "Pemenang" di beranda → cari nama Anda:\n\n✅ Nama ADA di daftar = Anda SUDAH menang di siklus ini. Selamat!\n⏳ Nama TIDAK ADA = Anda belum mendapat giliran, masih akan diundi bulan mendatang.\n\nBuka menu "Buku Warga" untuk cek tunggakan dan status terkini Anda.`
                         }
                     ]
                 },
@@ -1132,7 +1132,7 @@ import {
                             {/* Preview player native browser */}
                             {isEnabled && (
                                 <div className="bg-white/80 rounded-[14px] p-3 border border-google-green/30">
-                                    <p className="text-[9px] font-medium text-google-greenDark mb-2 uppercase tracking-widest">G Preview</p>
+                                    <p className="text-[9px] font-medium text-google-greenDark mb-2 uppercase tracking-widest">▶ Preview</p>
                                     <audio controls src={currentUrl} className="w-full" style={{ height: '36px' }}>
                                         Browser Anda tidak mendukung audio.
                                     </audio>
@@ -1202,7 +1202,7 @@ import {
                                 {testStatus === 'ok' && (
                                     <div className="bg-google-greenLight border-2 border-google-green/40 rounded-[12px] p-3">
                                         <p className="text-[11px] font-medium text-google-greenDark mb-2 flex flex-wrap items-center gap-1.5">
-                                            <Icon name="check_circle" className="text-[13px]" fill="true" /> URL Valid G Preview:
+                                            <Icon name="check_circle" className="text-[13px]" fill="true" /> URL Valid ▶ Preview:
                                         </p>
                                         <audio controls src={previewUrl} className="w-full" style={{ height: '34px' }} />
                                     </div>
@@ -4286,7 +4286,7 @@ import {
                                         <option value="">-- Pilih Barang --</option>
                                         {inventarisData.map(item => {
                                             const stok = getStokTersedia(item.id);
-                                            return <option key={item.id} value={item.id} disabled={stok <= 0}>{item.name} G Stok tersedia: {stok} dari {item.qty}{stok <= 0 ? ' (Habis)' : ''}</option>;
+                                            return <option key={item.id} value={item.id} disabled={stok <= 0}>{item.name} — Stok tersedia: {stok} dari {item.qty}{stok <= 0 ? ' (Habis)' : ''}</option>;
                                         })}
                                     </select>
                                 </div>
@@ -4820,7 +4820,7 @@ import {
                                                         donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                         'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                                     }`}>
-                                                        {donasi.status === 'APPROVED' ? 'G Disetujui' : donasi.status === 'REJECTED' ? 'G Ditolak' : 'GÅ¦ Menunggu'}
+                                                        {donasi.status === 'APPROVED' ? '✅ Disetujui' : donasi.status === 'REJECTED' ? '❌ Ditolak' : '⏳ Menunggu'}
                                                     </span>
                                                 )}
                                             </div>
@@ -4860,7 +4860,7 @@ import {
                                                 donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                 'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                             }`}>
-                                                {donasi.status === 'APPROVED' ? 'G Disetujui' : donasi.status === 'REJECTED' ? 'G Ditolak' : 'GÅ¦ Menunggu'}
+                                                {donasi.status === 'APPROVED' ? '✅ Disetujui' : donasi.status === 'REJECTED' ? '❌ Ditolak' : '⏳ Menunggu'}
                                             </span>
                                         </div>
                                     ))}
@@ -5067,7 +5067,7 @@ import {
 
                     <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                         <h3 className="text-[17px] font-medium text-google-text mb-6 tracking-tight">
-                            {editingId ? 'Gn+ Edit Program Infaq' : 'GP Buat Program Infaq Baru'}
+                            {editingId ? '✏️ Edit Program Infaq' : '➕ Buat Program Infaq Baru'}
                         </h3>
                         <div className="space-y-7">
 
