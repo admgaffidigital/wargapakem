@@ -34,3 +34,5 @@ convert_to_app.ps1
 !public/robots.txt
 !public/ads.txt
 test_upload.js
+scratch/
+
