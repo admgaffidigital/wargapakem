@@ -3001,7 +3001,7 @@ import {
                                                         </div>
                                                     </div>
                                                     <div className="p-3 sm:p-5 pt-0 mt-auto border-t border-slate-100 dark:border-slate-800 pt-3 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mt-1 sm:mt-2">
+                                                        <div className="flex justify-between items-center gap-2 mt-1 sm:mt-2">
                                                             <div>
                                                                 <p className="text-[9px] sm:text-[10px] font-medium text-slate-400 uppercase tracking-widest">Mulai dari</p>
                                                                 <p className="text-[12px] sm:text-[14px] font-medium text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
@@ -3010,8 +3010,8 @@ import {
                                                                 e.stopPropagation();
                                                                 sessionStorage.setItem('addToCartProductId', item.id);
                                                                 onLogin('warga');
-                                                            }} className="px-3 py-1.5 sm:px-4 sm:py-2 w-full sm:w-auto flex justify-center bg-google-blue hover:bg-google-blueDark text-white rounded-full text-[11px] sm:text-xs font-medium transition-colors shadow-sm flex items-center gap-1 active:scale-95">
-                                                                <Icon name="shopping_cart" className="text-[12px] sm:text-[14px]" /> <span className="hidden sm:inline">Beli</span>
+                                                            }} className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-50 dark:bg-slate-800 text-google-blue dark:text-google-blueLight border border-slate-200 dark:border-slate-700 rounded-full flex items-center justify-center hover:bg-google-blue hover:text-white transition-colors shrink-0 cursor-pointer shadow-sm active:scale-95">
+                                                                <Icon name="shopping_bag" className="text-[15px] sm:text-[18px]" />
                                                             </button>
                                                         </div>
                                                     </div>
@@ -3382,11 +3382,11 @@ import {
                     {/* AREA GRID MENU */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-6">
                             {NavItems.map((item, idx) => (
-                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-full sm:rounded-full border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
+                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 
-                                <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-full sm:rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md border border-white/60 ${item.bg} ${item.color.replace('border-2', '')}`}>
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/10 to-black/5 rounded-full sm:rounded-full"></div>
+                                <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[20px] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md border border-white/60 ${item.bg} ${item.color.replace('border-2', '')}`}>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/10 to-black/5 rounded-[18px] sm:rounded-[20px]"></div>
                                     <Icon name={item.icon} className="relative z-10 text-[26px] sm:text-[30px] drop-shadow-sm" fill="true" />
                                 </div>
                                 
