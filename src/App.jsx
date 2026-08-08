@@ -1931,6 +1931,7 @@ import {
                     setIsLoggedIn(true);
                     setUserRole('warga');
                     setActiveTab('toko');
+                    window.location.hash = 'toko';
                 }
                 
                 if (hasNocache || hasV || hasPage) {
@@ -1938,6 +1939,7 @@ import {
                     cleanUrl.searchParams.delete('nocache');
                     cleanUrl.searchParams.delete('v');
                     cleanUrl.searchParams.delete('page');
+                    cleanUrl.searchParams.delete('product');
                     window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
                 }
                 
@@ -2013,6 +2015,8 @@ import {
                             const params = new URLSearchParams(window.location.search);
                             if (params.get('page') === 'tiket') {
                                 window.location.hash = 'tiket';
+                            } else if (sessionStorage.getItem('openTokoProductId') || sessionStorage.getItem('addToCartProductId')) {
+                                window.location.hash = 'toko';
                             } else {
                                 if (sessionStorage.getItem('openInfaqId')) { window.location.hash = 'infaq'; } else { window.location.hash = 'menu'; }
                             }
@@ -2872,7 +2876,10 @@ import {
                                         <>
                                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                                             {tokoProducts.filter(p => p.isPublished).slice(0, 8).map(item => (
-                                                <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-google-blue dark:hover:border-google-blue hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 group">
+                                                <div key={item.id} onClick={() => {
+                                                    sessionStorage.setItem('openTokoProductId', item.id);
+                                                    onLogin('warga');
+                                                }} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-google-blue dark:hover:border-google-blue hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 group cursor-pointer">
                                                     <div>
                                                         <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                                                             {item.imageUrl ? (
@@ -2881,10 +2888,11 @@ import {
                                                                 <Icon name="storefront" className="text-[32px] sm:text-[48px] text-slate-300 dark:text-slate-600" />
                                                             )}
                                                             {item.grosirMinQty > 0 && <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-yellow-400 text-yellow-900 text-[8px] sm:text-[9.5px] font-medium uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-sm">Grosir</span>}
-                                                            <button onClick={() => {
+                                                            <button onClick={(e) => {
+                                                                e.stopPropagation();
                                                                 const url = new URL(window.location.href);
                                                                 url.searchParams.set('page', 'toko');
-                                                                url.searchParams.set('product', item.id);
+                                                                url.searchParams.set('product', item.sku || item.id);
                                                                 navigator.clipboard.writeText(url.toString());
                                                                 showToast('Tautan produk berhasil disalin!');
                                                             }} className="absolute top-2 right-2 sm:top-3 sm:right-3 w-7 h-7 sm:w-8 sm:h-8 bg-white/90 rounded-full flex items-center justify-center text-slate-600 hover:text-google-blue hover:bg-white transition-colors shadow-sm" title="Bagikan Produk">
@@ -2906,8 +2914,9 @@ import {
                                                             <p className="text-[9px] sm:text-[10px] font-medium text-slate-400 uppercase tracking-widest">Mulai dari</p>
                                                             <p className="text-[12px] sm:text-[14px] font-medium text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
                                                         </div>
-                                                        <button onClick={() => {
-                                                            sessionStorage.setItem('openTokoProductId', item.id);
+                                                        <button onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            sessionStorage.setItem('addToCartProductId', item.id);
                                                             onLogin('warga');
                                                         }} className="px-3 py-1.5 sm:px-4 sm:py-2 w-full sm:w-auto flex justify-center bg-google-blue hover:bg-google-blueDark text-white rounded-full text-[11px] sm:text-xs font-medium transition-colors shadow-sm flex items-center gap-1 active:scale-95">
                                                             <Icon name="shopping_cart" className="text-[12px] sm:text-[14px]" /> <span className="hidden sm:inline">Beli</span>
@@ -10135,6 +10144,22 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 sessionStorage.removeItem('openTokoProductId');
             }
         }
+
+        const addIdOrSku = sessionStorage.getItem('addToCartProductId');
+        if (addIdOrSku && tokoProducts.length > 0) {
+            const p = tokoProducts.find(i => String(i.id) === String(addIdOrSku) || String(i.sku) === String(addIdOrSku));
+            if (p) {
+                const variant = p.variants[0];
+                const qty = 1;
+                let price = variant.price;
+                if (p.grosirMinQty > 0 && qty >= p.grosirMinQty && p.grosirPrice > 0) price = p.grosirPrice;
+                const key = `${p.id}_${variant.id}`;
+                setCart(prev => ({ ...prev, [key]: { product: p, variant: variant, qty: (prev[key]?.qty || 0) + 1, price } }));
+                showToast('Ditambahkan ke keranjang!');
+                setView('cart');
+                sessionStorage.removeItem('addToCartProductId');
+            }
+        }
     }, [tokoProducts]);
 
     const handleImageUpload = async (e) => {
@@ -10789,7 +10814,17 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <p className="text-[9px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-widest">Mulai dari</p>
                                 <p className="text-[13px] sm:text-[14px] font-medium text-google-green dark:text-google-greenLight">{formatRp(Math.min(...item.variants.map(v => v.price)))}</p>
                             </div>
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-55 dark:bg-slate-800 text-google-green dark:text-google-greenLight border border-slate-205 dark:border-slate-750 rounded-full flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors shrink-0">
+                            <div onClick={(e) => {
+                                e.stopPropagation();
+                                const variant = item.variants[0];
+                                const qty = 1;
+                                let price = variant.price;
+                                if (item.grosirMinQty > 0 && qty >= item.grosirMinQty && item.grosirPrice > 0) price = item.grosirPrice;
+                                const key = `${item.id}_${variant.id}`;
+                                setCart(prev => ({ ...prev, [key]: { product: item, variant: variant, qty: (prev[key]?.qty || 0) + 1, price } }));
+                                showToast('Ditambahkan ke keranjang!');
+                                setView('cart');
+                            }} className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-55 dark:bg-slate-800 text-google-green dark:text-google-greenLight border border-slate-205 dark:border-slate-750 rounded-full flex items-center justify-center hover:bg-google-green hover:text-white transition-colors shrink-0 cursor-pointer">
                                 <Icon name="shopping_bag" className="text-[15px] sm:text-[18px]" />
                             </div>
                         </div>
