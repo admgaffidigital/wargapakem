@@ -405,7 +405,7 @@ import {
                             to   { opacity: 1; transform: translateY(0); }
                         }
                     `}</style>
-                    <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border-2 border-slate-300 dark:border-slate-700 p-4 sm:p-5 flex flex-wrap items-center gap-4 max-w-lg mx-auto">
+                    <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border-2 border-slate-300 dark:border-slate-700 p-6 sm:p-8 flex flex-wrap items-center gap-4 max-w-lg mx-auto">
                         {/* Ikon */}
                         <div className="w-14 h-14 rounded-[16px] shrink-0 flex items-center justify-center text-white font-medium text-[18px] shadow-md"
                              style={{ background: 'linear-gradient(135deg,#e11d48,#be123c)' }}>
@@ -881,7 +881,7 @@ import {
                             </div>
 
                             {/* Chat area */}
-                            <div className="flex-1 overflow-y-auto p-4 sm:p-5 md:p-4 sm:p-6 space-y-3 bg-slate-50 hide-scrollbar border-y border-slate-200" style={{fontSize:'13px'}}>
+                            <div className="flex-1 overflow-y-auto p-6 sm:p-8 md:p-4 sm:p-6 space-y-5 bg-slate-50 hide-scrollbar border-y border-slate-200" style={{fontSize:'13px'}}>
                                 {messages.map((msg, i) => (
                                     <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                                         {msg.sender === 'robot' && (
@@ -1088,12 +1088,12 @@ import {
             };
 
             return (
-                <div className="space-y-6 max-w-2xl mx-auto">
+                <div className="space-y-8 max-w-2xl mx-auto">
                     {/* Hidden audio for test */}
                     <audio ref={previewAudioRef} preload="auto" style={{ display: 'none' }} />
 
                     {/* Header */}
-                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                         <div className="flex flex-wrap items-center gap-4">
                             <div className="w-14 h-14 rounded-[20px] bg-google-yellowLight flex items-center justify-center border-2 border-google-yellow/40 shrink-0">
                                 <Icon name="music_note" className="text-[32px] text-google-yellowDark" fill="true" />
@@ -1156,8 +1156,8 @@ import {
                                 <p className="text-blue-100 text-[10px] font-medium">Cara terbaik G gratis, cepat, dan bebas CORS</p>
                             </div>
                         </div>
-                        <div className="p-4 sm:p-5 md:p-6">
-                            <ol className="space-y-3 mb-5">
+                        <div className="p-6 sm:p-8 md:p-6">
+                            <ol className="space-y-5 mb-5">
                                 {[
                                     { step: '1', text: 'Buka dropbox.com dan login (atau daftar gratis).', icon: 'open_in_new' },
                                     { step: '2', text: 'Upload file MP3/WAV/OGG ke Dropbox Anda.', icon: 'upload' },
@@ -1172,7 +1172,7 @@ import {
                             </ol>
 
                             {/* Form Input */}
-                            <div className="space-y-3">
+                            <div className="space-y-5">
                                 <div>
                                     <label className="text-[10px] font-medium text-google-textVariant block mb-1.5 ml-1 uppercase tracking-widest">Nama Lagu</label>
                                     <input type="text" value={nameInput} onChange={e => setNameInput(e.target.value)}
@@ -1229,7 +1229,7 @@ import {
                     </div>
 
                     {/* Info */}
-                    <div className="bg-google-yellowLight rounded-[24px] p-5 sm:p-6 md:p-8 border-2 border-google-yellow/40 flex flex-wrap items-start gap-3">
+                    <div className="bg-google-yellowLight rounded-[24px] p-6 sm:p-8 md:p-8 border-2 border-google-yellow/40 flex flex-wrap items-start gap-3">
                         <Icon name="info" className="text-[17px] text-google-yellowDark shrink-0 mt-0.5" fill="true" />
                         <ul className="text-[11px] font-medium text-google-yellowDark/90 space-y-1 list-disc list-inside">
                             <li>Musik <span className="underline decoration-dotted">hanya memutar</span> untuk pengguna login sebagai <span className="underline decoration-dotted">Warga</span>.</li>
@@ -1433,7 +1433,7 @@ import {
                                         <Icon name="close" />
                                     </button>
                                 </div>
-                                <div className="p-6 sm:p-8 overflow-y-auto space-y-5">
+                                <div className="p-6 sm:p-8 overflow-y-auto space-y-7">
                                     {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
                                     
                                     <div>
@@ -1674,7 +1674,7 @@ import {
                                     </h2>
                                     <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-300 dark:border-slate-700 transition-all"><Icon name="close" /></button>
                                 </div>
-                                <div className="p-6 sm:p-8 overflow-y-auto space-y-5">
+                                <div className="p-6 sm:p-8 overflow-y-auto space-y-7">
                                     {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
                                     
                                     <div>
@@ -2197,7 +2197,7 @@ import {
                     </main>
 
                     <footer className="w-full text-center py-8 no-print border-t border-red-500/20 bg-gradient-to-b from-white/10 to-white/90 text-[12.5px] font-medium text-slate-500">
-                        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
+                        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
                             <p className="flex flex-wrap items-center gap-1.5 justify-center">
                                 <Icon name="flag" className="text-red-500 text-[14px] animate-pulse" fill="true" />
                                 - {new Date().getFullYear()} <span className="text-red-600 font-medium">WP LINGKUNGAN</span>. All rights reserved.
@@ -2299,11 +2299,11 @@ import {
             return (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
                     <div className="rounded-[32px] w-full max-w-xl flex flex-col max-h-[90vh] -slate-300 dark:-slate-700 modal-card animate-modal-in" style={{ animation: 'slideUp 0.3s ease-out' }}>
-                        <div className="p-4 sm:p-5 md:p-6 border-b-2 border-slate-300 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-950 rounded-t-[30px]">
+                        <div className="p-6 sm:p-8 md:p-6 border-b-2 border-slate-300 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-950 rounded-t-[30px]">
                             <h3 className="text-xl font-medium text-google-text dark:text-white flex flex-wrap items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
                             <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 hover:text-google-text dark:hover:text-white transition-all active:scale-95"><Icon name="close" /></button>
                         </div>
-                        <div className="p-4 sm:p-5 md:p-6 overflow-y-auto flex-1">
+                        <div className="p-6 sm:p-8 md:p-6 overflow-y-auto flex-1">
                             <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-6 font-medium">Aplikasi ini bisa diinstal langsung ke perangkat Anda (Android, iOS, maupun PC/Laptop) tanpa melalui App Store atau Play Store. Hemat memori dan cepat!</p>
                             
                             <div className="flex bg-slate-100 dark:bg-slate-950 p-1.5 rounded-[16px] mb-6 border-2 border-slate-300 dark:border-slate-850 shadow-inner">
@@ -2313,9 +2313,9 @@ import {
                             </div>
 
                             {tab === 'android' && (
-                                <div className="space-y-4 animate-fadeIn">
+                                <div className="space-y-6 animate-fadeIn">
                                     <h4 className="font-medium text-google-text dark:text-white text-[13px]">Pengguna Google Chrome</h4>
-                                    <ol className="list-decimal pl-5 space-y-3 text-[13px] text-google-textVariant dark:text-slate-300 font-medium">
+                                    <ol className="list-decimal pl-5 space-y-5 text-[13px] text-google-textVariant dark:text-slate-300 font-medium">
                                         <li>Buka website ini di browser <b>Google Chrome</b>.</li>
                                         <li>Tunggu beberapa detik, akan muncul banner <b>"Pasang Aplikasi Ini"</b> di bagian bawah layar. Klik tombol <b>Install</b>.</li>
                                         <li>Atau, klik ikon <b>titik tiga</b> (G) di pojok kanan atas browser.</li>
@@ -2326,9 +2326,9 @@ import {
                             )}
 
                             {tab === 'ios' && (
-                                <div className="space-y-4 animate-fadeIn">
+                                <div className="space-y-6 animate-fadeIn">
                                     <h4 className="font-medium text-google-text dark:text-white text-[13px]">Pengguna iPhone & iPad (Safari)</h4>
-                                    <ol className="list-decimal pl-5 space-y-3 text-[13px] text-google-textVariant dark:text-slate-300 font-medium">
+                                    <ol className="list-decimal pl-5 space-y-5 text-[13px] text-google-textVariant dark:text-slate-300 font-medium">
                                         <li>Buka website ini menggunakan browser <b>Safari</b> (wajib).</li>
                                         <li>Ketuk ikon <b>Bagikan</b> <Icon name="ios_share" className="text-[14px] inline text-google-blue" /> (kotak dengan panah ke atas) di bagian bawah layar.</li>
                                         <li>Geser menu ke atas atau ke samping, cari dan ketuk <b>"Tambah ke Layar Utama"</b> (Add to Home Screen) <Icon name="add_box" className="text-[14px] inline text-slate-500" />.</li>
@@ -2339,9 +2339,9 @@ import {
                             )}
 
                             {tab === 'pc' && (
-                                <div className="space-y-4 animate-fadeIn">
+                                <div className="space-y-6 animate-fadeIn">
                                     <h4 className="font-medium text-google-text dark:text-white text-[13px]">Pengguna PC/Laptop (Chrome / Edge)</h4>
-                                    <ol className="list-decimal pl-5 space-y-3 text-[13px] text-google-textVariant dark:text-slate-300 font-medium">
+                                    <ol className="list-decimal pl-5 space-y-5 text-[13px] text-google-textVariant dark:text-slate-300 font-medium">
                                         <li>Buka website ini di <b>Google Chrome</b> atau <b>Microsoft Edge</b>.</li>
                                         <li>Perhatikan ujung kanan bilah alamat web (address bar).</li>
                                         <li>Klik ikon <b>Install</b> <Icon name="install_desktop" className="text-[14px] inline text-google-blue" /> yang muncul di sana.</li>
@@ -2351,7 +2351,7 @@ import {
                                 </div>
                             )}
                         </div>
-                        <div className="p-5 sm:p-6 md:p-8 border-t-2 border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 rounded-b-[30px] flex justify-end">
+                        <div className="p-6 sm:p-8 md:p-8 border-t-2 border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 rounded-b-[30px] flex justify-end">
                             <button onClick={onClose} className="bg-google-blue text-white px-6 py-3 rounded-full font-medium text-[13px] shadow-md hover:bg-google-blueDark transition-all active:scale-95">Tutup Panduan</button>
                         </div>
                     </div>
@@ -2648,7 +2648,7 @@ import {
 
                     {/* MAIN LANDING CONTENT */}
                     {mode === 'select' ? (
-                        <main className="flex-1 w-full max-w-6xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
+                        <main className="flex-1 w-full max-w-7xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
                             {/* HERO BANNER SECTION - menggunakan bannerImage dari Firebase jika ada */}
                             <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-red-600 via-rose-600 to-red-800' : 'bg-slate-900'}`}>
                                 {bannerImage && (
@@ -2658,7 +2658,7 @@ import {
                                     </>
                                 )}
 
-                                <div className="relative z-10 w-full text-left space-y-3 max-w-2xl pb-2">
+                                <div className="relative z-10 w-full text-left space-y-5 max-w-2xl pb-2">
                                     <div className="inline-flex items-center gap-1.5 bg-black/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
                                         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                         <span className="text-[9px] font-medium uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
@@ -2712,10 +2712,10 @@ import {
                             </div>
 
                             {/* SERVICES GRID SECTION (SPACIOUS 4 COLUMNS) */}
-                            <section className="space-y-4 max-w-6xl mx-auto w-full">
+                            <section className="space-y-6 max-w-7xl mx-auto w-full">
                                 <h3 className="text-[11px] font-medium text-slate-400 uppercase tracking-widest text-center">{landingConfig.servicesSubtitle}</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-6 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-yellowLight border border-google-yellow/20 flex items-center justify-center shrink-0 text-google-yellowDark">
                                             <Icon name="campaign" className="text-[24px]" />
                                         </div>
@@ -2724,7 +2724,7 @@ import {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Papan pengumuman penting, info rapat warga, &amp; berita lingkungan terkini dari pengurus RT.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-6 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-greenLight border border-google-green/20 flex items-center justify-center shrink-0 text-google-greenDark">
                                             <Icon name="payments" className="text-[24px]" />
                                         </div>
@@ -2733,7 +2733,7 @@ import {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Laporan kas masuk dan keluar RT yang dicatat rinci, terbuka, &amp; dipantau warga kapan saja.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-6 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-google-blueLight border border-google-blue/20 flex items-center justify-center shrink-0 text-google-blueDark">
                                             <Icon name="local_activity" className="text-[24px]" />
                                         </div>
@@ -2742,7 +2742,7 @@ import {
                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5">Pembelian tiket jalan santai dan kegiatan RT secara online dengan metode COD.</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-100 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col items-center text-center justify-between space-y-6 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300">
                                         <div className="w-12 h-12 rounded-[12px] bg-rose-50 dark:bg-rose-950/20 text-rose-550 flex items-center justify-center border border-rose-100 dark:border-rose-900/30">
                                             <Icon name="casino" className="text-[24px]" />
                                         </div>
@@ -2756,7 +2756,7 @@ import {
 
                             {/* BOARD OF INFORMATION (SPACIOUS 3 COLUMNS) */}
                             {informasi && informasi.length > 0 && (
-                                <section id="berita" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                <section id="berita" className="space-y-8 pt-4 max-w-7xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.newsSubtitle}</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.newsTitle}</h2>
@@ -2775,7 +2775,7 @@ import {
                                                             <Icon name="campaign" className="text-[40px] text-red-500/20" />
                                                         </div>
                                                     )}
-                                                    <div className="p-4 sm:p-5 flex flex-col gap-2">
+                                                    <div className="p-6 sm:p-8 flex flex-col gap-2">
                                                         <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-400 dark:text-slate-500">
                                                             <Icon name="event" className="text-[12px]" />
                                                             <span>{item.date ? new Date(item.date).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '-'}</span>
@@ -2784,7 +2784,7 @@ import {
                                                         <p className="text-[12px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">{item.description}</p>
                                                     </div>
                                                 </div>
-                                                <div className="p-4 sm:p-5 pt-0 mt-auto">
+                                                <div className="p-6 sm:p-8 pt-0 mt-auto">
                                                     <span className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300 font-medium text-[12.5px] transition-all">
                                                         <span>Baca Selengkapnya</span>
                                                         <Icon name="arrow_forward" className="text-[14px] group-hover:translate-x-1 transition-transform" />
@@ -2806,7 +2806,7 @@ import {
 
                             {/* BLOG / ARTIKEL WARGA SECTION */}
                             {blogData && blogData.length > 0 && (
-                                <section id="blog" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                <section id="blog" className="space-y-8 pt-4 max-w-7xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-google-blue dark:text-blue-400 uppercase tracking-widest">{landingConfig.blogSubtitle}</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.blogTitle}</h2>
@@ -2823,7 +2823,7 @@ import {
                                                         <Icon name="article" className="text-[40px] text-google-blue/20" />
                                                     </div>
                                                 )}
-                                                <div className="p-4 sm:p-5 flex flex-col flex-1">
+                                                <div className="p-6 sm:p-8 flex flex-col flex-1">
                                                     <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-400 dark:text-slate-500 mb-2">
                                                         <Icon name="event" className="text-[12px]" />
                                                         <span>{article.date ? new Date(article.date).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '-'}</span>
@@ -2853,7 +2853,7 @@ import {
 
                                                         {/* INFAQ SECTION */}
                             {infaqData && infaqData.length > 0 && (
-                                <section id="infaq" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                <section id="infaq" className="space-y-8 pt-4 max-w-7xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-google-green dark:text-green-400 uppercase tracking-widest">Program Amal & Sosial</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">SALURKAN INFAQ ANDA</h2>
@@ -2871,12 +2871,12 @@ import {
                                                                 <Icon name="volunteer_activism" className="text-[48px] text-google-green/30" fill="true" />
                                                             )}
                                                         </div>
-                                                        <div className="p-5 space-y-3">
+                                                        <div className="p-5 space-y-5">
                                                             <h4 className="font-medium text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-green transition-colors">{item.judul}</h4>
                                                             <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">{item.deskripsi}</p>
                                                         </div>
                                                     </div>
-                                                    <div className="p-5 pt-0 space-y-4">
+                                                    <div className="p-5 pt-0 space-y-6">
                                                         <div>
                                                             <div className="flex items-center justify-between mb-1">
                                                                 <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Terkumpul</span>
@@ -2909,7 +2909,7 @@ import {
 
                             {/* UMKM WARGA SECTION */}
                             {umkmData && umkmData.length > 0 && (
-                                <section id="umkm" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                <section id="umkm" className="space-y-8 pt-4 max-w-7xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-green-600 dark:text-green-400 uppercase tracking-widest">{landingConfig.umkmSubtitle}</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.umkmTitle}</h2>
@@ -2957,7 +2957,7 @@ import {
                                 </section>
                             )}
                             {/* TOKO OFFICIAL SECTION */}
-                            <section id="toko" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                            <section id="toko" className="space-y-8 pt-4 max-w-7xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-google-blue dark:text-google-blueLight uppercase tracking-widest">Layanan E-Commerce RT</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">Official Store</h2>
@@ -3039,14 +3039,14 @@ import {
 
                             {/* JADWAL AGENDA RT MENDATANG */}
                             {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
-                                <section className="space-y-6 pt-10 pb-4 max-w-6xl mx-auto w-full">
+                                <section className="space-y-8 pt-10 pb-4 max-w-7xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-google-blue dark:text-blue-400 uppercase tracking-widest">Jadwal & Agenda RT</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">KEGIATAN WARGA RT</h2>
                                     </div>
                                     <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300">
                                         <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between">
-                                            <div className="space-y-4 flex-1">
+                                            <div className="space-y-6 flex-1">
                                                 <div className="flex flex-wrap items-center gap-3">
                                                     <div className="bg-blue-50 dark:bg-blue-950/20 text-google-blue border border-blue-100 dark:border-blue-900/40 rounded-xl px-3 py-1.5 text-[11px] font-medium uppercase tracking-wider flex items-center gap-1.5">
                                                         <Icon name="event" className="text-[14px]" />
@@ -3082,7 +3082,7 @@ import {
 
                             {/* SPOTLIGHT PEMENANG ARISAN TERBARU */}
                             {latestWinner && (
-                                <section className="space-y-6 pt-10 pb-4 max-w-6xl mx-auto w-full">
+                                <section className="space-y-8 pt-10 pb-4 max-w-7xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-google-yellowDark dark:text-yellow-400 uppercase tracking-widest">Selamat Kepada Pemenang</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">PEMENANG ARISAN PUTARAN TERBARU</h2>
@@ -3117,7 +3117,7 @@ import {
 
                             {/* PETA DESA & LAYANAN KELURAHAN - dikontrol sesuai pengaturan admin */}
                             {infoDesa?.enabled && (
-                                <section id="peta" className="space-y-6 pt-4 max-w-6xl mx-auto w-full">
+                                <section id="peta" className="space-y-8 pt-4 max-w-7xl mx-auto w-full">
                                     <div className="text-center space-y-1">
                                         <h3 className="text-[11px] font-medium text-red-600 dark:text-red-400 uppercase tracking-widest">{landingConfig.mapSubtitle}</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.mapTitle}</h2>
@@ -3150,7 +3150,7 @@ import {
                                         </div>
 
                                         {/* Batas & Kontak */}
-                                        <div className="space-y-4 flex flex-col">
+                                        <div className="space-y-6 flex flex-col">
                                             {/* Batas Administrasi */}
                                             <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
                                                 <h4 className="font-medium text-[13px] text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5"><Icon name="border_outer" className="text-red-500 text-[16px]"/> Batas Administrasi</h4>
@@ -3194,7 +3194,7 @@ import {
 
                             {/* SPONSOR SECTION DI LANDING PAGE */}
                             {sponsorsData?.enabled && sponsorsData?.sponsors?.length > 0 && (
-                                <section className="space-y-4 pt-4 max-w-6xl mx-auto w-full">
+                                <section className="space-y-6 pt-4 max-w-7xl mx-auto w-full">
                                     <p className="text-[9px] uppercase tracking-widest font-medium text-slate-400 text-center">{landingConfig.sponsorSubtitle}</p>
                                     <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-700 p-6 sm:p-8">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
@@ -3227,8 +3227,8 @@ import {
                                 <h1 className="text-[18px] font-medium bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent mb-1 tracking-tight">Otorisasi Admin</h1>
                                 <p className="text-[12.5px] font-medium text-slate-600 mb-6 leading-snug">{identity.name}</p>
                                 
-                                <form onSubmit={handleAdminLogin} className="space-y-5 mt-2">
-                                    <div className="space-y-4">
+                                <form onSubmit={handleAdminLogin} className="space-y-7 mt-2">
+                                    <div className="space-y-6">
                                         <input type="email" placeholder="Email Akses Admin" value={email} onChange={e => {setEmail(e.target.value); setError('');}} className="w-full bg-slate-50/50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 p-4 text-[13.5px] font-medium outline-none rounded-[16px] focus:bg-white dark:focus:bg-slate-900 focus:border-google-blue dark:focus:border-google-blue focus:shadow-sm transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-800 dark:text-slate-100" />
                                         <input type="password" placeholder="Kata Sandi Admin" value={password} onChange={e => {setPassword(e.target.value); setError('');}} className="w-full bg-slate-50/50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 p-4 text-[13.5px] font-medium outline-none rounded-[16px] focus:bg-white dark:focus:bg-slate-900 focus:border-google-blue dark:focus:border-google-blue focus:shadow-sm transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-800 dark:text-slate-100" />
                                     </div>
@@ -3251,7 +3251,7 @@ import {
 
                     {/* LANDING FOOTER (MATCHES GLOBAL FOOTER) */}
                     <footer className="w-full text-center py-8 no-print border-t border-red-500/20 bg-gradient-to-b from-white/10 to-white/90 dark:from-slate-900/10 dark:to-slate-900/90 text-[12.5px] font-medium text-slate-500 mt-10 z-10 relative">
-                        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
+                        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
                             <p className="flex flex-wrap items-center gap-1.5 justify-center">
                                 <Icon name="flag" className="text-red-500 text-[14px] animate-pulse" fill="true" />
                                 - {new Date().getFullYear()} <span className="text-red-600 font-medium">WP LINGKUNGAN</span>. All rights reserved.
@@ -3295,7 +3295,7 @@ import {
                                 </div>
                             )}
                             {/* Konten */}
-                            <div className="overflow-y-auto flex-1 p-6 sm:p-8 space-y-4">
+                            <div className="overflow-y-auto flex-1 p-6 sm:p-8 space-y-6">
                                 <div className="flex items-center gap-2 text-[10.5px] font-medium text-slate-400">
                                     <Icon name="event" className="text-[13px]" />
                                     <span>{selectedArticle.date ? new Date(selectedArticle.date).toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) : '-'}</span>
@@ -3312,7 +3312,7 @@ import {
                                 {selectedArticle.type === 'blog' && selectedArticle.comments && selectedArticle.comments.length > 0 && (
                                     <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
                                         <p className="text-[10px] font-medium uppercase tracking-widest text-slate-400 mb-3">{selectedArticle.comments.length} Komentar</p>
-                                        <div className="space-y-3">
+                                        <div className="space-y-5">
                                             {selectedArticle.comments.map(c => (
                                                 <div key={c.id} className="bg-slate-50 dark:bg-slate-800 rounded-[12px] p-3">
                                                     <div className="flex items-center gap-2 mb-1">
@@ -3327,7 +3327,7 @@ import {
                                 )}
                             </div>
                             {/* Footer modal */}
-                            <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-700 shrink-0">
+                            <div className="px-6 sm:px-8 py-5 border-t border-slate-200 dark:border-slate-700 shrink-0">
                                 <button onClick={() => onLogin('warga')} className="w-full bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white py-3.5 rounded-full font-medium text-[13px] flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all">
                                     <Icon name="login" className="text-[16px]" fill="true" />
                                     Masuk ke Portal Warga untuk Interaksi Lebih
@@ -3342,7 +3342,7 @@ import {
 
         function MainMenu({ userRole, NavItems, changeTab, identity, bannerImage, setShowPwaGuide, sponsorsData, nextMeeting }) {
             return (
-                <div className="space-y-6 sm:space-y-8 max-w-6xl mx-auto mt-2">
+                <div className="space-y-8 sm:space-y-8 max-w-7xl mx-auto mt-2">
                     
                     {/* --- AREA BANNER UTAMA --- */}
                     <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[220px] sm:min-h-[280px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-red-600 via-rose-600 to-red-800' : 'bg-slate-900'}`}>
@@ -3382,7 +3382,7 @@ import {
                     {/* AREA GRID MENU */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-6">
                             {NavItems.map((item, idx) => (
-                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-full sm:rounded-full border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
+                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-full sm:rounded-full border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 
                                 <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-full sm:rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md border border-white/60 ${item.bg} ${item.color.replace('border-2', '')}`}>
@@ -3665,7 +3665,7 @@ import {
             ];
 
             return (
-                <div className="bg-white rounded-[32px] p-6 sm:p-8 border-2 border-slate-300 shadow-sm space-y-6">
+                <div className="bg-white rounded-[32px] p-6 sm:p-8 border-2 border-slate-300 shadow-sm space-y-8">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <div className="flex flex-wrap items-center gap-2">
@@ -3757,7 +3757,7 @@ import {
                     )}
 
                     {nextPrayer && (
-                        <div className="bg-red-50/70 dark:bg-red-950/40 border border-red-500/30 dark:border-red-500/20 p-5 sm:p-6 md:p-8 rounded-[24px] flex flex-col sm:flex-row justify-between items-center gap-4 shadow-sm">
+                        <div className="bg-red-50/70 dark:bg-red-950/40 border border-red-500/30 dark:border-red-500/20 p-6 sm:p-8 md:p-8 rounded-[24px] flex flex-col sm:flex-row justify-between items-center gap-4 shadow-sm">
                             <div className="flex flex-wrap items-center gap-3">
                                 <div className="w-11 h-11 bg-red-600 text-white rounded-full flex items-center justify-center shadow-md"><Icon name="alarm" className="text-[18px]"/></div>
                                 <div>
@@ -3807,7 +3807,7 @@ import {
             const saldoEfektifJimpitan = Number(jimpitanBalance || 0) + totalDebt;
 
             return (
-                <div className="space-y-5 sm:space-y-6">
+                <div className="space-y-7 sm:space-y-8">
                     <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-2 border-slate-300 shadow-sm hover:shadow-lg transition-shadow">
                         <div>
                             <span className="inline-flex items-center px-3.5 py-1.5 rounded-[6px] text-[9px] font-medium uppercase tracking-widest bg-google-blueLight text-google-blueDark mb-3 border border-google-blue/30">Siklus {cycleNumber}</span>
@@ -3837,7 +3837,7 @@ import {
                     </div>
                     
                     {isCycleComplete && userRole === 'admin' && (
-                        <div className="bg-gradient-to-r from-google-blueLight to-blue-50 p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row items-center sm:text-left text-center gap-6 border-2 border-google-blue shadow-sm">
+                        <div className="bg-gradient-to-r from-google-blueLight to-blue-50 p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row items-center sm:text-left text-center gap-6 border-2 border-google-blue shadow-sm">
                             <div className="bg-google-blue text-white w-16 h-16 rounded-full flex items-center justify-center shadow-md border-2 border-google-blueDark shrink-0"><Icon name="task_alt" className="text-[32px]" fill="true" /></div>
                             <div className="flex-1"><h3 className="font-medium text-google-blueDark text-xl mb-1.5">Siklus Telah Selesai</h3><p className="text-[13px] font-medium text-google-blue">Seluruh warga arisan telah memenangkan putaran. Silakan mulai siklus baru.</p></div>
                             <button onClick={() => setShowResetModal(true)} className="w-full sm:w-auto px-8 py-3.5 bg-google-blue text-white font-medium rounded-full text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="refresh" className="text-[17px]"/> Mulai Baru</button>
@@ -3876,7 +3876,7 @@ import {
                     </div>
 
                     {redRecords > 0 && (
-                        <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex items-start space-x-5 border-2 border-google-redDark shadow-lg hover:shadow-xl transition-shadow animate-pulse" style={{ animationDuration: '3s' }}>
+                        <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] flex items-start space-x-5 border-2 border-google-redDark shadow-lg hover:shadow-xl transition-shadow animate-pulse" style={{ animationDuration: '3s' }}>
                             <Icon name="warning" className="text-[36px] shrink-0 drop-shadow-md" fill="true" />
                             <div><h4 className="text-[16px] font-medium mb-1.5 tracking-tight">Peringatan: Tunggakan Terdeteksi</h4><p className="text-[13px] font-medium text-red-50 leading-relaxed">Terdapat <span className="underline underline-offset-2">{redRecords} warga</span> dengan catatan rapor merah.</p></div>
                         </div>
@@ -3887,7 +3887,7 @@ import {
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-left -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-blueLight w-16 h-16 rounded-full flex items-center justify-center border-2 border-google-blue/30"><Icon name="refresh" className="text-[32px] text-google-blue" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Mulai Siklus Baru?</h3>
-                                <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-5 sm:p-6 md:p-8 rounded-[24px] border-2 border-slate-300"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
+                                <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-5 bg-slate-50 p-6 sm:p-8 md:p-8 rounded-[24px] border-2 border-slate-300"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
                                 <div className="flex flex-wrap gap-3">
                                     <button onClick={() => setShowResetModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                     <button onClick={() => { 
@@ -3995,9 +3995,9 @@ import {
             );
 
             return (
-                <div className="space-y-6">
+                <div className="space-y-8">
                     {/* Header */}
-                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print">
                         <div>
                             <h2 className="text-2xl font-medium text-google-text tracking-tight">Aset &amp; Inventaris</h2>
                             <p className="text-[13px] font-medium text-google-textVariant mt-1.5">Daftar barang fasilitas RT beserta kondisi dan stok pinjam.</p>
@@ -4036,7 +4036,7 @@ import {
                                     </div>
 
                                     {/* Info */}
-                                    <div className="p-5 sm:p-6 md:p-8 flex flex-col gap-3">
+                                    <div className="p-6 sm:p-8 md:p-8 flex flex-col gap-3">
                                         <h3 className="text-[15px] font-medium text-google-text leading-snug tracking-tight group-hover:text-google-yellowDark transition-colors">{item.name}</h3>
 
                                         {/* Kondisi chips */}
@@ -4089,7 +4089,7 @@ import {
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md -slate-300 my-4 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Inventaris' : 'Tambah Inventaris'}</h3>
-                                <div className="space-y-5">
+                                <div className="space-y-7">
 
                                     {/* Nama barang */}
                                     <div>
@@ -4247,9 +4247,9 @@ import {
             const allActive    = [...pendingList, ...approvedList];
 
             return (
-                <div className="space-y-6">
+                <div className="space-y-8">
                     {/* Header */}
-                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
                                 <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2"><Icon name="handshake" className="text-[24px] text-google-green" />Pinjam Inventaris</h2>
@@ -4343,14 +4343,14 @@ import {
 
                     {/* Panel Admin */}
                     {view === 'admin' && userRole === 'admin' && (
-                        <div className="space-y-4">
+                        <div className="space-y-6">
                             {/* Pending */}
                             {pendingList.length > 0 && (
-                                <div className="bg-white rounded-[32px] border-2 border-google-yellow/40 shadow-sm p-4 sm:p-5 md:p-6">
+                                <div className="bg-white rounded-[32px] border-2 border-google-yellow/40 shadow-sm p-6 sm:p-8 md:p-6">
                                     <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2"><Icon name="pending" className="text-[17px] text-google-yellow" />Menunggu Persetujuan ({pendingList.length})</h3>
-                                    <div className="space-y-3">
+                                    <div className="space-y-5">
                                         {pendingList.map(p => (
-                                            <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-yellowLight/40 border border-google-yellow/40 rounded-[20px] p-5 sm:p-6 md:p-8">
+                                            <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-yellowLight/40 border border-google-yellow/40 rounded-[20px] p-6 sm:p-8 md:p-8">
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-medium text-[13px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[12px] font-medium text-google-yellowDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[13px]" />{p.namaBarang} <span className="ml-1 bg-google-yellow/20 text-google-yellowDark border border-google-yellow/40 px-2 py-0.5 rounded-[10px] font-medium text-[10px]">{p.qty || 1} unit</span></p>
@@ -4369,11 +4369,11 @@ import {
                             )}
                             {/* Approved / sedang dipinjam */}
                             {approvedList.length > 0 && (
-                                <div className="bg-white rounded-[32px] border-2 border-google-blue/30 shadow-sm p-4 sm:p-5 md:p-6">
+                                <div className="bg-white rounded-[32px] border-2 border-google-blue/30 shadow-sm p-6 sm:p-8 md:p-6">
                                     <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2"><Icon name="handshake" className="text-[17px] text-google-blue" />Sedang Dipinjam ({approvedList.length})</h3>
-                                    <div className="space-y-3">
+                                    <div className="space-y-5">
                                         {approvedList.map(p => (
-                                            <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-blueLight/30 border border-google-blue/30 rounded-[20px] p-5 sm:p-6 md:p-8">
+                                            <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-google-blueLight/30 border border-google-blue/30 rounded-[20px] p-6 sm:p-8 md:p-8">
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-medium text-[13px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[12px] font-medium text-google-blueDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[13px]" />{p.namaBarang} <span className="ml-1 bg-google-blue/10 text-google-blueDark border border-google-blue/30 px-2 py-0.5 rounded-[10px] font-medium text-[10px]">{p.qty || 1} unit</span></p>
@@ -4402,7 +4402,7 @@ import {
 
                     {/* Daftar Status untuk Warga */}
                     {view === 'list' && (
-                        <div className="space-y-4">
+                        <div className="space-y-6">
                             {/* Info stok tersedia */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {inventarisData.map(item => {
@@ -4442,7 +4442,7 @@ import {
 
                     {/* Modal konfirmasi kembali */}
                     {konfirmReturnId && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-5 md:p-6 modal-backdrop animate-backdrop-in">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 md:p-6 modal-backdrop animate-backdrop-in">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 {(() => { const p = pinjamData.find(x => x.id === konfirmReturnId); return p ? (<>
                                     <div className="mb-5 bg-google-greenLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="assignment_return" className="text-[40px] text-google-green" /></div>
@@ -4460,7 +4460,7 @@ import {
 
                     {/* Modal konfirmasi tolak */}
                     {konfirmRejectId && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-5 md:p-6 modal-backdrop animate-backdrop-in">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 md:p-6 modal-backdrop animate-backdrop-in">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30"><Icon name="cancel" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-xl font-medium text-google-text mb-2">Tolak Pengajuan?</h3>
@@ -4601,9 +4601,9 @@ import {
 
             // ---- RENDER: LIST ----
             if (view === 'list') return (
-                <div className="space-y-6">
+                <div className="space-y-8">
                     {/* Header */}
-                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2">
                                 <Icon name="volunteer_activism" className="text-[24px] text-google-green" fill="true" />Program Infaq
@@ -4633,7 +4633,7 @@ import {
                                         }
                                     </div>
                                     {/* Info */}
-                                    <div className="p-5 sm:p-6 md:p-8 flex flex-col gap-3">
+                                    <div className="p-6 sm:p-8 md:p-8 flex flex-col gap-3">
                                         <h3 className="text-[15px] font-medium text-google-text leading-snug tracking-tight group-hover:text-google-greenDark transition-colors">{item.judul}</h3>
                                         <p className="text-[12px] text-google-textVariant font-medium leading-relaxed line-clamp-2">{item.deskripsi}</p>
                                         {/* Dana progress */}
@@ -4680,7 +4680,7 @@ import {
 
                     {/* Modal hapus */}
                     {deleteConfirmId && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-5 md:p-6 modal-backdrop animate-backdrop-in">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 md:p-6 modal-backdrop animate-backdrop-in">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30">
                                     <Icon name="delete" className="text-[40px] text-google-red" />
@@ -4703,7 +4703,7 @@ import {
                 const prog = infaqData.find(i => i.id === selected.id) || selected;
                 const p = pct(prog);
                 return (
-                    <div className="space-y-5 max-w-2xl mx-auto">
+                    <div className="space-y-7 max-w-2xl mx-auto">
                         {/* Back */}
                         <button onClick={() => setView('list')} className="flex flex-wrap items-center gap-2 text-google-textVariant font-medium text-[13px] hover:text-google-text transition-colors active:scale-95">
                             <Icon name="arrow_back" className="text-[17px]" />Kembali ke Daftar
@@ -4717,11 +4717,11 @@ import {
                         )}
 
                         {/* Judul & dana */}
-                        <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm p-4 sm:p-5 md:p-6">
+                        <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm p-6 sm:p-8 md:p-6">
                             <h2 className="text-[18px] font-medium text-google-text mb-2 tracking-tight">{prog.judul}</h2>
                             <p className="text-[13px] text-google-textVariant font-medium leading-relaxed mb-4">{prog.deskripsi}</p>
                             {/* Progress dana */}
-                            <div className="bg-google-greenLight/50 border border-google-green/30 rounded-[20px] p-5 sm:p-6 md:p-8">
+                            <div className="bg-google-greenLight/50 border border-google-green/30 rounded-[20px] p-6 sm:p-8 md:p-8">
                                 <div className="flex justify-between items-end mb-2">
                                     <div>
                                         <p className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider">Dana Terkumpul</p>
@@ -4747,7 +4747,7 @@ import {
 
                         {/* Admin: update dana */}
                         {userRole === 'admin' && (
-                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-google-blue/30 shadow-sm p-4 sm:p-5 md:p-6">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-google-blue/30 shadow-sm p-6 sm:p-8 md:p-6">
                                 <h3 className="text-[13px] font-medium text-google-text mb-3 flex flex-wrap items-center gap-2">
                                     <Icon name="edit" className="text-[16px] text-google-blue" />Perbarui Dana Terkumpul
                                 </h3>
@@ -4770,13 +4770,13 @@ import {
 
                         {/* Admin: Panel Approval Bukti Transfer */}
                         {userRole === 'admin' && (prog.donasi || []).length > 0 && (
-                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-google-yellow/30 shadow-sm p-4 sm:p-5 md:p-6">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-google-yellow/30 shadow-sm p-6 sm:p-8 md:p-6">
                                 <h3 className="text-[15px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2">
                                     <Icon name="verified_user" className="text-[18px] text-google-yellow" fill="true" />Persetujuan Bukti Bayar
                                 </h3>
-                                <div className="space-y-4">
+                                <div className="space-y-6">
                                     {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[20px] p-4 sm:p-5 md:p-6 border border-slate-300 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+                                        <div key={donasi.id} className="bg-slate-50 rounded-[20px] p-6 sm:p-8 md:p-6 border border-slate-300 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
                                             <div className="flex flex-wrap items-center gap-4 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] overflow-hidden hover:opacity-80 transition-opacity">
@@ -4834,13 +4834,13 @@ import {
 
                         {/* Riwayat Donasi G Tampil untuk SEMUA user (Warga & Admin) */}
                         {(prog.donasi || []).length > 0 && userRole !== 'admin' && (
-                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm p-4 sm:p-5 md:p-6">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm p-6 sm:p-8 md:p-6">
                                 <h3 className="text-[15px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2">
                                     <Icon name="receipt_long" className="text-[18px] text-google-blue" fill="true" />Riwayat Donasi Anda
                                 </h3>
-                                <div className="space-y-3">
+                                <div className="space-y-5">
                                     {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[16px] p-4 sm:p-5 md:p-6 border border-slate-300 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
+                                        <div key={donasi.id} className="bg-slate-50 rounded-[16px] p-6 sm:p-8 md:p-6 border border-slate-300 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
                                             <div className="flex flex-wrap items-center gap-3 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] overflow-hidden hover:opacity-80 transition-opacity">
@@ -4872,7 +4872,7 @@ import {
 
                         {/* Tujuan & manfaat */}
                         {(prog.tujuan || prog.manfaat) && (
-                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm p-4 sm:p-5 md:p-6 space-y-4">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm p-6 sm:p-8 md:p-6 space-y-6">
                                 {prog.tujuan && (
                                     <div>
                                         <p className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 flex flex-wrap items-center gap-1.5"><Icon name="flag" className="text-[13px] text-google-blue" />Tujuan Program</p>
@@ -4889,7 +4889,7 @@ import {
                         )}
 
                         {/* Form infaq warga */}
-                        <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-google-green/30 shadow-sm p-4 sm:p-5 md:p-6 space-y-5">
+                        <div className="bg-white rounded-[24px] sm:rounded-[32px] border-2 border-google-green/30 shadow-sm p-6 sm:p-8 md:p-6 space-y-7">
                             <h3 className="text-[15px] font-medium text-google-text flex flex-wrap items-center gap-2">
                                 <Icon name="volunteer_activism" className="text-[18px] text-google-green" fill="true" />Tunaikan Infaq
                             </h3>
@@ -4945,8 +4945,8 @@ import {
 
                         {/* Modal pembayaran */}
                         {showPayModal && (
-                            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-5 md:p-6 modal-backdrop animate-backdrop-in">
-                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[24px] sm:rounded-[32px] p-4 sm:p-5 md:p-6 w-full max-w-sm -slate-300 my-4 modal-card animate-modal-in">
+                            <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 md:p-6 modal-backdrop animate-backdrop-in">
+                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 md:p-6 w-full max-w-sm -slate-300 my-4 modal-card animate-modal-in">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[16px] font-medium text-google-text">Cara Pembayaran</h3>
                                         <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border-2 border-slate-300 rounded-full flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
@@ -4955,7 +4955,7 @@ import {
                                     </div>
 
                                     {/* Ringkasan */}
-                                    <div className="bg-google-greenLight border border-google-green/30 rounded-[16px] p-4 sm:p-5 md:p-6 mb-4">
+                                    <div className="bg-google-greenLight border border-google-green/30 rounded-[16px] p-6 sm:p-8 md:p-6 mb-4">
                                         <p className="text-[11px] font-medium text-google-textVariant">Nominal Infaq</p>
                                         <p className="text-[18px] font-medium text-google-green">{formatRp(safeNumber(nominalInput))}</p>
                                         <p className="text-[11px] font-medium text-google-textVariant mt-1">Atas nama: <span className="text-google-greenDark font-medium">{namaDisplay}</span></p>
@@ -4977,7 +4977,7 @@ import {
                                     {(prog.rekening || []).length > 0 && (() => {
                                         const r = prog.rekening[selectedRek] || prog.rekening[0];
                                         return (
-                                            <div className="bg-slate-50 border-2 border-slate-300 rounded-[18px] p-5 sm:p-6 md:p-8 space-y-3.5">
+                                            <div className="bg-slate-50 border-2 border-slate-300 rounded-[18px] p-6 sm:p-8 md:p-8 space-y-5.5">
                                                 <div className="flex flex-wrap items-center gap-3">
                                                     <div className="w-10 h-10 bg-google-blueLight rounded-[12px] flex items-center justify-center border border-google-blue/30 shrink-0">
                                                         <Icon name="account_balance" className="text-[17px] text-google-blue" />
@@ -5004,7 +5004,7 @@ import {
                                     })()}
 
                                         {/* Upload Bukti */}
-                                        <div className="mt-4 bg-slate-50 border-2 border-slate-300 rounded-[18px] p-4 sm:p-5 md:p-6 text-center relative overflow-hidden transition-all focus-within:border-google-green group hover:border-google-green/40 cursor-pointer">
+                                        <div className="mt-4 bg-slate-50 border-2 border-slate-300 rounded-[18px] p-6 sm:p-8 md:p-6 text-center relative overflow-hidden transition-all focus-within:border-google-green group hover:border-google-green/40 cursor-pointer">
                                             <p className="text-[11px] font-medium text-google-textVariant mb-2 uppercase tracking-wider">Upload Bukti Transfer</p>
                                             <input type="file" accept="image/*" onChange={handleBuktiUpload} disabled={isUploadingBukti} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                             {isUploadingBukti ? (
@@ -5062,16 +5062,16 @@ import {
 
             // ---- RENDER: FORM ADMIN ----
             if (view === 'form') return (
-                <div className="space-y-5 max-w-2xl mx-auto">
+                <div className="space-y-7 max-w-2xl mx-auto">
                     <button onClick={() => { setView('list'); setErrorMsg(''); }} className="flex flex-wrap items-center gap-2 text-google-textVariant font-medium text-[13px] hover:text-google-text transition-colors active:scale-95">
                         <Icon name="arrow_back" className="text-[17px]" />Kembali
                     </button>
 
-                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                         <h3 className="text-[17px] font-medium text-google-text mb-6 tracking-tight">
                             {editingId ? 'Gn+ Edit Program Infaq' : 'GP Buat Program Infaq Baru'}
                         </h3>
-                        <div className="space-y-5">
+                        <div className="space-y-7">
 
                             {/* Gambar */}
                             <div>
@@ -5143,9 +5143,9 @@ import {
                                         <Icon name="add" className="text-[13px]" />Tambah Rekening
                                     </button>
                                 </div>
-                                <div className="space-y-3">
+                                <div className="space-y-5">
                                     {form.rekening.map((r, i) => (
-                                        <div key={i} className="bg-slate-50 border-2 border-slate-300 rounded-[18px] p-4 sm:p-5 md:p-4 sm:p-6 space-y-3">
+                                        <div key={i} className="bg-slate-50 border-2 border-slate-300 rounded-[18px] p-6 sm:p-8 md:p-4 sm:p-6 space-y-5">
                                             <div className="flex items-center justify-between">
                                                 <p className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider">Rekening {i+1}</p>
                                                 {form.rekening.length > 1 && (
@@ -5241,8 +5241,8 @@ import {
             };
 
             return (
-                <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
+                <div className="space-y-8">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                         <div>
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2">
                                 <Icon name="photo_library" className="text-[24px] text-red-600"/>
@@ -5269,7 +5269,7 @@ import {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between flex-1">
+                                <div className="p-6 sm:p-8 md:p-8 flex flex-col justify-between flex-1">
                                     <div>
                                         <div className="flex flex-wrap justify-between items-start gap-2 mb-1.5">
                                             <span className="text-[9px] font-medium text-red-600 bg-red-50 border border-red-500/15 px-2.5 py-1 rounded-[6px] uppercase tracking-wider">
@@ -5315,7 +5315,7 @@ import {
                     {selectedPhoto && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
                             <div className="rounded-[32px] w-full max-w-2xl flex flex-col max-h-[90vh] -slate-300 overflow-hidden modal-card animate-modal-in" style={{ animation: 'slideUp 0.3s ease-out' }}>
-                                <div className="p-4 sm:p-5 md:p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50 shrink-0">
+                                <div className="p-6 sm:p-8 md:p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50 shrink-0">
                                     <div className="flex flex-wrap items-center gap-2">
                                         <Icon name="image" className="text-red-600" />
                                         <span className="text-[12px] font-medium text-google-text">Detail Dokumentasi</span>
@@ -5328,7 +5328,7 @@ import {
                                     <div className="w-full bg-slate-900 aspect-video flex items-center justify-center relative">
                                         <img src={selectedPhoto.imageUrl} alt={selectedPhoto.title} className="w-full h-full object-contain"  loading="lazy" decoding="async"/>
                                     </div>
-                                    <div className="p-6 sm:p-8 space-y-4">
+                                    <div className="p-6 sm:p-8 space-y-6">
                                         <div className="flex flex-wrap items-center gap-3">
                                             <span className="text-[10px] font-medium text-red-700 bg-red-50 border border-red-500/15 px-3 py-1.5 rounded-[10px] flex flex-wrap items-center gap-1">
                                                 <Icon name="event" className="text-[13px]" />
@@ -5336,7 +5336,7 @@ import {
                                             </span>
                                         </div>
                                         <h3 className="text-2xl font-medium text-google-text leading-tight tracking-tight">{selectedPhoto.title}</h3>
-                                        <div className="bg-slate-50 border border-slate-300/60 p-5 sm:p-6 md:p-8 rounded-[22px] text-google-textVariant text-[13px] leading-relaxed font-medium whitespace-pre-line">
+                                        <div className="bg-slate-50 border border-slate-300/60 p-6 sm:p-8 md:p-8 rounded-[22px] text-google-textVariant text-[13px] leading-relaxed font-medium whitespace-pre-line">
                                             {selectedPhoto.description || 'Tidak ada deskripsi rinci untuk kegiatan ini.'}
                                         </div>
                                     </div>
@@ -5352,7 +5352,7 @@ import {
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">
                                     {editingId ? 'Edit Dokumentasi' : 'Unggah Dokumentasi'}
                                 </h3>
-                                <div className="space-y-5">
+                                <div className="space-y-7">
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul / Kegiatan</label>
                                         <input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Contoh: Kerja Bakti 17an" />
@@ -5444,8 +5444,8 @@ import {
             };
 
             return (
-                <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
+                <div className="space-y-8">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Papan Informasi & Kegiatan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Pengumuman dan dokumentasi lingkungan RT.</p></div>
                         {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="add" className="text-[17px]" /><span>Buat Info Baru</span></button>}
                     </div>
@@ -5476,7 +5476,7 @@ import {
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
 <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg -slate-300 flex flex-col max-h-[90vh] modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 shrink-0 tracking-tight">{editingId ? 'Edit Info Kegiatan' : 'Buat Info Baru'}</h3>
-                                <div className="space-y-5 overflow-y-auto pr-2 pb-2 hide-scrollbar">
+                                <div className="space-y-7 overflow-y-auto pr-2 pb-2 hide-scrollbar">
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan judul..." /></div>
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text" /></div>
                                     
@@ -5592,8 +5592,8 @@ import {
             const executeDelete = () => { setMembers(members.filter(m => m.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Data warga berhasil dihapus.'); };
 
             return (
-                <div className="space-y-5">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
+                <div className="space-y-7">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Buku Induk Warga</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Total <span className="font-medium text-google-blue">{members.length} Warga</span> Terdaftar</p></div>
                         <div className="flex gap-3 w-full sm:w-auto overflow-x-auto hide-scrollbar pb-1 sm:pb-0">
                             <button onClick={() => { setPrintMode('buku'); setTimeout(() => { window.print(); setTimeout(() => setPrintMode(''), 1000); }, 100); }} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /><span>Cetak Form</span></button>
@@ -5602,7 +5602,7 @@ import {
                         </div>
                     </div>
 
-                    <div className="bg-white p-4 sm:p-5 rounded-[24px] border-2 border-slate-300 shadow-sm flex items-center gap-3 no-print">
+                    <div className="bg-white p-6 sm:p-8 rounded-[24px] border-2 border-slate-300 shadow-sm flex items-center gap-3 no-print">
                         <Icon name="search" className="text-[20px] text-slate-400 shrink-0 ml-2" />
                         <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Cari nama warga..." className="w-full bg-transparent outline-none font-medium text-[13px] text-google-text placeholder:text-slate-400 placeholder:font-medium" />
                         {searchQuery && <button onClick={() => setSearchQuery('')} className="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-full text-slate-500 shrink-0 active:scale-95 transition-all"><Icon name="close" className="text-[16px]" /></button>}
@@ -5653,13 +5653,13 @@ import {
                         </div>
                     )}
 
-                    <div className="space-y-4 no-print">
+                    <div className="space-y-6 no-print">
                         {(() => {
                             const filteredMembers = members.filter(m => (m.name || '').toLowerCase().includes((searchQuery || '').toLowerCase()));
                             return (
                                 <>
                                     {filteredMembers.map((member) => (
-                                        <div key={member.id} onClick={(e) => { if(!e.target.closest('button')) setPreviewMember(member); }} className="bg-white rounded-[24px] p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between border-2 border-slate-300 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/40 transition-all duration-300 gap-5 group cursor-pointer">
+                                        <div key={member.id} onClick={(e) => { if(!e.target.closest('button')) setPreviewMember(member); }} className="bg-white rounded-[24px] p-6 sm:p-8 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between border-2 border-slate-300 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/40 transition-all duration-300 gap-5 group cursor-pointer">
                                 <div className="flex flex-wrap items-center gap-5">
                                     <div className={`w-16 h-16 rounded-[20px] flex items-center justify-center font-medium text-[20px] shrink-0 border-2 transition-colors duration-300 ${isNonaktif(member) ? 'bg-slate-50 text-slate-400 border-slate-300' : 'bg-google-blueLight text-google-blueDark border-google-blue/30 group-hover:bg-google-blue group-hover:text-white group-hover:border-google-blueDark'}`}>{member.name.charAt(0).toUpperCase()}</div>
                                     <div className="flex-1 min-w-0">
@@ -5689,7 +5689,7 @@ import {
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md -slate-300 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}</h3>
-                                <div className="space-y-5">
+                                <div className="space-y-7">
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Program Keikutsertaan</label><select value={formData.program || 'Arisan'} onChange={e => setFormData({...formData, program: e.target.value, hasWon: false, wonRound: ''})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Arisan">Full (Arisan, Iuran &amp; Jimpitan)</option><option value="IuranOnly">Hanya Iuran Umum Saja</option><option value="ArisanOnly">Arisan Saja (Bebas Jimpitan)</option><option value="JimpitanOnly">Jimpitan &amp; Iuran Umum (Tanpa Arisan)</option></select></div>
                                     <div className="flex flex-wrap gap-5">
@@ -5736,7 +5736,7 @@ import {
                                 <h3 className={`font-medium text-[18px] tracking-tight mb-1 ${isNonaktif(previewMember) ? 'text-slate-400 line-through' : 'text-google-text'}`}>{previewMember.name}</h3>
                                 <p className="text-[12px] font-medium text-google-textVariant mb-6 bg-slate-50 inline-block px-4 py-1.5 rounded-[10px] border-2 border-slate-300">No. Anggota: M-{previewMember.id}</p>
 
-                                <div className="space-y-3 text-left mb-6 bg-slate-50 p-5 rounded-[24px] border-2 border-slate-300">
+                                <div className="space-y-5 text-left mb-6 bg-slate-50 p-5 rounded-[24px] border-2 border-slate-300">
                                     <div className="flex justify-between items-center pb-3 border-b-2 border-slate-200"><span className="text-[11px] font-medium text-google-textVariant uppercase tracking-widest">Status</span><span className="font-medium text-[13px] text-google-text">{previewMember.status}</span></div>
                                     <div className="flex justify-between items-center pb-3 border-b-2 border-slate-200"><span className="text-[11px] font-medium text-google-textVariant uppercase tracking-widest">Program</span><span className="font-medium text-[13px] text-google-text">{previewMember.program === 'IuranOnly' ? 'Hanya Iuran' : (previewMember.program === 'ArisanOnly' ? 'Arisan Saja (Bebas Jimpitan)' : (previewMember.program === 'JimpitanOnly' ? 'Jimpitan & Iuran Umum' : 'Arisan, Iuran & Jimpitan'))}</span></div>
                                     <div className="flex justify-between items-center pb-3 border-b-2 border-slate-200"><span className="text-[11px] font-medium text-google-textVariant uppercase tracking-widest">Tunggakan</span><span className={`font-medium text-[13px] ${previewMember.debt > 0 ? 'text-google-red' : 'text-google-green'}`}>{previewMember.debt > 0 ? formatRp(previewMember.debt) : 'Rp 0 (Aman)'}</span></div>
@@ -5809,7 +5809,7 @@ import {
                 return (
                     <div className="bg-white p-5 sm:p-8 rounded-[32px] border-2 border-slate-300 max-w-2xl mx-auto shadow-xl">
                         <div className="flex flex-wrap items-center gap-5 mb-8 border-b-2 border-slate-200 pb-6"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda ? 'Edit Agenda' : 'Buat Agenda Iuran'}</h2></div>
-                        <div className="space-y-6">
+                        <div className="space-y-8">
                             <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama / Keperluan Iuran</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Dana 17 Agustus" /></div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Batas Akhir Waktu</label><input type="date" value={formData.dueDate} onChange={e => setFormData({...formData, dueDate: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer" /></div>
@@ -5831,8 +5831,8 @@ import {
                 const sisa = totalTerkumpul - transferred;
 
                 return (
-                    <div className="space-y-6 max-w-6xl mx-auto">
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
+                    <div className="space-y-8 max-w-7xl mx-auto">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                             <div className="flex flex-wrap items-center gap-5"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><div><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda.title}</h2><p className="text-[13px] font-medium text-google-textVariant mt-1">Kelola Penyetoran Warga</p></div></div>
                             {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
                         </div>
@@ -5862,9 +5862,9 @@ import {
 
                         <div className="bg-white p-5 sm:p-8 rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-                                <div className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-slate-300 text-center shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Target / Warga</p><p className="text-[20px] font-medium text-google-text tracking-tight">{formatRp(selectedAgenda.minAmount)}</p></div>
-                                <div className="bg-google-greenLight p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-google-green/30 text-center shadow-sm"><p className="text-[10px] font-medium text-google-greenDark uppercase tracking-widest mb-2">Dana Terkumpul</p><p className="text-[20px] font-medium text-google-greenDark tracking-tight">{formatRp(totalTerkumpul)}</p></div>
-                                <div className="bg-gradient-to-br from-google-blueLight to-blue-50 p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-google-blue/30 text-center flex flex-col items-center relative shadow-sm hover:shadow-md transition-shadow group"><p className="text-[10px] font-medium text-google-blueDark uppercase tracking-widest mb-2">Sisa (Belum Disetor)</p><p className="text-[20px] font-medium text-google-blueDark group-hover:scale-105 transition-transform tracking-tight">{formatRp(sisa)}</p>
+                                <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-slate-300 text-center shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Target / Warga</p><p className="text-[20px] font-medium text-google-text tracking-tight">{formatRp(selectedAgenda.minAmount)}</p></div>
+                                <div className="bg-google-greenLight p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-google-green/30 text-center shadow-sm"><p className="text-[10px] font-medium text-google-greenDark uppercase tracking-widest mb-2">Dana Terkumpul</p><p className="text-[20px] font-medium text-google-greenDark tracking-tight">{formatRp(totalTerkumpul)}</p></div>
+                                <div className="bg-gradient-to-br from-google-blueLight to-blue-50 p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-google-blue/30 text-center flex flex-col items-center relative shadow-sm hover:shadow-md transition-shadow group"><p className="text-[10px] font-medium text-google-blueDark uppercase tracking-widest mb-2">Sisa (Belum Disetor)</p><p className="text-[20px] font-medium text-google-blueDark group-hover:scale-105 transition-transform tracking-tight">{formatRp(sisa)}</p>
                                     {userRole === 'admin' && sisa > 0 && <button onClick={() => { 
                                             const savedTotal = calculateTotal(selectedAgenda.payments || {});
                                             const currentTotal = calculateTotal(tempPayments);
@@ -5874,7 +5874,7 @@ import {
                                 </div>
                             </div>
                             
-                            <div className="bg-slate-50 border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-[24px] mb-10 shadow-sm">
+                            <div className="bg-slate-50 border-2 border-slate-300 p-6 sm:p-8 md:p-6 rounded-[24px] mb-10 shadow-sm">
                                 <div className="flex justify-between items-end mb-4"><span className="text-[13px] font-medium text-google-textVariant">Progres Pelunasan Warga</span><span className="text-[17px] font-medium text-google-blueDark leading-none">{lunasCount} <span className="text-[13px] text-google-textVariant">/ {activeMembers.length}</span></span></div>
                                 <div className="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-gradient-to-r from-google-blue to-google-blueDark h-full rounded-full transition-all duration-1000" style={{ width: `${activeMembers.length === 0 ? 0 : (lunasCount / activeMembers.length) * 100}%` }}></div></div>
                             </div>
@@ -5922,7 +5922,7 @@ import {
                                     <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Setor ke Kas Warga</h3>
                                     <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Mutasi dana fisik dari Iuran ke Saldo Buku Kas Utama.</p>
                                     
-                                    <div className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] mb-8 border-2 border-slate-300 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Batas Maksimal Tarik</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(sisa)}</p></div>
+                                    <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] mb-8 border-2 border-slate-300 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Batas Maksimal Tarik</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(sisa)}</p></div>
                                     
                                     <div className="text-left mb-8"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                     
@@ -5940,8 +5940,8 @@ import {
             }
 
             return (
-                <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
+                <div className="space-y-8">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Agenda Iuran Umum</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Penggalangan dana non-arisan (berlaku untuk semua warga).</p></div>
                         {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', minAmount: 0, dueDate: getLocalDate(), payments: {}, transferredToKas: 0 }); setSelectedAgenda(null); setView('form'); setErrorMsg(''); }} className="shrink-0 bg-google-blue text-white px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto justify-center"><Icon name="add_task" className="text-[17px]" /><span>Buat Agenda Baru</span></button>}
                     </div>
@@ -5958,10 +5958,10 @@ import {
                                     <div>
                                         <h3 className="text-[20px] font-medium text-google-text leading-snug mb-6 group-hover:text-google-blue transition-colors tracking-tight">{agenda.title}</h3>
                                         <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[20px] border-2 border-slate-300 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-blueLight flex items-center justify-center text-google-blue border border-google-blue/30"><Icon name="event" className="text-[20px]" fill="true"/></div><div><p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-1">Batas Akhir</p><p className="text-[13px] font-medium text-google-text">{parseLocalDate(agenda.dueDate).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p></div></div>
-                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[20px] border-2 border-slate-300 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-greenLight flex items-center justify-center text-google-green border border-google-green/30"><Icon name="payments" className="text-[20px]" fill="true"/></div><div><p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-1">Target Minimal</p><p className="text-[13px] font-medium text-google-text">{formatRp(agenda.minAmount)}</p></div></div>
+                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[20px] border-2 border-slate-300 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-blueLight flex items-center justify-center text-google-blue border border-google-blue/30"><Icon name="event" className="text-[20px]" fill="true"/></div><div><p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-1">Batas Akhir</p><p className="text-[13px] font-medium text-google-text">{parseLocalDate(agenda.dueDate).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p></div></div>
+                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[20px] border-2 border-slate-300 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-greenLight flex items-center justify-center text-google-green border border-google-green/30"><Icon name="payments" className="text-[20px]" fill="true"/></div><div><p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-1">Target Minimal</p><p className="text-[13px] font-medium text-google-text">{formatRp(agenda.minAmount)}</p></div></div>
                                         </div>
-                                        <div className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-slate-300 mb-8 shadow-sm">
+                                        <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-slate-300 mb-8 shadow-sm">
                                             <div className="flex justify-between items-end mb-4"><span className="text-[12px] font-medium text-google-textVariant">Progres Warga Lunas</span><span className="text-[16px] font-medium text-google-blueDark leading-none">{lunasCount} <span className="text-[12px] text-google-textVariant">/ {activeMembers.length}</span></span></div>
                                             <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-gradient-to-r from-google-blue to-google-blueDark h-full rounded-full transition-all duration-1000" style={{ width: `${progressPercent}%` }}></div></div>
                                         </div>
@@ -6096,8 +6096,8 @@ import {
             };
 
             return (
-                <div className="space-y-6 print:p-0">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
+                <div className="space-y-8 print:p-0">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Buku Kas Utama</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Catatan riwayat transaksi operasional RT.</p></div>
                         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                             <select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="bg-slate-50 border-2 border-slate-300 text-google-text text-[13px] font-medium rounded-[12px] px-4 py-3.5 outline-none focus:border-google-blue w-full sm:w-auto cursor-pointer">
@@ -6145,31 +6145,31 @@ import {
 
                     {userRole === 'admin' && (
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 no-print">
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-300 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/30"><Icon name="add" className="text-[24px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pemasukan</span>
                             </button>
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-300 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/30"><Icon name="remove" className="text-[24px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pengeluaran</span>
                             </button>
-                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border-2 border-slate-300 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-yellowLight text-google-yellowDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-yellow group-hover:text-white transition-colors duration-300 shadow-sm border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[24px] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text leading-tight">Cairkan Kas Jimpitan</span>
                             </button>
                         </div>
                     )}
 
-                    <div className="space-y-6 no-print">
+                    <div className="space-y-8 no-print">
                         <h3 className="text-xl font-medium text-google-text mb-3 px-2 tracking-tight">Riwayat Transaksi Terkini</h3>
                         {Object.keys(groupedTransactions).map((monthYear) => (
-                            <div key={monthYear} className="space-y-4">
+                            <div key={monthYear} className="space-y-6">
                                 <div className="flex items-center gap-3 mb-2 px-2 pt-2">
                                     <h4 className="text-[12px] font-medium text-slate-800 uppercase tracking-widest">{monthYear}</h4>
                                     <div className="h-px bg-slate-300 flex-1"></div>
                                 </div>
                                 {groupedTransactions[monthYear].map((t) => (
-                                    <div key={t.id} className="bg-white p-5 sm:p-6 rounded-[20px] border-2 border-slate-300 flex flex-col sm:flex-row sm:items-center justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300 gap-4 group">
+                                    <div key={t.id} className="bg-white p-6 sm:p-8 rounded-[20px] border-2 border-slate-300 flex flex-col sm:flex-row sm:items-center justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300 gap-4 group">
                                         <div className="flex items-center gap-5 flex-1 overflow-hidden">
                                             <div className={`w-14 h-14 rounded-[20px] flex items-center justify-center shrink-0 border-2 transition-colors duration-300 ${t.type === 'Pemasukan' ? 'bg-google-greenLight text-google-greenDark border-google-green/30 group-hover:bg-google-green group-hover:text-white' : 'bg-google-redLight text-google-redDark border-google-red/30 group-hover:bg-google-red group-hover:text-white'}`}><Icon name={t.type === 'Pemasukan' ? "arrow_downward" : "arrow_upward"} className="text-[24px]" fill="true" /></div>
                                             <div className="flex-1 min-w-0">
@@ -6211,7 +6211,7 @@ import {
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left -slate-300 modal-card animate-modal-in">
                                 <div className={`mb-6 w-20 h-20 rounded-full flex items-center justify-center border-2 ${formData.type === 'Pemasukan' ? 'bg-google-greenLight text-google-green border-google-green/30' : 'bg-google-redLight text-google-red border-google-red/30'}`}><Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[36px]" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit' : 'Catat'} {formData.type}</h3>
-                                <div className="space-y-5">
+                                <div className="space-y-7">
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal Transaksi</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className={`w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} /></div>
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Kategori</label>
@@ -6259,7 +6259,7 @@ import {
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Pencairan Jimpitan</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tarik dana dari kas Jimpitan Fisik ke Kas Utama RT.</p>
                                 
-                                <div className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] mb-8 border-2 border-slate-300 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Saldo Jimpitan Saat Ini</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(jimpitanBalance)}</p></div>
+                                <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] mb-8 border-2 border-slate-300 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Saldo Jimpitan Saat Ini</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(jimpitanBalance)}</p></div>
                                 
                                 <div className="text-left mb-8"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                 
@@ -6493,14 +6493,14 @@ import {
             };
 
             return (
-                <div className="bg-white rounded-[32px] overflow-hidden max-w-6xl mx-auto border-2 border-slate-300 shadow-xl">
+                <div className="bg-white rounded-[32px] overflow-hidden max-w-7xl mx-auto border-2 border-slate-300 shadow-xl">
                     <div className="bg-slate-50 px-8 py-6 flex items-center justify-between no-print border-b border-slate-300 relative">
                         {[1, 2, 3].map(num => (<div key={num} className="flex flex-col items-center relative z-10"><div className={`w-12 h-12 rounded-full flex items-center justify-center font-medium text-[16px] border-2 transition-all duration-500 ${step >= num ? 'bg-google-blue text-white border-google-blueDark shadow-md scale-110' : 'bg-white text-slate-400 border-slate-400'}`}>{num}</div></div>))}
                         <div className="absolute left-16 right-16 h-2 bg-slate-200 top-[45px] z-0 rounded-full overflow-hidden"><div className="h-full bg-google-blue transition-all duration-700 ease-in-out" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%' }}></div></div>
                     </div>
                     <div className="p-5 sm:p-8 bg-white">
                         {step === 1 && (
-                            <div className="space-y-6">
+                            <div className="space-y-8">
                                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-5 mb-8 no-print border-b-2 border-slate-200 pb-8">
                                     <div className="flex flex-col w-full lg:w-auto">
                                         <h3 className="text-3xl font-medium text-google-text tracking-tight">Sesi Presensi Arisan</h3>
@@ -6593,7 +6593,7 @@ import {
                                             <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-yellow/30"><Icon name="event_busy" className="text-[48px] text-google-yellowDark" /></div>
                                             <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Liburkan Bulan Ini?</h3>
                                             <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Periode <b className="text-google-text">{formatBulanTahun(arisanPeriod)}</b> akan ditandai sebagai bulan libur.</p>
-                                            <div className="text-[12px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] border border-slate-300 text-left"><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Tidak ada penarikan kas/jimpitan sama sekali.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Putaran ke-{currentRound} tidak akan dihitung.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Periode akan melompat ke bulan berikutnya.</span></p></div>
+                                            <div className="text-[12px] font-medium text-google-textVariant mb-8 space-y-5 bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border border-slate-300 text-left"><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Tidak ada penarikan kas/jimpitan sama sekali.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Putaran ke-{currentRound} tidak akan dihitung.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Periode akan melompat ke bulan berikutnya.</span></p></div>
                                             <div className="flex flex-wrap gap-3">
                                                 <button onClick={() => setShowHolidayModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                                 <button onClick={handleSetHoliday} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300">Setuju, Libur</button>
@@ -6696,7 +6696,7 @@ import {
                             </div>
                         )}
                         {step === 2 && (
-                            <div className="space-y-6 no-print">
+                            <div className="space-y-8 no-print">
                                 <h3 className="text-3xl font-medium text-google-text mb-2 tracking-tight">Rekapitulasi Sementara</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8">Periksa kembali rincian aliran dana sebelum mengundi pemenang.</p>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -6707,13 +6707,13 @@ import {
                                             <p className="text-4xl lg:text-5xl font-medium text-google-greenDark drop-shadow-sm tracking-tight">{formatRp(calculations.kasArisanTerkumpul)}</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 space-y-5 shadow-sm">
+                                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 space-y-7 shadow-sm">
                                         <div className="flex justify-between text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="add_circle" className="text-[17px] text-google-green"/> Tunai Masuk</span><span className="text-google-greenDark font-medium">+{formatRp(calculations.kasJimpitanTerkumpul)}</span></div>
                                         <div className="flex justify-between text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="add_circle" className="text-[17px] text-google-green"/> Bayar Tunggakan</span><span className="text-google-greenDark font-medium">+{formatRp(calculations.pelunasanTunggakan)}</span></div>
                                         <div className="flex justify-between text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="remove_circle" className="text-[17px] text-google-red"/> Talangan (Keluar)</span><span className="text-google-redDark font-medium">-{formatRp(calculations.talanganJimpitan)}</span></div>
                                         <div className="flex justify-between text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="info" className="text-[17px] text-google-yellowDark"/> Tunggakan Baru</span><span className="text-google-redDark font-medium">+{formatRp(calculations.tunggakanBaru)}</span></div>
                                         <div className="w-full h-px bg-slate-200 my-5"></div>
-                                        <div className="flex justify-between items-center font-medium text-[16px] bg-slate-50 p-5 sm:p-6 md:p-8 rounded-[20px] border border-slate-300 shadow-sm"><span className="text-[13px] uppercase tracking-widest text-google-textVariant">Saldo Tunai Berjalan</span><span className="text-[18px] text-google-blueDark tracking-tight">{formatRp(projectedJimpitanCash)}</span></div>
+                                        <div className="flex justify-between items-center font-medium text-[16px] bg-slate-50 p-6 sm:p-8 md:p-8 rounded-[20px] border border-slate-300 shadow-sm"><span className="text-[13px] uppercase tracking-widest text-google-textVariant">Saldo Tunai Berjalan</span><span className="text-[18px] text-google-blueDark tracking-tight">{formatRp(projectedJimpitanCash)}</span></div>
                                     </div>
                                 </div>
                                 <div className="pt-8 flex flex-col sm:flex-row justify-between border-t-2 border-slate-200 mt-10 gap-4">
@@ -6723,7 +6723,7 @@ import {
                             </div>
                         )}
                         {step === 3 && (
-                            <div className="space-y-6 no-print">
+                            <div className="space-y-8 no-print">
                                 <h3 className="text-3xl font-medium text-google-text mb-2 text-center tracking-tight">Tentukan Pemenang</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 text-center">Pilih warga yang akan menerima dana arisan putaran ini.</p>
                                 <div className="bg-gradient-to-br from-white to-slate-50 border-2 border-slate-300 rounded-[32px] p-8 sm:p-14 text-center shadow-lg relative overflow-hidden max-w-2xl mx-auto">
@@ -6733,12 +6733,12 @@ import {
                                     <div className="mb-8 relative z-10 animate-bounce" style={{ animationDuration: '2s' }}><Icon name="emoji_events" className="text-[100px] text-google-yellow drop-shadow-2xl" fill="true" /></div>
                                     
                                     {isCycleAlreadyComplete ? (
-                                        <div className="text-center bg-google-greenLight text-google-greenDark p-4 sm:p-5 md:p-6 rounded-[24px] border-2 border-google-green max-w-sm mx-auto relative z-10 shadow-sm">
+                                        <div className="text-center bg-google-greenLight text-google-greenDark p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-google-green max-w-sm mx-auto relative z-10 shadow-sm">
                                             <Icon name="verified" className="text-[40px] mb-3 mx-auto" fill="true" />
                                             <p className="font-medium text-[14px]">Semua warga sudah menang (Siklus Selesai).</p>
                                         </div>
                                     ) : (
-                                        <div className="text-left bg-white rounded-[24px] p-4 sm:p-5 md:p-6 border-2 border-slate-300 focus-within:border-google-blue focus-within:shadow-lg transition-all max-w-sm mx-auto relative z-10 shadow-md">
+                                        <div className="text-left bg-white rounded-[24px] p-6 sm:p-8 md:p-6 border-2 border-slate-300 focus-within:border-google-blue focus-within:shadow-lg transition-all max-w-sm mx-auto relative z-10 shadow-md">
                                             <label className="text-[10px] font-medium text-google-textVariant block mb-3 uppercase tracking-widest text-center">Pilih Warga Pemenang</label>
                                             <select className="w-full bg-slate-50 rounded-[16px] border-2 border-slate-300 text-[16px] font-medium outline-none px-5 py-3.5 text-google-blueDark cursor-pointer focus:bg-white transition-colors" value={selectedWinnerId} onChange={(e) => {setSelectedWinnerId(e.target.value); setErrorMsg('');}}>
                                                 <option value="" disabled>-- Klik untuk memilih --</option>
@@ -6904,14 +6904,14 @@ growthAmount = history[0].saldoAkhirJimpitan || 0;
             };
 
             return (
-                <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 no-print shadow-sm">
+                <div className="space-y-8">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 no-print shadow-sm">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Riwayat Pertemuan Arisan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Arsip resmi presensi dan sirkulasi dana bulanan.</p></div>
                         <button onClick={() => window.print()} className="bg-white border-2 border-slate-300 text-google-text px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[16px]" /><span>Cetak Arsip</span></button>
                     </div>
 
                     {history.length > 0 && (
-<div className="no-print mb-8 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
+<div className="no-print mb-8 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 <div>
 <h3 className="text-xl font-medium text-google-text tracking-tight">Tren Saldo Jimpitan</h3>
@@ -6968,7 +6968,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         ))}
                     </div>
 
-                    <div className="space-y-6 no-print">
+                    <div className="space-y-8 no-print">
                         {displayedHistory.map((record) => {
                             const isHoliday = record.winner.includes('LIBUR');
                             return (
@@ -6983,7 +6983,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <p className="text-[10px] uppercase font-medium tracking-widest mb-3 text-google-greenDark relative z-10">Arisan Diserahkan</p>
                                             <p className="text-4xl font-medium text-google-green relative z-10 drop-shadow-sm tracking-tight">{formatRp(record.kasArisanTerkumpul)}</p>
                                         </div>
-                                        <div className="space-y-4 bg-slate-50 p-6 sm:p-8 rounded-[24px] border-2 border-slate-300">
+                                        <div className="space-y-6 bg-slate-50 p-6 sm:p-8 rounded-[24px] border-2 border-slate-300">
                                             <div className="flex justify-between items-center text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2"><Icon name="add_circle" className="text-[16px] text-google-green"/> Jimpitan Masuk</span><span className="text-google-greenDark">+{formatRp(record.kasJimpitanMasuk)}</span></div>
                                             <div className="flex justify-between items-center text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2"><Icon name="add_circle" className="text-[16px] text-google-green"/> Bayar Tunggakan</span><span className="text-google-greenDark">+{formatRp(record.pelunasanTunggakan)}</span></div>
                                             <div className="flex justify-between items-center text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2"><Icon name="remove_circle" className="text-[16px] text-google-red"/> Talangan (Keluar)</span><span className="text-google-redDark">-{formatRp(record.talanganJimpitan)}</span></div>
@@ -7017,7 +7017,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
                             <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left max-h-[90vh] flex flex-col -slate-300 dark:-slate-700 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-1 shrink-0 tracking-tight">Revisi Kehadiran</h3><p className="text-[13px] font-medium text-google-textVariant dark:text-slate-300 mb-6 shrink-0 leading-relaxed">Saldo akan disesuaikan otomatis mengikuti perubahan presensi ini.</p>
-                                <div className="overflow-y-auto space-y-4 flex-1 pb-4 pr-1 hide-scrollbar">
+                                <div className="overflow-y-auto space-y-6 flex-1 pb-4 pr-1 hide-scrollbar">
                                     {history.find(h => h.id === editingHistoryId)?.absensiDetails.map((member, idx) => (
                                         <div key={idx} className={`flex flex-col gap-3 border-2 p-5 rounded-[24px] shadow-sm ${isNonaktif(member) ? 'border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 opacity-60' : 'border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/40'}`}>
                                             <p className={`text-[14px] font-medium truncate tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text dark:text-white'}`}>{member.name}{isNonaktif(member) && <span className="text-[9px] ml-2 bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded font-medium uppercase tracking-wider no-underline">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</p>
@@ -7088,7 +7088,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             return (
                 <PengaturanSection title="Manajemen Info Layanan Desa" onSave={handleSave}>
-                    <div className="space-y-6">
+                    <div className="space-y-8">
                         {/* Toggle Aktif */}
                         <label className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 dark:hover:bg-slate-850/20 transition-all duration-200">
                             <div>
@@ -7119,7 +7119,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 {/* Kontak Penting */}
                                 <div className="p-4 bg-slate-50 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 rounded-[20px]">
                                     <h4 className="font-medium text-[13px] text-google-text dark:text-white mb-4">Kontak Penting</h4>
-                                    <div className="space-y-3 mb-4">
+                                    <div className="space-y-5 mb-4">
                                         {localInfo.kontak?.map((k, idx) => {
                                             const idKey = k.id || k.nama;
                                             return (
@@ -7187,7 +7187,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             return (
             <PengaturanSection title="Manajemen Sponsor" onSave={() => showAlert('Pengaturan Sponsor berhasil disimpan.')}>
-                <div className="space-y-4">
+                <div className="space-y-6">
                  <label className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 dark:hover:bg-slate-850/20 transition-all duration-200">
                     <div>
                     <p className="text-[13px] font-medium text-google-text dark:text-white">Aktifkan Tampilan Sponsor</p>
@@ -7204,7 +7204,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     </div>
                  </label>
                  {sponsorsData?.enabled && (
-                    <div className="mt-2 p-4 border-2 border-slate-200 dark:border-slate-800 rounded-[16px] bg-slate-50 dark:bg-slate-900 space-y-5">
+                    <div className="mt-2 p-4 border-2 border-slate-200 dark:border-slate-800 rounded-[16px] bg-slate-50 dark:bg-slate-900 space-y-7">
                     <div>
                         <p className="text-[10px] font-medium text-google-textVariant dark:text-slate-400 uppercase tracking-widest mb-3">Daftar Sponsor</p>
                         <div className="space-y-2">
@@ -7230,7 +7230,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
                     </div>
 
-                    <div className="pt-4 border-t-2 border-slate-300 dark:border-slate-700 space-y-4">
+                    <div className="pt-4 border-t-2 border-slate-300 dark:border-slate-700 space-y-6">
                         <p className="text-[10px] font-medium text-google-textVariant dark:text-slate-400 uppercase tracking-widest">Tambah Sponsor Baru</p>
 
                         <div className="bg-white dark:bg-slate-850 rounded-[16px] px-4 py-3 border-2 border-slate-300 dark:border-slate-700 focus-within:border-google-blue transition-all shadow-sm">
@@ -7298,9 +7298,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
         function PengaturanSection({ title, onSave, children }) {
             return (
-                <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                     <h3 className="font-medium text-[17px] text-google-text mb-6 border-b-2 border-slate-200 pb-4 group-hover:text-google-blue transition-colors tracking-tight">{title}</h3>
-                    <div className="space-y-6 mb-8">{children}</div>
+                    <div className="space-y-8 mb-8">{children}</div>
                     <button onClick={onSave} className="w-full bg-slate-50 border-2 border-slate-300 text-google-blueDark py-4 rounded-full font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan {title}</button>
                 </div>
             );
@@ -7437,7 +7437,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const renderGridMenu = () => (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {pengaturanMenus.map(menu => (
-                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white dark:bg-slate-900 rounded-[24px] p-5 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 cursor-pointer transition-all duration-300 group flex flex-col items-center text-center gap-4`}>
+                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white dark:bg-slate-900 rounded-[24px] p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 cursor-pointer transition-all duration-300 group flex flex-col items-center text-center gap-4`}>
                             <div className={`w-14 h-14 ${menu.bg} ${menu.text} rounded-[16px] flex items-center justify-center border ${menu.border} group-hover:scale-110 ${menu.groupHoverBg} group-hover:text-white transition-all duration-300`}>
                                 <Icon name={menu.icon} className="text-[24px]" fill="true" />
                             </div>
@@ -7467,9 +7467,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             };
 
             return (
-                <div className="space-y-6 tab-fade-in">
+                <div className="space-y-8 tab-fade-in">
                     {activeMenu === null && (
-                        <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-wrap items-center gap-5">
+                        <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-wrap items-center gap-5">
                             <div className="bg-google-blueLight text-google-blue w-16 h-16 rounded-[20px] flex items-center justify-center border-2 border-google-blue/30 shrink-0"><Icon name="admin_panel_settings" className="text-[32px]" fill="true"/></div>
                             <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Setelan Portal Admin</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Ubah konfigurasi fundamental aplikasi RT.</p></div>
                         </div>
@@ -7552,27 +7552,27 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             )}
                             {activeMenu === 'landing' && (
                                 <PengaturanSection title="Teks Halaman Depan" onSave={() => handleSaveAll('landing')}>
-                                    <div className="space-y-6">
-                                        <div className="bg-slate-50 p-4 sm:p-5 rounded-[20px] border-2 border-slate-200 space-y-4">
+                                    <div className="space-y-8">
+                                        <div className="bg-slate-50 p-6 sm:p-8 rounded-[20px] border-2 border-slate-200 space-y-6">
                                             <h4 className="text-[13px] font-medium text-google-text">Seksi Berita &amp; Pengumuman</h4>
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Subjudul</label><input type="text" value={formLanding.newsSubtitle} onChange={e => setFormLanding({...formLanding, newsSubtitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formLanding.newsTitle} onChange={e => setFormLanding({...formLanding, newsTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                         </div>
 
-                                        <div className="bg-slate-50 p-4 sm:p-5 rounded-[20px] border-2 border-slate-200 space-y-4">
+                                        <div className="bg-slate-50 p-6 sm:p-8 rounded-[20px] border-2 border-slate-200 space-y-6">
                                             <h4 className="text-[13px] font-medium text-google-text">Seksi UMKM</h4>
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Subjudul</label><input type="text" value={formLanding.umkmSubtitle} onChange={e => setFormLanding({...formLanding, umkmSubtitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formLanding.umkmTitle} onChange={e => setFormLanding({...formLanding, umkmTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                         </div>
                                         
-                                        <div className="bg-slate-50 p-4 sm:p-5 rounded-[20px] border-2 border-slate-200 space-y-4">
+                                        <div className="bg-slate-50 p-6 sm:p-8 rounded-[20px] border-2 border-slate-200 space-y-6">
                                             <h4 className="text-[13px] font-medium text-google-text">Bagian Footer (Bawah)</h4>
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Slogan / Tagline</label><input type="text" value={formLanding.footerTagline} onChange={e => setFormLanding({...formLanding, footerTagline: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Info Resmi</label><input type="text" value={formLanding.footerInfoTitle} onChange={e => setFormLanding({...formLanding, footerInfoTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Teks Bukti Verifikasi</label><input type="text" value={formLanding.footerInfoDesc} onChange={e => setFormLanding({...formLanding, footerInfoDesc: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                         </div>
 
-                                        <div className="bg-slate-50 p-4 sm:p-5 rounded-[20px] border-2 border-slate-200 space-y-4">
+                                        <div className="bg-slate-50 p-6 sm:p-8 rounded-[20px] border-2 border-slate-200 space-y-6">
                                             <h4 className="text-[13px] font-medium text-google-text">Integrasi Google AdSense</h4>
                                             <div className="bg-white rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Google AdSense Publisher ID</label><input type="text" value={formLanding.adsenseClientId || ''} onChange={e => setFormLanding({...formLanding, adsenseClientId: e.target.value})} placeholder="Contoh: ca-pub-XXXXXXXXXXXXXXXX" className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                             <p className="text-[11px] text-slate-500 leading-normal flex items-start gap-1">
@@ -7610,7 +7610,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         </div>
                                     </div>
 
-                                    <div className="space-y-6">
+                                    <div className="space-y-8">
                                         <div className="flex items-center justify-between p-4 bg-slate-50 rounded-[12px] border-2 border-slate-200">
                                             <div>
                                                 <p className="text-[13px] font-medium text-slate-800">Aktifkan Halaman Kebijakan</p>
@@ -7622,7 +7622,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         </div>
 
                                         {props.legalData?.enabled && (
-                                            <div className="space-y-6 animate-fade-in">
+                                            <div className="space-y-8 animate-fade-in">
                                                 <div>
                                                     <label className="text-[11px] font-medium text-slate-500 block mb-2 ml-1 uppercase tracking-widest">Syarat & Ketentuan</label>
                                                     <textarea value={props.legalData?.terms || ''} onChange={(e) => props.setLegalData(p => ({...p, terms: e.target.value}))} rows="6" className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white text-slate-700 rounded-[12px] px-5 py-4 text-[13px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Syarat dan Ketentuan..."></textarea>
@@ -7682,15 +7682,15 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             // FIX: Urutkan dari putaran terbaru ke terlama agar urutannya sama dengan Riwayat Pertemuan Arisan
             const winners = members.filter(m => m.hasWon).sort((a, b) => b.wonRound - a.wonRound);
             return (
-                <div className="space-y-6 max-w-6xl mx-auto">
-                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row justify-between items-center border-2 border-slate-300 shadow-sm text-center sm:text-left gap-5">
+                <div className="space-y-8 max-w-7xl mx-auto">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row justify-between items-center border-2 border-slate-300 shadow-sm text-center sm:text-left gap-5">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Daftar Pemenang Arisan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Warga yang telah menerima dana pada siklus aktif saat ini.</p></div>
                         <div className="w-16 h-16 bg-google-yellowLight rounded-[20px] flex items-center justify-center border-2 border-google-yellow/40 shrink-0 shadow-sm"><Icon name="emoji_events" className="text-[32px] text-google-yellowDark" fill="true" /></div>
                     </div>
                     {winners.length === 0 ? <div className="bg-white rounded-[32px] border-2 border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border-2 border-slate-300"><Icon name="military_tech" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Pemenang</h3><p className="text-google-textVariant font-medium text-[13px]">Data penerima arisan akan tampil di sini setelah diundi.</p></div> : (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                             {winners.map((winner) => (
-                                <div key={winner.id} className="bg-white p-4 sm:p-5 md:p-6 rounded-[24px] flex items-center space-x-6 border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-yellow/60 transition-all duration-300 group">
+                                <div key={winner.id} className="bg-white p-6 sm:p-8 md:p-6 rounded-[24px] flex items-center space-x-6 border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-yellow/60 transition-all duration-300 group">
                                     <div className="bg-google-yellowLight border-2 border-google-yellow/40 text-google-yellowDark font-medium w-16 h-16 rounded-[20px] flex items-center justify-center shrink-0 text-[17px] group-hover:bg-google-yellow group-hover:text-white group-hover:scale-110 transition-all duration-300 shadow-sm">#{winner.wonRound}</div>
                                     <div className="flex-1 min-w-0"><h3 className="font-medium text-google-text text-[16px] truncate group-hover:text-google-yellowDark transition-colors tracking-tight">{winner.name}</h3><p className="text-[13px] font-medium text-google-textVariant mt-1">Menang di Putaran {winner.wonRound}</p></div>
                                     <Icon name="check_circle" className="text-[32px] text-google-green group-hover:scale-110 transition-transform" fill="true" />
@@ -7708,16 +7708,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             useEffect(() => { if (!isEditing) setFormData(nextMeeting); }, [nextMeeting, isEditing]);
             
             return (
-                <div className="space-y-6 tab-fade-in">
+                <div className="space-y-8 tab-fade-in">
                     {userRole === 'admin' && (
-                        <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
+                        <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5">
                                 <div><h2 className="text-xl font-medium text-google-text tracking-tight">Pengaturan Agenda</h2><p className="text-[12px] font-medium text-google-textVariant mt-1">Agenda tampil sebagai teks berjalan (marquee) di Halaman Utama.</p></div>
                                 {!isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-300 text-google-text px-6 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 text-[12px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[14px]" /><span>Ubah Agenda</span></button>}
                             </div>
 
                             {isEditing && (
-                                <div className="mt-6 pt-6 border-t-2 border-slate-200 space-y-6">
+                                <div className="mt-6 pt-6 border-t-2 border-slate-200 space-y-8">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Hari &amp; Tanggal</label><input type="text" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Sabtu, 10 Agustus 2026"/></div>
                                         <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Jam Pelaksanaan</label><input type="text" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: 19.30 WIB - Selesai"/></div>
@@ -7879,9 +7879,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             }
 
             return (
-                <div className="space-y-6 max-w-6xl mx-auto">
+                <div className="space-y-8 max-w-7xl mx-auto">
                     {/* Header */}
-                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
                         <div className="text-center md:text-left">
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
                                 <Icon name="calendar_month" className="text-[24px] text-red-600"/>
@@ -7899,22 +7899,22 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* Detail Day Card & Weton Checker */}
-                        <div className="space-y-6">
+                        <div className="space-y-8">
                             {/* Hari Ini / Selected Day Info */}
-                            <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-300 shadow-sm relative overflow-hidden group">
+                            <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border-2 border-slate-300 shadow-sm relative overflow-hidden group">
                                 
                                 <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                     <Icon name="info" className="text-[16px] text-red-600" />
                                     Detail Tanggal
                                 </h3>
-                                <div className="space-y-4 relative z-10">
-                                    <div className="bg-slate-50 border border-slate-300/60 p-4 sm:p-5 md:p-6 rounded-[20px] shadow-sm">
+                                <div className="space-y-6 relative z-10">
+                                    <div className="bg-slate-50 border border-slate-300/60 p-6 sm:p-8 md:p-6 rounded-[20px] shadow-sm">
                                         <p className="text-[9px] uppercase tracking-widest font-medium text-google-textVariant mb-1">Masehi / Nasional</p>
                                         <p className="font-medium text-[14px] text-google-text">
                                             {selectedDate.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
                                         </p>
                                     </div>
-                                    <div className="bg-red-50/50 border border-red-500/20 p-4 sm:p-5 md:p-6 rounded-[20px] shadow-sm">
+                                    <div className="bg-red-50/50 border border-red-500/20 p-6 sm:p-8 md:p-6 rounded-[20px] shadow-sm">
                                         <p className="text-[9px] uppercase tracking-widest font-medium text-red-800 mb-1">Jawa / Pasaran</p>
                                         <p className="font-medium text-[14px] text-red-700">
                                             {selectedDetails.jawa}
@@ -7923,7 +7923,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             Weton: <span className="underline decoration-dotted">{selectedDetails.jawaDay} {selectedDetails.pasaran}</span>
                                         </p>
                                     </div>
-                                    <div className="bg-slate-50 border border-slate-300/60 p-4 sm:p-5 md:p-6 rounded-[20px] shadow-sm">
+                                    <div className="bg-slate-50 border border-slate-300/60 p-6 sm:p-8 md:p-6 rounded-[20px] shadow-sm">
                                         <p className="text-[9px] uppercase tracking-widest font-medium text-google-textVariant mb-1">Hijriah / Kalender Islam</p>
                                         <p className="font-medium text-[14px] text-google-text">
                                             {selectedDetails.hijri}
@@ -7933,12 +7933,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
 
                             {/* Weton Checker Tool */}
-                            <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-300 shadow-sm">
+                            <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border-2 border-slate-300 shadow-sm">
                                 <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                     <Icon name="search" className="text-[16px] text-red-600" />
                                     Cek Weton & Pasaran Lahir
                                 </h3>
-                                <form onSubmit={handleCheckWeton} className="space-y-4">
+                                <form onSubmit={handleCheckWeton} className="space-y-6">
                                     <div className="bg-slate-50 rounded-[16px] px-4 py-3 border-2 border-slate-300 focus-within:border-red-500 focus-within:bg-white transition-all shadow-sm">
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Pilih Tanggal</label>
                                         <input type="date" value={checkDateStr} onChange={e => { setCheckDateStr(e.target.value); setCheckResult(null); }} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text cursor-pointer animate-none" />
@@ -7950,7 +7950,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 </form>
 
                                 {checkResult && (
-                                    <div className="mt-5 p-4 sm:p-5 md:p-6 rounded-[20px] bg-red-50 border border-red-500/30 space-y-2.5 tab-fade-in">
+                                    <div className="mt-5 p-6 sm:p-8 md:p-6 rounded-[20px] bg-red-50 border border-red-500/30 space-y-2.5 tab-fade-in">
                                         <div>
                                             <p className="text-[9px] uppercase tracking-widest font-medium text-red-800">Hasil Analisis</p>
                                             <p className="text-[11px] font-medium text-slate-600 mt-1">Masehi: {checkResult.gregorian}</p>
@@ -7967,7 +7967,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
 
                         {/* Calendar Grid Sheet */}
-                        <div className="lg:col-span-2 bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-300 shadow-sm flex flex-col">
+                        <div className="lg:col-span-2 bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border-2 border-slate-300 shadow-sm flex flex-col">
                             {/* Navigation */}
                             <div className="flex justify-between items-center mb-6">
                                 <button onClick={handlePrevMonth} className="w-10 h-10 bg-slate-50 border border-slate-300 text-google-text hover:bg-slate-100 hover:border-slate-400 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
@@ -8049,8 +8049,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
         function PetaDesa({ infoDesa }) {
 
             return (
-                <div className="space-y-6 max-w-6xl mx-auto tab-fade-in">
-                    <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
+                <div className="space-y-8 max-w-7xl mx-auto tab-fade-in">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
                         <div className="text-center md:text-left">
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
                                 <Icon name="map" className="text-[24px] text-red-600"/>
@@ -8066,21 +8066,21 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-300 shadow-sm overflow-hidden">
+                    <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border-2 border-slate-300 shadow-sm overflow-hidden">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[450px] rounded-[24px] z-10 border border-slate-300/80" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
                         <p className="text-[10px] font-medium text-center text-google-textVariant mt-3 flex flex-wrap items-center justify-center gap-1"><Icon name="info" className="text-[13px]" /> Peta interaktif dari Google Maps.</p>
                     </div>
 
                     {infoDesa?.enabled && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-300 shadow-sm">
+                        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border-2 border-slate-300 shadow-sm">
                             <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                 <Icon name="border_outer" className="text-[16px] text-red-600" />
                                 Batas Administrasi Desa
                             </h3>
                             <div className="grid grid-cols-2 gap-4">
                                 {['utara', 'selatan', 'timur', 'barat'].map(arah => (
-                                    <div key={arah} className="bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[20px] border border-slate-300/50">
+                                    <div key={arah} className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[20px] border border-slate-300/50">
                                         <p className="text-[9px] uppercase tracking-widest font-medium text-slate-500 mb-0.5">{arah}</p>
                                         <p className="font-medium text-[13px] text-google-text">{infoDesa.batas?.[arah] || '-'}</p>
                                     </div>
@@ -8088,12 +8088,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-[32px] p-4 sm:p-5 md:p-6 border-2 border-slate-300 shadow-sm">
+                        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border-2 border-slate-300 shadow-sm">
                             <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                 <Icon name="contact_phone" className="text-[16px] text-red-600" />
                                 Kontak Penting Layanan Desa
                             </h3>
-                            <div className="space-y-3">
+                            <div className="space-y-5">
                                 {infoDesa.kontak?.map((k, i) => (
                                     <div key={k.id || i} className={`flex justify-between items-center bg-${k.color}-50/50 border border-${k.color}-500/10 px-4 py-3 rounded-[16px]`}>
                                         <div className="flex flex-wrap items-center gap-2.5">
@@ -8236,7 +8236,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 if (!article) return <div className="p-8 text-center">Artikel tidak ditemukan <button onClick={() => setViewArticleId(null)} className="text-google-blue underline ml-2">Kembali</button></div>;
                 
                 return (
-                    <div className="space-y-6 tab-fade-in relative z-10 w-full animate-slide-up no-print">
+                    <div className="space-y-8 tab-fade-in relative z-10 w-full animate-slide-up no-print">
                         <button onClick={() => { setViewArticleId(null); const url = new URL(window.location.href); url.searchParams.delete('page'); url.searchParams.delete('article'); window.history.replaceState({}, document.title, url.pathname + url.hash); }} className="bg-white border-2 border-slate-300 text-google-text px-4 py-2 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
                         <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border-2 border-slate-300">
                             {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover"  loading="lazy" decoding="async"/>}
@@ -8268,7 +8268,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <button onClick={() => handleComment(article.id)} className="bg-google-blue text-white px-5 py-2.5 rounded-full font-medium text-[13px] hover:bg-google-blueDark transition-colors active:scale-95 flex items-center gap-2"><Icon name="send" /> Kirim Komentar</button>
                             </div>
 
-                            <div className="space-y-5">
+                            <div className="space-y-7">
                                 {(article.comments || []).map(c => (
                                     <div key={c.id} className="bg-white border-2 border-slate-100 p-5 rounded-[16px]">
                                         <div className="flex items-center gap-3 mb-2">
@@ -8311,7 +8311,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             return (
                 <>
-                <div className="space-y-6 tab-fade-in relative z-10 w-full animate-slide-up no-print">
+                <div className="space-y-8 tab-fade-in relative z-10 w-full animate-slide-up no-print">
                     <div className="bg-gradient-to-br from-google-yellow via-amber-400 to-orange-500 text-white p-8 sm:p-10 rounded-[32px] border-2 border-orange-600/20 shadow-lg relative overflow-hidden">
                         <div className="relative z-10">
                             <div className="inline-flex items-center gap-2 bg-white/20  px-3.5 py-1.5 rounded-full mb-4 border border-white/30 shadow-sm">
@@ -8371,7 +8371,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto hide-scrollbar -slate-300 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Artikel' : 'Tulis Artikel Baru'}</h3>
-                                <div className="space-y-5">
+                                <div className="space-y-7">
                                     <div><label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Judul Artikel</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all" placeholder="Tulis judul yang menarik..." /></div>
                                     <div><label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Isi Konten</label><textarea value={formData.content} onChange={e => {setFormData({...formData, content: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all h-48 resize-y" placeholder="Tulis cerita atau informasi lengkap di sini..."></textarea></div>
                                     <div>
@@ -8861,7 +8861,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             }, [orders]);
 
             return (
-                <div className="animate-fade-in pb-24 max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="rounded-[28px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
@@ -8877,7 +8877,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     {userRole === 'admin' ? (
                         /* ================== VIEW ADMIN ================== */
-                        <div className="space-y-6">
+                        <div className="space-y-8">
                             {/* Stats */}
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 <div className="bg-white p-6 rounded-[24px] border-2 border-slate-200 shadow-sm flex items-center gap-4">
@@ -8916,7 +8916,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Panel Pesanan */}
                             {activeSubTab === 'orders' && (
-                                <div className="space-y-5">
+                                <div className="space-y-7">
                                     <div className="flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
                                             <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-11 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
@@ -8934,7 +8934,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     ) : (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             {filteredOrders.map(order => (
-                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-shadow">
+                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border border-slate-200 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow">
                                                     <div>
                                                         <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-3">
                                                             <div className="flex items-center gap-2">
@@ -8949,7 +8949,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <span className={`text-[10px] font-medium px-3 py-1.5 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
 
-                                                        <div className="bg-slate-50 rounded-[14px] p-4 border border-slate-100 space-y-3">
+                                                        <div className="bg-slate-50 rounded-[14px] p-4 border border-slate-100 space-y-5">
                                                             <div className="flex justify-between items-start">
                                                                 <div className="flex-1">
                                                                     <p className="text-[10px] font-medium text-slate-400 uppercase">Pemesan</p>
@@ -9072,7 +9072,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 )}
                                                 <div className="absolute top-3 right-3 bg-slate-900/75 text-white text-[10px] font-medium px-3 py-1.5 rounded-full ">Stok: {prod.stock}</div>
                                             </div>
-                                            <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                                            <div className="p-5 flex-1 flex flex-col justify-between space-y-6">
                                                 <div>
                                                     <h4 className="font-medium text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
                                                     <p className="text-[12px] font-medium text-google-blue mt-1">{formatRp(prod.price)}</p>
@@ -9104,7 +9104,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                                     <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto -slate-350 modal-card animate-modal-in">
                                         <h3 className="text-xl font-medium text-slate-800 mb-6 tracking-tight">{editingProduct ? 'Edit Produk Tiket' : 'Tambah Produk Tiket Baru'}</h3>
-                                        <div className="space-y-4">
+                                        <div className="space-y-6">
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Tiket / Produk</label>
                                                 <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Tiket Jalan Santai RT Pakem" />
@@ -9213,7 +9213,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
                     ) : (
                         /* ================== VIEW WARGA ================== */
-                        <div className="space-y-6">
+                        <div className="space-y-8">
                             {/* Banner Header */}
                             <div className="bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark rounded-[28px] p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
                                 <div className="absolute inset-0 bg-black/10"></div>
@@ -9297,8 +9297,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 </div>
 
                                                 {/* Details */}
-                                                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
-                                                    <div className="space-y-3">
+                                                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
+                                                    <div className="space-y-5">
                                                         <p className="text-[10.5px] font-medium text-google-blue mb-[-4px] uppercase tracking-wider">SKU: {prod.sku || ('TKT-' + String(prod.id).substring(8))}</p>
                                                         <h4 className="font-medium text-[15px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-1">{prod.name}</h4>
                                                         
@@ -9412,8 +9412,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 </div>
 
                                                 {/* Details */}
-                                                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
-                                                    <div className="space-y-3">
+                                                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
+                                                    <div className="space-y-5">
                                                         <h4 className="font-medium text-[15px] text-slate-650 dark:text-slate-350 tracking-tight leading-snug line-clamp-1 uppercase">{prod.name}</h4>
                                                         
                                                         {/* Price and Sold Row */}
@@ -9456,7 +9456,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Sub Tab: Tiket Saya */}
                             {activeSubTab === 'my_tickets' && (
-                                <div className="space-y-5">
+                                <div className="space-y-7">
                                     <div className="bg-slate-50 border border-slate-200/80 rounded-[20px] p-4 flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
                                             <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-11 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
@@ -9476,7 +9476,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     ) : (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             {myTicketsFiltered.map(order => (
-                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-shadow">
+                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border border-slate-200 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow">
                                                     <div>
                                                         <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-3">
                                                             <div className="flex items-center gap-2">
@@ -9491,7 +9491,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <span className={`text-[10px] font-medium px-3 py-1.5 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
                                                         
-                                                        <div className="bg-slate-50 rounded-[14px] p-4 border border-slate-100 space-y-3">
+                                                        <div className="bg-slate-50 rounded-[14px] p-4 border border-slate-100 space-y-5">
                                                             <div className="flex justify-between items-start">
                                                                 <div>
                                                                     <p className="text-[10px] font-medium text-slate-400 uppercase">Pemesan</p>
@@ -9577,7 +9577,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Sub Tab: Daftar Pembeli */}
                             {activeSubTab === 'buyers_list' && (
-                                <div className="space-y-5">
+                                <div className="space-y-7">
                                     {/* Info Banner */}
                                     <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 rounded-[20px] p-4 flex items-start gap-3">
                                         <Icon name="info" className="text-[18px] text-google-blue shrink-0 mt-0.5" />
@@ -9654,7 +9654,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <h3 className="text-lg font-medium text-slate-800">Formulir Beli Tiket</h3>
                                             <button onClick={() => setIsBuyModalOpen(false)} className="w-8 h-8 rounded-full border border-slate-300 text-slate-400 hover:bg-slate-100 flex items-center justify-center"><Icon name="close" /></button>
                                         </div>
-                                        <div className="space-y-4">
+                                        <div className="space-y-6">
                                             <div className="bg-google-blueLight border border-google-blue/20 rounded-[16px] p-4 text-[12px] text-google-blueDark">
                                                 <p className="font-medium">{selectedProduct.name}</p>
                                                 <p className="font-medium text-slate-500 mt-0.5">Harga: {formatRp(selectedProduct.price)} / tiket</p>
@@ -9678,7 +9678,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                             {/* Tampilkan Input Waktu atau Info Lokasi */}
                                             {buyForm.deliveryMethod === 'delivery' ? (
-                                                <div className="animate-fade-in bg-slate-50 border border-slate-200 p-4 rounded-[16px] space-y-3">
+                                                <div className="animate-fade-in bg-slate-50 border border-slate-200 p-4 rounded-[16px] space-y-5">
                                                     <div className="grid grid-cols-2 gap-3">
                                                         <div>
                                                             <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Hari Pengantaran</label>
@@ -9910,8 +9910,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 if (!myRequestId || !myRequest) {
                     return (
                         <div className="max-w-xl mx-auto px-4 py-8 animate-fade-in">
-                            <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-6">
-                                <div className="text-center space-y-3">
+                            <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-8">
+                                <div className="text-center space-y-5">
                                     <div className="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950/20 text-google-green flex items-center justify-center mx-auto border border-green-100 dark:border-green-900/40">
                                         <Icon name="forum" className="text-[32px]" fill="true" />
                                     </div>
@@ -9921,7 +9921,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     </p>
                                 </div>
 
-                                <form onSubmit={handleRequestSubmit} className="space-y-4 pt-2">
+                                <form onSubmit={handleRequestSubmit} className="space-y-6 pt-2">
                                     <div className="bg-slate-50 dark:bg-slate-800/40 rounded-[16px] px-4 py-3 border border-slate-200 dark:border-slate-700/60 focus-within:border-google-blue focus-within:ring-1 focus-within:ring-google-blue transition-all">
                                         <label className="text-[10px] font-medium text-slate-400 dark:text-slate-500 block mb-1 uppercase tracking-widest">Nama Lengkap Sesuai KTP</label>
                                         <input 
@@ -9963,7 +9963,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                 return (
                     <div className="max-w-xl mx-auto px-4 py-8 animate-fade-in">
-                        <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-6 text-center">
+                        <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-8 text-center">
                             {myRequest.status === 'pending' && (
                                 <>
                                     <div className="w-16 h-16 rounded-full bg-amber-50 dark:bg-amber-950/20 text-amber-500 flex items-center justify-center mx-auto border border-amber-100 dark:border-amber-900/40 animate-pulse">
@@ -10060,7 +10060,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const processedRequests = safeRequests.filter(r => r.status !== 'pending');
 
             return (
-                <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-6">
+                <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-8">
                     <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <h2 className="text-2xl font-medium text-slate-800 dark:text-slate-100 tracking-tight">Verifikasi Grup WhatsApp</h2>
@@ -10107,7 +10107,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         ) : (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {pendingRequests.map(r => (
-                                    <div key={r.id} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-4 hover:shadow-md transition-shadow">
+                                    <div key={r.id} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-6 hover:shadow-md transition-shadow">
                                         <div className="space-y-1.5">
                                             <h3 className="font-medium text-slate-800 dark:text-slate-100 text-[14.5px] truncate">{r.name}</h3>
                                             <p className="text-[12px] font-medium text-google-blue flex items-center gap-1">
@@ -10148,20 +10148,20 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <table className="w-full text-left border-collapse">
                                         <thead>
                                             <tr className="bg-slate-50 dark:bg-slate-800/50 text-[10px] font-medium text-slate-400 block-none uppercase tracking-widest border-b border-slate-200 dark:border-slate-800">
-                                                <th className="px-6 py-4">Nama Lengkap</th>
-                                                <th className="px-6 py-4">Nomor WhatsApp</th>
-                                                <th className="px-6 py-4">Tanggal Diajukan</th>
-                                                <th className="px-6 py-4">Status</th>
-                                                <th className="px-6 py-4 text-right">Aksi</th>
+                                                <th className="px-6 sm:px-8 py-5">Nama Lengkap</th>
+                                                <th className="px-6 sm:px-8 py-5">Nomor WhatsApp</th>
+                                                <th className="px-6 sm:px-8 py-5">Tanggal Diajukan</th>
+                                                <th className="px-6 sm:px-8 py-5">Status</th>
+                                                <th className="px-6 sm:px-8 py-5 text-right">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-[12.5px] font-medium text-slate-700 dark:text-slate-350">
                                             {processedRequests.map(r => (
                                                 <tr key={r.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-850/50 transition-colors">
-                                                    <td className="px-6 py-4 font-medium text-slate-800 dark:text-slate-100">{r.name}</td>
-                                                    <td className="px-6 py-4 text-google-blue font-medium">{r.whatsapp}</td>
-                                                    <td className="px-6 py-4 text-slate-400">{formatDate(r.timestamp)}</td>
-                                                    <td className="px-6 py-4">
+                                                    <td className="px-6 sm:px-8 py-5 font-medium text-slate-800 dark:text-slate-100">{r.name}</td>
+                                                    <td className="px-6 sm:px-8 py-5 text-google-blue font-medium">{r.whatsapp}</td>
+                                                    <td className="px-6 sm:px-8 py-5 text-slate-400">{formatDate(r.timestamp)}</td>
+                                                    <td className="px-6 sm:px-8 py-5">
                                                         {r.status === 'approved' ? (
                                                             <span className="inline-flex items-center gap-1 bg-green-50 dark:bg-green-950/20 text-google-green text-[10px] font-medium px-2.5 py-1 rounded-full border border-green-200 dark:border-green-900/40">
                                                                 <Icon name="check" className="text-[12px]" /> Disetujui
@@ -10172,7 +10172,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             </span>
                                                         )}
                                                     </td>
-                                                    <td className="px-6 py-4 text-right">
+                                                    <td className="px-6 sm:px-8 py-5 text-right">
                                                         <div className="flex justify-end gap-2">
                                                             <button 
                                                                 onClick={() => handleResetStatus(r.id)} 
@@ -10303,7 +10303,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
     // ===== HEADER SHARED =====
     const PageHeader = ({ title, subtitle, onBack, children }) => (
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-200 dark:border-slate-800 pb-4 mb-2">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-200 dark:border-slate-800 pb-5 sm:pb-6 mb-4 sm:mb-6">
             <div className="flex items-center gap-3 min-w-0">
                 <button onClick={onBack} className="w-10 h-10 shrink-0 bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-95 shadow-sm transition-all text-slate-800 dark:text-white">
                     <Icon name="arrow_back" className="text-[18px]" />
@@ -10319,7 +10319,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
     // ===== VIEW: KERANJANG =====
     if (view === 'cart') return (
-        <div className="space-y-5 max-w-6xl mx-auto">
+        <div className="space-y-8 max-w-7xl mx-auto">
             <PageHeader title="Keranjang Belanja" subtitle="Review & checkout pesanan Anda" onBack={() => setView('list')} />
             {cartItemCount === 0 ? (
                 <div className="bg-white dark:bg-slate-900 p-10 sm:p-16 rounded-[24px] border border-slate-200 dark:border-slate-800 text-center shadow-sm">
@@ -10330,8 +10330,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {/* Ringkasan Pesanan */}
-                    <div className="space-y-4">
-                        <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                    <div className="space-y-6">
+                        <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
                             <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-3">Ringkasan Pesanan</h3>
                             {Object.entries(cart).map(([key, item]) => (
                                 <div key={key} className="flex gap-3 justify-between items-start border-b border-slate-100 dark:border-slate-800 pb-3 last:border-0 last:pb-0">
@@ -10362,7 +10362,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         </div>
                     </div>
                     {/* Form Pengiriman */}
-                    <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                    <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
                         <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-3">Data Pengiriman</h3>
                         {[
                             { label: 'Nama Lengkap Pemesan *', key: 'namaWarga', type: 'text', placeholder: 'Nama Anda...' },
@@ -10395,7 +10395,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     if (view === 'detail' && selectedProduct) {
         const effPrice = selectedProduct.grosirMinQty > 0 && orderQty >= selectedProduct.grosirMinQty && selectedProduct.grosirPrice > 0 ? selectedProduct.grosirPrice : (selectedVariant?.price || 0);
         return (
-            <div className="space-y-5 max-w-6xl mx-auto">
+            <div className="space-y-8 max-w-7xl mx-auto">
                 <PageHeader title="Detail Produk" onBack={() => setView('list')} />
                 <div className="bg-white dark:bg-slate-900 rounded-[20px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col lg:flex-row">
                     {/* Gambar Produk - Aspect Square */}
@@ -10418,7 +10418,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         </button>
                     </div>
                     {/* Info & Aksi */}
-                    <div className="lg:w-1/2 p-4 sm:p-6 lg:p-8 space-y-5">
+                    <div className="lg:w-1/2 p-4 sm:p-6 lg:p-8 space-y-7">
                         <div>
                             <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                                 <h1 className="text-lg sm:text-2xl font-medium text-slate-800 dark:text-white tracking-tight">{selectedProduct.judul}</h1>
@@ -10483,7 +10483,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     // ===== VIEW: ADMIN - KELOLA PRODUK =====
     if (view === 'admin-products') return (
         <>
-        <div className="space-y-5">
+        <div className="space-y-7">
             <PageHeader title="Kelola Katalog Produk" subtitle="Tambah, edit, dan hapus produk toko" onBack={() => setView('list')}>
                 <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
                     <Icon name="add" className="text-[16px] sm:text-[18px]" /> <span className="hidden sm:inline">Produk</span> Baru
@@ -10491,11 +10491,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             </PageHeader>
 
             {isFormOpen && (
-                <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 lg:p-8 rounded-[20px] sm:rounded-[28px] border-2 border-google-blue dark:border-blue-600 shadow-lg space-y-5">
+                <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 lg:p-8 rounded-[20px] sm:rounded-[28px] border-2 border-google-blue dark:border-blue-600 shadow-lg space-y-7">
                     <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-200 dark:border-slate-800 pb-3">{editingProduct ? '✏️ Edit Produk' : '➕ Produk Baru'}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         {/* Kolom Kiri */}
-                        <div className="space-y-4">
+                        <div className="space-y-6">
                             <div>
                                 <label className="text-xs font-medium text-slate-505 dark:text-slate-400 mb-1.5 block">Nama / Judul Produk *</label>
                                 <input type="text" value={productForm.judul} onChange={e => setProductForm({...productForm, judul: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-805 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Beras Premium 5Kg..." />
@@ -10549,9 +10549,9 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             </label>
                         </div>
                         {/* Kolom Kanan */}
-                        <div className="space-y-5">
+                        <div className="space-y-7">
                             {/* Varian & Harga */}
-                            <div className="bg-slate-50 dark:bg-slate-805 p-4 rounded-[20px] border border-slate-200 dark:border-slate-750 space-y-3">
+                            <div className="bg-slate-50 dark:bg-slate-805 p-4 rounded-[20px] border border-slate-200 dark:border-slate-750 space-y-5">
                                 <div className="flex justify-between items-center">
                                     <h4 className="font-medium text-slate-700 dark:text-slate-300 text-sm">Varian & Harga</h4>
                                     <button onClick={() => setProductForm({...productForm, variants: [...productForm.variants, { id: Date.now(), name: '', price: 0 }]})} className="text-xs font-medium text-google-blue flex items-center gap-0.5 hover:underline"><Icon name="add" className="text-[14px]" />Tambah</button>
@@ -10567,7 +10567,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 ))}
                             </div>
                             {/* Grosir */}
-                            <div className="bg-yellow-50 dark:bg-yellow-950/10 p-4 rounded-[20px] border border-yellow-200 dark:border-yellow-900/30 space-y-3">
+                            <div className="bg-yellow-50 dark:bg-yellow-950/10 p-4 rounded-[20px] border border-yellow-200 dark:border-yellow-900/30 space-y-5">
                                 <h4 className="font-medium text-yellow-800 dark:text-yellow-500 text-sm flex items-center gap-1.5"><Icon name="sell" className="text-[16px]" />Harga Grosir (Opsional)</h4>
                                 <p className="text-[11px] text-yellow-700 dark:text-yellow-600 font-medium leading-relaxed">Warga yang membeli ≥ Qty ini akan otomatis mendapat harga grosir.</p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
@@ -10593,7 +10593,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             {!isFormOpen && (
                 <>
                     {/* Mobile Cards (< md) */}
-                    <div className="md:hidden space-y-3">
+                    <div className="md:hidden space-y-5">
                         {tokoProducts.length === 0 ? (
                             <div className="bg-white dark:bg-slate-900 rounded-[20px] border-2 border-dashed border-slate-200 dark:border-slate-800 p-10 text-center text-slate-400 dark:text-slate-500 font-medium text-sm">Belum ada produk.</div>
                         ) : tokoProducts.map((p, idx) => (
@@ -10625,19 +10625,19 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse min-w-[780px]">
                                 <thead><tr className="bg-slate-50 dark:bg-slate-850 border-b-2 border-slate-205 dark:border-slate-800 text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                    <th className="p-4 w-12 text-center text-slate-505 dark:text-slate-400">No</th>
-                                    <th className="p-4 text-slate-505 dark:text-slate-400">Info Produk</th>
-                                    <th className="p-4 text-slate-505 dark:text-slate-400">Kategori</th>
-                                    <th className="p-4 text-slate-505 dark:text-slate-400">Varian & Harga</th>
-                                    <th className="p-4 text-center text-slate-505 dark:text-slate-400">Status</th>
-                                    <th className="p-4 text-right text-slate-505 dark:text-slate-400">Aksi</th>
+                                    <th className="p-5 sm:px-6 sm:py-5 w-12 text-center text-slate-505 dark:text-slate-400">No</th>
+                                    <th className="p-5 sm:px-6 sm:py-5 text-slate-505 dark:text-slate-400">Info Produk</th>
+                                    <th className="p-5 sm:px-6 sm:py-5 text-slate-505 dark:text-slate-400">Kategori</th>
+                                    <th className="p-5 sm:px-6 sm:py-5 text-slate-505 dark:text-slate-400">Varian & Harga</th>
+                                    <th className="p-5 sm:px-6 sm:py-5 text-center text-slate-505 dark:text-slate-400">Status</th>
+                                    <th className="p-5 sm:px-6 sm:py-5 text-right text-slate-505 dark:text-slate-400">Aksi</th>
                                 </tr></thead>
                                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                                     {tokoProducts.length === 0 ? <tr><td colSpan="6" className="p-10 text-center text-slate-400 font-medium">Belum ada produk.</td></tr>
                                     : tokoProducts.map((p, idx) => (
                                         <tr key={p.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors">
-                                            <td className="p-4 text-center font-medium text-slate-400 text-sm">{idx+1}</td>
-                                            <td className="p-4">
+                                            <td className="p-5 sm:px-6 sm:py-5 text-center font-medium text-slate-400 text-sm">{idx+1}</td>
+                                            <td className="p-5 sm:px-6 sm:py-5">
                                                 <div className="flex items-center gap-3">
                                                     {p.imageUrl ? <img src={p.imageUrl} className="w-12 h-12 rounded-xl object-cover border border-slate-200 dark:border-slate-800 shrink-0" /> : <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-xl shrink-0 flex items-center justify-center"><Icon name="storefront" className="text-slate-400" /></div>}
                                                     <div>
@@ -10649,14 +10649,14 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="p-4">
+                                            <td className="p-5 sm:px-6 sm:py-5">
                                                 <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 whitespace-nowrap inline-block">
                                                     {p.kategori || 'Belum Diatur'}
                                                 </span>
                                             </td>
-                                            <td className="p-4 text-xs font-medium text-slate-600 dark:text-slate-300 space-y-1">{p.variants.map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-medium text-slate-800 dark:text-white">{formatRp(v.price)}</span></div>)}</td>
-                                            <td className="p-4 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-medium uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
-                                            <td className="p-4 text-right space-x-2 flex items-center justify-end">
+                                            <td className="p-5 sm:px-6 sm:py-5 text-xs font-medium text-slate-600 dark:text-slate-300 space-y-1">{p.variants.map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-medium text-slate-800 dark:text-white">{formatRp(v.price)}</span></div>)}</td>
+                                            <td className="p-5 sm:px-6 sm:py-5 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-medium uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
+                                            <td className="p-5 sm:px-6 sm:py-5 text-right space-x-2 flex items-center justify-end">
                                                 <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
                                                 <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
                                             </td>
@@ -10692,7 +10692,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     // ===== VIEW: ADMIN - KELOLA PESANAN =====
     if (view === 'admin-orders') return (
         <>
-        <div className="space-y-5">
+        <div className="space-y-7">
             <PageHeader title="Pesanan Masuk" subtitle="Kelola dan pantau status pesanan warga" onBack={() => setView('list')} />
             {/* Tab Status */}
             <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
@@ -10706,7 +10706,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 {tokoOrders.filter(o => o.status === activeOrderTab).length === 0 ? (
                     <div className="col-span-full text-center py-12 text-slate-400 font-medium bg-white dark:bg-slate-900 rounded-[20px] border border-dashed border-slate-200 dark:border-slate-800 text-sm">Tidak ada pesanan di tab ini.</div>
                 ) : tokoOrders.filter(o => o.status === activeOrderTab).sort((a,b) => new Date(b.orderDate) - new Date(a.orderDate)).map(order => (
-                    <div key={order.id} className="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 flex flex-col hover:shadow-md transition-shadow">
+                    <div key={order.id} className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-5 flex flex-col hover:shadow-md transition-shadow">
                         <div className="flex justify-between items-start border-b border-slate-100 dark:border-slate-800 pb-3">
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
@@ -10720,7 +10720,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <span className={`px-3 py-1 rounded-[8px] text-[9px] font-medium uppercase shrink-0 border ${order.status === 'Menunggu' ? 'bg-amber-50 border-amber-200 text-amber-700' : order.status === 'Diproses' ? 'bg-blue-50 border-blue-200 text-blue-700' : order.status === 'Diantar' ? 'bg-purple-50 border-purple-200 text-purple-700' : order.status === 'Selesai' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-red-50 border-red-200 text-red-700'}`}>{order.status}</span>
                         </div>
                         
-                        <div className="bg-slate-50 dark:bg-slate-805 rounded-[14px] p-4 border border-slate-100 dark:border-slate-800 space-y-3">
+                        <div className="bg-slate-50 dark:bg-slate-805 rounded-[14px] p-4 border border-slate-100 dark:border-slate-800 space-y-5">
                             <div className="flex justify-between items-start">
                                 <div className="flex-1">
                                     <p className="text-[10px] font-medium text-slate-400 uppercase">Pemesan</p>
@@ -10821,7 +10821,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     // ===== DEFAULT VIEW: GRID KATALOG PRODUK =====
     return (
         <>
-        <div className="space-y-5">
+        <div className="space-y-7">
             {/* Header Toko */}
             <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[28px] border border-slate-200 dark:border-slate-800 shadow-sm">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
