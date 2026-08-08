@@ -493,8 +493,7 @@ function Icon({ name, className = "text-[17px]", fill = "false" }) {
                     {/* FAB */}
                     <button
                         onClick={toggleRobot}
-                        className={`w-16 h-16 text-white rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-all border-4 border-white ${mode === 'admin' ? 'bg-google-blue hover:bg-google-blueDark' : 'bg-google-green hover:bg-google-greenDark'}`}
-                        style={{ boxShadow: mode === 'admin' ? '0 8px 32px rgba(66,133,244,0.5)' : '0 8px 32px rgba(52,168,83,0.5)' }}
+                        className={`w-16 h-16 text-white rounded-full flex items-center justify-center active:scale-95 transition-all border-4 border-white ${mode === 'admin' ? 'bg-google-blue hover:bg-google-blueDark' : 'bg-google-green hover:bg-google-greenDark'}`}
                     >
                         <Icon name={isOpen ? "close" : "support_agent"} className="text-[30px]" fill="true" />
                     </button>
