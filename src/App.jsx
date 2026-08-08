@@ -2504,6 +2504,94 @@ import {
                     .sort((a, b) => Number(b.wonRound) - Number(a.wonRound))[0];
             }, [members]);
             
+            useEffect(() => {
+                const structuredData = [];
+                const baseUrl = window.location.origin;
+
+                if (tokoProducts && tokoProducts.length > 0) {
+                    const productsSchema = {
+                        "@context": "https://schema.org",
+                        "@type": "ItemList",
+                        "itemListElement": tokoProducts.filter(p => p.isPublished).map((item, index) => {
+                            const minPrice = item.variants && item.variants.length > 0 ? Math.min(...item.variants.map(v => v.price)) : 0;
+                            return {
+                                "@type": "ListItem",
+                                "position": index + 1,
+                                "item": {
+                                    "@type": "Product",
+                                    "name": item.name,
+                                    "description": item.description || `Produk ${item.name}`,
+                                    "image": item.imageUrl || `${baseUrl}/National_emblem_of_Indonesia_Garuda_Pancasila.svg`,
+                                    "url": `${baseUrl}/?page=toko&product=${item.sku || item.id}`,
+                                    "offers": {
+                                        "@type": "Offer",
+                                        "price": minPrice,
+                                        "priceCurrency": "IDR",
+                                        "availability": "https://schema.org/InStock"
+                                    }
+                                }
+                            };
+                        })
+                    };
+                    structuredData.push(productsSchema);
+                }
+
+                if (blogData && blogData.length > 0) {
+                    const blogSchema = {
+                        "@context": "https://schema.org",
+                        "@type": "ItemList",
+                        "itemListElement": blogData.map((article, index) => ({
+                            "@type": "ListItem",
+                            "position": index + 1,
+                            "item": {
+                                "@type": "BlogPosting",
+                                "headline": article.title,
+                                "description": article.content ? article.content.substring(0, 150) : `Artikel: ${article.title}`,
+                                "image": article.imageUrl || `${baseUrl}/National_emblem_of_Indonesia_Garuda_Pancasila.svg`,
+                                "url": `${baseUrl}/?page=blog&article=${article.id}`,
+                                "datePublished": article.date ? new Date(article.date).toISOString() : new Date().toISOString()
+                            }
+                        }))
+                    };
+                    structuredData.push(blogSchema);
+                }
+
+                if (informasi && informasi.length > 0) {
+                    const infoSchema = {
+                        "@context": "https://schema.org",
+                        "@type": "ItemList",
+                        "itemListElement": informasi.map((info, index) => ({
+                            "@type": "ListItem",
+                            "position": index + 1,
+                            "item": {
+                                "@type": "NewsArticle",
+                                "headline": info.title,
+                                "description": info.content ? info.content.substring(0, 150) : `Pengumuman: ${info.title}`,
+                                "image": info.imageUrl || `${baseUrl}/National_emblem_of_Indonesia_Garuda_Pancasila.svg`,
+                                "datePublished": info.date ? new Date(info.date).toISOString() : new Date().toISOString()
+                            }
+                        }))
+                    };
+                    structuredData.push(infoSchema);
+                }
+
+                if (structuredData.length > 0) {
+                    const scriptEl = document.createElement('script');
+                    scriptEl.type = 'application/ld+json';
+                    scriptEl.id = 'seo-structured-data';
+                    scriptEl.text = JSON.stringify(structuredData);
+                    
+                    const existingScript = document.getElementById('seo-structured-data');
+                    if (existingScript) existingScript.remove();
+                    document.head.appendChild(scriptEl);
+                }
+
+                return () => {
+                    const scriptToRemove = document.getElementById('seo-structured-data');
+                    if (scriptToRemove) scriptToRemove.remove();
+                };
+            }, [tokoProducts, blogData, informasi]);
+            
             const handleAdminLogin = async () => {
                 if (!email || !password) return setError('Email dan Password wajib diisi.');
                 setIsLoading(true); setError('');
@@ -2676,33 +2764,33 @@ import {
 
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {informasi.slice(0, limitInformasi).map(item => (
-                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
+                                            <article key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
                                                 <div>
                                                     {item.imageUrl ? (
-                                                        <div className="w-full h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                                                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
+                                                        <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
+                                                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"/>
                                                         </div>
                                                     ) : (
-                                                        <div className="w-full h-48 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center">
-                                                            <Icon name="newspaper" className="text-[42px] text-red-500/20" />
+                                                        <div className="w-full h-40 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center shrink-0">
+                                                            <Icon name="campaign" className="text-[40px] text-red-500/20" />
                                                         </div>
                                                     )}
-                                                    <div className="p-4 sm:p-6 space-y-3">
-                                                        <div className="flex items-center gap-1.5 text-[10.5px] font-medium text-slate-500 dark:text-slate-400">
-                                                            <Icon name="event" className="text-[13px]" />
-                                                            <span>{item.date ? new Date(item.date).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }) : 'Tanggal -'}</span>
+                                                    <div className="p-4 sm:p-5 flex flex-col gap-2">
+                                                        <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-400 dark:text-slate-500">
+                                                            <Icon name="event" className="text-[12px]" />
+                                                            <span>{item.date ? new Date(item.date).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '-'}</span>
                                                         </div>
-                                                        <h4 className="font-medium text-[16px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2">{item.title}</h4>
-                                                        <p className="text-[13px] font-medium text-slate-700 dark:text-slate-400 leading-relaxed line-clamp-3">{item.description}</p>
+                                                        <h4 className="font-medium text-[14px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2 flex-1">{item.title}</h4>
+                                                        <p className="text-[12px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">{item.description}</p>
                                                     </div>
                                                 </div>
-                                                <div className="p-4 sm:p-6 pt-0 sm:pt-0">
+                                                <div className="p-4 sm:p-5 pt-0 mt-auto">
                                                     <span className="inline-flex items-center gap-1.5 text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300 font-medium text-[12.5px] transition-all">
                                                         <span>Baca Selengkapnya</span>
                                                         <Icon name="arrow_forward" className="text-[14px] group-hover:translate-x-1 transition-transform" />
                                                     </span>
                                                 </div>
-                                            </div>
+                                            </article>
                                         ))}
                                     </div>
                                     {informasi.length > limitInformasi && (
@@ -2725,7 +2813,7 @@ import {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {blogData.slice(0, limitBlog).map(article => (
-                                            <a href={`/?page=blog&article=${article.id}`} key={article.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={(e) => { e.preventDefault(); setSelectedArticle({ ...article, type: 'blog' }); }}>
+                                            <article key={article.id} className="h-full bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...article, type: 'blog' })}>
                                                 {article.imageUrl ? (
                                                     <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                                         <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
@@ -2749,7 +2837,7 @@ import {
                                                         Baca Artikel <Icon name="arrow_forward" className="text-[13px] group-hover:translate-x-1 transition-transform" />
                                                     </span>
                                                 </div>
-                                            </a>
+                                            </article>
                                         ))}
                                     </div>
                                     {blogData.length > limitBlog && (
@@ -2774,7 +2862,7 @@ import {
                                         {infaqData.slice(0, limitInfaq).map(item => {
                                             const p = item.danaTarget ? Math.min(100, Math.round(((item.danaTerkumpul || 0) / item.danaTarget) * 100)) : null;
                                             return (
-                                                <div key={item.id} onClick={() => { sessionStorage.setItem('openInfaqId', item.id); onLogin('warga'); }} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl overflow-hidden flex flex-col justify-between hover:border-google-green/50 hover:-translate-y-1.5 transition-all duration-300 group cursor-pointer">
+                                                <article key={item.id} onClick={() => { sessionStorage.setItem('openInfaqId', item.id); onLogin('warga'); }} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl overflow-hidden flex flex-col justify-between hover:border-google-green/50 hover:-translate-y-1.5 transition-all duration-300 group cursor-pointer">
                                                     <div>
                                                         <div className="relative h-40 w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                                                             {item.imageUrl ? (
@@ -2805,7 +2893,7 @@ import {
                                                             <Icon name="volunteer_activism" className="text-[16px]" fill="true" /> Donasi Sekarang
                                                         </button>
                                                     </div>
-                                                </div>
+                                                </article>
                                             );
                                         })}
                                     </div>
@@ -2828,7 +2916,7 @@ import {
                                     </div>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {umkmData.slice(0, limitUmkm).map(item => (
-                                            <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-green-300 dark:hover:border-green-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 group">
+                                            <article key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-green-300 dark:hover:border-green-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 group">
                                                 <div>
                                                     <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                                         {item.imageUrl ? (
@@ -2855,7 +2943,7 @@ import {
                                                         <span>Hubungi via WhatsApp</span>
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </article>
                                         ))}
                                     </div>
                                     {umkmData.length > limitUmkm && (
@@ -2879,14 +2967,14 @@ import {
                                         <>
                                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                                             {tokoProducts.filter(p => p.isPublished).slice(0, 8).map(item => (
-                                                <div key={item.id} onClick={() => {
+                                                <article key={item.id} onClick={() => {
                                                     sessionStorage.setItem('openTokoProductId', item.id);
                                                     onLogin('warga');
                                                 }} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-google-blue dark:hover:border-google-blue hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 group cursor-pointer">
                                                     <div>
                                                         <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                                                             {item.imageUrl ? (
-                                                                <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+                                                                <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                                                             ) : (
                                                                 <Icon name="storefront" className="text-[32px] sm:text-[48px] text-slate-300 dark:text-slate-600" />
                                                             )}
@@ -2903,8 +2991,8 @@ import {
                                                             </button>
                                                         </div>
                                                         <div className="p-3 sm:p-5 space-y-1 sm:space-y-2 flex-1 flex flex-col">
-                                                            <h4 className="font-medium text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-blue transition-colors">{item.judul}</h4>
-                                                            <p className="text-[10px] sm:text-[12px] font-medium text-slate-500 dark:text-slate-400 line-clamp-2">{item.deskripsi}</p>
+                                                            <h4 className="font-medium text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-blue transition-colors">{item.judul || item.name}</h4>
+                                                            <p className="text-[10px] sm:text-[12px] font-medium text-slate-500 dark:text-slate-400 line-clamp-2">{item.deskripsi || item.category}</p>
                                                             <div className="flex flex-wrap items-center gap-1.5 pt-2 mt-auto">
                                                                 <span className="flex items-center gap-0.5 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-blue-200/60 dark:border-blue-800 uppercase tracking-wider"><Icon name="verified" className="text-[11px]" /> Official</span>
                                                                 <span className="flex items-center gap-0.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-800 uppercase tracking-wider"><Icon name="local_shipping" className="text-[11px]" /> Gratis Ongkir</span>
@@ -2913,19 +3001,21 @@ import {
                                                         </div>
                                                     </div>
                                                     <div className="p-3 sm:p-5 pt-0 mt-auto border-t border-slate-100 dark:border-slate-800 pt-3 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                                                        <div>
-                                                            <p className="text-[9px] sm:text-[10px] font-medium text-slate-400 uppercase tracking-widest">Mulai dari</p>
-                                                            <p className="text-[12px] sm:text-[14px] font-medium text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
+                                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mt-1 sm:mt-2">
+                                                            <div>
+                                                                <p className="text-[9px] sm:text-[10px] font-medium text-slate-400 uppercase tracking-widest">Mulai dari</p>
+                                                                <p className="text-[12px] sm:text-[14px] font-medium text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
+                                                            </div>
+                                                            <button onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                sessionStorage.setItem('addToCartProductId', item.id);
+                                                                onLogin('warga');
+                                                            }} className="px-3 py-1.5 sm:px-4 sm:py-2 w-full sm:w-auto flex justify-center bg-google-blue hover:bg-google-blueDark text-white rounded-full text-[11px] sm:text-xs font-medium transition-colors shadow-sm flex items-center gap-1 active:scale-95">
+                                                                <Icon name="shopping_cart" className="text-[12px] sm:text-[14px]" /> <span className="hidden sm:inline">Beli</span>
+                                                            </button>
                                                         </div>
-                                                        <button onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            sessionStorage.setItem('addToCartProductId', item.id);
-                                                            onLogin('warga');
-                                                        }} className="px-3 py-1.5 sm:px-4 sm:py-2 w-full sm:w-auto flex justify-center bg-google-blue hover:bg-google-blueDark text-white rounded-full text-[11px] sm:text-xs font-medium transition-colors shadow-sm flex items-center gap-1 active:scale-95">
-                                                            <Icon name="shopping_cart" className="text-[12px] sm:text-[14px]" /> <span className="hidden sm:inline">Beli</span>
-                                                        </button>
                                                     </div>
-                                                </div>
+                                                </article>
                                             ))}
                                         </div>
                                         {tokoProducts.filter(p => p.isPublished).length > 8 && (
