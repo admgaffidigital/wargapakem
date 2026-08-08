@@ -830,12 +830,12 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="glass rounded-[16px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
-                                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[16px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
+                                <div className="w-20 h-20 bg-green-100 dark:bg-emerald-950/20 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
                                 </div>
-                                <h3 className="text-xl font-medium text-slate-800 mb-2">Berhasil</h3>
-                                <p className="text-slate-600 mb-8">{modalConfig.message}</p>
+                                <h3 className="text-xl font-medium text-slate-800 dark:text-white mb-2">Berhasil</h3>
+                                <p className="text-slate-600 dark:text-slate-300 mb-8">{modalConfig.message}</p>
                                 <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-full transition-all">Tutup</button>
                             </div>
                         </div>
@@ -1799,7 +1799,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {showLogoutModal && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar glass rounded-[20px] p-8 w-full max-w-sm text-center -slate-300 dark:-slate-700 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[20px] p-8 w-full max-w-sm text-center modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight dark:bg-red-950/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-google-red/30 dark:border-red-900/20"><Icon name="logout" className="text-[40px] text-google-red" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-2">Keluar Sesi?</h3>
                                 <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
