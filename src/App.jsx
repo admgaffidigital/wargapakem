@@ -900,9 +900,9 @@ import {
                                 <div className="px-3 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex flex-wrap gap-1.5 shrink-0 max-h-36 overflow-y-auto hide-scrollbar">
                                     <p className="w-full text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-0.5">{currentKB[activeMenu].label}</p>
                                     {currentKB[activeMenu].topics.map((t, i) => (
-                                        <button key={i} onClick={() => handleTopicClick(activeMenu, t)} className={`text-[10px] font-medium px-3 py-1.5 rounded-[12px] border active:scale-95 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-google-blue/30 hover:bg-google-blue hover:text-white' : 'bg-google-greenLight text-google-greenDark border-google-green/30 hover:bg-google-green hover:text-white'}`}>{t.label}</button>
+                                        <button key={i} onClick={() => handleTopicClick(activeMenu, t)} className={`text-[10px] font-medium px-3 py-1.5 rounded-full border active:scale-95 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-google-blue/30 hover:bg-google-blue hover:text-white' : 'bg-google-greenLight text-google-greenDark border-google-green/30 hover:bg-google-green hover:text-white'}`}>{t.label}</button>
                                     ))}
-                                    <button onClick={() => setActiveMenu(null)} className="text-[10px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-[12px] hover:bg-slate-200 dark:hover:bg-slate-750 active:scale-95 transition-all">G Tutup</button>
+                                    <button onClick={() => setActiveMenu(null)} className="text-[10px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-full hover:bg-slate-200 dark:hover:bg-slate-750 active:scale-95 transition-all">G Tutup</button>
                                 </div>
                             )}
 
@@ -911,7 +911,7 @@ import {
                                 <div className="px-3 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex flex-wrap gap-1.5 shrink-0 max-h-28 overflow-y-auto hide-scrollbar">
                                     <p className="w-full text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-0.5">Pilih Topik:</p>
                                     {mainMenus.map(key => (
-                                        <button key={key} onClick={() => handleMenuClick(key)} className={`text-[10px] font-medium border-2 px-3 py-1.5 rounded-[12px] active:scale-95 transition-all flex items-center gap-1 ${mode === 'admin' ? 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight dark:hover:bg-slate-700' : 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-google-green hover:text-google-greenDark hover:bg-google-greenLight dark:hover:bg-slate-700'}`}>
+                                        <button key={key} onClick={() => handleMenuClick(key)} className={`text-[10px] font-medium border-2 px-3 py-1.5 rounded-full active:scale-95 transition-all flex items-center gap-1 ${mode === 'admin' ? 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight dark:hover:bg-slate-700' : 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-google-green hover:text-google-greenDark hover:bg-google-greenLight dark:hover:bg-slate-700'}`}>
                                             <Icon name={currentKB[key].icon} className="text-[12px]" />{currentKB[key].label.replace(/^[^\s]+\s/, '')}
                                         </button>
                                     ))}
@@ -927,7 +927,7 @@ import {
                                     placeholder={mode === 'admin' ? 'Tanya fitur sistem...' : 'Tanya tentang arisan Anda...'}
                                     className="flex-1 bg-slate-50 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 focus:border-google-blue dark:text-white rounded-[10px] px-4 py-2 text-[11px] font-medium outline-none transition-colors"
                                 />
-                                <button onClick={handleSearch} className={`w-9 h-9 text-white rounded-[12px] flex items-center justify-center active:scale-95 transition-all shrink-0 ${mode === 'admin' ? 'bg-google-blue hover:bg-google-blueDark' : 'bg-google-green hover:bg-google-greenDark'}`}>
+                                <button onClick={handleSearch} className={`w-9 h-9 text-white rounded-full flex items-center justify-center active:scale-95 transition-all shrink-0 ${mode === 'admin' ? 'bg-google-blue hover:bg-google-blueDark' : 'bg-google-green hover:bg-google-greenDark'}`}>
                                     <Icon name="send" className="text-[14px]" />
                                 </button>
                             </div>
@@ -1120,11 +1120,11 @@ import {
                                 </div>
                                 <div className="flex flex-wrap gap-2 shrink-0">
                                     <button onClick={handleToggleEnabled}
-                                            className={`px-3 py-2 rounded-[10px] font-medium text-[11px] border-2 transition-all active:scale-95 ${isEnabled ? 'bg-white text-google-greenDark border-google-green/40 hover:bg-google-greenLight' : 'bg-google-green text-white border-google-greenDark'}`}>
+                                            className={`px-3 py-2 rounded-full font-medium text-[11px] border-2 transition-all active:scale-95 ${isEnabled ? 'bg-white text-google-greenDark border-google-green/40 hover:bg-google-greenLight' : 'bg-google-green text-white border-google-greenDark'}`}>
                                         {isEnabled ? 'Nonaktifkan' : 'Aktifkan'}
                                     </button>
                                     <button onClick={handleDeleteMusic}
-                                            className="px-3 py-2 rounded-[10px] font-medium text-[11px] bg-google-redLight text-google-redDark border-2 border-google-red/30 hover:bg-google-red hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1">
+                                            className="px-3 py-2 rounded-full font-medium text-[11px] bg-google-redLight text-google-redDark border-2 border-google-red/30 hover:bg-google-red hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1">
                                         <Icon name="delete" className="text-[12px]" /> Hapus
                                     </button>
                                 </div>
@@ -1188,7 +1188,7 @@ import {
 
                                 {/* Test button */}
                                 <button onClick={handlePreviewTest}
-                                        className="w-full bg-slate-100 text-google-textVariant py-2.5 rounded-[12px] font-medium text-[11px] border-2 border-slate-300 hover:bg-slate-200 active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
+                                        className="w-full bg-slate-100 text-google-textVariant py-2.5 rounded-full font-medium text-[11px] border-2 border-slate-300 hover:bg-slate-200 active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
                                     <Icon name="play_circle" className="text-[14px]" /> Test Apakah URL Bisa Diputar
                                 </button>
 
@@ -1221,7 +1221,7 @@ import {
                                 )}
 
                                 <button onClick={handleSaveUrl}
-                                        className="w-full bg-google-green text-white py-3.5 rounded-[14px] font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
+                                        className="w-full bg-google-green text-white py-3.5 rounded-full font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
                                     <Icon name="save" className="text-[17px]" /> Simpan & Aktifkan Musik
                                 </button>
                             </div>
@@ -1331,7 +1331,7 @@ import {
                                 </div>
                                 <h3 className="text-xl font-medium text-slate-800 mb-2">Berhasil</h3>
                                 <p className="text-slate-600 mb-8">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-[12px] transition-all">Tutup</button>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-full transition-all">Tutup</button>
                             </div>
                         </div>
                     )}
@@ -1347,7 +1347,7 @@ import {
                                 <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Direktori usaha milik warga RT. Dukung UMKM lokal dengan berbelanja dari tetangga sendiri.</p>
                             </div>
                             {userRole === 'admin' && (
-                                <button onClick={() => { setFormData({ name: '', owner: '', phone: '', category: 'Lainnya', description: '', imageUrl: '' }); setEditingId(null); setIsFormOpen(true); }} className="w-full md:w-auto bg-green-600 text-white px-8 py-4 rounded-[12px] font-medium text-[13px] shadow-[0_8px_25px_rgba(22,163,74,0.3)] hover:bg-green-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+                                <button onClick={() => { setFormData({ name: '', owner: '', phone: '', category: 'Lainnya', description: '', imageUrl: '' }); setEditingId(null); setIsFormOpen(true); }} className="w-full md:w-auto bg-green-600 text-white px-8 py-4 rounded-full font-medium text-[13px] shadow-[0_8px_25px_rgba(22,163,74,0.3)] hover:bg-green-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
                                     <Icon name="add_circle" className="group-hover:rotate-90 transition-transform duration-300" /> Tambah Usaha
                                 </button>
                             )}
@@ -1484,8 +1484,8 @@ import {
                                     </div>
                                 </div>
                                 <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-[12px] border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-medium py-4 rounded-[12px] shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-full border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-medium py-4 rounded-full shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
                                 </div>
                             </div>
                         </div>
@@ -1500,12 +1500,12 @@ import {
                                 <h3 className="text-xl font-medium text-slate-800 dark:text-white mb-2">Hapus UMKM?</h3>
                                 <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Data usaha yang dihapus tidak dapat dikembalikan. Yakin?</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-[12px] font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
                                     <button onClick={() => {
                                         setUmkmData(umkmData.filter(item => item.id !== deleteConfirmId));
                                         setModalConfig && setModalConfig({ message: 'Data UMKM dihapus.' });
                                         setDeleteConfirmId(null);
-                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-[12px] font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
+                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-full font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -1583,7 +1583,7 @@ import {
                                 </div>
                                 <h3 className="text-xl font-medium text-slate-800 mb-2">Berhasil</h3>
                                 <p className="text-slate-600 mb-8">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-[12px] transition-all">Tutup</button>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-full transition-all">Tutup</button>
                             </div>
                         </div>
                     )}
@@ -1598,7 +1598,7 @@ import {
                                 <h1 className="text-3xl sm:text-4xl font-medium text-slate-800 tracking-tight mb-2">Lapor</h1>
                                 <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Sistem Pengaduan dan Aspirasi Warga. Laporkan keluhan atau berikan saran untuk lingkungan kita.</p>
                             </div>
-                            <button onClick={() => setIsFormOpen(true)} className="w-full md:w-auto bg-blue-600 text-white px-8 py-4 rounded-[12px] font-medium text-[13px] shadow-[0_8px_25px_rgba(37,99,235,0.3)] hover:bg-blue-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+                            <button onClick={() => setIsFormOpen(true)} className="w-full md:w-auto bg-blue-600 text-white px-8 py-4 rounded-full font-medium text-[13px] shadow-[0_8px_25px_rgba(37,99,235,0.3)] hover:bg-blue-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
                                 <Icon name="add_circle" className="group-hover:rotate-90 transition-transform duration-300" /> Buat Laporan
                             </button>
                         </div>
@@ -1606,7 +1606,7 @@ import {
 
                     <div className="mb-6 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                         {['Semua', ...statuses].map(status => (
-                            <button key={status} onClick={() => setFilterStatus(status)} className={`px-5 py-2.5 rounded-[12px] font-medium text-sm whitespace-nowrap transition-all ${filterStatus === status ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-300 hover:bg-slate-50'}`}>
+                            <button key={status} onClick={() => setFilterStatus(status)} className={`px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-all ${filterStatus === status ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-300 hover:bg-slate-50'}`}>
                                 {status}
                             </button>
                         ))}
@@ -1653,7 +1653,7 @@ import {
                                         <div className="mt-4 flex gap-2">
                                             {statuses.map(st => (
                                                 item.status !== st && (
-                                                    <button key={st} onClick={() => changeStatus(item.id, st)} className={`flex-1 py-2 rounded-[10px] text-xs font-medium border transition-colors ${st === 'Menunggu' ? 'border-red-200 text-red-600 hover:bg-red-50' : st === 'Diproses' ? 'border-yellow-200 text-yellow-600 hover:bg-yellow-50' : 'border-green-200 text-green-600 hover:bg-green-50'}`}>
+                                                    <button key={st} onClick={() => changeStatus(item.id, st)} className={`flex-1 py-2 rounded-full text-xs font-medium border transition-colors ${st === 'Menunggu' ? 'border-red-200 text-red-600 hover:bg-red-50' : st === 'Diproses' ? 'border-yellow-200 text-yellow-600 hover:bg-yellow-50' : 'border-green-200 text-green-600 hover:bg-green-50'}`}>
                                                         Set {st}
                                                     </button>
                                                 )
@@ -1717,8 +1717,8 @@ import {
                                     </div>
                                 </div>
                                 <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-[12px] border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-medium py-4 rounded-[12px] shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-full border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-medium py-4 rounded-full shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
                                 </div>
                             </div>
                         </div>
@@ -1731,12 +1731,12 @@ import {
                                 <h3 className="text-xl font-medium text-slate-800 dark:text-white mb-2">Hapus Laporan?</h3>
                                 <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Laporan yang dihapus tidak dapat dikembalikan. Yakin?</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-[12px] font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
                                     <button onClick={() => {
                                         setLaporanData((laporanData || []).filter(item => item.id !== deleteConfirmId));
                                         setModalConfig && setModalConfig({ message: 'Laporan dihapus.' });
                                         setDeleteConfirmId(null);
-                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-[12px] font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
+                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-full font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -2047,7 +2047,7 @@ import {
                                     </div>
                                 </div>
                                 <div className="p-4 border-t border-slate-200 shrink-0">
-                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-[10px] font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
+                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-full font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
                                 </div>
                             </div>
                         </div>
@@ -2057,7 +2057,7 @@ import {
                             <div className="rounded-[20px] w-full max-w-lg overflow-hidden -red-500/30 dark:-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-red-50 dark:bg-red-950/20 px-6 py-5 border-b border-red-500/20 dark:border-red-900/30 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-medium text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-[12px] hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
                                 </div>
                                 <div className="p-6 md:p-8 overflow-y-auto hide-scrollbar">
                                     <div className="prose prose-sm text-slate-600 dark:text-slate-350 text-justify leading-relaxed max-w-none">
@@ -2074,7 +2074,7 @@ import {
                                     </div>
                                 </div>
                                 <div className="p-4 md:px-8 md:pb-8 pt-0 shrink-0">
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 py-4 rounded-[12px] font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 py-4 rounded-full font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
                                 </div>
                             </div>
                         </div>
@@ -2226,7 +2226,7 @@ import {
                             <div className="rounded-[20px] w-full max-w-lg overflow-hidden -red-500/30 dark:-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-red-50 dark:bg-red-950/20 px-6 py-5 border-b border-red-500/20 dark:border-red-900/30 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-medium text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-[12px] hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
                                 </div>
                                 <div className="p-6 md:p-8 overflow-y-auto hide-scrollbar">
                                     <div className="prose prose-sm text-slate-600 dark:text-slate-350 text-justify leading-relaxed max-w-none">
@@ -2243,7 +2243,7 @@ import {
                                     </div>
                                 </div>
                                 <div className="p-4 md:px-8 md:pb-8 pt-0 shrink-0">
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 py-4 rounded-[12px] font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 py-4 rounded-full font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
                                 </div>
                             </div>
                         </div>
@@ -2264,7 +2264,7 @@ import {
                                     </div>
                                 </div>
                                 <div className="p-4 border-t border-slate-200 dark:border-slate-800 shrink-0">
-                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-[10px] font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
+                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-full font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
                                 </div>
                             </div>
                         </div>
@@ -2282,8 +2282,8 @@ import {
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-2">Keluar Sesi?</h3>
                                 <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-slate-200 py-3.5 px-6 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 active:scale-95 transition-all shadow-sm">Batal</button>
-                                    <button onClick={executeLogout} className="flex-1 bg-google-red text-white py-3.5 px-6 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-redDark border-2 border-google-redDark active:scale-95 transition-all">Ya, Keluar</button>
+                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-slate-200 py-3.5 px-6 rounded-full font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={executeLogout} className="flex-1 bg-google-red text-white py-3.5 px-6 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-redDark border-2 border-google-redDark active:scale-95 transition-all">Ya, Keluar</button>
                                 </div>
                             </div>
                         </div>
@@ -2307,9 +2307,9 @@ import {
                             <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-6 font-medium">Aplikasi ini bisa diinstal langsung ke perangkat Anda (Android, iOS, maupun PC/Laptop) tanpa melalui App Store atau Play Store. Hemat memori dan cepat!</p>
                             
                             <div className="flex bg-slate-100 dark:bg-slate-950 p-1.5 rounded-[16px] mb-6 border-2 border-slate-300 dark:border-slate-850 shadow-inner">
-                                <button onClick={() => setTab('android')} className={`flex-1 py-2.5 rounded-[12px] text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'android' ? 'bg-white dark:bg-slate-900 text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="android" className="text-[16px]" /> Android</button>
-                                <button onClick={() => setTab('ios')} className={`flex-1 py-2.5 rounded-[12px] text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'ios' ? 'bg-white dark:bg-slate-900 text-google-text dark:text-white border-2 border-slate-400 dark:border-slate-700 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="apple" className="text-[16px]" /> iOS</button>
-                                <button onClick={() => setTab('pc')} className={`flex-1 py-2.5 rounded-[12px] text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'pc' ? 'bg-white dark:bg-slate-900 text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="laptop_mac" className="text-[16px]" /> PC/Laptop</button>
+                                <button onClick={() => setTab('android')} className={`flex-1 py-2.5 rounded-full text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'android' ? 'bg-white dark:bg-slate-900 text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="android" className="text-[16px]" /> Android</button>
+                                <button onClick={() => setTab('ios')} className={`flex-1 py-2.5 rounded-full text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'ios' ? 'bg-white dark:bg-slate-900 text-google-text dark:text-white border-2 border-slate-400 dark:border-slate-700 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="apple" className="text-[16px]" /> iOS</button>
+                                <button onClick={() => setTab('pc')} className={`flex-1 py-2.5 rounded-full text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'pc' ? 'bg-white dark:bg-slate-900 text-google-blue border-2 border-google-blue/30 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="laptop_mac" className="text-[16px]" /> PC/Laptop</button>
                             </div>
 
                             {tab === 'android' && (
@@ -2352,7 +2352,7 @@ import {
                             )}
                         </div>
                         <div className="p-5 sm:p-6 md:p-8 border-t-2 border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 rounded-b-[30px] flex justify-end">
-                            <button onClick={onClose} className="bg-google-blue text-white px-6 py-3 rounded-[12px] font-medium text-[13px] shadow-md hover:bg-google-blueDark transition-all active:scale-95">Tutup Panduan</button>
+                            <button onClick={onClose} className="bg-google-blue text-white px-6 py-3 rounded-full font-medium text-[13px] shadow-md hover:bg-google-blueDark transition-all active:scale-95">Tutup Panduan</button>
                         </div>
                     </div>
                 </div>
@@ -2687,7 +2687,7 @@ import {
                                         </div>
                                     )}
                                     <div className="pt-2 flex flex-wrap gap-2.5">
-                                        <button onClick={() => onLogin('warga')} className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white hover:bg-slate-50 rounded-[12px] font-medium text-[11px] sm:text-[12px] shadow-md flex items-center gap-2 active:scale-95 transition-all text-red-600 hover:text-red-700">
+                                        <button onClick={() => onLogin('warga')} className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white hover:bg-slate-50 rounded-full font-medium text-[11px] sm:text-[12px] shadow-md flex items-center gap-2 active:scale-95 transition-all text-red-600 hover:text-red-700">
                                             <Icon name="login" className="text-[15px] sm:text-[16px]" fill="true" />
                                             <span>Portal Warga</span>
                                         </button>
@@ -2795,7 +2795,7 @@ import {
                                     </div>
                                     {informasi.length > limitInformasi && (
                                         <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitInformasi(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitInformasi(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Pengumuman</span>
                                             </button>
@@ -2842,7 +2842,7 @@ import {
                                     </div>
                                     {blogData.length > limitBlog && (
                                         <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitBlog(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitBlog(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Artikel</span>
                                             </button>
@@ -2889,7 +2889,7 @@ import {
                                                                 </div>
                                                             )}
                                                         </div>
-                                                        <button className="w-full bg-google-green/10 text-google-green hover:bg-google-green hover:text-white border-2 border-google-green/20 hover:border-google-green py-2.5 rounded-[12px] font-medium text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
+                                                        <button className="w-full bg-google-green/10 text-google-green hover:bg-google-green hover:text-white border-2 border-google-green/20 hover:border-google-green py-2.5 rounded-full font-medium text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
                                                             <Icon name="volunteer_activism" className="text-[16px]" fill="true" /> Donasi Sekarang
                                                         </button>
                                                     </div>
@@ -2899,7 +2899,7 @@ import {
                                     </div>
                                     {infaqData.length > limitInfaq && (
                                         <div className="flex justify-center pt-2">
-                                            <button onClick={() => setLimitInfaq(prev => prev + 3)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitInfaq(prev => prev + 3)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" /> Lihat Semua Program
                                             </button>
                                         </div>
@@ -2948,7 +2948,7 @@ import {
                                     </div>
                                     {umkmData.length > limitUmkm && (
                                         <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitUmkm(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitUmkm(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Usaha</span>
                                             </button>
@@ -3070,7 +3070,7 @@ import {
                                                 </div>
                                             </div>
                                             <div className="shrink-0 flex items-center justify-center">
-                                                <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-google-blue hover:bg-google-blueDark text-white font-medium py-3.5 px-6 rounded-xl text-[12px] shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
+                                                <button onClick={() => onLogin('warga')} className="w-full md:w-auto bg-google-blue hover:bg-google-blueDark text-white font-medium py-3.5 px-6 rounded-full text-[12px] shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
                                                     <Icon name="login" />
                                                     <span>Masuk Untuk Absen</span>
                                                 </button>
@@ -3106,7 +3106,7 @@ import {
                                             <button onClick={() => {
                                                 sessionStorage.setItem('openTab', 'pemenang');
                                                 onLogin('warga');
-                                            }} className="w-full md:w-auto bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3.5 px-6 rounded-xl text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
+                                            }} className="w-full md:w-auto bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3.5 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
                                                 <Icon name="groups" />
                                                 <span>Lihat Semua Pemenang</span>
                                             </button>
@@ -3137,7 +3137,7 @@ import {
                                                     <Icon name="map" className="text-[44px] text-red-500/40 mb-3" />
                                                     <h4 className="font-medium text-[14px] text-slate-800 dark:text-white">Peta Wilayah Desa Banyuanyar</h4>
                                                     <p className="text-[11.5px] text-slate-500 dark:text-slate-400 mt-1 max-w-sm leading-relaxed">Klik tombol di bawah untuk memuat Peta Google Maps secara interaktif tanpa memperlambat loading awal web.</p>
-                                                    <button onClick={() => setShowMap(true)} className="mt-4 px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-[10px] text-[11.5px] font-medium flex items-center gap-1.5 shadow-md transition-all active:scale-95">
+                                                    <button onClick={() => setShowMap(true)} className="mt-4 px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-full text-[11.5px] font-medium flex items-center gap-1.5 shadow-md transition-all active:scale-95">
                                                         <Icon name="location_on" className="text-[14px]" />
                                                         <span>Muat Peta Interaktif</span>
                                                     </button>
@@ -3241,8 +3241,8 @@ import {
                                     </div>
                                     {error && <p className="text-[11px] text-red-700 font-medium bg-red-50 py-2.5 rounded-xl border border-red-200 shadow-sm flex items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[14px]"/> {error}</p>}
                                     <div className="flex gap-3 pt-3">
-                                        <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3 rounded-xl font-medium text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
-                                        <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-xl font-medium text-[12.5px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
+                                        <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3 rounded-full font-medium text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
+                                        <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white py-3.5 rounded-full font-medium text-[12.5px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
                                     </div>
                                 </form>
                             </div>
@@ -3328,7 +3328,7 @@ import {
                             </div>
                             {/* Footer modal */}
                             <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-700 shrink-0">
-                                <button onClick={() => onLogin('warga')} className="w-full bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white py-3.5 rounded-[16px] font-medium text-[13px] flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all">
+                                <button onClick={() => onLogin('warga')} className="w-full bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white py-3.5 rounded-full font-medium text-[13px] flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all">
                                     <Icon name="login" className="text-[16px]" fill="true" />
                                     Masuk ke Portal Warga untuk Interaksi Lebih
                                 </button>
@@ -3382,11 +3382,11 @@ import {
                     {/* AREA GRID MENU */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-6">
                             {NavItems.map((item, idx) => (
-                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
+                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-full sm:rounded-full border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 
-                                <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-[14px] sm:rounded-[16px] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md border border-white/60 ${item.bg} ${item.color.replace('border-2', '')}`}>
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/10 to-black/5 rounded-[14px] sm:rounded-[16px]"></div>
+                                <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-full sm:rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md border border-white/60 ${item.bg} ${item.color.replace('border-2', '')}`}>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/10 to-black/5 rounded-full sm:rounded-full"></div>
                                     <Icon name={item.icon} className="relative z-10 text-[26px] sm:text-[30px] drop-shadow-sm" fill="true" />
                                 </div>
                                 
@@ -3699,7 +3699,7 @@ import {
                                         }
                                     }
                                 }}
-                                className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-[10px] border transition-all active:scale-95 ${
+                                className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-full border transition-all active:scale-95 ${
                                     adzanEnabled 
                                         ? 'bg-emerald-50 text-emerald-600 border-emerald-500/30' 
                                         : 'bg-slate-50 text-slate-600 border-slate-300 hover:bg-slate-100'
@@ -3712,7 +3712,7 @@ import {
                             <button 
                                 type="button" 
                                 onClick={handleGPSDetection}
-                                className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-[10px] border transition-all active:scale-95 ${
+                                className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-full border transition-all active:scale-95 ${
                                     isGPS 
                                         ? 'bg-red-50 text-red-600 border-red-500/40' 
                                         : 'bg-slate-50 text-slate-600 border-slate-300 hover:bg-slate-100'
@@ -3733,7 +3733,7 @@ import {
                                         className="bg-transparent border-none outline-none text-[12.5px] font-medium w-full text-google-text placeholder:text-slate-400"
                                     />
                                 </div>
-                                <button type="submit" disabled={isSearching} className="bg-red-600 text-white font-medium text-[11px] px-5 py-2.5 rounded-[12px] border border-red-700 hover:bg-red-700 shadow-sm active:scale-95 transition-all">
+                                <button type="submit" disabled={isSearching} className="bg-red-600 text-white font-medium text-[11px] px-5 py-2.5 rounded-full border border-red-700 hover:bg-red-700 shadow-sm active:scale-95 transition-all">
                                     {isSearching ? '...' : 'Cari'}
                                 </button>
                             </form>
@@ -3747,7 +3747,7 @@ import {
                                     <button 
                                         key={res.id} 
                                         onClick={() => selectCity(res)}
-                                        className="w-full text-left px-4 py-2.5 rounded-[12px] hover:bg-red-50 hover:text-red-700 font-medium text-[12px] text-google-text transition-colors"
+                                        className="w-full text-left px-4 py-2.5 rounded-full hover:bg-red-50 hover:text-red-700 font-medium text-[12px] text-google-text transition-colors"
                                     >
                                         {res.lokasi}
                                     </button>
@@ -3840,7 +3840,7 @@ import {
                         <div className="bg-gradient-to-r from-google-blueLight to-blue-50 p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row items-center sm:text-left text-center gap-6 border-2 border-google-blue shadow-sm">
                             <div className="bg-google-blue text-white w-16 h-16 rounded-full flex items-center justify-center shadow-md border-2 border-google-blueDark shrink-0"><Icon name="task_alt" className="text-[32px]" fill="true" /></div>
                             <div className="flex-1"><h3 className="font-medium text-google-blueDark text-xl mb-1.5">Siklus Telah Selesai</h3><p className="text-[13px] font-medium text-google-blue">Seluruh warga arisan telah memenangkan putaran. Silakan mulai siklus baru.</p></div>
-                            <button onClick={() => setShowResetModal(true)} className="w-full sm:w-auto px-8 py-3.5 bg-google-blue text-white font-medium rounded-[12px] text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="refresh" className="text-[17px]"/> Mulai Baru</button>
+                            <button onClick={() => setShowResetModal(true)} className="w-full sm:w-auto px-8 py-3.5 bg-google-blue text-white font-medium rounded-full text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="refresh" className="text-[17px]"/> Mulai Baru</button>
                         </div>
                     )}
 
@@ -3850,7 +3850,7 @@ import {
                                 <div><span className="text-[10px] font-medium uppercase tracking-widest text-google-textVariant block mb-2">Kas Utama RT</span><p className="text-3xl font-medium text-google-text group-hover:text-google-blue transition-colors tracking-tight">{formatRp(kasRtBalance)}</p></div>
                                 <div className="bg-google-blueLight text-google-blueDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border-2 border-google-blue/30"><Icon name="account_balance" className="text-[24px]" fill="true" /></div>
                             </div>
-                            <button onClick={() => changeTab('kas')} className="w-full bg-white text-google-text border-2 border-slate-300 font-medium py-3.5 rounded-[12px] text-[12px] hover:bg-slate-50 hover:border-google-blue hover:text-google-blue transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Rincian Kas</button>
+                            <button onClick={() => changeTab('kas')} className="w-full bg-white text-google-text border-2 border-slate-300 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-blue hover:text-google-blue transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Rincian Kas</button>
                         </div>
                         
                         <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-green/50 transition-all duration-300 group cursor-default">
@@ -3858,7 +3858,7 @@ import {
                                 <div><span className="text-[10px] font-medium uppercase tracking-widest text-google-textVariant block mb-2">Kas Jimpitan Tunai</span><p className="text-3xl font-medium text-google-text group-hover:text-google-green transition-colors tracking-tight">{formatRp(jimpitanBalance)}</p></div>
                                 <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border-2 border-google-green/30"><Icon name="savings" className="text-[24px]" fill="true" /></div>
                             </div>
-                            <button onClick={() => changeTab('laporan')} className="w-full bg-white text-google-text border-2 border-slate-300 font-medium py-3.5 rounded-[12px] text-[12px] hover:bg-slate-50 hover:border-google-green hover:text-google-green transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Riwayat Arisan</button>
+                            <button onClick={() => changeTab('laporan')} className="w-full bg-white text-google-text border-2 border-slate-300 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-green hover:text-google-green transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Riwayat Arisan</button>
                         </div>
 
                         <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-red/50 transition-all duration-300 group cursor-default">
@@ -3866,7 +3866,7 @@ import {
                                 <div><span className="text-[10px] font-medium uppercase tracking-widest text-google-textVariant block mb-2">Tunggakan Total</span><p className="text-3xl font-medium text-google-text group-hover:text-google-red transition-colors tracking-tight">{formatRp(totalDebt)}</p></div>
                                 <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border-2 border-google-red/30"><Icon name="money_off" className="text-[24px]" fill="true" /></div>
                             </div>
-                            <button onClick={() => changeTab('warga')} className="w-full bg-white text-google-text border-2 border-slate-300 font-medium py-3.5 rounded-[12px] text-[12px] hover:bg-slate-50 hover:border-google-red hover:text-google-red transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Cek Penunggak</button>
+                            <button onClick={() => changeTab('warga')} className="w-full bg-white text-google-text border-2 border-slate-300 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-red hover:text-google-red transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Cek Penunggak</button>
                         </div>
                     </div>
 
@@ -3889,7 +3889,7 @@ import {
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Mulai Siklus Baru?</h3>
                                 <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-5 sm:p-6 md:p-8 rounded-[24px] border-2 border-slate-300"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setShowResetModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => setShowResetModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                     <button onClick={() => { 
                                         setMembers(members.map(m => m.program === 'IuranOnly' ? m : { ...m, hasWon: false, wonRound: null })); 
                                         setCurrentRound(1); 
@@ -4003,7 +4003,7 @@ import {
                             <p className="text-[13px] font-medium text-google-textVariant mt-1.5">Daftar barang fasilitas RT beserta kondisi dan stok pinjam.</p>
                         </div>
                         {userRole === 'admin' && (
-                            <button onClick={() => { setFormData({ name: '', kondisi: { baru: 0, bekas: 0, rusak: 0 }, imageUrl: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="flex flex-wrap items-center gap-2 bg-google-yellow text-white px-6 py-3 rounded-[12px] font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all shrink-0">
+                            <button onClick={() => { setFormData({ name: '', kondisi: { baru: 0, bekas: 0, rusak: 0 }, imageUrl: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="flex flex-wrap items-center gap-2 bg-google-yellow text-white px-6 py-3 rounded-full font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all shrink-0">
                                 <Icon name="add" className="text-[17px]" />Tambah Barang
                             </button>
                         )}
@@ -4067,8 +4067,8 @@ import {
                                         {/* Tombol admin */}
                                         {userRole === 'admin' && (
                                             <div className="flex gap-2 mt-auto pt-3 border-t-2 border-slate-100">
-                                                <button onClick={() => openEditForm(item)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                                <button onClick={() => setDeleteConfirmId(item.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                                <button onClick={() => openEditForm(item)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-full py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                                <button onClick={() => setDeleteConfirmId(item.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-full py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                             </div>
                                         )}
                                     </div>
@@ -4127,7 +4127,7 @@ import {
                                                 <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan G' : 'Pilih Gambar'}</p>
                                                 <p className="text-[11px] text-google-textVariant">{formData.imageUrl ? 'Klik untuk ganti foto' : 'Maks. 2MB G JPG, PNG, WEBP'}</p>
                                             </div>
-                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-300 rounded-[12px] w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
+                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-300 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
                                         </div>
                                     </div>
 
@@ -4135,8 +4135,8 @@ import {
                                 </div>
 
                                 <div className="flex flex-wrap gap-3 mt-6">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all disabled:opacity-50">Simpan</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all disabled:opacity-50">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -4150,8 +4150,8 @@ import {
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Barang?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Barang ini akan dihapus permanen dari daftar inventaris RT.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={() => { const idToDelete = deleteConfirmId; setData(prev => prev.filter(item => item.id !== idToDelete)); setDeleteConfirmId(null); showToast('Barang berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => { const idToDelete = deleteConfirmId; setData(prev => prev.filter(item => item.id !== idToDelete)); setDeleteConfirmId(null); showToast('Barang berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4257,12 +4257,12 @@ import {
                             </div>
                             <div className="flex gap-2 flex-wrap">
                                 {userRole === 'admin' && (
-                                    <button onClick={() => setView(view === 'admin' ? 'list' : 'admin')} className={`flex items-center gap-2 px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 transition-all active:scale-95 ${view === 'admin' ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-300 hover:border-google-blue'}`}>
+                                    <button onClick={() => setView(view === 'admin' ? 'list' : 'admin')} className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[12px] border-2 transition-all active:scale-95 ${view === 'admin' ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-300 hover:border-google-blue'}`}>
                                         <Icon name="admin_panel_settings" className="text-[16px]" />Panel Admin
-                                        {pendingList.length > 0 && <span className="bg-google-red text-white text-[9px] font-medium px-2 py-0.5 rounded-[10px]">{pendingList.length}</span>}
+                                        {pendingList.length > 0 && <span className="bg-google-red text-white text-[9px] font-medium px-2 py-0.5 rounded-full">{pendingList.length}</span>}
                                     </button>
                                 )}
-                                <button onClick={() => { setView('form'); setErrorMsg(''); }} className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all">
+                                <button onClick={() => { setView('form'); setErrorMsg(''); }} className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-full font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all">
                                     <Icon name="add" className="text-[16px]" />Ajukan Pinjam
                                 </button>
                             </div>
@@ -4335,8 +4335,8 @@ import {
                             </div>
                             {errorMsg && <div className="mt-4 bg-google-redLight border border-google-red/30 text-google-redDark px-4 py-3 rounded-[14px] text-[12px] font-medium flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px]" />{errorMsg}</div>}
                             <div className="flex flex-wrap gap-3 mt-6">
-                                <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                                <button onClick={handleSubmitPinjam} className="flex flex-wrap bg-google-green text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2"><Icon name="send" className="text-[16px]" />Kirim Pengajuan</button>
+                                <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
+                                <button onClick={handleSubmitPinjam} className="flex flex-wrap bg-google-green text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2"><Icon name="send" className="text-[16px]" />Kirim Pengajuan</button>
                             </div>
                         </div>
                     )}
@@ -4359,8 +4359,8 @@ import {
                                                     {p.catatan && <p className="text-[10px] text-slate-500 mt-0.5">= {p.catatan}</p>}
                                                 </div>
                                                 <div className="flex flex-wrap gap-2 shrink-0">
-                                                    <button onClick={() => setKonfirmRejectId(p.id)} className="px-4 py-2.5 bg-white text-google-red border-2 border-google-red/30 rounded-[12px] font-medium text-[11px] hover:bg-google-redLight active:scale-95 transition-all">Tolak</button>
-                                                    <button onClick={() => handleApprove(p.id)} className="px-4 py-2.5 bg-google-green text-white border-2 border-google-greenDark rounded-[12px] font-medium text-[11px] hover:bg-google-greenDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1"><Icon name="check" className="text-[13px]" />Setujui</button>
+                                                    <button onClick={() => setKonfirmRejectId(p.id)} className="px-4 py-2.5 bg-white text-google-red border-2 border-google-red/30 rounded-full font-medium text-[11px] hover:bg-google-redLight active:scale-95 transition-all">Tolak</button>
+                                                    <button onClick={() => handleApprove(p.id)} className="px-4 py-2.5 bg-google-green text-white border-2 border-google-greenDark rounded-full font-medium text-[11px] hover:bg-google-greenDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1"><Icon name="check" className="text-[13px]" />Setujui</button>
                                                 </div>
                                             </div>
                                         ))}
@@ -4384,7 +4384,7 @@ import {
                                                         <p className="text-[10px] font-medium text-google-red mt-1 flex flex-wrap items-center gap-1"><Icon name="warning" className="text-[12px]" />Melewati estimasi tanggal kembali!</p>
                                                     )}
                                                 </div>
-                                                <button onClick={() => setKonfirmReturnId(p.id)} className="px-4 py-2.5 bg-google-blue text-white border-2 border-google-blueDark rounded-[12px] font-medium text-[11px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1 shrink-0"><Icon name="assignment_return" className="text-[13px]" />Barang Kembali</button>
+                                                <button onClick={() => setKonfirmReturnId(p.id)} className="px-4 py-2.5 bg-google-blue text-white border-2 border-google-blueDark rounded-full font-medium text-[11px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1 shrink-0"><Icon name="assignment_return" className="text-[13px]" />Barang Kembali</button>
                                             </div>
                                         ))}
                                     </div>
@@ -4450,8 +4450,8 @@ import {
                                     <p className="text-[13px] text-google-textVariant mb-2"><span className="font-medium text-google-text">{p.namaBarang}</span><br/>dikembalikan oleh <span className="font-medium text-google-blueDark">{p.namaWarga}</span></p>
                                     <p className="text-[12px] font-medium text-google-green mb-6">Stok inventaris akan otomatis pulih setelah konfirmasi.</p>
                                     <div className="flex flex-wrap gap-3">
-                                        <button onClick={() => setKonfirmReturnId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-[12px] font-medium text-[12px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
-                                        <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-[12px] font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">G Konfirmasi Kembali</button>
+                                        <button onClick={() => setKonfirmReturnId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
+                                        <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-full font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">G Konfirmasi Kembali</button>
                                     </div>
                                 </>) : null; })()}
                             </div>
@@ -4466,8 +4466,8 @@ import {
                                 <h3 className="text-xl font-medium text-google-text mb-2">Tolak Pengajuan?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-6">Pengajuan pinjam ini akan dihapus dari daftar.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setKonfirmRejectId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-[12px] font-medium text-[12px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
-                                    <button onClick={() => handleReject(konfirmRejectId)} className="flex-1 bg-google-red text-white px-4 py-3 rounded-[12px] font-medium text-[12px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Tolak & Hapus</button>
+                                    <button onClick={() => setKonfirmRejectId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
+                                    <button onClick={() => handleReject(konfirmRejectId)} className="flex-1 bg-google-red text-white px-4 py-3 rounded-full font-medium text-[12px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Tolak & Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4612,7 +4612,7 @@ import {
                         </div>
                         {userRole === 'admin' && (
                             <button onClick={() => { setForm(emptyForm); setEditingId(null); setErrorMsg(''); setView('form'); }}
-                                className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-[12px] font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all shrink-0">
+                                className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-full font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all shrink-0">
                                 <Icon name="add" className="text-[16px]" />Buat Program Infaq
                             </button>
                         )}
@@ -4656,11 +4656,11 @@ import {
                                         {userRole === 'admin' && (
                                             <div className="flex gap-2 pt-3 border-t-2 border-slate-100 mt-1" onClick={e => e.stopPropagation()}>
                                                 <button onClick={() => { setForm({...item}); setEditingId(item.id); setErrorMsg(''); setView('form'); }}
-                                                    className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95">
+                                                    className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-full py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95">
                                                     <Icon name="edit" className="text-[14px]" /> Edit
                                                 </button>
                                                 <button onClick={() => setDeleteConfirmId(item.id)}
-                                                    className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95">
+                                                    className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-full py-2 px-3 text-[12px] font-medium transition-all active:scale-95">
                                                     <Icon name="delete" className="text-[14px]" /> Hapus
                                                 </button>
                                             </div>
@@ -4688,9 +4688,9 @@ import {
                                 <h3 className="text-xl font-medium text-google-text mb-2">Hapus Program Infaq?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-8">Program beserta data rekening akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
                                     <button onClick={() => { setInfaqData(infaqData.filter(i => i.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Program infaq dihapus.'); }}
-                                        className="flex-1 bg-google-red text-white px-4 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Hapus</button>
+                                        className="flex-1 bg-google-red text-white px-4 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -4761,7 +4761,7 @@ import {
                                         setInfaqData(infaqData.map(i => i.id === prog.id ? {...i, danaTerkumpul: val} : i));
                                         setSelected(prev => ({...prev, danaTerkumpul: val}));
                                         showToast('Dana terkumpul berhasil diperbarui.');
-                                    }} className="bg-google-blue text-white px-5 py-3 rounded-[14px] font-medium text-[12px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all whitespace-nowrap">
+                                    }} className="bg-google-blue text-white px-5 py-3 rounded-full font-medium text-[12px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all whitespace-nowrap">
                                         Simpan
                                     </button>
                                 </div>
@@ -4803,7 +4803,7 @@ import {
                                                             setInfaqData(infaqData.map(i => i.id === prog.id ? updatedProg : i));
                                                             setSelected(updatedProg);
                                                             showToast('Bukti disetujui. Dana bertambah otomatis!');
-                                                        }} className="bg-google-green text-white px-4 py-2 rounded-[12px] font-medium text-[11px] border-2 border-google-greenDark shadow-sm hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center gap-1">
+                                                        }} className="bg-google-green text-white px-4 py-2 rounded-full font-medium text-[11px] border-2 border-google-greenDark shadow-sm hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center gap-1">
                                                             <Icon name="check" className="text-[13px]"/>Setujui
                                                         </button>
                                                         <button onClick={() => {
@@ -4812,7 +4812,7 @@ import {
                                                             setInfaqData(infaqData.map(i => i.id === prog.id ? updatedProg : i));
                                                             setSelected(updatedProg);
                                                             showToast('Bukti ditolak.', 'error');
-                                                        }} className="bg-white text-google-red px-4 py-2 rounded-[12px] font-medium text-[11px] border-2 border-google-red/30 shadow-sm hover:bg-google-redLight active:scale-95 transition-all flex flex-wrap items-center gap-1">
+                                                        }} className="bg-white text-google-red px-4 py-2 rounded-full font-medium text-[11px] border-2 border-google-red/30 shadow-sm hover:bg-google-redLight active:scale-95 transition-all flex flex-wrap items-center gap-1">
                                                             <Icon name="close" className="text-[13px]"/>Tolak
                                                         </button>
                                                     </>
@@ -4900,7 +4900,7 @@ import {
                                 <div className="grid grid-cols-3 gap-2 mb-3">
                                     {NOMINAL_CEPAT.map(n => (
                                         <button key={n} onClick={() => setNominalInput(String(n))}
-                                            className={`py-2.5 rounded-[12px] font-medium text-[11px] border-2 transition-all active:scale-95 ${nominalInput === String(n) ? 'bg-google-green text-white border-google-greenDark shadow-md' : 'bg-slate-50 text-google-text border-slate-300 hover:border-google-green/50'}`}>
+                                            className={`py-2.5 rounded-full font-medium text-[11px] border-2 transition-all active:scale-95 ${nominalInput === String(n) ? 'bg-google-green text-white border-google-greenDark shadow-md' : 'bg-slate-50 text-google-text border-slate-300 hover:border-google-green/50'}`}>
                                             {formatRp(n)}
                                         </button>
                                     ))}
@@ -4916,7 +4916,7 @@ import {
                                 <div className="flex gap-2 flex-wrap mb-3">
                                     {[['nama','Nama Saya'],['tanpanama','Tanpa Nama'],['hambaalah','Hamba Allah']].map(([val, label]) => (
                                         <button key={val} onClick={() => setTipeNama(val)}
-                                            className={`px-4 py-2 rounded-[10px] font-medium text-[11px] border-2 transition-all active:scale-95 ${tipeNama === val ? 'bg-google-green text-white border-google-greenDark' : 'bg-slate-50 text-google-text border-slate-300 hover:border-google-green/40'}`}>
+                                            className={`px-4 py-2 rounded-full font-medium text-[11px] border-2 transition-all active:scale-95 ${tipeNama === val ? 'bg-google-green text-white border-google-greenDark' : 'bg-slate-50 text-google-text border-slate-300 hover:border-google-green/40'}`}>
                                             {label}
                                         </button>
                                     ))}
@@ -4936,7 +4936,7 @@ import {
                                         <p className="text-[16px] font-medium text-google-green mt-0.5">{formatRp(safeNumber(nominalInput))}</p>
                                     </div>
                                     <button onClick={() => setShowPayModal(true)}
-                                        className="bg-google-green text-white px-5 py-3 rounded-[12px] font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center gap-1.5 shrink-0">
+                                        className="bg-google-green text-white px-5 py-3 rounded-full font-medium text-[12px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center gap-1.5 shrink-0">
                                         <Icon name="payments" className="text-[16px]" />Bayar
                                     </button>
                                 </div>
@@ -4949,7 +4949,7 @@ import {
                                 <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[24px] sm:rounded-[32px] p-4 sm:p-5 md:p-6 w-full max-w-sm -slate-300 my-4 modal-card animate-modal-in">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[16px] font-medium text-google-text">Cara Pembayaran</h3>
-                                        <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border-2 border-slate-300 rounded-[12px] flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
+                                        <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border-2 border-slate-300 rounded-full flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
                                             <Icon name="close" className="text-[16px]" />
                                         </button>
                                     </div>
@@ -4966,7 +4966,7 @@ import {
                                         <div className="flex gap-2 flex-wrap mb-3">
                                             {(prog.rekening || []).map((r, i) => (
                                                 <button key={i} onClick={() => setSelectedRek(i)}
-                                                    className={`px-3 py-1.5 rounded-[10px] font-medium text-[11px] border-2 transition-all active:scale-95 ${selectedRek === i ? 'bg-google-blue text-white border-google-blueDark' : 'bg-slate-50 text-google-text border-slate-300'}`}>
+                                                    className={`px-3 py-1.5 rounded-full font-medium text-[11px] border-2 transition-all active:scale-95 ${selectedRek === i ? 'bg-google-blue text-white border-google-blueDark' : 'bg-slate-50 text-google-text border-slate-300'}`}>
                                                     {r.bank}
                                                 </button>
                                             ))}
@@ -5087,7 +5087,7 @@ import {
                                         <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : form.imageUrl ? 'Foto Tersimpan G' : 'Pilih Foto Program'}</p>
                                         <p className="text-[11px] text-google-textVariant">Maks. 2MB</p>
                                     </div>
-                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-300 rounded-[12px] w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
+                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-300 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
                                 </div>
                             </div>
 
@@ -5139,7 +5139,7 @@ import {
                             <div>
                                 <div className="flex items-center justify-between mb-3">
                                     <label className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest">Rekening Pembayaran *</label>
-                                    <button type="button" onClick={addRek} className="flex flex-wrap items-center gap-1 text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-[12px] hover:bg-google-blue hover:text-white active:scale-95 transition-all">
+                                    <button type="button" onClick={addRek} className="flex flex-wrap items-center gap-1 text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-full hover:bg-google-blue hover:text-white active:scale-95 transition-all">
                                         <Icon name="add" className="text-[13px]" />Tambah Rekening
                                     </button>
                                 </div>
@@ -5149,7 +5149,7 @@ import {
                                             <div className="flex items-center justify-between">
                                                 <p className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider">Rekening {i+1}</p>
                                                 {form.rekening.length > 1 && (
-                                                    <button type="button" onClick={() => removeRek(i)} className="text-google-red hover:bg-google-redLight w-7 h-7 flex items-center justify-center rounded-[12px] border border-google-red/30 active:scale-95 transition-all">
+                                                    <button type="button" onClick={() => removeRek(i)} className="text-google-red hover:bg-google-redLight w-7 h-7 flex items-center justify-center rounded-full border border-google-red/30 active:scale-95 transition-all">
                                                         <Icon name="close" className="text-[13px]" />
                                                     </button>
                                                 )}
@@ -5175,8 +5175,8 @@ import {
                         </div>
 
                         <div className="flex flex-wrap gap-3 mt-6">
-                            <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                            <button onClick={handleSaveProgram} disabled={isUploading} className="flex-1 bg-google-green text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all disabled:opacity-50">
+                            <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
+                            <button onClick={handleSaveProgram} disabled={isUploading} className="flex-1 bg-google-green text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all disabled:opacity-50">
                                 {editingId ? 'Simpan Perubahan' : 'Buat Program'}
                             </button>
                         </div>
@@ -5251,7 +5251,7 @@ import {
                             <p className="text-[13px] font-medium text-google-textVariant mt-1.5">Album dokumentasi digital dan catatan kegiatan warga.</p>
                         </div>
                         {userRole === 'admin' && (
-                            <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue border-2 border-google-blueDark text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2">
+                            <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue border-2 border-google-blueDark text-white px-6 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2">
                                 <Icon name="add_a_photo" className="text-[17px]" />
                                 <span>Unggah Foto</span>
                             </button>
@@ -5289,10 +5289,10 @@ import {
                                     </div>
                                     {userRole === 'admin' && (
                                         <div className="flex flex-wrap justify-end gap-2 border-t border-slate-200 pt-3">
-                                            <button onClick={() => handleEdit(item)} className="bg-white text-google-blue w-9 h-9 rounded-[12px] font-medium flex items-center justify-center hover:bg-google-blueLight border border-slate-300 hover:border-google-blue/30 transition-all duration-300">
+                                            <button onClick={() => handleEdit(item)} className="bg-white text-google-blue w-9 h-9 rounded-full font-medium flex items-center justify-center hover:bg-google-blueLight border border-slate-300 hover:border-google-blue/30 transition-all duration-300">
                                                 <Icon name="edit" className="text-[14px]" />
                                             </button>
-                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red w-9 h-9 rounded-[12px] font-medium flex items-center justify-center hover:bg-google-redLight border border-slate-300 hover:border-google-red/30 transition-all duration-300">
+                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red w-9 h-9 rounded-full font-medium flex items-center justify-center hover:bg-google-redLight border border-slate-300 hover:border-google-red/30 transition-all duration-300">
                                                 <Icon name="delete" className="text-[14px]" />
                                             </button>
                                         </div>
@@ -5320,7 +5320,7 @@ import {
                                         <Icon name="image" className="text-red-600" />
                                         <span className="text-[12px] font-medium text-google-text">Detail Dokumentasi</span>
                                     </div>
-                                    <button onClick={() => setSelectedPhoto(null)} className="w-9 h-9 flex items-center justify-center rounded-[12px] bg-slate-200 text-slate-500 hover:bg-slate-300 transition-all active:scale-95">
+                                    <button onClick={() => setSelectedPhoto(null)} className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-200 text-slate-500 hover:bg-slate-300 transition-all active:scale-95">
                                         <Icon name="close" />
                                     </button>
                                 </div>
@@ -5386,8 +5386,8 @@ import {
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-4 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-200">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex flex-wrap items-center justify-center gap-2">
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex flex-wrap items-center justify-center gap-2">
                                         {editingId ? 'Simpan' : 'Unggah'}
                                     </button>
                                 </div>
@@ -5402,8 +5402,8 @@ import {
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Foto?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Foto ini akan dihapus dari galeri warga.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Foto berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Foto berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -5447,7 +5447,7 @@ import {
                 <div className="space-y-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Papan Informasi & Kegiatan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Pengumuman dan dokumentasi lingkungan RT.</p></div>
-                        {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="add" className="text-[17px]" /><span>Buat Info Baru</span></button>}
+                        {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="add" className="text-[17px]" /><span>Buat Info Baru</span></button>}
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -5462,8 +5462,8 @@ import {
                                     
                                     {userRole === 'admin' && (
                                         <div className="flex gap-2 mt-auto pt-4 border-t-2 border-slate-100">
-                                            <button onClick={() => { setFormData(item); setEditingId(item.id); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                            <button onClick={() => setDeleteConfirmId(item.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                            <button onClick={() => { setFormData(item); setEditingId(item.id); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-full py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                            <button onClick={() => setDeleteConfirmId(item.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-full py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                         </div>
                                     )}
                                 </div>
@@ -5505,8 +5505,8 @@ import {
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-4 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-200 shrink-0">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">Publikasikan</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">Publikasikan</button>
                                 </div>
                             </div>
                         </div>
@@ -5519,8 +5519,8 @@ import {
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Informasi?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Konten ini akan dihapus secara permanen dari layar warga.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Informasi berhasil dihapus.'); }} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Informasi berhasil dihapus.'); }} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -5596,9 +5596,9 @@ import {
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Buku Induk Warga</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Total <span className="font-medium text-google-blue">{members.length} Warga</span> Terdaftar</p></div>
                         <div className="flex gap-3 w-full sm:w-auto overflow-x-auto hide-scrollbar pb-1 sm:pb-0">
-                            <button onClick={() => { setPrintMode('buku'); setTimeout(() => { window.print(); setTimeout(() => setPrintMode(''), 1000); }, 100); }} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /><span>Cetak Form</span></button>
-                            {userRole === 'admin' && <button onClick={handlePrintBarcode} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="qr_code_scanner" className="text-[16px]" /><span>Cetak Barcode</span></button>}
-                            {userRole === 'admin' && <button onClick={() => { setFormData({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="person_add" className="text-[17px]" /><span>Tambah Data</span></button>}
+                            <button onClick={() => { setPrintMode('buku'); setTimeout(() => { window.print(); setTimeout(() => setPrintMode(''), 1000); }, 100); }} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /><span>Cetak Form</span></button>
+                            {userRole === 'admin' && <button onClick={handlePrintBarcode} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="qr_code_scanner" className="text-[16px]" /><span>Cetak Barcode</span></button>}
+                            {userRole === 'admin' && <button onClick={() => { setFormData({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="person_add" className="text-[17px]" /><span>Tambah Data</span></button>}
                         </div>
                     </div>
 
@@ -5673,8 +5673,8 @@ import {
                                 </div>
                                 {userRole === 'admin' && (
                                     <div className="flex flex-wrap items-center gap-2.5 shrink-0 border-t-2 sm:border-t-0 border-slate-200 pt-5 sm:pt-0 justify-end w-full sm:w-auto opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <button onClick={() => { setFormData(member); setEditingId(member.id); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-5 py-2 rounded-[12px] font-medium text-[12px] hover:bg-google-blueDark shadow-sm active:scale-95 transition-all duration-300 flex items-center justify-center gap-1.5"><Icon name="edit" className="text-[14px]" /><span className="sm:hidden">Edit</span></button>
-                                        <button onClick={() => setDeleteConfirmId(member.id)} className="bg-google-red/10 text-google-red px-5 py-2 rounded-[12px] font-medium text-[12px] hover:bg-google-red hover:text-white shadow-sm active:scale-95 transition-all duration-300 flex items-center justify-center gap-1.5"><Icon name="delete" className="text-[14px]" /><span className="sm:hidden">Hapus</span></button>
+                                        <button onClick={() => { setFormData(member); setEditingId(member.id); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-5 py-2 rounded-full font-medium text-[12px] hover:bg-google-blueDark shadow-sm active:scale-95 transition-all duration-300 flex items-center justify-center gap-1.5"><Icon name="edit" className="text-[14px]" /><span className="sm:hidden">Edit</span></button>
+                                        <button onClick={() => setDeleteConfirmId(member.id)} className="bg-google-red/10 text-google-red px-5 py-2 rounded-full font-medium text-[12px] hover:bg-google-red hover:text-white shadow-sm active:scale-95 transition-all duration-300 flex items-center justify-center gap-1.5"><Icon name="delete" className="text-[14px]" /><span className="sm:hidden">Hapus</span></button>
                                     </div>
                                 )}
                             </div>
@@ -5705,8 +5705,8 @@ import {
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-5 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-200">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Simpan</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={handleSave} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -5718,8 +5718,8 @@ import {
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Warga?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Data warga dan riwayatnya akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={executeDelete} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={executeDelete} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -5748,7 +5748,7 @@ import {
                                 <div className="border-2 border-dashed border-slate-400 rounded-[24px] p-5 bg-white mb-2 relative">
                                     <p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-3">Barcode Resmi</p>
                                     <canvas id="preview-barcode" className="mx-auto w-full max-w-[200px]"></canvas>
-                                    <button onClick={handleDownloadBarcode} className="mt-4 bg-slate-100 hover:bg-slate-200 text-google-text font-medium text-[11px] px-4 py-2 rounded-[12px] transition-all flex items-center justify-center gap-1 mx-auto border-2 border-slate-300 active:scale-95"><Icon name="download" className="text-[14px]"/> Simpan Gambar (PNG)</button>
+                                    <button onClick={handleDownloadBarcode} className="mt-4 bg-slate-100 hover:bg-slate-200 text-google-text font-medium text-[11px] px-4 py-2 rounded-full transition-all flex items-center justify-center gap-1 mx-auto border-2 border-slate-300 active:scale-95"><Icon name="download" className="text-[14px]"/> Simpan Gambar (PNG)</button>
                                 </div>
                                 <p className="text-[10px] font-medium text-slate-400 mt-4">Tunjukkan barcode ini kepada petugas jika diperlukan.</p>
                             </div>
@@ -5818,7 +5818,7 @@ import {
                         </div>
                         {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                         <div className="flex justify-end mt-10 pt-6 border-t-2 border-slate-200">
-                            <button onClick={handleSaveAgenda} className="bg-google-blue text-white px-8 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[17px]"/> Simpan Agenda</button>
+                            <button onClick={handleSaveAgenda} className="bg-google-blue text-white px-8 py-4 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[17px]"/> Simpan Agenda</button>
                         </div>
                     </div>
                 );
@@ -5834,7 +5834,7 @@ import {
                     <div className="space-y-6 max-w-6xl mx-auto">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                             <div className="flex flex-wrap items-center gap-5"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><div><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda.title}</h2><p className="text-[13px] font-medium text-google-textVariant mt-1">Kelola Penyetoran Warga</p></div></div>
-                            {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
+                            {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
                         </div>
 
                         <div className="hidden print-only">
@@ -5910,7 +5910,7 @@ import {
                             {userRole === 'admin' && (
                                 <div className="mt-10 pt-8 border-t-2 border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-5">
                                     {errorMsg ? <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-5 py-4 rounded-[16px] w-full sm:w-auto flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div> : <div></div>}
-                                    <button onClick={handleSavePayments} className="w-full sm:w-auto bg-google-blue text-white px-10 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[17px]" /> Simpan Rekap Warga</button>
+                                    <button onClick={handleSavePayments} className="w-full sm:w-auto bg-google-blue text-white px-10 py-4 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[17px]" /> Simpan Rekap Warga</button>
                                 </div>
                             )}
                         </div>
@@ -5929,8 +5929,8 @@ import {
                                     {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                     
                                     <div className="flex flex-wrap gap-3">
-                                        <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                        <button onClick={executeTransferToKas} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Setor Dana</button>
+                                        <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                        <button onClick={executeTransferToKas} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Setor Dana</button>
                                     </div>
                                 </div>
                             </div>
@@ -5943,7 +5943,7 @@ import {
                 <div className="space-y-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Agenda Iuran Umum</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Penggalangan dana non-arisan (berlaku untuk semua warga).</p></div>
-                        {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', minAmount: 0, dueDate: getLocalDate(), payments: {}, transferredToKas: 0 }); setSelectedAgenda(null); setView('form'); setErrorMsg(''); }} className="shrink-0 bg-google-blue text-white px-8 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto justify-center"><Icon name="add_task" className="text-[17px]" /><span>Buat Agenda Baru</span></button>}
+                        {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', minAmount: 0, dueDate: getLocalDate(), payments: {}, transferredToKas: 0 }); setSelectedAgenda(null); setView('form'); setErrorMsg(''); }} className="shrink-0 bg-google-blue text-white px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto justify-center"><Icon name="add_task" className="text-[17px]" /><span>Buat Agenda Baru</span></button>}
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
@@ -5970,12 +5970,12 @@ import {
                                         <div className="bg-google-greenLight/50 px-5 py-3.5 rounded-[16px] border-2 border-google-green/30"><p className="text-[9px] text-google-greenDark uppercase tracking-widest font-medium mb-1">Total Dana Terkumpul</p><p className="text-[18px] font-medium text-google-greenDark tracking-tight truncate">{userRole === 'admin' ? formatRp(totalTerkumpul) : '= Disembunyikan'}</p></div>
                                         {userRole === 'admin' ? (
                                             <div className="flex flex-wrap items-center gap-3 shrink-0 self-end sm:self-auto">
-                                                <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-6 py-3.5 bg-google-blueLight text-google-blueDark border-2 border-google-blue/30 rounded-[12px] text-[13px] font-medium hover:bg-google-blue hover:text-white transition-all duration-300 hover:shadow-md active:scale-95 flex flex-wrap items-center gap-1.5"><Icon name="edit_document" className="text-[16px]"/> Kelola</button>
+                                                <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-6 py-3.5 bg-google-blueLight text-google-blueDark border-2 border-google-blue/30 rounded-full text-[13px] font-medium hover:bg-google-blue hover:text-white transition-all duration-300 hover:shadow-md active:scale-95 flex flex-wrap items-center gap-1.5"><Icon name="edit_document" className="text-[16px]"/> Kelola</button>
                                                 <button onClick={() => { setFormData({ title: agenda.title, minAmount: agenda.minAmount, dueDate: agenda.dueDate, payments: agenda.payments || {}, transferredToKas: agenda.transferredToKas || 0 }); setSelectedAgenda(agenda); setView('form'); setErrorMsg(''); }} className="w-12 h-12 flex items-center justify-center bg-white text-google-text hover:bg-slate-50 hover:border-slate-400 rounded-full border-2 border-slate-300 active:scale-95 transition-all duration-300 shadow-sm"><Icon name="settings" className="text-[17px]" /></button>
                                                 <button onClick={() => setDeleteConfirmAgendaId(agenda.id)} className="w-12 h-12 flex items-center justify-center bg-white text-google-red hover:bg-google-redLight hover:border-google-red/40 rounded-full border-2 border-slate-300 active:scale-95 transition-all duration-300 shadow-sm"><Icon name="delete" className="text-[17px]" /></button>
                                             </div>
                                         ) : (
-                                            <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-8 py-3.5 bg-white border-2 border-slate-300 text-google-text rounded-[12px] text-[13px] font-medium hover:bg-slate-50 hover:border-slate-400 shadow-sm shrink-0 active:scale-95 transition-all duration-300 self-end sm:self-auto flex flex-wrap items-center gap-2"><Icon name="visibility" className="text-[16px]"/> Cek Status Saya</button>
+                                            <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-8 py-3.5 bg-white border-2 border-slate-300 text-google-text rounded-full text-[13px] font-medium hover:bg-slate-50 hover:border-slate-400 shadow-sm shrink-0 active:scale-95 transition-all duration-300 self-end sm:self-auto flex flex-wrap items-center gap-2"><Icon name="visibility" className="text-[16px]"/> Cek Status Saya</button>
                                         )}
                                     </div>
                                 </div>
@@ -5992,8 +5992,8 @@ import {
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Agenda?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Agenda iuran beserta seluruh data pembayaran warga akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmAgendaId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={() => { setIuranData(iuranData.filter(i => i.id !== deleteConfirmAgendaId)); setDeleteConfirmAgendaId(null); showToast('Agenda iuran berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmAgendaId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => { setIuranData(iuranData.filter(i => i.id !== deleteConfirmAgendaId)); setDeleteConfirmAgendaId(null); showToast('Agenda iuran berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
                         </div>
@@ -6104,7 +6104,7 @@ import {
                                 <option value="Semua">Semua Bulan</option>
                                 {availableMonths.map((m, i) => <option key={i} value={m}>{m}</option>)}
                             </select>
-                            <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-slate-300 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[16px]" /> <span>Cetak Laporan</span></button>
+                            <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] border-2 border-slate-300 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[16px]" /> <span>Cetak Laporan</span></button>
                         </div>
                     </div>
 
@@ -6145,16 +6145,16 @@ import {
 
                     {userRole === 'admin' && (
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 no-print">
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
-                                <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/30"><Icon name="add" className="text-[24px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                                <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/30"><Icon name="add" className="text-[24px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pemasukan</span>
                             </button>
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
-                                <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/30"><Icon name="remove" className="text-[24px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                                <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/30"><Icon name="remove" className="text-[24px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pengeluaran</span>
                             </button>
-                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
-                                <div className="bg-google-yellowLight text-google-yellowDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:bg-google-yellow group-hover:text-white transition-colors duration-300 shadow-sm border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[24px] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" /></div>
+                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border-2 border-slate-300 p-4 sm:p-5 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                                <div className="bg-google-yellowLight text-google-yellowDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-yellow group-hover:text-white transition-colors duration-300 shadow-sm border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[24px] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text leading-tight">Cairkan Kas Jimpitan</span>
                             </button>
                         </div>
@@ -6176,7 +6176,7 @@ import {
                                                 <p className="font-medium text-[14px] text-google-text truncate mb-1.5">{t.description}</p>
                                                 <div className="flex flex-wrap items-center gap-2">
                                                     <p className="text-[11px] font-medium text-google-textVariant bg-slate-50 border border-slate-300 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5"><Icon name="label" className="text-[13px]" /> {t.category} &bull; {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
-                                                    {t.receiptUrl && <button onClick={() => setSelectedImage(t.receiptUrl)} className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</button>}
+                                                    {t.receiptUrl && <button onClick={() => setSelectedImage(t.receiptUrl)} className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</button>}
                                                 </div>
                                             </div>
                                         </div>
@@ -6189,13 +6189,13 @@ import {
                                                         setFormData(t);
                                                         setIsModalOpen(true);
                                                         setErrorMsg('');
-                                                    }} className="text-google-blue bg-white hover:bg-google-blueLight border-2 border-slate-300 hover:border-google-blue/40 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[14px]" /><span className="hidden sm:inline">Edit</span></button>
+                                                    }} className="text-google-blue bg-white hover:bg-google-blueLight border-2 border-slate-300 hover:border-google-blue/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[14px]" /><span className="hidden sm:inline">Edit</span></button>
                                                     <button onClick={() => { 
                                                         if (t.type === 'Pemasukan') setBalance(prev => prev - t.amount); 
                                                         else setBalance(prev => prev + t.amount);
                                                         if (t.category === 'Mutasi Jimpitan') setJimpitanBalance(prev => prev + t.amount);
                                                         setTransactions(transactions.filter(x => x.id !== t.id)); 
-                                                    }} className="text-google-red bg-white hover:bg-google-redLight border-2 border-slate-300 hover:border-google-red/40 rounded-[10px] px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[14px]" /><span className="hidden sm:inline">Hapus</span></button>
+                                                    }} className="text-google-red bg-white hover:bg-google-redLight border-2 border-slate-300 hover:border-google-red/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[14px]" /><span className="hidden sm:inline">Hapus</span></button>
                                                 </div>
                                             )}
                                         </div>
@@ -6245,8 +6245,8 @@ import {
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t-2 border-slate-200">
-                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className={`flex-1 text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-google-green border-google-greenDark hover:bg-google-greenDark' : 'bg-google-red border-google-redDark hover:bg-google-redDark'}`}>Simpan Data</button>
+                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className={`flex-1 text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-google-green border-google-greenDark hover:bg-google-greenDark' : 'bg-google-red border-google-redDark hover:bg-google-redDark'}`}>Simpan Data</button>
                                 </div>
                             </div>
                         </div>
@@ -6266,8 +6266,8 @@ import {
                                 {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 
                                 <div className="flex flex-wrap gap-3 pt-2">
-                                    <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleTransferJimpitan} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border-2 border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
+                                    <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={handleTransferJimpitan} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border-2 border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
                                 </div>
                             </div>
                         </div>
@@ -6511,9 +6511,9 @@ import {
                                         </div>
                                     </div>
                                     <div className="flex flex-wrap gap-3 w-full lg:w-auto mt-2 lg:mt-0">
-                                        <button onClick={() => setIsScannerOpen(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300"><Icon name="qr_code_scanner" className="text-[17px]" /><span>Kasir Scan</span></button>
-                                        <button onClick={() => setShowHolidayModal(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[17px]" /><span>Bulan Libur</span></button>
-                                        <button onClick={() => window.print()} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[17px]" /><span>Cetak Blanko Absen</span></button>
+                                        <button onClick={() => setIsScannerOpen(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-google-blue text-white px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300"><Icon name="qr_code_scanner" className="text-[17px]" /><span>Kasir Scan</span></button>
+                                        <button onClick={() => setShowHolidayModal(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[17px]" /><span>Bulan Libur</span></button>
+                                        <button onClick={() => window.print()} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border-2 border-slate-300 hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[17px]" /><span>Cetak Blanko Absen</span></button>
                                     </div>
                                 </div>
                                 <div className="hidden print-only">
@@ -6569,7 +6569,7 @@ import {
                                             ) : (
                                                 <div className="flex flex-wrap rounded-[16px] bg-slate-100 p-2 gap-2 border border-slate-300 inset-shadow-sm">
                                                     {['Hadir', 'Musibah', 'Alfa'].map(stat => (
-                                                        <button key={stat} onClick={() => handleAttendanceChange(member.id, stat)} className={`flex-1 py-3 text-[11px] font-medium uppercase tracking-widest rounded-[10px] transition-all duration-300 border-2 ${attendance[member.id].status === stat ? (stat === 'Hadir' ? 'bg-google-green text-white border-google-greenDark shadow-md scale-105' : stat === 'Musibah' ? 'bg-google-yellow text-white border-google-yellowDark shadow-md scale-105' : 'bg-google-red text-white border-google-redDark shadow-md scale-105') : 'bg-transparent text-google-textVariant border-transparent hover:bg-slate-200/50'}`}>{stat}</button>
+                                                        <button key={stat} onClick={() => handleAttendanceChange(member.id, stat)} className={`flex-1 py-3 text-[11px] font-medium uppercase tracking-widest rounded-full transition-all duration-300 border-2 ${attendance[member.id].status === stat ? (stat === 'Hadir' ? 'bg-google-green text-white border-google-greenDark shadow-md scale-105' : stat === 'Musibah' ? 'bg-google-yellow text-white border-google-yellowDark shadow-md scale-105' : 'bg-google-red text-white border-google-redDark shadow-md scale-105') : 'bg-transparent text-google-textVariant border-transparent hover:bg-slate-200/50'}`}>{stat}</button>
                                                     ))}
                                                 </div>
                                             )}
@@ -6585,7 +6585,7 @@ import {
 
                                     {arisanMembers.length === 0 && <div className="col-span-full bg-slate-50 border-2 border-slate-300 p-12 text-center rounded-[32px] shadow-sm"><Icon name="group_off" className="text-[48px] text-slate-400 mb-4 mx-auto" fill="true" /><p className="font-medium text-[16px] text-google-text">Belum ada warga arisan terdaftar.</p></div>}
                                 </div>
-                                <div className="pt-8 flex justify-end no-print border-t-2 border-slate-200 mt-10"><button onClick={() => setStep(2)} className="bg-google-blue text-white px-10 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center gap-2">Lanjut Ke Rekapitulasi <Icon name="arrow_forward" className="text-[17px]"/></button></div>
+                                <div className="pt-8 flex justify-end no-print border-t-2 border-slate-200 mt-10"><button onClick={() => setStep(2)} className="bg-google-blue text-white px-10 py-4 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center gap-2">Lanjut Ke Rekapitulasi <Icon name="arrow_forward" className="text-[17px]"/></button></div>
                                 
                                 {showHolidayModal && (
                                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
@@ -6595,8 +6595,8 @@ import {
                                             <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Periode <b className="text-google-text">{formatBulanTahun(arisanPeriod)}</b> akan ditandai sebagai bulan libur.</p>
                                             <div className="text-[12px] font-medium text-google-textVariant mb-8 space-y-3 bg-slate-50 p-4 sm:p-5 md:p-6 rounded-[24px] border border-slate-300 text-left"><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Tidak ada penarikan kas/jimpitan sama sekali.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Putaran ke-{currentRound} tidak akan dihitung.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Periode akan melompat ke bulan berikutnya.</span></p></div>
                                             <div className="flex flex-wrap gap-3">
-                                                <button onClick={() => setShowHolidayModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                                <button onClick={handleSetHoliday} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300">Setuju, Libur</button>
+                                                <button onClick={() => setShowHolidayModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                                <button onClick={handleSetHoliday} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300">Setuju, Libur</button>
                                             </div>
                                         </div>
                                     </div>
@@ -6606,7 +6606,7 @@ import {
                                     <div className="fixed inset-0 z-50 flex flex-col p-4 sm:p-6 no-print overflow-y-auto hide-scrollbar modal-backdrop animate-backdrop-in">
                                         <div className="flex justify-between items-center mb-6 shrink-0 modal-card animate-modal-in">
                                             <h3 className="text-white font-medium text-xl sm:text-2xl">Scan Barcode Warga</h3>
-                                            <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white p-2 rounded-[12px] hover:bg-white/40"><Icon name="close" className="text-[20px]" /></button>
+                                            <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white p-2 rounded-full hover:bg-white/40"><Icon name="close" className="text-[20px]" /></button>
                                         </div>
                                         <div className="flex-1 flex flex-col items-center pt-2 pb-10">
                                             <div id="reader" className="w-full max-w-md bg-white rounded-[16px] overflow-hidden shadow-2xl shrink-0"></div>
@@ -6619,7 +6619,7 @@ import {
                                                             <span key={m.id} className="bg-google-blueLight text-google-blueDark px-3 py-1.5 rounded-[10px] text-[12px] font-medium border border-google-blue/30">{m.name}</span>
                                                         ))}
                                                     </div>
-                                                    <button onClick={handleOpenCashier} className="w-full bg-google-blue text-white py-3.5 rounded-[10px] font-medium flex items-center justify-center gap-2 hover:bg-google-blueDark transition-colors shadow-md">Proses Pembayaran <Icon name="arrow_forward" className="text-[16px]" /></button>
+                                                    <button onClick={handleOpenCashier} className="w-full bg-google-blue text-white py-3.5 rounded-full font-medium flex items-center justify-center gap-2 hover:bg-google-blueDark transition-colors shadow-md">Proses Pembayaran <Icon name="arrow_forward" className="text-[16px]" /></button>
                                                 </div>
                                             )}
                                             {scannedMembers.length === 0 && <p className="text-white/60 text-center font-medium mt-6 shrink-0">Arahkan kamera ke barcode warga untuk memindai.</p>}
@@ -6661,7 +6661,7 @@ import {
                                                     <label className="text-[10px] uppercase tracking-widest font-medium text-google-textVariant block mb-2">Status Kehadiran (Semua Warga)</label>
                                                     <div className="flex gap-2">
                                                         {['Hadir', 'Musibah', 'Alfa'].map(stat => (
-                                                            <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[11px] font-medium uppercase tracking-widest rounded-[10px] border-2 transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-300 hover:bg-slate-50'}`}>{stat}</button>
+                                                            <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[11px] font-medium uppercase tracking-widest rounded-full border-2 transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-300 hover:bg-slate-50'}`}>{stat}</button>
                                                         ))}
                                                     </div>
                                                 </div>
@@ -6688,8 +6688,8 @@ import {
                                             </div>
 
                                             <div className="flex gap-3 mt-auto shrink-0 pt-2 border-t-2 border-slate-200">
-                                                <button onClick={() => { setShowCashierModal(false); setScannedMembers([]); setTimeout(() => setIsScannerOpen(true), 300); }} className="flex-1 bg-white border-2 border-slate-300 text-google-text font-medium py-3.5 rounded-[12px] hover:bg-slate-50 hover:border-slate-400 transition-all text-[13px]">Batal</button>
-                                                <button onClick={handleCashierSave} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white font-medium py-3.5 rounded-[12px] hover:bg-google-blueDark hover:shadow-md transition-all text-[13px] flex justify-center items-center gap-2"><Icon name="save" className="text-[16px]" />Simpan</button>
+                                                <button onClick={() => { setShowCashierModal(false); setScannedMembers([]); setTimeout(() => setIsScannerOpen(true), 300); }} className="flex-1 bg-white border-2 border-slate-300 text-google-text font-medium py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-400 transition-all text-[13px]">Batal</button>
+                                                <button onClick={handleCashierSave} className="flex-1 bg-google-blue border-2 border-google-blueDark text-white font-medium py-3.5 rounded-full hover:bg-google-blueDark hover:shadow-md transition-all text-[13px] flex justify-center items-center gap-2"><Icon name="save" className="text-[16px]" />Simpan</button>
                                             </div>
                                         </div>
                                     </div>
@@ -6718,8 +6718,8 @@ import {
                                     </div>
                                 </div>
                                 <div className="pt-8 flex flex-col sm:flex-row justify-between border-t-2 border-slate-200 mt-10 gap-4">
-                                    <button onClick={() => setStep(1)} className="w-full sm:w-auto bg-white text-google-text border-2 border-slate-300 px-8 py-4 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
-                                    <button onClick={() => setStep(3)} className="w-full sm:w-auto bg-google-blue text-white border-2 border-google-blueDark px-10 py-4 rounded-[12px] font-medium text-[13px] shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Lanjut Undi Pemenang <Icon name="celebration" className="text-[17px]"/></button>
+                                    <button onClick={() => setStep(1)} className="w-full sm:w-auto bg-white text-google-text border-2 border-slate-300 px-8 py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
+                                    <button onClick={() => setStep(3)} className="w-full sm:w-auto bg-google-blue text-white border-2 border-google-blueDark px-10 py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Lanjut Undi Pemenang <Icon name="celebration" className="text-[17px]"/></button>
                                 </div>
                             </div>
                         )}
@@ -6750,8 +6750,8 @@ import {
                                     {errorMsg && <div className="bg-google-redLight border-2 border-google-red/40 text-google-redDark font-medium text-[12px] px-5 py-4 rounded-[16px] mt-6 flex flex-wrap items-center justify-center gap-2 max-w-sm mx-auto relative z-10"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 </div>
                                 <div className="pt-8 flex flex-col sm:flex-row justify-between border-t-2 border-slate-200 mt-10 gap-4">
-                                    <button onClick={() => setStep(2)} className="w-full sm:w-auto bg-white text-google-text border-2 border-slate-300 px-8 py-4 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
-                                    <button onClick={submitPertemuan} className="w-full sm:w-auto bg-google-green text-white border-2 border-google-greenDark px-12 py-4 rounded-[12px] font-medium text-[13px] shadow-md hover:bg-google-greenDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2"><Icon name="check_circle" className="text-[17px]"/> Selesai &amp; Simpan</button>
+                                    <button onClick={() => setStep(2)} className="w-full sm:w-auto bg-white text-google-text border-2 border-slate-300 px-8 py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
+                                    <button onClick={submitPertemuan} className="w-full sm:w-auto bg-google-green text-white border-2 border-google-greenDark px-12 py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-greenDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2"><Icon name="check_circle" className="text-[17px]"/> Selesai &amp; Simpan</button>
                                 </div>
                             </div>
                         )}
@@ -6908,7 +6908,7 @@ growthAmount = history[0].saldoAkhirJimpitan || 0;
                 <div className="space-y-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 no-print shadow-sm">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Riwayat Pertemuan Arisan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Arsip resmi presensi dan sirkulasi dana bulanan.</p></div>
-                        <button onClick={() => window.print()} className="bg-white border-2 border-slate-300 text-google-text px-8 py-3.5 rounded-[12px] font-medium flex flex-wrap items-center gap-2 text-[13px] hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[16px]" /><span>Cetak Arsip</span></button>
+                        <button onClick={() => window.print()} className="bg-white border-2 border-slate-300 text-google-text px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[16px]" /><span>Cetak Arsip</span></button>
                     </div>
 
                     {history.length > 0 && (
@@ -6997,7 +6997,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div className="p-6 sm:p-8 border-t-2 border-slate-200 bg-white">
                                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                                                 <h4 className="font-medium text-[16px] text-google-text tracking-tight">Detail Presensi Warga</h4>
-                                                {userRole === 'admin' && <button onClick={() => handleOpenEdit(record)} className="text-[12px] bg-white text-google-text font-medium px-6 py-3.5 rounded-[12px] hover:bg-slate-50 hover:border-slate-400 no-print transition-all duration-300 active:scale-95 border-2 border-slate-300 flex flex-wrap items-center gap-2 shadow-sm"><Icon name="edit" className="text-[16px]" /> Revisi Data</button>}
+                                                {userRole === 'admin' && <button onClick={() => handleOpenEdit(record)} className="text-[12px] bg-white text-google-text font-medium px-6 py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-400 no-print transition-all duration-300 active:scale-95 border-2 border-slate-300 flex flex-wrap items-center gap-2 shadow-sm"><Icon name="edit" className="text-[16px]" /> Revisi Data</button>}
                                             </div>
                                             <div className="flex flex-wrap gap-3 no-print text-[13px]">
                                                 {record.absensiDetails.map((a, i) => {
@@ -7031,14 +7031,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             ) : (
                                             <div className="flex flex-wrap rounded-[16px] bg-slate-200/60 dark:bg-slate-850 p-2 gap-2 border-2 border-slate-300 dark:border-slate-700 inset-shadow-sm">
                                                 {['Hadir', 'Musibah', 'Alfa'].map(stat => (
-                                                    <button key={stat} onClick={() => handleAttendanceChange(member.name, stat)} className={`flex-1 py-2.5 text-[10px] uppercase tracking-widest font-medium rounded-[10px] transition-all duration-300 border-2 ${tempAttendance[member.name] === stat ? (stat === 'Hadir' ? 'bg-google-green text-white shadow-md border-google-greenDark scale-105' : stat === 'Musibah' ? 'bg-google-yellowDark text-white shadow-md border-google-yellowDark scale-105' : 'bg-google-red text-white shadow-md border-google-redDark scale-105') : 'text-google-textVariant dark:text-slate-400 bg-transparent hover:bg-white dark:hover:bg-slate-800 border-transparent'}`}>{stat}</button>
+                                                    <button key={stat} onClick={() => handleAttendanceChange(member.name, stat)} className={`flex-1 py-2.5 text-[10px] uppercase tracking-widest font-medium rounded-full transition-all duration-300 border-2 ${tempAttendance[member.name] === stat ? (stat === 'Hadir' ? 'bg-google-green text-white shadow-md border-google-greenDark scale-105' : stat === 'Musibah' ? 'bg-google-yellowDark text-white shadow-md border-google-yellowDark scale-105' : 'bg-google-red text-white shadow-md border-google-redDark scale-105') : 'text-google-textVariant dark:text-slate-400 bg-transparent hover:bg-white dark:hover:bg-slate-800 border-transparent'}`}>{stat}</button>
                                                 ))}
                                             </div>
                                             )}
                                         </div>
                                     ))}
                                 </div>
-                                <div className="flex flex-wrap gap-3 pt-6 border-t-2 border-slate-200 dark:border-slate-800 mt-2 shrink-0"><button onClick={() => setEditingHistoryId(null)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border-2 border-slate-300 dark:border-slate-700 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={saveEditHistory} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center">Simpan Revisi</button></div>
+                                <div className="flex flex-wrap gap-3 pt-6 border-t-2 border-slate-200 dark:border-slate-800 mt-2 shrink-0"><button onClick={() => setEditingHistoryId(null)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-white px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border-2 border-slate-300 dark:border-slate-700 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={saveEditHistory} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center">Simpan Revisi</button></div>
                             </div>
                         </div>
                     )}
@@ -7129,13 +7129,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <input type="text" value={k.nama} onChange={e => updateKontak(idKey, 'nama', e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text dark:text-white mb-2" placeholder="Nama Layanan" />
                                                     <input type="text" value={k.telepon} onChange={e => updateKontak(idKey, 'telepon', e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text dark:text-white" placeholder="Nomor Telepon" />
                                                 </div>
-                                                <button onClick={() => removeKontak(idKey)} className="self-end sm:self-center bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 p-2 rounded-[8px] hover:bg-red-100 transition-colors">
+                                                <button onClick={() => removeKontak(idKey)} className="self-end sm:self-center bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 p-2 rounded-full hover:bg-red-100 transition-colors">
                                                     <Icon name="delete" className="text-[17px]" />
                                                 </button>
                                             </div>
                                         )})}
                                     </div>
-                                    <button onClick={addKontak} className="w-full py-3 border-2 border-dashed border-slate-400 dark:border-slate-650 rounded-[12px] text-google-textVariant dark:text-slate-400 font-medium text-[12px] hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-google-blue hover:border-google-blue transition-all flex items-center justify-center gap-2">
+                                    <button onClick={addKontak} className="w-full py-3 border-2 border-dashed border-slate-400 dark:border-slate-650 rounded-full text-google-textVariant dark:text-slate-400 font-medium text-[12px] hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-google-blue hover:border-google-blue transition-all flex items-center justify-center gap-2">
                                         <Icon name="add" className="text-[16px]" /> Tambah Kontak
                                     </button>
                                 </div>
@@ -7271,7 +7271,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             <p className="text-[11px] font-medium text-google-green flex items-center gap-1"><Icon name="check_circle" className="text-[13px]"/>Logo siap disimpan</p>
                             <p className="text-[9px] text-google-textVariant dark:text-slate-400 truncate font-mono mt-0.5">{previewUrl.slice(0,60)}</p>
                             </div>
-                            <button onClick={() => { setNewUrl(''); setPreviewUrl(''); setUploadError(''); }} className="text-google-red hover:bg-red-50 dark:hover:bg-red-950/20 p-1.5 rounded-[12px] transition-colors shrink-0"><Icon name="close" className="text-[14px]" /></button>
+                            <button onClick={() => { setNewUrl(''); setPreviewUrl(''); setUploadError(''); }} className="text-google-red hover:bg-red-50 dark:hover:bg-red-950/20 p-1.5 rounded-full transition-colors shrink-0"><Icon name="close" className="text-[14px]" /></button>
                         </div>
                         )}
 
@@ -7286,7 +7286,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </details>
                     </div>
 
-                    <button onClick={handleAdd} disabled={isUploading || !newName.trim() || !newUrl.trim()} className="w-full bg-google-blue border-2 border-google-blueDark text-white py-4 rounded-[12px] font-medium text-[13px] hover:bg-google-blueDark active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 shadow-md disabled:opacity-40 disabled:cursor-not-allowed">
+                    <button onClick={handleAdd} disabled={isUploading || !newName.trim() || !newUrl.trim()} className="w-full bg-google-blue border-2 border-google-blueDark text-white py-4 rounded-full font-medium text-[13px] hover:bg-google-blueDark active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 shadow-md disabled:opacity-40 disabled:cursor-not-allowed">
                         <Icon name="add_circle" className="text-[17px]" />Tambah &amp; Simpan Sponsor
                     </button>
                     </div>
@@ -7302,7 +7302,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                     <h3 className="font-medium text-[17px] text-google-text mb-6 border-b-2 border-slate-200 pb-4 group-hover:text-google-blue transition-colors tracking-tight">{title}</h3>
                     <div className="space-y-6 mb-8">{children}</div>
-                    <button onClick={onSave} className="w-full bg-slate-50 border-2 border-slate-300 text-google-blueDark py-4 rounded-[12px] font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan {title}</button>
+                    <button onClick={onSave} className="w-full bg-slate-50 border-2 border-slate-300 text-google-blueDark py-4 rounded-full font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan {title}</button>
                 </div>
             );
         }
@@ -7544,7 +7544,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border-2 border-slate-300 group">
                                                 <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                    <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[11px] font-medium px-4 py-2 rounded-[12px] flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[14px]"/> Hapus</button>
+                                                    <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[11px] font-medium px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[14px]"/> Hapus</button>
                                                 </div>
                                             </div>
                                         )}
@@ -7617,7 +7617,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <p className="text-[13px] font-medium text-slate-800">Aktifkan Halaman Kebijakan</p>
                                                 <p className="text-[11px] text-slate-500">Tampilkan link di menu dan layar login</p>
                                             </div>
-                                            <button onClick={() => props.setLegalData(p => ({...p, enabled: !p?.enabled}))} className={`w-14 h-8 flex items-center rounded-[12px] p-1 transition-colors duration-300 ease-in-out shadow-inner ${props.legalData?.enabled ? 'bg-google-green' : 'bg-slate-300'}`}>
+                                            <button onClick={() => props.setLegalData(p => ({...p, enabled: !p?.enabled}))} className={`w-14 h-8 flex items-center rounded-full p-1 transition-colors duration-300 ease-in-out shadow-inner ${props.legalData?.enabled ? 'bg-google-green' : 'bg-slate-300'}`}>
                                                 <div className={`bg-white w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${props.legalData?.enabled ? 'translate-x-6' : 'translate-x-0'}`}></div>
                                             </button>
                                         </div>
@@ -7635,7 +7635,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             </div>
                                         )}
                                     </div>
-                                    <button onClick={() => { showAlert('Kebijakan Hukum & Privasi berhasil disimpan!') }} className="w-full mt-8 bg-slate-50 border-2 border-slate-300 text-google-blueDark py-4 rounded-[12px] font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan Kebijakan</button>
+                                    <button onClick={() => { showAlert('Kebijakan Hukum & Privasi berhasil disimpan!') }} className="w-full mt-8 bg-slate-50 border-2 border-slate-300 text-google-blueDark py-4 rounded-full font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan Kebijakan</button>
                                 </div>
                             )}
                             {activeMenu === 'infodesa' && (
@@ -7648,7 +7648,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="relative z-10">
                                         <div className="flex items-center space-x-3 mb-4"><Icon name="report" className="text-[36px] text-white" fill="true" /><h3 className="font-medium text-[20px] tracking-tight">Bahaya: Hapus Semua Database</h3></div>
                                         <p className="text-[13px] font-medium mb-8 text-white/90 max-w-xl leading-relaxed">Tindakan ini akan menghapus seluruh data warga, riwayat keuangan, tunggakan, dan mengembalikan saldo kas menjadi nol kembali seperti baru (Setelan Pabrik).</p>
-                                        <button onClick={() => setConfirmResetModal(true)} className="bg-white text-google-redDark px-8 py-4 rounded-[12px] font-medium text-[13px] shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto hover:bg-slate-50 border-2 border-transparent hover:border-google-red"><Icon name="delete_forever" className="text-[17px]"/> Format Database Sekarang</button>
+                                        <button onClick={() => setConfirmResetModal(true)} className="bg-white text-google-redDark px-8 py-4 rounded-full font-medium text-[13px] shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 w-full sm:w-auto hover:bg-slate-50 border-2 border-transparent hover:border-google-red"><Icon name="delete_forever" className="text-[17px]"/> Format Database Sekarang</button>
                                     </div>
                                 </div>
                             )}
@@ -7660,7 +7660,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
                                 <div className="mb-6 bg-google-greenLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border-2 border-google-green/30"><Icon name="check_circle" className="text-[48px] text-google-green" fill="true" /></div>
                                 <p className="text-google-text text-[17px] font-medium mb-8 leading-snug tracking-tight">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue text-white px-8 py-4 rounded-[12px] font-medium text-[13px] border-2 border-google-blueDark hover:bg-google-blueDark active:scale-95 transition-all duration-300 shadow-md">Tutup Pesan</button>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue text-white px-8 py-4 rounded-full font-medium text-[13px] border-2 border-google-blueDark hover:bg-google-blueDark active:scale-95 transition-all duration-300 shadow-md">Tutup Pesan</button>
                             </div>
                         </div>
                     )}
@@ -7670,7 +7670,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <h3 className="text-3xl font-medium text-google-red mb-2 tracking-tight">Reset Total?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tindakan ini permanen dan tidak bisa dibatalkan. Ketik kata <b className="text-google-red">RESET</b> di bawah ini.</p>
                                 <div className="bg-slate-50 rounded-[16px] px-5 py-4 border-2 border-google-red/40 focus-within:border-google-red focus-within:bg-white focus-within:shadow-md transition-all mb-8"><input type="text" value={resetPromptInput} onChange={e => setResetPromptInput(e.target.value)} className="w-full bg-transparent border-none text-[18px] outline-none p-0 text-google-redDark uppercase tracking-widest font-medium placeholder:text-google-red/30" placeholder="RESET" /></div>
-                                <div className="flex flex-wrap gap-3"><button onClick={() => {setConfirmResetModal(false); setResetPromptInput('');}} className="w-full sm:w-auto bg-white text-google-text py-4 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={executeFactoryReset} className="flex flex-wrap bg-google-red text-white border-2 border-google-redDark py-4 rounded-[12px] font-medium text-[13px] shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Eksekusi</button></div>
+                                <div className="flex flex-wrap gap-3"><button onClick={() => {setConfirmResetModal(false); setResetPromptInput('');}} className="w-full sm:w-auto bg-white text-google-text py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 border-2 border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={executeFactoryReset} className="flex flex-wrap bg-google-red text-white border-2 border-google-redDark py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Eksekusi</button></div>
                             </div>
                         </div>
                     )}
@@ -7714,7 +7714,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <div className="bg-white p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border-2 border-slate-300 shadow-sm">
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5">
                                 <div><h2 className="text-xl font-medium text-google-text tracking-tight">Pengaturan Agenda</h2><p className="text-[12px] font-medium text-google-textVariant mt-1">Agenda tampil sebagai teks berjalan (marquee) di Halaman Utama.</p></div>
-                                {!isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-300 text-google-text px-6 py-2.5 rounded-[12px] font-medium flex items-center justify-center gap-2 text-[12px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[14px]" /><span>Ubah Agenda</span></button>}
+                                {!isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border-2 border-slate-300 text-google-text px-6 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 text-[12px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[14px]" /><span>Ubah Agenda</span></button>}
                             </div>
 
                             {isEditing && (
@@ -7726,8 +7726,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border-2 border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
                                     <div className="flex flex-wrap gap-3 pt-6 mt-6 border-t-2 border-slate-200">
-                                        <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3 rounded-[12px] font-medium text-[12px] hover:bg-slate-50 border-2 border-slate-300 active:scale-95 transition-all shadow-sm flex items-center justify-center">Batal</button>
-                                        <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex bg-google-blue border-2 border-google-blueDark text-white px-6 py-3 rounded-[12px] font-medium text-[12px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all items-center justify-center gap-2"><Icon name="save" className="text-[14px]"/> Simpan Agenda</button>
+                                        <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3 rounded-full font-medium text-[12px] hover:bg-slate-50 border-2 border-slate-300 active:scale-95 transition-all shadow-sm flex items-center justify-center">Batal</button>
+                                        <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex bg-google-blue border-2 border-google-blueDark text-white px-6 py-3 rounded-full font-medium text-[12px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all items-center justify-center gap-2"><Icon name="save" className="text-[14px]"/> Simpan Agenda</button>
                                     </div>
                                 </div>
                             )}
@@ -7944,7 +7944,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Pilih Tanggal</label>
                                         <input type="date" value={checkDateStr} onChange={e => { setCheckDateStr(e.target.value); setCheckResult(null); }} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text cursor-pointer animate-none" />
                                     </div>
-                                    <button type="submit" className="w-full bg-red-600 text-white py-3.5 rounded-[12px] font-medium text-[12px] border-2 border-red-700 hover:bg-red-700 active:scale-95 transition-all duration-300 shadow-md flex flex-wrap justify-center items-center gap-1.5">
+                                    <button type="submit" className="w-full bg-red-600 text-white py-3.5 rounded-full font-medium text-[12px] border-2 border-red-700 hover:bg-red-700 active:scale-95 transition-all duration-300 shadow-md flex flex-wrap justify-center items-center gap-1.5">
                                         <Icon name="explore" className="text-[14px]"/>
                                         Cek Sekarang
                                     </button>
@@ -8010,7 +8010,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <button 
                                             key={idx} 
                                             onClick={() => setSelectedDate(cell.date)}
-                                            className={`relative min-h-[64px] p-2 rounded-[16px] border flex flex-col justify-between items-stretch text-left transition-all active:scale-95 ${
+                                            className={`relative min-h-[64px] p-2 rounded-full border flex flex-col justify-between items-stretch text-left transition-all active:scale-95 ${
                                                 !cell.isCurrentMonth ? 'opacity-30 border-transparent hover:border-slate-300' : ''
                                             } ${
                                                 isSelected 
@@ -8238,7 +8238,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 
                 return (
                     <div className="space-y-6 tab-fade-in relative z-10 w-full animate-slide-up no-print">
-                        <button onClick={() => { setViewArticleId(null); const url = new URL(window.location.href); url.searchParams.delete('page'); url.searchParams.delete('article'); window.history.replaceState({}, document.title, url.pathname + url.hash); }} className="bg-white border-2 border-slate-300 text-google-text px-4 py-2 rounded-[12px] font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
+                        <button onClick={() => { setViewArticleId(null); const url = new URL(window.location.href); url.searchParams.delete('page'); url.searchParams.delete('article'); window.history.replaceState({}, document.title, url.pathname + url.hash); }} className="bg-white border-2 border-slate-300 text-google-text px-4 py-2 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
                         <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border-2 border-slate-300">
                             {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover"  loading="lazy" decoding="async"/>}
                             <div className="p-6 sm:p-8">
@@ -8252,8 +8252,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 </div>
                                 
                                 <div className="mt-10 pt-6 border-t-2 border-slate-100 flex items-center gap-3">
-                                    <button onClick={() => handleLike(article.id)} className="flex items-center gap-2 px-5 py-2.5 rounded-[16px] bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 transition-colors active:scale-95"><Icon name="favorite" fill="true" className="text-[20px]" /> <span className="font-medium">{article.likes || 0} Suka</span></button>
-                                    <button onClick={() => handleShareBlog(article)} className="flex items-center gap-2 px-5 py-2.5 rounded-[16px] bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 transition-colors active:scale-95"><Icon name="share" className="text-[20px]" /> <span className="font-medium">Bagikan</span></button>
+                                    <button onClick={() => handleLike(article.id)} className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 transition-colors active:scale-95"><Icon name="favorite" fill="true" className="text-[20px]" /> <span className="font-medium">{article.likes || 0} Suka</span></button>
+                                    <button onClick={() => handleShareBlog(article)} className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 transition-colors active:scale-95"><Icon name="share" className="text-[20px]" /> <span className="font-medium">Bagikan</span></button>
                                 </div>
                             </div>
                         </div>
@@ -8266,7 +8266,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <input type="text" value={commentName} onChange={e => setCommentName(e.target.value)} placeholder="Nama Anda (Misal: Budi RT 01)" className="w-full bg-white border border-slate-300 p-3 rounded-[12px] text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all" />
                                 <textarea value={commentText} onChange={e => setCommentText(e.target.value)} placeholder="Tulis pendapat atau pertanyaan Anda..." className="w-full bg-white border border-slate-300 p-3 rounded-[12px] text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all resize-none h-24"></textarea>
                                 {errorMsg && <p className="text-red-500 text-[12px] font-medium mb-3">{errorMsg}</p>}
-                                <button onClick={() => handleComment(article.id)} className="bg-google-blue text-white px-5 py-2.5 rounded-[12px] font-medium text-[13px] hover:bg-google-blueDark transition-colors active:scale-95 flex items-center gap-2"><Icon name="send" /> Kirim Komentar</button>
+                                <button onClick={() => handleComment(article.id)} className="bg-google-blue text-white px-5 py-2.5 rounded-full font-medium text-[13px] hover:bg-google-blueDark transition-colors active:scale-95 flex items-center gap-2"><Icon name="send" /> Kirim Komentar</button>
                             </div>
 
                             <div className="space-y-5">
@@ -8296,8 +8296,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="mt-3 ml-6">
                                                 <textarea value={replyText} onChange={e => setReplyText(e.target.value)} placeholder="Tulis balasan..." className="w-full bg-white border border-slate-300 p-3 rounded-[8px] text-[12px] mb-2 outline-none focus:border-google-blue resize-none h-20"></textarea>
                                                 <div className="flex gap-2">
-                                                    <button onClick={() => handleReply(article.id, c.id)} className="bg-google-blue text-white px-4 py-2 rounded-[8px] text-[11px] font-medium hover:bg-google-blueDark active:scale-95 transition-all">Kirim Balasan</button>
-                                                    <button onClick={() => setReplyToId(null)} className="bg-slate-200 text-slate-700 px-4 py-2 rounded-[8px] text-[11px] font-medium hover:bg-slate-300 active:scale-95 transition-all">Batal</button>
+                                                    <button onClick={() => handleReply(article.id, c.id)} className="bg-google-blue text-white px-4 py-2 rounded-full text-[11px] font-medium hover:bg-google-blueDark active:scale-95 transition-all">Kirim Balasan</button>
+                                                    <button onClick={() => setReplyToId(null)} className="bg-slate-200 text-slate-700 px-4 py-2 rounded-full text-[11px] font-medium hover:bg-slate-300 active:scale-95 transition-all">Batal</button>
                                                 </div>
                                             </div>
                                         )}
@@ -8327,7 +8327,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     {userRole === 'admin' && (
                         <div className="flex justify-end">
-                            <button onClick={() => { setIsFormOpen(true); setEditingId(null); setFormData({ title: '', content: '', imageUrl: '', date: getLocalDate() }); }} className="bg-google-blue text-white px-5 py-3 rounded-[16px] font-medium text-[13px] hover:bg-google-blueDark transition-colors active:scale-95 flex items-center gap-2 shadow-md"><Icon name="add" className="text-[18px]"/> Tulis Artikel Baru</button>
+                            <button onClick={() => { setIsFormOpen(true); setEditingId(null); setFormData({ title: '', content: '', imageUrl: '', date: getLocalDate() }); }} className="bg-google-blue text-white px-5 py-3 rounded-full font-medium text-[13px] hover:bg-google-blueDark transition-colors active:scale-95 flex items-center gap-2 shadow-md"><Icon name="add" className="text-[18px]"/> Tulis Artikel Baru</button>
                         </div>
                     )}
 
@@ -8357,8 +8357,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     
                                     {userRole === 'admin' && (
                                         <div className="flex gap-2 mt-4 pt-4 border-t-2 border-slate-100" onClick={e => e.stopPropagation()}>
-                                            <button onClick={() => { setEditingId(article.id); setFormData({ title: article.title, content: article.content, imageUrl: article.imageUrl, date: article.date }); setIsFormOpen(true); }} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                            <button onClick={() => setDeleteConfirmId(article.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                            <button onClick={() => { setEditingId(article.id); setFormData({ title: article.title, content: article.content, imageUrl: article.imageUrl, date: article.date }); setIsFormOpen(true); }} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-full py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                            <button onClick={() => setDeleteConfirmId(article.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-full py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                         </div>
                                     )}
                                 </div>
@@ -8394,8 +8394,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     {errorMsg && <div className="bg-red-50 text-red-600 px-4 py-3.5 rounded-[12px] text-[12px] font-medium flex items-center gap-2 border border-red-200"><Icon name="error" /> {errorMsg}</div>}
                                 </div>
                                 <div className="flex gap-3 mt-8 pt-6 border-t border-slate-100">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-1/3 bg-white text-google-text border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 transition-all active:scale-95 shadow-sm">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Terbitkan</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-1/3 bg-white text-google-text border-2 border-slate-300 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all active:scale-95 shadow-sm">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Terbitkan</button>
                                 </div>
                             </div>
                         </div>
@@ -8408,8 +8408,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Hapus Artikel?</h3>
                                 <p className="text-[13px] text-slate-500 mb-8 leading-relaxed">Artikel ini dan semua komentar di dalamnya akan dihapus secara permanen. Anda yakin?</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 bg-white border-2 border-slate-300 text-google-text px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
-                                    <button onClick={() => handleDelete(deleteConfirmId)} className="flex-1 bg-red-500 text-white border-2 border-red-600 px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-red-600 active:scale-95 transition-all shadow-md">Hapus Permanen</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 bg-white border-2 border-slate-300 text-google-text px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={() => handleDelete(deleteConfirmId)} className="flex-1 bg-red-500 text-white border-2 border-red-600 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-red-600 active:scale-95 transition-all shadow-md">Hapus Permanen</button>
                                 </div>
                             </div>
                         </div>
@@ -8871,7 +8871,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 </div>
                                 <h3 className="text-xl font-medium text-slate-800 mb-2">Berhasil</h3>
                                 <p className="text-slate-650 font-medium mb-8 text-[13px]">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white font-medium py-3.5 rounded-[12px] transition-all">Tutup</button>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white font-medium py-3.5 rounded-full transition-all">Tutup</button>
                             </div>
                         </div>
                     )}
@@ -8907,11 +8907,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             {/* Sub Navigation */}
                             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
                                 <div className="flex gap-2">
-                                    <button onClick={() => setActiveSubTab('orders')} className={`px-4 py-2.5 rounded-[12px] font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'orders' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="receipt_long" /> Pesanan Masuk</button>
-                                    <button onClick={() => setActiveSubTab('products')} className={`px-4 py-2.5 rounded-[12px] font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'products' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="inventory_2" /> Kelola Produk</button>
+                                    <button onClick={() => setActiveSubTab('orders')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'orders' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="receipt_long" /> Pesanan Masuk</button>
+                                    <button onClick={() => setActiveSubTab('products')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'products' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="inventory_2" /> Kelola Produk</button>
                                 </div>
                                 {activeSubTab === 'products' && (
-                                    <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-google-blue hover:bg-google-blueDark text-white px-4 py-2.5 rounded-[12px] font-medium text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
+                                    <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-google-blue hover:bg-google-blueDark text-white px-4 py-2.5 rounded-full font-medium text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
                                 )}
                             </div>
 
@@ -8925,7 +8925,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         </div>
                                         <div className="flex gap-1.5 overflow-x-auto pb-1.5 sm:pb-0 shrink-0">
                                             {['all', 'pending', 'processed', 'completed', 'cancelled'].map(status => (
-                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-[12px] text-[11px] font-medium border-2 transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-google-blueLight text-google-blueDark border-google-blue/30' : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
+                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-full text-[11px] font-medium border-2 transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-google-blueLight text-google-blueDark border-google-blue/30' : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
                                             ))}
                                         </div>
                                     </div>
@@ -8965,10 +8965,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                                 onKeyDown={e => { if (e.key === 'Enter') handleSaveBuyerName(order.id); if (e.key === 'Escape') setEditingBuyerName(null); }}
                                                                                 className="flex-1 bg-amber-50 border-2 border-amber-400 rounded-[10px] px-3 py-1.5 text-[14px] font-medium text-slate-800 uppercase outline-none focus:shadow-md tracking-wide"
                                                                             />
-                                                                            <button onClick={() => handleSaveBuyerName(order.id)} className="w-7 h-7 rounded-[8px] bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shrink-0 transition-colors" title="Simpan">
+                                                                            <button onClick={() => handleSaveBuyerName(order.id)} className="w-7 h-7 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shrink-0 transition-colors" title="Simpan">
                                                                                 <Icon name="check" className="text-[14px]" />
                                                                             </button>
-                                                                            <button onClick={() => setEditingBuyerName(null)} className="w-7 h-7 rounded-[8px] bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center shrink-0 transition-colors" title="Batal">
+                                                                            <button onClick={() => setEditingBuyerName(null)} className="w-7 h-7 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-600 flex items-center justify-center shrink-0 transition-colors" title="Batal">
                                                                                 <Icon name="close" className="text-[14px]" />
                                                                             </button>
                                                                         </div>
@@ -8977,7 +8977,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                             <h4 className="font-medium text-[15px] text-slate-800 uppercase tracking-wide">{order.buyerName}</h4>
                                                                             <button
                                                                                 onClick={() => setEditingBuyerName({ orderId: order.id, value: order.buyerName })}
-                                                                                className="opacity-0 group-hover:opacity-100 w-6 h-6 rounded-[6px] bg-amber-50 hover:bg-amber-100 text-amber-600 border border-amber-200 flex items-center justify-center shrink-0 transition-all"
+                                                                                className="opacity-0 group-hover:opacity-100 w-6 h-6 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-600 border border-amber-200 flex items-center justify-center shrink-0 transition-all"
                                                                                 title="Edit nama pemesan"
                                                                             >
                                                                                 <Icon name="edit" className="text-[12px]" />
@@ -9041,16 +9041,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     {order.status !== 'completed' && order.status !== 'cancelled' ? (
                                                         <div className="flex gap-2 border-t border-slate-200 pt-3.5">
                                                             {order.status === 'pending' && (
-                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-medium py-2.5 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
                                                             )}
                                                             {order.status === 'processed' && (
-                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-medium py-2.5 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
                                                             )}
-                                                            <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
+                                                            <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-medium py-2.5 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
                                                         </div>
                                                     ) : (
                                                         <div className="flex gap-2 border-t border-slate-200 pt-3.5">
-                                                            <button onClick={() => handleDeleteOrderLog(order.id)} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus Log Pesanan</button>
+                                                            <button onClick={() => handleDeleteOrderLog(order.id)} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-medium py-2.5 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus Log Pesanan</button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -9090,9 +9090,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     </div>
                                                 </div>
                                                 <div className="flex gap-2 pt-3 border-t-2 border-slate-100 mt-1">
-                                                    <button onClick={() => handleEditProduct(prod)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                                    <button onClick={() => setSharingProduct(prod)} className="flex items-center justify-center px-4 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-[12px] py-2 transition-all active:scale-95 shadow-sm" title="Bagikan"><Icon name="share" className="text-[14px]" /></button>
-                                                    <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-[12px] py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                                    <button onClick={() => handleEditProduct(prod)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-full py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                                    <button onClick={() => setSharingProduct(prod)} className="flex items-center justify-center px-4 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-full py-2 transition-all active:scale-95 shadow-sm" title="Bagikan"><Icon name="share" className="text-[14px]" /></button>
+                                                    <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-full py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -9189,7 +9189,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <button
                                                         type="button"
                                                         onClick={() => handleResetSales(editingProduct.id)}
-                                                        className="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-250 py-3 rounded-[14px] text-[11.5px] font-medium transition-colors flex items-center justify-center gap-1.5"
+                                                        className="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-250 py-3 rounded-full text-[11.5px] font-medium transition-colors flex items-center justify-center gap-1.5"
                                                     >
                                                         <Icon name="restart_alt" className="text-[16px]" />
                                                         Reset Penjualan & Pembelian (Hapus Riwayat)
@@ -9204,8 +9204,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             {productError && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {productError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
-                                            <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
-                                            <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
+                                            <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
+                                            <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
                                         </div>
 
                                     </div>
@@ -9229,21 +9229,21 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {/* Warga Sub Tabs */}
                             <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 p-2 rounded-[24px] shadow-sm flex gap-2 overflow-x-auto scrollbar-none whitespace-nowrap items-center">
-                                <button onClick={() => setActiveSubTab('shop')} className={`px-4 py-2.5 rounded-[16px] font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('shop')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="shopping_bag" className="text-[15px]" />
                                     <span>Beli Tiket</span>
                                 </button>
-                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-4 py-2.5 rounded-[16px] font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="confirmation_number" className="text-[15px]" />
                                     <span>Tiket Saya</span>
-                                    {myTicketsFiltered.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-medium px-1.5 py-0.5 rounded-[8px] shrink-0 ml-1 leading-none">{myTicketsFiltered.length}</span>}
+                                    {myTicketsFiltered.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-medium px-1.5 py-0.5 rounded-full shrink-0 ml-1 leading-none">{myTicketsFiltered.length}</span>}
                                 </button>
-                                <button onClick={() => setActiveSubTab('buyers_list')} className={`px-4 py-2.5 rounded-[16px] font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('buyers_list')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="groups" className="text-[15px]" />
                                     <span>Daftar Pembeli</span>
-                                    {buyersList.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-medium px-1.5 py-0.5 rounded-[8px] shrink-0 ml-1 leading-none">{buyersList.length}</span>}
+                                    {buyersList.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-medium px-1.5 py-0.5 rounded-full shrink-0 ml-1 leading-none">{buyersList.length}</span>}
                                 </button>
-                                <button onClick={() => setActiveSubTab('archive')} className={`px-4 py-2.5 rounded-[16px] font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'archive' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('archive')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'archive' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="archive" className="text-[15px]" />
                                     <span>Arsip Event</span>
                                 </button>
@@ -9345,7 +9345,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                 </div>
                                                             </div>
                                                             {prod.pickupGeoUrl && (
-                                                                <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-[8px] bg-google-blueLight hover:bg-google-blueLight/85 text-google-blueDark dark:bg-blue-950/40 dark:text-blue-400 flex items-center justify-center shrink-0 border border-google-blue/20 dark:border-blue-900/30 transition-all hover:scale-105" title="Buka Google Maps">
+                                                                <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-google-blueLight hover:bg-google-blueLight/85 text-google-blueDark dark:bg-blue-950/40 dark:text-blue-400 flex items-center justify-center shrink-0 border border-google-blue/20 dark:border-blue-900/30 transition-all hover:scale-105" title="Buka Google Maps">
                                                                     <Icon name="map" className="text-[14px]" />
                                                                 </a>
                                                             )}
@@ -9361,12 +9361,12 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                 <button
                                                                     onClick={() => handleOpenBuyModal(prod)}
                                                                     disabled={!canBuy}
-                                                                    className={`flex-1 py-3 rounded-xl font-medium text-[12.5px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
+                                                                    className={`flex-1 py-3 rounded-full font-medium text-[12.5px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
                                                                 >
                                                                     <Icon name={isDeadlinePassed ? 'timer_off' : 'add_shopping_cart'} className="text-[16px]" />
                                                                     {isDeadlinePassed ? 'Pembelian Ditutup' : prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
                                                                 </button>
-                                                                <button onClick={() => setSharingProduct(prod)} className="w-11 h-11 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-xl transition-all flex items-center justify-center active:scale-95" title="Bagikan">
+                                                                <button onClick={() => setSharingProduct(prod)} className="w-11 h-11 bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-850 dark:hover:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-750 rounded-full transition-all flex items-center justify-center active:scale-95" title="Bagikan">
                                                                     <Icon name="share" className="text-[16px]" />
                                                                 </button>
                                                             </div>
@@ -9441,7 +9441,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <div className="flex gap-2.5 pt-2">
                                                         <button
                                                             disabled
-                                                            className="flex-1 py-3 rounded-xl font-medium text-[12.5px] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed flex items-center justify-center gap-1.5"
+                                                            className="flex-1 py-3 rounded-full font-medium text-[12.5px] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed flex items-center justify-center gap-1.5"
                                                         >
                                                             <Icon name="lock" className="text-[16px]" />
                                                             Event Selesai / Diarsipkan
@@ -9464,7 +9464,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" /></div>
                                         </div>
                                         {myTicketsSearch && (
-                                            <button onClick={() => setMyTicketsSearch('')} className="bg-white border border-slate-300 text-slate-650 hover:bg-slate-100 px-4 py-3 rounded-[16px] text-[11px] font-medium transition-all">Reset</button>
+                                            <button onClick={() => setMyTicketsSearch('')} className="bg-white border border-slate-300 text-slate-650 hover:bg-slate-100 px-4 py-3 rounded-full text-[11px] font-medium transition-all">Reset</button>
                                         )}
                                     </div>
 
@@ -9566,7 +9566,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                         setConfirmModal(null);
                                                                     }
                                                                 });
-                                                            }} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-medium py-2.5 rounded-[10px] text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Batalkan Pesanan</button>
+                                                            }} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-medium py-2.5 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Batalkan Pesanan</button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -9666,11 +9666,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Metode Penerimaan Tiket</label>
                                                 <div className="grid grid-cols-2 gap-3">
-                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'pickup' })} className={`p-4 rounded-[20px] border-2 font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'pickup' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'pickup' })} className={`p-4 rounded-full border-2 font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'pickup' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
                                                         <Icon name="store" className="text-[20px]" />
                                                         <span>Ambil Sendiri (COD)</span>
                                                     </button>
-                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-[20px] border-2 font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-105'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-full border-2 font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-105'}`}>
                                                         <Icon name="local_shipping" className="text-[20px]" />
                                                         <span>Antar ke Rumah (COD)</span>
                                                     </button>
@@ -9753,8 +9753,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             {wargaError && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {wargaError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-150">
-                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
-                                            <button onClick={handlePlaceOrder} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-[16px] font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
+                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border-2 border-slate-300 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
+                                            <button onClick={handlePlaceOrder} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
                                         </div>
                                     </div>
                                 </div>
@@ -9771,8 +9771,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <h3 className="text-xl font-medium text-slate-800 mb-2">{confirmModal.title}</h3>
                                 <p className="text-[12.5px] font-medium text-slate-500 mb-6 leading-relaxed">{confirmModal.message}</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setConfirmModal(null)} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3.5 rounded-[16px] font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
-                                    <button onClick={confirmModal.onConfirm} className="flex-1 bg-red-500 hover:bg-red-650 text-white py-3.5 rounded-[16px] font-medium text-[13px] active:scale-95 transition-all shadow-md">{confirmModal.confirmText || 'Hapus'}</button>
+                                    <button onClick={() => setConfirmModal(null)} className="flex-1 bg-white border-2 border-slate-300 text-slate-700 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={confirmModal.onConfirm} className="flex-1 bg-red-500 hover:bg-red-650 text-white py-3.5 rounded-full font-medium text-[13px] active:scale-95 transition-all shadow-md">{confirmModal.confirmText || 'Hapus'}</button>
                                 </div>
                             </div>
                         </div>
@@ -9793,19 +9793,19 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 </div>
 
                                 <div className="space-y-2.5">
-                                    <button onClick={() => handleShareToSocial('whatsapp')} className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                    <button onClick={() => handleShareToSocial('whatsapp')} className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-medium py-3.5 px-4 rounded-full text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                         <Icon name="chat" className="text-[18px]" /> WhatsApp
                                     </button>
-                                    <button onClick={() => handleShareToSocial('telegram')} className="w-full bg-[#0088cc] hover:bg-[#0077b3] text-white font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                    <button onClick={() => handleShareToSocial('telegram')} className="w-full bg-[#0088cc] hover:bg-[#0077b3] text-white font-medium py-3.5 px-4 rounded-full text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                         <Icon name="send" className="text-[18px] rotate-[-30deg] mt-[-2px]" /> Telegram
                                     </button>
-                                    <button onClick={() => handleShareToSocial('facebook')} className="w-full bg-[#1877F2] hover:bg-[#1566d4] text-white font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                    <button onClick={() => handleShareToSocial('facebook')} className="w-full bg-[#1877F2] hover:bg-[#1566d4] text-white font-medium py-3.5 px-4 rounded-full text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                         <Icon name="facebook" className="text-[18px]" /> Facebook
                                     </button>
-                                    <button onClick={() => handleShareToSocial('twitter')} className="w-full bg-slate-900 hover:bg-slate-950 text-white font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
+                                    <button onClick={() => handleShareToSocial('twitter')} className="w-full bg-slate-900 hover:bg-slate-950 text-white font-medium py-3.5 px-4 rounded-full text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                         <Icon name="close" className="text-[18px]" /> X (Twitter)
                                     </button>
-                                    <button onClick={() => handleShareToSocial('copy')} className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-205 font-medium py-3.5 px-4 rounded-[16px] text-[12.5px] transition-all flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 active:scale-95">
+                                    <button onClick={() => handleShareToSocial('copy')} className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-205 font-medium py-3.5 px-4 rounded-full text-[12.5px] transition-all flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 active:scale-95">
                                         <Icon name="content_copy" className="text-[18px]" /> Salin Tautan
                                     </button>
                                 </div>
@@ -9951,7 +9951,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                     <button 
                                         type="submit" 
-                                        className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-[16px] font-medium text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
+                                        className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-full font-medium text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
                                     >
                                         <Icon name="send" />
                                         <span>Ajukan Gabung Grup</span>
@@ -9982,7 +9982,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-3">
                                         <button 
                                             onClick={handleCancelRequest} 
-                                            className="flex-1 bg-white dark:bg-slate-950 border border-slate-350 dark:border-slate-700 text-slate-700 dark:text-slate-300 py-3.5 rounded-xl font-medium text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm"
+                                            className="flex-1 bg-white dark:bg-slate-950 border border-slate-350 dark:border-slate-700 text-slate-700 dark:text-slate-300 py-3.5 rounded-full font-medium text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm"
                                         >
                                             Batalkan Pengajuan
                                         </button>
@@ -10044,7 +10044,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-3">
                                         <button 
                                             onClick={handleResetRequest} 
-                                            className="flex-1 bg-google-blue hover:bg-blue-600 text-white py-3.5 rounded-xl font-medium text-[12.5px] active:scale-95 transition-all shadow-sm"
+                                            className="flex-1 bg-google-blue hover:bg-blue-600 text-white py-3.5 rounded-full font-medium text-[12.5px] active:scale-95 transition-all shadow-sm"
                                         >
                                             Ajukan Ulang / Koreksi Data
                                         </button>
@@ -10122,13 +10122,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div className="flex gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
                                             <button 
                                                 onClick={() => handleReject(r.id)} 
-                                                className="flex-1 bg-red-50 hover:bg-red-100 text-google-red py-2.5 rounded-xl text-[11px] font-medium border border-red-200/50 transition-colors active:scale-95"
+                                                className="flex-1 bg-red-50 hover:bg-red-100 text-google-red py-2.5 rounded-full text-[11px] font-medium border border-red-200/50 transition-colors active:scale-95"
                                             >
                                                 Tolak
                                             </button>
                                             <button 
                                                 onClick={() => handleApprove(r.id)} 
-                                                className="flex-1 bg-google-green hover:bg-green-600 text-white py-2.5 rounded-xl text-[11px] font-medium transition-colors active:scale-95 shadow-[0_4px_12px_rgba(52,168,83,0.2)]"
+                                                className="flex-1 bg-google-green hover:bg-green-600 text-white py-2.5 rounded-full text-[11px] font-medium transition-colors active:scale-95 shadow-[0_4px_12px_rgba(52,168,83,0.2)]"
                                             >
                                                 Setujui
                                             </button>
@@ -10177,14 +10177,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <div className="flex justify-end gap-2">
                                                             <button 
                                                                 onClick={() => handleResetStatus(r.id)} 
-                                                                className="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-400 hover:text-slate-650 transition-colors"
+                                                                className="p-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-400 hover:text-slate-650 transition-colors"
                                                                 title="Ubah keputusan kembali ke pending"
                                                             >
                                                                 <Icon name="undo" className="text-[16px]" />
                                                             </button>
                                                             <button 
                                                                 onClick={() => handleDeleteRequest(r.id)} 
-                                                                className="p-1.5 hover:bg-red-50/10 rounded-lg text-slate-400 hover:text-google-red transition-colors"
+                                                                className="p-1.5 hover:bg-red-50/10 rounded-full text-slate-400 hover:text-google-red transition-colors"
                                                                 title="Hapus permanen"
                                                             >
                                                                 <Icon name="delete" className="text-[16px]" />
@@ -10383,7 +10383,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <textarea rows="2" value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-205 dark:border-slate-700 focus:border-google-green dark:focus:border-green-505 text-slate-800 dark:text-white rounded-[12px] px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none" placeholder={f.placeholder} />
                             </div>
                         ))}
-                        <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-755 text-white font-medium py-3 sm:py-3.5 rounded-[12px] shadow-[0_4px_12px_rgba(34,197,94,0.3)] active:scale-95 transition-all text-sm">
+                        <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-755 text-white font-medium py-3 sm:py-3.5 rounded-full shadow-[0_4px_12px_rgba(34,197,94,0.3)] active:scale-95 transition-all text-sm">
                             ✓ Buat Pesanan & Bayar COD
                         </button>
                     </div>
@@ -10442,7 +10442,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <div className="flex flex-wrap gap-2">
                                 {selectedProduct.variants.map(v => (
                                     <button key={v.id} onClick={() => setSelectedVariant(v)}
-                                        className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-[10px] sm:rounded-[12px] font-medium text-xs sm:text-sm border-2 transition-all active:scale-95 ${selectedVariant?.id === v.id ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-750 hover:border-google-blue/50'}`}>
+                                        className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full sm:rounded-full font-medium text-xs sm:text-sm border-2 transition-all active:scale-95 ${selectedVariant?.id === v.id ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-750 hover:border-google-blue/50'}`}>
                                         {v.name} &bull; {formatRp(v.price)}
                                     </button>
                                 ))}
@@ -10471,7 +10471,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <span className="font-medium text-slate-600 dark:text-slate-300 text-sm">Subtotal</span>
                                 <span className="text-lg sm:text-xl font-medium text-google-green dark:text-google-greenLight">{formatRp(effPrice * safeNumber(orderQty))}</span>
                             </div>
-                            <button onClick={addToCart} className="w-full bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium py-3 sm:py-3.5 rounded-[12px] shadow-[0_4px_12px_rgba(26,115,232,0.3)] active:scale-95 transition-all text-sm flex justify-center items-center gap-2">
+                            <button onClick={addToCart} className="w-full bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium py-3 sm:py-3.5 rounded-full shadow-[0_4px_12px_rgba(26,115,232,0.3)] active:scale-95 transition-all text-sm flex justify-center items-center gap-2">
                                 <Icon name="add_shopping_cart" className="text-[18px]" /> Tambah ke Keranjang
                             </button>
                         </div>
@@ -10486,7 +10486,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
         <>
         <div className="space-y-5">
             <PageHeader title="Kelola Katalog Produk" subtitle="Tambah, edit, dan hapus produk toko" onBack={() => setView('list')}>
-                <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-[12px] font-medium text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
+                <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
                     <Icon name="add" className="text-[16px] sm:text-[18px]" /> <span className="hidden sm:inline">Produk</span> Baru
                 </button>
             </PageHeader>
@@ -10562,7 +10562,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                         <input type="text" value={v.name} onChange={e => { const nv = [...productForm.variants]; nv[i].name = e.target.value; setProductForm({...productForm, variants: nv}); }} placeholder="Nama Varian" className="w-full sm:flex-1 bg-white dark:bg-slate-800 border border-slate-350 dark:border-slate-700 rounded-[8px] px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white" />
                                         <div className="flex gap-2 w-full sm:w-auto sm:flex-1 items-center">
                                             <input type="number" value={v.price} onChange={e => { const nv = [...productForm.variants]; nv[i].price = safeNumber(e.target.value); setProductForm({...productForm, variants: nv}); }} placeholder="Harga" className="w-full flex-1 bg-white dark:bg-slate-800 border border-slate-355 dark:border-slate-700 rounded-[8px] px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-505 text-slate-800 dark:text-white" />
-                                            {productForm.variants.length > 1 && <button onClick={() => setProductForm({...productForm, variants: productForm.variants.filter(va => va.id !== v.id)})} className="w-7 h-7 shrink-0 bg-red-100 dark:bg-red-950/30 text-red-650 rounded-[8px] flex items-center justify-center hover:bg-red-200"><Icon name="close" className="text-[14px]" /></button>}
+                                            {productForm.variants.length > 1 && <button onClick={() => setProductForm({...productForm, variants: productForm.variants.filter(va => va.id !== v.id)})} className="w-7 h-7 shrink-0 bg-red-100 dark:bg-red-950/30 text-red-650 rounded-full flex items-center justify-center hover:bg-red-200"><Icon name="close" className="text-[14px]" /></button>}
                                         </div>
                                     </div>
                                 ))}
@@ -10585,8 +10585,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         </div>
                     </div>
                     <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-800 justify-end">
-                        <button onClick={() => { setIsFormOpen(false); setEditingProduct(null); }} className="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium rounded-[12px] hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all border border-slate-350 dark:border-slate-750 text-sm">Batal</button>
-                        <button onClick={saveProduct} className="px-5 py-2.5 bg-google-blue text-white font-medium rounded-[12px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md text-sm">Simpan Produk</button>
+                        <button onClick={() => { setIsFormOpen(false); setEditingProduct(null); }} className="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all border border-slate-350 dark:border-slate-750 text-sm">Batal</button>
+                        <button onClick={saveProduct} className="px-5 py-2.5 bg-google-blue text-white font-medium rounded-full hover:bg-google-blueDark active:scale-95 transition-all shadow-md text-sm">Simpan Produk</button>
                     </div>
                 </div>
             )}
@@ -10614,8 +10614,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     </div>
                                     {p.grosirMinQty > 0 && <span className="inline-block mt-1.5 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-955/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-medium rounded">Grosir</span>}
                                     <div className="flex gap-2 mt-3">
-                                        <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-955/20 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-medium flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
-                                        <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-405 rounded-lg text-xs font-medium flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
+                                        <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-955/20 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
+                                        <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-405 rounded-full text-xs font-medium flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
                                     </div>
                                 </div>
                             </div>
@@ -10658,8 +10658,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                             <td className="p-4 text-xs font-medium text-slate-600 dark:text-slate-300 space-y-1">{p.variants.map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-medium text-slate-800 dark:text-white">{formatRp(v.price)}</span></div>)}</td>
                                             <td className="p-4 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-medium uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
                                             <td className="p-4 text-right space-x-2">
-                                                <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="p-2 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
-                                                <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="p-2 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
+                                                <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="p-2 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
+                                                <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="p-2 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
                                             </td>
                                         </tr>
                                     ))}
@@ -10681,8 +10681,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <h3 className="text-lg font-medium text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
                     <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">{tokoConfirm.message}</p>
                     <div className="flex gap-3">
-                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
-                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium text-sm transition-colors">Ya, Lanjutkan</button>
+                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-full border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-full bg-red-500 hover:bg-red-600 text-white font-medium text-sm transition-colors">Ya, Lanjutkan</button>
                     </div>
                 </div>
             </div>
@@ -10787,11 +10787,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         </div>
 
                         <div className="flex gap-2 mt-auto pt-1">
-                            {order.status === 'Menunggu' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diproses'} : o))} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-xs font-medium transition-colors">Proses</button>}
-                            {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg text-xs font-medium transition-colors">Mulai Antar</button>}
-                            {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-xs font-medium transition-colors">Selesai ✓</button>}
-                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)) }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-lg text-xs font-medium transition-colors">Batal</button>}
-                            <button onClick={() => { setTokoConfirm({ message: 'Hapus pesanan ini secara permanen?', onConfirm: () => setTokoOrders(tokoOrders.filter(o => o.id !== order.id)) }); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-lg text-xs font-medium transition-colors flex items-center justify-center" title="Hapus Permanen">
+                            {order.status === 'Menunggu' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diproses'} : o))} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Proses</button>}
+                            {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Mulai Antar</button>}
+                            {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Selesai ✓</button>}
+                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)) }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-full text-xs font-medium transition-colors">Batal</button>}
+                            <button onClick={() => { setTokoConfirm({ message: 'Hapus pesanan ini secara permanen?', onConfirm: () => setTokoOrders(tokoOrders.filter(o => o.id !== order.id)) }); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-full text-xs font-medium transition-colors flex items-center justify-center" title="Hapus Permanen">
                                 <Icon name="delete" className="text-[15px]" />
                             </button>
                         </div>
@@ -10810,8 +10810,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <h3 className="text-lg font-medium text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
                     <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">{tokoConfirm.message}</p>
                     <div className="flex gap-3">
-                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
-                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium text-sm transition-colors">Ya, Lanjutkan</button>
+                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-full border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-full bg-red-500 hover:bg-red-600 text-white font-medium text-sm transition-colors">Ya, Lanjutkan</button>
                     </div>
                 </div>
             </div>
@@ -10834,13 +10834,13 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
                         {userRole === 'admin' && (<>
-                            <button onClick={() => setView('admin-products')} className="px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-google-blue dark:text-google-blueLight border-2 border-google-blue dark:border-google-blue/40 rounded-[12px] font-medium text-xs hover:bg-google-blue hover:text-white dark:hover:bg-google-blue transition-all">Kelola Katalog</button>
-                            <button onClick={() => setView('admin-orders')} className="relative px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-yellow-750 dark:text-yellow-450 border-2 border-yellow-405 dark:border-yellow-600/50 rounded-[12px] font-medium text-xs hover:bg-yellow-400 hover:text-white dark:hover:bg-yellow-500 transition-all">
+                            <button onClick={() => setView('admin-products')} className="px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-google-blue dark:text-google-blueLight border-2 border-google-blue dark:border-google-blue/40 rounded-full font-medium text-xs hover:bg-google-blue hover:text-white dark:hover:bg-google-blue transition-all">Kelola Katalog</button>
+                            <button onClick={() => setView('admin-orders')} className="relative px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-yellow-750 dark:text-yellow-450 border-2 border-yellow-405 dark:border-yellow-600/50 rounded-full font-medium text-xs hover:bg-yellow-400 hover:text-white dark:hover:bg-yellow-500 transition-all">
                                 Pesanan
                                 {tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length > 0 && <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center text-[9px] font-medium animate-bounce">{tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length}</span>}
                             </button>
                         </>)}
-                        <button onClick={() => setView('cart')} className="px-3 sm:px-5 py-2 sm:py-2.5 bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-[12px] font-medium text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5 active:scale-95">
+                        <button onClick={() => setView('cart')} className="px-3 sm:px-5 py-2 sm:py-2.5 bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-full font-medium text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5 active:scale-95">
                             <Icon name="shopping_cart" className="text-[16px] sm:text-[18px]" />
                             <span>Keranjang</span>
                             {cartItemCount > 0 && <span className="bg-white text-google-green px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-medium">{cartItemCount}</span>}
@@ -10939,8 +10939,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <h3 className="text-lg font-medium text-slate-800 dark:text-white mb-2">Konfirmasi</h3>
                     <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">{tokoConfirm.message}</p>
                     <div className="flex gap-3">
-                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
-                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium text-sm transition-colors">Ya, Lanjutkan</button>
+                        <button onClick={() => setTokoConfirm(null)} className="flex-1 py-2.5 rounded-full border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button onClick={() => { tokoConfirm.onConfirm(); setTokoConfirm(null); }} className="flex-1 py-2.5 rounded-full bg-red-500 hover:bg-red-600 text-white font-medium text-sm transition-colors">Ya, Lanjutkan</button>
                     </div>
                 </div>
             </div>
