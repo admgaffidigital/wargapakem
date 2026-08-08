@@ -1149,7 +1149,7 @@ import {
 
                     {/* Panduan Dropbox */}
                     <div className="bg-white rounded-[32px] border-2 border-slate-300 shadow-sm overflow-hidden">
-                        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex flex-wrap items-center gap-3">
+                        <div className="bg-blue-600 px-6 py-4 flex flex-wrap items-center gap-3">
                             <Icon name="cloud_upload" className="text-white text-[20px]" fill="true" />
                             <div>
                                 <p className="text-white font-medium text-[13px]">Upload via Dropbox</p>
@@ -1336,7 +1336,7 @@ import {
                         </div>
                     )}
 
-                    <div className="bg-gradient-to-br from-green-50 to-emerald-100/50 p-6 sm:p-10 rounded-[32px] border border-green-200/60 shadow-[0_8px_30px_rgba(34,197,94,0.12)] mb-8 relative overflow-hidden">
+                    <div className="bg-green-50 p-6 sm:p-10 rounded-[32px] border border-green-200/60 shadow-[0_8px_30px_rgba(34,197,94,0.12)] mb-8 relative overflow-hidden">
                         
                         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
@@ -1424,7 +1424,7 @@ import {
                     {isFormOpen && (
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="w-full max-w-lg rounded-[32px] flex flex-col max-h-[90vh] modal-card animate-modal-in">
-                                <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-gradient-to-r from-green-50 to-white dark:from-green-950/10 dark:to-slate-900 rounded-t-[32px]">
+                                <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-green-50 dark:bg-slate-900 rounded-t-[32px]">
                                     <h2 className="text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                                         <Icon name="storefront" className="text-green-600" />
                                         {editingId ? 'Edit Data UMKM' : 'Tambah UMKM Baru'}
@@ -1588,7 +1588,7 @@ import {
                         </div>
                     )}
 
-                    <div className="bg-gradient-to-br from-indigo-50 to-blue-100/50 p-6 sm:p-10 rounded-[32px] border border-blue-200/60 shadow-[0_8px_30px_rgba(59,130,246,0.12)] mb-8 relative overflow-hidden">
+                    <div className="bg-blue-50 p-6 sm:p-10 rounded-[32px] border border-blue-200/60 shadow-[0_8px_30px_rgba(59,130,246,0.12)] mb-8 relative overflow-hidden">
                         
                         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
@@ -1668,7 +1668,7 @@ import {
                     {isFormOpen && (
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="w-full max-w-lg rounded-[32px] flex flex-col max-h-[90vh] modal-card animate-modal-in">
-                                <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-gradient-to-r from-blue-50 to-white dark:from-blue-950/10 dark:to-slate-900 rounded-t-[32px]">
+                                <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-blue-50 dark:bg-slate-900 rounded-t-[32px]">
                                     <h2 className="text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                                         <Icon name="campaign" className="text-blue-600" /> Buat Laporan
                                     </h2>
@@ -2069,7 +2069,7 @@ import {
                                         <div className="border-t-2 border-dashed border-slate-300 dark:border-slate-700 pt-4 text-center">
                                             <p className="text-[11px] font-medium text-slate-400 mb-1">COPYRIGHT &copy; 2026</p>
                                             <p className="text-[10px] text-slate-400 mb-2">Sistem & lisensi ditandatangani secara digital oleh pengembang resmi:</p>
-                                            <p className="text-[16px] font-medium tracking-widest bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent uppercase">Novan Restu Utomo</p>
+                                            <p className="text-[16px] font-medium tracking-widest text-google-red uppercase">Novan Restu Utomo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -2172,7 +2172,7 @@ import {
                             <div className="max-w-7xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
-                                        <div className="bg-gradient-to-tr from-red-500 to-rose-600 text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40"><Icon name="home" className="text-[15px] sm:text-[17px]" fill="true" /></div>
+                                        <div className="bg-google-red text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40"><Icon name="home" className="text-[15px] sm:text-[17px]" fill="true" /></div>
                                     ) : (
                                         <button onClick={() => changeTab('menu')} className="w-9 h-9 sm:w-10 sm:h-10 bg-white text-google-text border-2 border-slate-300 hover:text-red-600 hover:border-red-500/40 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[15px] sm:text-[17px]" /></button>
                                     )}
@@ -2196,7 +2196,7 @@ import {
                         </div>
                     </main>
 
-                    <footer className="w-full text-center py-8 no-print border-t border-red-500/20 bg-gradient-to-b from-white/10 to-white/90 text-[12.5px] font-medium text-slate-500">
+                    <footer className="w-full text-center py-8 no-print border-t border-red-500/20 bg-white text-[12.5px] font-medium text-slate-500">
                         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
                             <p className="flex flex-wrap items-center gap-1.5 justify-center">
                                 <Icon name="flag" className="text-red-500 text-[14px] animate-pulse" fill="true" />
@@ -2238,7 +2238,7 @@ import {
                                         <div className="border-t-2 border-dashed border-slate-300 dark:border-slate-700 pt-4 text-center">
                                             <p className="text-[11px] font-medium text-slate-400 mb-1">COPYRIGHT &copy; 2026</p>
                                             <p className="text-[10px] text-slate-400 mb-2">Sistem & lisensi ditandatangani secara digital oleh pengembang resmi:</p>
-                                            <p className="text-[16px] font-medium tracking-widest bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent uppercase">Novan Restu Utomo</p>
+                                            <p className="text-[16px] font-medium tracking-widest text-google-red uppercase">Novan Restu Utomo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -2618,9 +2618,9 @@ import {
 
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
-                        <header className="bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-100 py-3 sm:py-4 px-3 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 dark:border-red-900/40 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20 backdrop-blur-sm">
+                        <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3 sm:py-4 px-3 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 dark:border-red-900/40 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20 ">
                             <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
-                                <div className="bg-gradient-to-tr from-red-500 to-rose-600 text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
+                                <div className="bg-google-red text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" className="w-6 h-6 object-contain" fetchpriority="high" decoding="async"/>
                                 </div>
                                 <div className="flex flex-col justify-center min-w-0">
@@ -2638,7 +2638,7 @@ import {
                                 <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-350 dark:border-slate-700 shadow-sm" title="Otorisasi Admin">
                                     <Icon name="lock" className="text-[15px] sm:text-[16px]" />
                                 </button>
-                                <button onClick={() => onLogin('warga')} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-600 text-white rounded-full text-[10.5px] sm:text-[12px] font-medium flex items-center gap-1.5 shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40 transition-all duration-300 active:scale-95">
+                                <button onClick={() => onLogin('warga')} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-google-red hover:bg-google-redDark text-white rounded-full text-[10.5px] sm:text-[12px] font-medium flex items-center gap-1.5 shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40 transition-all duration-300 active:scale-95">
                                     <Icon name="person" className="text-[14px] sm:text-[16px]" />
                                     <span>Masuk Warga</span>
                                 </button>
@@ -2650,16 +2650,16 @@ import {
                     {mode === 'select' ? (
                         <main className="flex-1 w-full max-w-7xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
                             {/* HERO BANNER SECTION - menggunakan bannerImage dari Firebase jika ada */}
-                            <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-red-600 via-rose-600 to-red-800' : 'bg-slate-900'}`}>
+                            <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-end ${!bannerImage ? 'bg-red-600' : 'bg-slate-900'}`}>
                                 {bannerImage && (
                                     <>
                                         <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" fetchpriority="high" decoding="async"/>
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent z-0"></div>
+                                        <div className="absolute inset-0 bg-slate-950/65 z-0"></div>
                                     </>
                                 )}
 
                                 <div className="relative z-10 w-full text-left space-y-5 max-w-2xl pb-2">
-                                    <div className="inline-flex items-center gap-1.5 bg-black/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
+                                    <div className="inline-flex items-center gap-1.5 bg-red-800 px-3.5 py-1.5 rounded-full border border-white/20 shadow-sm w-fit">
                                         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                         <span className="text-[9px] font-medium uppercase tracking-widest text-white/90">Portal Resmi Warga</span>
                                     </div>
@@ -2771,7 +2771,7 @@ import {
                                                             <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"/>
                                                         </div>
                                                     ) : (
-                                                        <div className="w-full h-40 bg-gradient-to-br from-red-50 to-red-100/50 dark:from-red-950/20 dark:to-red-900/10 flex items-center justify-center shrink-0">
+                                                        <div className="w-full h-40 bg-red-50 dark:bg-red-950/20 flex items-center justify-center shrink-0">
                                                             <Icon name="campaign" className="text-[40px] text-red-500/20" />
                                                         </div>
                                                     )}
@@ -2819,7 +2819,7 @@ import {
                                                         <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
                                                     </div>
                                                 ) : (
-                                                    <div className="w-full h-40 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/20 dark:to-blue-900/10 flex items-center justify-center shrink-0">
+                                                    <div className="w-full h-40 bg-blue-50 dark:bg-blue-950/20 flex items-center justify-center shrink-0">
                                                         <Icon name="article" className="text-[40px] text-google-blue/20" />
                                                     </div>
                                                 )}
@@ -2922,7 +2922,7 @@ import {
                                                         {item.imageUrl ? (
                                                             <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
                                                         ) : (
-                                                            <div className="w-full h-full bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-950/20 dark:to-green-900/10 flex items-center justify-center">
+                                                            <div className="w-full h-full bg-green-50 dark:bg-green-950/20 flex items-center justify-center">
                                                                 <Icon name="storefront" className="text-[48px] text-green-500/20" />
                                                             </div>
                                                         )}
@@ -3222,7 +3222,7 @@ import {
                                 <div className="mx-auto mt-4 mb-5 bg-red-50/50 w-24 h-24 rounded-full flex items-center justify-center border-2 border-red-500/20 shadow-inner overflow-hidden">
                                     <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"}  loading="lazy" decoding="async"/>
                                 </div>
-                                <h1 className="text-[18px] font-medium bg-gradient-to-r from-red-600 to-rose-500 bg-clip-text text-transparent mb-1 tracking-tight">Otorisasi Admin</h1>
+                                <h1 className="text-[18px] font-medium text-google-red mb-1 tracking-tight">Otorisasi Admin</h1>
                                 <p className="text-[12.5px] font-medium text-slate-600 mb-6 leading-snug">{identity.name}</p>
                                 
                                 <form onSubmit={handleAdminLogin} className="space-y-7 mt-2">
@@ -3248,7 +3248,7 @@ import {
                     )}
 
                     {/* LANDING FOOTER (MATCHES GLOBAL FOOTER) */}
-                    <footer className="w-full text-center py-8 no-print border-t border-red-500/20 bg-gradient-to-b from-white/10 to-white/90 dark:from-slate-900/10 dark:to-slate-900/90 text-[12.5px] font-medium text-slate-500 mt-10 z-10 relative">
+                    <footer className="w-full text-center py-8 no-print border-t border-red-500/20 bg-white dark:bg-slate-900 text-[12.5px] font-medium text-slate-500 mt-10 z-10 relative">
                         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3.5">
                             <p className="flex flex-wrap items-center gap-1.5 justify-center">
                                 <Icon name="flag" className="text-red-500 text-[14px] animate-pulse" fill="true" />
@@ -3302,7 +3302,7 @@ import {
                                     )}
                                 </div>
                                 <h2 className="text-xl sm:text-2xl font-medium text-slate-900 dark:text-white tracking-tight leading-tight">{selectedArticle.title}</h2>
-                                <div className="w-12 h-1 rounded-full bg-gradient-to-r from-red-500 to-rose-400"></div>
+                                <div className="w-12 h-1 rounded-full bg-google-red"></div>
                                 <p className="text-[13.5px] font-medium text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                                     {selectedArticle.type === 'blog' ? selectedArticle.content : selectedArticle.description}
                                 </p>
@@ -3326,7 +3326,7 @@ import {
                             </div>
                             {/* Footer modal */}
                             <div className="px-6 sm:px-8 py-5 border-t border-slate-200 dark:border-slate-700 shrink-0">
-                                <button onClick={() => onLogin('warga')} className="w-full bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white py-3.5 rounded-full font-medium text-[13px] flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all">
+                                <button onClick={() => onLogin('warga')} className="w-full bg-google-red hover:bg-google-redDark text-white py-3.5 rounded-full font-medium text-[13px] flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all">
                                     <Icon name="login" className="text-[16px]" fill="true" />
                                     Masuk ke Portal Warga untuk Interaksi Lebih
                                 </button>
@@ -3343,16 +3343,16 @@ import {
                 <div className="space-y-8 sm:space-y-8 max-w-7xl mx-auto mt-2">
                     
                     {/* --- AREA BANNER UTAMA --- */}
-                    <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[220px] sm:min-h-[280px] flex items-end ${!bannerImage ? 'bg-gradient-to-br from-red-600 via-rose-600 to-red-800' : 'bg-slate-900'}`}>
+                    <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[220px] sm:min-h-[280px] flex items-end ${!bannerImage ? 'bg-red-600' : 'bg-slate-900'}`}>
                         {bannerImage && (
                             <>
                                 <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"  loading="lazy" decoding="async"/>
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent z-0"></div>
+                                <div className="absolute inset-0 bg-slate-950/65 z-0"></div>
                             </>
                         )}
 
                         <div className="relative z-10 w-full text-left pb-2">
-                            <div className="inline-flex items-center gap-1.5 bg-black/20 backdrop-blur-sm px-3.5 py-1.5 rounded-full mb-3 border border-white/20 shadow-sm w-fit">
+                            <div className="inline-flex items-center gap-1.5 bg-red-800 px-3.5 py-1.5 rounded-full mb-3 border border-white/20 shadow-sm w-fit">
                                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                 <span className="text-[9px] font-medium uppercase tracking-widest text-white/90">Sistem Aktif</span>
                             </div>
@@ -3381,10 +3381,7 @@ import {
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-6">
                             {NavItems.map((item, idx) => (
                             <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
-                                <div className="absolute inset-0 bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                
                                 <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[20px] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md border border-white/60 ${item.bg} ${item.color.replace('border-2', '')}`}>
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/10 to-black/5 rounded-[18px] sm:rounded-[20px]"></div>
                                     <Icon name={item.icon} className="relative z-10 text-[26px] sm:text-[30px] drop-shadow-sm" fill="true" />
                                 </div>
                                 
@@ -3817,11 +3814,11 @@ import {
                                 <p className="text-[11px] text-google-textVariant font-medium uppercase tracking-wider">Progres Pemenang</p>
                                 <p className="text-xl font-medium text-google-blueDark leading-none">{winnersCount} <span className="text-[13px] text-google-textVariant">/ {arisanMembers.length}</span></p>
                             </div>
-                            <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-gradient-to-r from-google-blue to-google-blueDark h-full rounded-full transition-all duration-1000" style={{ width: `${(winnersCount / (arisanMembers.length || 1)) * 100}%` }}></div></div>
+                            <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-google-blue h-full rounded-full transition-all duration-1000" style={{ width: `${(winnersCount / (arisanMembers.length || 1)) * 100}%` }}></div></div>
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-[32px] p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 border-2 border-slate-700 relative overflow-hidden group cursor-default">
+                    <div className="bg-slate-900 rounded-[32px] p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 border-2 border-slate-700 relative overflow-hidden group cursor-default">
                         
                         
 
@@ -3835,7 +3832,7 @@ import {
                     </div>
                     
                     {isCycleComplete && userRole === 'admin' && (
-                        <div className="bg-gradient-to-r from-google-blueLight to-blue-50 p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row items-center sm:text-left text-center gap-6 border-2 border-google-blue shadow-sm">
+                        <div className="bg-google-blueLight p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row items-center sm:text-left text-center gap-6 border-2 border-google-blue shadow-sm">
                             <div className="bg-google-blue text-white w-16 h-16 rounded-full flex items-center justify-center shadow-md border-2 border-google-blueDark shrink-0"><Icon name="task_alt" className="text-[32px]" fill="true" /></div>
                             <div className="flex-1"><h3 className="font-medium text-google-blueDark text-xl mb-1.5">Siklus Telah Selesai</h3><p className="text-[13px] font-medium text-google-blue">Seluruh warga arisan telah memenangkan putaran. Silakan mulai siklus baru.</p></div>
                             <button onClick={() => setShowResetModal(true)} className="w-full sm:w-auto px-8 py-3.5 bg-google-blue text-white font-medium rounded-full text-[13px] border-2 border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="refresh" className="text-[17px]"/> Mulai Baru</button>
@@ -3868,13 +3865,13 @@ import {
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-r from-google-yellowLight to-yellow-50 border-2 border-google-yellow/40 rounded-[32px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="bg-google-yellowLight border-2 border-google-yellow/40 rounded-[32px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 shadow-sm hover:shadow-md transition-shadow">
                         <div><p className="text-[10px] font-medium text-google-yellowDark uppercase tracking-widest mb-1.5">Total Saldo Efektif Jimpitan</p><p className="text-3xl font-medium text-google-yellowDark tracking-tight">{formatRp(saldoEfektifJimpitan)}</p></div>
                         <div className="flex flex-wrap items-center gap-3 bg-white/80  px-5 py-4 rounded-[24px] border-2 border-google-yellow/30 shadow-sm"><Icon name="info" className="text-[20px] text-google-yellowDark shrink-0" /><p className="text-[12px] font-medium text-google-yellowDark max-w-[220px] max-w-full leading-relaxed">Akumulasi aset utuh (Kas Tunai + Piutang Warga).</p></div>
                     </div>
 
                     {redRecords > 0 && (
-                        <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] flex items-start space-x-5 border-2 border-google-redDark shadow-lg hover:shadow-xl transition-shadow animate-pulse" style={{ animationDuration: '3s' }}>
+                        <div className="bg-google-red text-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] flex items-start space-x-5 border-2 border-google-redDark shadow-lg hover:shadow-xl transition-shadow animate-pulse" style={{ animationDuration: '3s' }}>
                             <Icon name="warning" className="text-[36px] shrink-0 drop-shadow-md" fill="true" />
                             <div><h4 className="text-[16px] font-medium mb-1.5 tracking-tight">Peringatan: Tunggakan Terdeteksi</h4><p className="text-[13px] font-medium text-red-50 leading-relaxed">Terdapat <span className="underline underline-offset-2">{redRecords} warga</span> dengan catatan rapor merah.</p></div>
                         </div>
@@ -5862,7 +5859,7 @@ import {
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
                                 <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-slate-300 text-center shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Target / Warga</p><p className="text-[20px] font-medium text-google-text tracking-tight">{formatRp(selectedAgenda.minAmount)}</p></div>
                                 <div className="bg-google-greenLight p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-google-green/30 text-center shadow-sm"><p className="text-[10px] font-medium text-google-greenDark uppercase tracking-widest mb-2">Dana Terkumpul</p><p className="text-[20px] font-medium text-google-greenDark tracking-tight">{formatRp(totalTerkumpul)}</p></div>
-                                <div className="bg-gradient-to-br from-google-blueLight to-blue-50 p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-google-blue/30 text-center flex flex-col items-center relative shadow-sm hover:shadow-md transition-shadow group"><p className="text-[10px] font-medium text-google-blueDark uppercase tracking-widest mb-2">Sisa (Belum Disetor)</p><p className="text-[20px] font-medium text-google-blueDark group-hover:scale-105 transition-transform tracking-tight">{formatRp(sisa)}</p>
+                                <div className="bg-google-blueLight p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-google-blue/30 text-center flex flex-col items-center relative shadow-sm hover:shadow-md transition-shadow group"><p className="text-[10px] font-medium text-google-blueDark uppercase tracking-widest mb-2">Sisa (Belum Disetor)</p><p className="text-[20px] font-medium text-google-blueDark group-hover:scale-105 transition-transform tracking-tight">{formatRp(sisa)}</p>
                                     {userRole === 'admin' && sisa > 0 && <button onClick={() => { 
                                             const savedTotal = calculateTotal(selectedAgenda.payments || {});
                                             const currentTotal = calculateTotal(tempPayments);
@@ -5874,7 +5871,7 @@ import {
                             
                             <div className="bg-slate-50 border-2 border-slate-300 p-6 sm:p-8 md:p-6 rounded-[24px] mb-10 shadow-sm">
                                 <div className="flex justify-between items-end mb-4"><span className="text-[13px] font-medium text-google-textVariant">Progres Pelunasan Warga</span><span className="text-[17px] font-medium text-google-blueDark leading-none">{lunasCount} <span className="text-[13px] text-google-textVariant">/ {activeMembers.length}</span></span></div>
-                                <div className="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-gradient-to-r from-google-blue to-google-blueDark h-full rounded-full transition-all duration-1000" style={{ width: `${activeMembers.length === 0 ? 0 : (lunasCount / activeMembers.length) * 100}%` }}></div></div>
+                                <div className="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-google-blue h-full rounded-full transition-all duration-1000" style={{ width: `${activeMembers.length === 0 ? 0 : (lunasCount / activeMembers.length) * 100}%` }}></div></div>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -5961,7 +5958,7 @@ import {
                                         </div>
                                         <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border-2 border-slate-300 mb-8 shadow-sm">
                                             <div className="flex justify-between items-end mb-4"><span className="text-[12px] font-medium text-google-textVariant">Progres Warga Lunas</span><span className="text-[16px] font-medium text-google-blueDark leading-none">{lunasCount} <span className="text-[12px] text-google-textVariant">/ {activeMembers.length}</span></span></div>
-                                            <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-gradient-to-r from-google-blue to-google-blueDark h-full rounded-full transition-all duration-1000" style={{ width: `${progressPercent}%` }}></div></div>
+                                            <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-google-blue h-full rounded-full transition-all duration-1000" style={{ width: `${progressPercent}%` }}></div></div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pt-6 border-t-2 border-slate-200">
@@ -6128,7 +6125,7 @@ import {
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark text-white p-8 sm:p-12 rounded-[32px] border-2 border-google-blueDark shadow-xl relative overflow-hidden no-print group cursor-default">
+                    <div className="bg-google-blue text-white p-8 sm:p-12 rounded-[32px] border-2 border-google-blueDark shadow-xl relative overflow-hidden no-print group cursor-default">
                         
                         
                         
@@ -6698,7 +6695,7 @@ import {
                                 <h3 className="text-3xl font-medium text-google-text mb-2 tracking-tight">Rekapitulasi Sementara</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8">Periksa kembali rincian aliran dana sebelum mengundi pemenang.</p>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="bg-gradient-to-br from-google-greenLight to-green-50 border-2 border-google-green/40 rounded-[32px] p-8 sm:p-10 flex flex-col justify-center text-center shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
+                                    <div className="bg-google-greenLight border-2 border-google-green/40 rounded-[32px] p-8 sm:p-10 flex flex-col justify-center text-center shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300">
                                         <Icon name="payments" className="absolute -right-4 -bottom-4 text-[140px] text-google-green opacity-10 group-hover:scale-110 transition-transform duration-700" fill="true" />
                                         <div className="relative z-10">
                                             <p className="text-[11px] uppercase font-medium tracking-widest mb-3 text-google-greenDark">Arisan Diserahkan Ke Pemenang</p>
@@ -6724,7 +6721,7 @@ import {
                             <div className="space-y-8 no-print">
                                 <h3 className="text-3xl font-medium text-google-text mb-2 text-center tracking-tight">Tentukan Pemenang</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 text-center">Pilih warga yang akan menerima dana arisan putaran ini.</p>
-                                <div className="bg-gradient-to-br from-white to-slate-50 border-2 border-slate-300 rounded-[32px] p-8 sm:p-14 text-center shadow-lg relative overflow-hidden max-w-2xl mx-auto">
+                                <div className="bg-slate-50 border-2 border-slate-300 rounded-[32px] p-8 sm:p-14 text-center shadow-lg relative overflow-hidden max-w-2xl mx-auto">
                                     
                                     
                                     
@@ -6973,10 +6970,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div key={record.id} className="bg-white rounded-[32px] overflow-hidden border-2 border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300">
                                     <div className="p-6 sm:p-8 flex flex-col sm:flex-row justify-between sm:items-center border-b-2 border-slate-200 bg-slate-50">
                                         <div><h3 className="font-medium text-2xl text-google-text tracking-tight">Putaran Ke-{record.round}</h3><p className="text-[13px] font-medium text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[16px]"/> {record.periode} G {record.date}</p></div>
-                                        <div className="mt-5 sm:mt-0 flex flex-col sm:items-end"><span className="text-[10px] uppercase font-medium text-google-textVariant tracking-widest mb-2">{isHoliday ? 'Status Kegiatan' : 'Pemenang Arisan'}</span><div className={`${isHoliday ? 'bg-gradient-to-r from-google-yellow to-google-yellowDark text-white border-google-yellowDark' : 'bg-gradient-to-r from-google-blue to-google-blueDark text-white border-google-blueDark'} px-6 py-3 rounded-full font-medium text-[13px] shadow-md inline-flex items-center gap-2 border-2`}><Icon name={isHoliday ? "event_busy" : "emoji_events"} className="text-[17px]" fill="true" /> {record.winner}</div></div>
+                                        <div className="mt-5 sm:mt-0 flex flex-col sm:items-end"><span className="text-[10px] uppercase font-medium text-google-textVariant tracking-widest mb-2">{isHoliday ? 'Status Kegiatan' : 'Pemenang Arisan'}</span><div className={`${isHoliday ? 'bg-google-yellow text-white border-google-yellowDark' : 'bg-google-blue text-white border-google-blueDark'} px-6 py-3 rounded-full font-medium text-[13px] shadow-md inline-flex items-center gap-2 border-2`}><Icon name={isHoliday ? "event_busy" : "emoji_events"} className="text-[17px]" fill="true" /> {record.winner}</div></div>
                                     </div>
                                     <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div className="bg-gradient-to-br from-google-greenLight/50 to-green-50 border-2 border-google-green/30 rounded-[24px] p-8 flex flex-col justify-center text-center shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+                                        <div className="bg-google-greenLight border-2 border-google-green/30 rounded-[24px] p-8 flex flex-col justify-center text-center shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
                                             <Icon name="payments" className="absolute -right-2 -bottom-2 text-[100px] text-google-green opacity-10 group-hover:scale-110 transition-transform duration-500" fill="true" />
                                             <p className="text-[10px] uppercase font-medium tracking-widest mb-3 text-google-greenDark relative z-10">Arisan Diserahkan</p>
                                             <p className="text-4xl font-medium text-google-green relative z-10 drop-shadow-sm tracking-tight">{formatRp(record.kasArisanTerkumpul)}</p>
@@ -7640,7 +7637,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             )}
 
                             {activeMenu === 'reset' && (
-                                <div className="bg-gradient-to-r from-google-red to-google-redDark text-white p-8 sm:p-10 rounded-[32px] border-2 border-google-redDark shadow-xl relative overflow-hidden group">
+                                <div className="bg-google-red text-white p-8 sm:p-10 rounded-[32px] border-2 border-google-redDark shadow-xl relative overflow-hidden group">
                                     <Icon name="warning" className="absolute -right-5 -top-5 text-[160px] text-white opacity-10 group-hover:scale-110 transition-transform duration-700" fill="true" />
                                     <div className="relative z-10">
                                         <div className="flex items-center space-x-3 mb-4"><Icon name="report" className="text-[36px] text-white" fill="true" /><h3 className="font-medium text-[20px] tracking-tight">Bahaya: Hapus Semua Database</h3></div>
@@ -8310,7 +8307,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             return (
                 <>
                 <div className="space-y-8 tab-fade-in relative z-10 w-full animate-slide-up no-print">
-                    <div className="bg-gradient-to-br from-google-yellow via-amber-400 to-orange-500 text-white p-8 sm:p-10 rounded-[32px] border-2 border-orange-600/20 shadow-lg relative overflow-hidden">
+                    <div className="bg-google-yellow text-white p-8 sm:p-10 rounded-[32px] border-2 border-orange-600/20 shadow-lg relative overflow-hidden">
                         <div className="relative z-10">
                             <div className="inline-flex items-center gap-2 bg-white/20  px-3.5 py-1.5 rounded-full mb-4 border border-white/30 shadow-sm">
                                 <Icon name="article" className="text-[14px] sm:text-[16px]" fill="true"/>
@@ -8337,7 +8334,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
                                     </div>
                                 ) : (
-                                    <div className="w-full h-48 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center relative overflow-hidden">
+                                    <div className="w-full h-48 bg-slate-100 flex items-center justify-center relative overflow-hidden">
                                         <Icon name="article" className="text-[64px] text-slate-300" />
                                     </div>
                                 )}
@@ -9213,7 +9210,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         /* ================== VIEW WARGA ================== */
                         <div className="space-y-8">
                             {/* Banner Header */}
-                            <div className="bg-gradient-to-br from-google-blue via-google-blue to-google-blueDark rounded-[28px] p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+                            <div className="bg-google-blue rounded-[28px] p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
                                 <div className="absolute inset-0 bg-black/10"></div>
                                 <div className="relative z-10">
                                     <span className="bg-white/25  px-3 py-1 rounded-full text-[10px] font-medium tracking-widest uppercase border border-white/20">EVENT RT PAKEM</span>
@@ -9266,19 +9263,19 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         {activeProducts.map(prod => (
                                             <div key={prod.id} className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/85 dark:border-slate-800/85 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                                                 {/* Image Cover with Aspect-Ratio and overlays */}
-                                                <div className="relative w-full h-48 sm:h-52 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850">
+                                                <div className="relative w-full h-48 sm:h-52 bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850">
                                                     {prod.imageUrl ? (
                                                         <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"  loading="lazy" decoding="async"/>
                                                     ) : (
-                                                        <div className="w-full h-full bg-gradient-to-tr from-rose-500/10 to-google-blue/10 flex flex-col items-center justify-center p-6 text-center">
-                                                            <div className="w-14 h-14 rounded-[16px] bg-gradient-to-tr from-google-blue to-indigo-500 text-white flex items-center justify-center shadow-md mb-2">
+                                                        <div className="w-full h-full bg-slate-100 flex flex-col items-center justify-center p-6 text-center">
+                                                            <div className="w-14 h-14 rounded-[16px] bg-google-blue text-white flex items-center justify-center shadow-md mb-2">
                                                                 <Icon name="local_activity" className="text-[26px]" />
                                                             </div>
                                                             <span className="text-[10px] font-medium uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
                                                         </div>
                                                     )}
                                                     {/* Official Store Badge — top left */}
-                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-400 text-white text-[9px] font-medium px-2.5 py-1 rounded-[8px] shadow-md shadow-amber-500/20  border border-white/20 tracking-wide">
+                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-google-yellow text-white text-[9px] font-medium px-2.5 py-1 rounded-[8px] shadow-md shadow-amber-500/20  border border-white/20 tracking-wide">
                                                         <Icon name="verified" className="text-[12px]" fill="true" />
                                                         OFFICIAL
                                                     </div>
@@ -9391,7 +9388,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         {archivedProducts.map(prod => (
                                             <div key={prod.id} className="bg-slate-50/50 dark:bg-slate-900/60 rounded-2xl border border-slate-200/85 dark:border-slate-800/85 shadow-sm overflow-hidden flex flex-col justify-between opacity-90 hover:opacity-100 transition-all duration-300">
                                                 {/* Image Cover with Aspect-Ratio and overlays */}
-                                                <div className="relative w-full h-48 sm:h-52 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-955 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850 grayscale">
+                                                <div className="relative w-full h-48 sm:h-52 bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850 grayscale">
                                                     {prod.imageUrl ? (
                                                         <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                     ) : (
