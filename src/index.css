@@ -743,3 +743,50 @@ input, select, textarea, button.border {
     text-shadow: none !important;
 }
 
+/* ============================================================
+   NATIVE SPACIOUSNESS: Increase padding & layout gaps globally
+   ============================================================ */
+
+/* Buat baris tabel lebih lega, luas, dan tidak mepet */
+table th, table td {
+    padding-top: 1.15rem !important;
+    padding-bottom: 1.15rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+@media (max-width: 640px) {
+    table th, table td {
+        padding-top: 0.85rem !important;
+        padding-bottom: 0.85rem !important;
+        padding-left: 0.85rem !important;
+        padding-right: 0.85rem !important;
+    }
+}
+
+/* Buat input form, dropdown select, dan textarea lebih lega, luas, dan rapi */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select,
+textarea {
+    padding-top: 0.85rem !important;
+    padding-bottom: 0.85rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+}
+
+/* Pastikan section spacing vertical lebih longgar */
+section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+}
+@media (max-width: 640px) {
+    section {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+}
+
+

@@ -2355,7 +2355,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                         )}
                                                     </div>
                                                     <h4 className="font-medium text-[14px] text-slate-900 dark:text-white tracking-tight leading-snug line-clamp-2 flex-1 mb-3">{article.title}</h4>
-                                                    <p className="text-[12px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 mb-3">{article.content}</p>
+                                                    <p className="text-[12px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 mb-3">{article.content && article.content.length > 120 ? article.content.substring(0, 120) + '...' : article.content}</p>
                                                     <span className="inline-flex items-center gap-1 text-google-blue font-medium text-[11.5px] group-hover:gap-2 transition-all">
                                                         Baca Artikel <Icon name="arrow_forward" className="text-[13px] group-hover:translate-x-1 transition-transform" />
                                                     </span>
@@ -2515,7 +2515,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                         </div>
                                                         <div className="p-3 sm:p-5 space-y-1 sm:space-y-2 flex-1 flex flex-col">
                                                             <h4 className="font-medium text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-blue transition-colors">{item.judul || item.name}</h4>
-                                                            <p className="text-[10px] sm:text-[12px] font-medium text-slate-500 dark:text-slate-400 line-clamp-2">{item.deskripsi || item.category}</p>
                                                             <div className="flex flex-wrap items-center gap-1.5 pt-2 mt-auto">
                                                                 <span className="flex items-center gap-0.5 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-blue-200/60 dark:border-blue-800 uppercase tracking-wider"><Icon name="verified" className="text-[11px]" /> Official</span>
                                                                 <span className="flex items-center gap-0.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-800 uppercase tracking-wider"><Icon name="local_shipping" className="text-[11px]" /> Gratis Ongkir</span>
@@ -7865,7 +7864,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="p-6 flex flex-col flex-1">
                                     <p className="text-[11px] font-medium text-google-textVariant mb-2 flex items-center gap-1.5"><Icon name="calendar_today" className="text-[13px]"/> {parseLocalDate(article.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
                                     <h3 className="font-medium text-[16px] text-google-text mb-3 line-clamp-2 leading-snug group-hover:text-google-blue transition-colors">{article.title}</h3>
-                                    <p className="text-[13px] text-slate-500 line-clamp-3 flex-1 mb-4 leading-relaxed whitespace-pre-wrap">{article.content}</p>
+                                    <p className="text-[13px] text-slate-500 line-clamp-3 flex-1 mb-4 leading-relaxed whitespace-pre-wrap">{article.content && article.content.length > 150 ? article.content.substring(0, 150) + '...' : article.content}</p>
                                     <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
                                         <div className="flex gap-4">
                                             <span className="flex items-center gap-1.5 text-[12px] font-medium text-slate-500"><Icon name="favorite" className="text-[14px]" /> {article.likes || 0}</span>
@@ -10415,7 +10414,6 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <div className="flex flex-wrap items-center gap-1">
                                 {item.sku && <span className="text-[9px] font-medium text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-850 px-1 py-0.5 rounded">{item.sku}</span>}
                             </div>
-                            <p className="text-[11px] sm:text-[12px] font-medium text-slate-400 dark:text-slate-500 line-clamp-1 sm:line-clamp-2">{item.deskripsi}</p>
                             <div className="flex flex-wrap items-center gap-1.5 pt-2 mt-auto">
                                 <span className="flex items-center gap-0.5 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-blue-200/60 dark:border-blue-800 uppercase tracking-wider"><Icon name="verified" className="text-[11px]" /> Official</span>
                                 <span className="flex items-center gap-0.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-800 uppercase tracking-wider"><Icon name="local_shipping" className="text-[11px]" /> Gratis Ongkir</span>
