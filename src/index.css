@@ -756,16 +756,3 @@ textarea {
     padding-right: 1.25rem !important;
 }
 
-/* Pastikan section spacing vertical lebih longgar */
-section {
-    padding-top: 2.5rem !important;
-    padding-bottom: 2.5rem !important;
-}
-@media (max-width: 640px) {
-    section {
-        padding-top: 1.5rem !important;
-        padding-bottom: 1.5rem !important;
-    }
-}
-
-
