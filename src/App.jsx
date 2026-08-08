@@ -3000,20 +3000,18 @@ import {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="p-3 sm:p-5 pt-0 mt-auto border-t border-slate-100 dark:border-slate-800 pt-3 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                                                        <div className="flex justify-between items-center gap-2 mt-1 sm:mt-2">
-                                                            <div>
-                                                                <p className="text-[9px] sm:text-[10px] font-medium text-slate-400 uppercase tracking-widest">Mulai dari</p>
-                                                                <p className="text-[12px] sm:text-[14px] font-medium text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
-                                                            </div>
-                                                            <button onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                sessionStorage.setItem('addToCartProductId', item.id);
-                                                                onLogin('warga');
-                                                            }} className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-50 dark:bg-slate-800 text-google-blue dark:text-google-blueLight border border-slate-200 dark:border-slate-700 rounded-full flex items-center justify-center hover:bg-google-blue hover:text-white transition-colors shrink-0 cursor-pointer shadow-sm active:scale-95">
-                                                                <Icon name="shopping_bag" className="text-[15px] sm:text-[18px]" />
-                                                            </button>
+                                                    <div className="px-3 sm:px-5 pb-3 sm:pb-5 pt-3 border-t border-slate-100 dark:border-slate-800 mt-auto flex justify-between items-center gap-2">
+                                                        <div>
+                                                            <p className="text-[9px] sm:text-[10px] font-medium text-slate-400 uppercase tracking-widest">Mulai dari</p>
+                                                            <p className="text-[12px] sm:text-[14px] font-medium text-google-blue dark:text-google-blueLight">{new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(Math.min(...item.variants.map(v => v.price)))}</p>
                                                         </div>
+                                                        <button onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            sessionStorage.setItem('addToCartProductId', item.id);
+                                                            onLogin('warga');
+                                                        }} className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-50 dark:bg-slate-800 text-google-blue dark:text-google-blueLight border border-slate-200 dark:border-slate-700 rounded-full flex items-center justify-center hover:bg-google-blue hover:text-white transition-colors shrink-0 cursor-pointer shadow-sm active:scale-95">
+                                                            <Icon name="shopping_bag" className="text-[15px] sm:text-[18px]" />
+                                                        </button>
                                                     </div>
                                                 </article>
                                             ))}
