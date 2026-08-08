@@ -1464,14 +1464,27 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             useEffect(() => {
                 const clientId = landingConfig?.adsenseClientId || 'ca-pub-2636322336243340';
                 if (clientId) {
-                    const existingScript = document.querySelector('script[src*="adsbygoogle.js"]');
-                    if (!existingScript) {
-                        const script = document.createElement('script');
-                        script.async = true;
-                        script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`;
-                        script.crossOrigin = 'anonymous';
-                        document.head.appendChild(script);
-                        console.log(`[AdSense] Script injected for client: ${clientId}`);
+                    const injectScript = () => {
+                        const existingScript = document.querySelector('script[src*="adsbygoogle.js"]');
+                        if (!existingScript) {
+                            const script = document.createElement('script');
+                            script.async = true;
+                            script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`;
+                            script.crossOrigin = 'anonymous';
+                            document.head.appendChild(script);
+                            console.log(`[AdSense] Script injected (deferred) for client: ${clientId}`);
+                        }
+                    };
+
+                    // Defer loading to improve initial load time (FCP/LCP)
+                    if (window.requestIdleCallback) {
+                        const idleId = window.requestIdleCallback(() => {
+                            setTimeout(injectScript, 2500);
+                        });
+                        return () => window.cancelIdleCallback(idleId);
+                    } else {
+                        const timeoutId = setTimeout(injectScript, 3500);
+                        return () => clearTimeout(timeoutId);
                     }
                 }
             }, [landingConfig?.adsenseClientId]);
