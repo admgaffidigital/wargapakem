@@ -704,38 +704,23 @@ input:-webkit-autofill:active {
    NATIVE UI OVERRIDES: Flat design, thick borders, no shadows
    ============================================================ */
 
-/* Pertebal garis (border-width 2px) untuk semua utilitas border Tailwind */
-.border,
-.border-t,
-.border-b,
-.border-l,
-.border-r,
-.border-x,
-.border-y {
+/* Pertebal hanya garis tepi kartu utama/panel box & input form (bukan garis pemisah/list/tabel) */
+[class*="rounded-"][class*="border-"],
+[class*="rounded-"].border,
+input, select, textarea {
     border-width: 2px !important;
 }
 
-/* Penyesuaian arah border tertentu agar tetap konsisten 2px */
-.border-t { border-top-width: 2px !important; }
-.border-b { border-bottom-width: 2px !important; }
-.border-l { border-left-width: 2px !important; }
-.border-r { border-right-width: 2px !important; }
+/* Buat warna garis pembatas (border) kontras tapi halus di mode light & dark */
+.border-slate-100 { border-color: #e2e8f0 !important; } /* slate-200 (dividers halus) */
+.border-slate-200 { border-color: #cbd5e1 !important; } /* slate-300 (kartu & panel) */
+.border-slate-300 { border-color: #94a3b8 !important; } /* slate-400 (tabel/form tegas) */
+.border-slate-400 { border-color: #64748b !important; } /* slate-500 */
 
-/* Buat warna garis pembatas (border) lebih kontras di mode light & dark */
-.border-slate-100 { border-color: #cbd5e1 !important; } /* slate-300 */
-.border-slate-200 { border-color: #94a3b8 !important; } /* slate-400 */
-.border-slate-300 { border-color: #64748b !important; } /* slate-500 */
-.border-slate-400 { border-color: #475569 !important; } /* slate-600 */
-
-.dark .border-slate-700 { border-color: #475569 !important; } /* slate-600 */
-.dark .border-slate-800 { border-color: #334155 !important; } /* slate-700 */
-.dark .border-slate-850 { border-color: #1e293b !important; } /* slate-800 */
-.dark .border-slate-900 { border-color: #0f172a !important; } /* slate-900 */
-
-/* Tombol dan input form harus bergaris tebal */
-input, select, textarea, button.border {
-    border-width: 2px !important;
-}
+.dark .border-slate-700 { border-color: #334155 !important; } /* slate-700 */
+.dark .border-slate-800 { border-color: #1e293b !important; } /* slate-800 */
+.dark .border-slate-850 { border-color: #0f172a !important; } /* slate-900 */
+.dark .border-slate-900 { border-color: #020617 !important; }
 
 /* Sembunyikan bayangan secara mutlak di seluruh elemen */
 * {

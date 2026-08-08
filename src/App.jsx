@@ -8450,24 +8450,24 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     {filteredOrders.length === 0 ? (
                                         <div className="bg-white border-2 border-slate-200 p-12 text-center rounded-[24px]"><div className="w-16 h-16 bg-slate-50 border border-slate-250 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400"><Icon name="receipt" className="text-[28px]" /></div><p className="text-[13px] font-medium text-slate-800">Tidak ada pesanan ditemukan.</p></div>
                                     ) : (
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             {filteredOrders.map(order => (
-                                                <div key={order.id} className="bg-white p-5 rounded-[22px] border border-slate-200 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow">
+                                                <div key={order.id} className="bg-white p-6 sm:p-8 rounded-[22px] border border-slate-200 shadow-sm flex flex-col justify-between space-y-7 hover:shadow-md transition-shadow">
                                                     <div>
-                                                        <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-3">
-                                                            <div className="flex items-center gap-2">
-                                                                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
-                                                                    <Icon name="receipt_long" className="text-[16px]" />
+                                                        <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-4">
+                                                            <div className="flex items-center gap-2.5">
+                                                                <div className="w-8.5 h-8.5 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
+                                                                    <Icon name="receipt_long" className="text-[17px]" />
                                                                 </div>
                                                                 <div>
                                                                     <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wider">ID Pesanan</p>
                                                                     <p className="text-[12px] font-medium text-slate-700">#TKT-{String(order.id).slice(-6)}</p>
                                                                 </div>
                                                             </div>
-                                                            <span className={`text-[10px] font-medium px-3 py-1.5 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
+                                                            <span className={`text-[10px] font-medium px-3.5 py-2 rounded-[8px] border ${getStatusColor(order.status)}`}>{getStatusLabel(order.status)}</span>
                                                         </div>
 
-                                                        <div className="bg-slate-50 rounded-[14px] p-4 border border-slate-100 space-y-5">
+                                                        <div className="bg-slate-50 rounded-[14px] p-5 sm:p-6 border border-slate-100 space-y-6">
                                                             <div className="flex justify-between items-start">
                                                                 <div className="flex-1">
                                                                     <p className="text-[10px] font-medium text-slate-400 uppercase">Pemesan</p>
@@ -8514,40 +8514,40 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             </div>
                                                         </div>
 
-                                                        <div className="mt-4 space-y-2">
+                                                        <div className="mt-6 space-y-3.5">
                                                             {order.deliveryMethod === 'delivery' ? (
-                                                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-white p-3 rounded-[12px] border border-slate-200">
-                                                                    <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center shrink-0">
+                                                                <div className="flex items-start gap-3.5 text-[11.5px] text-slate-600 font-medium bg-white p-4.5 rounded-[12px] border border-slate-200">
+                                                                    <div className="w-6.5 h-6.5 rounded-full bg-rose-50 flex items-center justify-center shrink-0">
                                                                         <Icon name="local_shipping" className="text-[13px] text-rose-500" />
                                                                     </div>
                                                                     <div>
                                                                         <span className="font-medium text-slate-800">Diantar ke Rumah</span>
-                                                                        <p className="text-[11px] text-slate-500 mt-0.5">Waktu: {order.deliveryDay || '-'}, {order.deliveryTime || '-'}</p>
+                                                                        <p className="text-[11px] text-slate-500 mt-1">Waktu: {order.deliveryDay || '-'}, {order.deliveryTime || '-'}</p>
                                                                     </div>
                                                                 </div>
                                                             ) : (
-                                                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-white p-3 rounded-[12px] border border-slate-200">
-                                                                    <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center shrink-0">
+                                                                <div className="flex items-start gap-3.5 text-[11.5px] text-slate-600 font-medium bg-white p-4.5 rounded-[12px] border border-slate-200">
+                                                                    <div className="w-6.5 h-6.5 rounded-full bg-rose-50 flex items-center justify-center shrink-0">
                                                                         <Icon name="location_on" className="text-[13px] text-rose-500" />
                                                                     </div>
                                                                     <div>
                                                                         <span className="font-medium text-slate-800">Ambil Sendiri</span>
-                                                                        <p className="text-[11px] text-slate-500 mt-0.5">{order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}</p>
+                                                                        <p className="text-[11px] text-slate-500 mt-1">{order.pickupLocation || 'Rumah Mas Novan / Rumah Pak RT'}</p>
                                                                         {order.pickupGeoUrl && (
-                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1 text-rose-600 hover:underline inline-flex items-center gap-1 font-medium"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
+                                                                            <a href={order.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="mt-1.5 text-rose-600 hover:underline inline-flex items-center gap-1 font-medium"><Icon name="map" className="text-[11px]" /> Buka Peta</a>
                                                                         )}
                                                                     </div>
                                                                 </div>
                                                             )}
                                                             {order.notes && (
-                                                                <div className="flex items-start gap-2 text-[11.5px] text-slate-600 font-medium bg-amber-50 p-3 rounded-[12px] border border-amber-100">
+                                                                <div className="flex items-start gap-3 text-[11.5px] text-slate-600 font-medium bg-amber-50 p-4.5 rounded-[12px] border border-amber-100">
                                                                     <Icon name="chat_bubble" className="text-[14px] mt-0.5 shrink-0 text-amber-500" />
                                                                     <span><span className="font-medium text-slate-800">Catatan:</span> {order.notes}</span>
                                                                 </div>
                                                             )}
                                                         </div>
 
-                                                        <div className="flex items-center justify-between mt-4">
+                                                        <div className="flex items-center justify-between mt-6">
                                                             <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
                                                                 <Icon name="event" className="text-[13px]" /> {order.timestamp}
                                                             </div>
@@ -8556,18 +8556,18 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                                     {/* Actions */}
                                                     {order.status !== 'completed' && order.status !== 'cancelled' ? (
-                                                        <div className="flex gap-2 border-t border-slate-200 pt-3.5">
+                                                        <div className="flex gap-2 border-t border-slate-200 pt-5 mt-4">
                                                             {order.status === 'pending' && (
-                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-medium py-2.5 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'processed')} className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 font-medium py-3 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="task_alt" className="text-[14px]" /> Terima & Proses</button>
                                                             )}
                                                             {order.status === 'processed' && (
-                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-medium py-2.5 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
+                                                                <button onClick={() => handleUpdateOrderStatus(order.id, 'completed')} className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-250 font-medium py-3 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="check" className="text-[14px]" /> Selesai</button>
                                                             )}
-                                                            <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-medium py-2.5 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
+                                                            <button onClick={() => handleUpdateOrderStatus(order.id, 'cancelled')} className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-medium py-3 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="cancel" className="text-[14px]" /> Tolak / Batalkan</button>
                                                         </div>
                                                     ) : (
-                                                        <div className="flex gap-2 border-t border-slate-200 pt-3.5">
-                                                            <button onClick={() => handleDeleteOrderLog(order.id)} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-medium py-2.5 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus Log Pesanan</button>
+                                                        <div className="flex gap-2 border-t border-slate-200 pt-5 mt-4">
+                                                            <button onClick={() => handleDeleteOrderLog(order.id)} className="w-full bg-red-50 hover:bg-red-100 text-red-655 border border-red-200 font-medium py-3 rounded-full text-[11px] transition-colors flex items-center justify-center gap-1"><Icon name="delete" className="text-[14px]" /> Hapus Log Pesanan</button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -9846,14 +9846,14 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <button onClick={() => setView('list')} className="mt-4 px-5 py-2 bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-750 text-white rounded-full font-medium text-xs transition-all">Lihat Produk</button>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Ringkasan Pesanan */}
-                    <div className="space-y-6">
-                        <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
-                            <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-3">Ringkasan Pesanan</h3>
+                    <div className="space-y-8">
+                        <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                            <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-4">Ringkasan Pesanan</h3>
                             {Object.entries(cart).map(([key, item]) => (
-                                <div key={key} className="flex gap-3 justify-between items-start border-b border-slate-100 dark:border-slate-800 pb-3 last:border-0 last:pb-0">
-                                    <div className="flex gap-2 sm:gap-3 items-center flex-1 min-w-0">
+                                <div key={key} className="flex gap-4 justify-between items-start border-b border-slate-100 dark:border-slate-800 pb-4 last:border-0 last:pb-0">
+                                    <div className="flex gap-3 sm:gap-4 items-center flex-1 min-w-0">
                                         {item.product.imageUrl ? <img src={item.product.imageUrl} className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover shrink-0" /> : <div className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0"><Icon name="storefront" className="text-slate-400 text-[16px]" /></div>}
                                         <div className="min-w-0">
                                             <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-white line-clamp-1">{item.product.judul}</p>
@@ -9866,12 +9866,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     </div>
                                 </div>
                             ))}
-                            <div className="bg-slate-50 dark:bg-slate-850 px-4 py-3 rounded-xl flex justify-between items-center border border-slate-200 dark:border-slate-800">
+                            <div className="bg-slate-50 dark:bg-slate-850 px-5 py-4 rounded-xl flex justify-between items-center border border-slate-200 dark:border-slate-800">
                                 <span className="font-medium text-slate-600 dark:text-slate-300 text-sm">Total Belanja</span>
                                 <span className="text-base sm:text-lg font-medium text-google-green dark:text-google-greenLight">{formatRp(cartTotal)}</span>
                             </div>
                         </div>
-                        <div className="bg-google-greenLight/20 dark:bg-google-greenDark/10 border border-google-green/30 p-4 rounded-[16px] flex gap-3 items-start">
+                        <div className="bg-google-greenLight/20 dark:bg-google-greenDark/10 border border-google-green/30 p-5 rounded-[20px] flex gap-4 items-start">
                             <Icon name="local_shipping" className="text-google-green text-[20px] shrink-0 mt-0.5" />
                             <div>
                                 <p className="font-medium text-google-greenDark dark:text-google-greenLight text-sm">Gratis Ongkir & COD</p>
@@ -9880,15 +9880,15 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         </div>
                     </div>
                     {/* Form Pengiriman */}
-                    <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-                        <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-3">Data Pengiriman</h3>
+                    <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[20px] sm:rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm space-y-7">
+                        <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-100 dark:border-slate-800 pb-4">Data Pengiriman</h3>
                         {[
                             { label: 'Nama Lengkap Pemesan *', key: 'namaWarga', type: 'text', placeholder: 'Nama Anda...' },
                             { label: 'Nomor WhatsApp *', key: 'noWa', type: 'number', placeholder: '08xx...' },
                         ].map(f => (
                             <div key={f.key}>
-                                <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">{f.label}</label>
-                                <input type={f.type} value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-205 dark:border-slate-700 focus:border-google-green dark:focus:border-green-505 text-slate-800 dark:text-white rounded-[12px] px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors" placeholder={f.placeholder} />
+                                <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2 block">{f.label}</label>
+                                <input type={f.type} value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-205 dark:border-slate-700 focus:border-google-green dark:focus:border-green-505 text-slate-800 dark:text-white rounded-[12px] px-5 py-3.5 text-sm font-medium outline-none transition-colors" placeholder={f.placeholder} />
                             </div>
                         ))}
                         {[
@@ -9896,11 +9896,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             { label: 'Catatan (Opsional)', key: 'catatan', placeholder: 'Cth: Diantar sore hari...' },
                         ].map(f => (
                             <div key={f.key}>
-                                <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">{f.label}</label>
-                                <textarea rows="2" value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-205 dark:border-slate-700 focus:border-google-green dark:focus:border-green-505 text-slate-800 dark:text-white rounded-[12px] px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none" placeholder={f.placeholder} />
+                                <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2 block">{f.label}</label>
+                                <textarea rows="2" value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-205 dark:border-slate-700 focus:border-google-green dark:focus:border-green-505 text-slate-800 dark:text-white rounded-[12px] px-5 py-3.5 text-sm font-medium outline-none transition-colors resize-none" placeholder={f.placeholder} />
                             </div>
                         ))}
-                        <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-755 text-white font-medium py-3 sm:py-3.5 rounded-full shadow-[0_4px_12px_rgba(34,197,94,0.3)] active:scale-95 transition-all text-sm">
+                        <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-755 text-white font-medium py-3.5 sm:py-4 rounded-full shadow-[0_4px_12px_rgba(34,197,94,0.3)] active:scale-95 transition-all text-sm">
                             ✓ Buat Pesanan & Bayar COD
                         </button>
                     </div>
