@@ -6604,9 +6604,8 @@ import {
                                 
                                 {isScannerOpen && (
                                     <div className="fixed inset-0 z-50 flex flex-col p-4 sm:p-6 no-print overflow-y-auto hide-scrollbar modal-backdrop animate-backdrop-in">
-                                        <div className="flex justify-between items-center mb-6 shrink-0 modal-card animate-modal-in">
-                                            <h3 className="text-white font-medium text-xl sm:text-2xl">Scan Barcode Warga</h3>
-                                            <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white p-2 rounded-full hover:bg-white/40"><Icon name="close" className="text-[20px]" /></button>
+                                        <div className="absolute top-4 right-4 z-50">
+                                            <button onClick={() => setIsScannerOpen(false)} className="bg-white/20 text-white w-9 h-9 flex items-center justify-center shrink-0 rounded-full hover:bg-white/40"><Icon name="close" className="text-[20px]" /></button>
                                         </div>
                                         <div className="flex-1 flex flex-col items-center pt-2 pb-10">
                                             <div id="reader" className="w-full max-w-md bg-white rounded-[16px] overflow-hidden shadow-2xl shrink-0"></div>
@@ -7222,7 +7221,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     const ns = [...(prev?.sponsors || [])]; ns.splice(idx, 1);
                                     return { ...prev, sponsors: ns };
                                 });
-                            }} className="text-google-red hover:bg-red-50 dark:hover:bg-red-950/20 p-2 rounded-full transition-colors shrink-0"><Icon name="delete" className="text-[17px]" /></button>
+                            }} className="text-google-red hover:bg-red-50 dark:hover:bg-red-950/20 w-8 h-8 flex items-center justify-center rounded-full transition-colors shrink-0"><Icon name="delete" className="text-[17px]" /></button>
                             </div>
                         ))}
                         {(!sponsorsData?.sponsors || sponsorsData.sponsors.length === 0) && (
@@ -10657,9 +10656,9 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                             </td>
                                             <td className="p-4 text-xs font-medium text-slate-600 dark:text-slate-300 space-y-1">{p.variants.map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-medium text-slate-800 dark:text-white">{formatRp(v.price)}</span></div>)}</td>
                                             <td className="p-4 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-medium uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
-                                            <td className="p-4 text-right space-x-2">
-                                                <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="p-2 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
-                                                <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="p-2 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
+                                            <td className="p-4 text-right space-x-2 flex items-center justify-end">
+                                                <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
+                                                <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
                                             </td>
                                         </tr>
                                     ))}
