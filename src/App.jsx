@@ -2019,6 +2019,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const [limitBlog, setLimitBlog] = useState(6);
             const [limitUmkm, setLimitUmkm] = useState(6);
             const [limitInfaq, setLimitInfaq] = useState(3);
+            const [limitToko, setLimitToko] = useState(8);
             
             const latestWinner = useMemo(() => {
                 return (members || [])
@@ -2488,7 +2489,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {tokoProducts && tokoProducts.filter(p => p.isPublished).length > 0 ? (
                                         <>
                                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-                                            {tokoProducts.filter(p => p.isPublished).slice(0, 8).map(item => (
+                                            {tokoProducts.filter(p => p.isPublished).slice(0, limitToko).map(item => (
                                                 <article key={item.id} onClick={() => {
                                                     sessionStorage.setItem('openTokoProductId', item.id);
                                                     onLogin('warga');
@@ -2538,10 +2539,11 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 </article>
                                             ))}
                                         </div>
-                                        {tokoProducts.filter(p => p.isPublished).length > 8 && (
-                                            <div className="text-center mt-8">
-                                                <button onClick={() => onLogin('warga')} className="px-6 py-3 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-google-blue dark:text-google-blueLight rounded-full text-sm font-medium border-2 border-google-blue/30 hover:border-google-blue transition-all active:scale-95">
-                                                    Lihat Semua Produk
+                                        {tokoProducts.filter(p => p.isPublished).length > limitToko && (
+                                            <div className="flex justify-center pt-6">
+                                                <button onClick={() => setLimitToko(prev => prev + 8)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                                    <Icon name="expand_more" />
+                                                    <span>Lihat Lebih Banyak Produk</span>
                                                 </button>
                                             </div>
                                         )}
