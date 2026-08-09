@@ -5648,31 +5648,39 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         </div>
                     </div>
 
-                    <div className="bg-google-blue text-white p-8 sm:p-12 rounded-[32px] border border-google-blueDark shadow-xl relative overflow-hidden no-print group cursor-default">
-                        
-                        
-                        
-                        <div className="relative z-10">
-                            <div className="inline-flex items-center gap-2 bg-white/10  border border-white/30 px-4 py-2 rounded-[12px] mb-5 shadow-sm">
-                                <Icon name="account_balance_wallet" className="text-[16px]"/>
-                                <span className="text-[10px] font-medium uppercase tracking-widest text-blue-50">Total Saldo Aktif</span>
+                    <div className="bg-gradient-to-br from-google-blue to-[#0d47a1] text-white p-8 sm:p-12 rounded-[32px] border border-[#0a367a] shadow-2xl shadow-google-blue/30 relative overflow-hidden no-print group cursor-default">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-white/20 transition-all duration-700"></div>
+                        <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/20 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4 group-hover:bg-blue-300/30 transition-all duration-700"></div>
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                            <div>
+                                <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full mb-5 shadow-sm">
+                                    <Icon name="account_balance_wallet" className="text-[16px]"/>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue-50">Total Saldo Aktif</span>
+                                </div>
+                                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight drop-shadow-lg">{formatRp(balance)}</h2>
                             </div>
-                            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight drop-shadow-md">{formatRp(balance)}</h2>
+                            <div className="hidden lg:flex items-center justify-center w-24 h-24 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-inner">
+                                <Icon name="savings" className="text-5xl text-white/90 drop-shadow-md" />
+                            </div>
                         </div>
                     </div>
 
                     {userRole === 'admin' && (
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 no-print">
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-200 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
-                                <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/30"><Icon name="add" className="text-[24px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-200 p-5 sm:p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-google-green/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
+                                <div className="bg-google-greenLight text-google-greenDark w-12 h-12 sm:w-14 sm:h-14 rounded-[16px] flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/30"><Icon name="add" className="text-[24px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pemasukan</span>
                             </button>
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-200 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
-                                <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/30"><Icon name="remove" className="text-[24px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-200 p-5 sm:p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-google-red/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
+                                <div className="bg-google-redLight text-google-redDark w-12 h-12 sm:w-14 sm:h-14 rounded-[16px] flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/30"><Icon name="remove" className="text-[24px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pengeluaran</span>
                             </button>
-                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border border-slate-200 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
-                                <div className="bg-google-yellowLight text-google-yellowDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-yellow group-hover:text-white transition-colors duration-300 shadow-sm border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[24px] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" /></div>
+                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border border-slate-200 p-5 sm:p-6 rounded-[24px] flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-google-yellow/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
+                                <div className="bg-google-yellowLight text-google-yellowDark w-12 h-12 sm:w-14 sm:h-14 rounded-[16px] flex items-center justify-center group-hover:bg-google-yellow group-hover:text-white transition-colors duration-300 shadow-sm border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[24px] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text leading-tight">Cairkan Kas Jimpitan</span>
                             </button>
                         </div>
