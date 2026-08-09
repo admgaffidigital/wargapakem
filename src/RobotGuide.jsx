@@ -412,7 +412,7 @@ function Icon({ name, className = "text-[17px]", fill = "false" }) {
             return (
                 <div className="fixed right-6 z-50 flex flex-col items-end no-print" style={{ bottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}>
                     {isOpen && (
-                        <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border border-slate-300 dark:border-slate-700 w-[320px] max-w-full sm:w-[380px] max-w-full overflow-hidden flex flex-col mb-4 max-h-[82vh]">
+                        <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border border-slate-200 dark:border-slate-700 w-[320px] max-w-full sm:w-[380px] max-w-full overflow-hidden flex flex-col mb-4 max-h-[82vh]">
 
                             {/* Header */}
                             <div className={`text-white px-5 py-4 flex items-center justify-between shrink-0 ${mode === 'admin' ? 'bg-google-blue' : 'bg-google-green'}`}>
@@ -445,7 +445,7 @@ function Icon({ name, className = "text-[17px]", fill = "false" }) {
                                                 <Icon name="support_agent" className="text-white text-[13px]" fill="true" />
                                             </div>
                                         )}
-                                        <div className={`p-3 rounded-[12px] max-w-[82%] leading-relaxed shadow-sm whitespace-pre-line font-medium ${msg.sender === 'user' ? (mode === 'admin' ? 'bg-google-blue' : 'bg-google-green') + ' text-white rounded-tr-sm text-[11px]' : 'bg-white dark:bg-slate-800 text-google-text dark:text-slate-100 border border-slate-300 dark:border-slate-700 rounded-tl-sm text-[12.5px]'}`}>{msg.text}</div>
+                                        <div className={`p-3 rounded-[12px] max-w-[82%] leading-relaxed shadow-sm whitespace-pre-line font-medium ${msg.sender === 'user' ? (mode === 'admin' ? 'bg-google-blue' : 'bg-google-green') + ' text-white rounded-tr-sm text-[11px]' : 'bg-white dark:bg-slate-800 text-google-text dark:text-slate-100 border border-slate-200 dark:border-slate-700 rounded-tl-sm text-[12.5px]'}`}>{msg.text}</div>
                                     </div>
                                 ))}
                                 <div ref={messagesEndRef} />
@@ -458,7 +458,7 @@ function Icon({ name, className = "text-[17px]", fill = "false" }) {
                                     {currentKB[activeMenu].topics.map((t, i) => (
                                         <button key={i} onClick={() => handleTopicClick(activeMenu, t)} className={`text-[10px] font-medium px-3 py-1.5 rounded-full border active:scale-95 transition-all ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark border-google-blue/30 hover:bg-google-blue hover:text-white' : 'bg-google-greenLight text-google-greenDark border-google-green/30 hover:bg-google-green hover:text-white'}`}>{t.label}</button>
                                     ))}
-                                    <button onClick={() => setActiveMenu(null)} className="text-[10px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-full hover:bg-slate-200 dark:hover:bg-slate-750 active:scale-95 transition-all">G Tutup</button>
+                                    <button onClick={() => setActiveMenu(null)} className="text-[10px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-full hover:bg-slate-200 dark:hover:bg-slate-750 active:scale-95 transition-all">G Tutup</button>
                                 </div>
                             )}
 
@@ -467,7 +467,7 @@ function Icon({ name, className = "text-[17px]", fill = "false" }) {
                                 <div className="px-3 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex flex-wrap gap-1.5 shrink-0 max-h-28 overflow-y-auto hide-scrollbar">
                                     <p className="w-full text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-0.5">Pilih Topik:</p>
                                     {mainMenus.map(key => (
-                                        <button key={key} onClick={() => handleMenuClick(key)} className={`text-[10px] font-medium border px-3 py-1.5 rounded-full active:scale-95 transition-all flex items-center gap-1 ${mode === 'admin' ? 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight dark:hover:bg-slate-700' : 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-google-green hover:text-google-greenDark hover:bg-google-greenLight dark:hover:bg-slate-700'}`}>
+                                        <button key={key} onClick={() => handleMenuClick(key)} className={`text-[10px] font-medium border px-3 py-1.5 rounded-full active:scale-95 transition-all flex items-center gap-1 ${mode === 'admin' ? 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-google-blue hover:text-google-blue hover:bg-google-blueLight dark:hover:bg-slate-700' : 'bg-slate-50 dark:bg-slate-800 text-google-text dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-google-green hover:text-google-greenDark hover:bg-google-greenLight dark:hover:bg-slate-700'}`}>
                                             <Icon name={currentKB[key].icon} className="text-[12px]" />{currentKB[key].label.replace(/^[^\s]+\s/, '')}
                                         </button>
                                     ))}
@@ -481,7 +481,7 @@ function Icon({ name, className = "text-[17px]", fill = "false" }) {
                                     onChange={e => setInputText(e.target.value)}
                                     onKeyDown={e => e.key === 'Enter' && handleSearch()}
                                     placeholder={mode === 'admin' ? 'Tanya fitur sistem...' : 'Tanya tentang arisan Anda...'}
-                                    className="flex-1 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:border-google-blue dark:text-white rounded-[10px] px-4 py-2 text-[11px] font-medium outline-none transition-colors"
+                                    className="flex-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-google-blue dark:text-white rounded-[10px] px-4 py-2 text-[11px] font-medium outline-none transition-colors"
                                 />
                                 <button onClick={handleSearch} className={`w-9 h-9 text-white rounded-full flex items-center justify-center active:scale-95 transition-all shrink-0 ${mode === 'admin' ? 'bg-google-blue hover:bg-google-blueDark' : 'bg-google-green hover:bg-google-greenDark'}`}>
                                     <Icon name="send" className="text-[14px]" />

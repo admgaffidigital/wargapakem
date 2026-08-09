@@ -407,7 +407,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             to   { opacity: 1; transform: translateY(0); }
                         }
                     `}</style>
-                    <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border border-slate-300 dark:border-slate-700 p-6 sm:p-8 flex flex-wrap items-center gap-4 max-w-lg mx-auto">
+                    <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 flex flex-wrap items-center gap-4 max-w-lg mx-auto">
                         {/* Ikon */}
                         <div className="w-14 h-14 rounded-[16px] shrink-0 flex items-center justify-center text-white font-medium text-[18px] shadow-md"
                              style={{ background: 'linear-gradient(135deg,#e11d48,#be123c)' }}>
@@ -598,7 +598,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     <audio ref={previewAudioRef} preload="auto" style={{ display: 'none' }} />
 
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm">
                         <div className="flex flex-wrap items-center gap-4">
                             <div className="w-14 h-14 rounded-[20px] bg-google-yellowLight flex items-center justify-center border border-google-yellow/40 shrink-0">
                                 <Icon name="music_note" className="text-[32px] text-google-yellowDark" fill="true" />
@@ -612,7 +612,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {/* Status Musik Terpasang */}
                     {currentUrl ? (
-                        <div className={`rounded-[28px] p-6 border ${isEnabled ? 'bg-google-greenLight border-google-green/40' : 'bg-slate-50 border-slate-300'}`}>
+                        <div className={`rounded-[28px] p-6 border ${isEnabled ? 'bg-google-greenLight border-google-green/40' : 'bg-slate-50 border-slate-200'}`}>
                             <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
                                 <div className="flex flex-wrap items-center gap-3 flex-1 min-w-0">
                                     <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border ${isEnabled ? 'bg-google-green border-google-greenDark' : 'bg-slate-300 border-slate-400'}`}>
@@ -653,7 +653,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     )}
 
                     {/* Panduan Dropbox */}
-                    <div className="bg-white rounded-[32px] border border-slate-300 shadow-sm overflow-hidden">
+                    <div className="bg-white rounded-[32px] border border-slate-200 shadow-sm overflow-hidden">
                         <div className="bg-blue-600 px-6 py-4 flex flex-wrap items-center gap-3">
                             <Icon name="cloud_upload" className="text-white text-[20px]" fill="true" />
                             <div>
@@ -682,18 +682,18 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <label className="text-[10px] font-medium text-google-textVariant block mb-1.5 ml-1 uppercase tracking-widest">Nama Lagu</label>
                                     <input type="text" value={nameInput} onChange={e => setNameInput(e.target.value)}
                                            placeholder="Contoh: Indonesia Raya Instrumental"
-                                           className="w-full bg-slate-50 border border-slate-300 focus:border-blue-500 focus:bg-white text-google-text rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-all placeholder:text-slate-400" />
+                                           className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white text-google-text rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-all placeholder:text-slate-400" />
                                 </div>
                                 <div>
                                     <label className="text-[10px] font-medium text-google-textVariant block mb-1.5 ml-1 uppercase tracking-widest">URL Dropbox / Link Audio Langsung</label>
                                     <input type="url" value={urlInput} onChange={e => { setUrlInput(e.target.value); setTestStatus('idle'); setErrorMsg(''); }}
                                            placeholder="https://www.dropbox.com/s/xxxxx/lagu.mp3?dl=0"
-                                           className="w-full bg-slate-50 border border-slate-300 focus:border-blue-500 focus:bg-white text-google-text rounded-[14px] px-4 py-3 text-[12px] font-medium outline-none transition-all placeholder:text-slate-400" />
+                                           className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white text-google-text rounded-[14px] px-4 py-3 text-[12px] font-medium outline-none transition-all placeholder:text-slate-400" />
                                 </div>
 
                                 {/* Test button */}
                                 <button onClick={handlePreviewTest}
-                                        className="w-full bg-slate-100 text-google-textVariant py-2.5 rounded-full font-medium text-[11px] border border-slate-300 hover:bg-slate-200 active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
+                                        className="w-full bg-slate-100 text-google-textVariant py-2.5 rounded-full font-medium text-[11px] border border-slate-200 hover:bg-slate-200 active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
                                     <Icon name="play_circle" className="text-[14px]" /> Test Apakah URL Bisa Diputar
                                 </button>
 
@@ -830,7 +830,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
                     {modalConfig && (
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[16px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
+                            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[16px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-green-100 dark:bg-emerald-950/20 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
                                 </div>
@@ -862,11 +862,11 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     <div className="mb-6 flex flex-col sm:flex-row gap-4">
                         <div className="relative flex-1">
                             <Icon name="search" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                            <input type="text" placeholder="Cari nama usaha atau pemilik..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-300 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700" />
+                            <input type="text" placeholder="Cari nama usaha atau pemilik..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700" />
                         </div>
                         <div className="relative min-w-[200px]">
                             <Icon name="filter_list" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full pl-12 pr-10 py-3.5 bg-white border border-slate-300 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none cursor-pointer">
+                            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full pl-12 pr-10 py-3.5 bg-white border border-slate-200 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none cursor-pointer">
                                 {categories.map(c => <option key={c} value={c}>{c}</option>)}
                             </select>
                             <Icon name="expand_more" className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
@@ -874,7 +874,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     </div>
 
                     {filteredData.length === 0 ? (
-                        <div className="bg-white/80  rounded-[32px] p-12 text-center border border-dashed border-slate-300 shadow-sm">
+                        <div className="bg-white/80  rounded-[32px] p-12 text-center border border-dashed border-slate-200 shadow-sm">
                             <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <Icon name="store_off" className="text-[48px] text-slate-300" />
                             </div>
@@ -884,7 +884,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredData.map(item => (
-                                <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-300 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
+                                <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
                                     <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                         {item.imageUrl ? (
                                             <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"  loading="lazy" decoding="async"/>
@@ -934,7 +934,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <Icon name="storefront" className="text-green-600" />
                                         {editingId ? 'Edit Data UMKM' : 'Tambah UMKM Baru'}
                                     </h2>
-                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-300 dark:border-slate-700 transition-all">
+                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-200 dark:border-slate-700 transition-all">
                                         <Icon name="close" />
                                     </button>
                                 </div>
@@ -943,32 +943,32 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Usaha / Toko</label>
-                                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Contoh: Warung Barokah" />
+                                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Contoh: Warung Barokah" />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Pemilik</label>
-                                        <input type="text" value={formData.owner} onChange={e => setFormData({...formData, owner: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Contoh: Bpk. Budi" />
+                                        <input type="text" value={formData.owner} onChange={e => setFormData({...formData, owner: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Contoh: Bpk. Budi" />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nomor WhatsApp</label>
                                         <div className="relative">
                                             <div className="absolute left-4 top-1/2 -translate-y-1/2 font-medium text-slate-500 dark:text-slate-400">+62</div>
-                                            <input type="number" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[12px] pl-12 pr-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="81234567890" />
+                                            <input type="number" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] pl-12 pr-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="81234567890" />
                                         </div>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white appearance-none bg-white dark:bg-slate-800">
+                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border border-slate-200 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white appearance-none bg-white dark:bg-slate-800">
                                             {categories.filter(c => c !== 'Semua').map(c => <option key={c} value={c}>{c}</option>)}
                                         </select>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Deskripsi Usaha</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="3" className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white resize-none" placeholder="Menjual berbagai macam kebutuhan..."></textarea>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="3" className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white resize-none" placeholder="Menjual berbagai macam kebutuhan..."></textarea>
                                     </div>
 
                                     <div>
@@ -989,7 +989,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                 </div>
                                 <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-full border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-medium py-4 rounded-full shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
                                 </div>
                             </div>
@@ -1069,7 +1069,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     case 'Menunggu': return 'bg-red-100 text-red-700 border-red-200';
                     case 'Diproses': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
                     case 'Selesai': return 'bg-green-100 text-green-700 border-green-200';
-                    default: return 'bg-slate-100 text-slate-700 border-slate-300';
+                    default: return 'bg-slate-100 text-slate-700 border-slate-200';
                 }
             };
 
@@ -1111,14 +1111,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     <div className="mb-6 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                         {['Semua', ...statuses].map(status => (
-                            <button key={status} onClick={() => setFilterStatus(status)} className={`px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-all ${filterStatus === status ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-300 hover:bg-slate-50'}`}>
+                            <button key={status} onClick={() => setFilterStatus(status)} className={`px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-all ${filterStatus === status ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>
                                 {status}
                             </button>
                         ))}
                     </div>
 
                     {filteredData.length === 0 ? (
-                        <div className="bg-white/80  rounded-[32px] p-12 text-center border border-dashed border-slate-300 shadow-sm">
+                        <div className="bg-white/80  rounded-[32px] p-12 text-center border border-dashed border-slate-200 shadow-sm">
                             <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <Icon name="task_alt" className="text-[48px] text-slate-300" />
                             </div>
@@ -1128,7 +1128,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {filteredData.map(item => (
-                                <div key={item.id} className="bg-white rounded-[24px] border border-slate-300 shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col relative overflow-hidden group">
+                                <div key={item.id} className="bg-white rounded-[24px] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col relative overflow-hidden group">
                                     <div className="flex justify-between items-start mb-4">
                                         <div className="flex items-center gap-2">
                                             <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-[10px] text-xs font-medium">{item.category}</span>
@@ -1144,7 +1144,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <p className="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-4">{item.description}</p>
                                     
                                     {item.imageUrl && (
-                                        <div className="mb-4 rounded-[10px] overflow-hidden bg-slate-100 h-48 border border-slate-300">
+                                        <div className="mb-4 rounded-[10px] overflow-hidden bg-slate-100 h-48 border border-slate-200">
                                             <img src={item.imageUrl} alt="Lampiran Laporan" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                         </div>
                                     )}
@@ -1177,31 +1177,31 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <h2 className="text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
                                         <Icon name="campaign" className="text-blue-600" /> Buat Laporan
                                     </h2>
-                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-300 dark:border-slate-700 transition-all"><Icon name="close" /></button>
+                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-200 dark:border-slate-700 transition-all"><Icon name="close" /></button>
                                 </div>
                                 <div className="p-6 sm:p-8 overflow-y-auto space-y-7">
                                     {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
                                     
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Judul Laporan</label>
-                                        <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Cth: Lampu jalan mati di Blok A" />
+                                        <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Cth: Lampu jalan mati di Blok A" />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white appearance-none bg-white dark:bg-slate-800">
+                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border border-slate-200 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white appearance-none bg-white dark:bg-slate-800">
                                             {categories.map(c => <option key={c} value={c}>{c}</option>)}
                                         </select>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Isi Laporan / Detail</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="4" className="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white resize-none" placeholder="Ceritakan detail masalah..."></textarea>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="4" className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white resize-none" placeholder="Ceritakan detail masalah..."></textarea>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Pelapor (Opsional)</label>
-                                        <input type="text" value={formData.reporter} onChange={e => setFormData({...formData, reporter: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Kosongkan jika ingin anonim" />
+                                        <input type="text" value={formData.reporter} onChange={e => setFormData({...formData, reporter: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Kosongkan jika ingin anonim" />
                                     </div>
 
                                     <div>
@@ -1222,7 +1222,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                 </div>
                                 <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-full border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
+                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-medium py-4 rounded-full shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
                                 </div>
                             </div>
@@ -1510,7 +1510,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             <div className="w-4 h-4 rounded-full bg-google-green animate-bounce" style={{ animationDelay: '0.45s', animationDuration: '0.9s' }}></div>
                         </div>
                         <h2 className="text-google-text font-medium text-[16px] mb-3 tracking-tight text-center">Memuat Portal</h2>
-                        <div className="flex flex-wrap items-center gap-2 bg-slate-50 px-4 py-2 rounded-[10px] border border-slate-300">
+                        <div className="flex flex-wrap items-center gap-2 bg-slate-50 px-4 py-2 rounded-[10px] border border-slate-200">
                             <div className="w-2 h-2 bg-google-blue rounded-full animate-pulse"></div>
                             <p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest">Sinkronisasi Data</p>
                         </div>
@@ -1586,7 +1586,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3 rounded-[10px] border border-red-100 dark:border-red-900/30-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <span className="underline underline-offset-2 decoration-red-400">dilaporkan kepada pihak yang berwajib</span> sesuai perundang-undangan yang berlaku.</p>
                                         <p className="mb-6">Sistem ini diperuntukkan khusus untuk keperluan digitalisasi guna menunjang tata kelola lingkungan desa yang transparan dan akuntabel.</p>
                                         
-                                        <div className="border-t border-dashed border-slate-300 dark:border-slate-700 pt-4 text-center">
+                                        <div className="border-t border-dashed border-slate-200 dark:border-slate-700 pt-4 text-center">
                                             <p className="text-[11px] font-medium text-slate-400 mb-1">COPYRIGHT &copy; 2026</p>
                                             <p className="text-[10px] text-slate-400 mb-2">Sistem & lisensi ditandatangani secara digital oleh pengembang resmi:</p>
                                             <p className="text-[16px] font-medium tracking-widest text-google-red uppercase">Novan Restu Utomo</p>
@@ -1637,7 +1637,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
                 { id: 'kegiatan', icon: 'event', label: 'Jadwal', bg: 'bg-google-blueLight', color: 'text-google-blueDark border border-google-blue' },
                 { id: 'kalender', icon: 'calendar_month', label: 'Kalender', bg: 'bg-google-redLight', color: 'text-google-redDark border border-google-red' },
-                { id: 'peta', icon: 'map', label: 'Peta Lokasi', bg: 'bg-slate-100 dark:bg-slate-800', color: 'text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-700' },
+                { id: 'peta', icon: 'map', label: 'Peta Lokasi', bg: 'bg-slate-100 dark:bg-slate-800', color: 'text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700' },
                 { id: 'wagroup', icon: 'forum', label: 'Grup WA', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
                 ...(userRole === 'admin' ? [
                     { id: 'pertemuan', icon: 'checklist', label: 'Absen Arisan', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
@@ -1694,7 +1694,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {activeTab === 'menu' ? (
                                         <div className="bg-google-red text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40"><Icon name="home" className="text-[15px] sm:text-[17px]" fill="true" /></div>
                                     ) : (
-                                        <button onClick={() => changeTab('menu')} className="w-9 h-9 sm:w-10 sm:h-10 bg-white text-google-text border border-slate-300 hover:text-red-600 hover:border-red-500/40 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[15px] sm:text-[17px]" /></button>
+                                        <button onClick={() => changeTab('menu')} className="w-9 h-9 sm:w-10 sm:h-10 bg-white text-google-text border border-slate-200 hover:text-red-600 hover:border-red-500/40 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[15px] sm:text-[17px]" /></button>
                                     )}
                                     <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
                                         <h1 className="text-[13px] sm:text-[16px] font-medium truncate leading-tight tracking-tight text-slate-800">{activeTab === 'menu' ? identity.name : activeTabTitle}</h1>
@@ -1702,8 +1702,8 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
-                                    <span className={`text-[8px] sm:text-[9px] font-medium px-2 py-1 sm:px-3 py-1.5 rounded-[6px] uppercase tracking-widest border ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/30' : 'bg-slate-50 text-slate-600 border-slate-300'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
-                                    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 text-slate-600 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 shadow-sm" title="Toggle Tema"><Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" /></button>
+                                    <span className={`text-[8px] sm:text-[9px] font-medium px-2 py-1 sm:px-3 py-1.5 rounded-[6px] uppercase tracking-widest border ${userRole === 'admin' ? 'bg-red-50 text-red-700 border-red-500/30' : 'bg-slate-50 text-slate-600 border-slate-200'}`}>{userRole === 'admin' ? 'Admin' : 'Warga'}</span>
+                                    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 text-slate-600 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-200 shadow-sm" title="Toggle Tema"><Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" /></button>
                                     <button onClick={() => setShowLogoutModal(true)} className="w-9 h-9 sm:w-10 sm:h-10 bg-red-50 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-red-500/30 shadow-sm"><Icon name="logout" className="text-[15px] sm:text-[16px]" /></button>
                                 </div>
                             </div>
@@ -1757,7 +1757,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3 rounded-[10px] border border-red-100 dark:border-red-900/30-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <span className="underline underline-offset-2 decoration-red-400">dilaporkan kepada pihak yang berwajib</span> sesuai perundang-undangan yang berlaku.</p>
                                         <p className="mb-6">Sistem ini diperuntukkan khusus untuk keperluan digitalisasi guna menunjang tata kelola lingkungan desa yang transparan dan akuntabel.</p>
                                         
-                                        <div className="border-t border-dashed border-slate-300 dark:border-slate-700 pt-4 text-center">
+                                        <div className="border-t border-dashed border-slate-200 dark:border-slate-700 pt-4 text-center">
                                             <p className="text-[11px] font-medium text-slate-400 mb-1">COPYRIGHT &copy; 2026</p>
                                             <p className="text-[10px] text-slate-400 mb-2">Sistem & lisensi ditandatangani secara digital oleh pengembang resmi:</p>
                                             <p className="text-[16px] font-medium tracking-widest text-google-red uppercase">Novan Restu Utomo</p>
@@ -1799,12 +1799,12 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {showLogoutModal && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[20px] p-8 w-full max-w-sm text-center modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-8 w-full max-w-sm text-center modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight dark:bg-red-950/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-red/30 dark:border-red-900/20"><Icon name="logout" className="text-[40px] text-google-red" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-2">Keluar Sesi?</h3>
                                 <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-slate-200 py-3.5 px-6 rounded-full font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-slate-200 py-3.5 px-6 rounded-full font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all shadow-sm">Batal</button>
                                     <button onClick={executeLogout} className="flex-1 bg-google-red text-white py-3.5 px-6 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-redDark border border-google-redDark active:scale-95 transition-all">Ya, Keluar</button>
                                 </div>
                             </div>
@@ -1821,14 +1821,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             return (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
                     <div className="rounded-[32px] w-full max-w-xl flex flex-col max-h-[90vh] -slate-300 dark:-slate-700 modal-card animate-modal-in" style={{ animation: 'slideUp 0.3s ease-out' }}>
-                        <div className="p-6 sm:p-8 md:p-6 border-b border-slate-300 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-950 rounded-t-[30px]">
+                        <div className="p-6 sm:p-8 md:p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-950 rounded-t-[30px]">
                             <h3 className="text-xl font-medium text-google-text dark:text-white flex flex-wrap items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
                             <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 hover:text-google-text dark:hover:text-white transition-all active:scale-95"><Icon name="close" /></button>
                         </div>
                         <div className="p-6 sm:p-8 md:p-6 overflow-y-auto flex-1">
                             <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-6 font-medium">Aplikasi ini bisa diinstal langsung ke perangkat Anda (Android, iOS, maupun PC/Laptop) tanpa melalui App Store atau Play Store. Hemat memori dan cepat!</p>
                             
-                            <div className="flex bg-slate-100 dark:bg-slate-950 p-1.5 rounded-[16px] mb-6 border border-slate-300 dark:border-slate-850 shadow-inner">
+                            <div className="flex bg-slate-100 dark:bg-slate-950 p-1.5 rounded-[16px] mb-6 border border-slate-200 dark:border-slate-850 shadow-inner">
                                 <button onClick={() => setTab('android')} className={`flex-1 py-2.5 rounded-full text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'android' ? 'bg-white dark:bg-slate-900 text-google-blue border border-google-blue/30 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="android" className="text-[16px]" /> Android</button>
                                 <button onClick={() => setTab('ios')} className={`flex-1 py-2.5 rounded-full text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'ios' ? 'bg-white dark:bg-slate-900 text-google-text dark:text-white border border-slate-400 dark:border-slate-700 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="apple" className="text-[16px]" /> iOS</button>
                                 <button onClick={() => setTab('pc')} className={`flex-1 py-2.5 rounded-full text-[12px] font-medium transition-all duration-300 flex items-center justify-center gap-1.5 ${tab === 'pc' ? 'bg-white dark:bg-slate-900 text-google-blue border border-google-blue/30 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'}`}><Icon name="laptop_mac" className="text-[16px]" /> PC/Laptop</button>
@@ -1873,7 +1873,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
                             )}
                         </div>
-                        <div className="p-6 sm:p-8 md:p-8 border-t border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 rounded-b-[30px] flex justify-end">
+                        <div className="p-6 sm:p-8 md:p-8 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 rounded-b-[30px] flex justify-end">
                             <button onClick={onClose} className="bg-google-blue text-white px-6 py-3 rounded-full font-medium text-[13px] shadow-md hover:bg-google-blueDark transition-all active:scale-95">Tutup Panduan</button>
                         </div>
                     </div>
@@ -2155,7 +2155,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
                             </div>
                             <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
-                                <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-300 dark:border-slate-700 shadow-sm" title="Toggle Tema">
+                                <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm" title="Toggle Tema">
                                     <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" />
                                 </button>
                                 <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-350 dark:border-slate-700 shadow-sm" title="Otorisasi Admin">
@@ -2287,7 +2287,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {informasi.slice(0, limitInformasi).map(item => (
-                                            <article key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
+                                            <article key={item.id} className="bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col justify-between hover:border-slate-200 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...item, type: 'informasi' })}>
                                                 <div>
                                                     {item.imageUrl ? (
                                                         <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
@@ -2318,7 +2318,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                     {informasi.length > limitInformasi && (
                                         <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitInformasi(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitInformasi(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-200 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Pengumuman</span>
                                             </button>
@@ -2336,7 +2336,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {blogData.slice(0, limitBlog).map(article => (
-                                            <article key={article.id} className="h-full bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...article, type: 'blog' })}>
+                                            <article key={article.id} className="h-full bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:border-slate-200 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...article, type: 'blog' })}>
                                                 {article.imageUrl ? (
                                                     <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                                         <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
@@ -2365,7 +2365,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                     {blogData.length > limitBlog && (
                                         <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitBlog(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitBlog(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-200 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Artikel</span>
                                             </button>
@@ -2422,7 +2422,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                     {infaqData.length > limitInfaq && (
                                         <div className="flex justify-center pt-2">
-                                            <button onClick={() => setLimitInfaq(prev => prev + 3)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitInfaq(prev => prev + 3)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-200 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" /> Lihat Semua Program
                                             </button>
                                         </div>
@@ -2471,7 +2471,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                     {umkmData.length > limitUmkm && (
                                         <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitUmkm(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                            <button onClick={() => setLimitUmkm(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-200 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                 <Icon name="expand_more" />
                                                 <span>Lihat Lebih Banyak Usaha</span>
                                             </button>
@@ -2540,7 +2540,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         </div>
                                         {tokoProducts.filter(p => p.isPublished).length > limitToko && (
                                             <div className="flex justify-center pt-6">
-                                                <button onClick={() => setLimitToko(prev => prev + 8)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+                                                <button onClick={() => setLimitToko(prev => prev + 8)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-200 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
                                                     <Icon name="expand_more" />
                                                     <span>Lihat Lebih Banyak Produk</span>
                                                 </button>
@@ -2565,7 +2565,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <h3 className="text-[11px] font-medium text-google-blue dark:text-blue-400 uppercase tracking-widest">Jadwal & Agenda RT</h3>
                                         <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">KEGIATAN WARGA RT</h2>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-slate-200 dark:hover:border-slate-700 transition-all duration-300">
                                         <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between">
                                             <div className="space-y-6 flex-1">
                                                 <div className="flex flex-wrap items-center gap-3">
@@ -2627,7 +2627,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             <button onClick={() => {
                                                 sessionStorage.setItem('openTab', 'pemenang');
                                                 onLogin('warga');
-                                            }} className="w-full md:w-auto bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3.5 px-6 rounded-full text-[12px] border border-slate-300 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
+                                            }} className="w-full md:w-auto bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3.5 px-6 rounded-full text-[12px] border border-slate-200 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2">
                                                 <Icon name="groups" />
                                                 <span>Lihat Semua Pemenang</span>
                                             </button>
@@ -2762,7 +2762,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                     {error && <p className="text-[11px] text-red-700 font-medium bg-red-50 py-2.5 rounded-xl border border-red-200 shadow-sm flex items-center justify-center gap-1.5 mt-2"><Icon name="error" className="text-[14px]"/> {error}</p>}
                                     <div className="flex gap-3 pt-3">
-                                        <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border border-slate-300 text-slate-700 py-3 rounded-full font-medium text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
+                                        <button onClick={() => {setMode('select'); setError(''); setEmail(''); setPassword('');}} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-full font-medium text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center" disabled={isLoading}>Kembali</button>
                                         <button onClick={handleAdminLogin} className="flex-1 bg-google-blue border border-google-blueDark text-white py-3.5 rounded-full font-medium text-[12.5px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all duration-300 flex items-center justify-center disabled:opacity-70" disabled={isLoading}>{isLoading ? 'Memeriksa...' : 'Masuk Admin'}</button>
                                     </div>
                                 </form>
@@ -2903,7 +2903,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* AREA GRID MENU */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mt-6">
                             {NavItems.map((item, idx) => (
-                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-300 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
+                            <button key={item.id} onClick={() => changeTab(item.id)} style={{ animationDelay: `${idx * 0.05}s` }} className="menu-item-in relative overflow-hidden bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-slate-200 dark:hover:border-slate-600 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group">
                                 <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[20px] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md border border-white/60 ${item.bg} ${item.color.replace('border', '')}`}>
                                     <Icon name={item.icon} className="relative z-10 text-[26px] sm:text-[30px] drop-shadow-sm" fill="true" />
                                 </div>
@@ -2920,7 +2920,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
     
                     {userRole !== 'admin' && (
                         <div className="flex justify-center mt-16 mb-4">
-                            <div className="bg-white py-2 px-4 rounded-full text-center border border-slate-300 shadow-sm flex items-center justify-center">
+                            <div className="bg-white py-2 px-4 rounded-full text-center border border-slate-200 shadow-sm flex items-center justify-center">
                                 <p className="text-[10px] font-medium text-google-textVariant flex flex-wrap items-center justify-center gap-1.5"><Icon name="info" className="text-[13px]" /> Mode Warga (akses terbatas).</p>
                             </div>
                         </div>
@@ -3164,7 +3164,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             if (!schedule) {
                 return (
-                    <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-slate-300 shadow-sm flex items-center justify-center py-12">
+                    <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-slate-200 shadow-sm flex items-center justify-center py-12">
                         <div className="flex flex-col items-center gap-3">
                             <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
                             <p className="text-[13px] font-medium text-google-textVariant">Memuat Jadwal Sholat...</p>
@@ -3183,7 +3183,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             ];
 
             return (
-                <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-slate-300 shadow-sm space-y-8">
+                <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-slate-200 shadow-sm space-y-8">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <div className="flex flex-wrap items-center gap-2">
@@ -3220,7 +3220,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-full border transition-all active:scale-95 ${
                                     adzanEnabled 
                                         ? 'bg-emerald-50 text-emerald-600 border-emerald-500/30' 
-                                        : 'bg-slate-50 text-slate-600 border-slate-300 hover:bg-slate-100'
+                                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
                                 }`}
                             >
                                 <Icon name={adzanEnabled ? "notifications_active" : "notifications_off"} className="text-[14px]"/>
@@ -3233,7 +3233,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 className={`flex items-center gap-1.5 font-medium text-[11px] px-5 py-2.5 rounded-full border transition-all active:scale-95 ${
                                     isGPS 
                                         ? 'bg-red-50 text-red-600 border-red-500/40' 
-                                        : 'bg-slate-50 text-slate-600 border-slate-300 hover:bg-slate-100'
+                                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
                                 }`}
                             >
                                 <Icon name="my_location" className="text-[14px]"/>
@@ -3241,7 +3241,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             </button>
 
                             <form onSubmit={handleSearchCity} className="flex flex-wrap items-center gap-2 md:flex-initial">
-                                <div className="bg-slate-50 border border-slate-300 focus-within:border-red-500 rounded-full px-4 py-1.5 flex items-center gap-2 flex-1 md:w-56 shadow-sm">
+                                <div className="bg-slate-50 border border-slate-200 focus-within:border-red-500 rounded-full px-4 py-1.5 flex items-center gap-2 flex-1 md:w-56 shadow-sm">
                                     <Icon name="search" className="text-[14px] text-slate-400" />
                                     <input 
                                         type="text" 
@@ -3260,7 +3260,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {searchResults.length > 0 && (
                         <div className="relative">
-                            <div className="absolute top-0 left-0 right-0 bg-white border border-slate-300 rounded-[20px] shadow-2xl z-30 max-h-48 overflow-y-auto hide-scrollbar p-2 space-y-1">
+                            <div className="absolute top-0 left-0 right-0 bg-white border border-slate-200 rounded-[20px] shadow-2xl z-30 max-h-48 overflow-y-auto hide-scrollbar p-2 space-y-1">
                                 {searchResults.map(res => (
                                     <button 
                                         key={res.id} 
@@ -3299,7 +3299,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     className={`p-4 rounded-[22px] border text-center transition-all duration-300 ${
                                         isUpcoming 
                                             ? 'bg-red-600 border-red-700 text-white shadow-lg scale-105 z-10' 
-                                            : 'bg-slate-50 border-slate-300/60 hover:bg-white hover:border-red-500/40 text-google-text'
+                                            : 'bg-slate-50 border-slate-200/60 hover:bg-white hover:border-red-500/40 text-google-text'
                                     }`}
                                 >
                                     <div className={`w-10 h-10 rounded-full mx-auto flex items-center justify-center mb-3 ${isUpcoming ? 'bg-white/20 text-white' : 'bg-white text-slate-500 border border-slate-200 shadow-sm'}`}>
@@ -3326,13 +3326,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             return (
                 <div className="space-y-7 sm:space-y-8">
-                    <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border border-slate-300 shadow-sm hover:shadow-lg transition-shadow">
+                    <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow">
                         <div>
                             <span className="inline-flex items-center px-3.5 py-1.5 rounded-[6px] text-[9px] font-medium uppercase tracking-widest bg-google-blueLight text-google-blueDark mb-3 border border-google-blue/30">Siklus {cycleNumber}</span>
                             <h2 className="text-3xl sm:text-4xl font-medium text-google-text leading-tight tracking-tight">Putaran {currentRound}</h2>
                             <p className="text-[13px] font-medium text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[16px]" /> {formatBulanTahun(arisanPeriod)}</p>
                         </div>
-                        <div className="bg-slate-50 px-6 py-5 rounded-[24px] w-full sm:w-72 max-w-full border border-slate-300 shadow-sm">
+                        <div className="bg-slate-50 px-6 py-5 rounded-[24px] w-full sm:w-72 max-w-full border border-slate-200 shadow-sm">
                             <div className="flex justify-between items-end mb-3">
                                 <p className="text-[11px] text-google-textVariant font-medium uppercase tracking-wider">Progres Pemenang</p>
                                 <p className="text-xl font-medium text-google-blueDark leading-none">{winnersCount} <span className="text-[13px] text-google-textVariant">/ {arisanMembers.length}</span></p>
@@ -3363,28 +3363,28 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     )}
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-blue/50 transition-all duration-300 group cursor-default">
+                        <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-blue/50 transition-all duration-300 group cursor-default">
                             <div className="flex items-start justify-between mb-6">
                                 <div><span className="text-[10px] font-medium uppercase tracking-widest text-google-textVariant block mb-2">Kas Utama RT</span><p className="text-3xl font-medium text-google-text group-hover:text-google-blue transition-colors tracking-tight">{formatRp(kasRtBalance)}</p></div>
                                 <div className="bg-google-blueLight text-google-blueDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border border-google-blue/30"><Icon name="account_balance" className="text-[24px]" fill="true" /></div>
                             </div>
-                            <button onClick={() => changeTab('kas')} className="w-full bg-white text-google-text border border-slate-300 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-blue hover:text-google-blue transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Rincian Kas</button>
+                            <button onClick={() => changeTab('kas')} className="w-full bg-white text-google-text border border-slate-200 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-blue hover:text-google-blue transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Rincian Kas</button>
                         </div>
                         
-                        <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-green/50 transition-all duration-300 group cursor-default">
+                        <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-green/50 transition-all duration-300 group cursor-default">
                             <div className="flex items-start justify-between mb-6">
                                 <div><span className="text-[10px] font-medium uppercase tracking-widest text-google-textVariant block mb-2">Kas Jimpitan Tunai</span><p className="text-3xl font-medium text-google-text group-hover:text-google-green transition-colors tracking-tight">{formatRp(jimpitanBalance)}</p></div>
                                 <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border border-google-green/30"><Icon name="savings" className="text-[24px]" fill="true" /></div>
                             </div>
-                            <button onClick={() => changeTab('laporan')} className="w-full bg-white text-google-text border border-slate-300 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-green hover:text-google-green transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Riwayat Arisan</button>
+                            <button onClick={() => changeTab('laporan')} className="w-full bg-white text-google-text border border-slate-200 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-green hover:text-google-green transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Riwayat Arisan</button>
                         </div>
 
-                        <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-red/50 transition-all duration-300 group cursor-default">
+                        <div className="bg-white rounded-[32px] p-6 sm:p-8 flex flex-col justify-between border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-red/50 transition-all duration-300 group cursor-default">
                             <div className="flex items-start justify-between mb-6">
                                 <div><span className="text-[10px] font-medium uppercase tracking-widest text-google-textVariant block mb-2">Tunggakan Total</span><p className="text-3xl font-medium text-google-text group-hover:text-google-red transition-colors tracking-tight">{formatRp(totalDebt)}</p></div>
                                 <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-[20px] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-sm border border-google-red/30"><Icon name="money_off" className="text-[24px]" fill="true" /></div>
                             </div>
-                            <button onClick={() => changeTab('warga')} className="w-full bg-white text-google-text border border-slate-300 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-red hover:text-google-red transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Cek Penunggak</button>
+                            <button onClick={() => changeTab('warga')} className="w-full bg-white text-google-text border border-slate-200 font-medium py-3.5 rounded-full text-[12px] hover:bg-slate-50 hover:border-google-red hover:text-google-red transition-all duration-300 active:scale-95 shadow-sm flex flex-wrap items-center justify-center gap-2">Cek Penunggak</button>
                         </div>
                     </div>
 
@@ -3405,9 +3405,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-left -slate-300 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-blueLight w-16 h-16 rounded-full flex items-center justify-center border border-google-blue/30"><Icon name="refresh" className="text-[32px] text-google-blue" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Mulai Siklus Baru?</h3>
-                                <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-5 bg-slate-50 p-6 sm:p-8 md:p-8 rounded-[24px] border border-slate-300"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
+                                <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-5 bg-slate-50 p-6 sm:p-8 md:p-8 rounded-[24px] border border-slate-200"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setShowResetModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => setShowResetModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-200 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                     <button onClick={() => { 
                                         setMembers(members.map(m => m.program === 'IuranOnly' ? m : { ...m, hasWon: false, wonRound: null })); 
                                         setCurrentRound(1); 
@@ -3504,10 +3504,10 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
                         <button type="button" onClick={() => setFormData(p => ({...p, kondisi: {...p.kondisi, [field]: Math.max(0, (p.kondisi[field]||0)-1)}}))}
-                            className="w-8 h-8 bg-white border border-slate-300 rounded-full flex items-center justify-center font-medium text-[16px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">G</button>
+                            className="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center font-medium text-[16px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">G</button>
                         <span className="w-8 text-center font-medium text-[14px] text-google-text">{formData.kondisi[field] || 0}</span>
                         <button type="button" onClick={() => setFormData(p => ({...p, kondisi: {...p.kondisi, [field]: (p.kondisi[field]||0)+1}}))}
-                            className="w-8 h-8 bg-white border border-slate-300 rounded-full flex items-center justify-center font-medium text-[16px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">+</button>
+                            className="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center font-medium text-[16px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">+</button>
                     </div>
                 </div>
             );
@@ -3515,7 +3515,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             return (
                 <div className="space-y-8">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print">
                         <div>
                             <h2 className="text-2xl font-medium text-google-text tracking-tight">Aset &amp; Inventaris</h2>
                             <p className="text-[13px] font-medium text-google-textVariant mt-1.5">Daftar barang fasilitas RT beserta kondisi dan stok pinjam.</p>
@@ -3536,9 +3536,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             const sedangDipinjam = pinjamData ? pinjamData.filter(p => p.itemId === item.id && p.status === 'approved').length : 0;
                             const tersedia    = Math.max(0, stokPinjam - sedangDipinjam);
                             return (
-                                <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-yellow/40 transition-all duration-300 flex flex-col group relative">
+                                <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-yellow/40 transition-all duration-300 flex flex-col group relative">
                                     {/* Foto */}
-                                    <div className="w-full relative shrink-0 border-b border-slate-300 overflow-hidden" style={{height:'200px'}}>
+                                    <div className="w-full relative shrink-0 border-b border-slate-200 overflow-hidden" style={{height:'200px'}}>
                                         {item.imageUrl
                                             ? <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.name} onError={(e) => { e.target.style.display='none'; e.target.nextSibling && (e.target.nextSibling.style.display='flex'); }} />
                                             : <div className="w-full h-full bg-slate-50 flex items-center justify-center"><Icon name="inventory_2" className="text-[64px] text-slate-300" /></div>
@@ -3548,7 +3548,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             <div className="absolute top-3 left-3 bg-google-red text-white px-2.5 py-1 rounded-[10px] font-medium text-[9px] shadow-sm flex flex-wrap items-center gap-1 uppercase tracking-wider"><Icon name="handshake" className="text-[11px]" />{sedangDipinjam} Dipinjam</div>
                                         )}
                                         {/* Badge total stok */}
-                                        <div className="absolute top-3 right-3 bg-white/95  text-google-text px-3 py-1.5 rounded-[10px] font-medium text-[11px] shadow-sm border border-slate-300 flex flex-wrap items-center gap-1.5">
+                                        <div className="absolute top-3 right-3 bg-white/95  text-google-text px-3 py-1.5 rounded-[10px] font-medium text-[11px] shadow-sm border border-slate-200 flex flex-wrap items-center gap-1.5">
                                             <Icon name="tag" className="text-[13px] text-google-yellowDark" />{totalStok} unit
                                         </div>
                                     </div>
@@ -3594,7 +3594,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             );
                         })}
                         {data.length === 0 && (
-                            <div className="col-span-full bg-white border border-slate-300 p-12 text-center rounded-[32px] shadow-sm">
+                            <div className="col-span-full bg-white border border-slate-200 p-12 text-center rounded-[32px] shadow-sm">
                                 <Icon name="inventory_2" className="text-[56px] text-slate-300 mb-4 mx-auto" />
                                 <h3 className="text-[17px] font-medium text-google-text mb-2">Belum Ada Inventaris</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant">Tambahkan barang inventaris RT yang pertama.</p>
@@ -3612,7 +3612,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {/* Nama barang */}
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Nama Barang *</label>
-                                        <input type="text" value={formData.name} onChange={e => { setFormData({...formData, name: e.target.value}); setErrorMsg(''); }} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Contoh: Speaker Aktif, Tenda Hajatan..." />
+                                        <input type="text" value={formData.name} onChange={e => { setFormData({...formData, name: e.target.value}); setErrorMsg(''); }} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Contoh: Speaker Aktif, Tenda Hajatan..." />
                                     </div>
 
                                     {/* Kondisi barang */}
@@ -3625,7 +3625,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         </div>
                                         {/* Ringkasan */}
                                         {((formData.kondisi.baru||0)+(formData.kondisi.bekas||0)+(formData.kondisi.rusak||0)) > 0 && (
-                                            <div className="mt-3 bg-slate-50 border border-slate-300 rounded-[14px] px-4 py-3 flex flex-wrap gap-x-4 gap-y-1">
+                                            <div className="mt-3 bg-slate-50 border border-slate-200 rounded-[14px] px-4 py-3 flex flex-wrap gap-x-4 gap-y-1">
                                                 <span className="text-[11px] font-medium text-google-text">Total: {(formData.kondisi.baru||0)+(formData.kondisi.bekas||0)+(formData.kondisi.rusak||0)} unit</span>
                                                 <span className="text-[11px] font-medium text-google-greenDark">Bisa dipinjam: {(formData.kondisi.baru||0)+(formData.kondisi.bekas||0)} unit</span>
                                                 {(formData.kondisi.rusak||0) > 0 && <span className="text-[11px] font-medium text-google-red">Tidak dipinjamkan: {formData.kondisi.rusak} unit (rusak)</span>}
@@ -3636,7 +3636,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {/* Foto (opsional) */}
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Foto Aset <span className="text-slate-400 normal-case font-normal">(opsional)</span></label>
-                                        <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
+                                        <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                             <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
                                                 {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div> : formData.imageUrl ? <img src={formData.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview"  loading="lazy" decoding="async"/> : <Icon name="cloud_upload" className="text-[20px]" />}
@@ -3645,7 +3645,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan G' : 'Pilih Gambar'}</p>
                                                 <p className="text-[11px] text-google-textVariant">{formData.imageUrl ? 'Klik untuk ganti foto' : 'Maks. 2MB G JPG, PNG, WEBP'}</p>
                                             </div>
-                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-300 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
+                                            {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
                                         </div>
                                     </div>
 
@@ -3653,7 +3653,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
 
                                 <div className="flex flex-wrap gap-3 mt-6">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all disabled:opacity-50">Simpan</button>
                                 </div>
                             </div>
@@ -3668,7 +3668,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Barang?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Barang ini akan dihapus permanen dari daftar inventaris RT.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                     <button onClick={() => { const idToDelete = deleteConfirmId; setData(prev => prev.filter(item => item.id !== idToDelete)); setDeleteConfirmId(null); showToast('Barang berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
@@ -3767,7 +3767,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             return (
                 <div className="space-y-8">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
                                 <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2"><Icon name="handshake" className="text-[24px] text-google-green" />Pinjam Inventaris</h2>
@@ -3775,7 +3775,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             </div>
                             <div className="flex gap-2 flex-wrap">
                                 {userRole === 'admin' && (
-                                    <button onClick={() => setView(view === 'admin' ? 'list' : 'admin')} className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[12px] border transition-all active:scale-95 ${view === 'admin' ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-300 hover:border-google-blue'}`}>
+                                    <button onClick={() => setView(view === 'admin' ? 'list' : 'admin')} className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[12px] border transition-all active:scale-95 ${view === 'admin' ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-200 hover:border-google-blue'}`}>
                                         <Icon name="admin_panel_settings" className="text-[16px]" />Panel Admin
                                         {pendingList.length > 0 && <span className="bg-google-red text-white text-[9px] font-medium px-2 py-0.5 rounded-full">{pendingList.length}</span>}
                                     </button>
@@ -3789,20 +3789,20 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {/* Form Pengajuan */}
                     {view === 'form' && (
-                        <div className="bg-white rounded-[32px] border border-slate-300 shadow-sm p-6 sm:p-8">
+                        <div className="bg-white rounded-[32px] border border-slate-200 shadow-sm p-6 sm:p-8">
                             <h3 className="text-[16px] font-medium text-google-text mb-6 flex flex-wrap items-center gap-2"><Icon name="edit_document" className="text-[18px] text-google-green" />Form Pengajuan Pinjam</h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {/* Nama warga */}
                                 <div className="sm:col-span-2">
                                     <label className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 block">Nama Warga *</label>
-                                    <input type="text" value={formData.namaWarga} onChange={e => setFormData(p => ({...p, namaWarga: e.target.value}))} placeholder="Ketik nama sesuai data di Buku Warga..." list="warga-list-pinjam" className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
+                                    <input type="text" value={formData.namaWarga} onChange={e => setFormData(p => ({...p, namaWarga: e.target.value}))} placeholder="Ketik nama sesuai data di Buku Warga..." list="warga-list-pinjam" className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
                                     <datalist id="warga-list-pinjam">{members.map(m => <option key={m.id} value={m.name} />)}</datalist>
                                     <p className="text-[10px] text-google-textVariant mt-1">Nama harus sesuai data warga yang terdaftar di sistem.</p>
                                 </div>
                                 {/* Pilih barang */}
                                 <div className="sm:col-span-2">
                                     <label className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 block">Barang yang Dipinjam *</label>
-                                    <select value={formData.itemId} onChange={e => setFormData(p => ({...p, itemId: e.target.value}))} className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors">
+                                    <select value={formData.itemId} onChange={e => setFormData(p => ({...p, itemId: e.target.value}))} className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors">
                                         <option value="">-- Pilih Barang --</option>
                                         {inventarisData.map(item => {
                                             const stok = getStokTersedia(item.id);
@@ -3813,9 +3813,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 {/* Jumlah yang dipinjam */}
                                 <div>
                                     <label className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 block">Jumlah Dipinjam *</label>
-                                    <div className="flex flex-wrap items-center gap-3 bg-slate-50 border border-slate-300 focus-within:border-google-green rounded-[14px] px-4 py-3">
+                                    <div className="flex flex-wrap items-center gap-3 bg-slate-50 border border-slate-200 focus-within:border-google-green rounded-[14px] px-4 py-3">
                                         <button type="button" onClick={() => setFormData(p => ({...p, qty: Math.max(1, (p.qty||1)-1)}))}
-                                            className="w-9 h-9 bg-white border border-slate-300 rounded-full flex items-center justify-center font-medium text-[17px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">G</button>
+                                            className="w-9 h-9 bg-white border border-slate-200 rounded-full flex items-center justify-center font-medium text-[17px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">G</button>
                                         <div className="flex-1 text-center">
                                             <span className="font-medium text-[17px] text-google-text">{formData.qty || 1}</span>
                                             <span className="text-[11px] text-google-textVariant ml-2">unit</span>
@@ -3823,7 +3823,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <button type="button" onClick={() => {
                                             const stok = formData.itemId ? getStokTersedia(Number(formData.itemId)) : 99;
                                             setFormData(p => ({...p, qty: Math.min(stok, (p.qty||1)+1)}));
-                                        }} className="w-9 h-9 bg-white border border-slate-300 rounded-full flex items-center justify-center font-medium text-[17px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">+</button>
+                                        }} className="w-9 h-9 bg-white border border-slate-200 rounded-full flex items-center justify-center font-medium text-[17px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">+</button>
                                     </div>
                                     {formData.itemId && (
                                         <p className="text-[10px] text-google-textVariant mt-1">
@@ -3834,26 +3834,26 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 {/* Keperluan */}
                                 <div className="sm:col-span-2">
                                     <label className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 block">Keperluan / Nama Acara *</label>
-                                    <input type="text" value={formData.keperluan} onChange={e => setFormData(p => ({...p, keperluan: e.target.value}))} placeholder="contoh: Tahlilan di rumah Pak Hadi, 7 Muharram" className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
+                                    <input type="text" value={formData.keperluan} onChange={e => setFormData(p => ({...p, keperluan: e.target.value}))} placeholder="contoh: Tahlilan di rumah Pak Hadi, 7 Muharram" className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
                                 </div>
                                 {/* Tanggal pinjam & kembali */}
                                 <div>
                                     <label className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 block">Tanggal Pinjam *</label>
-                                    <input type="date" value={formData.tanggalPinjam} onChange={e => setFormData(p => ({...p, tanggalPinjam: e.target.value}))} className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
+                                    <input type="date" value={formData.tanggalPinjam} onChange={e => setFormData(p => ({...p, tanggalPinjam: e.target.value}))} className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
                                 </div>
                                 <div>
                                     <label className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 block">Perkiraan Tanggal Kembali *</label>
-                                    <input type="date" value={formData.tanggalKembali} min={formData.tanggalPinjam} onChange={e => setFormData(p => ({...p, tanggalKembali: e.target.value}))} className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
+                                    <input type="date" value={formData.tanggalKembali} min={formData.tanggalPinjam} onChange={e => setFormData(p => ({...p, tanggalKembali: e.target.value}))} className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
                                 </div>
                                 {/* Catatan opsional */}
                                 <div className="sm:col-span-2">
                                     <label className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 block">Catatan Tambahan (opsional)</label>
-                                    <textarea value={formData.catatan} onChange={e => setFormData(p => ({...p, catatan: e.target.value}))} rows={2} placeholder="Keterangan tambahan jika perlu..." className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors resize-none" />
+                                    <textarea value={formData.catatan} onChange={e => setFormData(p => ({...p, catatan: e.target.value}))} rows={2} placeholder="Keterangan tambahan jika perlu..." className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors resize-none" />
                                 </div>
                             </div>
                             {errorMsg && <div className="mt-4 bg-google-redLight border border-google-red/30 text-google-redDark px-4 py-3 rounded-[14px] text-[12px] font-medium flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px]" />{errorMsg}</div>}
                             <div className="flex flex-wrap gap-3 mt-6">
-                                <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
+                                <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
                                 <button onClick={handleSubmitPinjam} className="flex flex-wrap bg-google-green text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2"><Icon name="send" className="text-[16px]" />Kirim Pengajuan</button>
                             </div>
                         </div>
@@ -3909,7 +3909,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
                             )}
                             {allActive.length === 0 && (
-                                <div className="bg-white rounded-[32px] border border-slate-300 p-12 text-center shadow-sm">
+                                <div className="bg-white rounded-[32px] border border-slate-200 p-12 text-center shadow-sm">
                                     <Icon name="check_circle" className="text-[56px] text-google-green mx-auto mb-4" fill="true" />
                                     <h3 className="text-[17px] font-medium text-google-text mb-2">Semua Bersih!</h3>
                                     <p className="text-[13px] text-google-textVariant font-medium">Tidak ada pengajuan pinjam yang aktif saat ini.</p>
@@ -3927,7 +3927,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     const stok = getStokTersedia(item.id);
                                     const sedangDipinjam = pinjamData.filter(p => p.itemId === item.id && p.status === 'approved');
                                     return (
-                                        <div key={item.id} className={`bg-white rounded-[24px] border p-5 shadow-sm flex items-center gap-4 ${stok <= 0 ? 'border-google-red/40 bg-google-redLight/20' : 'border-slate-300'}`}>
+                                        <div key={item.id} className={`bg-white rounded-[24px] border p-5 shadow-sm flex items-center gap-4 ${stok <= 0 ? 'border-google-red/40 bg-google-redLight/20' : 'border-slate-200'}`}>
                                             <div className={`w-14 h-14 rounded-[16px] flex items-center justify-center shrink-0 border ${stok <= 0 ? 'bg-google-redLight border-google-red/30' : 'bg-google-greenLight border-google-green/30'}`}>
                                                 <Icon name="inventory_2" className={`text-[24px] ${stok <= 0 ? 'text-google-red' : 'text-google-green'}`} />
                                             </div>
@@ -3950,7 +3950,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 })}
                             </div>
                             {inventarisData.length === 0 && (
-                                <div className="bg-white rounded-[32px] border border-slate-300 p-12 text-center shadow-sm">
+                                <div className="bg-white rounded-[32px] border border-slate-200 p-12 text-center shadow-sm">
                                     <Icon name="inventory_2" className="text-[56px] text-slate-300 mx-auto mb-4" />
                                     <p className="text-[13px] text-google-textVariant font-medium">Belum ada barang inventaris yang terdaftar.</p>
                                 </div>
@@ -3968,7 +3968,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <p className="text-[13px] text-google-textVariant mb-2"><span className="font-medium text-google-text">{p.namaBarang}</span><br/>dikembalikan oleh <span className="font-medium text-google-blueDark">{p.namaWarga}</span></p>
                                     <p className="text-[12px] font-medium text-google-green mb-6">Stok inventaris akan otomatis pulih setelah konfirmasi.</p>
                                     <div className="flex flex-wrap gap-3">
-                                        <button onClick={() => setKonfirmReturnId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
+                                        <button onClick={() => setKonfirmReturnId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
                                         <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-full font-medium text-[12px] border border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">G Konfirmasi Kembali</button>
                                     </div>
                                 </>) : null; })()}
@@ -3984,7 +3984,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <h3 className="text-xl font-medium text-google-text mb-2">Tolak Pengajuan?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-6">Pengajuan pinjam ini akan dihapus dari daftar.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setKonfirmRejectId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
+                                    <button onClick={() => setKonfirmRejectId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
                                     <button onClick={() => handleReject(konfirmRejectId)} className="flex-1 bg-google-red text-white px-4 py-3 rounded-full font-medium text-[12px] border border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Tolak & Hapus</button>
                                 </div>
                             </div>
@@ -4121,7 +4121,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             if (view === 'list') return (
                 <div className="space-y-8">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2">
                                 <Icon name="volunteer_activism" className="text-[24px] text-google-green" fill="true" />Program Infaq
@@ -4142,7 +4142,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             const p = pct(item);
                             return (
                                 <div key={item.id} onClick={() => { setSelected(item); setView('detail'); setNominalInput(''); setNamaInfaq(''); setTipeNama('nama'); setSelectedRek(0); }}
-                                    className="bg-white rounded-[24px] sm:rounded-[32px] overflow-hidden border border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-green/50 transition-all duration-300 cursor-pointer group flex flex-col">
+                                    className="bg-white rounded-[24px] sm:rounded-[32px] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-green/50 transition-all duration-300 cursor-pointer group flex flex-col">
                                     {/* Foto */}
                                     <div className="w-full bg-slate-100 flex items-center justify-center overflow-hidden shrink-0" style={{minHeight:'160px', maxHeight:'220px'}}>
                                         {item.imageUrl
@@ -4188,7 +4188,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             );
                         })}
                         {infaqData.length === 0 && (
-                            <div className="col-span-full bg-white border border-slate-300 p-14 text-center rounded-[32px] shadow-sm">
+                            <div className="col-span-full bg-white border border-slate-200 p-14 text-center rounded-[32px] shadow-sm">
                                 <Icon name="volunteer_activism" className="text-[64px] text-slate-300 mx-auto mb-4" fill="true" />
                                 <h3 className="text-[17px] font-medium text-google-text mb-2">Belum Ada Program Infaq</h3>
                                 <p className="text-[13px] text-google-textVariant font-medium">{userRole === 'admin' ? 'Klik "Buat Program Infaq" untuk menambahkan.' : 'Program infaq akan tampil di sini.'}</p>
@@ -4206,7 +4206,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <h3 className="text-xl font-medium text-google-text mb-2">Hapus Program Infaq?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-8">Program beserta data rekening akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 active:scale-95">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
                                     <button onClick={() => { setInfaqData(infaqData.filter(i => i.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Program infaq dihapus.'); }}
                                         className="flex-1 bg-google-red text-white px-4 py-3.5 rounded-full font-medium text-[13px] border border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Hapus</button>
                                 </div>
@@ -4229,13 +4229,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                         {/* Foto */}
                         {prog.imageUrl && (
-                            <div className="w-full bg-slate-100 rounded-[24px] sm:rounded-[32px] overflow-hidden border border-slate-300 flex items-center justify-center" style={{maxHeight:'300px'}}>
+                            <div className="w-full bg-slate-100 rounded-[24px] sm:rounded-[32px] overflow-hidden border border-slate-200 flex items-center justify-center" style={{maxHeight:'300px'}}>
                                 <img src={prog.imageUrl} className="w-full object-contain" style={{maxHeight:'300px'}} alt={prog.judul}  loading="lazy" decoding="async"/>
                             </div>
                         )}
 
                         {/* Judul & dana */}
-                        <div className="bg-white rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm p-6 sm:p-8 md:p-6">
+                        <div className="bg-white rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm p-6 sm:p-8 md:p-6">
                             <h2 className="text-[18px] font-medium text-google-text mb-2 tracking-tight">{prog.judul}</h2>
                             <p className="text-[13px] text-google-textVariant font-medium leading-relaxed mb-4">{prog.deskripsi}</p>
                             {/* Progress dana */}
@@ -4272,7 +4272,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div className="flex flex-wrap gap-3">
                                     <input type="number" min="0" defaultValue={prog.danaTerkumpul || 0}
                                         id="update-dana-input"
-                                        className="flex-1 bg-slate-50 border border-slate-300 focus:border-google-blue rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors"
+                                        className="flex-1 bg-slate-50 border border-slate-200 focus:border-google-blue rounded-full px-4 py-3 text-[13px] font-medium outline-none transition-colors"
                                         placeholder="Nominal dana terkumpul..." />
                                     <button onClick={() => {
                                         const val = safeNumber(document.getElementById('update-dana-input').value);
@@ -4294,7 +4294,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </h3>
                                 <div className="space-y-6">
                                     {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[20px] p-6 sm:p-8 md:p-6 border border-slate-300 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+                                        <div key={donasi.id} className="bg-slate-50 rounded-[20px] p-6 sm:p-8 md:p-6 border border-slate-200 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
                                             <div className="flex flex-wrap items-center gap-4 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] overflow-hidden hover:opacity-80 transition-opacity">
@@ -4352,13 +4352,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                         {/* Riwayat Donasi G Tampil untuk SEMUA user (Warga & Admin) */}
                         {(prog.donasi || []).length > 0 && userRole !== 'admin' && (
-                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm p-6 sm:p-8 md:p-6">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm p-6 sm:p-8 md:p-6">
                                 <h3 className="text-[15px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2">
                                     <Icon name="receipt_long" className="text-[18px] text-google-blue" fill="true" />Riwayat Donasi Anda
                                 </h3>
                                 <div className="space-y-5">
                                     {(prog.donasi || []).map(donasi => (
-                                        <div key={donasi.id} className="bg-slate-50 rounded-[16px] p-6 sm:p-8 md:p-6 border border-slate-300 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
+                                        <div key={donasi.id} className="bg-slate-50 rounded-[16px] p-6 sm:p-8 md:p-6 border border-slate-200 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
                                             <div className="flex flex-wrap items-center gap-3 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] overflow-hidden hover:opacity-80 transition-opacity">
@@ -4390,7 +4390,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                         {/* Tujuan & manfaat */}
                         {(prog.tujuan || prog.manfaat) && (
-                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm p-6 sm:p-8 md:p-6 space-y-6">
+                            <div className="bg-white rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm p-6 sm:p-8 md:p-6 space-y-6">
                                 {prog.tujuan && (
                                     <div>
                                         <p className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 flex flex-wrap items-center gap-1.5"><Icon name="flag" className="text-[13px] text-google-blue" />Tujuan Program</p>
@@ -4418,14 +4418,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div className="grid grid-cols-3 gap-2 mb-3">
                                     {NOMINAL_CEPAT.map(n => (
                                         <button key={n} onClick={() => setNominalInput(String(n))}
-                                            className={`py-2.5 rounded-full font-medium text-[11px] border transition-all active:scale-95 ${nominalInput === String(n) ? 'bg-google-green text-white border-google-greenDark shadow-md' : 'bg-slate-50 text-google-text border-slate-300 hover:border-google-green/50'}`}>
+                                            className={`py-2.5 rounded-full font-medium text-[11px] border transition-all active:scale-95 ${nominalInput === String(n) ? 'bg-google-green text-white border-google-greenDark shadow-md' : 'bg-slate-50 text-google-text border-slate-200 hover:border-google-green/50'}`}>
                                             {formatRp(n)}
                                         </button>
                                     ))}
                                 </div>
                                 <input type="number" min="1000" value={nominalInput} onChange={e => setNominalInput(e.target.value)}
                                     placeholder="Atau ketik nominal lain (Rp)..."
-                                    className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
+                                    className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
                             </div>
 
                             {/* Nama penginfaq */}
@@ -4434,7 +4434,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div className="flex gap-2 flex-wrap mb-3">
                                     {[['nama','Nama Saya'],['tanpanama','Tanpa Nama'],['hambaalah','Hamba Allah']].map(([val, label]) => (
                                         <button key={val} onClick={() => setTipeNama(val)}
-                                            className={`px-4 py-2 rounded-full font-medium text-[11px] border transition-all active:scale-95 ${tipeNama === val ? 'bg-google-green text-white border-google-greenDark' : 'bg-slate-50 text-google-text border-slate-300 hover:border-google-green/40'}`}>
+                                            className={`px-4 py-2 rounded-full font-medium text-[11px] border transition-all active:scale-95 ${tipeNama === val ? 'bg-google-green text-white border-google-greenDark' : 'bg-slate-50 text-google-text border-slate-200 hover:border-google-green/40'}`}>
                                             {label}
                                         </button>
                                     ))}
@@ -4442,7 +4442,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 {tipeNama === 'nama' && (
                                     <input type="text" value={namaInfaq} onChange={e => setNamaInfaq(e.target.value)}
                                         placeholder="Ketik nama Anda..."
-                                        className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
+                                        className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
                                 )}
                             </div>
 
@@ -4467,7 +4467,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 md:p-6 w-full max-w-sm -slate-300 my-4 modal-card animate-modal-in">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[16px] font-medium text-google-text">Cara Pembayaran</h3>
-                                        <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border border-slate-300 rounded-full flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
+                                        <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
                                             <Icon name="close" className="text-[16px]" />
                                         </button>
                                     </div>
@@ -4484,7 +4484,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <div className="flex gap-2 flex-wrap mb-3">
                                             {(prog.rekening || []).map((r, i) => (
                                                 <button key={i} onClick={() => setSelectedRek(i)}
-                                                    className={`px-3 py-1.5 rounded-full font-medium text-[11px] border transition-all active:scale-95 ${selectedRek === i ? 'bg-google-blue text-white border-google-blueDark' : 'bg-slate-50 text-google-text border-slate-300'}`}>
+                                                    className={`px-3 py-1.5 rounded-full font-medium text-[11px] border transition-all active:scale-95 ${selectedRek === i ? 'bg-google-blue text-white border-google-blueDark' : 'bg-slate-50 text-google-text border-slate-200'}`}>
                                                     {r.bank}
                                                 </button>
                                             ))}
@@ -4495,7 +4495,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {(prog.rekening || []).length > 0 && (() => {
                                         const r = prog.rekening[selectedRek] || prog.rekening[0];
                                         return (
-                                            <div className="bg-slate-50 border border-slate-300 rounded-[18px] p-6 sm:p-8 md:p-8 space-y-5.5">
+                                            <div className="bg-slate-50 border border-slate-200 rounded-[18px] p-6 sm:p-8 md:p-8 space-y-5.5">
                                                 <div className="flex flex-wrap items-center gap-3">
                                                     <div className="w-10 h-10 bg-google-blueLight rounded-[12px] flex items-center justify-center border border-google-blue/30 shrink-0">
                                                         <Icon name="account_balance" className="text-[17px] text-google-blue" />
@@ -4508,13 +4508,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                         <div className="flex flex-wrap items-center gap-2">
                                                             <span className="font-medium text-[13px] text-google-text">{val}</span>
                                                             <button onClick={() => { navigator.clipboard?.writeText(val); showToast(`${label} disalin!`); }}
-                                                                className="w-7 h-7 bg-white border border-slate-300 rounded-full flex items-center justify-center hover:bg-google-blueLight hover:border-google-blue/40 active:scale-95 transition-all">
+                                                                className="w-7 h-7 bg-white border border-slate-200 rounded-full flex items-center justify-center hover:bg-google-blueLight hover:border-google-blue/40 active:scale-95 transition-all">
                                                                 <Icon name="content_copy" className="text-[12px] text-google-textVariant" />
                                                             </button>
                                                         </div>
                                                     </div>
                                                 ))}
-                                                <p className="text-[10px] font-medium text-google-textVariant bg-white border border-slate-300 rounded-[10px] px-3 py-2 leading-relaxed">
+                                                <p className="text-[10px] font-medium text-google-textVariant bg-white border border-slate-200 rounded-[10px] px-3 py-2 leading-relaxed">
                                                     = Cantumkan nominal <span className="text-google-green font-medium">{formatRp(safeNumber(nominalInput))}</span> dan nama <span className="text-google-greenDark font-medium">{namaDisplay}</span> saat transfer.
                                                 </p>
                                             </div>
@@ -4522,13 +4522,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     })()}
 
                                         {/* Upload Bukti */}
-                                        <div className="mt-4 bg-slate-50 border border-slate-300 rounded-[18px] p-6 sm:p-8 md:p-6 text-center relative overflow-hidden transition-all focus-within:border-google-green group hover:border-google-green/40 cursor-pointer">
+                                        <div className="mt-4 bg-slate-50 border border-slate-200 rounded-[18px] p-6 sm:p-8 md:p-6 text-center relative overflow-hidden transition-all focus-within:border-google-green group hover:border-google-green/40 cursor-pointer">
                                             <p className="text-[11px] font-medium text-google-textVariant mb-2 uppercase tracking-wider">Upload Bukti Transfer</p>
                                             <input type="file" accept="image/*" onChange={handleBuktiUpload} disabled={isUploadingBukti} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                             {isUploadingBukti ? (
                                                 <div className="w-8 h-8 border border-google-green border-t-transparent rounded-full animate-spin mx-auto my-3" />
                                             ) : buktiUrl ? (
-                                                <div className="relative rounded-[12px] overflow-hidden border border-slate-300">
+                                                <div className="relative rounded-[12px] overflow-hidden border border-slate-200">
                                                     <img src={buktiUrl} className="w-full h-32 object-cover" alt="Bukti Transfer"  loading="lazy" decoding="async"/>
                                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                                         <span className="text-white font-medium text-[11px] flex flex-wrap items-center gap-1"><Icon name="edit" className="text-[14px]"/> Ganti Foto</span>
@@ -4544,7 +4544,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                                         <div className="flex flex-wrap gap-2 mt-4">
                                             <button onClick={() => { setShowPayModal(false); setBuktiUrl(''); }}
-                                                className="w-full sm:w-auto bg-white text-google-text py-3.5 rounded-full font-medium text-[12px] border border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">
+                                                className="w-full sm:w-auto bg-white text-google-text py-3.5 rounded-full font-medium text-[12px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">
                                                 Batal
                                             </button>
                                             <button onClick={() => { 
@@ -4585,7 +4585,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         <Icon name="arrow_back" className="text-[17px]" />Kembali
                     </button>
 
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm">
                         <h3 className="text-[17px] font-medium text-google-text mb-6 tracking-tight">
                             {editingId ? 'âœï¸ Edit Program Infaq' : 'âž• Buat Program Infaq Baru'}
                         </h3>
@@ -4594,7 +4594,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             {/* Gambar */}
                             <div>
                                 <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Foto Program <span className="text-slate-400 normal-case font-normal">(opsional)</span></label>
-                                <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-green transition-all`}>
+                                <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-green transition-all`}>
                                     <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                     <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 z-0">
                                         {isUploading ? <div className="w-5 h-5 border border-google-green border-t-transparent rounded-full animate-spin" />
@@ -4605,7 +4605,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : form.imageUrl ? 'Foto Tersimpan G' : 'Pilih Foto Program'}</p>
                                         <p className="text-[11px] text-google-textVariant">Maks. 2MB</p>
                                     </div>
-                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-300 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
+                                    {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
                                 </div>
                             </div>
 
@@ -4613,14 +4613,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             <div>
                                 <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Judul Program *</label>
                                 <input type="text" value={form.judul} onChange={e => setForm(p=>({...p,judul:e.target.value}))}
-                                    placeholder="contoh: Infaq Pembangunan Mushola RT" className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
+                                    placeholder="contoh: Infaq Pembangunan Mushola RT" className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
                             </div>
 
                             {/* Deskripsi */}
                             <div>
                                 <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Deskripsi Program *</label>
                                 <textarea value={form.deskripsi} onChange={e => setForm(p=>({...p,deskripsi:e.target.value}))} rows={3}
-                                    placeholder="Jelaskan program infaq ini secara singkat..." className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors resize-none" />
+                                    placeholder="Jelaskan program infaq ini secara singkat..." className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors resize-none" />
                             </div>
 
                             {/* Tujuan & Manfaat */}
@@ -4628,12 +4628,12 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div>
                                     <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Tujuan <span className="text-slate-400 normal-case font-normal">(opsional)</span></label>
                                     <textarea value={form.tujuan} onChange={e => setForm(p=>({...p,tujuan:e.target.value}))} rows={2}
-                                        placeholder="Tujuan program infaq ini..." className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[12px] font-medium outline-none transition-colors resize-none" />
+                                        placeholder="Tujuan program infaq ini..." className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[12px] font-medium outline-none transition-colors resize-none" />
                                 </div>
                                 <div>
                                     <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Manfaat <span className="text-slate-400 normal-case font-normal">(opsional)</span></label>
                                     <textarea value={form.manfaat} onChange={e => setForm(p=>({...p,manfaat:e.target.value}))} rows={2}
-                                        placeholder="Manfaat bagi warga..." className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[12px] font-medium outline-none transition-colors resize-none" />
+                                        placeholder="Manfaat bagi warga..." className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[12px] font-medium outline-none transition-colors resize-none" />
                                 </div>
                             </div>
 
@@ -4641,7 +4641,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             <div>
                                 <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Target Dana <span className="text-slate-400 normal-case font-normal">(opsional, 0 = tanpa target)</span></label>
                                 <input type="number" min="0" value={form.danaTarget || ''} onChange={e => setForm(p=>({...p,danaTarget:safeNumber(e.target.value)}))}
-                                    placeholder="0" className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
+                                    placeholder="0" className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
                             </div>
 
                             {/* Dana terkumpul (edit saja) */}
@@ -4649,7 +4649,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div>
                                     <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Dana Terkumpul Saat Ini</label>
                                     <input type="number" min="0" value={form.danaTerkumpul || ''} onChange={e => setForm(p=>({...p,danaTerkumpul:safeNumber(e.target.value)}))}
-                                        className="w-full bg-slate-50 border border-slate-300 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
+                                        className="w-full bg-slate-50 border border-slate-200 focus:border-google-green rounded-[14px] px-4 py-3 text-[13px] font-medium outline-none transition-colors" />
                                 </div>
                             )}
 
@@ -4663,7 +4663,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
                                 <div className="space-y-5">
                                     {form.rekening.map((r, i) => (
-                                        <div key={i} className="bg-slate-50 border border-slate-300 rounded-[18px] p-6 sm:p-8 md:p-4 sm:p-6 space-y-5">
+                                        <div key={i} className="bg-slate-50 border border-slate-200 rounded-[18px] p-6 sm:p-8 md:p-4 sm:p-6 space-y-5">
                                             <div className="flex items-center justify-between">
                                                 <p className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider">Rekening {i+1}</p>
                                                 {form.rekening.length > 1 && (
@@ -4674,11 +4674,11 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             </div>
                                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                                 <input type="text" value={r.bank} onChange={e => updateRek(i,'bank',e.target.value)}
-                                                    placeholder="Nama Bank (BRI, BCA...)" className="bg-white border border-slate-300 focus:border-google-blue rounded-[12px] px-3 py-2.5 text-[12px] font-medium outline-none transition-colors" />
+                                                    placeholder="Nama Bank (BRI, BCA...)" className="bg-white border border-slate-200 focus:border-google-blue rounded-[12px] px-3 py-2.5 text-[12px] font-medium outline-none transition-colors" />
                                                 <input type="text" value={r.norek} onChange={e => updateRek(i,'norek',e.target.value)}
-                                                    placeholder="Nomor Rekening" className="bg-white border border-slate-300 focus:border-google-blue rounded-[12px] px-3 py-2.5 text-[12px] font-medium outline-none transition-colors" />
+                                                    placeholder="Nomor Rekening" className="bg-white border border-slate-200 focus:border-google-blue rounded-[12px] px-3 py-2.5 text-[12px] font-medium outline-none transition-colors" />
                                                 <input type="text" value={r.atasNama} onChange={e => updateRek(i,'atasNama',e.target.value)}
-                                                    placeholder="Atas Nama" className="bg-white border border-slate-300 focus:border-google-blue rounded-[12px] px-3 py-2.5 text-[12px] font-medium outline-none transition-colors" />
+                                                    placeholder="Atas Nama" className="bg-white border border-slate-200 focus:border-google-blue rounded-[12px] px-3 py-2.5 text-[12px] font-medium outline-none transition-colors" />
                                             </div>
                                         </div>
                                     ))}
@@ -4693,7 +4693,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         </div>
 
                         <div className="flex flex-wrap gap-3 mt-6">
-                            <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
+                            <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
                             <button onClick={handleSaveProgram} disabled={isUploading} className="flex-1 bg-google-green text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all disabled:opacity-50">
                                 {editingId ? 'Simpan Perubahan' : 'Buat Program'}
                             </button>
@@ -4760,7 +4760,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             return (
                 <div className="space-y-8">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm no-print">
                         <div>
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2">
                                 <Icon name="photo_library" className="text-[24px] text-red-600"/>
@@ -4778,7 +4778,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {data.map(item => (
-                            <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-300/80 shadow-sm hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 hover:border-red-500/30 transition-all duration-300 flex flex-col group relative">
+                            <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 hover:border-red-500/30 transition-all duration-300 flex flex-col group relative">
                                 <div onClick={() => setSelectedPhoto(item)} className="w-full aspect-[4/3] bg-slate-100 relative shrink-0 border-b border-slate-200 overflow-hidden flex items-center justify-center cursor-zoom-in">
                                     <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
                                     <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -4807,10 +4807,10 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     </div>
                                     {userRole === 'admin' && (
                                         <div className="flex flex-wrap justify-end gap-2 border-t border-slate-200 pt-3">
-                                            <button onClick={() => handleEdit(item)} className="bg-white text-google-blue w-9 h-9 rounded-full font-medium flex items-center justify-center hover:bg-google-blueLight border border-slate-300 hover:border-google-blue/30 transition-all duration-300">
+                                            <button onClick={() => handleEdit(item)} className="bg-white text-google-blue w-9 h-9 rounded-full font-medium flex items-center justify-center hover:bg-google-blueLight border border-slate-200 hover:border-google-blue/30 transition-all duration-300">
                                                 <Icon name="edit" className="text-[14px]" />
                                             </button>
-                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red w-9 h-9 rounded-full font-medium flex items-center justify-center hover:bg-google-redLight border border-slate-300 hover:border-google-red/30 transition-all duration-300">
+                                            <button onClick={() => setDeleteConfirmId(item.id)} className="bg-white text-google-red w-9 h-9 rounded-full font-medium flex items-center justify-center hover:bg-google-redLight border border-slate-200 hover:border-google-red/30 transition-all duration-300">
                                                 <Icon name="delete" className="text-[14px]" />
                                             </button>
                                         </div>
@@ -4820,8 +4820,8 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         ))}
                     </div>
                     {data.length === 0 && (
-                        <div className="bg-white rounded-[32px] border border-slate-300 p-12 text-center shadow-sm">
-                            <div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border border-slate-300">
+                        <div className="bg-white rounded-[32px] border border-slate-200 p-12 text-center shadow-sm">
+                            <div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border border-slate-200">
                                 <Icon name="photo_library" className="text-[48px] text-slate-400" fill="true" />
                             </div>
                             <h3 className="font-medium text-[17px] mb-2 text-google-text">Belum Ada Foto</h3>
@@ -4854,7 +4854,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             </span>
                                         </div>
                                         <h3 className="text-2xl font-medium text-google-text leading-tight tracking-tight">{selectedPhoto.title}</h3>
-                                        <div className="bg-slate-50 border border-slate-300/60 p-6 sm:p-8 md:p-8 rounded-[22px] text-google-textVariant text-[13px] leading-relaxed font-medium whitespace-pre-line">
+                                        <div className="bg-slate-50 border border-slate-200/60 p-6 sm:p-8 md:p-8 rounded-[22px] text-google-textVariant text-[13px] leading-relaxed font-medium whitespace-pre-line">
                                             {selectedPhoto.description || 'Tidak ada deskripsi rinci untuk kegiatan ini.'}
                                         </div>
                                     </div>
@@ -4873,19 +4873,19 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div className="space-y-7">
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul / Kegiatan</label>
-                                        <input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Contoh: Kerja Bakti 17an" />
+                                        <input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Contoh: Kerja Bakti 17an" />
                                     </div>
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal</label>
-                                        <input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text" />
+                                        <input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text" />
                                     </div>
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Deskripsi Rinci</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Tuliskan keterangan lengkap kegiatan di sini..."></textarea>
+                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Tuliskan keterangan lengkap kegiatan di sini..."></textarea>
                                     </div>
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">File Foto</label>
-                                        <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
+                                        <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                             <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
                                                 {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div> : <Icon name="cloud_upload" className="text-[20px]" />}
@@ -4895,7 +4895,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <p className="text-[10px] text-google-textVariant truncate">{formData.imageUrl ? "Klik untuk mengganti foto" : "Maksimal 2MB"}</p>
                                             </div>
                                             {formData.imageUrl && !isUploading && (
-                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300">
+                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200">
                                                     <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                 </div>
                                             )}
@@ -4904,7 +4904,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-4 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-slate-200">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex flex-wrap items-center justify-center gap-2">
                                         {editingId ? 'Simpan' : 'Unggah'}
                                     </button>
@@ -4920,7 +4920,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Foto?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Foto ini akan dihapus dari galeri warga.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                     <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Foto berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
@@ -4963,15 +4963,15 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             return (
                 <div className="space-y-8">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Papan Informasi & Kegiatan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Pengumuman dan dokumentasi lingkungan RT.</p></div>
                         {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', date: getLocalDate(), imageUrl: '', description: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="add" className="text-[17px]" /><span>Buat Info Baru</span></button>}
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                         {data.map(item => (
-                            <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 flex flex-col group">
-                                {item.imageUrl && <div className="w-full h-48 sm:h-56 bg-slate-100 relative shrink-0 border-b border-slate-300 overflow-hidden"><img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} /></div>}
+                            <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 flex flex-col group">
+                                {item.imageUrl && <div className="w-full h-48 sm:h-56 bg-slate-100 relative shrink-0 border-b border-slate-200 overflow-hidden"><img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} /></div>}
 
                                 <div className="p-6 sm:p-8 flex flex-col">
                                     <h3 className="text-[17px] sm:text-[18px] font-medium text-google-text leading-snug mb-4 group-hover:text-google-blue transition-colors tracking-tight">{item.title}</h3>
@@ -4988,19 +4988,19 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             </div>
                         ))}
                     </div>
-                    {data.length === 0 && <div className="bg-white rounded-[32px] border border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border border-slate-300"><Icon name="campaign" className="text-[48px] text-slate-400" fill="true" /></div><h3 className="font-medium text-[17px] mb-2 text-google-text">Belum Ada Informasi</h3><p className="text-google-textVariant font-medium text-[13px]">Papan informasi warga masih kosong saat ini.</p></div>}
+                    {data.length === 0 && <div className="bg-white rounded-[32px] border border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border border-slate-200"><Icon name="campaign" className="text-[48px] text-slate-400" fill="true" /></div><h3 className="font-medium text-[17px] mb-2 text-google-text">Belum Ada Informasi</h3><p className="text-google-textVariant font-medium text-[13px]">Papan informasi warga masih kosong saat ini.</p></div>}
 
                     {isFormOpen && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
 <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg -slate-300 flex flex-col max-h-[90vh] modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 shrink-0 tracking-tight">{editingId ? 'Edit Info Kegiatan' : 'Buat Info Baru'}</h3>
                                 <div className="space-y-7 overflow-y-auto pr-2 pb-2 hide-scrollbar">
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan judul..." /></div>
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text" /></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan judul..." /></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text" /></div>
                                     
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Gambar Banner (Upload ke GDrive)</label>
-                                        <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
+                                        <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                             <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
                                                 {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div> : <Icon name="cloud_upload" className="text-[20px]" />}
@@ -5010,20 +5010,20 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <p className="text-[10px] text-google-textVariant truncate">{formData.imageUrl ? "Klik area ini untuk mengganti gambar" : "Format JPG/PNG, Maksimal 2MB"}</p>
                                             </div>
                                             {formData.imageUrl && !isUploading && (
-                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300 group">
+                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200 group">
                                                     <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                     <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setFormData(prev => ({...prev, imageUrl: ''})); }} className="absolute top-0 right-0 bg-google-red/90 text-white w-full h-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><Icon name="delete" className="text-[14px]"/></button>
                                                 </div>
                                             )}
                                         </div>
-                                        <input type="url" value={formData.imageUrl} onChange={e => setFormData({...formData, imageUrl: e.target.value})} className="mt-2 w-full bg-transparent border-b border-slate-300 focus:border-google-blue p-2 text-[11px] font-medium outline-none transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Atau paste URL gambar manual secara langsung di sini..." />
+                                        <input type="url" value={formData.imageUrl} onChange={e => setFormData({...formData, imageUrl: e.target.value})} className="mt-2 w-full bg-transparent border-b border-slate-200 focus:border-google-blue p-2 text-[11px] font-medium outline-none transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Atau paste URL gambar manual secara langsung di sini..." />
                                     </div>
 
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Deskripsi Lengkap</label><textarea value={formData.description} onChange={e => {setFormData({...formData, description: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] min-h-[160px] resize-none transition-all duration-300 text-google-text leading-relaxed placeholder:text-slate-400" placeholder="Tuliskan detail informasi di sini..."></textarea></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Deskripsi Lengkap</label><textarea value={formData.description} onChange={e => {setFormData({...formData, description: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] min-h-[160px] resize-none transition-all duration-300 text-google-text leading-relaxed placeholder:text-slate-400" placeholder="Tuliskan detail informasi di sini..."></textarea></div>
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-4 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-slate-200 shrink-0">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">Publikasikan</button>
                                 </div>
                             </div>
@@ -5037,7 +5037,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Informasi?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Konten ini akan dihapus secara permanen dari layar warga.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                     <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Informasi berhasil dihapus.'); }} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
                                 </div>
                             </div>
@@ -5111,16 +5111,16 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             return (
                 <div className="space-y-7">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Buku Induk Warga</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Total <span className="font-medium text-google-blue">{members.length} Warga</span> Terdaftar</p></div>
                         <div className="flex gap-3 w-full sm:w-auto overflow-x-auto hide-scrollbar pb-1 sm:pb-0">
-                            <button onClick={() => { setPrintMode('buku'); setTimeout(() => { window.print(); setTimeout(() => setPrintMode(''), 1000); }, 100); }} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /><span>Cetak Form</span></button>
-                            {userRole === 'admin' && <button onClick={handlePrintBarcode} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="qr_code_scanner" className="text-[16px]" /><span>Cetak Barcode</span></button>}
+                            <button onClick={() => { setPrintMode('buku'); setTimeout(() => { window.print(); setTimeout(() => setPrintMode(''), 1000); }, 100); }} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /><span>Cetak Form</span></button>
+                            {userRole === 'admin' && <button onClick={handlePrintBarcode} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="qr_code_scanner" className="text-[16px]" /><span>Cetak Barcode</span></button>}
                             {userRole === 'admin' && <button onClick={() => { setFormData({ name: '', status: 'Normal', program: 'Arisan', debt: 0, hasWon: false, wonRound: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); }} className="bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 shrink-0 flex flex-wrap items-center justify-center gap-2"><Icon name="person_add" className="text-[17px]" /><span>Tambah Data</span></button>}
                         </div>
                     </div>
 
-                    <div className="bg-white p-6 sm:p-8 rounded-[24px] border border-slate-300 shadow-sm flex items-center gap-3 no-print">
+                    <div className="bg-white p-6 sm:p-8 rounded-[24px] border border-slate-200 shadow-sm flex items-center gap-3 no-print">
                         <Icon name="search" className="text-[20px] text-slate-400 shrink-0 ml-2" />
                         <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Cari nama warga..." className="w-full bg-transparent outline-none font-medium text-[13px] text-google-text placeholder:text-slate-400 placeholder:font-medium" />
                         {searchQuery && <button onClick={() => setSearchQuery('')} className="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-full text-slate-500 shrink-0 active:scale-95 transition-all"><Icon name="close" className="text-[16px]" /></button>}
@@ -5177,14 +5177,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             return (
                                 <>
                                     {filteredMembers.map((member) => (
-                                        <div key={member.id} onClick={(e) => { if(!e.target.closest('button')) setPreviewMember(member); }} className="bg-white rounded-[24px] p-6 sm:p-8 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between border border-slate-300 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/40 transition-all duration-300 gap-5 group cursor-pointer">
+                                        <div key={member.id} onClick={(e) => { if(!e.target.closest('button')) setPreviewMember(member); }} className="bg-white rounded-[24px] p-6 sm:p-8 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/40 transition-all duration-300 gap-5 group cursor-pointer">
                                 <div className="flex flex-wrap items-center gap-5">
-                                    <div className={`w-16 h-16 rounded-[20px] flex items-center justify-center font-medium text-[20px] shrink-0 border transition-colors duration-300 ${isNonaktif(member) ? 'bg-slate-50 text-slate-400 border-slate-300' : 'bg-google-blueLight text-google-blueDark border-google-blue/30 group-hover:bg-google-blue group-hover:text-white group-hover:border-google-blueDark'}`}>{member.name.charAt(0).toUpperCase()}</div>
+                                    <div className={`w-16 h-16 rounded-[20px] flex items-center justify-center font-medium text-[20px] shrink-0 border transition-colors duration-300 ${isNonaktif(member) ? 'bg-slate-50 text-slate-400 border-slate-200' : 'bg-google-blueLight text-google-blueDark border-google-blue/30 group-hover:bg-google-blue group-hover:text-white group-hover:border-google-blueDark'}`}>{member.name.charAt(0).toUpperCase()}</div>
                                     <div className="flex-1 min-w-0">
-                                        <h3 className={`font-medium text-[16px] truncate transition-colors tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text group-hover:text-google-blueDark'}`}>{member.name} {isNonaktif(member) && <span className="text-[9px] uppercase tracking-wider bg-slate-100 text-slate-500 px-2.5 py-1 rounded-[6px] ml-2 font-medium border border-slate-300 align-middle">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</h3>
+                                        <h3 className={`font-medium text-[16px] truncate transition-colors tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text group-hover:text-google-blueDark'}`}>{member.name} {isNonaktif(member) && <span className="text-[9px] uppercase tracking-wider bg-slate-100 text-slate-500 px-2.5 py-1 rounded-[6px] ml-2 font-medium border border-slate-200 align-middle">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</h3>
                                         <div className="flex flex-wrap items-center gap-2.5 mt-2.5 text-[10px] uppercase tracking-wider">
-                                            <span className={`px-3 py-1.5 rounded-[6px] font-medium border ${member.program === 'IuranOnly' ? 'bg-slate-50 text-google-textVariant border-slate-300' : (member.program === 'ArisanOnly' ? 'bg-google-yellowLight text-google-yellowDark border-google-yellow/40' : (member.program === 'JimpitanOnly' ? 'bg-google-greenLight text-google-greenDark border-google-green/40' : 'bg-google-blue/10 text-google-blueDark border-google-blue/30'))}`}>{member.program === 'IuranOnly' ? 'Hanya Iuran' : (member.program === 'ArisanOnly' ? 'Arisan Saja (Bebas Jimpitan)' : (member.program === 'JimpitanOnly' ? 'Jimpitan & Iuran Umum' : 'Arisan, Iuran & Jimpitan'))}</span>
-                                            {member.program !== 'IuranOnly' && member.program !== 'JimpitanOnly' && (member.hasWon ? <span className="bg-google-blue text-white px-3 py-1.5 rounded-[6px] font-medium shadow-sm border border-google-blueDark flex flex-wrap items-center gap-1"><Icon name="emoji_events" className="text-[13px]"/> Menang Put. {member.wonRound}</span> : <span className="text-google-textVariant px-3 py-1.5 rounded-[6px] bg-slate-100 font-medium border border-slate-300">Belum Menang</span>)}
+                                            <span className={`px-3 py-1.5 rounded-[6px] font-medium border ${member.program === 'IuranOnly' ? 'bg-slate-50 text-google-textVariant border-slate-200' : (member.program === 'ArisanOnly' ? 'bg-google-yellowLight text-google-yellowDark border-google-yellow/40' : (member.program === 'JimpitanOnly' ? 'bg-google-greenLight text-google-greenDark border-google-green/40' : 'bg-google-blue/10 text-google-blueDark border-google-blue/30'))}`}>{member.program === 'IuranOnly' ? 'Hanya Iuran' : (member.program === 'ArisanOnly' ? 'Arisan Saja (Bebas Jimpitan)' : (member.program === 'JimpitanOnly' ? 'Jimpitan & Iuran Umum' : 'Arisan, Iuran & Jimpitan'))}</span>
+                                            {member.program !== 'IuranOnly' && member.program !== 'JimpitanOnly' && (member.hasWon ? <span className="bg-google-blue text-white px-3 py-1.5 rounded-[6px] font-medium shadow-sm border border-google-blueDark flex flex-wrap items-center gap-1"><Icon name="emoji_events" className="text-[13px]"/> Menang Put. {member.wonRound}</span> : <span className="text-google-textVariant px-3 py-1.5 rounded-[6px] bg-slate-100 font-medium border border-slate-200">Belum Menang</span>)}
                                             {member.debt > 0 ? <span className="bg-google-redLight text-google-redDark px-3 py-1.5 rounded-[6px] font-medium border border-google-red/40 animate-pulse flex flex-wrap items-center gap-1.5"><Icon name="warning" className="text-[13px]"/> Tunggakan {formatRp(member.debt)}</span> : <span className="bg-google-greenLight text-google-greenDark px-3 py-1.5 rounded-[6px] font-medium border border-google-green/40 flex flex-wrap items-center gap-1.5"><Icon name="check_circle" className="text-[13px]"/> Aman</span>}
                                         </div>
                                     </div>
@@ -5197,7 +5197,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 )}
                             </div>
                                     ))}
-                                    {filteredMembers.length === 0 && <div className="bg-white rounded-[32px] border border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border border-slate-300"><Icon name="search_off" className="text-[48px] text-slate-400" fill="true" /></div><p className="text-google-text font-medium text-[17px] tracking-tight">Tidak Ditemukan</p><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Tidak ada warga yang cocok dengan pencarian.</p></div>}
+                                    {filteredMembers.length === 0 && <div className="bg-white rounded-[32px] border border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-5 mx-auto border border-slate-200"><Icon name="search_off" className="text-[48px] text-slate-400" fill="true" /></div><p className="text-google-text font-medium text-[17px] tracking-tight">Tidak Ditemukan</p><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Tidak ada warga yang cocok dengan pencarian.</p></div>}
                                 </>
                             );
                         })()}
@@ -5208,22 +5208,22 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md -slate-300 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}</h3>
                                 <div className="space-y-7">
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Program Keikutsertaan</label><select value={formData.program || 'Arisan'} onChange={e => setFormData({...formData, program: e.target.value, hasWon: false, wonRound: ''})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Arisan">Full (Arisan, Iuran &amp; Jimpitan)</option><option value="IuranOnly">Hanya Iuran Umum Saja</option><option value="ArisanOnly">Arisan Saja (Bebas Jimpitan)</option><option value="JimpitanOnly">Jimpitan &amp; Iuran Umum (Tanpa Arisan)</option></select></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Program Keikutsertaan</label><select value={formData.program || 'Arisan'} onChange={e => setFormData({...formData, program: e.target.value, hasWon: false, wonRound: ''})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Arisan">Full (Arisan, Iuran &amp; Jimpitan)</option><option value="IuranOnly">Hanya Iuran Umum Saja</option><option value="ArisanOnly">Arisan Saja (Bebas Jimpitan)</option><option value="JimpitanOnly">Jimpitan &amp; Iuran Umum (Tanpa Arisan)</option></select></div>
                                     <div className="flex flex-wrap gap-5">
-                                        <div className="flex-1"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Status</label><select value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Normal">Aktif</option><option value="Meninggal">Meninggal / Wafat</option><option value="Nonaktif">Nonaktif / Pindah</option></select></div>
-                                        <div className="flex-1"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tunggakan (Rp)</label><input type="number" min="0" value={formData.debt} onChange={e => {setFormData({...formData, debt: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
+                                        <div className="flex-1"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Status</label><select value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer"><option value="Normal">Aktif</option><option value="Meninggal">Meninggal / Wafat</option><option value="Nonaktif">Nonaktif / Pindah</option></select></div>
+                                        <div className="flex-1"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tunggakan (Rp)</label><input type="number" min="0" value={formData.debt} onChange={e => {setFormData({...formData, debt: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                     </div>
                                     {formData.program !== 'IuranOnly' && formData.program !== 'JimpitanOnly' && (
                                         <div className="pt-5 border-t border-slate-200">
                                             <label className="flex flex-wrap items-center gap-3 mb-5 cursor-pointer group"><div className="relative flex items-center justify-center"><input type="checkbox" checked={formData.hasWon} onChange={e => setFormData({...formData, hasWon: e.target.checked})} className="peer appearance-none w-6 h-6 border border-slate-400 rounded-[8px] checked:bg-google-blue checked:border-google-blue transition-colors cursor-pointer" /><Icon name="check" className="absolute text-white text-[14px] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" strokeWidth="4"/></div><span className="text-[13px] font-medium text-google-text group-hover:text-google-blue transition-colors">Warga Sudah Menang Arisan</span></label>
-                                            {formData.hasWon && <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Di Putaran Ke-</label><input type="number" min="1" value={formData.wonRound} onChange={e => {setFormData({...formData, wonRound: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: 3" /></div>}
+                                            {formData.hasWon && <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Di Putaran Ke-</label><input type="number" min="1" value={formData.wonRound} onChange={e => {setFormData({...formData, wonRound: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: 3" /></div>}
                                         </div>
                                     )}
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-5 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-slate-200">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                     <button onClick={handleSave} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Simpan</button>
                                 </div>
                             </div>
@@ -5236,7 +5236,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Warga?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Data warga dan riwayatnya akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                     <button onClick={executeDelete} className="flex flex-wrap bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-redDark shadow-md hover:bg-google-redDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Hapus</button>
                                 </div>
                             </div>
@@ -5249,12 +5249,12 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <button onClick={() => setPreviewMember(null)} className="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-500 active:scale-95 transition-all"><Icon name="close" className="text-[17px]" /></button>
                                 
                                 <div className="mb-4">
-                                    <div className={`w-20 h-20 mx-auto rounded-[24px] flex items-center justify-center font-medium text-[32px] border shadow-sm ${isNonaktif(previewMember) ? 'bg-slate-50 text-slate-400 border-slate-300' : 'bg-google-blueLight text-google-blueDark border-google-blue/30'}`}>{previewMember.name.charAt(0).toUpperCase()}</div>
+                                    <div className={`w-20 h-20 mx-auto rounded-[24px] flex items-center justify-center font-medium text-[32px] border shadow-sm ${isNonaktif(previewMember) ? 'bg-slate-50 text-slate-400 border-slate-200' : 'bg-google-blueLight text-google-blueDark border-google-blue/30'}`}>{previewMember.name.charAt(0).toUpperCase()}</div>
                                 </div>
                                 <h3 className={`font-medium text-[18px] tracking-tight mb-1 ${isNonaktif(previewMember) ? 'text-slate-400 line-through' : 'text-google-text'}`}>{previewMember.name}</h3>
-                                <p className="text-[12px] font-medium text-google-textVariant mb-6 bg-slate-50 inline-block px-4 py-1.5 rounded-[10px] border border-slate-300">No. Anggota: M-{previewMember.id}</p>
+                                <p className="text-[12px] font-medium text-google-textVariant mb-6 bg-slate-50 inline-block px-4 py-1.5 rounded-[10px] border border-slate-200">No. Anggota: M-{previewMember.id}</p>
 
-                                <div className="space-y-5 text-left mb-6 bg-slate-50 p-5 rounded-[24px] border border-slate-300">
+                                <div className="space-y-5 text-left mb-6 bg-slate-50 p-5 rounded-[24px] border border-slate-200">
                                     <div className="flex justify-between items-center pb-3 border-b border-slate-200"><span className="text-[11px] font-medium text-google-textVariant uppercase tracking-widest">Status</span><span className="font-medium text-[13px] text-google-text">{previewMember.status}</span></div>
                                     <div className="flex justify-between items-center pb-3 border-b border-slate-200"><span className="text-[11px] font-medium text-google-textVariant uppercase tracking-widest">Program</span><span className="font-medium text-[13px] text-google-text">{previewMember.program === 'IuranOnly' ? 'Hanya Iuran' : (previewMember.program === 'ArisanOnly' ? 'Arisan Saja (Bebas Jimpitan)' : (previewMember.program === 'JimpitanOnly' ? 'Jimpitan & Iuran Umum' : 'Arisan, Iuran & Jimpitan'))}</span></div>
                                     <div className="flex justify-between items-center pb-3 border-b border-slate-200"><span className="text-[11px] font-medium text-google-textVariant uppercase tracking-widest">Tunggakan</span><span className={`font-medium text-[13px] ${previewMember.debt > 0 ? 'text-google-red' : 'text-google-green'}`}>{previewMember.debt > 0 ? formatRp(previewMember.debt) : 'Rp 0 (Aman)'}</span></div>
@@ -5266,7 +5266,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div className="border border-dashed border-slate-400 rounded-[24px] p-5 bg-white mb-2 relative">
                                     <p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-3">Barcode Resmi</p>
                                     <canvas id="preview-barcode" className="mx-auto w-full max-w-[200px]"></canvas>
-                                    <button onClick={handleDownloadBarcode} className="mt-4 bg-slate-100 hover:bg-slate-200 text-google-text font-medium text-[11px] px-4 py-2 rounded-full transition-all flex items-center justify-center gap-1 mx-auto border border-slate-300 active:scale-95"><Icon name="download" className="text-[14px]"/> Simpan Gambar (PNG)</button>
+                                    <button onClick={handleDownloadBarcode} className="mt-4 bg-slate-100 hover:bg-slate-200 text-google-text font-medium text-[11px] px-4 py-2 rounded-full transition-all flex items-center justify-center gap-1 mx-auto border border-slate-200 active:scale-95"><Icon name="download" className="text-[14px]"/> Simpan Gambar (PNG)</button>
                                 </div>
                                 <p className="text-[10px] font-medium text-slate-400 mt-4">Tunjukkan barcode ini kepada petugas jika diperlukan.</p>
                             </div>
@@ -5325,13 +5325,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             if (view === 'form') {
                 return (
-                    <div className="bg-white p-5 sm:p-8 rounded-[32px] border border-slate-300 max-w-2xl mx-auto shadow-xl">
-                        <div className="flex flex-wrap items-center gap-5 mb-8 border-b border-slate-200 pb-6"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border border-slate-300 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda ? 'Edit Agenda' : 'Buat Agenda Iuran'}</h2></div>
+                    <div className="bg-white p-5 sm:p-8 rounded-[32px] border border-slate-200 max-w-2xl mx-auto shadow-xl">
+                        <div className="flex flex-wrap items-center gap-5 mb-8 border-b border-slate-200 pb-6"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border border-slate-200 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda ? 'Edit Agenda' : 'Buat Agenda Iuran'}</h2></div>
                         <div className="space-y-8">
-                            <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama / Keperluan Iuran</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Dana 17 Agustus" /></div>
+                            <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama / Keperluan Iuran</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Dana 17 Agustus" /></div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Batas Akhir Waktu</label><input type="date" value={formData.dueDate} onChange={e => setFormData({...formData, dueDate: e.target.value})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer" /></div>
-                                <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tarif Minimal (Rp)</label><input type="number" min="0" value={formData.minAmount} onChange={e => {setFormData({...formData, minAmount: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
+                                <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Batas Akhir Waktu</label><input type="date" value={formData.dueDate} onChange={e => setFormData({...formData, dueDate: e.target.value})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text cursor-pointer" /></div>
+                                <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tarif Minimal (Rp)</label><input type="number" min="0" value={formData.minAmount} onChange={e => {setFormData({...formData, minAmount: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                             </div>
                         </div>
                         {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
@@ -5350,9 +5350,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                 return (
                     <div className="space-y-8 max-w-7xl mx-auto">
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm">
-                            <div className="flex flex-wrap items-center gap-5"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border border-slate-300 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><div><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda.title}</h2><p className="text-[13px] font-medium text-google-textVariant mt-1">Kelola Penyetoran Warga</p></div></div>
-                            {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm">
+                            <div className="flex flex-wrap items-center gap-5"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border border-slate-200 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><div><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda.title}</h2><p className="text-[13px] font-medium text-google-textVariant mt-1">Kelola Penyetoran Warga</p></div></div>
+                            {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
                         </div>
 
                         <div className="hidden print-only">
@@ -5378,9 +5378,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             </div>
                         </div>
 
-                        <div className="bg-white p-5 sm:p-8 rounded-[32px] border border-slate-300 shadow-sm no-print">
+                        <div className="bg-white p-5 sm:p-8 rounded-[32px] border border-slate-200 shadow-sm no-print">
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-                                <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border border-slate-300 text-center shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Target / Warga</p><p className="text-[20px] font-medium text-google-text tracking-tight">{formatRp(selectedAgenda.minAmount)}</p></div>
+                                <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border border-slate-200 text-center shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Target / Warga</p><p className="text-[20px] font-medium text-google-text tracking-tight">{formatRp(selectedAgenda.minAmount)}</p></div>
                                 <div className="bg-google-greenLight p-6 sm:p-8 md:p-6 rounded-[24px] border border-google-green/30 text-center shadow-sm"><p className="text-[10px] font-medium text-google-greenDark uppercase tracking-widest mb-2">Dana Terkumpul</p><p className="text-[20px] font-medium text-google-greenDark tracking-tight">{formatRp(totalTerkumpul)}</p></div>
                                 <div className="bg-google-blueLight p-6 sm:p-8 md:p-6 rounded-[24px] border border-google-blue/30 text-center flex flex-col items-center relative shadow-sm hover:shadow-md transition-shadow group"><p className="text-[10px] font-medium text-google-blueDark uppercase tracking-widest mb-2">Sisa (Belum Disetor)</p><p className="text-[20px] font-medium text-google-blueDark group-hover:scale-105 transition-transform tracking-tight">{formatRp(sisa)}</p>
                                     {userRole === 'admin' && sisa > 0 && <button onClick={() => { 
@@ -5392,7 +5392,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
                             </div>
                             
-                            <div className="bg-slate-50 border border-slate-300 p-6 sm:p-8 md:p-6 rounded-[24px] mb-10 shadow-sm">
+                            <div className="bg-slate-50 border border-slate-200 p-6 sm:p-8 md:p-6 rounded-[24px] mb-10 shadow-sm">
                                 <div className="flex justify-between items-end mb-4"><span className="text-[13px] font-medium text-google-textVariant">Progres Pelunasan Warga</span><span className="text-[17px] font-medium text-google-blueDark leading-none">{lunasCount} <span className="text-[13px] text-google-textVariant">/ {activeMembers.length}</span></span></div>
                                 <div className="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-google-blue h-full rounded-full transition-all duration-1000" style={{ width: `${activeMembers.length === 0 ? 0 : (lunasCount / activeMembers.length) * 100}%` }}></div></div>
                             </div>
@@ -5403,14 +5403,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     const isLunas = amountPaid >= selectedAgenda.minAmount;
                                     const isError = amountPaid > 0 && amountPaid < selectedAgenda.minAmount;
                                     return (
-                                        <div key={member.id} className={`p-6 rounded-[24px] border flex flex-col justify-between transition-all duration-300 group ${userRole === 'admin' ? (isError ? 'bg-google-redLight border-google-red hover:shadow-lg' : 'bg-white border-slate-300 hover:border-google-blue hover:shadow-xl hover:-translate-y-1') : (isLunas ? 'bg-google-greenLight border-google-green shadow-sm' : 'bg-slate-50 border-slate-300')}`}>
+                                        <div key={member.id} className={`p-6 rounded-[24px] border flex flex-col justify-between transition-all duration-300 group ${userRole === 'admin' ? (isError ? 'bg-google-redLight border-google-red hover:shadow-lg' : 'bg-white border-slate-200 hover:border-google-blue hover:shadow-xl hover:-translate-y-1') : (isLunas ? 'bg-google-greenLight border-google-green shadow-sm' : 'bg-slate-50 border-slate-200')}`}>
                                             <div className="flex justify-between items-start mb-6">
                                                 <h3 className="font-medium text-[14px] text-google-text truncate pr-3 group-hover:text-google-blue transition-colors leading-tight">{member.name}</h3>
                                                 {isLunas ? <span className="text-[9px] bg-google-green text-white px-3 py-1.5 rounded-[6px] font-medium uppercase tracking-widest shadow-sm flex flex-wrap items-center gap-1 shrink-0 border border-google-greenDark"><Icon name="check" className="text-[11px]"/> LUNAS</span> : <span className="text-[9px] bg-slate-200 text-google-textVariant px-3 py-1.5 rounded-[6px] font-medium uppercase tracking-widest shrink-0 border border-slate-400">BELUM</span>}
                                             </div>
                                             {userRole === 'admin' ? (
                                                 <div>
-                                                    <div className={`flex items-center bg-slate-50 rounded-[16px] px-4 py-3 border transition-colors duration-300 ${isError ? 'border-google-red' : 'border-slate-300 focus-within:border-google-blue focus-within:bg-white focus-within:shadow-md'}`}>
+                                                    <div className={`flex items-center bg-slate-50 rounded-[16px] px-4 py-3 border transition-colors duration-300 ${isError ? 'border-google-red' : 'border-slate-200 focus-within:border-google-blue focus-within:bg-white focus-within:shadow-md'}`}>
                                                         <span className="text-[13px] font-medium text-google-textVariant mr-2">Rp</span>
                                                         <input type="number" min="0" value={tempPayments[member.id] || ''} onChange={(e) => { setTempPayments(prev => ({...prev, [member.id]: safeNumber(e.target.value)})); setErrorMsg(''); }} className="w-full bg-transparent border-none text-[14px] font-medium outline-none p-0 text-google-text placeholder:text-slate-300" placeholder="0" />
                                                     </div>
@@ -5440,14 +5440,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Setor ke Kas Warga</h3>
                                     <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Mutasi dana fisik dari Iuran ke Saldo Buku Kas Utama.</p>
                                     
-                                    <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] mb-8 border border-slate-300 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Batas Maksimal Tarik</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(sisa)}</p></div>
+                                    <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] mb-8 border border-slate-200 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Batas Maksimal Tarik</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(sisa)}</p></div>
                                     
-                                    <div className="text-left mb-8"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
+                                    <div className="text-left mb-8"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                     
                                     {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                     
                                     <div className="flex flex-wrap gap-3">
-                                        <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                        <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                         <button onClick={executeTransferToKas} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Setor Dana</button>
                                     </div>
                                 </div>
@@ -5459,7 +5459,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             return (
                 <div className="space-y-8">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Agenda Iuran Umum</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Penggalangan dana non-arisan (berlaku untuk semua warga).</p></div>
                         {userRole === 'admin' && <button onClick={() => { setFormData({ title: '', minAmount: 0, dueDate: getLocalDate(), payments: {}, transferredToKas: 0 }); setSelectedAgenda(null); setView('form'); setErrorMsg(''); }} className="shrink-0 bg-google-blue text-white px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto justify-center"><Icon name="add_task" className="text-[17px]" /><span>Buat Agenda Baru</span></button>}
                     </div>
@@ -5472,14 +5472,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             const progressPercent = activeMembers.length === 0 ? 0 : (lunasCount / activeMembers.length) * 100;
 
                             return (
-                                <div key={agenda.id} className="bg-white rounded-[32px] p-6 sm:p-8 border border-slate-300 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 group">
+                                <div key={agenda.id} className="bg-white rounded-[32px] p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 group">
                                     <div>
                                         <h3 className="text-[20px] font-medium text-google-text leading-snug mb-6 group-hover:text-google-blue transition-colors tracking-tight">{agenda.title}</h3>
                                         <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[20px] border border-slate-300 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-blueLight flex items-center justify-center text-google-blue border border-google-blue/30"><Icon name="event" className="text-[20px]" fill="true"/></div><div><p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-1">Batas Akhir</p><p className="text-[13px] font-medium text-google-text">{parseLocalDate(agenda.dueDate).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p></div></div>
-                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[20px] border border-slate-300 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-greenLight flex items-center justify-center text-google-green border border-google-green/30"><Icon name="payments" className="text-[20px]" fill="true"/></div><div><p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-1">Target Minimal</p><p className="text-[13px] font-medium text-google-text">{formatRp(agenda.minAmount)}</p></div></div>
+                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[20px] border border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-blueLight flex items-center justify-center text-google-blue border border-google-blue/30"><Icon name="event" className="text-[20px]" fill="true"/></div><div><p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-1">Batas Akhir</p><p className="text-[13px] font-medium text-google-text">{parseLocalDate(agenda.dueDate).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p></div></div>
+                                            <div className="flex flex-wrap items-center gap-4 bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[20px] border border-slate-200 shadow-sm"><div className="w-12 h-12 rounded-full bg-google-greenLight flex items-center justify-center text-google-green border border-google-green/30"><Icon name="payments" className="text-[20px]" fill="true"/></div><div><p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest mb-1">Target Minimal</p><p className="text-[13px] font-medium text-google-text">{formatRp(agenda.minAmount)}</p></div></div>
                                         </div>
-                                        <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border border-slate-300 mb-8 shadow-sm">
+                                        <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border border-slate-200 mb-8 shadow-sm">
                                             <div className="flex justify-between items-end mb-4"><span className="text-[12px] font-medium text-google-textVariant">Progres Warga Lunas</span><span className="text-[16px] font-medium text-google-blueDark leading-none">{lunasCount} <span className="text-[12px] text-google-textVariant">/ {activeMembers.length}</span></span></div>
                                             <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden inset-shadow-sm"><div className="bg-google-blue h-full rounded-full transition-all duration-1000" style={{ width: `${progressPercent}%` }}></div></div>
                                         </div>
@@ -5489,18 +5489,18 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         {userRole === 'admin' ? (
                                             <div className="flex flex-wrap items-center gap-3 shrink-0 self-end sm:self-auto">
                                                 <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-6 py-3.5 bg-google-blueLight text-google-blueDark border border-google-blue/30 rounded-full text-[13px] font-medium hover:bg-google-blue hover:text-white transition-all duration-300 hover:shadow-md active:scale-95 flex flex-wrap items-center gap-1.5"><Icon name="edit_document" className="text-[16px]"/> Kelola</button>
-                                                <button onClick={() => { setFormData({ title: agenda.title, minAmount: agenda.minAmount, dueDate: agenda.dueDate, payments: agenda.payments || {}, transferredToKas: agenda.transferredToKas || 0 }); setSelectedAgenda(agenda); setView('form'); setErrorMsg(''); }} className="w-12 h-12 flex items-center justify-center bg-white text-google-text hover:bg-slate-50 hover:border-slate-400 rounded-full border border-slate-300 active:scale-95 transition-all duration-300 shadow-sm"><Icon name="settings" className="text-[17px]" /></button>
-                                                <button onClick={() => setDeleteConfirmAgendaId(agenda.id)} className="w-12 h-12 flex items-center justify-center bg-white text-google-red hover:bg-google-redLight hover:border-google-red/40 rounded-full border border-slate-300 active:scale-95 transition-all duration-300 shadow-sm"><Icon name="delete" className="text-[17px]" /></button>
+                                                <button onClick={() => { setFormData({ title: agenda.title, minAmount: agenda.minAmount, dueDate: agenda.dueDate, payments: agenda.payments || {}, transferredToKas: agenda.transferredToKas || 0 }); setSelectedAgenda(agenda); setView('form'); setErrorMsg(''); }} className="w-12 h-12 flex items-center justify-center bg-white text-google-text hover:bg-slate-50 hover:border-slate-400 rounded-full border border-slate-200 active:scale-95 transition-all duration-300 shadow-sm"><Icon name="settings" className="text-[17px]" /></button>
+                                                <button onClick={() => setDeleteConfirmAgendaId(agenda.id)} className="w-12 h-12 flex items-center justify-center bg-white text-google-red hover:bg-google-redLight hover:border-google-red/40 rounded-full border border-slate-200 active:scale-95 transition-all duration-300 shadow-sm"><Icon name="delete" className="text-[17px]" /></button>
                                             </div>
                                         ) : (
-                                            <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-8 py-3.5 bg-white border border-slate-300 text-google-text rounded-full text-[13px] font-medium hover:bg-slate-50 hover:border-slate-400 shadow-sm shrink-0 active:scale-95 transition-all duration-300 self-end sm:self-auto flex flex-wrap items-center gap-2"><Icon name="visibility" className="text-[16px]"/> Cek Status Saya</button>
+                                            <button onClick={() => { setSelectedAgenda(agenda); setTempPayments(agenda.payments || {}); setView('manage'); }} className="px-8 py-3.5 bg-white border border-slate-200 text-google-text rounded-full text-[13px] font-medium hover:bg-slate-50 hover:border-slate-400 shadow-sm shrink-0 active:scale-95 transition-all duration-300 self-end sm:self-auto flex flex-wrap items-center gap-2"><Icon name="visibility" className="text-[16px]"/> Cek Status Saya</button>
                                         )}
                                     </div>
                                 </div>
                             );
                         })}
                     </div>
-                    {iuranData.length === 0 && <div className="bg-white rounded-[32px] border border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-300"><Icon name="volunteer_activism" className="text-[48px] text-google-red" fill="true" /></div><h3 className="text-google-text font-medium text-[18px] mb-2 tracking-tight">Belum Ada Agenda Iuran</h3><p className="text-google-textVariant font-medium text-[13px]">Daftar donasi atau tagihan umum akan tampil di sini.</p></div>}
+                    {iuranData.length === 0 && <div className="bg-white rounded-[32px] border border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-200"><Icon name="volunteer_activism" className="text-[48px] text-google-red" fill="true" /></div><h3 className="text-google-text font-medium text-[18px] mb-2 tracking-tight">Belum Ada Agenda Iuran</h3><p className="text-google-textVariant font-medium text-[13px]">Daftar donasi atau tagihan umum akan tampil di sini.</p></div>}
 
                     {/* FIX: Modal konfirmasi hapus agenda */}
                     {deleteConfirmAgendaId && (
@@ -5510,7 +5510,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Agenda?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Agenda iuran beserta seluruh data pembayaran warga akan dihapus permanen.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmAgendaId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-300 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                    <button onClick={() => setDeleteConfirmAgendaId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                     <button onClick={() => { setIuranData(iuranData.filter(i => i.id !== deleteConfirmAgendaId)); setDeleteConfirmAgendaId(null); showToast('Agenda iuran berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
                                 </div>
                             </div>
@@ -5615,14 +5615,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             return (
                 <div className="space-y-8 print:p-0">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm no-print">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm no-print">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Buku Kas Utama</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Catatan riwayat transaksi operasional RT.</p></div>
                         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
-                            <select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="bg-slate-50 border border-slate-300 text-google-text text-[13px] font-medium rounded-[12px] px-4 py-3.5 outline-none focus:border-google-blue w-full sm:w-auto cursor-pointer">
+                            <select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="bg-slate-50 border border-slate-200 text-google-text text-[13px] font-medium rounded-[12px] px-4 py-3.5 outline-none focus:border-google-blue w-full sm:w-auto cursor-pointer">
                                 <option value="Semua">Semua Bulan</option>
                                 {availableMonths.map((m, i) => <option key={i} value={m}>{m}</option>)}
                             </select>
-                            <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] border border-slate-300 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[16px]" /> <span>Cetak Laporan</span></button>
+                            <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] border border-slate-200 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[16px]" /> <span>Cetak Laporan</span></button>
                         </div>
                     </div>
 
@@ -5663,15 +5663,15 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {userRole === 'admin' && (
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 no-print">
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-300 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-200 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-greenLight text-google-greenDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/30"><Icon name="add" className="text-[24px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pemasukan</span>
                             </button>
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-300 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-200 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-redLight text-google-redDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/30"><Icon name="remove" className="text-[24px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pengeluaran</span>
                             </button>
-                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border border-slate-300 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
+                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border border-slate-200 p-6 sm:p-8 md:p-6 rounded-full flex flex-row sm:flex-col items-center sm:justify-center gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center">
                                 <div className="bg-google-yellowLight text-google-yellowDark w-14 h-14 rounded-full flex items-center justify-center group-hover:bg-google-yellow group-hover:text-white transition-colors duration-300 shadow-sm border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[24px] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text leading-tight">Cairkan Kas Jimpitan</span>
                             </button>
@@ -5687,13 +5687,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <div className="h-px bg-slate-300 flex-1"></div>
                                 </div>
                                 {groupedTransactions[monthYear].map((t) => (
-                                    <div key={t.id} className="bg-white p-6 sm:p-8 rounded-[20px] border border-slate-300 flex flex-col sm:flex-row sm:items-center justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300 gap-4 group">
+                                    <div key={t.id} className="bg-white p-6 sm:p-8 rounded-[20px] border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300 gap-4 group">
                                         <div className="flex items-center gap-5 flex-1 overflow-hidden">
                                             <div className={`w-14 h-14 rounded-[20px] flex items-center justify-center shrink-0 border transition-colors duration-300 ${t.type === 'Pemasukan' ? 'bg-google-greenLight text-google-greenDark border-google-green/30 group-hover:bg-google-green group-hover:text-white' : 'bg-google-redLight text-google-redDark border-google-red/30 group-hover:bg-google-red group-hover:text-white'}`}><Icon name={t.type === 'Pemasukan' ? "arrow_downward" : "arrow_upward"} className="text-[24px]" fill="true" /></div>
                                             <div className="flex-1 min-w-0">
                                                 <p className="font-medium text-[14px] text-google-text truncate mb-1.5">{t.description}</p>
                                                 <div className="flex flex-wrap items-center gap-2">
-                                                    <p className="text-[11px] font-medium text-google-textVariant bg-slate-50 border border-slate-300 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5"><Icon name="label" className="text-[13px]" /> {t.category} &bull; {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
+                                                    <p className="text-[11px] font-medium text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-[6px] inline-flex items-center gap-1.5"><Icon name="label" className="text-[13px]" /> {t.category} &bull; {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
                                                     {t.receiptUrl && <button onClick={() => setSelectedImage(t.receiptUrl)} className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</button>}
                                                 </div>
                                             </div>
@@ -5707,13 +5707,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                         setFormData(t);
                                                         setIsModalOpen(true);
                                                         setErrorMsg('');
-                                                    }} className="text-google-blue bg-white hover:bg-google-blueLight border border-slate-300 hover:border-google-blue/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[14px]" /><span className="hidden sm:inline">Edit</span></button>
+                                                    }} className="text-google-blue bg-white hover:bg-google-blueLight border border-slate-200 hover:border-google-blue/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[14px]" /><span className="hidden sm:inline">Edit</span></button>
                                                     <button onClick={() => { 
                                                         if (t.type === 'Pemasukan') setBalance(prev => prev - t.amount); 
                                                         else setBalance(prev => prev + t.amount);
                                                         if (t.category === 'Mutasi Jimpitan') setJimpitanBalance(prev => prev + t.amount);
                                                         setTransactions(transactions.filter(x => x.id !== t.id)); 
-                                                    }} className="text-google-red bg-white hover:bg-google-redLight border border-slate-300 hover:border-google-red/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[14px]" /><span className="hidden sm:inline">Hapus</span></button>
+                                                    }} className="text-google-red bg-white hover:bg-google-redLight border border-slate-200 hover:border-google-red/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[14px]" /><span className="hidden sm:inline">Hapus</span></button>
                                                 </div>
                                             )}
                                         </div>
@@ -5721,7 +5721,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 ))}
                             </div>
                         ))}
-                        {transactions.length === 0 && <div className="bg-white rounded-[24px] border border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-300"><Icon name="receipt_long" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Transaksi</h3><p className="text-google-textVariant font-medium text-[13px]">Buku kas masih dalam keadaan kosong.</p></div>}
+                        {transactions.length === 0 && <div className="bg-white rounded-[24px] border border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-200"><Icon name="receipt_long" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Transaksi</h3><p className="text-google-textVariant font-medium text-[13px]">Buku kas masih dalam keadaan kosong.</p></div>}
                     </div>
 
                     {isModalOpen && (
@@ -5730,20 +5730,20 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div className={`mb-6 w-20 h-20 rounded-full flex items-center justify-center border ${formData.type === 'Pemasukan' ? 'bg-google-greenLight text-google-green border-google-green/30' : 'bg-google-redLight text-google-red border-google-red/30'}`}><Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[36px]" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit' : 'Catat'} {formData.type}</h3>
                                 <div className="space-y-7">
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal Transaksi</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className={`w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} /></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal Transaksi</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className={`w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} /></div>
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className={`w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md cursor-pointer ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`}>
+                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className={`w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md cursor-pointer ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`}>
                                             {formData.type === 'Pengeluaran' ? <><option>Belanja Barang/Alat</option><option>Honor Jasa</option><option>Konsumsi</option><option>Bantuan Sosial</option><option>Lain-lain</option></> : <><option>Iuran Opsional</option><option>Donasi</option><option>Pemasukan Jasa</option><option>Lain-lain</option></>}
                                         </select>
                                     </div>
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Keterangan / Uraian</label><input type="text" value={formData.description} onChange={e => {setFormData({...formData, description: e.target.value}); setErrorMsg('');}} className={`w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md placeholder:text-slate-400 ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} placeholder="Misal: Beli Sapu Lidi" /></div>
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal (Rp)</label><input type="number" min="0" value={formData.amount} onChange={e => {setFormData({...formData, amount: safeNumber(e.target.value)}); setErrorMsg('');}} className={`w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md placeholder:text-slate-400 ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} placeholder="0" /></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Keterangan / Uraian</label><input type="text" value={formData.description} onChange={e => {setFormData({...formData, description: e.target.value}); setErrorMsg('');}} className={`w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md placeholder:text-slate-400 ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} placeholder="Misal: Beli Sapu Lidi" /></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal (Rp)</label><input type="number" min="0" value={formData.amount} onChange={e => {setFormData({...formData, amount: safeNumber(e.target.value)}); setErrorMsg('');}} className={`w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md placeholder:text-slate-400 ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} placeholder="0" /></div>
                                     
                                     {formData.type === 'Pengeluaran' && (
                                         <div>
                                             <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Upload Bukti / Nota (Opsional)</label>
-                                            <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-red shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-red transition-all`}>
+                                            <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-red shadow-md' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-red transition-all`}>
                                                 <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                                 <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
                                                     {isUploading ? <div className="w-5 h-5 border border-google-red border-t-transparent rounded-full animate-spin"></div> : <Icon name="receipt" className="text-[20px]" />}
@@ -5753,7 +5753,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                     <p className="text-[10px] text-google-textVariant truncate">{formData.receiptUrl ? "Klik untuk mengganti nota" : "Maksimal 2MB"}</p>
                                                 </div>
                                                 {formData.receiptUrl && !isUploading && (
-                                                    <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300 group">
+                                                    <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200 group">
                                                         <img src={formData.receiptUrl} alt="Nota Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                     </div>
                                                 )}
@@ -5763,7 +5763,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-slate-200">
-                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-200 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className={`flex-1 text-white px-6 py-3.5 rounded-full font-medium text-[13px] border shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-google-green border-google-greenDark hover:bg-google-greenDark' : 'bg-google-red border-google-redDark hover:bg-google-redDark'}`}>Simpan Data</button>
                                 </div>
                             </div>
@@ -5777,14 +5777,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Pencairan Jimpitan</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tarik dana dari kas Jimpitan Fisik ke Kas Utama RT.</p>
                                 
-                                <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] mb-8 border border-slate-300 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Saldo Jimpitan Saat Ini</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(jimpitanBalance)}</p></div>
+                                <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] mb-8 border border-slate-200 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Saldo Jimpitan Saat Ini</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(jimpitanBalance)}</p></div>
                                 
-                                <div className="text-left mb-8"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
+                                <div className="text-left mb-8"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
                                 
                                 {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-[16px] mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 
                                 <div className="flex flex-wrap gap-3 pt-2">
-                                    <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
+                                    <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-200 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
                                     <button onClick={handleTransferJimpitan} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
                                 </div>
                             </div>
@@ -6011,8 +6011,8 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             };
 
             return (
-                <div className="bg-white rounded-[32px] overflow-hidden max-w-7xl mx-auto border border-slate-300 shadow-xl">
-                    <div className="bg-slate-50 px-8 py-6 flex items-center justify-between no-print border-b border-slate-300 relative">
+                <div className="bg-white rounded-[32px] overflow-hidden max-w-7xl mx-auto border border-slate-200 shadow-xl">
+                    <div className="bg-slate-50 px-8 py-6 flex items-center justify-between no-print border-b border-slate-200 relative">
                         {[1, 2, 3].map(num => (<div key={num} className="flex flex-col items-center relative z-10"><div className={`w-12 h-12 rounded-full flex items-center justify-center font-medium text-[16px] border transition-all duration-500 ${step >= num ? 'bg-google-blue text-white border-google-blueDark shadow-md scale-110' : 'bg-white text-slate-400 border-slate-400'}`}>{num}</div></div>))}
                         <div className="absolute left-16 right-16 h-2 bg-slate-200 top-[45px] z-0 rounded-full overflow-hidden"><div className="h-full bg-google-blue transition-all duration-700 ease-in-out" style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%' }}></div></div>
                     </div>
@@ -6022,7 +6022,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-5 mb-8 no-print border-b border-slate-200 pb-8">
                                     <div className="flex flex-col w-full lg:w-auto">
                                         <h3 className="text-3xl font-medium text-google-text tracking-tight">Sesi Presensi Arisan</h3>
-                                        <div className="flex flex-wrap items-center gap-3 mt-4 bg-slate-50 px-5 py-3.5 rounded-[16px] border border-slate-300 w-full sm:w-fit focus-within:border-google-blue focus-within:bg-white focus-within:shadow-md transition-all">
+                                        <div className="flex flex-wrap items-center gap-3 mt-4 bg-slate-50 px-5 py-3.5 rounded-[16px] border border-slate-200 w-full sm:w-fit focus-within:border-google-blue focus-within:bg-white focus-within:shadow-md transition-all">
                                             <Icon name="edit_calendar" className="text-[17px] text-google-blue shrink-0" />
                                             <label className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest shrink-0 mr-1">Tgl Pelaksanaan:</label>
                                             <input type="date" value={meetingDate} onChange={e => setMeetingDate(e.target.value)} className="bg-transparent border-none text-[13px] font-medium outline-none text-google-blueDark cursor-pointer w-full" />
@@ -6031,7 +6031,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <div className="flex flex-wrap gap-3 w-full lg:w-auto mt-2 lg:mt-0">
                                         <button onClick={() => setIsScannerOpen(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-google-blue text-white px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300"><Icon name="qr_code_scanner" className="text-[17px]" /><span>Kasir Scan</span></button>
                                         <button onClick={() => setShowHolidayModal(true)} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-yellowDark px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border border-google-yellow hover:bg-google-yellowLight hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="event_busy" className="text-[17px]" /><span>Bulan Libur</span></button>
-                                        <button onClick={() => window.print()} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border border-slate-300 hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[17px]" /><span>Cetak Blanko Absen</span></button>
+                                        <button onClick={() => window.print()} className="flex flex-wrap sm:flex-nowrap shrink-0 bg-white text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] border border-slate-200 hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300"><Icon name="print" className="text-[17px]" /><span>Cetak Blanko Absen</span></button>
                                     </div>
                                 </div>
                                 <div className="hidden print-only">
@@ -6051,10 +6051,10 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         const isMeninggal = isNonaktif(member); // Meninggal ATAU Nonaktif/Pindah
                                         const attStatus = isMeninggal ? 'Meninggal' : (attendance[member.id]?.status || 'Hadir');
                                         return (
-                                        <div key={member.id} className={`border rounded-[24px] p-6 flex flex-col gap-4 transition-all duration-300 ${isMeninggal ? 'bg-slate-100 border-slate-400 opacity-75' : attStatus === 'Hadir' ? 'bg-white border-slate-300 hover:border-google-blue/50 hover:shadow-xl hover:-translate-y-1 shadow-sm' : attStatus === 'Musibah' ? 'bg-google-yellowLight/50 border-google-yellow shadow-md' : 'bg-google-redLight/50 border-google-red shadow-md'}`}>
+                                        <div key={member.id} className={`border rounded-[24px] p-6 flex flex-col gap-4 transition-all duration-300 ${isMeninggal ? 'bg-slate-100 border-slate-400 opacity-75' : attStatus === 'Hadir' ? 'bg-white border-slate-200 hover:border-google-blue/50 hover:shadow-xl hover:-translate-y-1 shadow-sm' : attStatus === 'Musibah' ? 'bg-google-yellowLight/50 border-google-yellow shadow-md' : 'bg-google-redLight/50 border-google-red shadow-md'}`}>
                                             <div className="flex flex-wrap items-center justify-between gap-3">
                                                 <div className="flex flex-wrap items-center gap-4 min-w-0">
-                                                    <div className={`w-14 h-14 rounded-[20px] flex items-center justify-center font-medium text-[17px] shrink-0 border transition-colors ${isMeninggal ? 'bg-slate-200 text-slate-400 border-slate-400' : attStatus === 'Hadir' ? 'bg-slate-50 text-google-text border-slate-300' : attStatus === 'Musibah' ? 'bg-google-yellow text-white border-google-yellowDark' : 'bg-google-red text-white border-google-redDark'}`}>{member.name.charAt(0).toUpperCase()}</div>
+                                                    <div className={`w-14 h-14 rounded-[20px] flex items-center justify-center font-medium text-[17px] shrink-0 border transition-colors ${isMeninggal ? 'bg-slate-200 text-slate-400 border-slate-400' : attStatus === 'Hadir' ? 'bg-slate-50 text-google-text border-slate-200' : attStatus === 'Musibah' ? 'bg-google-yellow text-white border-google-yellowDark' : 'bg-google-red text-white border-google-redDark'}`}>{member.name.charAt(0).toUpperCase()}</div>
                                                     <div className="min-w-0">
                                                         <h3 className={`font-medium text-[14px] truncate tracking-tight ${isMeninggal ? 'text-slate-400 line-through' : 'text-google-text'}`}>{member.name}</h3>
                                                         {isMeninggal
@@ -6085,7 +6085,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                     </div>
                                                 </div>
                                             ) : (
-                                                <div className="flex flex-wrap rounded-[16px] bg-slate-100 p-2 gap-2 border border-slate-300 inset-shadow-sm">
+                                                <div className="flex flex-wrap rounded-[16px] bg-slate-100 p-2 gap-2 border border-slate-200 inset-shadow-sm">
                                                     {['Hadir', 'Musibah', 'Alfa'].map(stat => (
                                                         <button key={stat} onClick={() => handleAttendanceChange(member.id, stat)} className={`flex-1 py-3 text-[11px] font-medium uppercase tracking-widest rounded-full transition-all duration-300 border ${attendance[member.id].status === stat ? (stat === 'Hadir' ? 'bg-google-green text-white border-google-greenDark shadow-md scale-105' : stat === 'Musibah' ? 'bg-google-yellow text-white border-google-yellowDark shadow-md scale-105' : 'bg-google-red text-white border-google-redDark shadow-md scale-105') : 'bg-transparent text-google-textVariant border-transparent hover:bg-slate-200/50'}`}>{stat}</button>
                                                     ))}
@@ -6101,7 +6101,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         );
                                     })}
 
-                                    {arisanMembers.length === 0 && <div className="col-span-full bg-slate-50 border border-slate-300 p-12 text-center rounded-[32px] shadow-sm"><Icon name="group_off" className="text-[48px] text-slate-400 mb-4 mx-auto" fill="true" /><p className="font-medium text-[16px] text-google-text">Belum ada warga arisan terdaftar.</p></div>}
+                                    {arisanMembers.length === 0 && <div className="col-span-full bg-slate-50 border border-slate-200 p-12 text-center rounded-[32px] shadow-sm"><Icon name="group_off" className="text-[48px] text-slate-400 mb-4 mx-auto" fill="true" /><p className="font-medium text-[16px] text-google-text">Belum ada warga arisan terdaftar.</p></div>}
                                 </div>
                                 <div className="pt-8 flex justify-end no-print border-t border-slate-200 mt-10"><button onClick={() => setStep(2)} className="bg-google-blue text-white px-10 py-4 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center gap-2">Lanjut Ke Rekapitulasi <Icon name="arrow_forward" className="text-[17px]"/></button></div>
                                 
@@ -6111,9 +6111,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border border-google-yellow/30"><Icon name="event_busy" className="text-[48px] text-google-yellowDark" /></div>
                                             <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Liburkan Bulan Ini?</h3>
                                             <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Periode <b className="text-google-text">{formatBulanTahun(arisanPeriod)}</b> akan ditandai sebagai bulan libur.</p>
-                                            <div className="text-[12px] font-medium text-google-textVariant mb-8 space-y-5 bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border border-slate-300 text-left"><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Tidak ada penarikan kas/jimpitan sama sekali.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Putaran ke-{currentRound} tidak akan dihitung.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Periode akan melompat ke bulan berikutnya.</span></p></div>
+                                            <div className="text-[12px] font-medium text-google-textVariant mb-8 space-y-5 bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[24px] border border-slate-200 text-left"><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Tidak ada penarikan kas/jimpitan sama sekali.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Putaran ke-{currentRound} tidak akan dihitung.</span></p><p className="flex flex-wrap gap-2.5"><Icon name="info" className="text-[16px] text-google-blue shrink-0"/><span>Periode akan melompat ke bulan berikutnya.</span></p></div>
                                             <div className="flex flex-wrap gap-3">
-                                                <button onClick={() => setShowHolidayModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
+                                                <button onClick={() => setShowHolidayModal(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-200 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
                                                 <button onClick={handleSetHoliday} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300">Setuju, Libur</button>
                                             </div>
                                         </div>
@@ -6154,7 +6154,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             </div>
                                             
                                             <div className="overflow-y-auto hide-scrollbar flex-1 mb-4">
-                                                <div className="bg-slate-50 p-4 rounded-[12px] border border-slate-300">
+                                                <div className="bg-slate-50 p-4 rounded-[12px] border border-slate-200">
                                                     {(() => {
                                                         let totalTagihanBulanIni = 0;
                                                         let totalTunggakan = 0;
@@ -6167,7 +6167,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                             <>
                                                                 <div className="flex justify-between text-[13px] mb-1"><span className="text-google-textVariant font-medium">Total Tagihan Bulan Ini</span><span className="font-medium text-google-text">{formatRp(totalTagihanBulanIni)}</span></div>
                                                                 {totalTunggakan > 0 && <div className="flex justify-between text-[13px] mb-1"><span className="text-google-red font-medium">Total Tunggakan</span><span className="font-medium text-google-red">{formatRp(totalTunggakan)}</span></div>}
-                                                                <div className="border-t border-slate-300 my-2"></div>
+                                                                <div className="border-t border-slate-200 my-2"></div>
                                                                 <div className="flex justify-between text-[14px]"><span className="font-medium text-google-text">Total Harus Dibayar</span><span className="font-medium text-google-blue">{formatRp(totalGabungan)}</span></div>
                                                             </>
                                                         )
@@ -6178,14 +6178,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                     <label className="text-[10px] uppercase tracking-widest font-medium text-google-textVariant block mb-2">Status Kehadiran (Semua Warga)</label>
                                                     <div className="flex gap-2">
                                                         {['Hadir', 'Musibah', 'Alfa'].map(stat => (
-                                                            <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[11px] font-medium uppercase tracking-widest rounded-full border transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-300 hover:bg-slate-50'}`}>{stat}</button>
+                                                            <button key={stat} onClick={() => setCashierStatus(stat)} className={`flex-1 py-2.5 text-[11px] font-medium uppercase tracking-widest rounded-full border transition-all ${cashierStatus === stat ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-transparent text-google-textVariant border-slate-200 hover:bg-slate-50'}`}>{stat}</button>
                                                         ))}
                                                     </div>
                                                 </div>
 
                                                 <div className="mb-4">
                                                     <label className="text-[10px] uppercase tracking-widest font-medium text-google-textVariant block mb-2">Uang Diterima (Rp)</label>
-                                                    <input type="number" min="0" value={cashReceived} onChange={e => setCashReceived(e.target.value)} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-[12px] text-google-text placeholder:text-slate-300 transition-all" placeholder="0" />
+                                                    <input type="number" min="0" value={cashReceived} onChange={e => setCashReceived(e.target.value)} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-[12px] text-google-text placeholder:text-slate-300 transition-all" placeholder="0" />
                                                 </div>
 
                                                 {(() => {
@@ -6205,7 +6205,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             </div>
 
                                             <div className="flex gap-3 mt-auto shrink-0 pt-2 border-t border-slate-200">
-                                                <button onClick={() => { setShowCashierModal(false); setScannedMembers([]); setTimeout(() => setIsScannerOpen(true), 300); }} className="flex-1 bg-white border border-slate-300 text-google-text font-medium py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-400 transition-all text-[13px]">Batal</button>
+                                                <button onClick={() => { setShowCashierModal(false); setScannedMembers([]); setTimeout(() => setIsScannerOpen(true), 300); }} className="flex-1 bg-white border border-slate-200 text-google-text font-medium py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-400 transition-all text-[13px]">Batal</button>
                                                 <button onClick={handleCashierSave} className="flex-1 bg-google-blue border border-google-blueDark text-white font-medium py-3.5 rounded-full hover:bg-google-blueDark hover:shadow-md transition-all text-[13px] flex justify-center items-center gap-2"><Icon name="save" className="text-[16px]" />Simpan</button>
                                             </div>
                                         </div>
@@ -6225,17 +6225,17 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             <p className="text-4xl lg:text-5xl font-medium text-google-greenDark drop-shadow-sm tracking-tight">{formatRp(calculations.kasArisanTerkumpul)}</p>
                                         </div>
                                     </div>
-                                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 space-y-7 shadow-sm">
+                                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 space-y-7 shadow-sm">
                                         <div className="flex justify-between text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="add_circle" className="text-[17px] text-google-green"/> Tunai Masuk</span><span className="text-google-greenDark font-medium">+{formatRp(calculations.kasJimpitanTerkumpul)}</span></div>
                                         <div className="flex justify-between text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="add_circle" className="text-[17px] text-google-green"/> Bayar Tunggakan</span><span className="text-google-greenDark font-medium">+{formatRp(calculations.pelunasanTunggakan)}</span></div>
                                         <div className="flex justify-between text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="remove_circle" className="text-[17px] text-google-red"/> Talangan (Keluar)</span><span className="text-google-redDark font-medium">-{formatRp(calculations.talanganJimpitan)}</span></div>
                                         <div className="flex justify-between text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2.5"><Icon name="info" className="text-[17px] text-google-yellowDark"/> Tunggakan Baru</span><span className="text-google-redDark font-medium">+{formatRp(calculations.tunggakanBaru)}</span></div>
                                         <div className="w-full h-px bg-slate-200 my-5"></div>
-                                        <div className="flex justify-between items-center font-medium text-[16px] bg-slate-50 p-6 sm:p-8 md:p-8 rounded-[20px] border border-slate-300 shadow-sm"><span className="text-[13px] uppercase tracking-widest text-google-textVariant">Saldo Tunai Berjalan</span><span className="text-[18px] text-google-blueDark tracking-tight">{formatRp(projectedJimpitanCash)}</span></div>
+                                        <div className="flex justify-between items-center font-medium text-[16px] bg-slate-50 p-6 sm:p-8 md:p-8 rounded-[20px] border border-slate-200 shadow-sm"><span className="text-[13px] uppercase tracking-widest text-google-textVariant">Saldo Tunai Berjalan</span><span className="text-[18px] text-google-blueDark tracking-tight">{formatRp(projectedJimpitanCash)}</span></div>
                                     </div>
                                 </div>
                                 <div className="pt-8 flex flex-col sm:flex-row justify-between border-t border-slate-200 mt-10 gap-4">
-                                    <button onClick={() => setStep(1)} className="w-full sm:w-auto bg-white text-google-text border border-slate-300 px-8 py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
+                                    <button onClick={() => setStep(1)} className="w-full sm:w-auto bg-white text-google-text border border-slate-200 px-8 py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
                                     <button onClick={() => setStep(3)} className="w-full sm:w-auto bg-google-blue text-white border border-google-blueDark px-10 py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-blueDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Lanjut Undi Pemenang <Icon name="celebration" className="text-[17px]"/></button>
                                 </div>
                             </div>
@@ -6244,7 +6244,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             <div className="space-y-8 no-print">
                                 <h3 className="text-3xl font-medium text-google-text mb-2 text-center tracking-tight">Tentukan Pemenang</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 text-center">Pilih warga yang akan menerima dana arisan putaran ini.</p>
-                                <div className="bg-slate-50 border border-slate-300 rounded-[32px] p-8 sm:p-14 text-center shadow-lg relative overflow-hidden max-w-2xl mx-auto">
+                                <div className="bg-slate-50 border border-slate-200 rounded-[32px] p-8 sm:p-14 text-center shadow-lg relative overflow-hidden max-w-2xl mx-auto">
                                     
                                     
                                     
@@ -6256,9 +6256,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             <p className="font-medium text-[14px]">Semua warga sudah menang (Siklus Selesai).</p>
                                         </div>
                                     ) : (
-                                        <div className="text-left bg-white rounded-[24px] p-6 sm:p-8 md:p-6 border border-slate-300 focus-within:border-google-blue focus-within:shadow-lg transition-all max-w-sm mx-auto relative z-10 shadow-md">
+                                        <div className="text-left bg-white rounded-[24px] p-6 sm:p-8 md:p-6 border border-slate-200 focus-within:border-google-blue focus-within:shadow-lg transition-all max-w-sm mx-auto relative z-10 shadow-md">
                                             <label className="text-[10px] font-medium text-google-textVariant block mb-3 uppercase tracking-widest text-center">Pilih Warga Pemenang</label>
-                                            <select className="w-full bg-slate-50 rounded-[16px] border border-slate-300 text-[16px] font-medium outline-none px-5 py-3.5 text-google-blueDark cursor-pointer focus:bg-white transition-colors" value={selectedWinnerId} onChange={(e) => {setSelectedWinnerId(e.target.value); setErrorMsg('');}}>
+                                            <select className="w-full bg-slate-50 rounded-full border border-slate-200 text-[16px] font-medium outline-none px-5 py-3.5 text-google-blueDark cursor-pointer focus:bg-white transition-colors" value={selectedWinnerId} onChange={(e) => {setSelectedWinnerId(e.target.value); setErrorMsg('');}}>
                                                 <option value="" disabled>-- Klik untuk memilih --</option>
                                                 {eligibleWinners.map(m => ( <option key={m.id} value={m.id}>{m.name}</option> ))}
                                             </select>
@@ -6267,7 +6267,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-5 py-4 rounded-[16px] mt-6 flex flex-wrap items-center justify-center gap-2 max-w-sm mx-auto relative z-10"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 </div>
                                 <div className="pt-8 flex flex-col sm:flex-row justify-between border-t border-slate-200 mt-10 gap-4">
-                                    <button onClick={() => setStep(2)} className="w-full sm:w-auto bg-white text-google-text border border-slate-300 px-8 py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
+                                    <button onClick={() => setStep(2)} className="w-full sm:w-auto bg-white text-google-text border border-slate-200 px-8 py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2 shadow-sm"><Icon name="arrow_back" className="text-[17px]"/> Kembali</button>
                                     <button onClick={submitPertemuan} className="w-full sm:w-auto bg-google-green text-white border border-google-greenDark px-12 py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-greenDark hover:-translate-y-1 hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2"><Icon name="check_circle" className="text-[17px]"/> Selesai &amp; Simpan</button>
                                 </div>
                             </div>
@@ -6423,13 +6423,13 @@ growthAmount = history[0].saldoAkhirJimpitan || 0;
 
             return (
                 <div className="space-y-8">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 no-print shadow-sm">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 no-print shadow-sm">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Riwayat Pertemuan Arisan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Arsip resmi presensi dan sirkulasi dana bulanan.</p></div>
-                        <button onClick={() => window.print()} className="bg-white border border-slate-300 text-google-text px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[16px]" /><span>Cetak Arsip</span></button>
+                        <button onClick={() => window.print()} className="bg-white border border-slate-200 text-google-text px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[16px]" /><span>Cetak Arsip</span></button>
                     </div>
 
                     {history.length > 0 && (
-<div className="no-print mb-8 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm">
+<div className="no-print mb-8 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm">
 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 <div>
 <h3 className="text-xl font-medium text-google-text tracking-tight">Tren Saldo Jimpitan</h3>
@@ -6453,7 +6453,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 <canvas ref={canvasRef}></canvas>
 </div>
 
-<div className="max-w-xs bg-slate-50 rounded-[20px] px-6 py-4 border border-slate-300 shadow-sm focus-within:border-google-blue focus-within:shadow-md transition-all">
+<div className="max-w-xs bg-slate-50 rounded-[20px] px-6 py-4 border border-slate-200 shadow-sm focus-within:border-google-blue focus-within:shadow-md transition-all">
 <label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Filter Periode Arsip</label>
 <select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="w-full bg-transparent border-none text-[14px] outline-none text-google-blueDark font-medium cursor-pointer"><option value="Semua">Tampilkan Semua Bulan</option>{availableMonths.map((month, idx) => <option key={idx} value={month}>{month}</option>)}</select>
 </div>
@@ -6490,7 +6490,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         {displayedHistory.map((record) => {
                             const isHoliday = record.winner.includes('LIBUR');
                             return (
-                                <div key={record.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300">
+                                <div key={record.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300">
                                     <div className="p-6 sm:p-8 flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-200 bg-slate-50">
                                         <div><h3 className="font-medium text-2xl text-google-text tracking-tight">Putaran Ke-{record.round}</h3><p className="text-[13px] font-medium text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[16px]"/> {record.periode} G {record.date}</p></div>
                                         <div className="mt-5 sm:mt-0 flex flex-col sm:items-end"><span className="text-[10px] uppercase font-medium text-google-textVariant tracking-widest mb-2">{isHoliday ? 'Status Kegiatan' : 'Pemenang Arisan'}</span><div className={`${isHoliday ? 'bg-google-yellow text-white border-google-yellowDark' : 'bg-google-blue text-white border-google-blueDark'} px-6 py-3 rounded-full font-medium text-[13px] shadow-md inline-flex items-center gap-2 border`}><Icon name={isHoliday ? "event_busy" : "emoji_events"} className="text-[17px]" fill="true" /> {record.winner}</div></div>
@@ -6501,7 +6501,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <p className="text-[10px] uppercase font-medium tracking-widest mb-3 text-google-greenDark relative z-10">Arisan Diserahkan</p>
                                             <p className="text-4xl font-medium text-google-green relative z-10 drop-shadow-sm tracking-tight">{formatRp(record.kasArisanTerkumpul)}</p>
                                         </div>
-                                        <div className="space-y-6 bg-slate-50 p-6 sm:p-8 rounded-[24px] border border-slate-300">
+                                        <div className="space-y-6 bg-slate-50 p-6 sm:p-8 rounded-[24px] border border-slate-200">
                                             <div className="flex justify-between items-center text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2"><Icon name="add_circle" className="text-[16px] text-google-green"/> Jimpitan Masuk</span><span className="text-google-greenDark">+{formatRp(record.kasJimpitanMasuk)}</span></div>
                                             <div className="flex justify-between items-center text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2"><Icon name="add_circle" className="text-[16px] text-google-green"/> Bayar Tunggakan</span><span className="text-google-greenDark">+{formatRp(record.pelunasanTunggakan)}</span></div>
                                             <div className="flex justify-between items-center text-[13px] font-medium"><span className="text-google-textVariant flex flex-wrap items-center gap-2"><Icon name="remove_circle" className="text-[16px] text-google-red"/> Talangan (Keluar)</span><span className="text-google-redDark">-{formatRp(record.talanganJimpitan)}</span></div>
@@ -6514,13 +6514,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div className="p-6 sm:p-8 border-t border-slate-200 bg-white">
                                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                                                 <h4 className="font-medium text-[16px] text-google-text tracking-tight">Detail Presensi Warga</h4>
-                                                {userRole === 'admin' && <button onClick={() => handleOpenEdit(record)} className="text-[12px] bg-white text-google-text font-medium px-6 py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-400 no-print transition-all duration-300 active:scale-95 border border-slate-300 flex flex-wrap items-center gap-2 shadow-sm"><Icon name="edit" className="text-[16px]" /> Revisi Data</button>}
+                                                {userRole === 'admin' && <button onClick={() => handleOpenEdit(record)} className="text-[12px] bg-white text-google-text font-medium px-6 py-3.5 rounded-full hover:bg-slate-50 hover:border-slate-400 no-print transition-all duration-300 active:scale-95 border border-slate-200 flex flex-wrap items-center gap-2 shadow-sm"><Icon name="edit" className="text-[16px]" /> Revisi Data</button>}
                                             </div>
                                             <div className="flex flex-wrap gap-3 no-print text-[13px]">
                                                 {record.absensiDetails.map((a, i) => {
                                                     const isHadir = a.status === 'Hadir'; const isAlfa = a.status === 'Alfa'; const isMeninggal = (a.status === 'Meninggal' || a.status === 'Nonaktif');
                                                     // FIX: Status Meninggal ditampilkan abu-abu (bebas arisan)
-                                                    return <div key={i} className={`flex items-center gap-2.5 px-4 py-2.5 rounded-[12px] border transition-colors ${isMeninggal ? 'bg-slate-100 border-slate-400' : isHadir ? 'bg-slate-50 border-slate-300' : isAlfa ? 'bg-google-redLight border-google-red/40' : 'bg-google-yellowLight border-google-yellow/40'}`}><div className={`w-2.5 h-2.5 rounded-full shadow-sm ${isMeninggal ? 'bg-slate-400' : isHadir ? 'bg-google-green' : isAlfa ? 'bg-google-red' : 'bg-google-yellow'}`}></div><span className={`font-medium text-[13px] ${isMeninggal ? 'text-slate-400 line-through' : 'text-google-text'}`}>{a.name}{isMeninggal && <span className="text-[9px] ml-1.5 bg-slate-200 text-slate-500 px-1.5 py-0.5 rounded font-medium uppercase tracking-wider">{a.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</span></div>
+                                                    return <div key={i} className={`flex items-center gap-2.5 px-4 py-2.5 rounded-[12px] border transition-colors ${isMeninggal ? 'bg-slate-100 border-slate-400' : isHadir ? 'bg-slate-50 border-slate-200' : isAlfa ? 'bg-google-redLight border-google-red/40' : 'bg-google-yellowLight border-google-yellow/40'}`}><div className={`w-2.5 h-2.5 rounded-full shadow-sm ${isMeninggal ? 'bg-slate-400' : isHadir ? 'bg-google-green' : isAlfa ? 'bg-google-red' : 'bg-google-yellow'}`}></div><span className={`font-medium text-[13px] ${isMeninggal ? 'text-slate-400 line-through' : 'text-google-text'}`}>{a.name}{isMeninggal && <span className="text-[9px] ml-1.5 bg-slate-200 text-slate-500 px-1.5 py-0.5 rounded font-medium uppercase tracking-wider">{a.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</span></div>
                                                 })}
                                             </div>
                                         </div>
@@ -6528,7 +6528,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 </div>
                             );
                         })}
-                        {displayedHistory.length === 0 && <div className="bg-white rounded-[32px] border border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-300"><Icon name="history" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Riwayat</h3><p className="text-google-textVariant font-medium text-[13px]">Tidak ada catatan pertemuan untuk bulan yang dipilih.</p></div>}
+                        {displayedHistory.length === 0 && <div className="bg-white rounded-[32px] border border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-200"><Icon name="history" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Riwayat</h3><p className="text-google-textVariant font-medium text-[13px]">Tidak ada catatan pertemuan untuk bulan yang dipilih.</p></div>}
                     </div>
 
                     {editingHistoryId && (
@@ -6537,7 +6537,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-1 shrink-0 tracking-tight">Revisi Kehadiran</h3><p className="text-[13px] font-medium text-google-textVariant dark:text-slate-300 mb-6 shrink-0 leading-relaxed">Saldo akan disesuaikan otomatis mengikuti perubahan presensi ini.</p>
                                 <div className="overflow-y-auto space-y-6 flex-1 pb-4 pr-1 hide-scrollbar">
                                     {history.find(h => h.id === editingHistoryId)?.absensiDetails.map((member, idx) => (
-                                        <div key={idx} className={`flex flex-col gap-3 border p-5 rounded-[24px] shadow-sm ${isNonaktif(member) ? 'border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 opacity-60' : 'border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/40'}`}>
+                                        <div key={idx} className={`flex flex-col gap-3 border p-5 rounded-[24px] shadow-sm ${isNonaktif(member) ? 'border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 opacity-60' : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/40'}`}>
                                             <p className={`text-[14px] font-medium truncate tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text dark:text-white'}`}>{member.name}{isNonaktif(member) && <span className="text-[9px] ml-2 bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded font-medium uppercase tracking-wider no-underline">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</p>
                                             {/* FIX BONUS-B: Warga Meninggal tidak punya toggle - bebas dari arisan */}
                                             {isNonaktif(member) ? (
@@ -6546,7 +6546,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest">Bebas Arisan - Jimpitan saja</span>
                                                 </div>
                                             ) : (
-                                            <div className="flex flex-wrap rounded-[16px] bg-slate-200/60 dark:bg-slate-850 p-2 gap-2 border border-slate-300 dark:border-slate-700 inset-shadow-sm">
+                                            <div className="flex flex-wrap rounded-[16px] bg-slate-200/60 dark:bg-slate-850 p-2 gap-2 border border-slate-200 dark:border-slate-700 inset-shadow-sm">
                                                 {['Hadir', 'Musibah', 'Alfa'].map(stat => (
                                                     <button key={stat} onClick={() => handleAttendanceChange(member.name, stat)} className={`flex-1 py-2.5 text-[10px] uppercase tracking-widest font-medium rounded-full transition-all duration-300 border ${tempAttendance[member.name] === stat ? (stat === 'Hadir' ? 'bg-google-green text-white shadow-md border-google-greenDark scale-105' : stat === 'Musibah' ? 'bg-google-yellowDark text-white shadow-md border-google-yellowDark scale-105' : 'bg-google-red text-white shadow-md border-google-redDark scale-105') : 'text-google-textVariant dark:text-slate-400 bg-transparent hover:bg-white dark:hover:bg-slate-800 border-transparent'}`}>{stat}</button>
                                                 ))}
@@ -6555,7 +6555,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         </div>
                                     ))}
                                 </div>
-                                <div className="flex flex-wrap gap-3 pt-6 border-t border-slate-200 dark:border-slate-800 mt-2 shrink-0"><button onClick={() => setEditingHistoryId(null)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-white px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={saveEditHistory} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center">Simpan Revisi</button></div>
+                                <div className="flex flex-wrap gap-3 pt-6 border-t border-slate-200 dark:border-slate-800 mt-2 shrink-0"><button onClick={() => setEditingHistoryId(null)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-white px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={saveEditHistory} className="flex-1 bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center">Simpan Revisi</button></div>
                             </div>
                         </div>
                     )}
@@ -6608,7 +6608,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 <PengaturanSection title="Manajemen Info Layanan Desa" onSave={handleSave}>
                     <div className="space-y-8">
                         {/* Toggle Aktif */}
-                        <label className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 dark:hover:bg-slate-850/20 transition-all duration-200">
+                        <label className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 dark:hover:bg-slate-850/20 transition-all duration-200">
                             <div>
                                 <p className="text-[13px] font-medium text-google-text dark:text-white">Aktifkan Info Desa</p>
                                 <p className="text-[11px] text-google-textVariant dark:text-slate-350 font-medium mt-0.5">Tampilkan bagian batas & kontak di Peta Desa</p>
@@ -6622,11 +6622,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         {localInfo.enabled && (
                             <>
                                 {/* Batas Administrasi */}
-                                <div className="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-[20px]">
+                                <div className="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[20px]">
                                     <h4 className="font-medium text-[13px] text-google-text dark:text-white mb-4">Batas Administrasi</h4>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         {['utara', 'selatan', 'timur', 'barat'].map(arah => (
-                                            <div key={arah} className="bg-white dark:bg-slate-800 rounded-[12px] px-4 py-2 border border-slate-300 dark:border-slate-700 focus-within:border-google-blue transition-all">
+                                            <div key={arah} className="bg-white dark:bg-slate-800 rounded-[12px] px-4 py-2 border border-slate-200 dark:border-slate-700 focus-within:border-google-blue transition-all">
                                                 <label className="text-[9px] font-medium text-google-textVariant dark:text-slate-400 block mb-1 uppercase tracking-widest">{arah}</label>
                                                 <input type="text" value={localInfo.batas?.[arah] || ''} onChange={e => updateBatas(arah, e.target.value)} className="w-full bg-transparent border-none text-[12px] font-medium outline-none p-0 text-google-text dark:text-white" placeholder={`Batas ${arah}`} />
                                             </div>
@@ -6635,16 +6635,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 </div>
 
                                 {/* Kontak Penting */}
-                                <div className="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-[20px]">
+                                <div className="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[20px]">
                                     <h4 className="font-medium text-[13px] text-google-text dark:text-white mb-4">Kontak Penting</h4>
                                     <div className="space-y-5 mb-4">
                                         {localInfo.kontak?.map((k, idx) => {
                                             const idKey = k.id || k.nama;
                                             return (
-                                            <div key={idKey} className="flex flex-col sm:flex-row gap-3 bg-white dark:bg-slate-850 p-3 rounded-[12px] border border-slate-300 dark:border-slate-750 relative group">
+                                            <div key={idKey} className="flex flex-col sm:flex-row gap-3 bg-white dark:bg-slate-850 p-3 rounded-[12px] border border-slate-200 dark:border-slate-750 relative group">
                                                 <div className="flex-1">
-                                                    <input type="text" value={k.nama} onChange={e => updateKontak(idKey, 'nama', e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text dark:text-white mb-2" placeholder="Nama Layanan" />
-                                                    <input type="text" value={k.telepon} onChange={e => updateKontak(idKey, 'telepon', e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text dark:text-white" placeholder="Nomor Telepon" />
+                                                    <input type="text" value={k.nama} onChange={e => updateKontak(idKey, 'nama', e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text dark:text-white mb-2" placeholder="Nama Layanan" />
+                                                    <input type="text" value={k.telepon} onChange={e => updateKontak(idKey, 'telepon', e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none focus:border-google-blue text-google-text dark:text-white" placeholder="Nomor Telepon" />
                                                 </div>
                                                 <button onClick={() => removeKontak(idKey)} className="self-end sm:self-center bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 p-2 rounded-full hover:bg-red-100 transition-colors">
                                                     <Icon name="delete" className="text-[17px]" />
@@ -6706,7 +6706,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             return (
             <PengaturanSection title="Manajemen Sponsor" onSave={() => showAlert('Pengaturan Sponsor berhasil disimpan.')}>
                 <div className="space-y-6">
-                 <label className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 dark:hover:bg-slate-850/20 transition-all duration-200">
+                 <label className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[16px] px-5 py-4 cursor-pointer hover:bg-google-blueLight/20 hover:border-google-blue/40 dark:hover:bg-slate-850/20 transition-all duration-200">
                     <div>
                     <p className="text-[13px] font-medium text-google-text dark:text-white">Aktifkan Tampilan Sponsor</p>
                     <p className="text-[11px] text-google-textVariant dark:text-slate-350 font-medium mt-0.5">Tampilkan logo-logo sponsor di halaman utama</p>
@@ -6748,17 +6748,17 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-300 dark:border-slate-700 space-y-6">
+                    <div className="pt-4 border-t border-slate-200 dark:border-slate-700 space-y-6">
                         <p className="text-[10px] font-medium text-google-textVariant dark:text-slate-400 uppercase tracking-widest">Tambah Sponsor Baru</p>
 
-                        <div className="bg-white dark:bg-slate-850 rounded-[16px] px-4 py-3 border border-slate-300 dark:border-slate-700 focus-within:border-google-blue transition-all shadow-sm">
+                        <div className="bg-white dark:bg-slate-850 rounded-[16px] px-4 py-3 border border-slate-200 dark:border-slate-700 focus-within:border-google-blue transition-all shadow-sm">
                         <label className="text-[9px] font-medium text-google-textVariant dark:text-slate-400 block mb-1 uppercase tracking-widest">Nama Sponsor</label>
                         <input type="text" value={newName} onChange={e => setNewName(e.target.value)} placeholder="Misal: Bank BRI Cabang Pakem" className="w-full bg-transparent text-[13px] font-medium text-google-text dark:text-white placeholder:text-slate-350 dark:placeholder:text-slate-550 outline-none" />
                         </div>
 
                         <div>
                         <p className="text-[9px] font-medium text-google-textVariant dark:text-slate-400 uppercase tracking-widest mb-2">Logo / Gambar Sponsor</p>
-                        <label className={`relative w-full h-16 bg-white dark:bg-slate-850 border ${isUploading ? 'border-google-blue bg-google-blueLight/20 dark:bg-google-blueLight/10' : 'border-slate-300 dark:border-slate-700 hover:border-google-blue/50'} rounded-[14px] flex items-center justify-center px-4 cursor-pointer transition-all duration-200 overflow-hidden`}>
+                        <label className={`relative w-full h-16 bg-white dark:bg-slate-850 border ${isUploading ? 'border-google-blue bg-google-blueLight/20 dark:bg-google-blueLight/10' : 'border-slate-200 dark:border-slate-700 hover:border-google-blue/50'} rounded-[14px] flex items-center justify-center px-4 cursor-pointer transition-all duration-200 overflow-hidden`}>
                             <input type="file" accept="image/*" onChange={e => uploadLogo(e.target.files[0])} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" />
                             {isUploading ? (
                             <div className="flex items-center gap-3 pointer-events-none">
@@ -6797,7 +6797,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         <summary className="text-[10px] font-medium text-google-textVariant dark:text-slate-400 cursor-pointer select-none hover:text-google-blue transition-colors flex items-center gap-1.5">
                             <Icon name="link" className="text-[13px]" /> Atau masukkan URL gambar secara manual
                         </summary>
-                        <div className="mt-2 bg-white dark:bg-slate-850 rounded-[14px] px-4 py-3 border border-slate-300 dark:border-slate-700 focus-within:border-google-blue transition-all shadow-sm">
+                        <div className="mt-2 bg-white dark:bg-slate-850 rounded-[14px] px-4 py-3 border border-slate-200 dark:border-slate-700 focus-within:border-google-blue transition-all shadow-sm">
                             <input type="text" value={newUrl} onChange={e => { setNewUrl(e.target.value); setPreviewUrl(e.target.value); }} placeholder="https://contoh.com/logo.png" className="w-full bg-transparent text-[12px] font-mono text-google-text dark:text-white placeholder:text-slate-350 dark:placeholder:text-slate-550 outline-none" />
                         </div>
                         </details>
@@ -6816,10 +6816,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
         function PengaturanSection({ title, onSave, children }) {
             return (
-                <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                     <h3 className="font-medium text-[17px] text-google-text mb-6 border-b border-slate-200 pb-4 group-hover:text-google-blue transition-colors tracking-tight">{title}</h3>
                     <div className="space-y-8 mb-8">{children}</div>
-                    <button onClick={onSave} className="w-full bg-slate-50 border border-slate-300 text-google-blueDark py-4 rounded-full font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan {title}</button>
+                    <button onClick={onSave} className="w-full bg-slate-50 border border-slate-200 text-google-blueDark py-4 rounded-full font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan {title}</button>
                 </div>
             );
         }
@@ -6850,7 +6850,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 { id: 'saldo', title: 'Koreksi Saldo', icon: 'account_balance_wallet', bg: 'bg-indigo-100', text: 'text-indigo-600', border: 'border-indigo-200', hoverBorder: 'hover:border-indigo-500', groupHoverBg: 'group-hover:bg-indigo-500', groupHoverText: 'group-hover:text-indigo-600', desc: 'Edit Saldo Kas Utama' },
                 { id: 'banner', title: 'Banner Utama', icon: 'image', bg: 'bg-purple-100', text: 'text-purple-600', border: 'border-purple-200', hoverBorder: 'hover:border-purple-500', groupHoverBg: 'group-hover:bg-purple-500', groupHoverText: 'group-hover:text-purple-600', desc: 'Gambar Latar Halaman Depan' },
                 { id: 'sponsor', title: 'Sponsor', icon: 'handshake', bg: 'bg-teal-100', text: 'text-teal-600', border: 'border-teal-200', hoverBorder: 'hover:border-teal-500', groupHoverBg: 'group-hover:bg-teal-500', groupHoverText: 'group-hover:text-teal-600', desc: 'Logo Sponsor RT' },
-                { id: 'legal', title: 'Kebijakan', icon: 'gavel', bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-300', hoverBorder: 'hover:border-slate-500', groupHoverBg: 'group-hover:bg-slate-500', groupHoverText: 'group-hover:text-slate-600', desc: 'Syarat & Privasi' },
+                { id: 'legal', title: 'Kebijakan', icon: 'gavel', bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-200', hoverBorder: 'hover:border-slate-500', groupHoverBg: 'group-hover:bg-slate-500', groupHoverText: 'group-hover:text-slate-600', desc: 'Syarat & Privasi' },
                 { id: 'infodesa', title: 'Info Desa', icon: 'map', bg: 'bg-rose-100', text: 'text-rose-600', border: 'border-rose-200', hoverBorder: 'hover:border-rose-500', groupHoverBg: 'group-hover:bg-rose-500', groupHoverText: 'group-hover:text-rose-600', desc: 'Kontak & Batas Wilayah' },
                 { id: 'landing', title: 'Teks Beranda', icon: 'view_quilt', bg: 'bg-pink-100', text: 'text-pink-600', border: 'border-pink-200', hoverBorder: 'hover:border-pink-500', groupHoverBg: 'group-hover:bg-pink-500', groupHoverText: 'group-hover:text-pink-600', desc: 'Ubah teks landing page' },
                 { id: 'whatsapp', title: 'Grup WhatsApp', icon: 'chat', bg: 'bg-emerald-100', text: 'text-emerald-600', border: 'border-emerald-200', hoverBorder: 'hover:border-emerald-500', groupHoverBg: 'group-hover:bg-emerald-500', groupHoverText: 'group-hover:text-emerald-600', desc: 'Link & Akses Grup WA' },
@@ -6973,7 +6973,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 if (!menu) return null;
                 return (
                     <div className="flex flex-wrap items-center gap-4 mb-6">
-                        <button onClick={() => setActiveMenu(null)} className="w-12 h-12 bg-white border border-slate-300 rounded-full flex items-center justify-center hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all text-google-textVariant shrink-0 shadow-sm hover:shadow-md">
+                        <button onClick={() => setActiveMenu(null)} className="w-12 h-12 bg-white border border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all text-google-textVariant shrink-0 shadow-sm hover:shadow-md">
                             <Icon name="arrow_back" className="text-[20px]" />
                         </button>
                         <div className={`w-12 h-12 ${menu.bg} ${menu.text} rounded-full flex items-center justify-center border ${menu.border} shrink-0`}>
@@ -6987,7 +6987,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             return (
                 <div className="space-y-8 tab-fade-in">
                     {activeMenu === null && (
-                        <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm flex flex-wrap items-center gap-5">
+                        <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm flex flex-wrap items-center gap-5">
                             <div className="bg-google-blueLight text-google-blue w-16 h-16 rounded-[20px] flex items-center justify-center border border-google-blue/30 shrink-0"><Icon name="admin_panel_settings" className="text-[32px]" fill="true"/></div>
                             <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Setelan Portal Admin</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Ubah konfigurasi fundamental aplikasi RT.</p></div>
                         </div>
@@ -6999,9 +6999,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             
                             {activeMenu === 'profil' && (
                                 <PengaturanSection title="Profil Utama Aplikasi" onSave={() => handleSaveAll('id')}>
-                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Kop Surat (Baris 1)</label><input type="text" value={formIdentity.name} onChange={e => setFormIdentity({...formIdentity, name: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Sub Judul (Baris 2)</label><input type="text" value={formIdentity.subtitle} onChange={e => setFormIdentity({...formIdentity, subtitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                    <div className="bg-white rounded-[16px] px-4 py-4 border border-slate-300 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Kop Surat (Baris 1)</label><input type="text" value={formIdentity.name} onChange={e => setFormIdentity({...formIdentity, name: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Sub Judul (Baris 2)</label><input type="text" value={formIdentity.subtitle} onChange={e => setFormIdentity({...formIdentity, subtitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-4 border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                                         <div>
                                             <label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Logo Aplikasi</label>
                                             <p className="text-[11px] text-slate-500 font-medium leading-snug">Format disarankan PNG transparan (maks 2MB). Kosongkan untuk pakai lambang Garuda bawaan.</p>
@@ -7023,33 +7023,33 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {activeMenu === 'nominal' && (
                                 <PengaturanSection title="Iuran Wajib" onSave={() => handleSaveAll('nominal')}>
-                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Arisan (Rp)</label><input type="number" min="0" value={formNominal.arisan} onChange={e => setFormNominal({...formNominal, arisan: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Jimpitan (Rp)</label><input type="number" min="0" value={formNominal.jimpitan} onChange={e => setFormNominal({...formNominal, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Arisan (Rp)</label><input type="number" min="0" value={formNominal.arisan} onChange={e => setFormNominal({...formNominal, arisan: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Nominal Jimpitan (Rp)</label><input type="number" min="0" value={formNominal.jimpitan} onChange={e => setFormNominal({...formNominal, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                 </PengaturanSection>
                             )}
 
                             {activeMenu === 'kalibrasi' && (
                                 <PengaturanSection title="Kalibrasi Siklus & Bulan" onSave={() => handleSaveAll('kalibrasi')}>
-                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Bulan & Tahun Arisan</label><input type="month" value={formPeriod} onChange={e => setFormPeriod(e.target.value)} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text cursor-pointer" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Bulan & Tahun Arisan</label><input type="month" value={formPeriod} onChange={e => setFormPeriod(e.target.value)} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text cursor-pointer" /></div>
                                     <div className="flex flex-wrap gap-4">
-                                        <div className="flex-1 bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[9px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Putaran Ke-</label><input type="number" min="1" value={formRound.round} onChange={e => setFormRound({...formRound, round: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                        <div className="flex-1 bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[9px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Siklus Ke-</label><input type="number" min="1" value={formRound.cycle} onChange={e => setFormRound({...formRound, cycle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                        <div className="flex-1 bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[9px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Putaran Ke-</label><input type="number" min="1" value={formRound.round} onChange={e => setFormRound({...formRound, round: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                        <div className="flex-1 bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[9px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Siklus Ke-</label><input type="number" min="1" value={formRound.cycle} onChange={e => setFormRound({...formRound, cycle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                     </div>
                                 </PengaturanSection>
                             )}
 
                             {activeMenu === 'saldo' && (
                                 <PengaturanSection title="Koreksi Saldo Manual" onSave={() => handleSaveAll('saldo')}>
-                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Kas Warga Utama (Rp)</label><input type="number" min="0" value={formSaldo.kasRt} onChange={e => setFormSaldo({...formSaldo, kasRt: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Jimpitan Berjalan (Rp)</label><input type="number" min="0" value={formSaldo.jimpitan} onChange={e => setFormSaldo({...formSaldo, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Kas Warga Utama (Rp)</label><input type="number" min="0" value={formSaldo.kasRt} onChange={e => setFormSaldo({...formSaldo, kasRt: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                    <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Saldo Jimpitan Berjalan (Rp)</label><input type="number" min="0" value={formSaldo.jimpitan} onChange={e => setFormSaldo({...formSaldo, jimpitan: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                 </PengaturanSection>
                             )}
 
                             {activeMenu === 'banner' && (
                                 <PengaturanSection title="Gambar Latar Banner Utama" onSave={() => handleSaveAll('banner')}>
-                                    <div className={`flex flex-col gap-4 bg-white border ${isUploadingBanner ? 'border-google-blue shadow-md' : 'border-slate-300'} p-4 rounded-[16px] transition-all`}>
+                                    <div className={`flex flex-col gap-4 bg-white border ${isUploadingBanner ? 'border-google-blue shadow-md' : 'border-slate-200'} p-4 rounded-[16px] transition-all`}>
                                         <label className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest">Unggah Foto (Orientasi Lebar/Landscape direkomendasikan)</label>
-                                        <div className="relative overflow-hidden w-full h-14 bg-slate-50 border border-slate-300 rounded-[12px] flex items-center px-4 hover:border-google-blue transition-colors cursor-pointer">
+                                        <div className="relative overflow-hidden w-full h-14 bg-slate-50 border border-slate-200 rounded-[12px] flex items-center px-4 hover:border-google-blue transition-colors cursor-pointer">
                                             <input type="file" accept="image/*" onChange={handleBannerUpload} disabled={isUploadingBanner} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                             {isUploadingBanner ? (
                                                 <div className="flex flex-wrap items-center gap-3"><div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div><span className="font-medium text-[12px] text-google-blue">Mengunggah...</span></div>
@@ -7058,7 +7058,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             )}
                                         </div>
                                         {formBanner && !isUploadingBanner && (
-                                            <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border border-slate-300 group">
+                                            <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border border-slate-200 group">
                                                 <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
                                                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                                     <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[11px] font-medium px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[14px]"/> Hapus</button>
@@ -7073,26 +7073,26 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="space-y-8">
                                         <div className="bg-slate-50 p-6 sm:p-8 rounded-[20px] border border-slate-200 space-y-6">
                                             <h4 className="text-[13px] font-medium text-google-text">Seksi Berita &amp; Pengumuman</h4>
-                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Subjudul</label><input type="text" value={formLanding.newsSubtitle} onChange={e => setFormLanding({...formLanding, newsSubtitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formLanding.newsTitle} onChange={e => setFormLanding({...formLanding, newsTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Subjudul</label><input type="text" value={formLanding.newsSubtitle} onChange={e => setFormLanding({...formLanding, newsSubtitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formLanding.newsTitle} onChange={e => setFormLanding({...formLanding, newsTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                         </div>
 
                                         <div className="bg-slate-50 p-6 sm:p-8 rounded-[20px] border border-slate-200 space-y-6">
                                             <h4 className="text-[13px] font-medium text-google-text">Seksi UMKM</h4>
-                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Subjudul</label><input type="text" value={formLanding.umkmSubtitle} onChange={e => setFormLanding({...formLanding, umkmSubtitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formLanding.umkmTitle} onChange={e => setFormLanding({...formLanding, umkmTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Subjudul</label><input type="text" value={formLanding.umkmSubtitle} onChange={e => setFormLanding({...formLanding, umkmSubtitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formLanding.umkmTitle} onChange={e => setFormLanding({...formLanding, umkmTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                         </div>
                                         
                                         <div className="bg-slate-50 p-6 sm:p-8 rounded-[20px] border border-slate-200 space-y-6">
                                             <h4 className="text-[13px] font-medium text-google-text">Bagian Footer (Bawah)</h4>
-                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Slogan / Tagline</label><input type="text" value={formLanding.footerTagline} onChange={e => setFormLanding({...formLanding, footerTagline: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Info Resmi</label><input type="text" value={formLanding.footerInfoTitle} onChange={e => setFormLanding({...formLanding, footerInfoTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Teks Bukti Verifikasi</label><input type="text" value={formLanding.footerInfoDesc} onChange={e => setFormLanding({...formLanding, footerInfoDesc: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Slogan / Tagline</label><input type="text" value={formLanding.footerTagline} onChange={e => setFormLanding({...formLanding, footerTagline: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Info Resmi</label><input type="text" value={formLanding.footerInfoTitle} onChange={e => setFormLanding({...formLanding, footerInfoTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Teks Bukti Verifikasi</label><input type="text" value={formLanding.footerInfoDesc} onChange={e => setFormLanding({...formLanding, footerInfoDesc: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                         </div>
 
                                         <div className="bg-slate-50 p-6 sm:p-8 rounded-[20px] border border-slate-200 space-y-6">
                                             <h4 className="text-[13px] font-medium text-google-text">Integrasi Google AdSense</h4>
-                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Google AdSense Publisher ID</label><input type="text" value={formLanding.adsenseClientId || ''} onChange={e => setFormLanding({...formLanding, adsenseClientId: e.target.value})} placeholder="Contoh: ca-pub-XXXXXXXXXXXXXXXX" className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
+                                            <div className="bg-white rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Google AdSense Publisher ID</label><input type="text" value={formLanding.adsenseClientId || ''} onChange={e => setFormLanding({...formLanding, adsenseClientId: e.target.value})} placeholder="Contoh: ca-pub-XXXXXXXXXXXXXXXX" className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                             <p className="text-[11px] text-slate-500 leading-normal flex items-start gap-1">
                                                 <Icon name="info" className="text-[13px] text-google-blue shrink-0 mt-0.5" /> Masukkan Publisher ID Anda untuk mengaktifkan iklan otomatis (Auto Ads). Pastikan Anda menyetujui penempatan iklan di dasbor Google AdSense Anda.
                                             </p>
@@ -7103,7 +7103,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                             {activeMenu === 'whatsapp' && (
                                 <PengaturanSection title="Setelan Grup WhatsApp" onSave={() => handleSaveAll('whatsapp')}>
-                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-google-blue transition-all shadow-sm">
+                                    <div className="bg-white dark:bg-slate-900 rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm">
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Link Undangan Grup WhatsApp (Invite Link)</label>
                                         <input type="text" value={formLanding.whatsappGroupLink || ''} onChange={e => setFormLanding({...formLanding, whatsappGroupLink: e.target.value})} placeholder="Contoh: https://chat.whatsapp.com/..." className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-slate-800 dark:text-slate-100 placeholder:text-slate-400" />
                                     </div>
@@ -7121,7 +7121,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="bg-white p-6 md:p-8 rounded-[32px] border border-slate-200/50 shadow-sm relative overflow-hidden animate-fade-in">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10"></div>
                                     <div className="flex items-center gap-3 mb-6">
-                                        <div className="w-12 h-12 rounded-[12px] bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 border border-slate-300"><Icon name="gavel" className="text-[20px]" /></div>
+                                        <div className="w-12 h-12 rounded-[12px] bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 border border-slate-200"><Icon name="gavel" className="text-[20px]" /></div>
                                         <div>
                                             <h2 className="text-[16px] md:text-[17px] font-medium text-slate-800 tracking-tight">Hukum & Kebijakan</h2>
                                             <p className="text-[12px] text-slate-500 font-medium">Syarat & Ketentuan serta Privasi</p>
@@ -7143,16 +7143,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="space-y-8 animate-fade-in">
                                                 <div>
                                                     <label className="text-[11px] font-medium text-slate-500 block mb-2 ml-1 uppercase tracking-widest">Syarat & Ketentuan</label>
-                                                    <textarea value={props.legalData?.terms || ''} onChange={(e) => props.setLegalData(p => ({...p, terms: e.target.value}))} rows="6" className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white text-slate-700 rounded-[12px] px-5 py-4 text-[13px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Syarat dan Ketentuan..."></textarea>
+                                                    <textarea value={props.legalData?.terms || ''} onChange={(e) => props.setLegalData(p => ({...p, terms: e.target.value}))} rows="6" className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white text-slate-700 rounded-[12px] px-5 py-4 text-[13px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Syarat dan Ketentuan..."></textarea>
                                                 </div>
                                                 <div>
                                                     <label className="text-[11px] font-medium text-slate-500 block mb-2 ml-1 uppercase tracking-widest">Kebijakan Privasi</label>
-                                                    <textarea value={props.legalData?.privacy || ''} onChange={(e) => props.setLegalData(p => ({...p, privacy: e.target.value}))} rows="6" className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white text-slate-700 rounded-[12px] px-5 py-4 text-[13px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Kebijakan Privasi..."></textarea>
+                                                    <textarea value={props.legalData?.privacy || ''} onChange={(e) => props.setLegalData(p => ({...p, privacy: e.target.value}))} rows="6" className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white text-slate-700 rounded-[12px] px-5 py-4 text-[13px] font-medium outline-none transition-all resize-y custom-scrollbar" placeholder="Isi Kebijakan Privasi..."></textarea>
                                                 </div>
                                             </div>
                                         )}
                                     </div>
-                                    <button onClick={() => { showAlert('Kebijakan Hukum & Privasi berhasil disimpan!') }} className="w-full mt-8 bg-slate-50 border border-slate-300 text-google-blueDark py-4 rounded-full font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan Kebijakan</button>
+                                    <button onClick={() => { showAlert('Kebijakan Hukum & Privasi berhasil disimpan!') }} className="w-full mt-8 bg-slate-50 border border-slate-200 text-google-blueDark py-4 rounded-full font-medium text-[13px] hover:bg-google-blue hover:border-google-blue hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95">Simpan Kebijakan</button>
                                 </div>
                             )}
                             {activeMenu === 'infodesa' && (
@@ -7187,7 +7187,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <h3 className="text-3xl font-medium text-google-red mb-2 tracking-tight">Reset Total?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tindakan ini permanen dan tidak bisa dibatalkan. Ketik kata <b className="text-google-red">RESET</b> di bawah ini.</p>
                                 <div className="bg-slate-50 rounded-[16px] px-5 py-4 border border-google-red/40 focus-within:border-google-red focus-within:bg-white focus-within:shadow-md transition-all mb-8"><input type="text" value={resetPromptInput} onChange={e => setResetPromptInput(e.target.value)} className="w-full bg-transparent border-none text-[18px] outline-none p-0 text-google-redDark uppercase tracking-widest font-medium placeholder:text-google-red/30" placeholder="RESET" /></div>
-                                <div className="flex flex-wrap gap-3"><button onClick={() => {setConfirmResetModal(false); setResetPromptInput('');}} className="w-full sm:w-auto bg-white text-google-text py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-300 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={executeFactoryReset} className="flex flex-wrap bg-google-red text-white border border-google-redDark py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Eksekusi</button></div>
+                                <div className="flex flex-wrap gap-3"><button onClick={() => {setConfirmResetModal(false); setResetPromptInput('');}} className="w-full sm:w-auto bg-white text-google-text py-4 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-200 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button><button onClick={executeFactoryReset} className="flex flex-wrap bg-google-red text-white border border-google-redDark py-4 rounded-full font-medium text-[13px] shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300 flex flex-wrap justify-center items-center gap-2">Eksekusi</button></div>
                             </div>
                         </div>
                     )}
@@ -7201,14 +7201,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const winners = members.filter(m => m.hasWon).sort((a, b) => b.wonRound - a.wonRound);
             return (
                 <div className="space-y-8 max-w-7xl mx-auto">
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row justify-between items-center border border-slate-300 shadow-sm text-center sm:text-left gap-5">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] flex flex-col sm:flex-row justify-between items-center border border-slate-200 shadow-sm text-center sm:text-left gap-5">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Daftar Pemenang Arisan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Warga yang telah menerima dana pada siklus aktif saat ini.</p></div>
                         <div className="w-16 h-16 bg-google-yellowLight rounded-[20px] flex items-center justify-center border border-google-yellow/40 shrink-0 shadow-sm"><Icon name="emoji_events" className="text-[32px] text-google-yellowDark" fill="true" /></div>
                     </div>
-                    {winners.length === 0 ? <div className="bg-white rounded-[32px] border border-slate-300 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-300"><Icon name="military_tech" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Pemenang</h3><p className="text-google-textVariant font-medium text-[13px]">Data penerima arisan akan tampil di sini setelah diundi.</p></div> : (
+                    {winners.length === 0 ? <div className="bg-white rounded-[32px] border border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-200"><Icon name="military_tech" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Pemenang</h3><p className="text-google-textVariant font-medium text-[13px]">Data penerima arisan akan tampil di sini setelah diundi.</p></div> : (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                             {winners.map((winner) => (
-                                <div key={winner.id} className="bg-white p-6 sm:p-8 md:p-6 rounded-[24px] flex items-center space-x-6 border border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-yellow/60 transition-all duration-300 group">
+                                <div key={winner.id} className="bg-white p-6 sm:p-8 md:p-6 rounded-[24px] flex items-center space-x-6 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-yellow/60 transition-all duration-300 group">
                                     <div className="bg-google-yellowLight border border-google-yellow/40 text-google-yellowDark font-medium w-16 h-16 rounded-[20px] flex items-center justify-center shrink-0 text-[17px] group-hover:bg-google-yellow group-hover:text-white group-hover:scale-110 transition-all duration-300 shadow-sm">#{winner.wonRound}</div>
                                     <div className="flex-1 min-w-0"><h3 className="font-medium text-google-text text-[16px] truncate group-hover:text-google-yellowDark transition-colors tracking-tight">{winner.name}</h3><p className="text-[13px] font-medium text-google-textVariant mt-1">Menang di Putaran {winner.wonRound}</p></div>
                                     <Icon name="check_circle" className="text-[32px] text-google-green group-hover:scale-110 transition-transform" fill="true" />
@@ -7228,22 +7228,22 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             return (
                 <div className="space-y-8 tab-fade-in">
                     {userRole === 'admin' && (
-                        <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm">
+                        <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm">
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5">
                                 <div><h2 className="text-xl font-medium text-google-text tracking-tight">Pengaturan Agenda</h2><p className="text-[12px] font-medium text-google-textVariant mt-1">Agenda tampil sebagai teks berjalan (marquee) di Halaman Utama.</p></div>
-                                {!isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border border-slate-300 text-google-text px-6 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 text-[12px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[14px]" /><span>Ubah Agenda</span></button>}
+                                {!isEditing && <button onClick={() => setIsEditing(true)} className="shrink-0 bg-white border border-slate-200 text-google-text px-6 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 text-[12px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm w-full sm:w-auto"><Icon name="edit" className="text-[14px]" /><span>Ubah Agenda</span></button>}
                             </div>
 
                             {isEditing && (
                                 <div className="mt-6 pt-6 border-t border-slate-200 space-y-8">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                        <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Hari &amp; Tanggal</label><input type="text" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Sabtu, 10 Agustus 2026"/></div>
-                                        <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Jam Pelaksanaan</label><input type="text" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: 19.30 WIB - Selesai"/></div>
+                                        <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Hari &amp; Tanggal</label><input type="text" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Sabtu, 10 Agustus 2026"/></div>
+                                        <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Jam Pelaksanaan</label><input type="text" value={formData.time} onChange={e => setFormData({...formData, time: e.target.value})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: 19.30 WIB - Selesai"/></div>
                                     </div>
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border border-slate-300 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Lokasi Pertemuan</label><input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] transition-all text-google-text placeholder:text-slate-400" placeholder="Misal: Rumah Bpk. Budi (RT 01)"/></div>
+                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Agenda Utama Kegiatan</label><textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3 text-[13px] font-medium outline-none rounded-[16px] resize-none min-h-[100px] leading-relaxed transition-all text-google-text placeholder:text-slate-400" placeholder="Tulis rincian acara di sini..."></textarea></div>
                                     <div className="flex flex-wrap gap-3 pt-6 mt-6 border-t border-slate-200">
-                                        <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3 rounded-full font-medium text-[12px] hover:bg-slate-50 border border-slate-300 active:scale-95 transition-all shadow-sm flex items-center justify-center">Batal</button>
+                                        <button onClick={() => setIsEditing(false)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3 rounded-full font-medium text-[12px] hover:bg-slate-50 border border-slate-200 active:scale-95 transition-all shadow-sm flex items-center justify-center">Batal</button>
                                         <button onClick={() => { setNextMeeting(formData); setIsEditing(false); showToast('Jadwal kegiatan berhasil diperbarui.'); }} className="flex bg-google-blue border border-google-blueDark text-white px-6 py-3 rounded-full font-medium text-[12px] shadow-md hover:shadow-lg hover:bg-google-blueDark active:scale-95 transition-all items-center justify-center gap-2"><Icon name="save" className="text-[14px]"/> Simpan Agenda</button>
                                     </div>
                                 </div>
@@ -7399,7 +7399,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             return (
                 <div className="space-y-8 max-w-7xl mx-auto">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
                         <div className="text-center md:text-left">
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
                                 <Icon name="calendar_month" className="text-[24px] text-red-600"/>
@@ -7419,14 +7419,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         {/* Detail Day Card & Weton Checker */}
                         <div className="space-y-8">
                             {/* Hari Ini / Selected Day Info */}
-                            <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-300 shadow-sm relative overflow-hidden group">
+                            <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm relative overflow-hidden group">
                                 
                                 <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                     <Icon name="info" className="text-[16px] text-red-600" />
                                     Detail Tanggal
                                 </h3>
                                 <div className="space-y-6 relative z-10">
-                                    <div className="bg-slate-50 border border-slate-300/60 p-6 sm:p-8 md:p-6 rounded-[20px] shadow-sm">
+                                    <div className="bg-slate-50 border border-slate-200/60 p-6 sm:p-8 md:p-6 rounded-[20px] shadow-sm">
                                         <p className="text-[9px] uppercase tracking-widest font-medium text-google-textVariant mb-1">Masehi / Nasional</p>
                                         <p className="font-medium text-[14px] text-google-text">
                                             {selectedDate.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
@@ -7441,7 +7441,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             Weton: <span className="underline decoration-dotted">{selectedDetails.jawaDay} {selectedDetails.pasaran}</span>
                                         </p>
                                     </div>
-                                    <div className="bg-slate-50 border border-slate-300/60 p-6 sm:p-8 md:p-6 rounded-[20px] shadow-sm">
+                                    <div className="bg-slate-50 border border-slate-200/60 p-6 sm:p-8 md:p-6 rounded-[20px] shadow-sm">
                                         <p className="text-[9px] uppercase tracking-widest font-medium text-google-textVariant mb-1">Hijriah / Kalender Islam</p>
                                         <p className="font-medium text-[14px] text-google-text">
                                             {selectedDetails.hijri}
@@ -7451,13 +7451,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
 
                             {/* Weton Checker Tool */}
-                            <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-300 shadow-sm">
+                            <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm">
                                 <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                     <Icon name="search" className="text-[16px] text-red-600" />
                                     Cek Weton & Pasaran Lahir
                                 </h3>
                                 <form onSubmit={handleCheckWeton} className="space-y-6">
-                                    <div className="bg-slate-50 rounded-[16px] px-4 py-3 border border-slate-300 focus-within:border-red-500 focus-within:bg-white transition-all shadow-sm">
+                                    <div className="bg-slate-50 rounded-[16px] px-4 py-3 border border-slate-200 focus-within:border-red-500 focus-within:bg-white transition-all shadow-sm">
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Pilih Tanggal</label>
                                         <input type="date" value={checkDateStr} onChange={e => { setCheckDateStr(e.target.value); setCheckResult(null); }} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text cursor-pointer animate-none" />
                                     </div>
@@ -7485,16 +7485,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
 
                         {/* Calendar Grid Sheet */}
-                        <div className="lg:col-span-2 bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-300 shadow-sm flex flex-col">
+                        <div className="lg:col-span-2 bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm flex flex-col">
                             {/* Navigation */}
                             <div className="flex justify-between items-center mb-6">
-                                <button onClick={handlePrevMonth} className="w-10 h-10 bg-slate-50 border border-slate-300 text-google-text hover:bg-slate-100 hover:border-slate-400 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
+                                <button onClick={handlePrevMonth} className="w-10 h-10 bg-slate-50 border border-slate-200 text-google-text hover:bg-slate-100 hover:border-slate-400 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
                                     <Icon name="chevron_left" className="text-[17px]" />
                                 </button>
                                 <h3 className="text-xl font-medium text-google-text tracking-tight uppercase">
                                     {monthNames[month]} {year}
                                 </h3>
-                                <button onClick={handleNextMonth} className="w-10 h-10 bg-slate-50 border border-slate-300 text-google-text hover:bg-slate-100 hover:border-slate-400 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
+                                <button onClick={handleNextMonth} className="w-10 h-10 bg-slate-50 border border-slate-200 text-google-text hover:bg-slate-100 hover:border-slate-400 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
                                     <Icon name="chevron_right" className="text-[17px]" />
                                 </button>
                             </div>
@@ -7528,13 +7528,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             key={idx} 
                                             onClick={() => setSelectedDate(cell.date)}
                                             className={`relative min-h-[64px] p-2 rounded-full border flex flex-col justify-between items-stretch text-left transition-all active:scale-95 ${
-                                                !cell.isCurrentMonth ? 'opacity-30 border-transparent hover:border-slate-300' : ''
+                                                !cell.isCurrentMonth ? 'opacity-30 border-transparent hover:border-slate-200' : ''
                                             } ${
                                                 isSelected 
                                                     ? 'bg-red-600 text-white border-red-700 shadow-md scale-105 z-10' 
                                                     : isToday 
                                                         ? 'bg-red-50 border-red-500 text-red-700 shadow-sm font-medium' 
-                                                        : 'bg-slate-50/50 border-slate-300/70 hover:border-red-500/40 hover:bg-white text-google-text'
+                                                        : 'bg-slate-50/50 border-slate-200/70 hover:border-red-500/40 hover:bg-white text-google-text'
                                             }`}
                                         >
                                             <div className="flex justify-between items-center">
@@ -7568,7 +7568,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             return (
                 <div className="space-y-8 max-w-7xl mx-auto tab-fade-in">
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-300 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
+                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
                         <div className="text-center md:text-left">
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
                                 <Icon name="map" className="text-[24px] text-red-600"/>
@@ -7584,21 +7584,21 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-300 shadow-sm overflow-hidden">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[450px] rounded-[24px] z-10 border border-slate-300/80" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
+                    <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[450px] rounded-[24px] z-10 border border-slate-200/80" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
                         <p className="text-[10px] font-medium text-center text-google-textVariant mt-3 flex flex-wrap items-center justify-center gap-1"><Icon name="info" className="text-[13px]" /> Peta interaktif dari Google Maps.</p>
                     </div>
 
                     {infoDesa?.enabled && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-300 shadow-sm">
+                        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm">
                             <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                 <Icon name="border_outer" className="text-[16px] text-red-600" />
                                 Batas Administrasi Desa
                             </h3>
                             <div className="grid grid-cols-2 gap-4">
                                 {['utara', 'selatan', 'timur', 'barat'].map(arah => (
-                                    <div key={arah} className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[20px] border border-slate-300/50">
+                                    <div key={arah} className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-[20px] border border-slate-200/50">
                                         <p className="text-[9px] uppercase tracking-widest font-medium text-slate-500 mb-0.5">{arah}</p>
                                         <p className="font-medium text-[13px] text-google-text">{infoDesa.batas?.[arah] || '-'}</p>
                                     </div>
@@ -7606,7 +7606,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-300 shadow-sm">
+                        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm">
                             <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                 <Icon name="contact_phone" className="text-[16px] text-red-600" />
                                 Kontak Penting Layanan Desa
@@ -7755,8 +7755,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                 
                 return (
                     <div className="space-y-8 tab-fade-in relative z-10 w-full animate-slide-up no-print">
-                        <button onClick={() => { setViewArticleId(null); const url = new URL(window.location.href); url.searchParams.delete('page'); url.searchParams.delete('article'); window.history.replaceState({}, document.title, url.pathname + url.hash); }} className="bg-white border border-slate-300 text-google-text px-4 py-2 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
-                        <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border border-slate-300">
+                        <button onClick={() => { setViewArticleId(null); const url = new URL(window.location.href); url.searchParams.delete('page'); url.searchParams.delete('article'); window.history.replaceState({}, document.title, url.pathname + url.hash); }} className="bg-white border border-slate-200 text-google-text px-4 py-2 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
+                        <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border border-slate-200">
                             {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover"  loading="lazy" decoding="async"/>}
                             <div className="p-6 sm:p-8">
                                 <h2 className="text-2xl sm:text-3xl font-medium text-google-text mb-4 tracking-tight leading-tight">{article.title}</h2>
@@ -7775,13 +7775,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-[24px] p-6 sm:p-8 shadow-sm border border-slate-300">
+                        <div className="bg-white rounded-[24px] p-6 sm:p-8 shadow-sm border border-slate-200">
                             <h3 className="text-xl font-medium text-google-text mb-6">Komentar Warga ({article.comments?.length || 0})</h3>
                             
                             <div className="mb-8 p-5 bg-slate-50 rounded-[16px] border border-slate-200">
                                 <h4 className="text-[13px] font-medium text-google-text mb-3">Tulis Komentar</h4>
-                                <input type="text" value={commentName} onChange={e => setCommentName(e.target.value)} placeholder="Nama Anda (Misal: Budi RT 01)" className="w-full bg-white border border-slate-300 p-3 rounded-[12px] text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all" />
-                                <textarea value={commentText} onChange={e => setCommentText(e.target.value)} placeholder="Tulis pendapat atau pertanyaan Anda..." className="w-full bg-white border border-slate-300 p-3 rounded-[12px] text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all resize-none h-24"></textarea>
+                                <input type="text" value={commentName} onChange={e => setCommentName(e.target.value)} placeholder="Nama Anda (Misal: Budi RT 01)" className="w-full bg-white border border-slate-200 p-3 rounded-[12px] text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all" />
+                                <textarea value={commentText} onChange={e => setCommentText(e.target.value)} placeholder="Tulis pendapat atau pertanyaan Anda..." className="w-full bg-white border border-slate-200 p-3 rounded-[12px] text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all resize-none h-24"></textarea>
                                 {errorMsg && <p className="text-red-500 text-[12px] font-medium mb-3">{errorMsg}</p>}
                                 <button onClick={() => handleComment(article.id)} className="bg-google-blue text-white px-5 py-2.5 rounded-full font-medium text-[13px] hover:bg-google-blueDark transition-colors active:scale-95 flex items-center gap-2"><Icon name="send" /> Kirim Komentar</button>
                             </div>
@@ -7811,7 +7811,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                         {replyToId === c.id && (
                                             <div className="mt-3 ml-6">
-                                                <textarea value={replyText} onChange={e => setReplyText(e.target.value)} placeholder="Tulis balasan..." className="w-full bg-white border border-slate-300 p-3 rounded-[8px] text-[12px] mb-2 outline-none focus:border-google-blue resize-none h-20"></textarea>
+                                                <textarea value={replyText} onChange={e => setReplyText(e.target.value)} placeholder="Tulis balasan..." className="w-full bg-white border border-slate-200 p-3 rounded-[8px] text-[12px] mb-2 outline-none focus:border-google-blue resize-none h-20"></textarea>
                                                 <div className="flex gap-2">
                                                     <button onClick={() => handleReply(article.id, c.id)} className="bg-google-blue text-white px-4 py-2 rounded-full text-[11px] font-medium hover:bg-google-blueDark active:scale-95 transition-all">Kirim Balasan</button>
                                                     <button onClick={() => setReplyToId(null)} className="bg-slate-200 text-slate-700 px-4 py-2 rounded-full text-[11px] font-medium hover:bg-slate-300 active:scale-95 transition-all">Batal</button>
@@ -7882,7 +7882,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             </a>
                         ))}
                     </div>
-                    {blogData.length === 0 && <div className="bg-white rounded-[24px] border border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-300"><Icon name="article" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2">Belum Ada Artikel</h3><p className="text-google-textVariant font-medium text-[13px]">Artikel atau blog yang diterbitkan oleh Admin akan muncul di sini.</p></div>}
+                    {blogData.length === 0 && <div className="bg-white rounded-[24px] border border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-200"><Icon name="article" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2">Belum Ada Artikel</h3><p className="text-google-textVariant font-medium text-[13px]">Artikel atau blog yang diterbitkan oleh Admin akan muncul di sini.</p></div>}
                 </div>
 
                     {isFormOpen && (
@@ -7890,11 +7890,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto hide-scrollbar -slate-300 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Artikel' : 'Tulis Artikel Baru'}</h3>
                                 <div className="space-y-7">
-                                    <div><label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Judul Artikel</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all" placeholder="Tulis judul yang menarik..." /></div>
-                                    <div><label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Isi Konten</label><textarea value={formData.content} onChange={e => {setFormData({...formData, content: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all h-48 resize-y" placeholder="Tulis cerita atau informasi lengkap di sini..."></textarea></div>
+                                    <div><label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Judul Artikel</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all" placeholder="Tulis judul yang menarik..." /></div>
+                                    <div><label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Isi Konten</label><textarea value={formData.content} onChange={e => {setFormData({...formData, content: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all h-48 resize-y" placeholder="Tulis cerita atau informasi lengkap di sini..."></textarea></div>
                                     <div>
                                         <label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Upload Gambar Cover (Opsional)</label>
-                                        <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
+                                        <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                             <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
                                                 {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div> : <Icon name="image" className="text-[20px]" />}
@@ -7904,14 +7904,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <p className="text-[11px] text-google-textVariant truncate">{formData.imageUrl ? "Klik untuk mengganti gambar" : "Maksimal 10MB"}</p>
                                             </div>
                                             {formData.imageUrl && !isUploading && (
-                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300"><img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/></div>
+                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200"><img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/></div>
                                             )}
                                         </div>
                                     </div>
                                     {errorMsg && <div className="bg-red-50 text-red-600 px-4 py-3.5 rounded-[12px] text-[12px] font-medium flex items-center gap-2 border border-red-200"><Icon name="error" /> {errorMsg}</div>}
                                 </div>
                                 <div className="flex gap-3 mt-8 pt-6 border-t border-slate-100">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-1/3 bg-white text-google-text border border-slate-300 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all active:scale-95 shadow-sm">Batal</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); }} className="w-1/3 bg-white text-google-text border border-slate-200 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all active:scale-95 shadow-sm">Batal</button>
                                     <button onClick={handleSave} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Terbitkan</button>
                                 </div>
                             </div>
@@ -7925,7 +7925,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Hapus Artikel?</h3>
                                 <p className="text-[13px] text-slate-500 mb-8 leading-relaxed">Artikel ini dan semua komentar di dalamnya akan dihapus secara permanen. Anda yakin?</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 bg-white border border-slate-300 text-google-text px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 bg-white border border-slate-200 text-google-text px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
                                     <button onClick={() => handleDelete(deleteConfirmId)} className="flex-1 bg-red-500 text-white border border-red-600 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-red-600 active:scale-95 transition-all shadow-md">Hapus Permanen</button>
                                 </div>
                             </div>
@@ -8424,8 +8424,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             {/* Sub Navigation */}
                             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
                                 <div className="flex gap-2">
-                                    <button onClick={() => setActiveSubTab('orders')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'orders' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="receipt_long" /> Pesanan Masuk</button>
-                                    <button onClick={() => setActiveSubTab('products')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'products' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}><Icon name="inventory_2" /> Kelola Produk</button>
+                                    <button onClick={() => setActiveSubTab('orders')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'orders' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}`}><Icon name="receipt_long" /> Pesanan Masuk</button>
+                                    <button onClick={() => setActiveSubTab('products')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'products' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}`}><Icon name="inventory_2" /> Kelola Produk</button>
                                 </div>
                                 {activeSubTab === 'products' && (
                                     <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-google-blue hover:bg-google-blueDark text-white px-4 py-2.5 rounded-full font-medium text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
@@ -8437,17 +8437,17 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="space-y-7">
                                     <div className="flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
-                                            <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white border border-slate-300 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
+                                            <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white border border-slate-200 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
                                         </div>
                                         <div className="flex gap-1.5 overflow-x-auto pb-1.5 sm:pb-0 shrink-0">
                                             {['all', 'pending', 'processed', 'completed', 'cancelled'].map(status => (
-                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-full text-[11px] font-medium border transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-google-blueLight text-google-blueDark border-google-blue/30' : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
+                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-full text-[11px] font-medium border transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-google-blueLight text-google-blueDark border-google-blue/30' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
                                             ))}
                                         </div>
                                     </div>
 
                                     {filteredOrders.length === 0 ? (
-                                        <div className="bg-white border border-slate-200 p-12 text-center rounded-[24px]"><div className="w-16 h-16 bg-slate-50 border border-slate-300 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400"><Icon name="receipt" className="text-[28px]" /></div><p className="text-[13px] font-medium text-slate-800">Tidak ada pesanan ditemukan.</p></div>
+                                        <div className="bg-white border border-slate-200 p-12 text-center rounded-[24px]"><div className="w-16 h-16 bg-slate-50 border border-slate-200 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400"><Icon name="receipt" className="text-[28px]" /></div><p className="text-[13px] font-medium text-slate-800">Tidak ada pesanan ditemukan.</p></div>
                                     ) : (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             {filteredOrders.map(order => (
@@ -8624,33 +8624,33 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div className="space-y-6">
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Tiket / Produk</label>
-                                                <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Tiket Jalan Santai RT Pakem" />
+                                                <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Tiket Jalan Santai RT Pakem" />
                                             </div>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Harga (Rp)</label>
-                                                    <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 5000" />
+                                                    <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 5000" />
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Stok Tiket</label>
-                                                    <input type="number" value={productForm.stock} onChange={e => setProductForm({...productForm, stock: e.target.value})} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 100" />
+                                                    <input type="number" value={productForm.stock} onChange={e => setProductForm({...productForm, stock: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 100" />
                                                 </div>
                                             </div>
                                             
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lokasi Pengambilan</label>
-                                                    <input type="text" value={productForm.pickupLocationName} onChange={e => setProductForm({...productForm, pickupLocationName: e.target.value})} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Rumah Mas Novan / Rumah Pak RT" />
+                                                    <input type="text" value={productForm.pickupLocationName} onChange={e => setProductForm({...productForm, pickupLocationName: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Rumah Mas Novan / Rumah Pak RT" />
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Link Google Maps Lokasi</label>
-                                                    <input type="text" value={productForm.pickupGeoUrl} onChange={e => setProductForm({...productForm, pickupGeoUrl: e.target.value})} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: https://maps.google.com/..." />
+                                                    <input type="text" value={productForm.pickupGeoUrl} onChange={e => setProductForm({...productForm, pickupGeoUrl: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: https://maps.google.com/..." />
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Deskripsi Tiket</label>
-                                                <textarea value={productForm.description} onChange={e => setProductForm({...productForm, description: e.target.value})} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all h-24 resize-none" placeholder="Tuliskan info doorprize, aturan, jadwal, dll..."></textarea>
+                                                <textarea value={productForm.description} onChange={e => setProductForm({...productForm, description: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all h-24 resize-none" placeholder="Tuliskan info doorprize, aturan, jadwal, dll..."></textarea>
                                             </div>
                                             <div className="bg-rose-50 border border-rose-200 rounded-[16px] p-4 space-y-2">
                                                 <label className="text-[10px] font-medium text-rose-500 uppercase tracking-wider flex items-center gap-1.5">
@@ -8668,7 +8668,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             </div>
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Upload Foto Cover (Opsional)</label>
-                                                <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-300'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
+                                                <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                                     <input type="file" accept="image/*" onChange={handleProductImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                                     <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
                                                         {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div> : <Icon name="image" className="text-[20px]" />}
@@ -8678,7 +8678,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <p className="text-[11px] text-google-textVariant truncate">{productForm.imageUrl ? "Klik untuk mengganti" : "Maksimal 10MB"}</p>
                                                     </div>
                                                     {productForm.imageUrl && !isUploading && (
-                                                        <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-300"><img src={productForm.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/></div>
+                                                        <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200"><img src={productForm.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/></div>
                                                     )}
                                                 </div>
                                             </div>
@@ -8690,7 +8690,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         type="checkbox"
                                                         checked={!!productForm.archived}
                                                         onChange={e => setProductForm({...productForm, archived: e.target.checked})}
-                                                        className="w-4.5 h-4.5 text-google-blue rounded border-slate-300 focus:ring-google-blue"
+                                                        className="w-4.5 h-4.5 text-google-blue rounded border-slate-200 focus:ring-google-blue"
                                                     />
                                                     <div className="flex-1">
                                                         <span className="text-[12.5px] font-medium text-slate-800">Arsipkan Event ini</span>
@@ -8720,7 +8720,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             {productError && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {productError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-100">
-                                            <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border border-slate-300 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
+                                            <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border border-slate-200 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
                                             <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
                                         </div>
 
@@ -8774,7 +8774,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             {activeSubTab === 'shop' && (
                                 activeProducts.length === 0 ? (
                                     <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-12 text-center rounded-[24px]">
-                                        <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
+                                        <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
                                             <Icon name="local_activity" className="text-[28px]" />
                                         </div>
                                         <p className="text-[13px] font-medium text-slate-800 dark:text-slate-200">Tidak ada event tiket aktif saat ini.</p>
@@ -8877,7 +8877,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                                 <button
                                                                     onClick={() => handleOpenBuyModal(prod)}
                                                                     disabled={!canBuy}
-                                                                    className={`flex-1 py-3 rounded-full font-medium text-[12.5px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
+                                                                    className={`flex-1 py-3 rounded-full font-medium text-[12.5px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
                                                                 >
                                                                     <Icon name={isDeadlinePassed ? 'timer_off' : 'add_shopping_cart'} className="text-[16px]" />
                                                                     {isDeadlinePassed ? 'Pembelian Ditutup' : prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
@@ -8899,7 +8899,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             {activeSubTab === 'archive' && (
                                 archivedProducts.length === 0 ? (
                                     <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-12 text-center rounded-[24px]">
-                                        <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
+                                        <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center rounded-full mx-auto mb-4 text-slate-400">
                                             <Icon name="archive" className="text-[28px]" />
                                         </div>
                                         <p className="text-[13px] font-medium text-slate-800 dark:text-slate-200">Tidak ada arsip event saat ini.</p>
@@ -8976,10 +8976,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="space-y-7">
                                     <div className="bg-slate-50 border border-slate-200/80 rounded-[20px] p-4 flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
-                                            <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white border border-slate-300 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
+                                            <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white border border-slate-200 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
                                         </div>
                                         {myTicketsSearch && (
-                                            <button onClick={() => setMyTicketsSearch('')} className="bg-white border border-slate-300 text-slate-650 hover:bg-slate-100 px-4 py-3 rounded-full text-[11px] font-medium transition-all">Reset</button>
+                                            <button onClick={() => setMyTicketsSearch('')} className="bg-white border border-slate-200 text-slate-650 hover:bg-slate-100 px-4 py-3 rounded-full text-[11px] font-medium transition-all">Reset</button>
                                         )}
                                     </div>
 
@@ -9104,7 +9104,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                     {/* Search */}
                                     <div className="relative">
-                                        <input type="text" placeholder="Cari nama pembeli..." value={buyersSearch} onChange={e => setBuyersSearch(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40 dark:text-slate-200" />
+                                        <input type="text" placeholder="Cari nama pembeli..." value={buyersSearch} onChange={e => setBuyersSearch(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40 dark:text-slate-200" />
                                         {buyersSearch && (
                                             <button onClick={() => setBuyersSearch('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"><Icon name="close" className="text-[16px]" /></button>
                                         )}
@@ -9167,7 +9167,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto -slate-350 modal-card animate-modal-in">
                                         <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
                                             <h3 className="text-lg font-medium text-slate-800">Formulir Beli Tiket</h3>
-                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-8 h-8 rounded-full border border-slate-300 text-slate-400 hover:bg-slate-100 flex items-center justify-center"><Icon name="close" /></button>
+                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-8 h-8 rounded-full border border-slate-200 text-slate-400 hover:bg-slate-100 flex items-center justify-center"><Icon name="close" /></button>
                                         </div>
                                         <div className="space-y-6">
                                             <div className="bg-google-blueLight border border-google-blue/20 rounded-[16px] p-4 text-[12px] text-google-blueDark">
@@ -9180,11 +9180,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Metode Penerimaan Tiket</label>
                                                 <div className="grid grid-cols-2 gap-3">
-                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'pickup' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'pickup' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'pickup' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'pickup' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
                                                         <Icon name="store" className="text-[20px]" />
                                                         <span>Ambil Sendiri (COD)</span>
                                                     </button>
-                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-300 bg-slate-50 text-slate-600 hover:bg-slate-105'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-105'}`}>
                                                         <Icon name="local_shipping" className="text-[20px]" />
                                                         <span>Antar ke Rumah (COD)</span>
                                                     </button>
@@ -9197,11 +9197,11 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <div className="grid grid-cols-2 gap-3">
                                                         <div>
                                                             <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Hari Pengantaran</label>
-                                                            <input type="text" value={buyForm.deliveryDay} onChange={e => setBuyForm({...buyForm, deliveryDay: e.target.value})} className="w-full bg-white border border-slate-300 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Sabtu / Hari ini" />
+                                                            <input type="text" value={buyForm.deliveryDay} onChange={e => setBuyForm({...buyForm, deliveryDay: e.target.value})} className="w-full bg-white border border-slate-200 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Sabtu / Hari ini" />
                                                         </div>
                                                         <div>
                                                             <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Jam Pengantaran</label>
-                                                            <input type="text" value={buyForm.deliveryTime} onChange={e => setBuyForm({...buyForm, deliveryTime: e.target.value})} className="w-full bg-white border border-slate-300 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Jam 4 Sore / Malam" />
+                                                            <input type="text" value={buyForm.deliveryTime} onChange={e => setBuyForm({...buyForm, deliveryTime: e.target.value})} className="w-full bg-white border border-slate-200 p-3.5 text-[13px] font-medium outline-none rounded-[14px] focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Jam 4 Sore / Malam" />
                                                         </div>
                                                     </div>
                                                     <p className="text-[11px] text-slate-550 leading-normal flex items-start gap-1"><Icon name="info" className="text-[13px] text-google-blue shrink-0 mt-0.5" /> Karena lingkungan RT sama, alamat tidak diperlukan. Cukup atur waktu agar pengurus RT bisa mengantarkan tiket ke rumah Anda.</p>
@@ -9226,13 +9226,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lengkap Pembeli</label>
-                                                <input type="text" value={buyForm.name} onChange={e => setBuyForm({...buyForm, name: e.target.value})} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Budi RT 02" />
+                                                <input type="text" value={buyForm.name} onChange={e => setBuyForm({...buyForm, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Budi RT 02" />
                                             </div>
 
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Jumlah Tiket</label>
-                                                    <div className="flex items-center gap-0 bg-slate-50 border border-slate-300 rounded-[16px] overflow-hidden focus-within:border-google-blue/50 focus-within:shadow-md transition-all">
+                                                    <div className="flex items-center gap-0 bg-slate-50 border border-slate-200 rounded-[16px] overflow-hidden focus-within:border-google-blue/50 focus-within:shadow-md transition-all">
                                                         <button
                                                             type="button"
                                                             onClick={() => setBuyForm(f => ({ ...f, quantity: Math.max(1, (f.quantity || 1) - 1) }))}
@@ -9261,13 +9261,13 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Catatan Tambahan (Opsional)</label>
-                                                <input type="text" value={buyForm.notes} onChange={e => setBuyForm({...buyForm, notes: e.target.value})} className="w-full bg-slate-50 border border-slate-300 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Kaos Ukuran L / Minta diantar sore hari" />
+                                                <input type="text" value={buyForm.notes} onChange={e => setBuyForm({...buyForm, notes: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Kaos Ukuran L / Minta diantar sore hari" />
                                             </div>
 
                                             {wargaError && <div className="bg-red-50 text-red-600 p-4 rounded-[12px] text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {wargaError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-100">
-                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border border-slate-300 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
+                                            <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border border-slate-200 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
                                             <button onClick={handlePlaceOrder} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
                                         </div>
                                     </div>
@@ -9285,7 +9285,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <h3 className="text-xl font-medium text-slate-800 mb-2">{confirmModal.title}</h3>
                                 <p className="text-[12.5px] font-medium text-slate-500 mb-6 leading-relaxed">{confirmModal.message}</p>
                                 <div className="flex gap-3">
-                                    <button onClick={() => setConfirmModal(null)} className="flex-1 bg-white border border-slate-300 text-slate-700 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
+                                    <button onClick={() => setConfirmModal(null)} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
                                     <button onClick={confirmModal.onConfirm} className="flex-1 bg-red-500 hover:bg-red-650 text-white py-3.5 rounded-full font-medium text-[13px] active:scale-95 transition-all shadow-md">{confirmModal.confirmText || 'Hapus'}</button>
                                 </div>
                             </div>
@@ -9297,7 +9297,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             <div className="rounded-[32px] p-6 sm:p-8 max-w-sm w-full -slate-200 dark:-slate-800 modal-card animate-modal-in">
                                 <div className="flex justify-between items-center mb-6 pb-3 border-b border-slate-100 dark:border-slate-800">
                                     <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 flex items-center gap-2"><Icon name="share" className="text-google-blue" /> Bagikan Tiket</h3>
-                                    <button onClick={() => setSharingProduct(null)} className="w-8 h-8 rounded-full border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"><Icon name="close" /></button>
+                                    <button onClick={() => setSharingProduct(null)} className="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"><Icon name="close" /></button>
                                 </div>
 
                                 <div className="mb-6 bg-slate-50 dark:bg-slate-950 p-4 rounded-[20px] border border-slate-200 dark:border-slate-800">
@@ -9319,7 +9319,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                     <button onClick={() => handleShareToSocial('twitter')} className="w-full bg-slate-900 hover:bg-slate-950 text-white font-medium py-3.5 px-4 rounded-full text-[12.5px] transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
                                         <Icon name="close" className="text-[18px]" /> X (Twitter)
                                     </button>
-                                    <button onClick={() => handleShareToSocial('copy')} className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 font-medium py-3.5 px-4 rounded-full text-[12.5px] transition-all flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-700 active:scale-95">
+                                    <button onClick={() => handleShareToSocial('copy')} className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 font-medium py-3.5 px-4 rounded-full text-[12.5px] transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 active:scale-95">
                                         <Icon name="content_copy" className="text-[18px]" /> Salin Tautan
                                     </button>
                                 </div>
@@ -9820,7 +9820,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     const PageHeader = ({ title, subtitle, onBack, children }) => (
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-5 sm:pb-6 mb-4 sm:mb-6">
             <div className="flex items-center gap-3 min-w-0">
-                <button onClick={onBack} className="w-10 h-10 shrink-0 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-95 shadow-sm transition-all text-slate-800 dark:text-white">
+                <button onClick={onBack} className="w-10 h-10 shrink-0 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-95 shadow-sm transition-all text-slate-800 dark:text-white">
                     <Icon name="arrow_back" className="text-[18px]" />
                 </button>
                 <div className="min-w-0">
@@ -10032,7 +10032,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             {productForm.sku && (
                                 <div>
                                     <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Kode SKU Produk (Otomatis)</label>
-                                    <input type="text" value={productForm.sku} readOnly className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[12px] px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 outline-none cursor-not-allowed" />
+                                    <input type="text" value={productForm.sku} readOnly className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 outline-none cursor-not-allowed" />
                                 </div>
                             )}
                             <div>
