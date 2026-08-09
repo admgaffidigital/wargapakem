@@ -6430,7 +6430,13 @@ growthAmount = history[0].saldoAkhirJimpitan || 0;
                 <div className="space-y-8">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 no-print shadow-sm">
                         <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Riwayat Pertemuan Arisan</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Arsip resmi presensi dan sirkulasi dana bulanan.</p></div>
-                        <button onClick={() => window.print()} className="bg-white border border-slate-200 text-google-text px-8 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm"><Icon name="print" className="text-[16px]" /><span>Cetak Arsip</span></button>
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+                            <select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="bg-slate-50 border border-slate-200 text-google-text text-[13px] font-medium rounded-full px-4 py-3.5 outline-none focus:border-google-blue w-full sm:w-auto cursor-pointer">
+                                <option value="Semua">Tampilkan Semua Bulan</option>
+                                {availableMonths.map((m, i) => <option key={i} value={m}>{m}</option>)}
+                            </select>
+                            <button onClick={() => window.print()} className="bg-white border border-slate-200 text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center justify-center gap-2 text-[13px] hover:bg-slate-50 hover:border-slate-400 hover:shadow-md active:scale-95 transition-all duration-300 shadow-sm w-full sm:w-auto"><Icon name="print" className="text-[16px]" /><span>Cetak Laporan</span></button>
+                        </div>
                     </div>
 
                     {history.length > 0 && (
@@ -6454,13 +6460,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 </div>
 )}
 </div>
-<div className="w-full h-[250px] relative mb-6">
+<div className="w-full h-[250px] relative">
 <canvas ref={canvasRef}></canvas>
-</div>
-
-<div className="max-w-xs bg-slate-50 rounded-[20px] px-6 py-4 border border-slate-200 shadow-sm focus-within:border-google-blue focus-within:shadow-md transition-all">
-<label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Filter Periode Arsip</label>
-<select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="w-full bg-transparent border-none text-[14px] outline-none text-google-blueDark font-medium cursor-pointer"><option value="Semua">Tampilkan Semua Bulan</option>{availableMonths.map((month, idx) => <option key={idx} value={month}>{month}</option>)}</select>
 </div>
 </div>
 )}
