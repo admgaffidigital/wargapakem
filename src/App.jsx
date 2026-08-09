@@ -5648,19 +5648,16 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-google-blue to-[#0d47a1] text-white p-8 sm:p-12 rounded-[32px] border border-[#0a367a] shadow-2xl shadow-google-blue/30 relative overflow-hidden no-print group cursor-default">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-white/20 transition-all duration-700"></div>
-                        <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-400/20 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4 group-hover:bg-blue-300/30 transition-all duration-700"></div>
-                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                    <div className="bg-google-blue text-white p-8 sm:p-12 rounded-[32px] border border-google-blueDark shadow-xl relative overflow-hidden no-print group cursor-default">
                         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                             <div>
-                                <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full mb-5 shadow-sm">
+                                <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 rounded-[16px] mb-5 shadow-sm">
                                     <Icon name="account_balance_wallet" className="text-[16px]"/>
                                     <span className="text-[10px] font-bold uppercase tracking-widest text-blue-50">Total Saldo Aktif</span>
                                 </div>
-                                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight drop-shadow-lg">{formatRp(balance)}</h2>
+                                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight drop-shadow-md">{formatRp(balance)}</h2>
                             </div>
-                            <div className="hidden lg:flex items-center justify-center w-24 h-24 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-inner">
+                            <div className="hidden lg:flex items-center justify-center w-24 h-24 bg-white/10 rounded-full border border-white/20 shadow-inner">
                                 <Icon name="savings" className="text-5xl text-white/90 drop-shadow-md" />
                             </div>
                         </div>
