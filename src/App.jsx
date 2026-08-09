@@ -8437,8 +8437,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="space-y-7">
                                     <div className="flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
-                                            <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-12 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
-                                            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" className="text-[18px]" /></div>
+                                            <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-14 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
+                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" className="text-[18px]" /></div>
                                         </div>
                                         <div className="flex gap-1.5 overflow-x-auto pb-1.5 sm:pb-0 shrink-0">
                                             {['all', 'pending', 'processed', 'completed', 'cancelled'].map(status => (
@@ -8977,8 +8977,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <div className="space-y-7">
                                     <div className="bg-slate-50 border border-slate-200/80 rounded-[20px] p-4 flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
-                                            <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-12 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
-                                            <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" className="text-[18px]" /></div>
+                                            <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} className="w-full bg-white border-2 border-slate-300 pl-14 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40" />
+                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" className="text-[18px]" /></div>
                                         </div>
                                         {myTicketsSearch && (
                                             <button onClick={() => setMyTicketsSearch('')} className="bg-white border border-slate-300 text-slate-650 hover:bg-slate-100 px-4 py-3 rounded-full text-[11px] font-medium transition-all">Reset</button>
@@ -9106,8 +9106,8 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                                     {/* Search */}
                                     <div className="relative">
-                                        <input type="text" placeholder="Cari nama pembeli..." value={buyersSearch} onChange={e => setBuyersSearch(e.target.value)} className="w-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 pl-12 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40 dark:text-slate-200" />
-                                        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" className="text-[18px]" /></div>
+                                        <input type="text" placeholder="Cari nama pembeli..." value={buyersSearch} onChange={e => setBuyersSearch(e.target.value)} className="w-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 pl-14 pr-5 py-3 rounded-[16px] text-[13px] font-medium outline-none focus:border-google-blue/40 dark:text-slate-200" />
+                                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><Icon name="search" className="text-[18px]" /></div>
                                         {buyersSearch && (
                                             <button onClick={() => setBuyersSearch('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"><Icon name="close" className="text-[16px]" /></button>
                                         )}
