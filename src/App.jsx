@@ -10357,7 +10357,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         <button onClick={() => setView('cart')} className="px-3 sm:px-5 py-2 sm:py-2.5 bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-full font-medium text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5 active:scale-95">
                             <Icon name="shopping_cart" className="text-[16px] sm:text-[18px]" />
                             <span>Keranjang</span>
-                            {cartItemCount > 0 && <span className="bg-white text-google-green px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-medium">{cartItemCount}</span>}
+                            {cartItemCount > 0 && <span className="bg-white text-google-green min-w-[20px] h-[20px] flex items-center justify-center rounded-full text-[10px] sm:text-[11px] font-bold px-1">{cartItemCount}</span>}
                         </button>
                     </div>
                 </div>
