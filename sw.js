@@ -7,7 +7,7 @@
 //   - Firebase                           → Bypass (real-time data)
 // ============================================================
 
-const CACHE_VERSION = 'v3.8';
+const CACHE_VERSION = 'v3.9';
 const CACHE_STATIC  = `warga-pakem-static-${CACHE_VERSION}`;
 const CACHE_FONTS   = `warga-pakem-fonts-${CACHE_VERSION}`;
 const CACHE_DYNAMIC = `warga-pakem-dynamic-${CACHE_VERSION}`;
