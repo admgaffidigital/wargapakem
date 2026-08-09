@@ -6474,7 +6474,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         </div>
                         <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Laporan Pertemuan &amp; Arisan</h2><p className="text-[11pt]">Siklus Ke-{cycleNumber} {filterMonth !== 'Semua' ? `| Bulan: ${filterMonth}` : ''}</p></div>
                         {displayedHistory.length === 0 ? <p className="text-center italic font-medium">Belum ada arsip pada filter ini.</p> : displayedHistory.map((record, idx) => (
-                            <div key={record.id} style={{ marginBottom: '30px', pageBreakInside: 'avoid' }}>
+                            <div key={record.id} style={{ marginBottom: '30px' }}>
                                 <h3 style={{ fontSize: '12pt', fontWeight: 'bold', borderBottom: '2px solid black', paddingBottom: '4px', marginBottom: '10px' }}>Putaran Ke-{record.round} ({record.periode})</h3>
                                 <table className="print-table" style={{ marginTop: '0', marginBottom: '10px' }}>
                                     <tbody>
