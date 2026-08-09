@@ -163,7 +163,7 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
     * { box-shadow: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .print-table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 20px; font-size: 11pt; page-break-inside: auto; }
     .print-table tr { page-break-inside: avoid; page-break-after: auto; }
-    .print-table th, .print-table td { border: 2px solid black !important; padding: 8px; text-align: left; }
+    .print-table th, .print-table td { border: 2px solid black !important; padding: 8px !important; text-align: left; }
     .print-table th { background-color: #cbd5e1 !important; font-weight: 500; text-align: center; }
     .text-right { text-align: right !important; } .text-center { text-align: center !important; }
     .kop-surat { display: flex; align-items: center; justify-content: space-between; border-bottom: 5px double black; padding-bottom: 15px; margin-bottom: 20px; }
