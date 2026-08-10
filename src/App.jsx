@@ -2140,6 +2140,17 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 <div className="w-full min-h-screen flex flex-col bg-transparent text-slate-800 relative overflow-x-hidden font-sans">
                     <FlagWavingBackground theme={theme} />
 
+                    {/* ANIMASI WAYANG KULIT GLOBAL */}
+                    {/* KIRI - scale-x-[-1] diletakkan di div pembungkus agar tidak bentrok dengan animasi rotate di img */}
+                    <div className="fixed -bottom-4 -left-4 sm:bottom-0 sm:left-10 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
+                        <img src="./wayang_transparent.png" alt="Wayang Kulit Kiri" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" />
+                    </div>
+
+                    {/* KANAN */}
+                    <div className="fixed -bottom-4 -right-4 sm:bottom-0 sm:right-10 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
+                        <img src="./wayang_transparent.png" alt="Wayang Kulit Kanan" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" style={{ animationDelay: '1.5s' }} />
+                    </div>
+
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
                         <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-2xl sm:rounded-3xl border border-red-500/20 dark:border-red-900/40 shadow-lg shadow-red-500/10 relative z-20">
@@ -2172,16 +2183,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* MAIN LANDING CONTENT */}
                     {mode === 'select' ? (
                         <>
-                            {/* ANIMASI WAYANG KULIT KIRI */}
-                            <div className="fixed -bottom-4 -left-4 sm:bottom-0 sm:left-10 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
-                                <img src="./wayang_transparent.png" alt="Wayang Kulit Kiri" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl scale-x-[-1]" loading="lazy" />
-                            </div>
-
-                            {/* ANIMASI WAYANG KULIT KANAN */}
-                            <div className="fixed -bottom-4 -right-4 sm:bottom-0 sm:right-10 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
-                                <img src="./wayang_transparent.png" alt="Wayang Kulit Kanan" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" style={{ animationDelay: '1.5s' }} />
-                            </div>
-
                             <main className="flex-1 w-full max-w-7xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10 relative">
                             {/* HERO BANNER SECTION - menggunakan bannerImage dari Firebase jika ada */}
                             <div className={`relative rounded-3xl sm:rounded-3xl p-6 sm:p-10 text-white border border-red-400/20 shadow-xl shadow-red-500/20 dark:border-red-900/30 overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-end ${!bannerImage ? 'bg-red-600' : 'bg-slate-900'}`}>
