@@ -404,12 +404,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             return (
                 <div className="fixed bottom-0 left-0 right-0 z-[60] p-3 sm:p-4 no-print"
                      style={{ animation: 'slideUpFade 0.4s ease-out', paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}>
-                    <style>{`
-                        @keyframes slideUpFade {
-                            from { opacity: 0; transform: translateY(20px); }
-                            to   { opacity: 1; transform: translateY(0); }
-                        }
-                    `}</style>
                     <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 flex flex-wrap items-center gap-4 max-w-lg mx-auto">
                         {/* Ikon */}
                             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-google-red to-google-redDark flex items-center justify-center shrink-0 shadow-md text-white font-medium text-[18px]">
@@ -820,12 +814,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 }
             };
 
-            const filteredData = (umkmData || []).filter(item => {
+            // B1 FIX: Bungkus dengan useMemo agar tidak dihitung ulang setiap render
+            const filteredData = useMemo(() => (umkmData || []).filter(item => {
                 const matchSearch = (item.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || 
                                     (item.owner || '').toLowerCase().includes(searchQuery.toLowerCase());
                 const matchCategory = selectedCategory === 'Semua' || item.category === selectedCategory;
                 return matchSearch && matchCategory;
-            });
+            }), [umkmData, searchQuery, selectedCategory]);
 
             // Sudah dideklarasikan di atas (dipindah agar hoisting bersih)
 
@@ -888,7 +883,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div key={item.id} className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
                                     <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                         {item.imageUrl ? (
-                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                            <img src={item.imageUrl} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                                         ) : (
                                             <div className="w-full h-full flex flex-col items-center justify-center text-slate-400">
                                                 <Icon name="image" className="text-4xl mb-2" />
@@ -1146,7 +1141,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     
                                     {item.imageUrl && (
                                         <div className="mb-4 rounded-lg overflow-hidden bg-slate-100 h-48 border border-slate-200">
-                                            <img src={item.imageUrl} alt="Lampiran Laporan" className="w-full h-full object-cover" />
+                                            <img src={item.imageUrl} alt="Lampiran Laporan" loading="lazy" className="w-full h-full object-cover" />
                                         </div>
                                     )}
 
@@ -2326,7 +2321,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <div>
                                                     {item.imageUrl ? (
                                                         <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
-                                                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+                                                            <img src={item.imageUrl} alt={item.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                                                         </div>
                                                     ) : (
                                                         <div className="w-full h-40 bg-red-50 dark:bg-red-950/20 flex items-center justify-center shrink-0">
@@ -2424,7 +2419,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                     <div>
                                                         <div className="relative h-40 w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                                                             {item.imageUrl ? (
-                                                                <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                                                <img src={item.imageUrl} alt={item.judul} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                                             ) : (
                                                                 <Icon name="volunteer_activism" className="text-[48px] text-google-green/30" fill="true" />
                                                             )}
@@ -2478,7 +2473,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <div>
                                                     <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                                         {item.imageUrl ? (
-                                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                                            <img src={item.imageUrl} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                                         ) : (
                                                             <div className="w-full h-full bg-green-50 dark:bg-green-950/20 flex items-center justify-center">
                                                                 <Icon name="storefront" className="text-[48px] text-green-500/20" />
@@ -2532,7 +2527,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                     <div>
                                                         <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                                                             {item.imageUrl ? (
-                                                                <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                                                <img src={item.imageUrl} alt={item.judul} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                                             ) : (
                                                                 <Icon name="storefront" className="text-[32px] sm:text-[48px] text-slate-300 dark:text-slate-600" />
                                                             )}
@@ -3580,7 +3575,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {/* Foto */}
                                     <div className="w-full relative shrink-0 border-b border-slate-200 overflow-hidden" style={{height:'200px'}}>
                                         {item.imageUrl
-                                            ? <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt={item.name} onError={(e) => { e.target.style.display='none'; e.target.nextSibling && (e.target.nextSibling.style.display='flex'); }} />
+                                            ? <img src={item.imageUrl} loading="lazy" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt={item.name} onError={(e) => { e.target.style.display='none'; e.target.nextSibling && (e.target.nextSibling.style.display='flex'); }} />
                                             : <div className="w-full h-full bg-slate-50 flex items-center justify-center"><Icon name="inventory_2" className="text-[64px] text-slate-300" /></div>
                                         }
                                         {/* Badge status pinjam */}
@@ -4186,7 +4181,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {/* Foto */}
                                     <div className="w-full bg-slate-100 flex items-center justify-center overflow-hidden shrink-0" style={{minHeight:'160px', maxHeight:'220px'}}>
                                         {item.imageUrl
-                                            ? <img src={item.imageUrl} className="w-full object-contain group-hover:scale-105 transition-transform duration-700" style={{maxHeight:'220px'}} alt={item.judul} />
+                                            ? <img src={item.imageUrl} loading="lazy" className="w-full object-contain group-hover:scale-105 transition-transform duration-700" style={{maxHeight:'220px'}} alt={item.judul} />
                                             : <div className="flex items-center justify-center p-10"><Icon name="volunteer_activism" className="text-[64px] text-slate-300" fill="true" /></div>
                                         }
                                     </div>
@@ -4820,7 +4815,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         {data.map(item => (
                             <div key={item.id} className="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1.5 hover:border-red-500/30 transition-all duration-300 flex flex-col group relative">
                                 <div onClick={() => setSelectedPhoto(item)} className="w-full aspect-[4/3] bg-slate-100 relative shrink-0 border-b border-slate-200 overflow-hidden flex items-center justify-center cursor-zoom-in">
-                                    <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
+                                    <img src={item.imageUrl} loading="lazy" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
                                     <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                         <div className="bg-white/90  p-3 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                             <Icon name="zoom_in" className="text-slate-800 text-[17px]"/>
@@ -6583,7 +6578,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-1 shrink-0 tracking-tight">Revisi Kehadiran</h3><p className="text-[13px] font-medium text-google-textVariant dark:text-slate-300 mb-6 shrink-0 leading-relaxed">Saldo akan disesuaikan otomatis mengikuti perubahan presensi ini.</p>
                                 <div className="overflow-y-auto space-y-6 flex-1 pb-4 pr-1 hide-scrollbar">
                                     {history.find(h => h.id === editingHistoryId)?.absensiDetails.map((member, idx) => (
-                                        <div key={idx} className={`flex flex-col gap-3 border p-5 rounded-3xl shadow-sm ${isNonaktif(member) ? 'border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 opacity-60' : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/40'}`}>
+                                        <div key={member.id || member.name || idx} className={`flex flex-col gap-3 border p-5 rounded-3xl shadow-sm ${isNonaktif(member) ? 'border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 opacity-60' : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/40'}`}>
                                             <p className={`text-[14px] font-medium truncate tracking-tight ${isNonaktif(member) ? 'text-slate-400 line-through' : 'text-google-text dark:text-white'}`}>{member.name}{isNonaktif(member) && <span className="text-[9px] ml-2 bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded font-medium uppercase tracking-wider no-underline">{member.status === 'Meninggal' ? 'Wafat' : 'Nonaktif'}</span>}</p>
                                             {/* FIX BONUS-B: Warga Meninggal tidak punya toggle - bebas dari arisan */}
                                             {isNonaktif(member) ? (
@@ -10297,7 +10292,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <p className="text-[10px] font-medium text-slate-400 uppercase mb-2">Rincian Belanja</p>
                                 <div className="space-y-2">
                                     {order.items.map((it, idx) => (
-                                        <div key={idx} className="flex gap-2 items-start text-xs">
+                                        <div key={it.variantKey || it.product?.id || idx} className="flex gap-2 items-start text-xs">
                                             <div className="w-8 h-8 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center shrink-0 p-0.5">
                                                 {it.product.imageUrl ? <img src={it.product.imageUrl} className="w-full h-full object-cover rounded-md" /> : <Icon name="storefront" className="text-[14px] text-slate-400" />}
                                             </div>
