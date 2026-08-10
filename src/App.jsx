@@ -761,6 +761,8 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const [deleteConfirmId, setDeleteConfirmId] = useState(null);
             const [searchQuery, setSearchQuery] = useState('');
             const [selectedCategory, setSelectedCategory] = useState('Semua');
+            // Deklarasi di atas agar dapat diakses oleh semua handler
+            const [modalConfig, setModalConfig] = useState(null);
 
             const categories = ['Semua', 'Makanan & Minuman', 'Jasa', 'Toko/Warung', 'Pakaian', 'Kesehatan', 'Lainnya'];
 
@@ -826,8 +828,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 return matchSearch && matchCategory;
             });
 
-            // Mock modal config untuk alert sederhana jika tidak ada di props
-            const [modalConfig, setModalConfig] = useState(null);
+            // Sudah dideklarasikan di atas (dipindah agar hoisting bersih)
 
             return (
                 <div className="animate-fade-in pb-24 w-full">
@@ -999,7 +1000,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {deleteConfirmId && (
                         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="max-w-sm w-full rounded-[28px] p-8 text-center -slate-200 dark:-slate-800 modal-card animate-modal-in">
+                            <div className="max-w-sm w-full rounded-[28px] p-8 text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5">
                                     <Icon name="warning" className="text-[40px] text-red-500" />
                                 </div>
@@ -1028,6 +1029,8 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const [isUploading, setIsUploading] = useState(false);
             const [deleteConfirmId, setDeleteConfirmId] = useState(null);
             const [filterStatus, setFilterStatus] = useState('Semua');
+            // Deklarasi di atas agar dapat diakses oleh semua handler
+            const [modalConfig, setModalConfig] = useState(null);
 
             const categories = ['Infrastruktur', 'Keamanan', 'Kebersihan', 'Sosial', 'Lainnya'];
             const statuses = ['Menunggu', 'Diproses', 'Selesai'];
@@ -1062,8 +1065,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             };
 
             const filteredData = (laporanData || []).filter(item => filterStatus === 'Semua' || item.status === filterStatus);
-
-            const [modalConfig, setModalConfig] = useState(null);
 
             const getStatusColor = (status) => {
                 switch(status) {
@@ -1772,7 +1773,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     )}
                     {showLegalModal && (
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[20px] w-full max-w-lg overflow-hidden flex flex-col -slate-200/50 dark:-slate-850 max-h-[85vh] modal-card animate-modal-in">
+                            <div className="rounded-[20px] w-full max-w-lg overflow-hidden flex flex-col border border-slate-200/50 dark:border-slate-850 max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-medium text-slate-800 dark:text-white flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 

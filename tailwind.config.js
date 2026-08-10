@@ -15,7 +15,13 @@ export default {
           yellow: '#f59e0b', yellowDark: '#d97706', yellowLight: '#fef3c7',
           green: '#e11d48', greenDark: '#be123c', greenLight: '#ffe4e6', // Jadikan hijau menjadi Solid Red juga
           surface: '#ffffff', text: '#0f172a', textVariant: '#475569',
-        }
+        },
+        // Custom slate shades digunakan di dark mode — tidak ada di Tailwind v3 default
+        slate: {
+          750: '#293548',
+          850: '#172033',
+          950: '#0b1120',
+        },
       },
       boxShadow: {
         DEFAULT: 'none',
