@@ -760,3 +760,10 @@ textarea {
   transform-origin: bottom center;
   animation: wayang-enter 1.5s ease-out forwards, wayang-sway 6s ease-in-out infinite 1.5s;
 }
+
+.bg-batik {
+  background-image: url('/batik_transparent.png');
+  background-repeat: repeat;
+  background-size: 250px 250px;
+  background-attachment: fixed;
+}

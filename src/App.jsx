@@ -1680,7 +1680,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const activeTabTitle = NavItems.find(i => i.id === activeTab)?.label || identity.name;
 
             return (
-                <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
+                <div className="min-h-screen bg-batik bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
                     <FlagWavingBackground theme={theme} />
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (DASHBOARD) */}
@@ -1698,7 +1698,11 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             </div>
                         )}
 
-                        <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-2xl sm:rounded-3xl border border-red-500/20 shadow-lg shadow-red-500/10 relative z-20">
+                        <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-8 sm:mt-10 rounded-2xl sm:rounded-3xl border border-red-500/20 shadow-lg shadow-red-500/10 relative z-20">
+                            {/* ORNAMEN JOGLO */}
+                            <div className="absolute -top-7 sm:-top-9 left-1/2 -translate-x-1/2 w-32 sm:w-40 pointer-events-none drop-shadow-md">
+                                <img src="./joglo_transparent.png" alt="Ornamen Joglo" className="w-full h-auto opacity-90 dark:invert" />
+                            </div>
                             <div className="max-w-7xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
@@ -2146,7 +2150,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             
             return (
                 <>
-                <div className="w-full min-h-screen flex flex-col bg-transparent text-slate-800 relative overflow-x-hidden font-sans">
+                <div className="w-full min-h-screen flex flex-col bg-batik bg-transparent text-slate-800 relative overflow-x-hidden font-sans">
                     <FlagWavingBackground theme={theme} />
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (LANDING) */}
@@ -2159,7 +2163,11 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
-                        <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-2xl sm:rounded-3xl border border-red-500/20 dark:border-red-900/40 shadow-lg shadow-red-500/10 relative z-20">
+                        <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-8 sm:mt-10 rounded-2xl sm:rounded-3xl border border-red-500/20 dark:border-red-900/40 shadow-lg shadow-red-500/10 relative z-20">
+                            {/* ORNAMEN JOGLO */}
+                            <div className="absolute -top-7 sm:-top-9 left-1/2 -translate-x-1/2 w-32 sm:w-40 pointer-events-none drop-shadow-md">
+                                <img src="./joglo_transparent.png" alt="Ornamen Joglo" className="w-full h-auto opacity-90 dark:invert" />
+                            </div>
                             <div className="max-w-7xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                     <div className="bg-google-red text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-md shadow-red-500/20 border border-red-400/40">
