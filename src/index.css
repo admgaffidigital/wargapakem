@@ -746,3 +746,17 @@ textarea {
     padding-right: 1.25rem !important;
 }
 
+@keyframes wayang-sway {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(4deg) translateY(-8px); }
+}
+
+@keyframes wayang-enter {
+  from { opacity: 0; transform: translateY(100px) rotate(-10deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+
+.animate-wayang {
+  transform-origin: bottom center;
+  animation: wayang-enter 1.5s ease-out forwards, wayang-sway 6s ease-in-out infinite 1.5s;
+}

@@ -2171,7 +2171,13 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {/* MAIN LANDING CONTENT */}
                     {mode === 'select' ? (
-                        <main className="flex-1 w-full max-w-7xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10">
+                        <>
+                            {/* ANIMASI WAYANG KULIT */}
+                            <div className="fixed -bottom-4 -right-4 sm:bottom-0 sm:right-10 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
+                                <img src="./wayang_transparent.png" alt="Wayang Kulit" className="w-56 sm:w-80 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" />
+                            </div>
+
+                            <main className="flex-1 w-full max-w-7xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10 relative">
                             {/* HERO BANNER SECTION - menggunakan bannerImage dari Firebase jika ada */}
                             <div className={`relative rounded-3xl sm:rounded-3xl p-6 sm:p-10 text-white border border-red-400/20 shadow-xl shadow-red-500/20 dark:border-red-900/30 overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-end ${!bannerImage ? 'bg-red-600' : 'bg-slate-900'}`}>
                                 {bannerImage && (
@@ -2736,6 +2742,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
                             </section>
                         </main>
+                        </>
 
                     ) : (
                         /* ADMIN PASSWORD LOGIN FORM */
