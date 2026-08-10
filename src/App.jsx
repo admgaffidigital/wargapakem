@@ -1685,6 +1685,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     <div className="fixed inset-0 z-[-2] bg-batik opacity-50 dark:opacity-30 pointer-events-none no-print"></div>
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (DASHBOARD) */}
+                    <div className="fixed top-[12vh] md:top-[15vh] left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-10 dark:opacity-5 transition-all duration-1000 no-print">
+                        <img src="./gunungan_transparent.png?v=3" alt="Gunungan" className="w-[60vw] md:w-[45vw] lg:w-[35vw] xl:w-[450px] h-auto object-contain dark:invert" />
+                    </div>
                     <div className="fixed bottom-0 -left-4 sm:left-0 md:left-4 xl:left-8 z-0 pointer-events-none opacity-15 dark:opacity-10 transition-all duration-1000 no-print scale-x-[-1]">
                         <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-[45vw] md:w-[35vw] lg:w-[30vw] xl:w-[450px] h-auto max-h-[45vh] md:max-h-[60vh] xl:max-h-[75vh] object-contain object-bottom animate-wayang dark:invert" />
                     </div>
@@ -2159,6 +2162,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     <div className="fixed inset-0 z-[-2] bg-batik opacity-50 dark:opacity-30 pointer-events-none no-print"></div>
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (LANDING) */}
+                    <div className="fixed top-[12vh] md:top-[15vh] left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-10 dark:opacity-5 transition-all duration-1000 no-print">
+                        <img src="./gunungan_transparent.png?v=3" alt="Gunungan" className="w-[60vw] md:w-[45vw] lg:w-[35vw] xl:w-[450px] h-auto object-contain dark:invert" />
+                    </div>
                     <div className="fixed bottom-0 -left-4 sm:left-0 md:left-4 xl:left-8 z-0 pointer-events-none opacity-15 dark:opacity-10 transition-all duration-1000 no-print scale-x-[-1]">
                         <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-[45vw] md:w-[35vw] lg:w-[30vw] xl:w-[450px] h-auto max-h-[45vh] md:max-h-[60vh] xl:max-h-[75vh] object-contain object-bottom animate-wayang dark:invert" />
                     </div>
