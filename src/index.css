@@ -93,6 +93,10 @@
    ============================================================ */
 body, html {
     background-color: transparent;
+    background-image: url('/batik_transparent.png?v=2');
+    background-repeat: repeat;
+    background-size: 180px 180px;
+    background-attachment: fixed;
     color: #0f172a;
     margin: 0;
     padding: 0;
@@ -762,8 +766,9 @@ textarea {
 }
 
 .bg-batik {
-  background-image: url('/batik_transparent.png');
+  background-image: url('/batik_transparent.png?v=2');
   background-repeat: repeat;
   background-size: 250px 250px;
   background-attachment: fixed;
 }
+
