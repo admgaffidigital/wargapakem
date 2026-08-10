@@ -593,7 +593,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             };
 
             return (
-                <div className="space-y-8 max-w-2xl mx-auto">
+                <div className="space-y-8 w-full">
                     {/* Hidden audio for test */}
                     <audio ref={previewAudioRef} preload="auto" style={{ display: 'none' }} />
 
@@ -4219,7 +4219,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 const prog = infaqData.find(i => i.id === selected.id) || selected;
                 const p = pct(prog);
                 return (
-                    <div className="space-y-7 max-w-2xl mx-auto">
+                    <div className="space-y-7 w-full">
                         {/* Back */}
                         <button onClick={() => setView('list')} className="flex flex-wrap items-center gap-2 text-google-textVariant font-medium text-[13px] hover:text-google-text transition-colors active:scale-95">
                             <Icon name="arrow_back" className="text-[17px]" />Kembali ke Daftar
@@ -4578,7 +4578,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             // ---- RENDER: FORM ADMIN ----
             if (view === 'form') return (
-                <div className="space-y-7 max-w-2xl mx-auto">
+                <div className="space-y-7 w-full">
                     <button onClick={() => { setView('list'); setErrorMsg(''); }} className="flex flex-wrap items-center gap-2 text-google-textVariant font-medium text-[13px] hover:text-google-text transition-colors active:scale-95">
                         <Icon name="arrow_back" className="text-[17px]" />Kembali
                     </button>
