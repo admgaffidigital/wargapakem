@@ -1682,6 +1682,15 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             return (
                 <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
                     <FlagWavingBackground theme={theme} />
+
+                    {/* ANIMASI WAYANG KULIT GLOBAL (DASHBOARD) */}
+                    <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
+                        <img src="./wayang_transparent.png" alt="Wayang Kulit Kiri" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" />
+                    </div>
+                    <div className="fixed bottom-0 sm:bottom-4 -right-4 sm:right-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
+                        <img src="./wayang_transparent.png" alt="Wayang Kulit Kanan" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" style={{ animationDelay: '1.5s' }} />
+                    </div>
+
                     <div className="sticky top-0 z-40 no-print w-full">
                         {isOffline && (
                             <div className="bg-google-redDark text-white text-center py-2.5 px-4 text-[12px] font-medium flex flex-wrap items-center justify-center gap-2 w-full shadow-md">
@@ -2140,14 +2149,11 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 <div className="w-full min-h-screen flex flex-col bg-transparent text-slate-800 relative overflow-x-hidden font-sans">
                     <FlagWavingBackground theme={theme} />
 
-                    {/* ANIMASI WAYANG KULIT GLOBAL */}
-                    {/* KIRI - scale-x-[-1] diletakkan di div pembungkus agar tidak bentrok dengan animasi rotate di img */}
-                    <div className="fixed -bottom-4 -left-4 sm:bottom-0 sm:left-10 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
+                    {/* ANIMASI WAYANG KULIT GLOBAL (LANDING) */}
+                    <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
                         <img src="./wayang_transparent.png" alt="Wayang Kulit Kiri" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" />
                     </div>
-
-                    {/* KANAN */}
-                    <div className="fixed -bottom-4 -right-4 sm:bottom-0 sm:right-10 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
+                    <div className="fixed bottom-0 sm:bottom-4 -right-4 sm:right-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
                         <img src="./wayang_transparent.png" alt="Wayang Kulit Kanan" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" style={{ animationDelay: '1.5s' }} />
                     </div>
 
