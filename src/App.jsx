@@ -1703,7 +1703,10 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         )}
 
                         <header className="bg-white/95 text-google-text py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl border border-red-500/20 shadow-lg shadow-red-500/10 relative z-20 overflow-hidden">
-
+                            {/* ORNAMEN JOGLO - watermark di bawah tengah header */}
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 sm:w-32 pointer-events-none opacity-20 dark:opacity-10">
+                                <img src="./joglo_transparent.png?v=2" alt="Ornamen Joglo" className="w-full h-auto" />
+                            </div>
                             <div className="max-w-7xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                     {activeTab === 'menu' ? (
@@ -2172,7 +2175,10 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
                         <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl border border-red-500/20 dark:border-red-900/40 shadow-lg shadow-red-500/10 relative z-20 overflow-hidden">
-
+                            {/* ORNAMEN JOGLO - watermark di bawah tengah header */}
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 sm:w-32 pointer-events-none opacity-20 dark:opacity-10">
+                                <img src="./joglo_transparent.png?v=2" alt="Ornamen Joglo" className="w-full h-auto dark:invert" />
+                            </div>
                             <div className="max-w-7xl mx-auto flex items-center justify-between">
                                 <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                     <div className="bg-google-red text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-md shadow-red-500/20 border border-red-400/40">
@@ -2948,10 +2954,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         ))}
                     </div>
 
-                    {/* ORNAMEN PEMBATAS KERATON */}
-                    <div className="w-full flex justify-center py-6 sm:py-8 opacity-40 dark:opacity-30 dark:invert pointer-events-none no-print">
-                        <img src="./keraton_divider_transparent.png?v=2" alt="Pembatas Keraton" className="w-full max-w-sm h-auto" />
-                    </div>
+
 
 
     
