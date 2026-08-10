@@ -10342,7 +10342,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         
                         <div className="flex items-center justify-between mt-2 mb-3">
                             <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
-                                <Icon name="event" className="text-[13px]" /> {parseLocalDate(order.orderDate).toLocaleString('id-ID', {dateStyle:'short', timeStyle:'short'})}
+                                <Icon name="event" className="text-[13px]" /> {order.orderDate ? new Date(order.orderDate).toLocaleString('id-ID', {dateStyle:'short', timeStyle:'short'}) : '-'}
                             </div>
                         </div>
 
