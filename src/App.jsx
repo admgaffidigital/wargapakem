@@ -232,7 +232,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         if (oldDocSnap.exists()) {
                             const oldData = oldDocSnap.data();
                             if (oldData && Array.isArray(oldData.value) && oldData.value.length > 0) {
-                                console.log(`[Migration] Ditemukan ${oldData.value.length} data blog lama. Memulai migrasi...`);
+
                                 
                                 const migrationPromises = oldData.value.map(article => {
                                     const articleDocRef = doc(db, 'arisan_rt', 'blog_article_' + article.id);
@@ -243,7 +243,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 });
 
                                 Promise.all(migrationPromises).then(() => {
-                                    console.log('[Migration] Migrasi data blog berhasil. Menghapus dokumen blog lama...');
+
                                     setDoc(oldBlogDocRef, { value: [] }, { merge: false })
                                         .catch(err => console.error('[Migration] Gagal mengosongkan blog lama:', err));
                                 }).catch(err => {
@@ -1686,10 +1686,10 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (DASHBOARD) */}
                     <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" loading="lazy" />
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" />
                     </div>
                     <div className="fixed bottom-0 sm:bottom-4 -right-4 sm:right-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" loading="lazy" style={{ animationDelay: '1.5s' }} />
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" style={{ animationDelay: '1.5s' }} />
                     </div>
 
                     <div className="sticky top-0 z-40 no-print w-full">
@@ -1896,7 +1896,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             );
         }
 
-        function FlagWavingBackground({ theme }) {
+        const FlagWavingBackground = React.memo(function FlagWavingBackground({ theme }) {
             const canvasRef = useRef(null);
             const themeRef = useRef(theme);
 
@@ -2023,7 +2023,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     style={{ zIndex: -1, width: '100%', height: '100%' }}
                 />
             );
-        }
+        });
 
         function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, setShowLicenseModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber, infaqData = [], tokoProducts = [] }) {
             const [email, setEmail] = useState('');
@@ -2160,10 +2160,10 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (LANDING) */}
                     <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" loading="lazy" />
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" />
                     </div>
                     <div className="fixed bottom-0 sm:bottom-4 -right-4 sm:right-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" loading="lazy" style={{ animationDelay: '1.5s' }} />
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" style={{ animationDelay: '1.5s' }} />
                     </div>
 
                     {/* FLOATING TOP NAVBAR */}
@@ -2963,7 +2963,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             );
         }
 
-        function WaktuSholatWidget() {
+        const WaktuSholatWidget = React.memo(function WaktuSholatWidget() {
             const DEFAULT_LAT = -7.8246;
             const DEFAULT_LNG = 112.0792;
             const DEFAULT_CITY = 'Gurah, Kediri';
@@ -3347,7 +3347,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     </div>
                 </div>
             );
-        }
+        });
 
         function Dashboard({ members, setMembers, jimpitanBalance, kasRtBalance, currentRound, setCurrentRound, userRole, cycleNumber, setCycleNumber, changeTab, arisanPeriod }) {
             const [showResetModal, setShowResetModal] = useState(false);
