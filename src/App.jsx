@@ -1314,6 +1314,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const [nominalJimpitan, setNominalJimpitan, l11] = useFirebaseSync('nominal_jimpitan', 10000);
             const [identity, setIdentity, l12] = useFirebaseSync('identity', { name: 'Aplikasi Arisan RT', subtitle: 'Wilayah Kependudukan Anda' });
 
+
             useEffect(() => {
                 if (identity?.logoApp) {
                     let link = document.querySelector("link[rel~='icon']");
