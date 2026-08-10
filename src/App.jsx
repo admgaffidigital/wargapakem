@@ -860,13 +860,11 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     </div>
 
                     <div className="mb-6 flex flex-col sm:flex-row gap-4">
-                        <div className="relative flex-1">
-                            <Icon name="search" style={{ fontSize: '20px' }} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                            <input type="text" placeholder="Cari nama usaha atau pemilik..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-10 pr-4 py-3.5 bg-white border border-slate-200 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700" />
+                        <div className="flex-1">
+                            <input type="text" placeholder="Cari nama usaha atau pemilik..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full px-4 py-3.5 bg-white border border-slate-200 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700" />
                         </div>
                         <div className="relative min-w-[200px]">
-                            <Icon name="filter_list" style={{ fontSize: '20px' }} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full pl-10 pr-9 py-3.5 bg-white border border-slate-200 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none cursor-pointer">
+                            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full px-4 pr-9 py-3.5 bg-white border border-slate-200 rounded-[12px] focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none cursor-pointer">
                                 {categories.map(c => <option key={c} value={c}>{c}</option>)}
                             </select>
                             <Icon name="expand_more" style={{ fontSize: '20px' }} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
