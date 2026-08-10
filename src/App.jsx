@@ -1926,22 +1926,27 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     const isDark = themeRef.current === 'dark';
                     ctx.clearRect(0, 0, W, H);
 
-                    // 1. Gambar latar belakang MERAH solid
-                    ctx.fillStyle = isDark ? '#4c0519' : '#dc2626'; // Rose-950 atau Merah standar
-                    ctx.fillRect(0, 0, W, H);
+                    ctx.clearRect(0, 0, W, H);
 
-                    // 2. Gambar area PUTIH menggunakan kurva mulus (Polygon Path)
-                    ctx.fillStyle = isDark ? '#0f172a' : '#f8fafc'; // Slate-900 atau Putih salju
+                    // 1. Gambar area MERAH (Bagian atas bendera)
+                    ctx.fillStyle = isDark ? '#4c0519' : '#dc2626'; // Rose-950 atau Merah standar
                     ctx.beginPath();
                     
-                    // Mulai dari sisi kiri (Tiang)
-                    const startPhase = 0 * Math.PI * 3.5 - time * 1.8;
-                    ctx.moveTo(0, H * 0.5 + Math.sin(startPhase) * 0);
-
-                    // Loop untuk menggambar kurva batas bendera
+                    // Mulai dari pojok kiri atas
+                    ctx.moveTo(0, 0);
+                    
+                    // Gambar batas atas
+                    ctx.lineTo(W, 0);
+                    
+                    // Titik kanan tengah (batas gelombang)
+                    const endAmp = H * 0.08;
+                    const endPhase = Math.PI * 3.5 - time * 1.8;
+                    ctx.lineTo(W, H * 0.5 + Math.sin(endPhase) * endAmp);
+                    
+                    // Loop mundur untuk menggambar kurva batas bawah bendera dari kanan ke kiri
                     // Optimasi: Gunakan resolusi 15px di layar kecil (mobile) agar ringan
                     const step = W < 768 ? 15 : 5;
-                    for (let x = 0; x <= W; x += step) {
+                    for (let x = W; x >= 0; x -= step) {
                         const xProgress = x / W;
                         const amplitude = H * 0.08 * xProgress * xProgress;
                         const wavePhase = xProgress * Math.PI * 3.5 - time * 1.8;
@@ -1949,12 +1954,10 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         ctx.lineTo(x, midY);
                     }
                     
-                    const endAmp = H * 0.08;
-                    const endPhase = Math.PI * 3.5 - time * 1.8;
-                    ctx.lineTo(W, H * 0.5 + Math.sin(endPhase) * endAmp);
-
-                    ctx.lineTo(W, H);
-                    ctx.lineTo(0, H);
+                    // Titik kiri tengah
+                    const startPhase = 0 * Math.PI * 3.5 - time * 1.8;
+                    ctx.lineTo(0, H * 0.5 + Math.sin(startPhase) * 0);
+                    
                     ctx.closePath();
                     ctx.fill();
 
@@ -2016,7 +2019,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             return (
                                 <canvas
                     ref={canvasRef}
-                    className="fixed inset-0 pointer-events-none no-print modal-backdrop animate-backdrop-in"
+                    className="fixed inset-0 pointer-events-none no-print"
                     style={{ zIndex: -1, width: '100%', height: '100%' }}
                 />
             );
