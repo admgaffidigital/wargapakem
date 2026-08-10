@@ -827,7 +827,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const [modalConfig, setModalConfig] = useState(null);
 
             return (
-                <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+                <div className="animate-fade-in pb-24 w-full">
                     {modalConfig && (
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[16px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
@@ -1077,7 +1077,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             };
 
             return (
-                <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+                <div className="animate-fade-in pb-24 w-full">
                     {modalConfig && (
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="rounded-[16px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
@@ -8383,7 +8383,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             }, [orders]);
 
             return (
-                <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+                <div className="animate-fade-in pb-24 w-full">
                     {modalConfig && (
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
                             <div className="rounded-[28px] p-8 max-w-sm w-full text-center modal-card animate-modal-in">
@@ -9579,7 +9579,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
             const processedRequests = safeRequests.filter(r => r.status !== 'pending');
 
             return (
-                <div className="animate-fade-in pb-24 max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-8">
+                <div className="animate-fade-in pb-24 w-full space-y-8">
                     <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <h2 className="text-2xl font-medium text-slate-800 dark:text-slate-100 tracking-tight">Verifikasi Grup WhatsApp</h2>
