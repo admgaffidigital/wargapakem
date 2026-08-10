@@ -2942,8 +2942,10 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         ))}
                     </div>
 
-                    
-                                        
+                    {/* ORNAMEN PEMBATAS KERATON */}
+                    <div className="w-full flex justify-center py-6 sm:py-8 opacity-40 dark:opacity-30 dark:invert pointer-events-none no-print">
+                        <img src="./keraton_divider_transparent.png" alt="Pembatas Keraton" className="w-full max-w-sm h-auto" />
+                    </div>
 
 
     
