@@ -2142,30 +2142,29 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {/* FLOATING TOP NAVBAR */}
                     <div className="sticky top-0 z-50 no-print w-full">
-                        <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3 sm:py-4 px-3 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 dark:border-red-900/40 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20 ">
-                            <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
-                                <div className="bg-google-red text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
-                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" className="w-6 h-6 object-contain" fetchpriority="high"/>
-                                </div>
-                                <div className="flex flex-col justify-center min-w-0">
-                                    <div className="flex items-center gap-1.5 sm:gap-2">
+                        <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3 px-3 sm:py-4 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 dark:border-red-900/40 shadow-[0_10px_30px_rgba(239,68,68,0.04)] relative z-20">
+                            <div className="max-w-7xl mx-auto flex items-center justify-between">
+                                <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
+                                    <div className="bg-google-red text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
+                                        <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" className="w-6 h-6 object-contain" fetchpriority="high"/>
+                                    </div>
+                                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
                                         <h1 className="text-[13px] sm:text-[16px] font-medium truncate leading-tight tracking-tight text-slate-800 dark:text-slate-100">{identity.name || 'Portal RT'}</h1>
                                         <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse shrink-0"></span>
                                     </div>
-                                    <p className="text-[9px] sm:text-[10px] font-medium text-slate-500 dark:text-slate-400 truncate uppercase leading-none mt-0.5">{identity.subtitle || 'Sistem Informasi Warga'}</p>
                                 </div>
-                            </div>
-                            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
-                                <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm" title="Toggle Tema">
-                                    <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" />
-                                </button>
-                                <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-350 dark:border-slate-700 shadow-sm" title="Otorisasi Admin">
-                                    <Icon name="lock" className="text-[15px] sm:text-[16px]" />
-                                </button>
-                                <button onClick={() => onLogin('warga')} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-google-red hover:bg-google-redDark text-white rounded-full text-[10.5px] sm:text-[12px] font-medium flex items-center gap-1.5 shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40 transition-all duration-300 active:scale-95">
-                                    <Icon name="person" className="text-[14px] sm:text-[16px]" />
-                                    <span>Masuk Warga</span>
-                                </button>
+                                <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-1.5">
+                                    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm" title="Toggle Tema">
+                                        <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" />
+                                    </button>
+                                    <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm" title="Otorisasi Admin">
+                                        <Icon name="lock" className="text-[15px] sm:text-[16px]" />
+                                    </button>
+                                    <button onClick={() => onLogin('warga')} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-google-red hover:bg-google-redDark text-white rounded-full text-[10.5px] sm:text-[12px] font-medium flex items-center gap-1.5 shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40 transition-all duration-300 active:scale-95">
+                                        <Icon name="person" className="text-[14px] sm:text-[16px]" />
+                                        <span>Masuk Warga</span>
+                                    </button>
+                                </div>
                             </div>
                         </header>
                     </div>
