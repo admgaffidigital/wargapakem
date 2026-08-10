@@ -412,8 +412,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     `}</style>
                     <div className="bg-white dark:bg-slate-900 rounded-[24px] shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 flex flex-wrap items-center gap-4 max-w-lg mx-auto">
                         {/* Ikon */}
-                        <div className="w-14 h-14 rounded-[16px] shrink-0 flex items-center justify-center text-white font-medium text-[18px] shadow-md"
-                             style={{ background: 'linear-gradient(135deg,#e11d48,#be123c)' }}>
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-google-red to-google-redDark flex items-center justify-center shrink-0 shadow-md text-white font-medium text-[18px]">
                             RT
                         </div>
                         {/* Teks */}
@@ -1233,7 +1232,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {deleteConfirmId && (
                         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="max-w-sm w-full rounded-[28px] p-8 text-center -slate-200 dark:-slate-800 modal-card animate-modal-in">
+                            <div className="max-w-sm w-full rounded-[28px] p-8 text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5"><Icon name="warning" className="text-[40px] text-red-500" /></div>
                                 <h3 className="text-xl font-medium text-slate-800 dark:text-white mb-2">Hapus Laporan?</h3>
                                 <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Laporan yang dihapus tidak dapat dikembalikan. Yakin?</p>
@@ -1497,7 +1496,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             const SpinnerComponent = (
                 <div className="fixed inset-0 z-[999] flex justify-center items-center modal-backdrop animate-backdrop-in">
-                    <div className="p-8 sm:p-10 rounded-[32px] -slate-300 flex flex-col items-center max-w-[300px] max-w-full w-[90%] relative overflow-hidden modal-card animate-modal-in">
+                    <div className="p-8 sm:p-10 rounded-[32px] border border-slate-200 dark:border-slate-800 flex flex-col items-center max-w-[300px] max-w-full w-[90%] relative overflow-hidden modal-card animate-modal-in">
                         <div className="flex h-2 w-full absolute top-0 left-0">
                             <div className="w-1/4 bg-google-blue"></div>
                             <div className="w-1/4 bg-google-red"></div>
@@ -1554,7 +1553,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
                         {showLegalModal && (
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[32px] w-full max-w-lg overflow-hidden flex flex-col -slate-200/50 max-h-[80vh] modal-card animate-modal-in">
+                            <div className="rounded-[32px] w-full max-w-lg overflow-hidden flex flex-col border border-slate-200/50 max-h-[80vh] modal-card animate-modal-in">
                                 <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-medium text-slate-800 flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
@@ -1575,7 +1574,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     )}
                     {showLicenseModal && (
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[20px] w-full max-w-lg overflow-hidden -red-500/30 dark:-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
+                            <div className="rounded-[20px] w-full max-w-lg overflow-hidden border border-red-500/30 dark:border-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-red-50 dark:bg-red-950/20 px-6 py-5 border-b border-red-500/20 dark:border-red-900/30 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-medium text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
                                     <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
@@ -1711,7 +1710,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         </header>
                     </div>
 
-                    <main className="flex-1 w-full pt-5 md:pt-8 print:pb-0 print:pt-0" style={{paddingBottom: '10rem'}}>
+                    <main className="flex-1 w-full pt-5 md:pt-8 pb-40 print:pb-0 print:pt-0">
                         <div key={activeTab} className="max-w-7xl mx-auto px-4 sm:px-6 tab-fade-in pb-10">
                             {renderContent()}
                         </div>
@@ -1746,7 +1745,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     <PWAInstallBanner />
                     {showLicenseModal && (
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[20px] w-full max-w-lg overflow-hidden -red-500/30 dark:-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
+                            <div className="rounded-[20px] w-full max-w-lg overflow-hidden border border-red-500/30 dark:border-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-red-50 dark:bg-red-950/20 px-6 py-5 border-b border-red-500/20 dark:border-red-900/30 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-medium text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
                                     <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
@@ -1821,7 +1820,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const [tab, setTab] = useState('android');
             return (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                    <div className="rounded-[32px] w-full max-w-xl flex flex-col max-h-[90vh] -slate-300 dark:-slate-700 modal-card animate-modal-in" style={{ animation: 'slideUp 0.3s ease-out' }}>
+                    <div className="rounded-[32px] w-full max-w-xl flex flex-col max-h-[90vh] border border-slate-200 dark:border-slate-800 dark:border-slate-700 modal-card animate-modal-in" style={{ animation: 'slideUp 0.3s ease-out' }}>
                         <div className="p-6 sm:p-8 md:p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-950 rounded-t-[30px]">
                             <h3 className="text-xl font-medium text-google-text dark:text-white flex flex-wrap items-center gap-2"><Icon name="install_mobile" className="text-google-blue" /> Panduan Install Aplikasi</h3>
                             <button onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-700 hover:text-google-text dark:hover:text-white transition-all active:scale-95"><Icon name="close" /></button>
@@ -2797,7 +2796,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 {/* MODAL DETAIL ARTIKEL / INFORMASI */}
                 {selectedArticle && (
                     <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop animate-backdrop-in" onClick={(e) => { if (e.target === e.currentTarget) setSelectedArticle(null); }}>
-                        <div className="w-full sm:max-w-2xl sm:rounded-[32px] rounded-t-[32px] -slate-200 dark:-slate-700 flex flex-col max-h-[92vh] sm:max-h-[85vh] overflow-hidden modal-card animate-modal-in">
+                        <div className="w-full sm:max-w-2xl sm:rounded-[32px] rounded-t-[32px] border border-slate-200 dark:border-slate-700 flex flex-col max-h-[92vh] sm:max-h-[85vh] overflow-hidden modal-card animate-modal-in">
                             {/* Header modal */}
                             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700 shrink-0">
                                 <div className="flex items-center gap-2">
@@ -3403,7 +3402,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {showResetModal && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-left -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-left border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-blueLight w-16 h-16 rounded-full flex items-center justify-center border border-google-blue/30"><Icon name="refresh" className="text-[32px] text-google-blue" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Mulai Siklus Baru?</h3>
                                 <div className="text-[13px] font-medium text-google-textVariant mb-8 space-y-5 bg-slate-50 p-6 sm:p-8 md:p-8 rounded-[24px] border border-slate-200"><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Saldo Kas & Tunggakan <b className="text-google-text">TIDAK DIRESET</b>.</span></p><p className="flex flex-wrap gap-2.5 items-start"><Icon name="check_circle" className="text-[16px] text-google-green shrink-0 mt-0.5"/><span className="leading-relaxed">Status menang warga akan dibersihkan ke awal.</span></p></div>
@@ -3606,7 +3605,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* Modal Form Tambah/Edit */}
                     {isFormOpen && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md -slate-300 my-4 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md border border-slate-200 dark:border-slate-800 my-4 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Inventaris' : 'Tambah Inventaris'}</h3>
                                 <div className="space-y-7">
 
@@ -3664,7 +3663,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* Modal konfirmasi hapus */}
                     {deleteConfirmId && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Barang?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Barang ini akan dihapus permanen dari daftar inventaris RT.</p>
@@ -3962,7 +3961,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* Modal konfirmasi kembali */}
                     {konfirmReturnId && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 md:p-6 modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 {(() => { const p = pinjamData.find(x => x.id === konfirmReturnId); return p ? (<>
                                     <div className="mb-5 bg-google-greenLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-green/30"><Icon name="assignment_return" className="text-[40px] text-google-green" /></div>
                                     <h3 className="text-xl font-medium text-google-text mb-2">Konfirmasi Pengembalian</h3>
@@ -3980,7 +3979,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* Modal konfirmasi tolak */}
                     {konfirmRejectId && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 md:p-6 modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-red/30"><Icon name="cancel" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-xl font-medium text-google-text mb-2">Tolak Pengajuan?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-6">Pengajuan pinjam ini akan dihapus dari daftar.</p>
@@ -4200,7 +4199,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* Modal hapus */}
                     {deleteConfirmId && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 md:p-6 modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-red/30">
                                     <Icon name="delete" className="text-[40px] text-google-red" />
                                 </div>
@@ -4465,7 +4464,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         {/* Modal pembayaran */}
                         {showPayModal && (
                             <div className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-8 md:p-6 modal-backdrop animate-backdrop-in">
-                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 md:p-6 w-full max-w-sm -slate-300 my-4 modal-card animate-modal-in">
+                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 md:p-6 w-full max-w-sm border border-slate-200 dark:border-slate-800 my-4 modal-card animate-modal-in">
                                     <div className="flex items-center justify-between mb-5">
                                         <h3 className="text-[16px] font-medium text-google-text">Cara Pembayaran</h3>
                                         <button onClick={() => setShowPayModal(false)} className="w-9 h-9 bg-slate-50 border border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-100 active:scale-95 transition-all">
@@ -4833,7 +4832,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* Lightbox / Detail Viewer Modal */}
                     {selectedPhoto && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[32px] w-full max-w-2xl flex flex-col max-h-[90vh] -slate-300 overflow-hidden modal-card animate-modal-in" style={{ animation: 'slideUp 0.3s ease-out' }}>
+                            <div className="rounded-[32px] w-full max-w-2xl flex flex-col max-h-[90vh] border border-slate-200 dark:border-slate-800 overflow-hidden modal-card animate-modal-in" style={{ animation: 'slideUp 0.3s ease-out' }}>
                                 <div className="p-6 sm:p-8 md:p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50 shrink-0">
                                     <div className="flex flex-wrap items-center gap-2">
                                         <Icon name="image" className="text-red-600" />
@@ -4867,7 +4866,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* Upload / Edit Form Modal */}
                     {isFormOpen && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md -slate-300 flex flex-col modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md border border-slate-200 dark:border-slate-800 flex flex-col modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">
                                     {editingId ? 'Edit Dokumentasi' : 'Unggah Dokumentasi'}
                                 </h3>
@@ -4916,7 +4915,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     
                     {deleteConfirmId && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Foto?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Foto ini akan dihapus dari galeri warga.</p>
@@ -4993,7 +4992,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {isFormOpen && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-<div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg -slate-300 flex flex-col max-h-[90vh] modal-card animate-modal-in">
+<div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg border border-slate-200 dark:border-slate-800 flex flex-col max-h-[90vh] modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 shrink-0 tracking-tight">{editingId ? 'Edit Info Kegiatan' : 'Buat Info Baru'}</h3>
                                 <div className="space-y-7 overflow-y-auto pr-2 pb-2 hide-scrollbar">
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan judul..." /></div>
@@ -5033,7 +5032,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     
                     {deleteConfirmId && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Informasi?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Konten ini akan dihapus secara permanen dari layar warga.</p>
@@ -5206,7 +5205,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {isFormOpen && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-md border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}</h3>
                                 <div className="space-y-7">
                                     <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama Lengkap</label><input type="text" value={formData.name} onChange={e => {setFormData({...formData, name: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-[16px] transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Masukkan nama..." /></div>
@@ -5232,7 +5231,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     )}
                     {deleteConfirmId && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-red/30"><Icon name="person_remove" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Warga?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Data warga dan riwayatnya akan dihapus permanen.</p>
@@ -5246,7 +5245,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     
                     {previewMember && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in" onClick={() => setPreviewMember(null)}>
-                            <div className="max-h-[90vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center -slate-300 relative modal-card animate-modal-in" onClick={e => e.stopPropagation()}>
+                            <div className="max-h-[90vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 relative modal-card animate-modal-in" onClick={e => e.stopPropagation()}>
                                 <button onClick={() => setPreviewMember(null)} className="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-500 active:scale-95 transition-all"><Icon name="close" className="text-[17px]" /></button>
                                 
                                 <div className="mb-4">
@@ -5436,7 +5435,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                         {isTransferModalOpen && (
                             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                                <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                     <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
                                     <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Setor ke Kas Warga</h3>
                                     <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Mutasi dana fisik dari Iuran ke Saldo Buku Kas Utama.</p>
@@ -5506,7 +5505,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* FIX: Modal konfirmasi hapus agenda */}
                     {deleteConfirmAgendaId && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-5 bg-google-redLight w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-red/30"><Icon name="delete" className="text-[40px] text-google-red" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Agenda?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Agenda iuran beserta seluruh data pembayaran warga akan dihapus permanen.</p>
@@ -5732,7 +5731,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {isModalOpen && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className={`mb-6 w-20 h-20 rounded-full flex items-center justify-center border ${formData.type === 'Pemasukan' ? 'bg-google-greenLight text-google-green border-google-green/30' : 'bg-google-redLight text-google-red border-google-red/30'}`}><Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[36px]" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit' : 'Catat'} {formData.type}</h3>
                                 <div className="space-y-7">
@@ -5778,7 +5777,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     {isTransferModalOpen && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Pencairan Jimpitan</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tarik dana dari kas Jimpitan Fisik ke Kas Utama RT.</p>
@@ -6113,7 +6112,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 
                                 {showHolidayModal && (
                                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                                        <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                                        <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                             <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border border-google-yellow/30"><Icon name="event_busy" className="text-[48px] text-google-yellowDark" /></div>
                                             <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Liburkan Bulan Ini?</h3>
                                             <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Periode <b className="text-google-text">{formatBulanTahun(arisanPeriod)}</b> akan ditandai sebagai bulan libur.</p>
@@ -6152,7 +6151,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 
                                 {showCashierModal && scannedMembers.length > 0 && (
                                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 no-print modal-backdrop animate-backdrop-in">
-                                        <div className="rounded-[32px] p-6 w-full max-w-sm -slate-300 max-h-[95vh] flex flex-col modal-card animate-modal-in">
+                                        <div className="rounded-[32px] p-6 w-full max-w-sm border border-slate-200 dark:border-slate-800 max-h-[95vh] flex flex-col modal-card animate-modal-in">
                                             <h3 className="text-xl font-medium text-google-text mb-2 text-center">Kasir Pembayaran</h3>
                                             <div className="text-center mb-4">
                                                 <p className="text-[13px] text-google-textVariant font-medium">{scannedMembers.length} Warga (Gandengan)</p>
@@ -6540,7 +6539,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     {editingHistoryId && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left max-h-[90vh] flex flex-col -slate-300 dark:-slate-700 modal-card animate-modal-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-left max-h-[90vh] flex flex-col border border-slate-200 dark:border-slate-800 dark:border-slate-700 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-1 shrink-0 tracking-tight">Revisi Kehadiran</h3><p className="text-[13px] font-medium text-google-textVariant dark:text-slate-300 mb-6 shrink-0 leading-relaxed">Saldo akan disesuaikan otomatis mengikuti perubahan presensi ini.</p>
                                 <div className="overflow-y-auto space-y-6 flex-1 pb-4 pr-1 hide-scrollbar">
                                     {history.find(h => h.id === editingHistoryId)?.absensiDetails.map((member, idx) => (
@@ -7181,7 +7180,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     {modalConfig && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="mb-6 bg-google-greenLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border border-google-green/30"><Icon name="check_circle" className="text-[48px] text-google-green" fill="true" /></div>
                                 <p className="text-google-text text-[17px] font-medium mb-8 leading-snug tracking-tight">{modalConfig.message}</p>
                                 <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue text-white px-8 py-4 rounded-full font-medium text-[13px] border border-google-blueDark hover:bg-google-blueDark active:scale-95 transition-all duration-300 shadow-md">Tutup Pesan</button>
@@ -7190,7 +7189,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     )}
                     {confirmResetModal && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-left -slate-300 modal-card animate-modal-in">
+                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-[32px] p-8 w-full max-w-sm text-left border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <h3 className="text-3xl font-medium text-google-red mb-2 tracking-tight">Reset Total?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tindakan ini permanen dan tidak bisa dibatalkan. Ketik kata <b className="text-google-red">RESET</b> di bawah ini.</p>
                                 <div className="bg-slate-50 rounded-[16px] px-5 py-4 border border-google-red/40 focus-within:border-google-red focus-within:bg-white focus-within:shadow-md transition-all mb-8"><input type="text" value={resetPromptInput} onChange={e => setResetPromptInput(e.target.value)} className="w-full bg-transparent border-none text-[18px] outline-none p-0 text-google-redDark uppercase tracking-widest font-medium placeholder:text-google-red/30" placeholder="RESET" /></div>
@@ -7894,7 +7893,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     {isFormOpen && (
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto hide-scrollbar -slate-300 modal-card animate-modal-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto hide-scrollbar border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit Artikel' : 'Tulis Artikel Baru'}</h3>
                                 <div className="space-y-7">
                                     <div><label className="text-[11px] font-medium text-slate-500 uppercase tracking-widest block mb-2 ml-1">Judul Artikel</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-[16px] focus:bg-white focus:border-google-blue focus:shadow-md transition-all" placeholder="Tulis judul yang menarik..." /></div>
@@ -7927,7 +7926,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     {deleteConfirmId && (
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-100 text-red-500"><Icon name="delete_forever" className="text-[48px]" fill="true" /></div>
                                 <h3 className="text-2xl font-medium text-google-text mb-2">Hapus Artikel?</h3>
                                 <p className="text-[13px] text-slate-500 mb-8 leading-relaxed">Artikel ini dan semua komentar di dalamnya akan dihapus secara permanen. Anda yakin?</p>
@@ -8626,7 +8625,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             {/* Modal Kelola Produk */}
                             {isProductModalOpen && (
                                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                                    <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto -slate-350 modal-card animate-modal-in">
+                                    <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                         <h3 className="text-xl font-medium text-slate-800 mb-6 tracking-tight">{editingProduct ? 'Edit Produk Tiket' : 'Tambah Produk Tiket Baru'}</h3>
                                         <div className="space-y-6">
                                             <div>
@@ -9171,7 +9170,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             {/* Modal Beli Tiket (Warga) */}
                             {isBuyModalOpen && selectedProduct && (
                                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                                    <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto -slate-350 modal-card animate-modal-in">
+                                    <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                         <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
                                             <h3 className="text-lg font-medium text-slate-800">Formulir Beli Tiket</h3>
                                             <button onClick={() => setIsBuyModalOpen(false)} className="w-8 h-8 rounded-full border border-slate-200 text-slate-400 hover:bg-slate-100 flex items-center justify-center"><Icon name="close" /></button>
@@ -9285,7 +9284,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     {confirmModal && (
                         <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center -slate-300 modal-card animate-modal-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-100 text-red-500">
                                     <Icon name="delete_forever" className="text-[40px]" fill="true" />
                                 </div>
@@ -9301,7 +9300,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                     {sharingProduct && (
                         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
-                            <div className="rounded-[32px] p-6 sm:p-8 max-w-sm w-full -slate-200 dark:-slate-800 modal-card animate-modal-in">
+                            <div className="rounded-[32px] p-6 sm:p-8 max-w-sm w-full border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="flex justify-between items-center mb-6 pb-3 border-b border-slate-100 dark:border-slate-800">
                                     <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 flex items-center gap-2"><Icon name="share" className="text-google-blue" /> Bagikan Tiket</h3>
                                     <button onClick={() => setSharingProduct(null)} className="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"><Icon name="close" /></button>
