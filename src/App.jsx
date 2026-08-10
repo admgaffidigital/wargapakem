@@ -2172,9 +2172,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     {/* MAIN LANDING CONTENT */}
                     {mode === 'select' ? (
                         <>
-                            {/* ANIMASI WAYANG KULIT */}
+                            {/* ANIMASI WAYANG KULIT KIRI */}
+                            <div className="fixed -bottom-4 -left-4 sm:bottom-0 sm:left-10 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
+                                <img src="./wayang_transparent.png" alt="Wayang Kulit Kiri" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl scale-x-[-1]" loading="lazy" />
+                            </div>
+
+                            {/* ANIMASI WAYANG KULIT KANAN */}
                             <div className="fixed -bottom-4 -right-4 sm:bottom-0 sm:right-10 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
-                                <img src="./wayang_transparent.png" alt="Wayang Kulit" className="w-56 sm:w-80 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" />
+                                <img src="./wayang_transparent.png" alt="Wayang Kulit Kanan" className="w-64 sm:w-96 h-auto animate-wayang dark:invert drop-shadow-2xl" loading="lazy" style={{ animationDelay: '1.5s' }} />
                             </div>
 
                             <main className="flex-1 w-full max-w-7xl mx-auto px-4 pt-6 pb-12 space-y-10 z-10 relative">
