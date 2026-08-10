@@ -888,7 +888,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <div key={item.id} className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
                                     <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                         {item.imageUrl ? (
-                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"  loading="lazy" decoding="async"/>
+                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                                         ) : (
                                             <div className="w-full h-full flex flex-col items-center justify-center text-slate-400">
                                                 <Icon name="image" className="text-4xl mb-2" />
@@ -980,7 +980,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-green-500" /><span className="font-medium">Memproses gambar...</span></div>
                                             ) : formData.imageUrl ? (
                                                 <div className="relative inline-block">
-                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm"  loading="lazy" decoding="async"/>
+                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm" />
                                                     <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-[6px] font-medium">Ganti</div>
                                                 </div>
                                             ) : (
@@ -1146,7 +1146,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     
                                     {item.imageUrl && (
                                         <div className="mb-4 rounded-[10px] overflow-hidden bg-slate-100 h-48 border border-slate-200">
-                                            <img src={item.imageUrl} alt="Lampiran Laporan" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
+                                            <img src={item.imageUrl} alt="Lampiran Laporan" className="w-full h-full object-cover" />
                                         </div>
                                     )}
 
@@ -1213,7 +1213,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-blue-500" /><span className="font-medium">Memproses gambar...</span></div>
                                             ) : formData.imageUrl ? (
                                                 <div className="relative inline-block">
-                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm"  loading="lazy" decoding="async"/>
+                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-[10px] shadow-sm" />
                                                     <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-[6px] font-medium">Ganti</div>
                                                 </div>
                                             ) : (
@@ -2144,7 +2144,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         <header className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 py-3 sm:py-4 px-3 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-2 sm:mt-4 rounded-[16px] sm:rounded-[28px] border border-red-500/20 dark:border-red-900/40 shadow-[0_10px_30px_rgba(239,68,68,0.04)] flex items-center justify-between relative z-20 ">
                             <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                                 <div className="bg-google-red text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full shrink-0 flex justify-center items-center shadow-[0_4px_12px_rgba(239,68,68,0.2)] border border-red-400/40">
-                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" className="w-6 h-6 object-contain" fetchpriority="high" decoding="async"/>
+                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" className="w-6 h-6 object-contain" fetchpriority="high"/>
                                 </div>
                                 <div className="flex flex-col justify-center min-w-0">
                                     <div className="flex items-center gap-1.5 sm:gap-2">
@@ -2176,7 +2176,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[280px] sm:min-h-[360px] flex items-end ${!bannerImage ? 'bg-red-600' : 'bg-slate-900'}`}>
                                 {bannerImage && (
                                     <>
-                                        <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" fetchpriority="high" decoding="async"/>
+                                        <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" fetchpriority="high"/>
                                         <div className="absolute inset-0 bg-slate-950/65 z-0"></div>
                                     </>
                                 )}
@@ -2291,7 +2291,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <div>
                                                     {item.imageUrl ? (
                                                         <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
-                                                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"/>
+                                                            <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                                                         </div>
                                                     ) : (
                                                         <div className="w-full h-40 bg-red-50 dark:bg-red-950/20 flex items-center justify-center shrink-0">
@@ -2339,7 +2339,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             <article key={article.id} className="h-full bg-white dark:bg-slate-900 rounded-[16px] sm:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col hover:border-slate-200 dark:hover:border-slate-600 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group" onClick={() => setSelectedArticle({ ...article, type: 'blog' })}>
                                                 {article.imageUrl ? (
                                                     <div className="w-full h-40 bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
-                                                        <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
+                                                        <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                                     </div>
                                                 ) : (
                                                     <div className="w-full h-40 bg-blue-50 dark:bg-blue-950/20 flex items-center justify-center shrink-0">
@@ -2389,7 +2389,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                     <div>
                                                         <div className="relative h-40 w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                                                             {item.imageUrl ? (
-                                                                <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+                                                                <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                                             ) : (
                                                                 <Icon name="volunteer_activism" className="text-[48px] text-google-green/30" fill="true" />
                                                             )}
@@ -2443,7 +2443,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <div>
                                                     <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                                                         {item.imageUrl ? (
-                                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+                                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                                         ) : (
                                                             <div className="w-full h-full bg-green-50 dark:bg-green-950/20 flex items-center justify-center">
                                                                 <Icon name="storefront" className="text-[48px] text-green-500/20" />
@@ -2497,7 +2497,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                     <div>
                                                         <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                                                             {item.imageUrl ? (
-                                                                <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                                                                <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                                             ) : (
                                                                 <Icon name="storefront" className="text-[32px] sm:text-[48px] text-slate-300 dark:text-slate-600" />
                                                             )}
@@ -2647,7 +2647,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         {/* Peta Google Maps (Optimized Dynamic Load) */}
                                         <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200 dark:border-slate-800 p-4 shadow-sm overflow-hidden flex flex-col justify-between min-h-[380px]">
                                             {showMap ? (
-                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[320px] rounded-[16px] border border-slate-200 dark:border-slate-800" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[320px] rounded-[16px] border border-slate-200 dark:border-slate-800" style={{border:0}} allowFullScreen="" referrerPolicy="strict-origin-when-cross-origin"></iframe>
                                             ) : (
                                                 <div className="w-full h-[320px] rounded-[16px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center p-6 relative overflow-hidden">
                                                     <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" style={{
@@ -2720,7 +2720,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-700 p-6 sm:p-8">
                                         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-items-center">
                                             {sponsorsData.sponsors.map((s, i) => (
-                                                <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[150px] object-contain opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110 grayscale hover:grayscale-0" title={s.name}  loading="lazy" decoding="async"/>
+                                                <img key={i} src={s.url} alt={s.name} className="h-9 sm:h-11 md:h-14 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[150px] object-contain opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110 grayscale hover:grayscale-0" title={s.name} />
                                             ))}
                                         </div>
                                     </div>
@@ -2743,7 +2743,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             <div className="relative overflow-hidden bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-sm w-full max-w-sm text-center">
                                 <div className="h-1.5 w-full absolute top-0 left-0 bg-red-600"></div>
                                 <div className="mx-auto mt-4 mb-5 bg-red-50/50 w-24 h-24 rounded-full flex items-center justify-center border border-red-500/20 shadow-inner overflow-hidden">
-                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"}  loading="lazy" decoding="async"/>
+                                    <img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Garuda Pancasila" className={identity?.logoApp ? "w-full h-full object-cover" : "w-16 h-16 object-contain"} />
                                 </div>
                                 <h1 className="text-[18px] font-medium text-google-red mb-1 tracking-tight">Otorisasi Admin</h1>
                                 <p className="text-[12.5px] font-medium text-slate-600 mb-6 leading-snug">{identity.name}</p>
@@ -2812,7 +2812,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             {/* Gambar */}
                             {selectedArticle.imageUrl && (
                                 <div className="w-full h-52 bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
-                                    <img src={selectedArticle.imageUrl} alt={selectedArticle.title} className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
+                                    <img src={selectedArticle.imageUrl} alt={selectedArticle.title} className="w-full h-full object-cover" />
                                 </div>
                             )}
                             {/* Konten */}
@@ -2869,7 +2869,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     <div className={`relative rounded-[24px] sm:rounded-[36px] p-6 sm:p-10 text-white border border-red-400/20 shadow-[0_20px_50px_rgba(239,68,68,0.15)] dark:border-red-900/30 overflow-hidden group min-h-[220px] sm:min-h-[280px] flex items-end ${!bannerImage ? 'bg-red-600' : 'bg-slate-900'}`}>
                         {bannerImage && (
                             <>
-                                <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"  loading="lazy" decoding="async"/>
+                                <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" />
                                 <div className="absolute inset-0 bg-slate-950/65 z-0"></div>
                             </>
                         )}
@@ -3540,7 +3540,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {/* Foto */}
                                     <div className="w-full relative shrink-0 border-b border-slate-200 overflow-hidden" style={{height:'200px'}}>
                                         {item.imageUrl
-                                            ? <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.name} onError={(e) => { e.target.style.display='none'; e.target.nextSibling && (e.target.nextSibling.style.display='flex'); }} />
+                                            ? <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt={item.name} onError={(e) => { e.target.style.display='none'; e.target.nextSibling && (e.target.nextSibling.style.display='flex'); }} />
                                             : <div className="w-full h-full bg-slate-50 flex items-center justify-center"><Icon name="inventory_2" className="text-[64px] text-slate-300" /></div>
                                         }
                                         {/* Badge status pinjam */}
@@ -3639,7 +3639,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-200'} p-3 rounded-[16px] relative overflow-hidden focus-within:border-google-blue transition-all`}>
                                             <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
                                             <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
-                                                {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div> : formData.imageUrl ? <img src={formData.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview"  loading="lazy" decoding="async"/> : <Icon name="cloud_upload" className="text-[20px]" />}
+                                                {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div> : formData.imageUrl ? <img src={formData.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview" /> : <Icon name="cloud_upload" className="text-[20px]" />}
                                             </div>
                                             <div className="relative z-0 flex-1 min-w-0">
                                                 <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan G' : 'Pilih Gambar'}</p>
@@ -4146,7 +4146,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     {/* Foto */}
                                     <div className="w-full bg-slate-100 flex items-center justify-center overflow-hidden shrink-0" style={{minHeight:'160px', maxHeight:'220px'}}>
                                         {item.imageUrl
-                                            ? <img src={item.imageUrl} className="w-full object-contain group-hover:scale-105 transition-transform duration-700" style={{maxHeight:'220px'}} loading="lazy" alt={item.judul} />
+                                            ? <img src={item.imageUrl} className="w-full object-contain group-hover:scale-105 transition-transform duration-700" style={{maxHeight:'220px'}} alt={item.judul} />
                                             : <div className="flex items-center justify-center p-10"><Icon name="volunteer_activism" className="text-[64px] text-slate-300" fill="true" /></div>
                                         }
                                     </div>
@@ -4230,7 +4230,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         {/* Foto */}
                         {prog.imageUrl && (
                             <div className="w-full bg-slate-100 rounded-[24px] sm:rounded-[32px] overflow-hidden border border-slate-200 flex items-center justify-center" style={{maxHeight:'300px'}}>
-                                <img src={prog.imageUrl} className="w-full object-contain" style={{maxHeight:'300px'}} alt={prog.judul}  loading="lazy" decoding="async"/>
+                                <img src={prog.imageUrl} className="w-full object-contain" style={{maxHeight:'300px'}} alt={prog.judul} />
                             </div>
                         )}
 
@@ -4298,7 +4298,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             <div className="flex flex-wrap items-center gap-4 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] overflow-hidden hover:opacity-80 transition-opacity">
-                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti Transfer"  loading="lazy" decoding="async"/>
+                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti Transfer" />
                                                     </a>
                                                 ) : (
                                                     <div className="w-16 h-16 shrink-0 bg-slate-200 rounded-[12px] flex items-center justify-center">
@@ -4362,7 +4362,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             <div className="flex flex-wrap items-center gap-3 w-full">
                                                 {donasi.imageUrl ? (
                                                     <a href={donasi.imageUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] overflow-hidden hover:opacity-80 transition-opacity">
-                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti"  loading="lazy" decoding="async"/>
+                                                        <img src={donasi.imageUrl} className="w-full h-full object-cover" alt="Bukti" />
                                                     </a>
                                                 ) : (
                                                     <div className="w-12 h-12 shrink-0 bg-slate-200 rounded-[10px] flex items-center justify-center">
@@ -4529,7 +4529,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 <div className="w-8 h-8 border border-google-green border-t-transparent rounded-full animate-spin mx-auto my-3" />
                                             ) : buktiUrl ? (
                                                 <div className="relative rounded-[12px] overflow-hidden border border-slate-200">
-                                                    <img src={buktiUrl} className="w-full h-32 object-cover" alt="Bukti Transfer"  loading="lazy" decoding="async"/>
+                                                    <img src={buktiUrl} className="w-full h-32 object-cover" alt="Bukti Transfer" />
                                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                                         <span className="text-white font-medium text-[11px] flex flex-wrap items-center gap-1"><Icon name="edit" className="text-[14px]"/> Ganti Foto</span>
                                                     </div>
@@ -4598,7 +4598,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                     <div className="bg-white w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 shadow-sm border border-slate-200 z-0">
                                         {isUploading ? <div className="w-5 h-5 border border-google-green border-t-transparent rounded-full animate-spin" />
-                                            : form.imageUrl ? <img src={form.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview"  loading="lazy" decoding="async"/>
+                                            : form.imageUrl ? <img src={form.imageUrl} className="w-12 h-12 rounded-[12px] object-cover" alt="preview" />
                                             : <Icon name="cloud_upload" className="text-[20px] text-google-textVariant" />}
                                     </div>
                                     <div className="flex-1 z-0">
@@ -4780,7 +4780,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                         {data.map(item => (
                             <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 hover:border-red-500/30 transition-all duration-300 flex flex-col group relative">
                                 <div onClick={() => setSelectedPhoto(item)} className="w-full aspect-[4/3] bg-slate-100 relative shrink-0 border-b border-slate-200 overflow-hidden flex items-center justify-center cursor-zoom-in">
-                                    <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
+                                    <img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
                                     <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                         <div className="bg-white/90  p-3 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                             <Icon name="zoom_in" className="text-slate-800 text-[17px]"/>
@@ -4844,7 +4844,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </div>
                                 <div className="overflow-y-auto flex-1 hide-scrollbar">
                                     <div className="w-full bg-slate-900 aspect-video flex items-center justify-center relative">
-                                        <img src={selectedPhoto.imageUrl} alt={selectedPhoto.title} className="w-full h-full object-contain"  loading="lazy" decoding="async"/>
+                                        <img src={selectedPhoto.imageUrl} alt={selectedPhoto.title} className="w-full h-full object-contain" />
                                     </div>
                                     <div className="p-6 sm:p-8 space-y-6">
                                         <div className="flex flex-wrap items-center gap-3">
@@ -4896,7 +4896,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             </div>
                                             {formData.imageUrl && !isUploading && (
                                                 <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200">
-                                                    <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
+                                                    <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
                                                 </div>
                                             )}
                                         </div>
@@ -4971,7 +4971,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                         {data.map(item => (
                             <div key={item.id} className="bg-white rounded-[32px] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-blue/40 transition-all duration-300 flex flex-col group">
-                                {item.imageUrl && <div className="w-full h-48 sm:h-56 bg-slate-100 relative shrink-0 border-b border-slate-200 overflow-hidden"><img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} /></div>}
+                                {item.imageUrl && <div className="w-full h-48 sm:h-56 bg-slate-100 relative shrink-0 border-b border-slate-200 overflow-hidden"><img src={item.imageUrl} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" onError={(e) => { e.target.style.display = 'none'; }} /></div>}
 
                                 <div className="p-6 sm:p-8 flex flex-col">
                                     <h3 className="text-[17px] sm:text-[18px] font-medium text-google-text leading-snug mb-4 group-hover:text-google-blue transition-colors tracking-tight">{item.title}</h3>
@@ -5011,7 +5011,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                             </div>
                                             {formData.imageUrl && !isUploading && (
                                                 <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200 group">
-                                                    <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
+                                                    <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
                                                     <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setFormData(prev => ({...prev, imageUrl: ''})); }} className="absolute top-0 right-0 bg-google-red/90 text-white w-full h-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><Icon name="delete" className="text-[14px]"/></button>
                                                 </div>
                                             )}
@@ -5759,7 +5759,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 </div>
                                                 {formData.receiptUrl && !isUploading && (
                                                     <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200 group">
-                                                        <img src={formData.receiptUrl} alt="Nota Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
+                                                        <img src={formData.receiptUrl} alt="Nota Preview" className="w-full h-full object-cover" />
                                                     </div>
                                                 )}
                                             </div>
@@ -6735,7 +6735,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         {sponsorsData?.sponsors?.map((s, i) => (
                             <div key={i} className="flex items-center justify-between bg-white dark:bg-slate-850 p-3 rounded-[12px] shadow-sm border border-slate-200 dark:border-slate-750 gap-3">
                             <div className="flex items-center gap-3 overflow-hidden">
-                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 dark:bg-slate-800 p-1 border border-slate-200 dark:border-slate-700" loading="lazy" decoding="async" onError={(e) => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>=+n+</text></svg>'; }} />
+                                <img src={s.url} alt={s.name} className="h-9 w-16 object-contain shrink-0 rounded bg-slate-50 dark:bg-slate-800 p-1 border border-slate-200 dark:border-slate-700" onError={(e) => { e.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>=+n+</text></svg>'; }} />
                                 <span className="text-[12px] font-medium text-google-text dark:text-white truncate">{s.name}</span>
                             </div>
                             <button onClick={() => {
@@ -6789,7 +6789,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         {/* Preview */}
                         {previewUrl && !isUploading && (
                         <div className="flex items-center gap-3 bg-white dark:bg-slate-850 border border-google-green/30 dark:border-google-green/45 rounded-[14px] p-3 shadow-sm">
-                            <img src={previewUrl} alt="preview" className="h-10 max-w-[80px] object-contain rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-1" loading="lazy" decoding="async" onError={(e) => e.target.style.display='none'} />
+                            <img src={previewUrl} alt="preview" className="h-10 max-w-[80px] object-contain rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-1" onError={(e) => e.target.style.display='none'} />
                             <div className="flex-1 min-w-0">
                             <p className="text-[11px] font-medium text-google-green flex items-center gap-1"><Icon name="check_circle" className="text-[13px]"/>Logo siap disimpan</p>
                             <p className="text-[9px] text-google-textVariant dark:text-slate-400 truncate font-mono mt-0.5">{previewUrl.slice(0,60)}</p>
@@ -7020,7 +7020,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             {isUploadingLogo ? (
                                                 <div className="w-6 h-6 border border-google-blue border-t-transparent rounded-full animate-spin"></div>
                                             ) : (
-                                                formIdentity.logoApp ? <img src={formIdentity.logoApp} className="w-full h-full object-contain p-2" alt="Logo"  loading="lazy" decoding="async"/> : <div className="flex flex-col items-center text-slate-400 group-hover:text-google-blue transition-colors"><Icon name="add_photo_alternate" className="text-[24px]" /><span className="text-[9px] font-medium mt-1">Upload</span></div>
+                                                formIdentity.logoApp ? <img src={formIdentity.logoApp} className="w-full h-full object-contain p-2" alt="Logo" /> : <div className="flex flex-col items-center text-slate-400 group-hover:text-google-blue transition-colors"><Icon name="add_photo_alternate" className="text-[24px]" /><span className="text-[9px] font-medium mt-1">Upload</span></div>
                                             )}
                                         </div>
                                     </div>
@@ -7065,7 +7065,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         </div>
                                         {formBanner && !isUploadingBanner && (
                                             <div className="relative mt-2 h-24 w-full rounded-[12px] overflow-hidden border border-slate-200 group">
-                                                <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
+                                                <img src={formBanner} alt="Preview Banner" className="w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                                     <button onClick={(e) => { e.preventDefault(); setFormBanner(''); }} className="bg-google-red text-white text-[11px] font-medium px-4 py-2 rounded-full flex flex-wrap items-center gap-1"><Icon name="delete" className="text-[14px]"/> Hapus</button>
                                                 </div>
@@ -7591,7 +7591,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     </div>
 
                     <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm overflow-hidden">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[450px] rounded-[24px] z-10 border border-slate-200/80" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15810.734045472811!2d112.0831012336427!3d-7.82328387515901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7859a9896e1c3d%3A0x750afa04649cafb0!2sBanyuanyar%2C%20Kec.%20Gurah%2C%20Kabupaten%20Kediri%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1783910401380!5m2!1sid!2sid" className="w-full h-[450px] rounded-[24px] z-10 border border-slate-200/80" style={{border:0}} allowFullScreen="" referrerPolicy="strict-origin-when-cross-origin"></iframe>
                         <p className="text-[10px] font-medium text-center text-google-textVariant mt-3 flex flex-wrap items-center justify-center gap-1"><Icon name="info" className="text-[13px]" /> Peta interaktif dari Google Maps.</p>
                     </div>
 
@@ -7763,7 +7763,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     <div className="space-y-8 tab-fade-in relative z-10 w-full animate-slide-up no-print">
                         <button onClick={() => { setViewArticleId(null); const url = new URL(window.location.href); url.searchParams.delete('page'); url.searchParams.delete('article'); window.history.replaceState({}, document.title, url.pathname + url.hash); }} className="bg-white border border-slate-200 text-google-text px-4 py-2 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
                         <div className="bg-white rounded-[24px] overflow-hidden shadow-sm border border-slate-200">
-                            {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover"  loading="lazy" decoding="async"/>}
+                            {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover" />}
                             <div className="p-6 sm:p-8">
                                 <h2 className="text-2xl sm:text-3xl font-medium text-google-text mb-4 tracking-tight leading-tight">{article.title}</h2>
                                 <div className="flex items-center gap-4 text-[12px] font-medium text-google-textVariant mb-8 pb-6 border-b border-slate-100">
@@ -7860,7 +7860,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 {article.imageUrl ? (
                                     <div className="w-full h-48 bg-slate-100 overflow-hidden relative">
                                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
-                                        <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" decoding="async"/>
+                                        <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                     </div>
                                 ) : (
                                     <div className="w-full h-48 bg-slate-100 flex items-center justify-center relative overflow-hidden">
@@ -7910,7 +7910,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 <p className="text-[11px] text-google-textVariant truncate">{formData.imageUrl ? "Klik untuk mengganti gambar" : "Maksimal 10MB"}</p>
                                             </div>
                                             {formData.imageUrl && !isUploading && (
-                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200"><img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/></div>
+                                                <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200"><img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" /></div>
                                             )}
                                         </div>
                                     </div>
@@ -8589,7 +8589,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <div key={prod.id} className="bg-white rounded-[24px] border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
                                             <div className="relative h-44 bg-slate-100 flex items-center justify-center border-b border-slate-200">
                                                 {prod.imageUrl ? (
-                                                    <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
+                                                    <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
                                                 ) : (
                                                     <div className="text-slate-400 flex flex-col items-center"><Icon name="local_activity" className="text-[48px] mb-2" /><span className="text-[11px] font-medium">Tidak ada foto</span></div>
                                                 )}
@@ -8684,7 +8684,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <p className="text-[11px] text-google-textVariant truncate">{productForm.imageUrl ? "Klik untuk mengganti" : "Maksimal 10MB"}</p>
                                                     </div>
                                                     {productForm.imageUrl && !isUploading && (
-                                                        <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200"><img src={productForm.imageUrl} alt="Preview" className="w-full h-full object-cover"  loading="lazy" decoding="async"/></div>
+                                                        <div className="relative z-20 shrink-0 w-12 h-12 rounded-[12px] overflow-hidden border border-slate-200"><img src={productForm.imageUrl} alt="Preview" className="w-full h-full object-cover" /></div>
                                                     )}
                                                 </div>
                                             </div>
@@ -8793,7 +8793,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 {/* Image Cover with Aspect-Ratio and overlays */}
                                                 <div className="relative w-full h-48 sm:h-52 bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850">
                                                     {prod.imageUrl ? (
-                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"  loading="lazy" decoding="async"/>
+                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
                                                     ) : (
                                                         <div className="w-full h-full bg-slate-100 flex flex-col items-center justify-center p-6 text-center">
                                                             <div className="w-14 h-14 rounded-[16px] bg-google-blue text-white flex items-center justify-center shadow-md mb-2">
@@ -8918,7 +8918,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                 {/* Image Cover with Aspect-Ratio and overlays */}
                                                 <div className="relative w-full h-48 sm:h-52 bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-850 grayscale">
                                                     {prod.imageUrl ? (
-                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover"  loading="lazy" decoding="async"/>
+                                                        <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
                                                     ) : (
                                                         <div className="w-full h-full bg-slate-100 dark:bg-slate-850 flex flex-col items-center justify-center p-6 text-center">
                                                             <div className="w-14 h-14 rounded-[16px] bg-slate-300 dark:bg-slate-700 text-slate-550 dark:text-slate-400 flex items-center justify-center shadow-md mb-2">
@@ -10395,7 +10395,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         {/* Gambar - 1:1 Ratio */}
                         <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                             {item.imageUrl
-                                ? <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+                                ? <img src={item.imageUrl} alt={item.judul} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 : <Icon name="storefront" className="text-[40px] sm:text-[48px] text-slate-300 dark:text-slate-600" />}
                             {item.grosirMinQty > 0 && <span className="absolute top-2 left-2 bg-yellow-400 text-yellow-900 text-[8px] sm:text-[9px] font-medium uppercase px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-sm">Grosir</span>}
                             

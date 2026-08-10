@@ -15,15 +15,15 @@
     "categories": ["finance", "utilities", "productivity"],
     "icons": [
         {
-            "src": "pwa-icon.svg",
-            "sizes": "192x192",
-            "type": "image/svg+xml",
+            "src": "pwa-icon.png",
+            "sizes": "1024x1024",
+            "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "pwa-icon.svg",
+            "src": "pwa-icon.png",
             "sizes": "512x512",
-            "type": "image/svg+xml",
+            "type": "image/png",
             "purpose": "any maskable"
         }
     ],
@@ -32,19 +32,19 @@
             "name": "Ringkasan Arisan",
             "short_name": "Ringkasan",
             "url": "./#dashboard",
-            "icons": [{"src": "pwa-icon.svg", "sizes": "192x192", "type": "image/svg+xml"}]
+            "icons": [{"src": "pwa-icon.png", "sizes": "1024x1024", "type": "image/png"}]
         },
         {
             "name": "Kas RT",
             "short_name": "Kas RT",
             "url": "./#kas",
-            "icons": [{"src": "pwa-icon.svg", "sizes": "192x192", "type": "image/svg+xml"}]
+            "icons": [{"src": "pwa-icon.png", "sizes": "1024x1024", "type": "image/png"}]
         },
         {
             "name": "Buku Warga",
             "short_name": "Warga",
             "url": "./#warga",
-            "icons": [{"src": "pwa-icon.svg", "sizes": "192x192", "type": "image/svg+xml"}]
+            "icons": [{"src": "pwa-icon.png", "sizes": "1024x1024", "type": "image/png"}]
         }
     ]
 }
