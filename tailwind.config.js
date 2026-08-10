@@ -23,18 +23,7 @@ export default {
           950: '#0b1120',
         },
       },
-      boxShadow: {
-        DEFAULT: 'none',
-        sm: 'none',
-        md: 'none',
-        lg: 'none',
-        xl: 'none',
-        '2xl': 'none',
-        inner: 'none',
-        'glass': 'none',
-        'glass-hover': 'none',
-        'soft': 'none',
-      },
+
       animation: {
         'pop-in': 'toastPopIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
       }
