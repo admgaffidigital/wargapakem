@@ -1685,11 +1685,11 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     <div className="fixed inset-0 z-[-2] bg-batik opacity-50 dark:opacity-30 pointer-events-none no-print"></div>
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (DASHBOARD) */}
-                    <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" />
+                    <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-15 dark:opacity-10 transition-all duration-1000 no-print scale-x-[-1]">
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert" />
                     </div>
-                    <div className="fixed bottom-0 sm:bottom-4 -right-4 sm:right-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" style={{ animationDelay: '1.5s' }} />
+                    <div className="fixed bottom-0 sm:bottom-4 -right-4 sm:right-4 z-0 pointer-events-none opacity-15 dark:opacity-10 transition-all duration-1000 no-print">
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert" style={{ animationDelay: '1.5s' }} />
                     </div>
 
                     <div className="sticky top-0 z-40 no-print w-full">
@@ -2159,11 +2159,11 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     <div className="fixed inset-0 z-[-2] bg-batik opacity-50 dark:opacity-30 pointer-events-none no-print"></div>
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (LANDING) */}
-                    <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" />
+                    <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-15 dark:opacity-10 transition-all duration-1000 no-print scale-x-[-1]">
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert" />
                     </div>
-                    <div className="fixed bottom-0 sm:bottom-4 -right-4 sm:right-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert drop-shadow-2xl" style={{ animationDelay: '1.5s' }} />
+                    <div className="fixed bottom-0 sm:bottom-4 -right-4 sm:right-4 z-0 pointer-events-none opacity-15 dark:opacity-10 transition-all duration-1000 no-print">
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-64 sm:w-80 h-auto max-h-[35vh] object-contain object-bottom animate-wayang dark:invert" style={{ animationDelay: '1.5s' }} />
                     </div>
 
                     {/* FLOATING TOP NAVBAR */}
