@@ -79,16 +79,17 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const [toasts, setToasts] = useState([]);
 
             useEffect(() => {
+                const timers = [];
                 const handler = (e) => {
                     const id = Date.now() + Math.random();
                     setToasts(prev => [...prev, { id, message: e.detail.message, type: e.detail.type || 'success', closing: false }]);
-                    setTimeout(() => {
+                    timers.push(setTimeout(() => {
                         setToasts(prev => prev.map(t => t.id === id ? { ...t, closing: true } : t));
-                    }, 2700);
-                    setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 3100);
+                    }, 2700));
+                    timers.push(setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 3100));
                 };
                 window.addEventListener('app:toast', handler);
-                return () => window.removeEventListener('app:toast', handler);
+                return () => { window.removeEventListener('app:toast', handler); timers.forEach(clearTimeout); };
             }, []);
 
             if (toasts.length === 0) return null;
@@ -364,15 +365,16 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 const isSafari = /safari/i.test(navigator.userAgent) && !/chrome/i.test(navigator.userAgent);
                 if (ios && isSafari) {
                     setIsIOS(true);
-                    setTimeout(() => setShowBanner(true), 2500);
-                    return;
+                    const t = setTimeout(() => setShowBanner(true), 2500);
+                    return () => clearTimeout(t);
                 }
 
                 // Android/Chrome: tangkap event beforeinstallprompt
+                let bannerTimer = null;
                 const handler = (e) => {
                     e.preventDefault();
                     setDeferredPrompt(e);
-                    setTimeout(() => setShowBanner(true), 2500);
+                    bannerTimer = setTimeout(() => setShowBanner(true), 2500);
                 };
                 const onInstalled = () => { setShowBanner(false); setIsInstalled(true); };
                 window.addEventListener('beforeinstallprompt', handler);
@@ -380,6 +382,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 return () => {
                     window.removeEventListener('beforeinstallprompt', handler);
                     window.removeEventListener('appinstalled', onInstalled);
+                    if (bannerTimer) clearTimeout(bannerTimer);
                 };
             }, []);
 
@@ -1470,7 +1473,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`;
                             script.crossOrigin = 'anonymous';
                             document.head.appendChild(script);
-                            console.log(`[AdSense] Script injected (deferred) for client: ${clientId}`);
                         }
                     };
 
