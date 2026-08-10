@@ -1680,8 +1680,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const activeTabTitle = NavItems.find(i => i.id === activeTab)?.label || identity.name;
 
             return (
-                <div className="min-h-screen bg-batik bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
+                <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
                     <FlagWavingBackground theme={theme} />
+                    <div className="fixed inset-0 z-0 bg-batik opacity-50 dark:opacity-30 pointer-events-none no-print"></div>
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (DASHBOARD) */}
                     <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
@@ -2150,8 +2151,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             
             return (
                 <>
-                <div className="w-full min-h-screen flex flex-col bg-batik bg-transparent text-slate-800 relative overflow-x-hidden font-sans">
+                <div className="w-full min-h-screen flex flex-col bg-transparent text-slate-800 relative overflow-x-hidden font-sans">
                     <FlagWavingBackground theme={theme} />
+                    <div className="fixed inset-0 z-0 bg-batik opacity-50 dark:opacity-30 pointer-events-none no-print"></div>
 
                     {/* ANIMASI WAYANG KULIT GLOBAL (LANDING) */}
                     <div className="fixed bottom-0 sm:bottom-4 -left-4 sm:left-4 z-0 pointer-events-none opacity-80 dark:opacity-60 transition-all duration-1000 no-print scale-x-[-1]">
