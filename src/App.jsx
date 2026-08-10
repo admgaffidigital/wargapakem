@@ -2187,9 +2187,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                     <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm" title="Toggle Tema">
                                         <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[15px] sm:text-[16px]" />
                                     </button>
-                                    <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex justify-center items-center transition-all duration-300 active:scale-95 border border-slate-200 dark:border-slate-700 shadow-sm" title="Otorisasi Admin">
-                                        <Icon name="lock" className="text-[15px] sm:text-[16px]" />
-                                    </button>
+
                                     <button onClick={() => onLogin('warga')} className="px-3 py-1.5 sm:px-4 sm:py-2 bg-google-red hover:bg-google-redDark text-white rounded-full text-[10.5px] sm:text-[12px] font-medium flex items-center gap-1.5 shadow-md shadow-red-500/20 border border-red-400/40 transition-all duration-300 active:scale-95">
                                         <Icon name="person" className="text-[14px] sm:text-[16px]" />
                                         <span>Masuk Warga</span>
@@ -2809,9 +2807,14 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 <Icon name="flag" className="text-red-500 text-[14px] animate-pulse" fill="true" />
                                 - {new Date().getFullYear()} <span className="text-red-600 font-medium">WP LINGKUNGAN</span>. All rights reserved.
                             </p>
-                            <button onClick={() => setShowLicenseModal && setShowLicenseModal(true)} className="flex flex-wrap items-center justify-center gap-1.5 hover:text-red-500 transition-colors active:scale-95 group">
-                                <Icon name="lock" className="text-[13px] group-hover:scale-110 transition-transform" /> <span className="underline decoration-dashed underline-offset-4">&copy; 2026 Keamanan Data & Hak Cipta</span>
-                            </button>
+                            <div className="flex flex-wrap items-center justify-center gap-5">
+                                <button onClick={() => setMode(mode === 'admin_login' ? 'select' : 'admin_login')} className="flex flex-wrap items-center justify-center gap-1.5 hover:text-red-500 transition-colors active:scale-95 group">
+                                    <Icon name="admin_panel_settings" className="text-[13px] group-hover:scale-110 transition-transform" /> <span className="underline decoration-dashed underline-offset-4">Otorisasi Admin</span>
+                                </button>
+                                <button onClick={() => setShowLicenseModal && setShowLicenseModal(true)} className="flex flex-wrap items-center justify-center gap-1.5 hover:text-red-500 transition-colors active:scale-95 group">
+                                    <Icon name="lock" className="text-[13px] group-hover:scale-110 transition-transform" /> <span className="underline decoration-dashed underline-offset-4">&copy; 2026 Keamanan Data & Hak Cipta</span>
+                                </button>
+                            </div>
                         </div>
                     </footer>
                     {legalData?.enabled && (
