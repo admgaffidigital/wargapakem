@@ -1896,7 +1896,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             );
         }
 
-        const FlagWavingBackground = React.memo(function FlagWavingBackground({ theme }) {
+        function FlagWavingBackground({ theme }) {
             const canvasRef = useRef(null);
             const themeRef = useRef(theme);
 
@@ -2023,7 +2023,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     style={{ zIndex: -1, width: '100%', height: '100%' }}
                 />
             );
-        });
+        }
 
         function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, setShowLicenseModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber, infaqData = [], tokoProducts = [] }) {
             const [email, setEmail] = useState('');
@@ -2963,7 +2963,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             );
         }
 
-        const WaktuSholatWidget = React.memo(function WaktuSholatWidget() {
+        function WaktuSholatWidget() {
             const DEFAULT_LAT = -7.8246;
             const DEFAULT_LNG = 112.0792;
             const DEFAULT_CITY = 'Gurah, Kediri';
@@ -3347,7 +3347,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     </div>
                 </div>
             );
-        });
+        }
 
         function Dashboard({ members, setMembers, jimpitanBalance, kasRtBalance, currentRound, setCurrentRound, userRole, cycleNumber, setCycleNumber, changeTab, arisanPeriod }) {
             const [showResetModal, setShowResetModal] = useState(false);
