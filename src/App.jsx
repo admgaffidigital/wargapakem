@@ -619,7 +619,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <Icon name={isEnabled ? 'graphic_eq' : 'music_off'} className="text-white text-[17px]" fill="true" />
                                     </div>
                                     <div className="min-w-0">
-                                        <p className="text-[9px] font-medium uppercase tracking-widest text-google-textVariant">{isEnabled ? '=Ã„Â¦ Aktif' : '= Nonaktif'}</p>
+                                        <p className="text-[9px] font-medium uppercase tracking-widest text-google-textVariant">{isEnabled ? 'Aktif' : 'Nonaktif'}</p>
                                         <p className="font-medium text-[13px] text-google-text truncate">{currentName || 'Musik RT'}</p>
                                     </div>
                                 </div>
@@ -637,7 +637,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             {/* Preview player native browser */}
                             {isEnabled && (
                                 <div className="bg-white/80 rounded-[14px] p-3 border border-google-green/30">
-                                    <p className="text-[9px] font-medium text-google-greenDark mb-2 uppercase tracking-widest">â–¶ Preview</p>
+                                    <p className="text-[9px] font-medium text-google-greenDark mb-2 uppercase tracking-widest">Preview</p>
                                     <audio controls src={currentUrl} className="w-full" style={{ height: '36px' }}>
                                         Browser Anda tidak mendukung audio.
                                     </audio>
@@ -707,7 +707,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 {testStatus === 'ok' && (
                                     <div className="bg-google-greenLight border border-google-green/40 rounded-[12px] p-3">
                                         <p className="text-[11px] font-medium text-google-greenDark mb-2 flex flex-wrap items-center gap-1.5">
-                                            <Icon name="check_circle" className="text-[13px]" fill="true" /> URL Valid â–¶ Preview:
+                                            <Icon name="check_circle" className="text-[13px]" fill="true" /> URL Valid Preview:
                                         </p>
                                         <audio controls src={previewUrl} className="w-full" style={{ height: '34px' }} />
                                     </div>
@@ -1253,7 +1253,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             
 
             
-            // Inisialisasi langsung dari URL â€” link produk tiket / artikel blog bypass landing page
+            // Inisialisasi langsung dari URL - link produk tiket / artikel blog bypass landing page
             const [isLoggedIn, setIsLoggedIn] = useState(() => {
                 const p = new URLSearchParams(window.location.search);
                 const isTicket = p.get('page') === 'tiket' && p.has('product');
@@ -3804,7 +3804,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <option value="">-- Pilih Barang --</option>
                                         {inventarisData.map(item => {
                                             const stok = getStokTersedia(item.id);
-                                            return <option key={item.id} value={item.id} disabled={stok <= 0}>{item.name} â€” Stok tersedia: {stok} dari {item.qty}{stok <= 0 ? ' (Habis)' : ''}</option>;
+                                            return <option key={item.id} value={item.id} disabled={stok <= 0}>{item.name} - Stok tersedia: {stok} dari {item.qty}{stok <= 0 ? ' (Habis)' : ''}</option>;
                                         })}
                                     </select>
                                 </div>
@@ -4338,7 +4338,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                         donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                         'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                                     }`}>
-                                                        {donasi.status === 'APPROVED' ? 'âœ… Disetujui' : donasi.status === 'REJECTED' ? 'âŒ Ditolak' : 'â³ Menunggu'}
+                                                        {donasi.status === 'APPROVED' ? 'Disetujui' : donasi.status === 'REJECTED' ? 'Œ Ditolak' : ' Menunggu'}
                                                     </span>
                                                 )}
                                             </div>
@@ -4378,7 +4378,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                                 donasi.status === 'REJECTED' ? 'bg-google-redLight text-google-redDark border border-google-red/30' :
                                                 'bg-google-yellowLight text-google-yellowDark border border-google-yellow/30'
                                             }`}>
-                                                {donasi.status === 'APPROVED' ? 'âœ… Disetujui' : donasi.status === 'REJECTED' ? 'âŒ Ditolak' : 'â³ Menunggu'}
+                                                {donasi.status === 'APPROVED' ? 'Disetujui' : donasi.status === 'REJECTED' ? 'Œ Ditolak' : ' Menunggu'}
                                             </span>
                                         </div>
                                     ))}
@@ -4585,7 +4585,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
                     <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm">
                         <h3 className="text-[17px] font-medium text-google-text mb-6 tracking-tight">
-                            {editingId ? 'âœï¸ Edit Program Infaq' : 'âž• Buat Program Infaq Baru'}
+                            {editingId ? ' Edit Program Infaq' : '+ Buat Program Infaq Baru'}
                         </h3>
                         <div className="space-y-7">
 
@@ -8195,7 +8195,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         return p;
                     }));
                 }
-                // If reverting FROM cancelled back to active â€” deduct stock again
+                // If reverting FROM cancelled back to active - deduct stock again
                 if (order.status === 'cancelled' && newStatus !== 'cancelled') {
                     setProducts(prev => (prev || []).map(p => {
                         if (p.id === order.productId) {
@@ -8271,7 +8271,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     timestamp: getLocalDate()
                 };
 
-                // Deduct stock â€” functional update avoids stale closure
+                // Deduct stock - functional update avoids stale closure
                 const targetProductId = selectedProduct.id;
                 setProducts(prev => (prev || []).map(p => {
                     if (p.id === targetProductId) {
@@ -8280,10 +8280,10 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                     return p;
                 }));
 
-                // Add order â€” functional update
+                // Add order - functional update
                 setOrders(prev => [newOrder, ...(prev || [])]);
 
-                // Save locally â€” functional update
+                // Save locally - functional update
                 setLocalSavedOrderIds(prev => {
                     const newLocalIds = [newOrder.id, ...(prev || [])];
                     try {
@@ -8298,14 +8298,14 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
             const handleCancelOrderByWarga = (order) => {
                 if (!order || order.status === 'cancelled') return;
-                // Return stock â€” functional update
+                // Return stock - functional update
                 setProducts(prev => (prev || []).map(p => {
                     if (p.id === order.productId) {
                         return { ...p, stock: p.stock + order.quantity, sold: Math.max(0, (p.sold || 0) - order.quantity) };
                     }
                     return p;
                 }));
-                // Update order status â€” functional update
+                // Update order status - functional update
                 setOrders(prev => (prev || []).map(o => o.id === order.id ? { ...o, status: 'cancelled' } : o));
                 showToast("Pesanan berhasil dibatalkan.");
             };
@@ -8474,7 +8474,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <div className="flex justify-between items-start">
                                                                 <div className="flex-1">
                                                                     <p className="text-[10px] font-medium text-slate-400 uppercase">Pemesan</p>
-                                                                    {/* Nama Pemesan â€” inline edit oleh admin */}
+                                                                    {/* Nama Pemesan - inline edit oleh admin */}
                                                                     {editingBuyerName && editingBuyerName.orderId === order.id ? (
                                                                         <div className="flex items-center gap-2 mt-1">
                                                                             <input
@@ -8600,7 +8600,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <p className={`text-[11.5px] font-medium text-slate-500 mt-2 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     {(prod.description || '').length > 80 && (
                                                         <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-medium text-google-blue hover:underline">
-                                                            {expandedDescId === prod.id ? 'â†‘ Tutup' : 'â†“ Selengkapnya'}
+                                                            {expandedDescId === prod.id ? '↑ Tutup' : '↓ Selengkapnya'}
                                                         </button>
                                                     )}
                                                     
@@ -8800,16 +8800,16 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <span className="text-[10px] font-medium uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
                                                         </div>
                                                     )}
-                                                    {/* Official Store Badge â€” top left */}
+                                                    {/* Official Store Badge - top left */}
                                                     <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-google-yellow text-white text-[9px] font-medium px-2.5 py-1 rounded-[8px] shadow-md shadow-amber-500/20  border border-white/20 tracking-wide">
                                                         <Icon name="verified" className="text-[12px]" fill="true" />
                                                         OFFICIAL
                                                     </div>
-                                                    {/* Stock Pill â€” top right */}
+                                                    {/* Stock Pill - top right */}
                                                     <div className={`absolute top-3.5 right-3.5 text-[9.5px] font-medium px-2.5 py-1 rounded-[8px]  shadow-md border ${prod.stock > 0 ? 'bg-slate-900/75 dark:bg-slate-950/75 text-white border-white/10' : 'bg-red-500/90 text-white border-red-400/20'}`}>
                                                         {prod.stock > 0 ? `Stok: ${prod.stock}` : 'Stok Habis'}
                                                     </div>
-                                                    {/* Countdown Timer overlay â€” bottom right */}
+                                                    {/* Countdown Timer overlay - bottom right */}
                                                     {prod.deadline && (
                                                         <div className="absolute bottom-3 right-3 z-10 scale-90 origin-bottom-right">
                                                             <CountdownTimer deadline={prod.deadline} />
@@ -8925,7 +8925,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <span className="text-[10px] font-medium uppercase tracking-widest text-slate-450 dark:text-slate-500">Tiket Jalan Santai</span>
                                                         </div>
                                                     )}
-                                                    {/* Archive Badge â€” top left */}
+                                                    {/* Archive Badge - top left */}
                                                     <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 bg-slate-700/90 text-white text-[9px] font-medium px-2.5 py-1 rounded-[8px] shadow-md  tracking-wide">
                                                         <Icon name="archive" className="text-[12px]" fill="true" />
                                                         ARSIP
@@ -9241,7 +9241,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             type="button"
                                                             onClick={() => setBuyForm(f => ({ ...f, quantity: Math.max(1, (f.quantity || 1) - 1) }))}
                                                             className="w-14 h-14 flex items-center justify-center text-slate-500 hover:bg-red-50 hover:text-red-500 active:scale-90 transition-all text-xl font-medium flex-shrink-0 select-none"
-                                                        >âˆ’</button>
+                                                        >-</button>
                                                         <span className="flex-1 text-center text-[18px] font-medium text-slate-800 select-none tabular-nums">
                                                             {buyForm.quantity || 1}
                                                         </span>
@@ -9259,7 +9259,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                     <div className="w-full bg-google-blueLight border border-google-blue/20 p-4 text-[15px] font-medium text-google-blue rounded-[16px] flex items-center justify-center h-14">
                                                         {formatRp(Number(buyForm.quantity || 1) * selectedProduct.price)}
                                                     </div>
-                                                    <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">{formatRp(selectedProduct.price)} Ã— {buyForm.quantity || 1} tiket</p>
+                                                    <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">{formatRp(selectedProduct.price)} × {buyForm.quantity || 1} tiket</p>
                                                 </div>
                                             </div>
 
@@ -9489,7 +9489,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <Icon name="schedule" className="text-[32px]" fill="true" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Sedang Ditinjau â³</h2>
+                                        <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Sedang Ditinjau </h2>
                                         <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed max-w-sm mx-auto">
                                             Halo <strong className="font-medium text-slate-800 dark:text-slate-100">{myRequest.name}</strong> ({myRequest.whatsapp}), pengajuan gabung grup WhatsApp Anda sedang diperiksa oleh Admin RT.
                                         </p>
@@ -9514,7 +9514,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <Icon name="verified" className="text-[32px]" fill="true" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Disetujui! ðŸŽ‰</h2>
+                                        <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Disetujui! 🛒</h2>
                                         <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed max-w-sm mx-auto">
                                             Selamat <strong className="font-medium text-slate-800 dark:text-slate-100">{myRequest.name}</strong>, Admin telah menyetujui akses masuk grup WhatsApp Warga RT.
                                         </p>
@@ -9553,7 +9553,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                         <Icon name="cancel" className="text-[32px]" fill="true" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Ditolak ðŸš«</h2>
+                                        <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Pengajuan Ditolak 🚚</h2>
                                         <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed max-w-sm mx-auto">
                                             Maaf <strong className="font-medium text-slate-800 dark:text-slate-100">{myRequest.name}</strong>, pengajuan Anda untuk bergabung ke grup WhatsApp ditolak oleh Admin. 
                                         </p>
@@ -9902,7 +9902,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             </div>
                         ))}
                         <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-755 text-white font-medium py-3.5 sm:py-4 rounded-full shadow-[0_4px_12px_rgba(34,197,94,0.3)] active:scale-95 transition-all text-sm">
-                            âœ“ Buat Pesanan & Bayar COD
+                            ✓ Buat Pesanan & Bayar COD
                         </button>
                     </div>
                 </div>
@@ -9978,7 +9978,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     <Icon name="sell" className="text-google-yellowDark text-[16px] shrink-0 mt-0.5" />
                                     <p className="text-[11px] text-google-yellowDark dark:text-google-yellowLight font-medium leading-relaxed">
                                         Beli <span className="underline underline-offset-1">{selectedProduct.grosirMinQty}</span>+ dapat harga grosir: <span className="underline underline-offset-1">{formatRp(selectedProduct.grosirPrice)}</span>/varian
-                                        {safeNumber(orderQty) >= safeNumber(selectedProduct.grosirMinQty) && <span className="ml-2 bg-green-500 text-white px-2 py-0.5 rounded-full text-[10px] font-medium">âœ“ Aktif!</span>}
+                                        {safeNumber(orderQty) >= safeNumber(selectedProduct.grosirMinQty) && <span className="ml-2 bg-green-500 text-white px-2 py-0.5 rounded-full text-[10px] font-medium">✓ Aktif!</span>}
                                     </p>
                                 </div>
                             )}
@@ -10011,7 +10011,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
             {isFormOpen && (
                 <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 lg:p-8 rounded-[20px] sm:rounded-[28px] border border-google-blue dark:border-blue-600 shadow-lg space-y-7">
-                    <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-200 dark:border-slate-800 pb-3">{editingProduct ? 'âœï¸ Edit Produk' : 'âž• Produk Baru'}</h3>
+                    <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-200 dark:border-slate-800 pb-3">{editingProduct ? ' Edit Produk' : '+ Produk Baru'}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         {/* Kolom Kiri */}
                         <div className="space-y-6">
@@ -10054,7 +10054,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                             : <Icon name="cloud_upload" className="text-[22px] text-slate-400" />}
                                     </div>
                                     <div className="z-0 flex-1 min-w-0">
-                                        <p className="font-medium text-sm text-slate-700 dark:text-slate-300 truncate">{isUploading ? 'Mengunggah...' : productForm.imageUrl ? 'âœ“ Gambar Tersimpan' : 'Ketuk untuk pilih gambar'}</p>
+                                        <p className="font-medium text-sm text-slate-700 dark:text-slate-300 truncate">{isUploading ? 'Mengunggah...' : productForm.imageUrl ? '✓ Gambar Tersimpan' : 'Ketuk untuk pilih gambar'}</p>
                                         <p className="text-[10px] text-slate-450 dark:text-slate-400 font-medium mt-0.5">Otomatis diupload & dikompresi</p>
                                     </div>
                                 </div>
@@ -10088,7 +10088,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             {/* Grosir */}
                             <div className="bg-yellow-50 dark:bg-yellow-950/10 p-4 rounded-[20px] border border-yellow-200 dark:border-yellow-900/30 space-y-5">
                                 <h4 className="font-medium text-yellow-800 dark:text-yellow-500 text-sm flex items-center gap-1.5"><Icon name="sell" className="text-[16px]" />Harga Grosir (Opsional)</h4>
-                                <p className="text-[11px] text-yellow-700 dark:text-yellow-600 font-medium leading-relaxed">Warga yang membeli â‰¥ Qty ini akan otomatis mendapat harga grosir.</p>
+                                <p className="text-[11px] text-yellow-700 dark:text-yellow-600 font-medium leading-relaxed">Warga yang membeli  Qty ini akan otomatis mendapat harga grosir.</p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                                     <div>
                                         <label className="text-[10px] font-medium text-yellow-700 dark:text-yellow-500 mb-1 block">Min. Qty</label>
@@ -10307,7 +10307,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         <div className="flex gap-2 mt-auto pt-1">
                             {order.status === 'Menunggu' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diproses'} : o))} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Proses</button>}
                             {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Mulai Antar</button>}
-                            {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Selesai âœ“</button>}
+                            {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Selesai ✓</button>}
                             {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)) }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-full text-xs font-medium transition-colors">Batal</button>}
                             <button onClick={() => { setTokoConfirm({ message: 'Hapus pesanan ini secara permanen?', onConfirm: () => setTokoOrders(tokoOrders.filter(o => o.id !== order.id)) }); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-full text-xs font-medium transition-colors flex items-center justify-center" title="Hapus Permanen">
                                 <Icon name="delete" className="text-[15px]" />
@@ -10383,7 +10383,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 </div>
             )}
 
-            {/* Grid Produk â€” 1:1 Aspect Ratio & SKU Share System */}
+            {/* Grid Produk - 1:1 Aspect Ratio & SKU Share System */}
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
                 {tokoProducts.filter(p => p.isPublished && (selectedCategory === 'Semua' || p.kategori === selectedCategory)).length === 0 ? (
                     <div className="col-span-full py-16 text-center text-slate-400 dark:text-slate-500 font-medium text-sm bg-white dark:bg-slate-900 rounded-[20px] border border-dashed border-slate-200 dark:border-slate-800">Belum ada produk yang dijual saat ini.</div>
