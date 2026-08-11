@@ -3,8 +3,8 @@
     "name": "Portal Warga RT - PAKEM",
     "short_name": "Warga RT",
     "description": "Portal digital warga RT — arisan, keuangan, galeri, dan informasi lingkungan Pakem Banyuanyar",
-    "start_url": "./#menu",
-    "scope": "./",
+    "start_url": "/?source=pwa#menu",
+    "scope": "/",
     "display": "standalone",
     "display_override": ["standalone", "minimal-ui"],
     "orientation": "portrait",
@@ -17,12 +17,6 @@
         {
             "src": "pwa-icon.png",
             "sizes": "1024x1024",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "pwa-icon.png",
-            "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
         }

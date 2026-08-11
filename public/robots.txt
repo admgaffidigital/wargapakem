@@ -2,6 +2,8 @@ User-agent: *
 Allow: /
 Allow: /?page=blog&article=*
 Allow: /?page=tiket&product=*
+Disallow: /?page=admin
+Disallow: /?page=login
 
 # Sitemap
 Sitemap: https://wargapakem.vercel.app/sitemap.xml
