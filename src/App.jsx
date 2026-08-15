@@ -9,7 +9,7 @@ import {
     signInWithEmailAndPassword, signOut, onAuthStateChanged
 } from './firebase.js';
 
-const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
+const Qna = React.lazy(() => import('./Qna.jsx'));
 
         const getDirectImgUrl = (url) => {
             if (!url) return '';
@@ -444,9 +444,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             );
         }
 
-        /* ================= ROBOT ASISTEN COMPONENT ================= */
+        /* ================= TANYA JAWAB COMPONENT ================= */
 
-        // RobotGuide is loaded dynamically via React.lazy
+        // Qna is loaded dynamically via React.lazy
 
 
         /* ===== HELPER: Normalisasi URL Audio untuk Streaming ===== */
@@ -1266,9 +1266,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                             cleanUrl.searchParams.delete('product');
                             window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
                         }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
-                        <React.Suspense fallback={null}>
-                            <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
-                        </React.Suspense>
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
                         {showLegalModal && (
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
@@ -1357,6 +1354,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 { id: 'kalender', icon: 'calendar_month', label: 'Kalender', bg: 'bg-google-redLight', color: 'text-google-redDark border border-google-red' },
                 { id: 'peta', icon: 'map', label: 'Peta Lokasi', bg: 'bg-slate-100 dark:bg-slate-800', color: 'text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700' },
                 { id: 'wagroup', icon: 'forum', label: 'Grup WA', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
+                { id: 'qna', icon: 'quiz', label: 'Tanya Jawab', bg: 'bg-google-blueLight', color: 'text-google-blueDark border border-google-blue' },
                 ...(userRole === 'admin' ? [
                     { id: 'pertemuan', icon: 'checklist', label: 'Absen Arisan', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
                     { id: 'musik', icon: 'music_note', label: 'Musik Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
@@ -1401,6 +1399,26 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     case 'peta': return <PetaDesa infoDesa={infoDesa} />;
                     case 'musik': return userRole === 'admin' ? <MusicAdmin musicData={musicData} setMusicData={setMusicData} /> : null;
                     case 'wagroup': return <WaGroup requests={waRequests} setRequests={setWaRequests} userRole={userRole} inviteLink={landingConfig.whatsappGroupLink || ''} />;
+                    case 'qna': return (
+                        <React.Suspense fallback={<div className="flex justify-center items-center h-64 text-slate-500 font-medium text-xs">Memuat Tanya Jawab...</div>}>
+                            <Qna 
+                                userRole={userRole} 
+                                nominalArisan={nominalArisan} 
+                                nominalJimpitan={nominalJimpitan} 
+                                identity={identity} 
+                                members={members} 
+                                arisanPeriod={arisanPeriod} 
+                                currentRound={currentRound} 
+                                cycleNumber={cycleNumber} 
+                                jimpitanBalance={jimpitanBalance} 
+                                kasRtBalance={kasRtBalance} 
+                                meetingHistory={meetingHistory} 
+                                inventarisData={inventarisData} 
+                                pinjamData={pinjamData} 
+                                infaqData={infaqData} 
+                            />
+                        </React.Suspense>
+                    );
                     default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
                 }
             };
@@ -1485,9 +1503,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     
 
 
-                    <React.Suspense fallback={null}>
-                        <RobotGuide userRole={userRole} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} identity={identity} members={members} arisanPeriod={arisanPeriod} currentRound={currentRound} cycleNumber={cycleNumber} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} infaqData={infaqData} />
-                    </React.Suspense>
                     <PWAInstallBanner />
                     {showLicenseModal && (
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
