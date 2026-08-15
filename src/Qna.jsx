@@ -497,7 +497,7 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <span className="text-[9px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-0.5">{item.category}</span>
-                                            <span className="font-semibold text-xs sm:text-sm text-slate-800 dark:text-slate-100 tracking-tight leading-tight block truncate sm:whitespace-normal">{item.q}</span>
+                                            <span className="font-semibold text-xs sm:text-sm text-slate-800 dark:text-slate-100 tracking-tight leading-tight block">{item.q}</span>
                                         </div>
                                     </div>
                                     <div className={`w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-600 transition-transform duration-300 shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
