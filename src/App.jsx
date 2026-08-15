@@ -2478,7 +2478,7 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
                             {/* ADSENSE PLACEHOLDER */}
                             <section className="py-4 text-center border-t border-slate-200/30 max-w-xl mx-auto w-full px-4">
                                 <p className="text-[9px] font-medium tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-2">{landingConfig.footerInfoTitle}</p>
-                                <div className="w-full py-2.5 bg-slate-50/60 dark:bg-slate-800/40 rounded-xl border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center text-slate-550 dark:text-slate-400 text-[10.5px] font-medium px-4 shadow-sm ">
+                                <div className="w-full py-2.5 bg-slate-50/60 dark:bg-slate-800/40 rounded-xl border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center text-slate-500 dark:text-slate-400 text-[10.5px] font-medium px-4 shadow-sm ">
                                     <Icon name="verified_user" className="text-[13px] mr-2 text-emerald-500" fill="true" />
                                     <span>{landingConfig.footerInfoDesc}</span>
                                 </div>
@@ -6512,7 +6512,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 
                         <div className="bg-white dark:bg-slate-850 rounded-2xl px-4 py-3 border border-slate-200 dark:border-slate-700 focus-within:border-google-blue transition-all shadow-sm">
                         <label className="text-[9px] font-medium text-google-textVariant dark:text-slate-400 block mb-1 uppercase tracking-widest">Nama Sponsor</label>
-                        <input type="text" value={newName} onChange={e => setNewName(e.target.value)} placeholder="Misal: Bank BRI Cabang Pakem" className="w-full bg-transparent text-[13px] font-medium text-google-text dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-550 outline-none" />
+                        <input type="text" value={newName} onChange={e => setNewName(e.target.value)} placeholder="Misal: Bank BRI Cabang Pakem" className="w-full bg-transparent text-[13px] font-medium text-google-text dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-500 outline-none" />
                         </div>
 
                         <div>
@@ -6557,7 +6557,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                             <Icon name="link" className="text-[13px]" /> Atau masukkan URL gambar secara manual
                         </summary>
                         <div className="mt-2 bg-white dark:bg-slate-850 rounded-xl px-4 py-3 border border-slate-200 dark:border-slate-700 focus-within:border-google-blue transition-all shadow-sm">
-                            <input type="text" value={newUrl} onChange={e => { setNewUrl(e.target.value); setPreviewUrl(e.target.value); }} placeholder="https://contoh.com/logo.png" className="w-full bg-transparent text-[12px] font-mono text-google-text dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-550 outline-none" />
+                            <input type="text" value={newUrl} onChange={e => { setNewUrl(e.target.value); setPreviewUrl(e.target.value); }} placeholder="https://contoh.com/logo.png" className="w-full bg-transparent text-[12px] font-mono text-google-text dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-500 outline-none" />
                         </div>
                         </details>
                     </div>
@@ -8669,7 +8669,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
                                                     ) : (
                                                         <div className="w-full h-full bg-slate-100 dark:bg-slate-850 flex flex-col items-center justify-center p-6 text-center">
-                                                            <div className="w-14 h-14 rounded-2xl bg-slate-300 dark:bg-slate-700 text-slate-550 dark:text-slate-400 flex items-center justify-center shadow-md mb-2">
+                                                            <div className="w-14 h-14 rounded-2xl bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 flex items-center justify-center shadow-md mb-2">
                                                                 <Icon name="local_activity" className="text-[26px]" />
                                                             </div>
                                                             <span className="text-[10px] font-medium uppercase tracking-widest text-slate-450 dark:text-slate-500">Tiket Jalan Santai</span>
@@ -8704,7 +8704,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <span>Event Selesai / Pembelian Ditutup</span>
                                                         </div>
 
-                                                        <p className={`text-[12px] font-medium text-slate-550 dark:text-slate-455 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-2'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
+                                                        <p className={`text-[12px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-2'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     </div>
 
                                                     {/* Action Buttons (Disabled) */}
@@ -8938,7 +8938,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                         <Icon name="store" className="text-[20px]" />
                                                         <span>Ambil Sendiri (COD)</span>
                                                     </button>
-                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-105'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
                                                         <Icon name="local_shipping" className="text-[20px]" />
                                                         <span>Antar ke Rumah (COD)</span>
                                                     </button>
@@ -8958,7 +8958,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                                             <input type="text" value={buyForm.deliveryTime} onChange={e => setBuyForm({...buyForm, deliveryTime: e.target.value})} className="w-full bg-white border border-slate-200 p-3.5 text-[13px] font-medium outline-none rounded-xl focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Jam 4 Sore / Malam" />
                                                         </div>
                                                     </div>
-                                                    <p className="text-[11px] text-slate-550 leading-normal flex items-start gap-1"><Icon name="info" className="text-[13px] text-google-blue shrink-0 mt-0.5" /> Karena lingkungan RT sama, alamat tidak diperlukan. Cukup atur waktu agar pengurus RT bisa mengantarkan tiket ke rumah Anda.</p>
+                                                    <p className="text-[11px] text-slate-500 leading-normal flex items-start gap-1"><Icon name="info" className="text-[13px] text-google-blue shrink-0 mt-0.5" /> Karena lingkungan RT sama, alamat tidak diperlukan. Cukup atur waktu agar pengurus RT bisa mengantarkan tiket ke rumah Anda.</p>
                                                 </div>
                                             ) : (
                                                 <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 p-4 rounded-2xl text-[12px] text-emerald-800 dark:text-emerald-400 animate-fade-in">
@@ -9040,7 +9040,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                 <p className="text-[12.5px] font-medium text-slate-500 mb-6 leading-relaxed">{confirmModal.message}</p>
                                 <div className="flex gap-3">
                                     <button onClick={() => setConfirmModal(null)} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm">Batal</button>
-                                    <button onClick={confirmModal.onConfirm} className="flex-1 bg-red-500 hover:bg-red-650 text-white py-3.5 rounded-full font-medium text-[13px] active:scale-95 transition-all shadow-md">{confirmModal.confirmText || 'Hapus'}</button>
+                                    <button onClick={confirmModal.onConfirm} className="flex-1 bg-red-500 hover:bg-red-600 text-white py-3.5 rounded-full font-medium text-[13px] active:scale-95 transition-all shadow-md">{confirmModal.confirmText || 'Hapus'}</button>
                                 </div>
                             </div>
                         </div>
@@ -9674,7 +9674,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     </div>
                                     <div className="text-right shrink-0">
                                         <p className="text-xs sm:text-sm font-medium text-google-green dark:text-google-greenLight">{formatRp(item.price * item.qty)}</p>
-                                        <button onClick={() => { const nc = {...cart}; delete nc[key]; setCart(nc); }} className="text-[10px] sm:text-[11px] text-red-505 font-medium hover:underline mt-0.5">Hapus</button>
+                                        <button onClick={() => { const nc = {...cart}; delete nc[key]; setCart(nc); }} className="text-[10px] sm:text-[11px] text-red-500 font-medium hover:underline mt-0.5">Hapus</button>
                                     </div>
                                 </div>
                             ))}
@@ -9712,7 +9712,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <textarea rows="2" value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-google-green dark:focus:border-green-500 text-slate-800 dark:text-white rounded-xl px-5 py-3.5 text-sm font-medium outline-none transition-colors resize-none" placeholder={f.placeholder} />
                             </div>
                         ))}
-                        <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-755 text-white font-medium py-3.5 sm:py-4 rounded-full shadow-md shadow-green-500/30 active:scale-95 transition-all text-sm">
+                        <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-700 text-white font-medium py-3.5 sm:py-4 rounded-full shadow-md shadow-green-500/30 active:scale-95 transition-all text-sm">
                             ✓ Buat Pesanan & Bayar COD
                         </button>
                     </div>
@@ -9857,11 +9857,11 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 </div>
                             )}
                             <div>
-                                <label className="text-xs font-medium text-slate-550 dark:text-slate-400 mb-1.5 block">Deskripsi Produk</label>
+                                <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Deskripsi Produk</label>
                                 <textarea rows="3" value={productForm.deskripsi} onChange={e => setProductForm({...productForm, deskripsi: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-xl px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none text-slate-800 dark:text-white" placeholder="Deskripsi produk..." />
                             </div>
                             <div>
-                                <label className="text-xs font-medium text-slate-550 dark:text-slate-400 mb-1.5 block">Donasi Kas RT per Unit (Rp)</label>
+                                <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Donasi Kas RT per Unit (Rp)</label>
                                 <input type="number" value={productForm.donasiKas || 0} onChange={e => setProductForm({...productForm, donasiKas: safeNumber(e.target.value)})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Cth: 1000" />
                             </div>
                             {/* Upload Gambar */}
@@ -9901,7 +9901,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                         <input type="text" value={v.name} onChange={e => { const nv = [...productForm.variants]; nv[i].name = e.target.value; setProductForm({...productForm, variants: nv}); }} placeholder="Nama Varian" className="w-full sm:flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white" />
                                         <div className="flex gap-2 w-full sm:w-auto sm:flex-1 items-center">
                                             <input type="number" value={v.price} onChange={e => { const nv = [...productForm.variants]; nv[i].price = safeNumber(e.target.value); setProductForm({...productForm, variants: nv}); }} placeholder="Harga" className="w-full flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white" />
-                                            {productForm.variants.length > 1 && <button onClick={() => setProductForm({...productForm, variants: productForm.variants.filter(va => va.id !== v.id)})} className="w-7 h-7 shrink-0 bg-red-100 dark:bg-red-950/30 text-red-650 rounded-full flex items-center justify-center hover:bg-red-200"><Icon name="close" className="text-[14px]" /></button>}
+                                            {productForm.variants.length > 1 && <button onClick={() => setProductForm({...productForm, variants: productForm.variants.filter(va => va.id !== v.id)})} className="w-7 h-7 shrink-0 bg-red-100 dark:bg-red-950/30 text-red-600 rounded-full flex items-center justify-center hover:bg-red-200"><Icon name="close" className="text-[14px]" /></button>}
                                         </div>
                                     </div>
                                 ))}
@@ -9949,12 +9949,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     </div>
                                     <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-1 space-y-0.5">
                                         {p.variants.slice(0,2).map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-medium text-slate-700 dark:text-slate-300">{formatRp(v.price)}</span></div>)}
-                                        {p.variants.length > 2 && <div className="text-slate-400 dark:text-slate-550">+{p.variants.length-2} varian lainnya</div>}
+                                        {p.variants.length > 2 && <div className="text-slate-400 dark:text-slate-500">+{p.variants.length-2} varian lainnya</div>}
                                     </div>
-                                    {p.grosirMinQty > 0 && <span className="inline-block mt-1.5 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-955/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-medium rounded">Grosir</span>}
+                                    {p.grosirMinQty > 0 && <span className="inline-block mt-1.5 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-500 text-[9px] font-medium rounded">Grosir</span>}
                                     <div className="flex gap-2 mt-3">
                                         <button onClick={() => { setEditingProduct(p); setProductForm({ donasiKas: 0, ...p }); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
-                                        <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-405 rounded-full text-xs font-medium flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
+                                        <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full text-xs font-medium flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
                                     </div>
                                 </div>
                             </div>
@@ -9984,7 +9984,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                                         <p className="font-medium text-sm text-slate-800 dark:text-white">{p.judul}</p>
                                                         <div className="flex flex-wrap items-center gap-1.5 mt-1">
                                                             {p.sku && <span className="text-[9px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 px-1.5 py-0.5 rounded">{p.sku}</span>}
-                                                            {p.grosirMinQty > 0 && <span className="inline-block px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-medium rounded uppercase">Grosir Aktif</span>}
+                                                            {p.grosirMinQty > 0 && <span className="inline-block px-1.5 py-0.5 bg-yellow-100 dark:bg-yellow-950/20 text-yellow-800 dark:text-yellow-500 text-[9px] font-medium rounded uppercase">Grosir Aktif</span>}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -9998,7 +9998,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                             <td className="p-5 sm:px-6 sm:py-5 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-medium uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
                                             <td className="p-5 sm:px-6 sm:py-5 text-right space-x-2 flex items-center justify-end">
                                                 <button onClick={() => { setEditingProduct(p); setProductForm({ donasiKas: 0, ...p }); setIsFormOpen(true); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
-                                                <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
+                                                <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
                                             </td>
                                         </tr>
                                     ))}
@@ -10142,7 +10142,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             {order.status === 'Menunggu' && <button onClick={() => updateOrderStatus(order.id, 'Diproses')} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Proses</button>}
                             {order.status === 'Diproses' && <button onClick={() => updateOrderStatus(order.id, 'Diantar')} className="flex-1 bg-slate-600 hover:bg-slate-700 text-white py-2 rounded-full text-xs font-medium transition-colors">Mulai Antar</button>}
                             {order.status === 'Diantar' && <button onClick={() => updateOrderStatus(order.id, 'Selesai')} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Selesai ✓</button>}
-                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => updateOrderStatus(order.id, 'Dibatalkan') }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-full text-xs font-medium transition-colors">Batal</button>}
+                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => updateOrderStatus(order.id, 'Dibatalkan') }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-200 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-full text-xs font-medium transition-colors">Batal</button>}
                             <button onClick={() => { setTokoConfirm({ message: 'Hapus pesanan ini secara permanen?', onConfirm: () => setTokoOrders(tokoOrders.filter(o => o.id !== order.id)) }); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-full text-xs font-medium transition-colors flex items-center justify-center" title="Hapus Permanen">
                                 <Icon name="delete" className="text-[15px]" />
                             </button>
@@ -10187,7 +10187,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <div className="flex flex-wrap items-center gap-2">
                         {userRole === 'admin' && (<>
                             <button onClick={() => setView('admin-products')} className="px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-google-blue dark:text-google-blueLight border border-google-blue dark:border-google-blue/40 rounded-full font-medium text-xs hover:bg-google-blue hover:text-white dark:hover:bg-google-blue transition-all">Kelola Katalog</button>
-                            <button onClick={() => setView('admin-orders')} className="relative px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-yellow-750 dark:text-yellow-450 border border-yellow-405 dark:border-yellow-600/50 rounded-full font-medium text-xs hover:bg-yellow-400 hover:text-white dark:hover:bg-yellow-500 transition-all">
+                            <button onClick={() => setView('admin-orders')} className="relative px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-yellow-700 dark:text-yellow-500 border border-yellow-400 dark:border-yellow-600/50 rounded-full font-medium text-xs hover:bg-yellow-400 hover:text-white dark:hover:bg-yellow-500 transition-all">
                                 Pesanan
                                 {tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length > 0 && <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center text-[9px] font-medium animate-bounce">{tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length}</span>}
                             </button>
