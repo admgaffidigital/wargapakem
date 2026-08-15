@@ -3982,8 +3982,8 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
 
                         {/* Foto */}
                         {prog.imageUrl && (
-                            <div className="w-full bg-slate-100 rounded-3xl sm:rounded-3xl overflow-hidden border border-slate-200 flex items-center justify-center" style={{maxHeight:'300px'}}>
-                                <img src={prog.imageUrl} className="w-full object-contain" style={{maxHeight:'300px'}} alt={prog.judul} />
+                            <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 flex items-center justify-center max-h-[500px]">
+                                <img src={prog.imageUrl} className="w-full h-full object-cover" alt={prog.judul} />
                             </div>
                         )}
 
