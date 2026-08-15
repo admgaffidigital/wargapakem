@@ -116,11 +116,10 @@ function Icon({ name, className = "text-[17px]", fill = "false" }) {
                         { label: 'Manajemen Inventaris', answer: `RT memiliki ${inventarisData?.length || 0} jenis barang inventaris.\n\nJika ada yang meminjam, gunakan menu "Pinjam Inventaris". Saat ini ada ${pinjamData?.filter(p => p.status === 'DIPINJAM').length || 0} transaksi barang yang sedang dipinjam warga.` }
                     ]
                 },
-                umkm_blog: {
-                    label: '= UMKM & Blog', icon: 'storefront',
-                    intro: 'Manajemen UMKM warga dan Blog.',
+                blog_warga: {
+                    label: '= Blog Warga', icon: 'article',
+                    intro: 'Manajemen Blog Warga.',
                     topics: [
-                        { label: 'Pasar UMKM', answer: `Fitur untuk mengelola lapak UMKM warga. Admin bisa melihat daftar usaha yang sudah didaftarkan.` },
                         { label: 'Blog Warga', answer: `Warga bisa menulis artikel/blog. Admin dapat memoderasi tulisan yang ada di sistem jika diperlukan.` }
                     ]
                 },
@@ -316,11 +315,10 @@ function Icon({ name, className = "text-[17px]", fill = "false" }) {
                         }
                     ]
                 },
-                umkm_tiket: {
-                    label: '= UMKM & Tiket', icon: 'storefront',
-                    intro: 'Dukung usaha tetangga dan tiket acara.',
+                tiket_acara: {
+                    label: '= Tiket Acara', icon: 'local_activity',
+                    intro: 'Pembelian tiket acara RT.',
                     topics: [
-                        { label: 'Pasar UMKM', answer: `Menu UMKM adalah etalase digital usaha warga. Jika Anda butuh sesuatu, coba cari di sini dulu sebelum beli di luar. Bisa langsung chat WA ke penjual!` },
                         { label: 'Beli Tiket', answer: `Jika ada acara RT berbayar (misal jalan sehat), Anda bisa memesan tiket langsung di aplikasi tanpa harus antri ke panitia.` }
                     ]
                 },

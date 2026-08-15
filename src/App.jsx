@@ -743,278 +743,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             );
         }
 
-
-        
-        function Umkm({ umkmData, setUmkmData, userRole }) {
-            const [isFormOpen, setIsFormOpen] = useState(false);
-            const [editingId, setEditingId] = useState(null);
-            const [formData, setFormData] = useState({ name: '', owner: '', phone: '', category: 'Lainnya', description: '', imageUrl: '' });
-            const [errorMsg, setErrorMsg] = useState('');
-            const [isUploading, setIsUploading] = useState(false);
-            const [deleteConfirmId, setDeleteConfirmId] = useState(null);
-            const [searchQuery, setSearchQuery] = useState('');
-            const [selectedCategory, setSelectedCategory] = useState('Semua');
-            // Deklarasi di atas agar dapat diakses oleh semua handler
-            const [modalConfig, setModalConfig] = useState(null);
-
-            const categories = ['Semua', 'Makanan & Minuman', 'Jasa', 'Toko/Warung', 'Pakaian', 'Kesehatan', 'Lainnya'];
-
-            const handleSave = () => {
-                if (!formData.name || !formData.phone) return setErrorMsg("Nama Usaha dan Nomor WhatsApp wajib diisi!");
-                
-                // Format phone number (ensure starts with 62)
-                let formattedPhone = formData.phone.replace(/\D/g, '');
-                if (formattedPhone.startsWith('0')) {
-                    formattedPhone = '62' + formattedPhone.substring(1);
-                } else if (!formattedPhone.startsWith('62')) {
-                    formattedPhone = '62' + formattedPhone;
-                }
-
-                const newFormData = { ...formData, phone: formattedPhone };
-
-                if (editingId) {
-                    setUmkmData(umkmData.map(item => item.id === editingId ? { ...item, ...newFormData } : item));
-                    setModalConfig && setModalConfig({ message: 'Data UMKM berhasil diperbarui.' });
-                } else {
-                    setUmkmData([{ id: Date.now(), ...newFormData }, ...umkmData]);
-                    setModalConfig && setModalConfig({ message: 'Data UMKM berhasil ditambahkan.' });
-                }
-                setIsFormOpen(false);
-                setEditingId(null);
-            };
-
-            const handleEdit = (item) => {
-                setFormData({
-                    name: item.name || '',
-                    owner: item.owner || '',
-                    phone: item.phone || '',
-                    category: item.category || 'Lainnya',
-                    description: item.description || '',
-                    imageUrl: item.imageUrl || ''
-                });
-                setEditingId(item.id);
-                setErrorMsg('');
-                setIsUploading(false);
-                setIsFormOpen(true);
-            };
-
-            const handleImageUpload = async (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
-                if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
-                setIsUploading(true); setErrorMsg('');
-                try {
-                    const url = await uploadToGoogleDrive(file, 800, 0.6);
-                    setFormData({ ...formData, imageUrl: url });
-                } catch(error) {
-                    setErrorMsg(error);
-                } finally {
-                    setIsUploading(false);
-                }
-            };
-
-            // B1 FIX: Bungkus dengan useMemo agar tidak dihitung ulang setiap render
-            const filteredData = useMemo(() => (umkmData || []).filter(item => {
-                const matchSearch = (item.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                    (item.owner || '').toLowerCase().includes(searchQuery.toLowerCase());
-                const matchCategory = selectedCategory === 'Semua' || item.category === selectedCategory;
-                return matchSearch && matchCategory;
-            }), [umkmData, searchQuery, selectedCategory]);
-
-            // Sudah dideklarasikan di atas (dipindah agar hoisting bersih)
-
-            return (
-                <div className="animate-fade-in pb-24 w-full">
-                    {modalConfig && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-8 max-w-sm w-full text-center modal-card animate-modal-in">
-                                <div className="w-20 h-20 bg-green-100 dark:bg-emerald-950/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                                    <Icon name="check_circle" className="text-4xl text-green-500" />
-                                </div>
-                                <h3 className="text-xl font-medium text-slate-800 dark:text-white mb-2">Berhasil</h3>
-                                <p className="text-slate-600 dark:text-slate-300 mb-8">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-full transition-all">Tutup</button>
-                            </div>
-                        </div>
-                    )}
-
-                    <div className="bg-green-50 p-6 sm:p-10 rounded-3xl border border-green-200/60 shadow-md shadow-green-500/10 mb-8 relative overflow-hidden">
-                        
-                        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                            <div>
-                                <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-xl mb-4 shadow-lg">
-                                    <Icon name="storefront" />
-                                </div>
-                                <h1 className="text-3xl sm:text-4xl font-medium text-slate-800 tracking-tight mb-2">Pasar Warga RT</h1>
-                                <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Direktori usaha milik warga RT. Dukung UMKM lokal dengan berbelanja dari tetangga sendiri.</p>
-                            </div>
-                            {userRole === 'admin' && (
-                                <button onClick={() => { setFormData({ name: '', owner: '', phone: '', category: 'Lainnya', description: '', imageUrl: '' }); setEditingId(null); setIsFormOpen(true); }} className="w-full md:w-auto bg-green-600 text-white px-8 py-4 rounded-full font-medium text-[13px] shadow-lg shadow-green-600/30 hover:bg-green-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
-                                    <Icon name="add_circle" className="group-hover:rotate-90 transition-transform duration-300" /> Tambah Usaha
-                                </button>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="mb-6 flex flex-col sm:flex-row gap-4">
-                        <div className="flex-1">
-                            <input type="text" placeholder="Cari nama usaha atau pemilik..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full px-4 py-3.5 bg-white border border-slate-200 rounded-xl focus:border-green-500 outline-none transition-all font-medium text-slate-700" />
-                        </div>
-                        <div className="relative min-w-[200px]">
-                            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full px-4 pr-9 py-3.5 bg-white border border-slate-200 rounded-xl focus:border-green-500 outline-none transition-all font-medium text-slate-700 appearance-none cursor-pointer">
-                                {categories.map(c => <option key={c} value={c}>{c}</option>)}
-                            </select>
-                            <Icon name="expand_more" style={{ fontSize: '20px' }} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                        </div>
-                    </div>
-
-                    {filteredData.length === 0 ? (
-                        <div className="bg-white/80  rounded-3xl p-12 text-center border border-dashed border-slate-200 shadow-sm">
-                            <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <Icon name="store_off" className="text-[48px] text-slate-300" />
-                            </div>
-                            <h3 className="text-xl font-medium text-slate-700 mb-2">Belum Ada UMKM</h3>
-                            <p className="text-slate-500 font-medium">Daftar usaha warga masih kosong atau tidak ditemukan.</p>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {filteredData.map(item => (
-                                <div key={item.id} className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
-                                    <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
-                                        {item.imageUrl ? (
-                                            <img src={item.imageUrl} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                                        ) : (
-                                            <div className="w-full h-full flex flex-col items-center justify-center text-slate-400">
-                                                <Icon name="image" className="text-4xl mb-2" />
-                                                <span className="text-sm font-medium">Tidak ada foto</span>
-                                            </div>
-                                        )}
-                                        <div className="absolute top-4 left-4 bg-white/90  px-3 py-1.5 rounded-full text-[11px] font-medium text-green-700 shadow-sm border border-green-100 flex items-center gap-1">
-                                            <Icon name="sell" className="text-[13px]" /> {item.category}
-                                        </div>
-                                        {userRole === 'admin' && (
-                                            <div className="absolute top-4 right-4 flex gap-2">
-                                                <button onClick={() => handleEdit(item)} className="w-10 h-10 bg-white/95 text-blue-600 rounded-full shadow-lg flex items-center justify-center hover:bg-blue-50 transition-colors">
-                                                    <Icon name="edit" className="text-[17px]" />
-                                                </button>
-                                                <button onClick={() => setDeleteConfirmId(item.id)} className="w-10 h-10 bg-white/95 text-red-500 rounded-full shadow-lg flex items-center justify-center hover:bg-red-50 transition-colors">
-                                                    <Icon name="delete" className="text-[17px]" />
-                                                </button>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="p-6 flex flex-col flex-1">
-                                        <h3 className="font-medium text-xl text-slate-800 dark:text-white mb-1 line-clamp-1">{item.name}</h3>
-                                        <div className="flex items-center text-slate-500 dark:text-slate-400 text-sm mb-4 font-medium">
-                                            <Icon name="person" className="text-[14px] mr-1" /> {item.owner}
-                                        </div>
-                                        <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 line-clamp-3 leading-relaxed flex-1">
-                                            {item.description || 'Tidak ada deskripsi.'}
-                                        </p>
-                                        <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%20melihat%20usaha%20Anda%20di%20Portal%20Warga.%20Bisa%20tanya-tanya?`} target="_blank" rel="noopener noreferrer" className="mt-auto w-full bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 hover:bg-green-600 hover:text-white border border-green-200 dark:border-green-800 hover:border-green-600 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-all active:scale-95">
-                                            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-                                            Hubungi Penjual
-                                        </a>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
-                    {isFormOpen && (
-                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="w-full max-w-lg rounded-3xl flex flex-col max-h-[90vh] modal-card animate-modal-in">
-                                <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-green-50 dark:bg-slate-900 rounded-t-[32px]">
-                                    <h2 className="text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
-                                        <Icon name="storefront" className="text-green-600" />
-                                        {editingId ? 'Edit Data UMKM' : 'Tambah UMKM Baru'}
-                                    </h2>
-                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-200 dark:border-slate-700 transition-all">
-                                        <Icon name="close" />
-                                    </button>
-                                </div>
-                                <div className="p-6 sm:p-8 overflow-y-auto space-y-7">
-                                    {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-xl text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
-                                    
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Usaha / Toko</label>
-                                        <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Contoh: Warung Barokah" />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Pemilik</label>
-                                        <input type="text" value={formData.owner} onChange={e => setFormData({...formData, owner: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Contoh: Bpk. Budi" />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nomor WhatsApp</label>
-                                        <div className="relative">
-                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 font-medium text-slate-500 dark:text-slate-400">+62</div>
-                                            <input type="number" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl pl-12 pr-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="81234567890" />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white appearance-none bg-white dark:bg-slate-800">
-                                            {categories.filter(c => c !== 'Semua').map(c => <option key={c} value={c}>{c}</option>)}
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Deskripsi Usaha</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="3" className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-3.5 focus:border-green-500 outline-none transition-all font-medium text-slate-700 dark:text-white resize-none" placeholder="Menjual berbagai macam kebutuhan..."></textarea>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Foto (Opsional)</label>
-                                        <div className="border border-dashed border-slate-400 dark:border-slate-600 rounded-xl p-6 text-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative bg-white dark:bg-slate-800/40">
-                                            <input type="file" accept="image/*" onChange={handleImageUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                                            {isUploading ? (
-                                                <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-green-500" /><span className="font-medium">Memproses gambar...</span></div>
-                                            ) : formData.imageUrl ? (
-                                                <div className="relative inline-block">
-                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-lg shadow-sm" />
-                                                    <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-md font-medium">Ganti</div>
-                                                </div>
-                                            ) : (
-                                                <div className="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400 dark:text-slate-500" /><span className="font-medium text-sm">Upload foto</span></div>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-green-600 text-white font-medium py-4 rounded-full shadow-lg shadow-green-600/30 hover:bg-green-700 active:scale-95 transition-all disabled:opacity-50">Simpan Data</button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {deleteConfirmId && (
-                        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="max-w-sm w-full rounded-3xl p-8 text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
-                                <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5">
-                                    <Icon name="warning" className="text-[40px] text-red-500" />
-                                </div>
-                                <h3 className="text-xl font-medium text-slate-800 dark:text-white mb-2">Hapus UMKM?</h3>
-                                <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Data usaha yang dihapus tidak dapat dikembalikan. Yakin?</p>
-                                <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
-                                    <button onClick={() => {
-                                        setUmkmData(umkmData.filter(item => item.id !== deleteConfirmId));
-                                        setModalConfig && setModalConfig({ message: 'Data UMKM dihapus.' });
-                                        setDeleteConfirmId(null);
-                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-full font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            );
-        }
-
         
         function Pengaduan({ laporanData, setLaporanData, userRole }) {
             const [isFormOpen, setIsFormOpen] = useState(false);
@@ -1333,10 +1061,9 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const [showLegalModal, setShowLegalModal] = useState(null); // 'terms' | 'privacy' | null
             const [iuranData, setIuranData, l15] = useFirebaseSync('iuran_umum', []);
             const [galeriData, setGaleriData, l17] = useFirebaseSync('galeri_warga', []);
-            const [umkmData, setUmkmData, l_umkm] = useFirebaseSync('umkm', []);
-        const [laporanData, setLaporanData] = useFirebaseSync('laporan', []);
+            const [laporanData, setLaporanData, l19] = useFirebaseSync('laporan', []);
             const [inventarisData, setInventarisData, l18] = useFirebaseSync('inventaris_rt', []);
-            const [bannerImage, setBannerImage, l19] = useFirebaseSync('banner_image', '');
+            const [bannerImage, setBannerImage, l19_banner] = useFirebaseSync('banner_image', '');
             const [pinjamData, setPinjamData, l21] = useFirebaseSync('pinjam_inventaris', []);
             const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
             const [musicData, setMusicData, l23] = useFirebaseSync('music_config', { url: '', name: '', enabled: true });
@@ -1351,10 +1078,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 newsEmptyDesc: 'Pengumuman penting dan kabar warga RT akan muncul di halaman ini.',
                 blogSubtitle: 'Artikel & Konten Warga',
                 blogTitle: 'BLOG WARGA RT',
-                umkmSubtitle: 'Produk & Usaha Lokal',
-                umkmTitle: 'UMKM WARGA RT',
-                umkmEmptyTitle: 'Belum Ada UMKM Terdaftar',
-                umkmEmptyDesc: 'Daftar usaha milik warga RT akan tampil di sini. Login sebagai Admin untuk menambahkan UMKM.',
                 mapSubtitle: 'Cakupan Wilayah & Kontak Darurat',
                 mapTitle: 'PETA DESA & LAYANAN',
                 sponsorSubtitle: 'Didukung Oleh',
@@ -1385,7 +1108,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
 
             // Jika Firebase tidak tersedia (offline total / gagal init), anggap semua loaded
             const firebaseUnavailable = !db;
-            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19 && l21 && l22 && l23 && l24 && l25 && l_tokoProd && l_tokoOrd && lTicketProducts && lTicketOrders && l_waRequests);
+            const isAppReady = firebaseUnavailable || (l1 && l2 && l3 && l4 && l5 && l6 && l7 && l8 && l10 && l11 && l12 && l13 && l14 && l15 && l17 && l18 && l19_banner && l21 && l22 && l23 && l24 && l25 && l_tokoProd && l_tokoOrd && lTicketProducts && lTicketOrders && l_waRequests);
 
 
             useEffect(() => {
@@ -1524,7 +1247,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 }
                 return (
                     <>
-                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} setShowLicenseModal={setShowLicenseModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} umkmData={umkmData} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} infaqData={infaqData} tokoProducts={tokoProducts} onLogin={(role) => { 
+                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} setShowLicenseModal={setShowLicenseModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} infaqData={infaqData} tokoProducts={tokoProducts} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); 
                             const params = new URLSearchParams(window.location.search);
                             if (params.get('page') === 'tiket') {
@@ -1620,7 +1343,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                 { id: 'warga', icon: 'group', label: 'Buku Warga', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
                 { id: 'galery', icon: 'photo_library', label: 'Galeri', bg: 'bg-slate-100', color: 'text-google-text border border-slate-400' },
                 { id: 'inventaris', icon: 'inventory_2', label: 'Inventaris', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
-                { id: 'umkm', icon: 'storefront', label: 'UMKM Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
                 { id: 'toko', icon: 'local_mall', label: 'Official Store', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
                 { id: 'pengaduan', icon: 'report_problem', label: 'Lapor', bg: 'bg-google-blueLight', color: 'text-google-blueDark border border-google-blue' },
                 { id: 'blog', icon: 'article', label: 'Blog Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
@@ -1651,7 +1373,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     case 'warga': return <WargaList members={members} setMembers={setMembers} userRole={userRole} identity={identity} cycleNumber={cycleNumber} currentRound={currentRound} arisanPeriod={arisanPeriod} />;
                     case 'galery': return <Galeri data={galeriData} setData={setGaleriData} userRole={userRole} />;
                     case 'inventaris': return <Inventaris data={inventarisData} setData={setInventarisData} userRole={userRole} pinjamData={pinjamData} />;
-                    case 'umkm': return <Umkm umkmData={umkmData} setUmkmData={setUmkmData} userRole={userRole} />;
                     case 'toko': return <Toko tokoProducts={tokoProducts} setTokoProducts={setTokoProducts} tokoOrders={tokoOrders} setTokoOrders={setTokoOrders} userRole={userRole} identity={identity} changeTab={changeTab} />;
                     case 'pengaduan': return <Pengaduan laporanData={laporanData} setLaporanData={setLaporanData} userRole={userRole} />;
                     case 'pinjam': return <PinjamInventaris inventarisData={inventarisData} setInventarisData={setInventarisData} pinjamData={pinjamData} setPinjamData={setPinjamData} members={members} userRole={userRole} />;
@@ -2023,7 +1744,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, setShowLicenseModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], umkmData = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber, infaqData = [], tokoProducts = [] }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, setShowLicenseModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber, infaqData = [], tokoProducts = [] }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
@@ -2033,7 +1754,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
             const [showMap, setShowMap] = useState(false); // Lazy-load Google Maps
             const [limitInformasi, setLimitInformasi] = useState(6);
             const [limitBlog, setLimitBlog] = useState(6);
-            const [limitUmkm, setLimitUmkm] = useState(6);
             const [limitInfaq, setLimitInfaq] = useState(3);
             const [limitToko, setLimitToko] = useState(8);
             
@@ -2247,13 +1967,7 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                         <a href="#berita" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-xl font-medium text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
                                             <Icon name="campaign" className="text-[15px] sm:text-[16px]" />
                                             <span>Kabar Warga</span>
-                                        </a>
-                                         {umkmData && umkmData.length > 0 && (
-                                            <a href="#umkm" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-xl font-medium text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
-                                                <Icon name="storefront" className="text-[15px] sm:text-[16px]" />
-                                                <span>UMKM Warga</span>
-                                            </a>
-                                         )}
+                                         </a>
                                          {infoDesa?.enabled && (
                                             <a href="#peta" className="px-4 py-2.5 sm:px-5 sm:py-3 bg-white/15 hover:bg-white/25 text-white rounded-xl font-medium text-[11px] sm:text-[12px] border border-white/20 flex items-center gap-2 active:scale-95 transition-all">
                                                 <Icon name="map" className="text-[15px] sm:text-[16px]" />
@@ -2460,55 +2174,6 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                                 </section>
                             )}
 
-                            {/* UMKM WARGA SECTION */}
-                            {umkmData && umkmData.length > 0 && (
-                                <section id="umkm" className="space-y-8 pt-4 max-w-7xl mx-auto w-full">
-                                    <div className="text-center space-y-1">
-                                        <h3 className="text-[11px] font-medium text-green-600 dark:text-green-400 uppercase tracking-widest">{landingConfig.umkmSubtitle}</h3>
-                                        <h2 className="text-2xl font-medium text-slate-900 dark:text-white tracking-tight">{landingConfig.umkmTitle}</h2>
-                                    </div>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {umkmData.slice(0, limitUmkm).map(item => (
-                                            <article key={item.id} className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-700 shadow-md overflow-hidden flex flex-col justify-between hover:border-green-300 dark:hover:border-green-600 hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 group">
-                                                <div>
-                                                    <div className="relative h-48 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
-                                                        {item.imageUrl ? (
-                                                            <img src={item.imageUrl} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                                                        ) : (
-                                                            <div className="w-full h-full bg-green-50 dark:bg-green-950/20 flex items-center justify-center">
-                                                                <Icon name="storefront" className="text-[48px] text-green-500/20" />
-                                                            </div>
-                                                        )}
-                                                        <span className="absolute top-3 left-3 bg-green-500 text-white text-[9.5px] font-medium uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">{item.category}</span>
-                                                    </div>
-                                                    <div className="p-5 space-y-2.5">
-                                                        <h4 className="font-medium text-[16px] text-slate-900 dark:text-white tracking-tight leading-tight line-clamp-1">{item.name}</h4>
-                                                        <div className="flex items-center text-slate-500 dark:text-slate-400 text-[12px] font-medium">
-                                                            <Icon name="person" className="text-[14px] mr-1 text-slate-400" />
-                                                            <span>Pemilik: {item.owner}</span>
-                                                        </div>
-                                                        <p className="text-[12.5px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">{item.description || 'Tidak ada deskripsi usaha.'}</p>
-                                                    </div>
-                                                </div>
-                                                <div className="p-5 pt-0">
-                                                    <a href={`https://wa.me/${item.phone}?text=Halo%20${encodeURIComponent(item.owner)},%20saya%2520tertarik%2520dengan%2520usaha%2520Anda%2520di%2520Portal%2520Warga.`} target="_blank" rel="noopener noreferrer" className="w-full bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 hover:bg-green-600 hover:text-white border border-green-200 dark:border-green-800 hover:border-green-600 py-3 rounded-xl font-medium text-[12px] flex items-center justify-center gap-1.5 transition-all active:scale-95">
-                                                        <Icon name="chat" className="text-[16px]" />
-                                                        <span>Hubungi via WhatsApp</span>
-                                                    </a>
-                                                </div>
-                                            </article>
-                                        ))}
-                                    </div>
-                                    {umkmData.length > limitUmkm && (
-                                        <div className="flex justify-center pt-6">
-                                            <button onClick={() => setLimitUmkm(prev => prev + 6)} className="bg-white hover:bg-slate-50 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-3 px-6 rounded-full text-[12px] border border-slate-200 dark:border-slate-750 shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
-                                                <Icon name="expand_more" />
-                                                <span>Lihat Lebih Banyak Usaha</span>
-                                            </button>
-                                        </div>
-                                    )}
-                                </section>
-                            )}
                             {/* TOKO OFFICIAL SECTION */}
                             <section id="toko" className="space-y-8 pt-4 max-w-7xl mx-auto w-full">
                                     <div className="text-center space-y-1">
@@ -7118,11 +6783,6 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                                             <div className="bg-white rounded-2xl px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formLanding.newsTitle} onChange={e => setFormLanding({...formLanding, newsTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
                                         </div>
 
-                                        <div className="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-6">
-                                            <h4 className="text-[13px] font-medium text-google-text">Seksi UMKM</h4>
-                                            <div className="bg-white rounded-2xl px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Subjudul</label><input type="text" value={formLanding.umkmSubtitle} onChange={e => setFormLanding({...formLanding, umkmSubtitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                            <div className="bg-white rounded-2xl px-4 py-3 border border-slate-200 focus-within:border-google-blue transition-all shadow-sm"><label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Judul Utama</label><input type="text" value={formLanding.umkmTitle} onChange={e => setFormLanding({...formLanding, umkmTitle: e.target.value})} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text" /></div>
-                                        </div>
                                         
                                         <div className="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-6">
                                             <h4 className="text-[13px] font-medium text-google-text">Bagian Footer (Bawah)</h4>
