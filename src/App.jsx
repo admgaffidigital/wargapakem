@@ -3897,10 +3897,10 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
                                 <div key={item.id} onClick={() => { setSelected(item); setView('detail'); setNominalInput(''); setNamaInfaq(''); setTipeNama('nama'); setSelectedRek(0); }}
                                     className="bg-white rounded-3xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-green/50 transition-all duration-300 cursor-pointer group flex flex-col">
                                     {/* Foto */}
-                                    <div className="w-full bg-slate-100 flex items-center justify-center overflow-hidden shrink-0" style={{minHeight:'160px', maxHeight:'220px'}}>
+                                    <div className="w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0 aspect-[4/3] sm:aspect-video">
                                         {item.imageUrl
-                                            ? <img src={item.imageUrl} loading="lazy" className="w-full object-contain group-hover:scale-105 transition-transform duration-700" style={{maxHeight:'220px'}} alt={item.judul} />
-                                            : <div className="flex items-center justify-center p-10"><Icon name="volunteer_activism" className="text-[64px] text-slate-300" fill="true" /></div>
+                                            ? <img src={item.imageUrl} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={item.judul} />
+                                            : <div className="flex items-center justify-center p-10"><Icon name="volunteer_activism" className="text-[64px] text-slate-300 dark:text-slate-600" fill="true" /></div>
                                         }
                                     </div>
                                     {/* Info */}
