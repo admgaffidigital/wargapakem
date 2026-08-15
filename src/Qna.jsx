@@ -37,220 +37,231 @@ function Qna({
     const formatRp = (num) => `Rp ${(num || 0).toLocaleString('id-ID')}`;
 
     // ==========================================
-    // KNOWLEDGE BASE DATA
+    // KNOWLEDGE BASE DATA (DETAILED & CITIZEN FRIENDLY)
     // ==========================================
     const kbWarga = useMemo(() => [
         {
-            category: 'Arisan',
+            category: 'Arisan Warga',
             icon: 'emoji_events',
             q: 'Apa itu Arisan RT ini?',
-            a: `Arisan RT adalah kegiatan kumpul-kumpul uang rutin setiap bulan. Setiap anggota membayar iuran arisan sebesar ${formatRp(nominalArisan || 10000)} per pertemuan.
+            a: `Arisan RT adalah kegiatan menabung bersama secara berkala setiap bulan untuk mempererat tali silaturahmi antar-tetangga di wilayah RT kita. Setiap anggota yang berpartisipasi menyetor uang arisan sebesar ${formatRp(nominalArisan || 10000)} per pertemuan.
 
-Uang dari semua anggota dikumpulkan, lalu diundi dan satu orang beruntung mendapatkan semua uang tersebut bulan itu.
+Uang yang terkumpul dari seluruh peserta akan diserahkan kepada satu orang pemenang yang diundi menggunakan sistem acak komputer yang adil.
 
-Setiap orang akan mendapat giliran menang TEPAT 1 kali per siklus, jadi tidak ada yang dirugikan. Setelah semua mendapat giliran, siklus baru dimulai lagi dari awal.`
+Penting dipahami: Sistem ini menganut asas keadilan penuh. Setiap peserta yang terdaftar dipastikan akan memenangkan arisan tepat satu kali di setiap siklus putaran. Tidak ada bunga, tidak ada potongan biaya admin. Setelah seluruh warga mendapat giliran menang, barulah siklus akan direset dan dimulai kembali dari awal.`
         },
         {
-            category: 'Arisan',
+            category: 'Arisan Warga',
             icon: 'emoji_events',
             q: 'Berapa uang yang diterima pemenang arisan?',
-            a: `Pemenang menerima uang dari semua anggota yang hadir, MINUS bagian dirinya sendiri karena tidak masuk akal seseorang membayar ke dirinya sendiri.
+            a: `Pemenang arisan akan menerima akumulasi uang dari seluruh anggota yang hadir pada pertemuan tersebut, kecuali bagian dari dirinya sendiri.
 
-Contoh mudah:
-- Ada 10 anggota hadir, iuran ${formatRp(nominalArisan || 10000)} per orang.
-- Total terkumpul = 10 x ${formatRp(nominalArisan || 10000)} = ${formatRp(10 * (nominalArisan || 10000))}.
-- Pemenang hadir dan menerima ${formatRp(9 * (nominalArisan || 10000))} (dari 9 orang lainnya).
+Mengapa demikian? Karena secara logika, seseorang tidak perlu membayar iuran arisan kepada dirinya sendiri.
 
-Ini bukan pengurangan, melainkan cara menghitung yang jujur agar uang fisik yang diserahkan cocok dengan catatan.`
+Ilustrasi Sederhana (Contoh Amplop):
+- Misalkan ada 10 orang warga yang hadir, dengan nominal iuran arisan ${formatRp(nominalArisan || 10000)} per orang.
+- Total nominal di atas kertas adalah 10 orang x ${formatRp(nominalArisan || 10000)} = ${formatRp(10 * (nominalArisan || 10000))}.
+- Namun karena pemenang tidak menyetor untuk amplopnya sendiri, maka ada 9 tetangga lainnya yang mengisi amplop masing-masing sebesar ${formatRp(nominalArisan || 10000)}.
+- Total uang fisik yang dibawa pulang oleh pemenang adalah ${formatRp(9 * (nominalArisan || 10000))} (dari 9 orang lain).
+
+Dengan cara ini, jumlah uang kas fisik yang diserahkan di tempat akan sangat akurat dan cocok dengan catatan sistem absensi tanpa ada selisih.`
         },
         {
-            category: 'Arisan',
+            category: 'Arisan Warga',
             icon: 'emoji_events',
             q: 'Kenapa ada menu "Pemenang"?',
-            a: `Menu Pemenang menampilkan daftar siapa saja yang SUDAH mendapat giliran menang di siklus yang sedang berjalan.
+            a: `Menu Pemenang berfungsi sebagai papan transparansi publik. Di menu ini, seluruh warga bisa melihat:
+1. Daftar nama warga yang sudah mendapatkan giliran menang beserta informasi di putaran/bulan ke berapa mereka menang.
+2. Daftar nama warga yang belum mendapatkan giliran menang di siklus putaran berjalan saat ini.
 
-Anda bisa memeriksa:
-- Siapa saja yang sudah menang di putaran berapa.
-- Siapa saja yang belum mendapat giliran menang.
-
-Jika nama Anda belum ada di daftar, berarti Anda masih punya kesempatan menang di pertemuan bulan berikutnya.`
+Jika nama Anda belum ada di daftar pemenang, jangan khawatir! Anda masih berada di dalam wadah undian komputer dan giliran menang Anda akan segera datang di pertemuan bulan-bulan berikutnya.`
         },
         {
-            category: 'Arisan',
+            category: 'Arisan Warga',
             icon: 'emoji_events',
             q: 'Apa itu Putaran dan Siklus?',
-            a: `- **Putaran**: Urutan pertemuan arisan bulanan (Putaran 1 = bulan pertama, Putaran 2 = bulan kedua, dst).
-- **Siklus**: Satu babak penuh sampai semua anggota mendapat giliran menang tepat 1 kali.
+            a: `Untuk memudahkan pemahaman perkembangan arisan kita:
+- **Putaran**: Menunjukkan jumlah pertemuan bulanan yang sudah terlaksana. Putaran 1 berarti bulan pertama, Putaran 2 berarti bulan kedua, dan seterusnya.
+- **Siklus**: Adalah satu putaran besar penuh yang baru selesai jika seluruh warga yang terdaftar sudah memenangkan arisan masing-masing tepat satu kali.
 
-Contoh: Jika ada 12 anggota arisan, satu siklus berisi 12 putaran (12 bulan). Setelah putaran ke-12 selesai, masuk Siklus baru.
-Saat ini: Siklus ke-${cycleNumber || 1}, Putaran ke-${currentRound || 1}.`
+Contoh: Jika total peserta arisan kita adalah 12 orang, maka 1 Siklus akan memakan waktu 12 Putaran (12 bulan). Setelah putaran ke-12 selesai, sistem akan mereset data pemenang untuk memulai Siklus baru dari awal.
+Kondisi saat ini: Aplikasi kita saat ini sedang berjalan pada Siklus ke-${cycleNumber || 1} dan Putaran ke-${currentRound || 1}.`
         },
         {
-            category: 'Jimpitan',
+            category: 'Arisan Warga',
+            icon: 'history',
+            q: 'Apa itu menu Arsip Riwayat?',
+            a: `Menu Arsip Riwayat adalah catatan digital permanen untuk setiap pertemuan bulanan yang sudah lewat. Di sana warga dapat melihat:
+- Siapa pemenang arisan pada bulan tersebut.
+- Berapa jumlah kas arisan dan kas jimpitan yang terkumpul.
+- Siapa saja warga yang absen beserta riwayat dana talangannya.
+
+Data ini tersimpan aman di server cloud (Firebase) sehingga tidak bisa diubah-ubah sepihak, kecuali terdapat revisi absensi resmi oleh pengurus RT jika ada kekeliruan pencatatan.`
+        },
+        {
+            category: 'Kas Jimpitan',
             icon: 'savings',
             q: 'Apa itu Jimpitan?',
-            a: `Jimpitan adalah iuran sukarela bernominal kecil yang dikumpulkan setiap pertemuan arisan, terpisah dari uang arisan utama.
+            a: `Jimpitan adalah iuran sukarela bernominal kecil yang dikumpulkan dari setiap warga yang hadir di setiap pertemuan bulanan. Nominal jimpitan disepakati sebesar ${formatRp(nominalJimpitan || 2000)} per warga.
 
-Besarnya: ${formatRp(nominalJimpitan || 2000)} per anggota per pertemuan.
-
-Uang jimpitan tidak diundi, melainkan dikumpulkan terus sebagai tabungan bersama RT yang bisa digunakan untuk kebutuhan operasional, sosial, atau ditransfer ke Kas Warga Utama jika diperlukan.`
+Berbeda dengan uang arisan yang diundi untuk dibawa pulang oleh perorangan, uang kas jimpitan ini tidak diundi. Jimpitan dikumpulkan terus-menerus sebagai tabungan sosial dan operasional bersama. Dana jimpitan ini digunakan untuk membeli keperluan RT (seperti sapu, tong sampah, sound system), membiayai rapat, memberikan sumbangan sosial bagi warga yang tertimpa musibah (sakit/kematian), atau dialokasikan sebagai dana talangan sementara jika ada warga arisan yang absen.`
         },
         {
-            category: 'Jimpitan',
+            category: 'Kas Jimpitan',
             icon: 'savings',
-            q: 'Apa perbedaan Kas Jimpitan dan Kas Warga?',
-            a: `Sistem ini memiliki dua jenis kas yang terpisah:
-- **Kas Jimpitan**: Uang yang terkumpul dari iuran kehadiran bulanan sebagai dana gotong royong warga.
-- **Kas Warga Utama**: Uang operasional RT yang lebih besar, bisa berasal dari alokasi kas jimpitan, iuran umum, atau donasi/sponsorship.
+            q: 'Apa perbedaan Kas Jimpitan dan Kas Warga Utama?',
+            a: `Situs RT kita mengelola dua kantong keuangan yang berbeda fungsi demi tertib administrasi:
+1. **Kas Jimpitan**: Sumbernya murni dari iuran kehadiran bulanan sebesar ${formatRp(nominalJimpitan || 2000)} per warga. Kas ini utamanya digunakan untuk urusan sosial warga dan dana talangan arisan.
+2. **Kas Warga Utama**: Merupakan kas operasional RT berskala lebih besar yang saldo awalnya didapat dari iuran tahunan, donasi sukarela, sumbangan pembangunan, maupun hasil pemindahan (transfer) sebagian dana dari kas jimpitan atas persetujuan bersama.
 
-Admin dapat memindahkan dana jimpitan ke Kas Warga jika ada kebutuhan mendesak, dan semua riwayat pemindahan tercatat transparan.`
+Setiap ada pemindahan dana dari Kas Jimpitan ke Kas Warga Utama oleh admin, sistem akan mencatatnya sebagai transaksi masuk resmi di Buku Kas RT secara realtime untuk menghindari salah hitung.`
         },
         {
-            category: 'Jimpitan',
+            category: 'Kas Jimpitan',
             icon: 'savings',
             q: 'Apa itu "Saldo Efektif"?',
-            a: `Saldo Efektif Jimpitan adalah gabungan dari:
-- Saldo tunai yang ada di kas jimpitan.
-- Total piutang (tunggakan seluruh warga yang belum membayar jimpitan).
+            a: `Pada halaman Dashboard utama, Anda akan melihat grafik atau angka "Saldo Efektif Jimpitan". Angka ini adalah penjumlahan dari:
+1. **Saldo Tunai**: Uang kas jimpitan fisik yang saat ini dipegang oleh bendahara RT.
+2. **Total Piutang**: Jumlah akumulasi tunggakan dari seluruh warga yang belum membayar iuran/jimpitannya (uang kas RT yang masih berada di tangan warga).
 
-Tampilan ini memberikan gambaran total aset jimpitan riil yang dimiliki oleh RT saat ini. Saldo tunai saat ini: ${formatRp(jimpitanBalance || 0)}.`
+Contoh: Jika saldo tunai bendahara adalah Rp 100.000, dan ada total tunggakan warga sebesar Rp 50.000, maka Saldo Efektif Jimpitan adalah Rp 150.000. Konsep Saldo Efektif ini sangat penting agar pengurus RT dapat mengetahui total aset jimpitan riil yang dimiliki oleh paguyuban RT kita saat ini. Saldo tunai jimpitan saat ini: ${formatRp(jimpitanBalance || 0)}.`
         },
         {
-            category: 'Jimpitan',
+            category: 'Kas Jimpitan',
             icon: 'savings',
             q: 'Apa itu Talangan?',
-            a: `Talangan terjadi ketika ada warga yang absen (Alfa atau Musibah) dalam pertemuan arisan.
+            a: `Sistem talangan dibuat agar pemenang arisan bulanan tetap menerima uangnya secara utuh (penuh) pada hari pertemuan, meskipun ada beberapa anggota arisan yang tidak bisa hadir (absen) dan belum menyetor uang arisan mereka.
 
-Agar pemenang tetap menerima uang arisan penuh pada bulan itu, kekurangan setoran dari warga yang absen "ditalangi sementara" menggunakan Kas Jimpitan.
+Kekurangan uang setoran dari warga yang absen tersebut akan ditalangi sementara dengan meminjam dana dari Kas Jimpitan.
 
-Saat warga yang absen tersebut hadir kembali di bulan berikutnya dan melunasi tunggakan, dana talangan tersebut otomatis dikembalikan ke Kas Jimpitan.`
+Nanti, ketika warga yang absen tersebut hadir di pertemuan bulan berikutnya dan membayar tunggakan mereka, uang pelunasan tersebut akan otomatis masuk kembali untuk memulihkan saldo Kas Jimpitan yang dipinjam sebelumnya. Dengan sistem talangan ini, jalannya arisan tidak akan terhambat dan pemenang bulan itu tidak dirugikan.`
         },
         {
-            category: 'Tunggakan',
+            category: 'Tunggakan Warga',
             icon: 'warning',
             q: 'Kenapa saya tercatat memiliki Tunggakan?',
-            a: `Tunggakan timbul otomatis jika Anda tidak hadir pada pertemuan arisan, baik dengan status:
-- **Alfa**: Tidak hadir tanpa alasan jelas.
-- **Musibah**: Tidak hadir karena alasan yang sah (sakit, urusan keluarga mendesak, dll).
+            a: `Tunggakan otomatis tercatat di sistem apabila nama Anda diatur sebagai "Tidak Hadir" pada saat absensi arisan bulanan ditutup oleh pengurus. Ketidakhadiran ini bisa berupa:
+- **Alfa**: Absen tanpa alasan yang jelas atau tanpa memberikan kabar.
+- **Musibah**: Absen karena ada halangan penting (sakit, tugas dinas, atau ada musibah keluarga).
 
-Besar tunggakan per absen = Arisan + Jimpitan = ${formatRp((nominalArisan || 10000) + (nominalJimpitan || 2000))}. Tunggakan ini bukan denda, melainkan kewajiban tertunda yang harus dilunasi pada kehadiran berikutnya.`
+Besar tunggakan per satu kali absen adalah iuran arisan + jimpitan = ${formatRp((nominalArisan || 10000) + (nominalJimpitan || 2000))}. Tunggakan ini bukanlah denda atau hukuman bunga, melainkan kewajiban iuran bulanan Anda yang tertunda dan harus dilunasi pada pertemuan berikutnya.`
         },
         {
-            category: 'Tunggakan',
+            category: 'Tunggakan Warga',
             icon: 'warning',
-            q: 'Bagaimana cara melunasi Tunggakan?',
-            a: `Cara pelunasan tunggakan sangat praktis:
-1. Hadir di pertemuan arisan berikutnya.
-2. Bayar iuran bulanan berjalan.
-3. Beritahu Admin untuk melunasi tunggakan Anda.
-4. Admin akan mencentang opsi "Lunasi Tunggakan?" di dasbor absensi Anda.
+            q: 'Bagaimana cara melunasi Tunggakan saya?',
+            a: `Anda dapat melunasi tunggakan dengan langkah mudah berikut:
+1. Hadir di pertemuan arisan RT pada bulan berikutnya.
+2. Bayar iuran bulan berjalan seperti biasa.
+3. Serahkan uang tunggakan Anda kepada bendahara/admin.
+4. Admin akan membuka lembar absen Anda dan mencentang kolom "Lunasi Tunggakan?".
 
-Tunggakan Anda akan otomatis terhapus dari riwayat sistem setelah data disimpan oleh admin.`
+Setelah data absensi disimpan oleh admin ke server cloud, status tunggakan Anda akan otomatis terhapus dari sistem dan status nama Anda kembali menjadi BERSIH (hijau).`
         },
         {
-            category: 'Tunggakan',
+            category: 'Tunggakan Warga',
             icon: 'warning',
-            q: 'Apa bedanya status "Alfa" dan "Musibah"?',
-            a: `- **Alfa (Rapor Merah)**: Tidak hadir tanpa konfirmasi/alasan jelas. Nama Anda akan ditandai dengan badge merah di dashboard warga sebagai peringatan.
-- **Musibah**: Tidak hadir karena alasan penting/darurat. Anda tetap dicatat memiliki tunggakan, namun nama Anda TIDAK akan masuk dalam daftar rapor merah karena mendapat toleransi sosial.`
+            q: 'Apa perbedaan status "Alfa" dan "Musibah" di absensi?',
+            a: `RT kita sangat menghargai toleransi sosial dan kedisiplinan. Oleh karena itu, ketidakhadiran dibagi menjadi dua:
+- **Alfa (Rapor Merah)**: Diberikan jika warga absen tanpa kabar sama sekali. Nama warga akan ditandai dengan lingkaran merah atau badge "Rapor Merah" di dasbor sebagai pengingat kedisiplinan.
+- **Musibah**: Diberikan jika warga absen karena alasan darurat yang sah (sakit keras, musibah keluarga, dll). Warga tetap mencatat tunggakan iuran, namun nama warga bebas dari label Rapor Merah karena pengurus memaklumi kondisi darurat tersebut.`
         },
         {
-            category: 'Iuran',
+            category: 'Iuran Umum',
             icon: 'volunteer_activism',
             q: 'Apa itu Iuran Umum?',
-            a: `Iuran Umum adalah tagihan khusus di luar arisan rutin untuk program tertentu, contohnya:
-- Iuran Kemerdekaan (17 Agustus)
-- Pembangunan Masjid/Mushola
-- Dana Darurat/Sosial kematian
+            a: `Iuran Umum adalah iuran insidental (khusus) di luar uang arisan bulanan yang digunakan untuk mendanai acara/kegiatan tertentu di lingkungan RT kita. Contohnya:
+- Dana Peringatan HUT RI (17 Agustus)
+- Sumbangan pembangunan/renovasi masjid RT
+- Iuran kebersihan lingkungan khusus
 
-Setiap agenda iuran memiliki nama, nominal minimum, dan tenggat waktu yang ditentukan oleh pengurus RT.`
+Setiap agenda iuran memiliki batas nominal minimum pembayaran dan tenggat waktu yang ditentukan oleh pengurus.`
         },
         {
-            category: 'Iuran',
+            category: 'Iuran Umum',
             icon: 'volunteer_activism',
-            q: 'Kenapa saya hanya melihat status LUNAS atau BELUM LUNAS?',
-            a: `Ini adalah fitur **Privasi Finansial**.
+            q: 'Kenapa saya hanya melihat status LUNAS atau BELUM LUNAS tanpa angka rupiah?',
+            a: `Hal ini merupakan fitur privasi dan kenyamanan warga.
 
-Sistem menyembunyikan nominal pasti yang disumbangkan setiap warga untuk menjaga kerukunan, mengingat kemampuan ekonomi setiap keluarga berbeda. Anda hanya akan melihat tanda LUNAS jika setoran Anda sudah mencapai batas nominal minimum agenda tersebut.`
+Kemampuan finansial setiap kepala keluarga tentu berbeda-beda. Demi menjaga kerukunan dan menghindari rasa sungkan antar-tetangga, besarnya nominal iuran yang Anda bayar bersifat rahasia (privat). Anda dan warga lain hanya bisa melihat status LUNAS (jika nominal setoran Anda telah memenuhi batas minimal agenda) atau BELUM LUNAS. Hanya bendahara/admin RT yang dapat melihat nominal persisnya demi kebutuhan laporan pembukuan.`
         },
         {
-            category: 'Buku Kas',
+            category: 'Buku Kas RT',
             icon: 'account_balance_wallet',
             q: 'Apakah Warga biasa bisa mengubah data Buku Kas?',
-            a: `Tidak. Anggota/warga umum hanya memiliki akses **Melihat (Read-Only)** riwayat Buku Kas.
+            a: `Tidak bisa. Anggota atau warga biasa hanya diberikan hak akses Melihat (Read-Only) seluruh riwayat kas masuk dan keluar.
 
-Hanya Admin yang memiliki hak menambah, mengoreksi, atau menghapus transaksi. Hal ini memastikan transparansi keuangan RT tetap terjaga tanpa risiko data diubah secara tidak sah.`
+Hak untuk menambah transaksi, mengoreksi entri yang salah, atau melakukan penarikan jimpitan dibatasi khusus untuk Admin Utama yang terverifikasi. Hal ini menjamin transparansi laporan keuangan di mana warga bisa memantau aliran kas kapan saja, namun datanya terlindung dari perubahan tidak sah.`
         },
         {
             category: 'Buku Warga',
             icon: 'person',
-            q: 'Apa arti tanda/badge status di nama saya?',
-            a: `Di menu Buku Warga, status Anda ditandai sebagai:
-- **BERSIH** (Hijau): Kehadiran baik, tidak ada tunggakan.
-- **HUTANG** (Kuning/Merah): Memiliki tunggakan pembayaran yang harus dilunasi.
-- **WAFAT** (Abu-abu): Diberhentikan dari kewajiban iuran/arisan.
-- **NONAKTIF** (Abu-abu): Pindah rumah atau tidak aktif lagi.`
+            q: 'Apa arti status "BERSIH", "HUTANG", "WAFAT", dan "NONAKTIF" di Buku Warga?',
+            a: `Tanda di samping nama Anda di menu Buku Warga menjelaskan kondisi keanggotaan Anda saat ini:
+- **BERSIH** (Badge Hijau): Kondisi prima, kehadiran aktif, dan tidak memiliki tunggakan iuran arisan/jimpitan.
+- **HUTANG** (Badge Kuning/Merah): Warga memiliki kewajiban pembayaran tertunda yang harus segera dilunasi.
+- **WAFAT** (Abu-abu): Status untuk warga yang telah berpulang. Mereka otomatis dibebaskan dari segala kewajiban arisan dan iuran bulanan.
+- **NONAKTIF** (Abu-abu): Diberhentikan dari kewajiban arisan karena sudah pindah rumah ke luar wilayah RT kita.`
         },
         {
-            category: 'Info RT',
+            category: 'Inventaris & Pinjam',
             icon: 'campaign',
             q: 'Di mana saya bisa melihat inventaris barang milik RT?',
-            a: `Anda dapat mengakses menu **Inventaris** di dasbor utama. Di sana tercantum daftar lengkap barang milik RT (tenda, kursi, sound system) beserta jumlahnya sebagai bentuk transparansi aset bersama.
+            a: `Anda dapat mengakses menu Inventaris di dasbor utama. Di sana tercantum daftar lengkap barang milik RT (tenda terpal, kursi lipat, sound system portable) beserta jumlahnya sebagai bentuk transparansi aset bersama.
 
 Saat ini RT memiliki ${inventarisData?.length || 0} barang terdaftar.`
+        },
+        {
+            category: 'Inventaris & Pinjam',
+            icon: 'handshake',
+            q: 'Bagaimana cara mengajukan peminjaman barang inventaris RT?',
+            a: `Jika Anda memiliki acara keluarga di rumah (seperti syukuran, khitanan, pernikahan, atau takziah) dan ingin meminjam alat RT:
+1. Buka menu **Pinjam Inventaris** di dasbor.
+2. Cari barang yang Anda butuhkan (pastikan statusnya "Tersedia").
+3. Isi formulir peminjaman: masukkan jumlah barang, tanggal mulai meminjam, dan tanggal rencana pengembalian.
+4. Kirim pengajuan Anda. Pengurus RT akan meninjau ketersediaan barang. Setelah disetujui, Anda bisa mengambil barang tersebut di tempat penyimpanan RT.`
+        },
+        {
+            category: 'Infaq RT',
+            icon: 'volunteer_activism',
+            q: 'Bagaimana cara menyalurkan donasi Infaq secara online?',
+            a: `Penyaluran infaq untuk kegiatan sosial RT dapat dilakukan di menu **Infaq**:
+1. Isi formulir dengan nama Anda (atau centang pilihan **Anonim / Hamba Allah** jika Anda ingin merahasiakan identitas Anda).
+2. Tentukan nominal infaq dan unggah bukti transfer pembayaran.
+3. Klik kirim. Bendahara RT akan memverifikasi bukti tersebut, dan dana Anda akan resmi masuk dalam laporan infaq sosial RT.`
         },
         {
             category: 'Official Store',
             icon: 'local_mall',
             q: 'Bagaimana cara membeli barang di Official Store RT?',
-            a: `Sangat mudah!
+            a: `Official Store RT adalah toko kelontong online yang dikelola oleh pengurus RT untuk membantu menyediakan kebutuhan harian warga. Cara membelinya:
 1. Buka menu **Official Store** di dasbor.
-2. Pilih produk dan kuantitas, lalu masukkan ke keranjang belanja.
-3. Klik Keranjang, isi nama lengkap, nomor WhatsApp, dan alamat/blok rumah Anda.
-4. Klik buat pesanan. Barang akan dikirim secara gratis ongkir langsung ke rumah Anda dengan sistem pembayaran COD (Bayar di Tempat).`
+2. Pilih produk yang diinginkan, tentukan varian dan jumlahnya, lalu masukkan ke keranjang.
+3. Buka keranjang belanja di pojok kanan atas, lalu klik checkout.
+4. Isi data pengiriman: Nama lengkap Anda, nomor WhatsApp aktif, dan alamat/blok rumah.
+5. Klik pesan. Pengurus RT akan mengantarkan barang langsung ke depan pintu rumah Anda secara **Gratis Ongkir (Bebas Ongkos Kirim)**, dan Anda cukup membayar tunai di tempat saat barang diterima (**COD**). Setiap pembelian produk di toko ini juga berkontribusi menyumbang Kas RT!`
         },
         {
             category: 'Tiket Acara',
             icon: 'local_activity',
             q: 'Bagaimana cara membeli tiket acara RT di aplikasi?',
-            a: `Jika RT mengadakan acara berbayar (seperti Jalan Sehat atau Bazar):
+            a: `Jika RT mengadakan acara besar yang berbayar (seperti tiket jalan sehat memperingati kemerdekaan, kupon doorprize, atau bazar makanan):
 1. Buka menu **Beli Tiket**.
-2. Pilih tiket acara yang Anda inginkan, tentukan jumlahnya, lalu selesaikan pemesanan.
-3. Tiket QR Code digital akan otomatis tersimpan di akun Anda dan dapat ditunjukkan ke panitia saat acara berlangsung.`
+2. Pilih event aktif, tentukan jumlah tiket yang ingin dibeli, lalu kirim pemesanan.
+3. Setelah dikonfirmasi oleh panitia, tiket digital beserta **QR Code** unik akan muncul di menu "Tiket Saya".
+4. Anda cukup menunjukkan kode QR tersebut di HP Anda kepada petugas lapangan saat acara berlangsung untuk dipindai.`
         },
         {
             category: 'Blog Warga',
             icon: 'article',
             q: 'Bagaimana cara berkontribusi di Blog Warga?',
-            a: `Semua warga dapat berkontribusi menulis cerita, opini, tips, berita lokal, atau pengumuman di menu **Blog Warga**.
-
-Anda juga dapat membaca tulisan dari tetangga lainnya, memberikan like, dan meninggalkan komentar sebagai sarana komunikasi warga yang santai.`
-        },
-        {
-            category: 'Inventaris',
-            icon: 'handshake',
-            q: 'Bagaimana cara mengajukan peminjaman barang inventaris RT?',
-            a: `Jika Anda memerlukan tenda, kursi, sound system, atau barang RT lainnya:
-1. Buka menu **Pinjam Inventaris**.
-2. Pilih barang yang tersedia, tentukan jumlah dan tanggal peminjaman (mulai dan berakhir).
-3. Kirim pengajuan. Pengurus RT akan meninjau dan mengubah status menjadi "Disetujui" jika barang tersedia.`
-        },
-        {
-            category: 'Infaq',
-            icon: 'volunteer_activism',
-            q: 'Bagaimana cara menyalurkan Infaq secara online?',
-            a: `Penyaluran infaq untuk kegiatan sosial RT dapat dilakukan di menu **Infaq**:
-1. Isi formulir dengan nama Anda (atau pilih Anonim jika ingin rahasia).
-2. Tentukan nominal infaq dan unggah bukti transfer/pembayaran.
-3. Kirim data. Pengurus RT akan memvalidasi bukti pembayaran Anda, dan kontribusi Anda akan tercatat dalam laporan kas infaq.`
+            a: `Menu **Blog Warga** adalah wadah sosial kreatif milik kita bersama. Semua warga dapat menulis artikel, resep masakan, opini, pengumuman kehilangan hewan peliharaan, berita duka, kabar pernikahan, atau cerita inspiratif lainnya. Warga lainnya dapat saling berinteraksi dengan membaca, memberikan apresiasi tombol *Like*, dan memberikan komentar-komentar positif untuk merajut kebersamaan.`
         },
         {
             category: 'Peta Lokasi',
             icon: 'map',
             q: 'Apa kegunaan menu Peta Lokasi?',
-            a: `Menu **Peta Lokasi** menampilkan titik-titik koordinat rumah warga di wilayah RT Pakem.
-
-Fitur ini dirancang untuk mempermudah kurir paket, tamu luar daerah, maupun sesama tetangga dalam menemukan alamat rumah secara presisi menggunakan integrasi peta digital.`
+            a: `Menu **Peta Lokasi** menyajikan peta pemukiman wilayah RT kita secara digital yang interaktif. Dengan mendaftarkan koordinat GPS rumah masing-masing, kurir ekspedisi pengantar barang belanjaan online, ojek online, kerabat, atau tamu dari luar kota dapat dengan mudah menemukan alamat rumah Anda secara presisi tanpa harus tersesat di gang-gang RT.`
         }
     ], [nominalArisan, nominalJimpitan, cycleNumber, currentRound, jimpitanBalance, inventarisData]);
 
@@ -272,7 +283,7 @@ Fitur ini dirancang untuk mempermudah kurir paket, tamu luar daerah, maupun sesa
             a: `Status warga dapat diatur menjadi 3 jenis:
 - **Aktif**: Berpartisipasi penuh dalam kewajibannya.
 - **Meninggal / Wafat**: Bebas dari iuran arisan bulanan dan tidak masuk undian arisan, namun tetap berkontribusi jimpitan jika hadir.
-- **Nonaktif / Pindah**: Diberhentikan dari kewajiban arisan bulanan.
+- **Nonaktif / Pindah**: Diberhentikan dari kewajiban arisan bulanan karena sudah pindah atau mengundurkan diri.
 
 Mengubah status warga dapat dilakukan lewat tombol **Edit** pada menu Buku Warga.`
         },
@@ -301,7 +312,7 @@ Mengubah status warga dapat dilakukan lewat tombol **Edit** pada menu Buku Warga
 Pada halaman absen langkah ke-3, sistem akan menampilkan tombol untuk melakukan **Reset Siklus Baru** (misal berpindah ke Siklus ke-${(cycleNumber || 1) + 1}). Ini akan mengosongkan riwayat menang agar semua nama warga bisa diundi kembali.`
         },
         {
-            category: 'Buku Kas',
+            category: 'Buku Kas RT',
             icon: 'account_balance_wallet',
             q: 'Bagaimana cara menarik dana dari Kas Jimpitan?',
             a: `Dana jimpitan yang terkumpul dapat dicairkan dan dipindahkan ke Kas Warga Utama via tombol **"Tarik Kas Jimpitan"** di menu Buku Kas.
@@ -309,7 +320,7 @@ Pada halaman absen langkah ke-3, sistem akan menampilkan tombol untuk melakukan 
 Masukkan nominal penarikan (maksimal sebesar saldo jimpitan saat ini: ${formatRp(jimpitanBalance || 0)}). Sistem akan otomatis mencatat pemindahan ini sebagai pemasukan di Buku Kas.`
         },
         {
-            category: 'Buku Kas',
+            category: 'Buku Kas RT',
             icon: 'account_balance_wallet',
             q: 'Apakah saldo Buku Kas bisa bernilai negatif?',
             a: `Tidak. Sistem dilengkapi pengaman (*Guard Negative Balance*) yang akan memblokir pengisian transaksi pengeluaran jika nilainya melampaui saldo Kas Warga Utama saat ini (${formatRp(kasRtBalance || 0)}). 
@@ -337,20 +348,12 @@ Jika terpaksa harus mencatat pengeluaran besar, pastikan Anda melakukan penarika
 Sistem akan otomatis menghitung ulang seluruh saldo kas jimpitan, talangan, saldo akhir, serta tunggakan warga di periode tersebut secara otomatis.`
         },
         {
-            category: 'Setelan Admin',
-            icon: 'settings',
-            q: 'Bagaimana melakukan Factory Reset jika ingin memulai dari awal?',
-            a: `Fasilitas Factory Reset berada di menu **Setelan Admin**. Tindakan ini akan menghapus seluruh data (warga, kas, riwayat arisan, galeri, dll).
-
-Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak bisa dibatalkan**. PIN login admin Anda akan tetap dipertahankan agar Anda tidak terkunci dari aplikasi.`
-        },
-        {
             category: 'Musik Warga',
             icon: 'music_note',
             q: 'Apa fungsi dari menu Musik Warga?',
             a: `Menu **Musik Warga** adalah fitur khusus Admin untuk mengiringi jalannya pertemuan arisan RT.
 
-Admin dapat memutar musik, mencari lagu, atau menyetel daftar putar audio secara terpusat agar suasana berkumpul terasa lebih hangat dan santai.`
+Admin dapat memutar musik, mencari lagu, atau menyetel daftar putar audio secara terpusat agar suasana berkumpul terasa lebih hangat, santai, dan ceria.`
         },
         {
             category: 'Setelan Admin',
@@ -361,6 +364,14 @@ Admin dapat memutar musik, mencari lagu, atau menyetel daftar putar audio secara
 2. Cari bagian **Koreksi Saldo Manual**.
 3. Isi saldo baru untuk Kas Warga Utama atau Kas Jimpitan.
 4. Perubahan Kas Warga Utama akan otomatis dicatat sebagai transaksi "Penyesuaian Saldo Awal" di Buku Kas sebagai bukti audit.`
+        },
+        {
+            category: 'Setelan Admin',
+            icon: 'settings',
+            q: 'Bagaimana melakukan Factory Reset jika ingin memulai dari awal?',
+            a: `Fasilitas Factory Reset berada di menu **Setelan Admin**. Tindakan ini akan menghapus seluruh data (warga, kas, riwayat arisan, galeri, dll).
+
+Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak bisa dibatalkan**. PIN login admin Anda akan tetap dipertahankan agar Anda tidak terkunci dari aplikasi.`
         }
     ], [nominalArisan, nominalJimpitan, cycleNumber, currentRound, jimpitanBalance, kasRtBalance]);
 
@@ -447,7 +458,7 @@ Admin dapat memutar musik, mencari lagu, atau menyetel daftar putar audio secara
                             <button 
                                 key={cat} 
                                 onClick={() => setSelectedCategory(cat)} 
-                                className={`px-4 py-2.5 rounded-full text-[11px] sm:text-xs font-medium shrink-0 transition-all border active:scale-95 ${selectedCategory === cat ? 'bg-slate-800 text-white border-slate-800 dark:bg-white dark:text-slate-900 dark:border-white shadow-sm' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-355 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-850'}`}
+                                className={`px-4 py-2.5 rounded-full text-[11px] sm:text-xs font-medium shrink-0 transition-all border active:scale-95 ${selectedCategory === cat ? 'bg-slate-800 text-white border-slate-800 dark:bg-white dark:text-slate-900 dark:border-white shadow-sm' : 'bg-white dark:bg-slate-900 text-slate-650 dark:text-slate-355 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-850'}`}
                             >
                                 {cat}
                             </button>
@@ -484,9 +495,9 @@ Admin dapat memutar musik, mencari lagu, atau menyetel daftar putar audio secara
                                         <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark' : 'bg-google-greenLight text-google-greenDark'}`}>
                                             <Icon name={item.icon} className="text-[16px] sm:text-[18px]" fill="true" />
                                         </div>
-                                        <div>
+                                        <div className="flex-1 min-w-0">
                                             <span className="text-[9px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-555 block mb-0.5">{item.category}</span>
-                                            <span className="font-semibold text-xs sm:text-sm text-slate-850 dark:text-slate-100 tracking-tight leading-tight">{item.q}</span>
+                                            <span className="font-semibold text-xs sm:text-sm text-slate-850 dark:text-slate-100 tracking-tight leading-tight block truncate sm:whitespace-normal">{item.q}</span>
                                         </div>
                                     </div>
                                     <div className={`w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-650 transition-transform duration-300 shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
@@ -495,7 +506,7 @@ Admin dapat memutar musik, mencari lagu, atau menyetel daftar putar audio secara
                                 </button>
                                 {isExpanded && (
                                     <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0 border-t border-slate-100 dark:border-slate-800 animate-slide-down">
-                                        <p className="text-[12.5px] sm:text-sm font-medium text-slate-655 dark:text-slate-300 leading-relaxed whitespace-pre-wrap pt-4">
+                                        <p className="text-[12.5px] sm:text-sm font-medium text-slate-655 dark:text-slate-300 leading-relaxed whitespace-pre-wrap pt-4 text-justify">
                                             {item.a}
                                         </p>
                                     </div>
