@@ -1373,7 +1373,19 @@ const RobotGuide = React.lazy(() => import('./RobotGuide.jsx'));
                     case 'warga': return <WargaList members={members} setMembers={setMembers} userRole={userRole} identity={identity} cycleNumber={cycleNumber} currentRound={currentRound} arisanPeriod={arisanPeriod} />;
                     case 'galery': return <Galeri data={galeriData} setData={setGaleriData} userRole={userRole} />;
                     case 'inventaris': return <Inventaris data={inventarisData} setData={setInventarisData} userRole={userRole} pinjamData={pinjamData} />;
-                    case 'toko': return <Toko tokoProducts={tokoProducts} setTokoProducts={setTokoProducts} tokoOrders={tokoOrders} setTokoOrders={setTokoOrders} userRole={userRole} identity={identity} changeTab={changeTab} />;
+                    case 'toko': return <Toko 
+                        tokoProducts={tokoProducts} 
+                        setTokoProducts={setTokoProducts} 
+                        tokoOrders={tokoOrders} 
+                        setTokoOrders={setTokoOrders} 
+                        userRole={userRole} 
+                        identity={identity} 
+                        changeTab={changeTab} 
+                        kasRtBalance={kasRtBalance} 
+                        setKasRtBalance={setKasRtBalance} 
+                        kasRtTransactions={kasRtTransactions} 
+                        setKasRtTransactions={setKasRtTransactions} 
+                    />;
                     case 'pengaduan': return <Pengaduan laporanData={laporanData} setLaporanData={setLaporanData} userRole={userRole} />;
                     case 'pinjam': return <PinjamInventaris inventarisData={inventarisData} setInventarisData={setInventarisData} pinjamData={pinjamData} setPinjamData={setPinjamData} members={members} userRole={userRole} />;
                     case 'iuran': return <IuranUmum iuranData={iuranData} setIuranData={setIuranData} members={members} userRole={userRole} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} identity={identity} />;
@@ -9424,7 +9436,7 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
 // =====================================================
 // KOMPONEN TOKO / OFFICIAL STORE - FULLY RESPONSIVE (DARK MODE SUPPORT, 1:1 RATIO, & SKU SYSTEM)
 // =====================================================
-function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRole, identity, changeTab }) {
+function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRole, identity, changeTab, kasRtBalance, setKasRtBalance, kasRtTransactions, setKasRtTransactions }) {
     const [view, setView] = useState('list');
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [selectedVariant, setSelectedVariant] = useState(null);
@@ -9433,7 +9445,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
     const [checkoutForm, setCheckoutForm] = useState({ namaWarga: '', noWa: '', alamat: '', catatan: '' });
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [editingProduct, setEditingProduct] = useState(null);
-    const [productForm, setProductForm] = useState({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Default', price: 0 }] });
+    const [productForm, setProductForm] = useState({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', donasiKas: 0, variants: [{ id: Date.now(), name: 'Default', price: 0 }] });
     const [isUploading, setIsUploading] = useState(false);
     const [activeOrderTab, setActiveOrderTab] = useState('Menunggu');
     const [tokoConfirm, setTokoConfirm] = useState(null); // { message, onConfirm }
@@ -9498,10 +9510,71 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
         showToast('Ditambahkan ke keranjang!'); setView('list');
     };
 
+    const openWaNotification = (orderId, status) => {
+        const order = tokoOrders.find(o => o.id === orderId);
+        if (!order) return;
+        
+        let message = '';
+        const orderIdShort = `#TK-${String(order.id).slice(-6)}`;
+        const totalFormatted = formatRp(order.totalAmount);
+        
+        if (status === 'Diproses') {
+            message = `Halo ${order.wargaName}, pesanan Anda ${orderIdShort} di Official Store RT sedang diproses. Mohon ditunggu ya! Terima kasih.`;
+        } else if (status === 'Diantar') {
+            message = `Halo ${order.wargaName}, pesanan Anda ${orderIdShort} di Official Store RT sedang dalam perjalanan ke alamat Anda (${order.address}). Silakan siapkan pembayaran tunai (COD) sebesar ${totalFormatted}. Terima kasih.`;
+        } else if (status === 'Selesai') {
+            message = `Halo ${order.wargaName}, pesanan Anda ${orderIdShort} di Official Store RT telah selesai diantar. Terima kasih telah berbelanja dan mendukung Kas RT!`;
+        } else if (status === 'Dibatalkan') {
+            message = `Halo ${order.wargaName}, mohon maaf pesanan Anda ${orderIdShort} di Official Store RT dibatalkan. Silakan hubungi admin untuk info lebih lanjut. Terima kasih.`;
+        }
+        
+        if (message) {
+            const formattedPhone = order.phone.replace(/\D/g, '');
+            let waPhone = formattedPhone;
+            if (formattedPhone.startsWith('0')) {
+                waPhone = '62' + formattedPhone.substring(1);
+            } else if (!formattedPhone.startsWith('62')) {
+                waPhone = '62' + formattedPhone;
+            }
+            const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank');
+        }
+    };
+
+    const updateOrderStatus = (orderId, newStatus) => {
+        const updatedOrders = tokoOrders.map(order => {
+            if (order.id === orderId) {
+                // If moving to "Selesai" and order has donasiKasAmount
+                if (newStatus === 'Selesai' && order.status !== 'Selesai') {
+                    const donation = order.donasiKasAmount || 0;
+                    if (donation > 0 && setKasRtBalance && setKasRtTransactions) {
+                        setKasRtBalance(prev => prev + donation);
+                        const newTrx = {
+                            id: Date.now(),
+                            date: new Date().toISOString(),
+                            type: 'income',
+                            category: 'Official Store',
+                            amount: donation,
+                            description: `Kontribusi Toko RT (Order #TK-${String(order.id).slice(-6)})`,
+                            recordedBy: identity?.name || 'System'
+                        };
+                        setKasRtTransactions(prev => [newTrx, ...prev]);
+                    }
+                }
+                return { ...order, status: newStatus };
+            }
+            return order;
+        });
+        setTokoOrders(updatedOrders);
+        showToast(`Pesanan diupdate ke ${newStatus}.`);
+        openWaNotification(orderId, newStatus);
+    };
+
     const processCheckout = () => {
         if (!checkoutForm.namaWarga || !checkoutForm.noWa || !checkoutForm.alamat) return showToast('Lengkapi nama, No WA, dan alamat!', 'error');
         if (cartItemCount === 0) return showToast('Keranjang kosong.', 'error');
-        setTokoOrders([...tokoOrders, { id: Date.now(), wargaName: checkoutForm.namaWarga, phone: checkoutForm.noWa, address: checkoutForm.alamat, notes: checkoutForm.catatan, items: Object.values(cart), totalAmount: cartTotal, status: 'Menunggu', orderDate: new Date().toISOString() }]);
+        const donasiKasAmount = Object.values(cart).reduce((sum, item) => sum + (safeNumber(item.product.donasiKas || 0) * item.qty), 0);
+        setTokoOrders([...tokoOrders, { id: Date.now(), wargaName: checkoutForm.namaWarga, phone: checkoutForm.noWa, address: checkoutForm.alamat, notes: checkoutForm.catatan, items: Object.values(cart), totalAmount: cartTotal, donasiKasAmount, status: 'Menunggu', orderDate: new Date().toISOString() }]);
         setCart({}); setCheckoutForm({ namaWarga: '', noWa: '', alamat: '', catatan: '' });
         showToast('Pesanan berhasil dibuat! Tim kami akan menghubungi Anda.'); setView('list');
     };
@@ -9649,6 +9722,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     {selectedProduct.kategori}
                                 </span>
                             )}
+                            {selectedProduct.donasiKas > 0 && (
+                                <div className="mt-1 mb-4 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 text-xs font-medium px-3.5 py-2 rounded-xl border border-emerald-250 dark:border-emerald-900/40 flex items-center gap-1.5 w-fit">
+                                    <Icon name="volunteer_activism" className="text-[15px]" fill="true" />
+                                    <span>Beli produk ini = {formatRp(selectedProduct.donasiKas)} otomatis disumbangkan ke Kas RT</span>
+                                </div>
+                            )}
                             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-wrap">{selectedProduct.deskripsi}</p>
                         </div>
                         {/* Pilih Varian */}
@@ -9701,7 +9780,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
         <>
         <div className="space-y-7">
             <PageHeader title="Kelola Katalog Produk" subtitle="Tambah, edit, dan hapus produk toko" onBack={() => setView('list')}>
-                <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
+                <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', donasiKas: 0, variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
                     <Icon name="add" className="text-[16px] sm:text-[18px]" /> <span className="hidden sm:inline">Produk</span> Baru
                 </button>
             </PageHeader>
@@ -9739,6 +9818,10 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <div>
                                 <label className="text-xs font-medium text-slate-550 dark:text-slate-400 mb-1.5 block">Deskripsi Produk</label>
                                 <textarea rows="3" value={productForm.deskripsi} onChange={e => setProductForm({...productForm, deskripsi: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-xl px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none text-slate-800 dark:text-white" placeholder="Deskripsi produk..." />
+                            </div>
+                            <div>
+                                <label className="text-xs font-medium text-slate-550 dark:text-slate-400 mb-1.5 block">Donasi Kas RT per Unit (Rp)</label>
+                                <input type="number" value={productForm.donasiKas || 0} onChange={e => setProductForm({...productForm, donasiKas: safeNumber(e.target.value)})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Cth: 1000" />
                             </div>
                             {/* Upload Gambar */}
                             <div>
@@ -9829,7 +9912,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     </div>
                                     {p.grosirMinQty > 0 && <span className="inline-block mt-1.5 px-2 py-0.5 bg-yellow-100 dark:bg-yellow-955/20 text-yellow-800 dark:text-yellow-450 text-[9px] font-medium rounded">Grosir</span>}
                                     <div className="flex gap-2 mt-3">
-                                        <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-955/20 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
+                                        <button onClick={() => { setEditingProduct(p); setProductForm({ donasiKas: 0, ...p }); setIsFormOpen(true); }} className="flex-1 py-1.5 bg-blue-50 dark:bg-blue-955/20 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium flex items-center justify-center gap-1 hover:bg-blue-100"><Icon name="edit" className="text-[14px]" />Edit</button>
                                         <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="flex-1 py-1.5 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-405 rounded-full text-xs font-medium flex items-center justify-center gap-1 hover:bg-red-100"><Icon name="delete" className="text-[14px]" />Hapus</button>
                                     </div>
                                 </div>
@@ -9873,7 +9956,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                             <td className="p-5 sm:px-6 sm:py-5 text-xs font-medium text-slate-600 dark:text-slate-300 space-y-1">{p.variants.map((v,i) => <div key={i}>&bull; {v.name}: <span className="font-medium text-slate-800 dark:text-white">{formatRp(v.price)}</span></div>)}</td>
                                             <td className="p-5 sm:px-6 sm:py-5 text-center"><span className={`px-3 py-1 rounded-full text-[10px] font-medium uppercase ${p.isPublished ? 'bg-green-100 dark:bg-green-950/20 text-green-800 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>{p.isPublished ? 'Publik' : 'Draft'}</span></td>
                                             <td className="p-5 sm:px-6 sm:py-5 text-right space-x-2 flex items-center justify-end">
-                                                <button onClick={() => { setEditingProduct(p); setProductForm(p); setIsFormOpen(true); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
+                                                <button onClick={() => { setEditingProduct(p); setProductForm({ donasiKas: 0, ...p }); setIsFormOpen(true); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-blue-50 dark:bg-blue-950/20 text-blue-655 dark:text-blue-450 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30"><Icon name="edit" className="text-[15px]" /></button>
                                                 <button onClick={() => { setTokoConfirm({ message: 'Yakin ingin menghapus produk ini?', onConfirm: () => setTokoProducts(tokoProducts.filter(x => x.id !== p.id)) }); }} className="w-8 h-8 flex items-center justify-center shrink-0 bg-red-50 dark:bg-red-955/20 text-red-650 dark:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30"><Icon name="delete" className="text-[15px]" /></button>
                                             </td>
                                         </tr>
@@ -9947,6 +10030,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     <p className="text-[14px] font-medium text-rose-600 dark:text-rose-500">{formatRp(order.totalAmount)}</p>
                                 </div>
                             </div>
+                            {order.donasiKasAmount > 0 && (
+                                <div className="flex justify-between items-center text-[11px] font-medium text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200 dark:border-slate-800">
+                                    <span>Kontribusi Kas RT:</span>
+                                    <span>{formatRp(order.donasiKasAmount)}</span>
+                                </div>
+                            )}
                             
                             <div className="pt-3 border-t border-slate-200 dark:border-slate-750">
                                 <p className="text-[10px] font-medium text-slate-400 uppercase mb-2">Rincian Belanja</p>
@@ -9984,7 +10073,14 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     </div>
                                     <span className="font-medium text-slate-800 dark:text-white">WhatsApp</span>
                                 </div>
-                                <a href={`https://wa.me/${order.phone.replace(/^0/,'62')}`} target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:underline font-medium">{order.phone}</a>
+                                <div className="flex items-center gap-2">
+                                    <a href={`https://wa.me/${order.phone.replace(/^0/,'62')}`} target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:underline font-medium">{order.phone}</a>
+                                    {order.status !== 'Menunggu' && (
+                                        <button onClick={() => openWaNotification(order.id, order.status)} className="bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white border border-emerald-250 dark:border-emerald-900/40 p-1 px-2.5 rounded-lg text-[10px] font-medium flex items-center gap-1 active:scale-95 transition-all">
+                                            <Icon name="send" className="text-[10px]" /> Notif WA
+                                        </button>
+                                    )}
+                                </div>
                             </div>
 
                             {order.notes && (
@@ -10002,10 +10098,10 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         </div>
 
                         <div className="flex gap-2 mt-auto pt-1">
-                            {order.status === 'Menunggu' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diproses'} : o))} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Proses</button>}
-                            {order.status === 'Diproses' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Diantar'} : o))} className="flex-1 bg-slate-600 hover:bg-slate-700 text-white py-2 rounded-full text-xs font-medium transition-colors">Mulai Antar</button>}
-                            {order.status === 'Diantar' && <button onClick={() => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Selesai'} : o))} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Selesai ✓</button>}
-                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => setTokoOrders(tokoOrders.map(o => o.id === order.id ? {...o, status: 'Dibatalkan'} : o)) }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-full text-xs font-medium transition-colors">Batal</button>}
+                            {order.status === 'Menunggu' && <button onClick={() => updateOrderStatus(order.id, 'Diproses')} className="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Proses</button>}
+                            {order.status === 'Diproses' && <button onClick={() => updateOrderStatus(order.id, 'Diantar')} className="flex-1 bg-slate-600 hover:bg-slate-700 text-white py-2 rounded-full text-xs font-medium transition-colors">Mulai Antar</button>}
+                            {order.status === 'Diantar' && <button onClick={() => updateOrderStatus(order.id, 'Selesai')} className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-full text-xs font-medium transition-colors">Selesai ✓</button>}
+                            {(order.status === 'Menunggu' || order.status === 'Diproses') && <button onClick={() => { setTokoConfirm({ message: 'Batalkan pesanan ini?', onConfirm: () => updateOrderStatus(order.id, 'Dibatalkan') }); }} className="px-3 bg-white dark:bg-slate-800 border border-red-205 dark:border-red-900/40 text-red-500 hover:bg-red-50 dark:hover:bg-slate-700 py-2 rounded-full text-xs font-medium transition-colors">Batal</button>}
                             <button onClick={() => { setTokoConfirm({ message: 'Hapus pesanan ini secara permanen?', onConfirm: () => setTokoOrders(tokoOrders.filter(o => o.id !== order.id)) }); }} className="px-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/40 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 py-2 rounded-full text-xs font-medium transition-colors flex items-center justify-center" title="Hapus Permanen">
                                 <Icon name="delete" className="text-[15px]" />
                             </button>
