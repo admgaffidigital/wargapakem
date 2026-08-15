@@ -217,6 +217,40 @@ Saat ini RT memiliki ${inventarisData?.length || 0} barang terdaftar.`
 1. Buka menu **Beli Tiket**.
 2. Pilih tiket acara yang Anda inginkan, tentukan jumlahnya, lalu selesaikan pemesanan.
 3. Tiket QR Code digital akan otomatis tersimpan di akun Anda dan dapat ditunjukkan ke panitia saat acara berlangsung.`
+        },
+        {
+            category: 'Blog Warga',
+            icon: 'article',
+            q: 'Bagaimana cara berkontribusi di Blog Warga?',
+            a: `Semua warga dapat berkontribusi menulis cerita, opini, tips, berita lokal, atau pengumuman di menu **Blog Warga**.
+
+Anda juga dapat membaca tulisan dari tetangga lainnya, memberikan like, dan meninggalkan komentar sebagai sarana komunikasi warga yang santai.`
+        },
+        {
+            category: 'Inventaris',
+            icon: 'handshake',
+            q: 'Bagaimana cara mengajukan peminjaman barang inventaris RT?',
+            a: `Jika Anda memerlukan tenda, kursi, sound system, atau barang RT lainnya:
+1. Buka menu **Pinjam Inventaris**.
+2. Pilih barang yang tersedia, tentukan jumlah dan tanggal peminjaman (mulai dan berakhir).
+3. Kirim pengajuan. Pengurus RT akan meninjau dan mengubah status menjadi "Disetujui" jika barang tersedia.`
+        },
+        {
+            category: 'Infaq',
+            icon: 'volunteer_activism',
+            q: 'Bagaimana cara menyalurkan Infaq secara online?',
+            a: `Penyaluran infaq untuk kegiatan sosial RT dapat dilakukan di menu **Infaq**:
+1. Isi formulir dengan nama Anda (atau pilih Anonim jika ingin rahasia).
+2. Tentukan nominal infaq dan unggah bukti transfer/pembayaran.
+3. Kirim data. Pengurus RT akan memvalidasi bukti pembayaran Anda, dan kontribusi Anda akan tercatat dalam laporan kas infaq.`
+        },
+        {
+            category: 'Peta Lokasi',
+            icon: 'map',
+            q: 'Apa kegunaan menu Peta Lokasi?',
+            a: `Menu **Peta Lokasi** menampilkan titik-titik koordinat rumah warga di wilayah RT Pakem.
+
+Fitur ini dirancang untuk mempermudah kurir paket, tamu luar daerah, maupun sesama tetangga dalam menemukan alamat rumah secara presisi menggunakan integrasi peta digital.`
         }
     ], [nominalArisan, nominalJimpitan, cycleNumber, currentRound, jimpitanBalance, inventarisData]);
 
@@ -309,6 +343,24 @@ Sistem akan otomatis menghitung ulang seluruh saldo kas jimpitan, talangan, sald
             a: `Fasilitas Factory Reset berada di menu **Setelan Admin**. Tindakan ini akan menghapus seluruh data (warga, kas, riwayat arisan, galeri, dll).
 
 Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak bisa dibatalkan**. PIN login admin Anda akan tetap dipertahankan agar Anda tidak terkunci dari aplikasi.`
+        },
+        {
+            category: 'Musik Warga',
+            icon: 'music_note',
+            q: 'Apa fungsi dari menu Musik Warga?',
+            a: `Menu **Musik Warga** adalah fitur khusus Admin untuk mengiringi jalannya pertemuan arisan RT.
+
+Admin dapat memutar musik, mencari lagu, atau menyetel daftar putar audio secara terpusat agar suasana berkumpul terasa lebih hangat dan santai.`
+        },
+        {
+            category: 'Setelan Admin',
+            icon: 'settings',
+            q: 'Bagaimana cara melakukan Koreksi Saldo Manual?',
+            a: `Jika terdapat selisih antara saldo digital di sistem dan uang kas fisik:
+1. Buka menu **Setelan Admin**.
+2. Cari bagian **Koreksi Saldo Manual**.
+3. Isi saldo baru untuk Kas Warga Utama atau Kas Jimpitan.
+4. Perubahan Kas Warga Utama akan otomatis dicatat sebagai transaksi "Penyesuaian Saldo Awal" di Buku Kas sebagai bukti audit.`
         }
     ], [nominalArisan, nominalJimpitan, cycleNumber, currentRound, jimpitanBalance, kasRtBalance]);
 
