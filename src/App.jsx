@@ -2270,7 +2270,7 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
                                         )}
                                         </>
                                     ) : (
-                                        <div className="bg-white dark:bg-slate-900 border border-dashed border-slate-200 dark:border-slate-700 rounded-3xl p-8 sm:p-12 text-center max-w-2xl mx-auto">
+                                        <div className="bg-white dark:bg-slate-900 border border-dashed border-slate-200 dark:border-slate-700 rounded-3xl p-8 sm:p-12 text-center w-full">
                                             <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
                                                 <Icon name="storefront" className="text-[32px] text-slate-400 dark:text-slate-500" />
                                             </div>
