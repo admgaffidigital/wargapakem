@@ -1247,7 +1247,7 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
                 }
                 return (
                     <>
-                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} setShowLicenseModal={setShowLicenseModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} infaqData={infaqData} tokoProducts={tokoProducts} onLogin={(role) => { 
+                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} setShowLicenseModal={setShowLicenseModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} infaqData={infaqData} tokoProducts={tokoProducts} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} currentRound={currentRound} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} onLogin={(role) => { 
                             setIsLoggedIn(true); setUserRole(role); 
                             const params = new URLSearchParams(window.location.search);
                             if (params.get('page') === 'tiket') {
@@ -1771,7 +1771,7 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
             );
         }
 
-        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, setShowLicenseModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber, infaqData = [], tokoProducts = [] }) {
+        function LoginScreen({ onLogin, identity, setShowPwaGuide, legalData, setShowLegalModal, setShowLicenseModal, theme, setTheme, informasi = [], blogData = [], bannerImage = '', sponsorsData, members = [], infoDesa = null, landingConfig, nextMeeting, cycleNumber, infaqData = [], tokoProducts = [], nominalArisan, nominalJimpitan, arisanPeriod, currentRound, jimpitanBalance, kasRtBalance, meetingHistory, inventarisData, pinjamData }) {
             const [email, setEmail] = useState('');
             const [password, setPassword] = useState('');
             const [isLoading, setIsLoading] = useState(false);
@@ -2448,6 +2448,28 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
                                     </div>
                                 </section>
                             )}
+
+                            {/* Q&A SECTION */}
+                            <section className="space-y-6 pt-6 border-t border-slate-200/30 dark:border-slate-800/80 max-w-7xl mx-auto w-full px-4 sm:px-6">
+                                <React.Suspense fallback={<div className="flex justify-center items-center h-48 text-slate-500 font-medium text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl">Memuat Tanya Jawab...</div>}>
+                                    <Qna 
+                                        userRole="warga" 
+                                        nominalArisan={nominalArisan} 
+                                        nominalJimpitan={nominalJimpitan} 
+                                        identity={identity} 
+                                        members={members} 
+                                        arisanPeriod={arisanPeriod} 
+                                        currentRound={currentRound} 
+                                        cycleNumber={cycleNumber} 
+                                        jimpitanBalance={jimpitanBalance} 
+                                        kasRtBalance={kasRtBalance} 
+                                        meetingHistory={meetingHistory} 
+                                        inventarisData={inventarisData} 
+                                        pinjamData={pinjamData} 
+                                        infaqData={infaqData} 
+                                    />
+                                </React.Suspense>
+                            </section>
 
                             {/* ADSENSE PLACEHOLDER */}
                             <section className="py-4 text-center border-t border-slate-200/30 max-w-xl mx-auto w-full px-4">
