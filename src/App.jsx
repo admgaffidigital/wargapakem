@@ -2451,6 +2451,10 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
 
                             {/* Q&A SECTION */}
                             <section className="space-y-6 pt-6 border-t border-slate-200/30 dark:border-slate-800/80 max-w-7xl mx-auto w-full px-4 sm:px-6">
+                                <div className="flex items-center gap-2 mb-1">
+                                    <Icon name="quiz" className="text-google-blue text-[18px]" fill="true" />
+                                    <p className="text-[9px] uppercase tracking-widest font-semibold text-slate-500 dark:text-slate-400">Pusat Bantuan &amp; Tanya Jawab Warga</p>
+                                </div>
                                 <React.Suspense fallback={<div className="flex justify-center items-center h-48 text-slate-500 font-medium text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl">Memuat Tanya Jawab...</div>}>
                                     <Qna 
                                         userRole="warga" 

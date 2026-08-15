@@ -399,7 +399,7 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
     };
 
     return (
-        <div className="space-y-6 sm:space-y-8 animate-fade-in max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+        <div className="space-y-6 sm:space-y-8 animate-fade-in w-full py-2">
             {/* Header */}
             <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -407,7 +407,7 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
                         <h2 className="text-2xl sm:text-3xl font-semibold text-slate-800 dark:text-white tracking-tight flex items-center gap-2.5">
                             <Icon name="quiz" className="text-google-blue text-[28px] sm:text-3xl" fill="true" /> Pusat Tanya Jawab (Q&A)
                         </h2>
-                        <p className="text-slate-650 dark:text-slate-400 text-xs sm:text-sm mt-1.5 leading-relaxed font-medium">
+                        <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1.5 leading-relaxed font-medium">
                             Temukan penjelasan dan cara membaca data arisan, jimpitan, kas, dan operasional RT secara instan.
                         </p>
                     </div>
@@ -423,7 +423,7 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
                             </button>
                             <button 
                                 onClick={() => { setMode('admin'); setSelectedCategory('Semua'); setSearchQuery(''); }} 
-                                className={`px-4 py-2.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all ${mode === 'admin' ? 'bg-google-blue text-white shadow' : 'text-slate-655 dark:text-slate-350 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
+                                className={`px-4 py-2.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all ${mode === 'admin' ? 'bg-google-blue text-white shadow' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
                             >
                                 <Icon name="admin_panel_settings" className="text-[14px]" /> Panduan Admin
                             </button>
@@ -458,7 +458,7 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
                             <button 
                                 key={cat} 
                                 onClick={() => setSelectedCategory(cat)} 
-                                className={`px-4 py-2.5 rounded-full text-[11px] sm:text-xs font-medium shrink-0 transition-all border active:scale-95 ${selectedCategory === cat ? 'bg-slate-800 text-white border-slate-800 dark:bg-white dark:text-slate-900 dark:border-white shadow-sm' : 'bg-white dark:bg-slate-900 text-slate-650 dark:text-slate-355 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-850'}`}
+                                className={`px-4 py-2.5 rounded-full text-[11px] sm:text-xs font-medium shrink-0 transition-all border active:scale-95 ${selectedCategory === cat ? 'bg-slate-800 text-white border-slate-800 dark:bg-white dark:text-slate-900 dark:border-white shadow-sm' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
                             >
                                 {cat}
                             </button>
@@ -475,7 +475,7 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
                             <Icon name="search_off" className="text-[32px] text-slate-400 dark:text-slate-600" />
                         </div>
                         <h3 className="text-lg font-medium text-slate-700 dark:text-slate-300 mb-2">Pencarian Tidak Ditemukan</h3>
-                        <p className="text-slate-550 dark:text-slate-400 max-w-sm text-xs sm:text-sm leading-relaxed">Coba cari dengan kata kunci lain seperti: arisan, jimpitan, tunggakan, iuran, kas, atau reset.</p>
+                        <p className="text-slate-500 dark:text-slate-400 max-w-sm text-xs sm:text-sm leading-relaxed">Coba cari dengan kata kunci lain seperti: arisan, jimpitan, tunggakan, iuran, kas, atau reset.</p>
                     </div>
                 ) : (
                     filteredQna.map((item, index) => {
@@ -489,24 +489,24 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
                             >
                                 <button 
                                     onClick={() => toggleAccordion(key)}
-                                    className="w-full px-5 py-4.5 sm:px-6 sm:py-5 flex items-center justify-between text-left gap-4 hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors"
+                                    className="w-full px-5 py-[18px] sm:px-6 sm:py-5 flex items-center justify-between text-left gap-4 hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors"
                                 >
                                     <div className="flex items-center gap-3">
                                         <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${mode === 'admin' ? 'bg-google-blueLight text-google-blueDark' : 'bg-google-greenLight text-google-greenDark'}`}>
                                             <Icon name={item.icon} className="text-[16px] sm:text-[18px]" fill="true" />
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <span className="text-[9px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-555 block mb-0.5">{item.category}</span>
-                                            <span className="font-semibold text-xs sm:text-sm text-slate-850 dark:text-slate-100 tracking-tight leading-tight block truncate sm:whitespace-normal">{item.q}</span>
+                                            <span className="text-[9px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-0.5">{item.category}</span>
+                                            <span className="font-semibold text-xs sm:text-sm text-slate-800 dark:text-slate-100 tracking-tight leading-tight block truncate sm:whitespace-normal">{item.q}</span>
                                         </div>
                                     </div>
-                                    <div className={`w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-650 transition-transform duration-300 shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
+                                    <div className={`w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-600 transition-transform duration-300 shrink-0 ${isExpanded ? 'rotate-180' : ''}`}>
                                         <Icon name="expand_more" className="text-[20px]" />
                                     </div>
                                 </button>
                                 {isExpanded && (
                                     <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0 border-t border-slate-100 dark:border-slate-800 animate-slide-down">
-                                        <p className="text-[12.5px] sm:text-sm font-medium text-slate-655 dark:text-slate-300 leading-relaxed whitespace-pre-wrap pt-4 text-justify">
+                                        <p className="text-[12.5px] sm:text-sm font-medium text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-wrap pt-4 text-justify">
                                             {item.a}
                                         </p>
                                     </div>
