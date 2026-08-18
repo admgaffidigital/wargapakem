@@ -1055,7 +1055,7 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
             const defaultLegal = {
                 enabled: true,
                 terms: "1. Akses Portal: Portal ini hanya diperuntukkan bagi warga lingkungan yang terdaftar sah. Dilarang membagikan akses login kepada pihak luar.\n2. Penggunaan Fitur: Warga dilarang menyalahgunakan fitur portal untuk menyebarkan hoaks, ujaran kebencian, atau pelanggaran hukum.\n3. Hak Admin: Admin (Pengurus Lingkungan) berhak memblokir akun warga yang terbukti melanggar aturan atau memalsukan data.\n4. Validitas Data: Warga bertanggung jawab penuh atas kebenaran data yang diunggah.",
-                privacy: "1. Pengumpulan Data: Sistem mengumpulkan data (seperti Nama, NIK, Alamat) murni untuk keperluan administrasi rukun tetangga.\n2. Keamanan Data: Data disimpan di server cloud secara aman dengan sistem database modern.\n3. Anti Jual-Beli Data: Kami menjamin 100% bahwa data warga tidak akan pernah dijual atau diberikan ke pihak ketiga untuk tujuan komersial.\n4. Keterbukaan Data Kas: Informasi keuangan diproses secara transparan demi akuntabilitas lingkungan."
+                privacy: "1. Pengumpulan Data Warga: Sistem mengumpulkan data administrasi (Nama, NIK, Alamat) murni untuk keperluan administrasi rukun tetangga PAKEM.\n2. Keamanan & Kerahasiaan Data: Data disimpan di server cloud secara aman dan kami menjamin 100% data tidak pernah dijual ke pihak ketiga untuk tujuan komersial.\n3. Kebijakan Iklan & Cookie Google AdSense: Portal ini menggunakan Google AdSense untuk menayangkan iklan. Google sebagai vendor pihak ketiga menggunakan cookie (termasuk DART cookie) untuk menayangkan iklan kepada pengguna berdasarkan kunjungan pengguna ke situs ini atau situs lain di internet.\n4. Opsi Pengguna (Opt-Out): Pengguna dapat menonaktifkan penggunaan DART cookie atau iklan yang dipersonalisasi dengan mengunjungi Setelan Iklan Google di https://www.google.com/settings/ads atau melalui www.aboutads.info.\n5. Keterbukaan Data Kas: Informasi laporan keuangan diproses secara terbuka demi akuntabilitas dan transparansi lingkungan RT PAKEM."
             };
             const [legalData, setLegalData, l_legal] = useFirebaseSync('legal', defaultLegal);
             const [showLegalModal, setShowLegalModal] = useState(null); // 'terms' | 'privacy' | null
@@ -1140,16 +1140,23 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
                 
                 const handleHashChange = () => {
                     const hash = window.location.hash.replace('#', '');
-                    if (hash) {
+                    if (hash === 'privacy') {
+                        setShowLegalModal('privacy');
+                    } else if (hash === 'terms') {
+                        setShowLegalModal('terms');
+                    } else if (hash) {
                         setActiveTab(hash);
                     }
                 };
                 window.addEventListener('hashchange', handleHashChange);
                 
                 const p = new URLSearchParams(window.location.search);
-                const hasNocache = p.has('nocache');
-                const hasV = p.has('v');
-                const hasPage = p.has('page');
+                const pageParam = p.get('page');
+                if (pageParam === 'privacy') {
+                    setShowLegalModal('privacy');
+                } else if (pageParam === 'terms') {
+                    setShowLegalModal('terms');
+                }
                 
                 if (p.get('page') === 'toko' && p.has('product')) {
                     sessionStorage.setItem('openTokoProductId', p.get('product'));
@@ -1159,11 +1166,15 @@ const Qna = React.lazy(() => import('./Qna.jsx'));
                     window.location.hash = 'toko';
                 }
                 
+                const hasNocache = p.has('nocache');
+                const hasV = p.has('v');
+                const hasPage = p.has('page') && pageParam !== 'privacy' && pageParam !== 'terms';
+                
                 if (hasNocache || hasV || hasPage) {
                     const cleanUrl = new URL(window.location.href);
                     cleanUrl.searchParams.delete('nocache');
                     cleanUrl.searchParams.delete('v');
-                    cleanUrl.searchParams.delete('page');
+                    if (pageParam !== 'privacy' && pageParam !== 'terms') cleanUrl.searchParams.delete('page');
                     cleanUrl.searchParams.delete('product');
                     window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
                 }
