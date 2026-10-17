@@ -339,25 +339,34 @@ function ModuleLoadingFallback() {
                 }
                 return (
                     <>
-                        <LoginScreen theme={theme} setTheme={setTheme} legalData={legalData} setShowLegalModal={setShowLegalModal} setShowLicenseModal={setShowLicenseModal} informasi={informasi} blogData={blogData} bannerImage={bannerImage} sponsorsData={sponsorsData} members={members} infoDesa={infoDesa} landingConfig={landingConfig} nextMeeting={nextMeeting} cycleNumber={cycleNumber} infaqData={infaqData} tokoProducts={tokoProducts} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} currentRound={currentRound} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} meetingHistory={meetingHistory} inventarisData={inventarisData} pinjamData={pinjamData} onLogin={(role) => { 
-                            setIsLoggedIn(true); setUserRole(role); 
-                            const params = new URLSearchParams(window.location.search);
-                            if (params.get('page') === 'tiket') {
-                                window.location.hash = 'tiket';
-                            } else if (sessionStorage.getItem('openTokoProductId') || sessionStorage.getItem('addToCartProductId')) {
-                                window.location.hash = 'toko';
-                            } else if (sessionStorage.getItem('openTab')) {
-                                window.location.hash = sessionStorage.getItem('openTab');
-                                sessionStorage.removeItem('openTab');
-                            } else {
-                                if (sessionStorage.getItem('openInfaqId')) { window.location.hash = 'infaq'; } else { window.location.hash = 'menu'; }
-                            }
-                            // Bersihkan URL dari query params tanpa reload
-                            const cleanUrl = new URL(window.location.href);
-                            cleanUrl.searchParams.delete('page');
-                            cleanUrl.searchParams.delete('product');
-                            window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
-                        }} identity={identity} setShowPwaGuide={setShowPwaGuide} />
+                        <LoginScreen 
+                            theme={theme} 
+                            setTheme={setTheme} 
+                            identity={identity}
+                            legalData={legalData} 
+                            setShowLegalModal={setShowLegalModal} 
+                            setShowLicenseModal={setShowLicenseModal} 
+                            setShowPwaGuide={setShowPwaGuide}
+                            onLogin={(role) => { 
+                                setIsLoggedIn(true); 
+                                setUserRole(role); 
+                                const params = new URLSearchParams(window.location.search);
+                                if (params.get('page') === 'tiket') {
+                                    window.location.hash = 'tiket';
+                                } else if (sessionStorage.getItem('openTokoProductId') || sessionStorage.getItem('addToCartProductId')) {
+                                    window.location.hash = 'toko';
+                                } else if (sessionStorage.getItem('openTab')) {
+                                    window.location.hash = sessionStorage.getItem('openTab');
+                                    sessionStorage.removeItem('openTab');
+                                } else {
+                                    if (sessionStorage.getItem('openInfaqId')) { window.location.hash = 'infaq'; } else { window.location.hash = 'menu'; }
+                                }
+                                const cleanUrl = new URL(window.location.href);
+                                cleanUrl.searchParams.delete('page');
+                                cleanUrl.searchParams.delete('product');
+                                window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.hash);
+                            }} 
+                        />
                         {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
                         {showLegalModal && (
                         <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
