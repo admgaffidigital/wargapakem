@@ -155,16 +155,23 @@
 @keyframes slideUp { from { opacity: 0; transform: translateY(20px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes menuItemIn { from { opacity: 0; transform: translateY(14px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
-/* Deprecated toastSlideIn – replaced by toastPopIn */
-/* @keyframes toastSlideIn { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } } */
-@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
-@keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+@keyframes orbitCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes orbitCCW { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+@keyframes shimmerBar { 0% { transform: translateX(-100%); } 100% { transform: translateX(250%); } }
+@keyframes breathingGlow {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.35)); opacity: 1; }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(234, 179, 8, 0.45)); opacity: 0.92; }
+}
 
 .tab-fade-in { animation: tabFadeIn 0.35s ease-out; }
 .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
 /* Alias untuk animate-fadeIn (digunakan luas di App.jsx) */
 .animate-fade-in { animation: fadeIn 0.3s ease-out; }
 .menu-item-in { animation: menuItemIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-orbit-cw { animation: orbitCW 3s linear infinite; }
+.animate-orbit-ccw { animation: orbitCCW 4.2s linear infinite; }
+.animate-shimmer-bar { animation: shimmerBar 1.8s ease-in-out infinite; }
+.animate-breathing-glow { animation: breathingGlow 2.4s ease-in-out infinite; }
 
 /* ============================================================
    BASE / RESET

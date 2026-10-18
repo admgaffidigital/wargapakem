@@ -127,44 +127,117 @@ Build: Vite + React + Tailwind CSS
        ================================================ -->
   <style>
     *,*::before,*::after{box-sizing:border-box}
-    body{margin:0;background:#dc2626;font-family:'Outfit',system-ui,sans-serif}
+    body{margin:0;background:#0f172a;font-family:'Outfit',system-ui,sans-serif}
     #ls{
-      position:fixed;inset:0;background:#dc2626;
+      position:fixed;inset:0;
+      background:#0f172a;
+      background-image:radial-gradient(circle at 50% 40%, rgba(220, 38, 38, 0.45) 0%, rgba(15, 23, 42, 0.98) 75%), url('/batik_transparent.png?v=3');
+      background-repeat:no-repeat, repeat;
+      background-size:cover, 220px 220px;
       display:flex;flex-direction:column;
       align-items:center;justify-content:center;
-      z-index:99999;transition:opacity .4s ease;
+      z-index:99999;transition:opacity .45s cubic-bezier(0.16, 1, 0.3, 1);
+      padding:16px;
     }
     #ls.hidden{opacity:0;pointer-events:none}
-    .ls-ring{
-      width:80px;height:80px;border-radius:50%;
-      border:3px solid rgba(255,255,255,.2);
-      border-top-color:#fff;
-      animation:lspin .75s linear infinite;
+    .ls-card{
+      position:relative;width:100%;max-width:320px;
+      background:rgba(30, 41, 59, 0.82);
+      backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+      border:1px solid rgba(239, 68, 68, 0.3);
+      border-radius:28px;
+      box-shadow:0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 35px rgba(220, 38, 38, 0.25);
+      padding:28px 24px;text-align:center;overflow:hidden;
     }
-    .ls-logo{
-      position:absolute;width:100px;height:100px;
-      top:50%;left:50%;transform:translate(-50%,-50%);
-      object-fit:contain;
+    .ls-card-bar{
+      position:absolute;top:0;left:0;right:0;height:4px;
+      background:linear-gradient(90deg, #dc2626, #f59e0b, #dc2626);
     }
-    .ls-wrap{position:relative;width:120px;height:120px;margin-bottom:18px;}
-    .ls-text{
-      color:rgba(255,255,255,.8);
-      font-size:10px;font-weight:600;
-      letter-spacing:.14em;text-transform:uppercase;
+    .ls-orbit-wrap{
+      position:relative;width:92px;height:92px;margin:0 auto 16px;
+      display:flex;align-items:center;justify-content:center;
     }
-    @keyframes lspin{to{transform:rotate(360deg)}} .gunungan-loader{animation: gununganPulse 2s infinite ease-in-out;} @keyframes gununganPulse{0%,100%{transform:translate(-50%,-50%) scale(1); opacity:1;} 50%{transform:translate(-50%,-50%) scale(1.15); opacity:0.8;}}
+    .ls-orbit-outer{
+      position:absolute;inset:0;border-radius:50%;
+      border:2px solid rgba(239, 68, 68, 0.2);
+      border-top-color:#ef4444;border-right-color:#f59e0b;
+      animation:lspin 2.6s linear infinite;
+    }
+    .ls-orbit-inner{
+      position:absolute;inset:8px;border-radius:50%;
+      border:1.5px solid rgba(245, 158, 11, 0.2);
+      border-bottom-color:#f59e0b;border-left-color:#ffffff;
+      animation:lspin-rev 3.6s linear infinite;
+    }
+    .ls-avatar{
+      width:52px;height:52px;border-radius:16px;
+      background:linear-gradient(135deg, rgba(220, 38, 38, 0.25), rgba(245, 158, 11, 0.15));
+      border:1px solid rgba(239, 68, 68, 0.35);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:inset 0 1px 1px rgba(255,255,255,0.2), 0 4px 15px rgba(220, 38, 38, 0.3);
+      animation:lsGlow 2.4s ease-in-out infinite;
+    }
+    .ls-avatar img{width:36px;height:36px;object-fit:contain;}
+    .ls-title{
+      color:#ffffff;font-size:15px;font-weight:800;letter-spacing:.08em;
+      text-transform:uppercase;margin:0 0 4px;
+    }
+    .ls-subtitle{
+      color:#94a3b8;font-size:11.5px;font-weight:500;margin:0 0 16px;
+    }
+    .ls-progress{
+      width:140px;height:4px;background:rgba(255,255,255,0.1);
+      border-radius:9999px;overflow:hidden;position:relative;margin:0 auto 14px;
+    }
+    .ls-progress-bar{
+      position:absolute;top:0;bottom:0;width:70px;
+      background:linear-gradient(90deg, transparent, #ef4444, #f59e0b, transparent);
+      border-radius:9999px;animation:lshimmer 1.8s ease-in-out infinite;
+    }
+    .ls-badge{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:4px 12px;background:rgba(220, 38, 38, 0.15);
+      border:1px solid rgba(239, 68, 68, 0.3);border-radius:9999px;
+    }
+    .ls-badge-dot{
+      width:6px;height:6px;border-radius:50%;background:#ef4444;
+      box-shadow:0 0 8px #ef4444;
+      animation:lsDot 1.2s ease-in-out infinite alternate;
+    }
+    .ls-badge-text{
+      color:#fca5a5;font-size:9.5px;font-weight:700;
+      letter-spacing:.12em;text-transform:uppercase;
+    }
+    @keyframes lspin{to{transform:rotate(360deg)}}
+    @keyframes lspin-rev{to{transform:rotate(-360deg)}}
+    @keyframes lshimmer{0%{transform:translateX(-100%)}100%{transform:translateX(240%)}}
+    @keyframes lsGlow{0%,100%{transform:scale(1);filter:drop-shadow(0 0 8px rgba(239,68,68,0.4))}50%{transform:scale(1.05);filter:drop-shadow(0 0 16px rgba(245,158,11,0.5))}}
+    @keyframes lsDot{from{opacity:0.4;transform:scale(0.8)}to{opacity:1;transform:scale(1.2)}}
   </style>
 </head>
 <body>
   <div id="root">
     <!-- Loading screen — muncul sebelum React mount -->
     <div id="ls">
-      <div class="ls-wrap">
-        <img class="ls-logo gunungan-loader" src="/gunungan_transparent.png" alt="Memuat..." width="100" height="100"
-          fetchpriority="high"
-          decoding="sync" />
+      <div class="ls-card">
+        <div class="ls-card-bar"></div>
+        <div class="ls-orbit-wrap">
+          <div class="ls-orbit-outer"></div>
+          <div class="ls-orbit-inner"></div>
+          <div class="ls-avatar">
+            <img src="/National_emblem_of_Indonesia_Garuda_Pancasila.svg" alt="Garuda" width="36" height="36" fetchpriority="high" decoding="sync" />
+          </div>
+        </div>
+        <h2 class="ls-title">WARGA PAKEM</h2>
+        <p class="ls-subtitle">Sistem Kerukunan Lingkungan RT</p>
+        <div class="ls-progress">
+          <div class="ls-progress-bar"></div>
+        </div>
+        <div class="ls-badge">
+          <span class="ls-badge-dot"></span>
+          <span class="ls-badge-text">Membuka Gerbang Portal</span>
+        </div>
       </div>
-      <p class="ls-text">Membuka Gerbang Portal...</p>
     </div>
 
     <!-- SEO & Google AdSense Bot Static Content Crawling Fallback -->

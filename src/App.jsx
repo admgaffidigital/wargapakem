@@ -45,12 +45,20 @@ const FloatingMusicPlayer = React.lazy(() => import('./components/modules/Floati
 const WaGroup = React.lazy(() => import('./components/modules/WaGroup.jsx'));
 const Qna = React.lazy(() => import('./Qna.jsx'));
 
-// Loading Fallback Component
+// Loading Fallback Component (Tema Merah-Emas Nusantara)
 function ModuleLoadingFallback() {
     return (
-        <div className="flex flex-col justify-center items-center min-h-[350px] gap-3 text-slate-500 dark:text-slate-400 font-medium text-xs py-16 animate-pulse">
-            <div className="w-8 h-8 border-3 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-            <span>Memuat Modul Layanan...</span>
+        <div className="flex flex-col justify-center items-center min-h-[320px] gap-4 py-16 animate-fade-in text-center">
+            <div className="relative w-16 h-16 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full border-2 border-red-500/20 border-t-red-600 border-r-amber-500 animate-orbit-cw"></div>
+                <div className="w-10 h-10 bg-red-50 dark:bg-red-950/40 rounded-xl flex items-center justify-center border border-red-500/20 text-red-600 dark:text-red-400 shadow-sm">
+                    <Icon name="sync" className="text-[20px] animate-spin" />
+                </div>
+            </div>
+            <div className="space-y-1">
+                <h4 className="text-[13.5px] font-bold text-slate-800 dark:text-white tracking-tight">Memuat Modul Layanan...</h4>
+                <p className="text-[11px] font-medium text-slate-400 dark:text-slate-500">Menyiapkan data & tampilan lingkungan</p>
+            </div>
         </div>
     );
 }
@@ -306,24 +314,46 @@ function ModuleLoadingFallback() {
             };
 
             const SpinnerComponent = (
-                <div className="fixed inset-0 z-[999] flex justify-center items-center modal-backdrop animate-backdrop-in">
-                    <div className="p-8 sm:p-10 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col items-center max-w-[300px] max-w-full w-[90%] relative overflow-hidden modal-card animate-modal-in">
-                        <div className="flex h-2 w-full absolute top-0 left-0">
-                            <div className="w-1/4 bg-google-blue"></div>
-                            <div className="w-1/4 bg-google-red"></div>
-                            <div className="w-1/4 bg-google-yellow"></div>
-                            <div className="w-1/4 bg-google-green"></div>
+                <div className="fixed inset-0 z-[999] flex justify-center items-center p-4 bg-slate-900/60 dark:bg-black/75 backdrop-blur-md animate-fade-in">
+                    <div className="w-full max-w-[320px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-[28px] border border-red-500/20 dark:border-red-900/40 shadow-2xl p-7 flex flex-col items-center relative overflow-hidden text-center animate-modal-in">
+                        {/* Header Aksen Merah - Emas Nusantara */}
+                        <div className="h-1.5 w-full absolute top-0 left-0 bg-gradient-to-r from-red-600 via-amber-500 to-red-600"></div>
+
+                        {/* Orbit Animation Centerpiece */}
+                        <div className="relative w-24 h-24 mb-5 flex items-center justify-center">
+                            {/* Cincin Luar Berputar (Merah) */}
+                            <div className="absolute inset-0 rounded-full border-2 border-red-500/20 border-t-red-600 border-r-amber-500 animate-orbit-cw"></div>
+                            {/* Cincin Dalam Berputar Terbalik (Emas) */}
+                            <div className="absolute inset-2 rounded-full border border-amber-400/30 border-b-amber-500 border-l-red-500 animate-orbit-ccw"></div>
+                            {/* Icon Lambang Garuda Berdenyut Halus */}
+                            <div className="w-14 h-14 bg-gradient-to-b from-red-50 to-amber-50/50 dark:from-red-950/40 dark:to-slate-800 rounded-2xl flex items-center justify-center border border-red-500/20 shadow-inner overflow-hidden animate-breathing-glow">
+                                <img
+                                    src="./National_emblem_of_Indonesia_Garuda_Pancasila.svg"
+                                    alt="Garuda Pancasila"
+                                    className="w-9 h-9 object-contain"
+                                />
+                            </div>
                         </div>
-                        <div className="flex flex-wrap items-center justify-center gap-2.5 mt-4 mb-6 h-8">
-                            <div className="w-4 h-4 rounded-full bg-google-blue animate-bounce" style={{ animationDelay: '0s', animationDuration: '0.9s' }}></div>
-                            <div className="w-4 h-4 rounded-full bg-google-red animate-bounce" style={{ animationDelay: '0.15s', animationDuration: '0.9s' }}></div>
-                            <div className="w-4 h-4 rounded-full bg-google-yellow animate-bounce" style={{ animationDelay: '0.3s', animationDuration: '0.9s' }}></div>
-                            <div className="w-4 h-4 rounded-full bg-google-green animate-bounce" style={{ animationDelay: '0.45s', animationDuration: '0.9s' }}></div>
+
+                        {/* Typography */}
+                        <h3 className="text-[15px] font-black tracking-tight text-slate-800 dark:text-white uppercase mb-1">
+                            {identity?.name || 'WARGA PAKEM'}
+                        </h3>
+                        <p className="text-[11.5px] font-medium text-slate-500 dark:text-slate-400 mb-5">
+                            Menghubungkan Portal Lingkungan...
+                        </p>
+
+                        {/* Shimmer Progress Track */}
+                        <div className="w-40 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden relative mb-4">
+                            <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-red-600 via-amber-400 to-red-600 rounded-full animate-shimmer-bar"></div>
                         </div>
-                        <h2 className="text-google-text font-medium text-[16px] mb-3 tracking-tight text-center">Memuat Portal</h2>
-                        <div className="flex flex-wrap items-center gap-2 bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
-                            <div className="w-2 h-2 bg-google-blue rounded-full animate-pulse"></div>
-                            <p className="text-[9px] font-medium text-google-textVariant uppercase tracking-widest">Sinkronisasi Data</p>
+
+                        {/* Status Chip */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 dark:bg-red-950/40 rounded-full border border-red-500/20">
+                            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                            <span className="text-[10px] font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">
+                                Sinkronisasi Real-Time
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -436,30 +466,30 @@ function ModuleLoadingFallback() {
             };
 
             const NavItems = [
-                { id: 'dashboard', icon: 'dashboard', label: 'Ringkasan', bg: 'bg-google-blueLight', color: 'text-google-blueDark border border-google-blue' },
-                { id: 'informasi', icon: 'campaign', label: 'Info Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
-                { id: 'warga', icon: 'group', label: 'Buku Warga', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
-                { id: 'galery', icon: 'photo_library', label: 'Galeri', bg: 'bg-slate-100', color: 'text-google-text border border-slate-400' },
-                { id: 'inventaris', icon: 'inventory_2', label: 'Inventaris', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
-                { id: 'toko', icon: 'local_mall', label: 'Official Store', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
-                { id: 'pengaduan', icon: 'report_problem', label: 'Lapor', bg: 'bg-google-blueLight', color: 'text-google-blueDark border border-google-blue' },
-                { id: 'blog', icon: 'article', label: 'Blog Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
-                { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
-                { id: 'iuran', icon: 'volunteer_activism', label: 'Iuran Umum', bg: 'bg-google-redLight', color: 'text-google-redDark border border-google-red' },
-                { id: 'kas', icon: 'account_balance_wallet', label: 'Kas Warga', bg: 'bg-google-blueLight', color: 'text-google-blueDark border border-google-blue' },
-                { id: 'tiket', icon: 'local_activity', label: 'Beli Tiket', bg: 'bg-google-blueLight', color: 'text-google-blueDark border border-google-blue' },
-                { id: 'laporan', icon: 'history', label: 'Arsip Riwayat', bg: 'bg-slate-100', color: 'text-google-text border border-slate-400' },
-                { id: 'infaq', icon: 'volunteer_activism', label: 'Infaq', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
-                { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
-                { id: 'kegiatan', icon: 'event', label: 'Jadwal', bg: 'bg-google-blueLight', color: 'text-google-blueDark border border-google-blue' },
-                { id: 'kalender', icon: 'calendar_month', label: 'Kalender', bg: 'bg-google-redLight', color: 'text-google-redDark border border-google-red' },
-                { id: 'peta', icon: 'map', label: 'Peta Lokasi', bg: 'bg-slate-100 dark:bg-slate-800', color: 'text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700' },
-                { id: 'wagroup', icon: 'forum', label: 'Grup WA', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
-                { id: 'qna', icon: 'quiz', label: 'Tanya Jawab', bg: 'bg-google-blueLight', color: 'text-google-blueDark border border-google-blue' },
+                { id: 'dashboard', icon: 'dashboard', label: 'Ringkasan', desc: 'Kas, arisan & kondisi RT terkini', bg: 'bg-blue-50 dark:bg-blue-950/40', color: 'text-blue-600 dark:text-blue-400 border border-blue-500/20' },
+                { id: 'informasi', icon: 'campaign', label: 'Info Warga', desc: 'Pengumuman resmi & kabar lingkungan', bg: 'bg-amber-50 dark:bg-amber-950/40', color: 'text-amber-600 dark:text-amber-400 border border-amber-500/20' },
+                { id: 'warga', icon: 'group', label: 'Buku Warga', desc: 'Daftar kepala keluarga & anggota', bg: 'bg-emerald-50 dark:bg-emerald-950/40', color: 'text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' },
+                { id: 'galery', icon: 'photo_library', label: 'Galeri', desc: 'Album dokumentasi foto kegiatan', bg: 'bg-purple-50 dark:bg-purple-950/40', color: 'text-purple-600 dark:text-purple-400 border border-purple-500/20' },
+                { id: 'inventaris', icon: 'inventory_2', label: 'Inventaris', desc: 'Daftar aset, tenda & alat milik RT', bg: 'bg-amber-50 dark:bg-amber-950/40', color: 'text-amber-600 dark:text-amber-400 border border-amber-500/20' },
+                { id: 'toko', icon: 'local_mall', label: 'Official Store', desc: 'Lapak produk & UMKM warga sekitar', bg: 'bg-emerald-50 dark:bg-emerald-950/40', color: 'text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' },
+                { id: 'pengaduan', icon: 'report_problem', label: 'Lapor Warga', desc: 'Pusat aspirasi & laporan keluhan', bg: 'bg-rose-50 dark:bg-rose-950/40', color: 'text-rose-600 dark:text-rose-400 border border-rose-500/20' },
+                { id: 'blog', icon: 'article', label: 'Blog Warga', desc: 'Artikel, kabar terkini & wawasan', bg: 'bg-sky-50 dark:bg-sky-950/40', color: 'text-sky-600 dark:text-sky-400 border border-sky-500/20' },
+                { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', desc: 'Ajukan sewa & pinjam peralatan RT', bg: 'bg-teal-50 dark:bg-teal-950/40', color: 'text-teal-600 dark:text-teal-400 border border-teal-500/20' },
+                { id: 'iuran', icon: 'volunteer_activism', label: 'Iuran Umum', desc: 'Iuran sampah, keamanan & lingkungan', bg: 'bg-red-50 dark:bg-red-950/40', color: 'text-red-600 dark:text-red-400 border border-red-500/20' },
+                { id: 'kas', icon: 'account_balance_wallet', label: 'Kas Warga', desc: 'Buku kas umum & laporan transparansi', bg: 'bg-indigo-50 dark:bg-indigo-950/40', color: 'text-indigo-600 dark:text-indigo-400 border border-indigo-500/20' },
+                { id: 'tiket', icon: 'local_activity', label: 'Beli Tiket', desc: 'Pemesanan tiket kegiatan & bazar', bg: 'bg-violet-50 dark:bg-violet-950/40', color: 'text-violet-600 dark:text-violet-400 border border-violet-500/20' },
+                { id: 'laporan', icon: 'history', label: 'Arsip Riwayat', desc: 'Riwayat kocokan & rekap kas arisan', bg: 'bg-slate-100 dark:bg-slate-800', color: 'text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700' },
+                { id: 'infaq', icon: 'volunteer_activism', label: 'Infaq & Donasi', desc: 'Penyaluran kotak infaq & sedekah', bg: 'bg-emerald-50 dark:bg-emerald-950/40', color: 'text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' },
+                { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', desc: 'Daftar pemenang undian arisan & lomba', bg: 'bg-amber-50 dark:bg-amber-950/40', color: 'text-amber-600 dark:text-amber-400 border border-amber-500/20' },
+                { id: 'kegiatan', icon: 'event', label: 'Jadwal Agenda', desc: 'Jadwal ronda, kerja bakti & rapat', bg: 'bg-blue-50 dark:bg-blue-950/40', color: 'text-blue-600 dark:text-blue-400 border border-blue-500/20' },
+                { id: 'kalender', icon: 'calendar_month', label: 'Kalender', desc: 'Kalender agenda bulanan lingkungan', bg: 'bg-rose-50 dark:bg-rose-950/40', color: 'text-rose-600 dark:text-rose-400 border border-rose-500/20' },
+                { id: 'peta', icon: 'map', label: 'Peta Lokasi', desc: 'Denah desa & kontak darurat siaga', bg: 'bg-slate-100 dark:bg-slate-800', color: 'text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700' },
+                { id: 'wagroup', icon: 'forum', label: 'Grup WA', desc: 'Gabung grup WhatsApp resmi warga', bg: 'bg-emerald-50 dark:bg-emerald-950/40', color: 'text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' },
+                { id: 'qna', icon: 'quiz', label: 'Tanya Jawab', desc: 'Panduan lengkap & FAQ fitur portal', bg: 'bg-sky-50 dark:bg-sky-950/40', color: 'text-sky-600 dark:text-sky-400 border border-sky-500/20' },
                 ...(userRole === 'admin' ? [
-                    { id: 'pertemuan', icon: 'checklist', label: 'Absen Arisan', bg: 'bg-google-greenLight', color: 'text-google-greenDark border border-google-green' },
-                    { id: 'musik', icon: 'music_note', label: 'Musik Warga', bg: 'bg-google-yellowLight', color: 'text-google-yellowDark border border-google-yellow' },
-                    { id: 'pengaturan', icon: 'settings', label: 'Setelan Admin', bg: 'bg-slate-100', color: 'text-google-text border border-slate-400' }
+                    { id: 'pertemuan', icon: 'checklist', label: 'Absen Arisan', desc: 'Presensi kehadiran & kocokan pemenang', bg: 'bg-emerald-50 dark:bg-emerald-950/40', color: 'text-emerald-600 dark:text-emerald-400 border border-emerald-500/20', adminOnly: true },
+                    { id: 'musik', icon: 'music_note', label: 'Musik Warga', desc: 'Atur pemutar audio & lagu latar portal', bg: 'bg-amber-50 dark:bg-amber-950/40', color: 'text-amber-600 dark:text-amber-400 border border-amber-500/20', adminOnly: true },
+                    { id: 'pengaturan', icon: 'settings', label: 'Setelan Admin', desc: 'Konfigurasi akun, backup data & RT', bg: 'bg-red-50 dark:bg-red-950/40', color: 'text-red-600 dark:text-red-400 border border-red-500/20', adminOnly: true }
                 ] : [])
             ];
 
