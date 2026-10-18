@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Icon from '../common/Icon.jsx';
+import { showToast } from '../common/Toast.jsx';
 
         function WaktuSholatWidget() {
             const DEFAULT_LAT = -7.8246;
