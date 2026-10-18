@@ -659,7 +659,7 @@ function ModuleLoadingFallback() {
                         </div>
                     </main>
 
-                    <footer className="w-full no-print mt-auto border-t border-red-500/20 dark:border-red-900/40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-[12px] font-medium text-slate-600 dark:text-slate-400 py-8 relative overflow-hidden">
+                    <footer className="w-full no-print mt-auto border-t border-red-500/20 dark:border-red-900/40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-[12px] font-medium text-slate-600 dark:text-slate-400 pt-8 pb-32 sm:pb-36 relative overflow-hidden">
                         {/* Strip Aksen Merah - Emas */}
                         <div className="h-1 w-full absolute top-0 left-0 bg-gradient-to-r from-red-600 via-amber-500 to-red-600 opacity-80"></div>
 
