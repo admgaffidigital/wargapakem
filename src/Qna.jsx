@@ -1,16 +1,5 @@
 import React, { useState, useMemo } from 'react';
-
-function Icon({ name, className = "text-[17px]", fill = "false" }) {
-    return (
-        <span 
-            className={`material-symbols-rounded shrink-0 select-none flex items-center justify-center ${className}`} 
-            style={{ fontVariationSettings: fill === 'true' ? "'FILL' 1" : "'FILL' 0", lineHeight: '1em', width: '1em', height: '1em' }} 
-            aria-hidden="true"
-        >
-            {name}
-        </span>
-    );
-}
+import Icon from './components/common/Icon.jsx';
 
 function Qna({ 
     userRole, 
@@ -401,11 +390,11 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
     return (
         <div className="space-y-6 sm:space-y-8 animate-fade-in w-full py-2">
             {/* Header */}
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden">
+            <div className="bento-island-card p-6 sm:p-8 border border-red-500/20 shadow-md relative overflow-hidden">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div>
                         <h2 className="text-2xl sm:text-3xl font-semibold text-slate-800 dark:text-white tracking-tight flex items-center gap-2.5">
-                            <Icon name="quiz" className="text-google-blue text-[28px] sm:text-3xl" fill="true" /> Pusat Tanya Jawab (Q&A)
+                            <Icon name="quiz" className="text-red-600 dark:text-red-400 text-[28px] sm:text-3xl" fill="true" /> Pusat Tanya Jawab (Q&A)
                         </h2>
                         <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1.5 leading-relaxed font-medium">
                             Temukan penjelasan dan cara membaca data arisan, jimpitan, kas, dan operasional RT secara instan.
@@ -417,13 +406,13 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
                         <div className="flex bg-slate-100 dark:bg-slate-800 p-1.5 rounded-full shrink-0 border border-slate-200 dark:border-slate-700 self-start md:self-auto shadow-inner">
                             <button 
                                 onClick={() => { setMode('warga'); setSelectedCategory('Semua'); setSearchQuery(''); }} 
-                                className={`px-4 py-2.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all ${mode === 'warga' ? 'bg-google-green text-white shadow' : 'text-slate-600 dark:text-slate-350 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
+                                className={`px-4 py-2.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all ${mode === 'warga' ? 'bg-emerald-600 text-white shadow-md' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
                             >
                                 <Icon name="group" className="text-[14px]" /> Panduan Warga
                             </button>
                             <button 
                                 onClick={() => { setMode('admin'); setSelectedCategory('Semua'); setSearchQuery(''); }} 
-                                className={`px-4 py-2.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all ${mode === 'admin' ? 'bg-google-blue text-white shadow' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
+                                className={`px-4 py-2.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all ${mode === 'admin' ? 'bg-red-600 text-white shadow-md' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
                             >
                                 <Icon name="admin_panel_settings" className="text-[14px]" /> Panduan Admin
                             </button>
@@ -435,14 +424,14 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
             {/* Controls: Search and Filters */}
             <div className="flex flex-col gap-4">
                 {/* Search Bar */}
-                <div className="bg-white dark:bg-slate-900 rounded-2xl px-4 py-3 border border-slate-200 dark:border-slate-800 focus-within:border-google-blue dark:focus-within:border-google-blue flex items-center gap-2.5 shadow-sm transition-all">
+                <div className="bg-white/95 dark:bg-slate-900/95 rounded-2xl px-4 py-3.5 border border-slate-200 dark:border-slate-800 focus-within:border-red-500 dark:focus-within:border-red-500 flex items-center gap-2.5 shadow-sm transition-all">
                     <Icon name="search" className="text-slate-400 dark:text-slate-500" />
                     <input 
                         type="text" 
                         placeholder="Cari pertanyaan atau kata kunci bantuan..." 
                         value={searchQuery} 
                         onChange={e => setSearchQuery(e.target.value)} 
-                        className="w-full bg-transparent border-none outline-none text-[13px] text-slate-800 dark:text-white placeholder-slate-400"
+                        className="w-full bg-transparent border-none outline-none text-[14px] font-semibold text-slate-900 dark:text-white placeholder:text-slate-400"
                     />
                     {searchQuery && (
                         <button onClick={() => setSearchQuery('')} className="text-slate-400 hover:text-slate-600">
@@ -485,7 +474,7 @@ Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak
                         return (
                             <div 
                                 key={key}
-                                className={`bg-white dark:bg-slate-900 rounded-2xl border ${accentClass} shadow-sm overflow-hidden transition-all duration-200`}
+                                className={`bento-island-card !p-0 ${accentClass} shadow-sm overflow-hidden transition-all duration-200`}
                             >
                                 <button 
                                     onClick={() => toggleAccordion(key)}

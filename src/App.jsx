@@ -738,7 +738,7 @@ function ModuleLoadingFallback() {
                                     </div>
                                 </div>
                                 <div className="p-4 md:px-8 md:pb-8 pt-0 shrink-0">
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 py-4 rounded-full font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
+                                    <button onClick={() => setShowLicenseModal(false)} className="btn-native-action w-full min-h-[46px] bg-red-600 hover:bg-red-700 text-white rounded-2xl font-bold text-[14px] shadow-lg shadow-red-500/25 border border-red-500/30 active:scale-[0.98] transition-all cursor-pointer">Saya Mengerti</button>
                                 </div>
                             </div>
                         </div>
@@ -748,7 +748,7 @@ function ModuleLoadingFallback() {
                             <div className="rounded-2xl w-full max-w-lg overflow-hidden flex flex-col border border-slate-200/50 dark:border-slate-850 max-h-[85vh] modal-card animate-modal-in">
                                 <div className="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
                                     <h3 className="text-[14px] font-medium text-slate-800 dark:text-white flex items-center gap-2">
-                                        <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-google-blue" /> 
+                                        <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-red-500" /> 
                                         {showLegalModal === 'terms' ? 'Syarat & Ketentuan' : 'Kebijakan Privasi'}
                                     </h3>
                                     <button onClick={() => setShowLegalModal(null)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"><Icon name="close" /></button>
@@ -759,11 +759,102 @@ function ModuleLoadingFallback() {
                                     </div>
                                 </div>
                                 <div className="p-4 border-t border-slate-200 dark:border-slate-800 shrink-0">
-                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-full font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
+                                    <button onClick={() => setShowLegalModal(null)} className="btn-native-action w-full min-h-[46px] bg-red-600 hover:bg-red-700 text-white rounded-2xl font-bold text-[14px] shadow-lg shadow-red-500/25 border border-red-500/30 active:scale-[0.98] transition-all cursor-pointer">Tutup & Lanjutkan</button>
                                 </div>
                             </div>
                         </div>
                     )}
+
+                    {/* FLOATING NATIVE APP DOCK (1-TAP BOTTOM NAVIGATION) */}
+                    <div className="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-40 no-print max-w-[95vw] sm:max-w-md w-full px-2 sm:px-0">
+                        <nav className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl border border-red-500/25 dark:border-red-900/40 shadow-2xl shadow-red-500/10 dark:shadow-black/60 rounded-3xl p-1.5 flex items-center justify-around gap-1">
+                            <button
+                                type="button"
+                                onClick={() => changeTab('menu')}
+                                className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
+                                    activeTab === 'menu'
+                                        ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
+                                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                                }`}
+                                title="Menu Utama"
+                            >
+                                <Icon name="grid_view" className="text-[20px]" fill={activeTab === 'menu' ? "true" : "false"} />
+                                <span className="text-[10px] tracking-tight truncate max-w-full">Beranda</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => changeTab('kas')}
+                                className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
+                                    activeTab === 'kas'
+                                        ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
+                                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                                }`}
+                                title="Buku Kas RT"
+                            >
+                                <Icon name="account_balance_wallet" className="text-[20px]" fill={activeTab === 'kas' ? "true" : "false"} />
+                                <span className="text-[10px] tracking-tight truncate max-w-full">Buku Kas</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => changeTab('warga')}
+                                className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
+                                    activeTab === 'warga'
+                                        ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
+                                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                                }`}
+                                title="Data Warga RT"
+                            >
+                                <Icon name="groups" className="text-[20px]" fill={activeTab === 'warga' ? "true" : "false"} />
+                                <span className="text-[10px] tracking-tight truncate max-w-full">Warga</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => changeTab('toko')}
+                                className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
+                                    activeTab === 'toko'
+                                        ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
+                                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                                }`}
+                                title="Toko Warga"
+                            >
+                                <Icon name="storefront" className="text-[20px]" fill={activeTab === 'toko' ? "true" : "false"} />
+                                <span className="text-[10px] tracking-tight truncate max-w-full">Toko</span>
+                            </button>
+
+                            {userRole === 'admin' ? (
+                                <button
+                                    type="button"
+                                    onClick={() => changeTab('pengaturan')}
+                                    className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
+                                        activeTab === 'pengaturan'
+                                            ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
+                                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                                    }`}
+                                    title="Setelan Portal Admin"
+                                >
+                                    <Icon name="settings" className="text-[20px]" fill={activeTab === 'pengaturan' ? "true" : "false"} />
+                                    <span className="text-[10px] tracking-tight truncate max-w-full">Setelan</span>
+                                </button>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={() => changeTab('informasi')}
+                                    className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
+                                        activeTab === 'informasi'
+                                            ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
+                                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                                    }`}
+                                    title="Kabar & Pengumuman RT"
+                                >
+                                    <Icon name="campaign" className="text-[20px]" fill={activeTab === 'informasi' ? "true" : "false"} />
+                                    <span className="text-[10px] tracking-tight truncate max-w-full">Info</span>
+                                </button>
+                            )}
+                        </nav>
+                    </div>
                     <ToastContainer />
                     {/* Floating Music Player - hanya untuk warga */}
                     {userRole === 'warga' && musicData?.url && musicData?.enabled && <Suspense fallback={null}><FloatingMusicPlayer musicData={musicData} /></Suspense>}
