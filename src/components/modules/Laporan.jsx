@@ -161,7 +161,7 @@ growthAmount = history[0].saldoAkhirJimpitan || 0;
                     </div>
 
                     {history.length > 0 && (
-<div className="no-print mb-8 bg-white p-6 sm:p-8 lg:p-8 rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm">
+<div className="bento-island-card no-print mb-8 p-5 sm:p-7">
 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
 <div>
 <h3 className="text-xl font-medium text-google-text tracking-tight">Tren Saldo Jimpitan</h3>
@@ -217,9 +217,9 @@ growthStatus === 'turun' ? 'bg-google-redLight border-google-red/40 text-google-
                         {displayedHistory.map((record) => {
                             const isHoliday = record.winner.includes('LIBUR');
                             return (
-                                <div key={record.id} className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300">
+                                <div key={record.id} className="bento-island-card p-0 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 hover:border-red-500/30 transition-all duration-300">
                                     <div className="p-6 sm:p-8 flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-200 bg-slate-50">
-                                        <div><h3 className="font-medium text-2xl text-google-text tracking-tight">Putaran Ke-{record.round}</h3><p className="text-[13px] font-medium text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[16px]"/> {record.periode} G {record.date}</p></div>
+                                        <div><h3 className="font-medium text-2xl text-google-text tracking-tight">Putaran Ke-{record.round}</h3><p className="text-[13px] font-medium text-google-textVariant mt-2 flex flex-wrap items-center gap-1.5"><Icon name="event" className="text-[16px]"/> {record.periode} • {record.date}</p></div>
                                         <div className="mt-5 sm:mt-0 flex flex-col sm:items-end"><span className="text-[10px] uppercase font-medium text-google-textVariant tracking-widest mb-2">{isHoliday ? 'Status Kegiatan' : 'Pemenang Arisan'}</span><div className={`${isHoliday ? 'bg-google-yellow text-white border-google-yellowDark' : 'bg-google-blue text-white border-google-blueDark'} px-6 py-3 rounded-full font-medium text-[13px] shadow-md inline-flex items-center gap-2 border`}><Icon name={isHoliday ? "event_busy" : "emoji_events"} className="text-[17px]" fill="true" /> {record.winner}</div></div>
                                     </div>
                                     <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -3,9 +3,9 @@ import React, { useRef, useEffect } from 'react';
         function normalizeAudioUrl(url) {
             if (!url) return '';
             try {
-                // Dropbox share link G dl.dropboxusercontent.com (direct stream, CORS OK)
+                // Dropbox share link → dl.dropboxusercontent.com (direct stream, CORS OK)
                 // Contoh: https://www.dropbox.com/s/XXXXX/file.mp3?dl=0
-                //   G https://dl.dropboxusercontent.com/s/XXXXX/file.mp3
+                //   → https://dl.dropboxusercontent.com/s/XXXXX/file.mp3
                 if (url.includes('dropbox.com')) {
                     // Format baru Dropbox: /scl/fi/ atau /s/
                     let normalized = url
@@ -18,8 +18,8 @@ import React, { useRef, useEffect } from 'react';
                     // dl.dropboxusercontent.com tidak butuh rlkey
                     return normalized;
                 }
-                // Google Drive viewer G langsung (catatan: GDrive sering CORS issue, tapi kita coba convert)
-                // https://drive.google.com/file/d/ID/view G https://drive.google.com/uc?export=download&id=ID
+                // Google Drive viewer → langsung (catatan: GDrive sering CORS issue, tapi kita coba convert)
+                // https://drive.google.com/file/d/ID/view → https://drive.google.com/uc?export=download&id=ID
                 const gdriveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
                 if (gdriveMatch) {
                     return `https://drive.google.com/uc?export=download&id=${gdriveMatch[1]}`;
@@ -47,7 +47,7 @@ import React, { useRef, useEffect } from 'react';
 
                 const attemptPlay = () => {
                     audio.play().catch(() => {
-                        // Browser blokir autoplay G tunggu interaksi user
+                        // Browser blokir autoplay → tunggu interaksi user
                     });
                 };
 
@@ -73,7 +73,7 @@ import React, { useRef, useEffect } from 'react';
                 };
             }, [streamUrl]);
 
-            // Render hanya elemen audio tersembunyi G tidak ada UI yang terlihat
+            // Render hanya elemen audio tersembunyi → tidak ada UI yang terlihat
             return <audio ref={audioRef} src={streamUrl} preload="auto" style={{ display: 'none' }} />;
         }
 

@@ -75,7 +75,7 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
                         </div>
                     )}
 
-                    <div className="bg-blue-50 p-6 sm:p-10 rounded-3xl border border-blue-200/60 shadow-md shadow-blue-500/10 mb-8 relative overflow-hidden">
+                    <div className="bento-header-card mb-8 no-print">
                         
                         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
@@ -85,13 +85,13 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
                                 <h1 className="text-3xl sm:text-4xl font-medium text-slate-800 tracking-tight mb-2">Lapor</h1>
                                 <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Sistem Pengaduan dan Aspirasi Warga. Laporkan keluhan atau berikan saran untuk lingkungan kita.</p>
                             </div>
-                            <button onClick={() => setIsFormOpen(true)} className="w-full md:w-auto bg-blue-600 text-white px-8 py-4 rounded-full font-medium text-[13px] shadow-lg shadow-blue-600/30 hover:bg-blue-700 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+                            <button onClick={() => setIsFormOpen(true)} className="btn-native-primary w-full md:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 shadow-blue-500/20">
                                 <Icon name="add_circle" className="group-hover:rotate-90 transition-transform duration-300" /> Buat Laporan
                             </button>
                         </div>
                     </div>
 
-                    <div className="mb-6 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                    <div className="slide-list-scroller mb-6 flex gap-2 pb-2">
                         {['Semua', ...statuses].map(status => (
                             <button key={status} onClick={() => setFilterStatus(status)} className={`px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-all ${filterStatus === status ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>
                                 {status}
@@ -110,7 +110,7 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {filteredData.map(item => (
-                                <div key={item.id} className="bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col relative overflow-hidden group">
+                                <div key={item.id} className="bento-island-card p-5 sm:p-6 flex flex-col hover:border-blue-500/30 transition-all duration-300">
                                     <div className="flex justify-between items-start mb-4">
                                         <div className="flex items-center gap-2">
                                             <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-lg text-xs font-medium">{item.category}</span>

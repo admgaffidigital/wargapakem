@@ -332,7 +332,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 <span className="font-medium text-slate-600 dark:text-slate-300 text-sm">Subtotal</span>
                                 <span className="text-lg sm:text-xl font-medium text-google-green dark:text-google-greenLight">{formatRp(effPrice * safeNumber(orderQty))}</span>
                             </div>
-                            <button onClick={addToCart} className="w-full bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium py-3 sm:py-3.5 rounded-full shadow-md shadow-blue-500/30 active:scale-95 transition-all text-sm flex justify-center items-center gap-2">
+                            <button onClick={addToCart} className="btn-native-primary w-full bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-500/20 border-emerald-500/30 flex justify-center items-center gap-2">
                                 <Icon name="add_shopping_cart" className="text-[18px]" /> Tambah ke Keranjang
                             </button>
                         </div>
@@ -729,7 +729,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
             {/* Kategori Tabs */}
             {Array.from(new Set(tokoProducts.filter(p => p.isPublished).map(p => p.kategori).filter(Boolean))).length > 0 && (
-                <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+                <div className="slide-list-scroller flex gap-2 pb-2 -mx-3.5 px-3.5 sm:mx-0 sm:px-0">
                     <button onClick={() => setSelectedCategory('Semua')}
                         className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all border ${selectedCategory === 'Semua' ? 'bg-google-blue text-white border-google-blueDark shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-google-blue/40'}`}>
                         Semua
@@ -749,7 +749,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     <div className="col-span-full py-16 text-center text-slate-400 dark:text-slate-500 font-medium text-sm bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800">Belum ada produk yang dijual saat ini.</div>
                 ) : tokoProducts.filter(p => p.isPublished && (selectedCategory === 'Semua' || p.kategori === selectedCategory)).map(item => (
                     <div key={item.id} onClick={() => { setSelectedProduct(item); setSelectedVariant(item.variants[0] || null); setOrderQty(1); setView('detail'); }}
-                        className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-2xl border border-slate-200 dark:border-slate-850 shadow-sm hover:shadow-lg overflow-hidden flex flex-col justify-between hover:border-google-green/60 hover:-translate-y-1 transition-all duration-300 group cursor-pointer font-sans">
+                        className="bento-island-card p-0 overflow-hidden flex flex-col justify-between hover:border-emerald-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group cursor-pointer font-sans">
                         {/* Gambar - 1:1 Ratio */}
                         <div className="relative aspect-square w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0">
                             {item.imageUrl
@@ -797,7 +797,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 setCart(prev => ({ ...prev, [key]: { product: item, variant: variant, qty: (prev[key]?.qty || 0) + 1, price } }));
                                 showToast('Ditambahkan ke keranjang!');
                                 setView('cart');
-                            }} className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-50 dark:bg-slate-800 text-google-green dark:text-google-greenLight border border-slate-200 dark:border-slate-750 rounded-full flex items-center justify-center hover:bg-google-green hover:text-white transition-colors shrink-0 cursor-pointer">
+                            }} className="w-9 h-9 sm:w-10 sm:h-10 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 rounded-xl flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all active:scale-95 shrink-0 cursor-pointer shadow-xs">
                                 <Icon name="shopping_bag" className="text-[15px] sm:text-[18px]" />
                             </div>
                         </div>

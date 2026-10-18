@@ -33,7 +33,7 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                 return groupedTransactions[filterMonth] || [];
             }, [filterMonth, transactions, groupedTransactions]);
 
-            // Upload Nota Kas RT: Canvas compress G base64 G Firestore (tanpa GAS)
+            // Upload Nota Kas RT: Canvas compress → base64 → Firestore (tanpa GAS)
             const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -148,17 +148,17 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
 
                     {userRole === 'admin' && (
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 no-print">
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-200 p-5 sm:p-6 rounded-3xl flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-google-green hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center relative overflow-hidden">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bento-island-card p-4 sm:p-5 flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-emerald-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 active:scale-95 group text-left sm:text-center relative overflow-hidden cursor-pointer">
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-google-green/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
                                 <div className="bg-google-greenLight text-google-greenDark w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/30"><Icon name="add" className="text-[24px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pemasukan</span>
                             </button>
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bg-white border border-slate-200 p-5 sm:p-6 rounded-3xl flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-google-red hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center relative overflow-hidden">
+                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bento-island-card p-4 sm:p-5 flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-red-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 active:scale-95 group text-left sm:text-center relative overflow-hidden cursor-pointer">
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-google-red/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
                                 <div className="bg-google-redLight text-google-redDark w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/30"><Icon name="remove" className="text-[24px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text">Catat Pengeluaran</span>
                             </button>
-                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bg-white border border-slate-200 p-5 sm:p-6 rounded-3xl flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-google-yellow hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 group text-left sm:text-center relative overflow-hidden">
+                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bento-island-card p-4 sm:p-5 flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-amber-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 active:scale-95 group text-left sm:text-center relative overflow-hidden cursor-pointer">
                                 <div className="absolute top-0 right-0 w-20 h-20 bg-google-yellow/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
                                 <div className="bg-google-yellowLight text-google-yellowDark w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center group-hover:bg-google-yellow group-hover:text-white transition-colors duration-300 shadow-sm border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[24px] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" /></div>
                                 <span className="text-[13px] font-medium text-google-text leading-tight">Cairkan Kas Jimpitan</span>
@@ -175,7 +175,7 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                                     <div className="h-px bg-slate-300 flex-1"></div>
                                 </div>
                                 {groupedTransactions[monthYear].map((t) => (
-                                    <div key={t.id} className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-google-blue/30 transition-all duration-300 gap-4 group">
+                                    <div key={t.id} className="bento-island-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-500/30 transition-all duration-300 gap-4 group">
                                         <div className="flex items-center gap-5 flex-1 overflow-hidden">
                                             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border transition-colors duration-300 ${t.type === 'Pemasukan' ? 'bg-google-greenLight text-google-greenDark border-google-green/30 group-hover:bg-google-green group-hover:text-white' : 'bg-google-redLight text-google-redDark border-google-red/30 group-hover:bg-google-red group-hover:text-white'}`}><Icon name={t.type === 'Pemasukan' ? "arrow_downward" : "arrow_upward"} className="text-[24px]" fill="true" /></div>
                                             <div className="flex-1 min-w-0">
@@ -251,8 +251,8 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-2xl mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-slate-200">
-                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-200 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className={`flex-1 text-white px-6 py-3.5 rounded-full font-medium text-[13px] border shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-google-green border-google-greenDark hover:bg-google-greenDark' : 'bg-google-red border-google-redDark hover:bg-google-redDark'}`}>Simpan Data</button>
+                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className={`btn-native-primary flex-1 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-500/20 border-emerald-500/30' : 'bg-gradient-to-r from-red-600 to-rose-600 shadow-red-500/20 border-red-500/30'}`}>Simpan Data</button>
                                 </div>
                             </div>
                         </div>
@@ -272,8 +272,8 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                                 {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-2xl mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 
                                 <div className="flex flex-wrap gap-3 pt-2">
-                                    <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 border border-slate-200 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                    <button onClick={handleTransferJimpitan} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-yellowDark border border-google-yellowDark active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Mutasi Dana</button>
+                                    <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                    <button onClick={handleTransferJimpitan} className="btn-native-primary flex-1 bg-gradient-to-r from-amber-500 to-yellow-600 shadow-amber-500/20 border-amber-500/30">Mutasi Dana</button>
                                 </div>
                             </div>
                         </div>

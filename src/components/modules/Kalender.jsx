@@ -144,7 +144,7 @@ import Icon from '../common/Icon.jsx';
             return (
                 <div className="space-y-8 max-w-7xl mx-auto">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-5">
+                    <div className="bento-header-card flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                         <div className="text-center md:text-left">
                             <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
                                 <Icon name="calendar_month" className="text-[24px] text-red-600"/>

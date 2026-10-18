@@ -52,7 +52,7 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate } from '../../utils/
 
             if (view === 'form') {
                 return (
-                    <div className="bg-white p-5 sm:p-8 rounded-3xl border border-slate-200 max-w-2xl mx-auto shadow-xl">
+                    <div className="bento-island-card max-w-2xl mx-auto p-5 sm:p-8">
                         <div className="flex flex-wrap items-center gap-5 mb-8 border-b border-slate-200 pb-6"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border border-slate-200 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda ? 'Edit Agenda' : 'Buat Agenda Iuran'}</h2></div>
                         <div className="space-y-8">
                             <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nama / Keperluan Iuran</label><input type="text" value={formData.title} onChange={e => {setFormData({...formData, title: e.target.value}); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[13px] font-medium outline-none rounded-2xl transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="Misal: Dana 17 Agustus" /></div>
@@ -63,7 +63,7 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate } from '../../utils/
                         </div>
                         {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-2xl mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                         <div className="flex justify-end mt-10 pt-6 border-t border-slate-200">
-                            <button onClick={handleSaveAgenda} className="bg-google-blue text-white px-8 py-4 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark hover:shadow-lg active:scale-95 transition-all duration-300 w-full sm:w-auto flex flex-wrap items-center justify-center gap-2"><Icon name="save" className="text-[17px]"/> Simpan Agenda</button>
+                            <button onClick={handleSaveAgenda} className="btn-native-primary w-full sm:w-auto px-8 flex items-center justify-center gap-2"><Icon name="save" className="text-[18px]"/><span>Simpan Agenda</span></button>
                         </div>
                     </div>
                 );
@@ -77,7 +77,7 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate } from '../../utils/
 
                 return (
                     <div className="space-y-8 max-w-7xl mx-auto">
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print bg-white p-6 sm:p-8 lg:p-8 rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm">
+                        <div className="bento-header-card flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 no-print">
                             <div className="flex flex-wrap items-center gap-5"><button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-12 h-12 bg-white text-google-text border border-slate-200 hover:bg-slate-50 hover:border-slate-400 rounded-full shrink-0 flex justify-center items-center transition-all duration-300 active:scale-95 shadow-sm"><Icon name="arrow_back" className="text-[17px] font-medium text-google-text" /></button><div><h2 className="text-[18px] sm:text-[20px] font-medium text-google-text leading-tight tracking-tight">{selectedAgenda.title}</h2><p className="text-[13px] font-medium text-google-textVariant mt-1">Kelola Penyetoran Warga</p></div></div>
                             {userRole === 'admin' && <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2"><Icon name="print" className="text-[16px]" /> <span className="hidden sm:inline">Cetak Laporan</span></button>}
                         </div>
@@ -174,8 +174,8 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate } from '../../utils/
                                     {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-2xl mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                     
                                     <div className="flex flex-wrap gap-3">
-                                        <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm flex items-center justify-center">Batal</button>
-                                        <button onClick={executeTransferToKas} className="flex flex-wrap bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-yellowDark shadow-md hover:bg-google-yellowDark hover:shadow-lg active:scale-95 transition-all duration-300 flex flex-wrap items-center justify-center gap-2">Setor Dana</button>
+                                        <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                        <button onClick={executeTransferToKas} className="btn-native-primary flex-1 bg-gradient-to-r from-amber-500 to-yellow-600 shadow-amber-500/20 border-amber-500/30">Setor Dana</button>
                                     </div>
                                 </div>
                             </div>

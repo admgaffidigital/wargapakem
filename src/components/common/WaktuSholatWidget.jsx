@@ -266,7 +266,7 @@ import { showToast } from '../common/Toast.jsx';
                                     {isGPS && <span className="text-[9px] bg-red-100 text-red-600 px-2 py-0.5 rounded-lg font-medium border border-red-200">GPS</span>}
                                 </h3>
                             </div>
-                            <p className="text-[11px] font-medium text-google-textVariant mt-0.5">Metode Kemenag RI G Hari ini: {schedule.tanggal}</p>
+                            <p className="text-[11px] font-medium text-google-textVariant mt-0.5">Metode Kemenag RI • Hari ini: {schedule.tanggal}</p>
                         </div>
 
                         <div className="w-full md:w-auto flex flex-wrap items-center gap-2">

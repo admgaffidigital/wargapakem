@@ -90,7 +90,7 @@ function normalizeAudioUrl(url) {
                     <audio ref={previewAudioRef} preload="auto" style={{ display: 'none' }} />
 
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm">
+                    <div className="bento-header-card no-print">
                         <div className="flex flex-wrap items-center gap-4">
                             <div className="w-14 h-14 rounded-2xl bg-google-yellowLight flex items-center justify-center border border-google-yellow/40 shrink-0">
                                 <Icon name="music_note" className="text-[32px] text-google-yellowDark" fill="true" />
@@ -104,7 +104,7 @@ function normalizeAudioUrl(url) {
 
                     {/* Status Musik Terpasang */}
                     {currentUrl ? (
-                        <div className={`rounded-3xl p-6 border ${isEnabled ? 'bg-google-greenLight border-google-green/40' : 'bg-slate-50 border-slate-200'}`}>
+                        <div className={`bento-island-card p-5 sm:p-6 ${isEnabled ? 'border-emerald-500/40 bg-emerald-50/20 dark:bg-emerald-950/20' : ''}`}>
                             <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
                                 <div className="flex flex-wrap items-center gap-3 flex-1 min-w-0">
                                     <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border ${isEnabled ? 'bg-google-green border-google-greenDark' : 'bg-slate-300 border-slate-400'}`}>
@@ -150,7 +150,7 @@ function normalizeAudioUrl(url) {
                             <Icon name="cloud_upload" className="text-white text-[20px]" fill="true" />
                             <div>
                                 <p className="text-white font-medium text-[13px]">Upload via Dropbox</p>
-                                <p className="text-blue-100 text-[10px] font-medium">Cara terbaik G gratis, cepat, dan bebas CORS</p>
+                                <p className="text-blue-100 text-[10px] font-medium">Cara terbaik • gratis, cepat, dan bebas CORS</p>
                             </div>
                         </div>
                         <div className="p-6 sm:p-8 md:p-6">
@@ -158,7 +158,7 @@ function normalizeAudioUrl(url) {
                                 {[
                                     { step: '1', text: 'Buka dropbox.com dan login (atau daftar gratis).', icon: 'open_in_new' },
                                     { step: '2', text: 'Upload file MP3/WAV/OGG ke Dropbox Anda.', icon: 'upload' },
-                                    { step: '3', text: 'Klik kanan file G "Share" G "Copy Link" G salin link yang muncul.', icon: 'share' },
+                                    { step: '3', text: 'Klik kanan file → "Share" → "Copy Link" → salin link yang muncul.', icon: 'share' },
                                     { step: '4', text: 'Paste link di kolom URL di bawah. Sistem otomatis mengkonversi ke link streaming.', icon: 'paste' },
                                 ].map(item => (
                                     <li key={item.step} className="flex flex-wrap items-start gap-3">
@@ -231,7 +231,7 @@ function normalizeAudioUrl(url) {
                         <ul className="text-[11px] font-medium text-google-yellowDark/90 space-y-1 list-disc list-inside">
                             <li>Musik <span className="underline decoration-dotted">hanya memutar</span> untuk pengguna login sebagai <span className="underline decoration-dotted">Warga</span>.</li>
                             <li>Admin tidak mendengar musik saat login sebagai Admin.</li>
-                            <li>Browser mobile kadang memblokir autoplay G warga cukup tap layar sekali.</li>
+                            <li>Browser mobile kadang memblokir autoplay • warga cukup tap layar sekali.</li>
                             <li>Gunakan file audio bebas hak cipta atau milik sendiri.</li>
                         </ul>
                     </div>

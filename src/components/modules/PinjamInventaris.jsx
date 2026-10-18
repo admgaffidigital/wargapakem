@@ -92,29 +92,36 @@ import { safeNumber, getLocalDate, parseLocalDate } from '../../utils/helpers.js
             return (
                 <div className="space-y-8">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm">
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                            <div>
-                                <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2"><Icon name="handshake" className="text-[24px] text-google-green" />Pinjam Inventaris</h2>
-                                <p className="text-[13px] font-medium text-google-textVariant mt-1">Ajukan peminjaman barang inventaris RT untuk keperluan kegiatan warga.</p>
+                    <div className="bento-header-card flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 no-print">
+                        <div>
+                            <div className="flex items-center gap-2 mb-1">
+                                <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Layanan Peminjaman Warga</span>
                             </div>
-                            <div className="flex gap-2 flex-wrap">
-                                {userRole === 'admin' && (
-                                    <button onClick={() => setView(view === 'admin' ? 'list' : 'admin')} className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[12px] border transition-all active:scale-95 ${view === 'admin' ? 'bg-google-blue text-white border-google-blueDark' : 'bg-white text-google-text border-slate-200 hover:border-google-blue'}`}>
-                                        <Icon name="admin_panel_settings" className="text-[16px]" />Panel Admin
-                                        {pendingList.length > 0 && <span className="bg-google-red text-white text-[9px] font-medium px-2 py-0.5 rounded-full">{pendingList.length}</span>}
-                                    </button>
-                                )}
-                                <button onClick={() => { setView('form'); setErrorMsg(''); }} className="flex flex-wrap items-center gap-2 bg-google-green text-white px-5 py-2.5 rounded-full font-medium text-[12px] border border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all">
-                                    <Icon name="add" className="text-[16px]" />Ajukan Pinjam
+                            <h2 className="text-xl sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-2.5">
+                                <Icon name="handshake" className="text-[26px] text-emerald-600 dark:text-emerald-400" />
+                                <span>Pinjam Inventaris RT</span>
+                            </h2>
+                            <p className="text-[12.5px] sm:text-[13px] font-medium text-slate-500 dark:text-slate-400 mt-1">Ajukan peminjaman fasilitas lingkungan untuk keperluan kegiatan dan hajat warga.</p>
+                        </div>
+                        <div className="flex items-center gap-2.5 flex-wrap">
+                            {userRole === 'admin' && (
+                                <button onClick={() => setView(view === 'admin' ? 'list' : 'admin')} className={`btn-native-action flex items-center gap-2 px-4 ${view === 'admin' ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200/80 dark:border-slate-700 hover:border-blue-500/40'}`}>
+                                    <Icon name="admin_panel_settings" className="text-[18px]" />
+                                    <span>Panel Admin</span>
+                                    {pendingList.length > 0 && <span className="bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full">{pendingList.length}</span>}
                                 </button>
-                            </div>
+                            )}
+                            <button onClick={() => { setView('form'); setErrorMsg(''); }} className="btn-native-primary flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-500/20 hover:from-emerald-700 hover:to-teal-700 border-emerald-500/30">
+                                <Icon name="add" className="text-[18px]" />
+                                <span>Ajukan Pinjam</span>
+                            </button>
                         </div>
                     </div>
 
                     {/* Form Pengajuan */}
                     {view === 'form' && (
-                        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
+                        <div className="bento-island-card p-5 sm:p-7">
                             <h3 className="text-[16px] font-medium text-google-text mb-6 flex flex-wrap items-center gap-2"><Icon name="edit_document" className="text-[18px] text-google-green" />Form Pengajuan Pinjam</h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {/* Nama warga */}
@@ -140,7 +147,7 @@ import { safeNumber, getLocalDate, parseLocalDate } from '../../utils/helpers.js
                                     <label className="text-[11px] font-medium text-google-textVariant uppercase tracking-wider mb-1.5 block">Jumlah Dipinjam *</label>
                                     <div className="flex flex-wrap items-center gap-3 bg-slate-50 border border-slate-200 focus-within:border-google-green rounded-xl px-4 py-3">
                                         <button type="button" onClick={() => setFormData(p => ({...p, qty: Math.max(1, (p.qty||1)-1)}))}
-                                            className="w-9 h-9 bg-white border border-slate-200 rounded-full flex items-center justify-center font-medium text-[17px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">G</button>
+                                            className="w-10 h-10 bg-white dark:bg-slate-700 border border-slate-200/80 dark:border-slate-600 rounded-xl flex items-center justify-center font-black text-[18px] text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 active:scale-95 transition-all shadow-xs shrink-0">−</button>
                                         <div className="flex-1 text-center">
                                             <span className="font-medium text-[17px] text-google-text">{formData.qty || 1}</span>
                                             <span className="text-[11px] text-google-textVariant ml-2">unit</span>
@@ -148,7 +155,7 @@ import { safeNumber, getLocalDate, parseLocalDate } from '../../utils/helpers.js
                                         <button type="button" onClick={() => {
                                             const stok = formData.itemId ? getStokTersedia(Number(formData.itemId)) : 99;
                                             setFormData(p => ({...p, qty: Math.min(stok, (p.qty||1)+1)}));
-                                        }} className="w-9 h-9 bg-white border border-slate-200 rounded-full flex items-center justify-center font-medium text-[17px] text-google-text hover:bg-slate-100 active:scale-95 transition-all shrink-0">+</button>
+                                        }} className="w-10 h-10 bg-white dark:bg-slate-700 border border-slate-200/80 dark:border-slate-600 rounded-xl flex items-center justify-center font-black text-[18px] text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 active:scale-95 transition-all shadow-xs shrink-0">+</button>
                                     </div>
                                     {formData.itemId && (
                                         <p className="text-[10px] text-google-textVariant mt-1">
@@ -178,8 +185,8 @@ import { safeNumber, getLocalDate, parseLocalDate } from '../../utils/helpers.js
                             </div>
                             {errorMsg && <div className="mt-4 bg-google-redLight border border-google-red/30 text-google-redDark px-4 py-3 rounded-xl text-[12px] font-medium flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px]" />{errorMsg}</div>}
                             <div className="flex flex-wrap gap-3 mt-6">
-                                <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                                <button onClick={handleSubmitPinjam} className="flex flex-wrap bg-google-green text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2"><Icon name="send" className="text-[16px]" />Kirim Pengajuan</button>
+                                <button onClick={() => { setView('list'); setErrorMsg(''); }} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                <button onClick={handleSubmitPinjam} className="btn-native-primary flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-500/20 hover:from-emerald-700 hover:to-teal-700 border-emerald-500/30 flex items-center justify-center gap-2"><Icon name="send" className="text-[18px]" /><span>Kirim Pengajuan</span></button>
                             </div>
                         </div>
                     )}
@@ -197,13 +204,13 @@ import { safeNumber, getLocalDate, parseLocalDate } from '../../utils/helpers.js
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-medium text-[13px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[12px] font-medium text-google-yellowDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[13px]" />{p.namaBarang} <span className="ml-1 bg-google-yellow/20 text-google-yellowDark border border-google-yellow/40 px-2 py-0.5 rounded-lg font-medium text-[10px]">{p.qty || 1} unit</span></p>
-                                                    <p className="text-[11px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[12px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} G Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
+                                                    <p className="text-[11px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[12px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} • Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
                                                     <p className="text-[11px] text-google-textVariant mt-0.5 italic">"{p.keperluan}"</p>
-                                                    {p.catatan && <p className="text-[10px] text-slate-500 mt-0.5">= {p.catatan}</p>}
+                                                    {p.catatan && <p className="text-[10.5px] text-slate-500 dark:text-slate-400 mt-0.5 font-medium">Catatan: {p.catatan}</p>}
                                                 </div>
                                                 <div className="flex flex-wrap gap-2 shrink-0">
-                                                    <button onClick={() => setKonfirmRejectId(p.id)} className="px-4 py-2.5 bg-white text-google-red border border-google-red/30 rounded-full font-medium text-[11px] hover:bg-google-redLight active:scale-95 transition-all">Tolak</button>
-                                                    <button onClick={() => handleApprove(p.id)} className="px-4 py-2.5 bg-google-green text-white border border-google-greenDark rounded-full font-medium text-[11px] hover:bg-google-greenDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1"><Icon name="check" className="text-[13px]" />Setujui</button>
+                                                    <button onClick={() => setKonfirmRejectId(p.id)} className="min-h-[40px] px-4 py-2 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/25 rounded-xl font-bold text-[12px] hover:bg-red-600 hover:text-white transition-all active:scale-95 cursor-pointer">Tolak</button>
+                                                    <button onClick={() => handleApprove(p.id)} className="min-h-[40px] px-4 py-2 bg-emerald-600 text-white border border-emerald-700 rounded-xl font-bold text-[12px] hover:bg-emerald-700 transition-all active:scale-95 shadow-sm shadow-emerald-500/20 flex items-center gap-1.5 cursor-pointer"><Icon name="check" className="text-[16px]" /><span>Setujui</span></button>
                                                 </div>
                                             </div>
                                         ))}
@@ -220,14 +227,14 @@ import { safeNumber, getLocalDate, parseLocalDate } from '../../utils/helpers.js
                                                 <div className="flex-1 min-w-0">
                                                     <p className="font-medium text-[13px] text-google-text truncate">{p.namaWarga}</p>
                                                     <p className="text-[12px] font-medium text-google-blueDark mt-0.5 flex flex-wrap items-center gap-1"><Icon name="inventory_2" className="text-[13px]" />{p.namaBarang} <span className="ml-1 bg-google-blue/10 text-google-blueDark border border-google-blue/30 px-2 py-0.5 rounded-lg font-medium text-[10px]">{p.qty || 1} unit</span></p>
-                                                    <p className="text-[11px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[12px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} G Estimasi Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
+                                                    <p className="text-[11px] text-google-textVariant mt-1 flex flex-wrap items-center gap-1"><Icon name="event" className="text-[12px]" />Pinjam: {parseLocalDate(p.tanggalPinjam).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})} • Estimasi Kembali: {parseLocalDate(p.tanggalKembali).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}</p>
                                                     <p className="text-[11px] text-google-textVariant mt-0.5 italic">"{p.keperluan}"</p>
                                                     {/* Cek apakah sudah lewat tanggal kembali */}
                                                     {p.tanggalKembali < getLocalDate() && (
                                                         <p className="text-[10px] font-medium text-google-red mt-1 flex flex-wrap items-center gap-1"><Icon name="warning" className="text-[12px]" />Melewati estimasi tanggal kembali!</p>
                                                     )}
                                                 </div>
-                                                <button onClick={() => setKonfirmReturnId(p.id)} className="px-4 py-2.5 bg-google-blue text-white border border-google-blueDark rounded-full font-medium text-[11px] hover:bg-google-blueDark active:scale-95 transition-all shadow-md flex flex-wrap items-center gap-1 shrink-0"><Icon name="assignment_return" className="text-[13px]" />Barang Kembali</button>
+                                                <button onClick={() => setKonfirmReturnId(p.id)} className="min-h-[40px] px-4 py-2 bg-blue-600 text-white border border-blue-700 rounded-xl font-bold text-[12px] hover:bg-blue-700 transition-all active:scale-95 shadow-sm shadow-blue-500/20 flex items-center gap-1.5 shrink-0 cursor-pointer"><Icon name="assignment_return" className="text-[16px]" /><span>Barang Kembali</span></button>
                                             </div>
                                         ))}
                                     </div>
@@ -252,13 +259,13 @@ import { safeNumber, getLocalDate, parseLocalDate } from '../../utils/helpers.js
                                     const stok = getStokTersedia(item.id);
                                     const sedangDipinjam = pinjamData.filter(p => p.itemId === item.id && p.status === 'approved');
                                     return (
-                                        <div key={item.id} className={`bg-white rounded-3xl border p-5 shadow-sm flex items-center gap-4 ${stok <= 0 ? 'border-google-red/40 bg-google-redLight/20' : 'border-slate-200'}`}>
+                                        <div key={item.id} className={`bento-island-card flex items-center gap-4 p-4 sm:p-5 ${stok <= 0 ? 'border-red-500/40 bg-red-50/30 dark:bg-red-950/20' : ''}`}>
                                             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border ${stok <= 0 ? 'bg-google-redLight border-google-red/30' : 'bg-google-greenLight border-google-green/30'}`}>
                                                 <Icon name="inventory_2" className={`text-[24px] ${stok <= 0 ? 'text-google-red' : 'text-google-green'}`} />
                                             </div>
                                             <div className="min-w-0">
                                                 <p className="font-medium text-[13px] text-google-text truncate">{item.name}</p>
-                                                <p className={`text-[11px] font-medium mt-0.5 ${stok <= 0 ? 'text-google-red' : 'text-google-greenDark'}`}>{stok <= 0 ? 'G Semua sedang dipinjam' : `G ${stok} dari ${item.qty} tersedia`}</p>
+                                                <p className={`text-[11px] font-medium mt-0.5 ${stok <= 0 ? 'text-google-red' : 'text-google-greenDark'}`}>{stok <= 0 ? '• Semua sedang dipinjam' : `• ${stok} dari ${item.qty} tersedia`}</p>
                                                 {sedangDipinjam.length > 0 && (
                                                     <div className="mt-1.5 bg-google-redLight/50 border border-google-red/30 rounded-lg px-3 py-1.5 space-y-1">
                                                         {sedangDipinjam.map((p, i) => (
@@ -293,8 +300,8 @@ import { safeNumber, getLocalDate, parseLocalDate } from '../../utils/helpers.js
                                     <p className="text-[13px] text-google-textVariant mb-2"><span className="font-medium text-google-text">{p.namaBarang}</span><br/>dikembalikan oleh <span className="font-medium text-google-blueDark">{p.namaWarga}</span></p>
                                     <p className="text-[12px] font-medium text-google-green mb-6">Stok inventaris akan otomatis pulih setelah konfirmasi.</p>
                                     <div className="flex flex-wrap gap-3">
-                                        <button onClick={() => setKonfirmReturnId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
-                                        <button onClick={() => handleReturn(konfirmReturnId)} className="flex-1 bg-google-green text-white px-4 py-3 rounded-full font-medium text-[12px] border border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95">G Konfirmasi Kembali</button>
+                                        <button onClick={() => setKonfirmReturnId(null)} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                        <button onClick={() => handleReturn(konfirmReturnId)} className="btn-native-primary flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-500/20 border-emerald-500/30">✓ Konfirmasi Kembali</button>
                                     </div>
                                 </>) : null; })()}
                             </div>
@@ -309,8 +316,8 @@ import { safeNumber, getLocalDate, parseLocalDate } from '../../utils/helpers.js
                                 <h3 className="text-xl font-medium text-google-text mb-2">Tolak Pengajuan?</h3>
                                 <p className="text-[13px] text-google-textVariant mb-6">Pengajuan pinjam ini akan dihapus dari daftar.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setKonfirmRejectId(null)} className="w-full sm:w-auto bg-white text-google-text px-4 py-3 rounded-full font-medium text-[12px] border border-slate-200 hover:bg-slate-50 active:scale-95">Batal</button>
-                                    <button onClick={() => handleReject(konfirmRejectId)} className="flex-1 bg-google-red text-white px-4 py-3 rounded-full font-medium text-[12px] border border-google-redDark shadow-md hover:bg-google-redDark active:scale-95">Tolak & Hapus</button>
+                                    <button onClick={() => setKonfirmRejectId(null)} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                    <button onClick={() => handleReject(konfirmRejectId)} className="btn-native-primary flex-1">Tolak & Hapus</button>
                                 </div>
                             </div>
                         </div>

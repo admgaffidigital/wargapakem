@@ -38,7 +38,7 @@ import { getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/h
                 setIsFormOpen(true);
             };
 
-            // Upload Galeri: Canvas compress G base64 G Firestore (tanpa GAS)
+            // Upload Galeri: Canvas compress → base64 → Firestore (tanpa GAS)
             const handleImageUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -73,9 +73,9 @@ import { getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/h
                         )}
                     </div>
                     
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
                         {data.map(item => (
-                            <div key={item.id} className="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1.5 hover:border-red-500/30 transition-all duration-300 flex flex-col group relative">
+                            <div key={item.id} className="bento-island-card overflow-hidden hover:shadow-lg hover:-translate-y-1 hover:border-red-500/30 transition-all duration-300 flex flex-col group relative p-0">
                                 <div onClick={() => setSelectedPhoto(item)} className="w-full aspect-[4/3] bg-slate-100 relative shrink-0 border-b border-slate-200 overflow-hidden flex items-center justify-center cursor-zoom-in">
                                     <img src={item.imageUrl} loading="lazy" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />
                                     <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -201,8 +201,8 @@ import { getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/h
                                 </div>
                                 {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-2xl mt-4 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
                                 <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-slate-200">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex flex-wrap bg-google-blue text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-blueDark shadow-md hover:bg-google-blueDark active:scale-95 transition-all duration-300 disabled:opacity-50 flex flex-wrap items-center justify-center gap-2">
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="btn-native-primary flex-1 disabled:opacity-50 flex items-center justify-center gap-2">
                                         {editingId ? 'Simpan' : 'Unggah'}
                                     </button>
                                 </div>
@@ -217,8 +217,8 @@ import { getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/h
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Foto?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Foto ini akan dihapus dari galeri warga.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Foto berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                    <button onClick={() => { setData(data.filter(item => item.id !== deleteConfirmId)); setDeleteConfirmId(null); showToast('Foto berhasil dihapus.'); }} className="btn-native-primary flex-1">Ya, Hapus</button>
                                 </div>
                             </div>
                         </div>

@@ -136,7 +136,7 @@ export function LoginScreen({
                         <button
                             type="button"
                             onClick={() => onLogin('warga')}
-                            className="w-full min-h-[46px] py-3.5 px-6 bg-google-red hover:bg-google-redDark text-white rounded-full font-bold text-[13.5px] tracking-wide shadow-lg shadow-red-500/25 border border-red-500/30 flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer"
+                            className="btn-native-primary w-full min-h-[46px] py-3.5 px-6 rounded-2xl font-bold text-[14px] tracking-wide shadow-lg shadow-red-500/25 border border-red-500/30 flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer"
                         >
                             <Icon name="login" className="text-[18px]" fill="true" />
                             <span>Masuk Portal Warga</span>
@@ -205,7 +205,7 @@ export function LoginScreen({
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full min-h-[46px] py-3.5 px-6 bg-slate-900 hover:bg-black dark:bg-red-600 dark:hover:bg-red-700 text-white rounded-full font-bold text-[13.5px] tracking-wide shadow-lg shadow-black/10 dark:shadow-red-600/20 border border-transparent flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-60"
+                            className="w-full min-h-[46px] py-3.5 px-6 bg-slate-900 hover:bg-black dark:bg-red-600 dark:hover:bg-red-700 text-white rounded-2xl font-bold text-[14px] tracking-wide shadow-lg shadow-black/10 dark:shadow-red-600/20 border border-transparent flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-60"
                         >
                             {isLoading ? (
                                 <>

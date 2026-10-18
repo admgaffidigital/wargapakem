@@ -414,7 +414,7 @@ function ModuleLoadingFallback() {
                                     </div>
                                 </div>
                                 <div className="p-4 border-t border-slate-200 shrink-0">
-                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white py-3.5 rounded-full font-medium text-[13px] transition-colors active:scale-95">Tutup & Lanjutkan</button>
+                                    <button onClick={() => setShowLegalModal(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white min-h-[44px] py-3 rounded-2xl font-bold text-[13px] transition-all active:scale-95 shadow-md shadow-blue-500/20 cursor-pointer">Tutup & Lanjutkan</button>
                                 </div>
                             </div>
                         </div>
@@ -441,7 +441,7 @@ function ModuleLoadingFallback() {
                                     </div>
                                 </div>
                                 <div className="p-4 md:px-8 md:pb-8 pt-0 shrink-0">
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 py-4 rounded-full font-medium text-[13px] transition-colors active:scale-95">Saya Mengerti</button>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 min-h-[44px] py-3 rounded-2xl font-bold text-[13px] transition-all active:scale-95 cursor-pointer">Saya Mengerti</button>
                                 </div>
                             </div>
                         </div>
@@ -572,14 +572,14 @@ function ModuleLoadingFallback() {
                         <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-[45vw] md:w-[35vw] lg:w-[30vw] xl:w-[450px] h-auto max-h-[45vh] md:max-h-[60vh] xl:max-h-[75vh] object-contain object-bottom animate-wayang dark:invert" style={{ animationDelay: '1.5s' }} />
                     </div>
 
-                    <div className="sticky top-0 z-40 no-print w-full">
+                    <div className="sticky top-0 z-40 no-print w-full pt-2.5 sm:pt-4 px-3.5 sm:px-6 lg:px-8">
                         {isOffline && (
                             <div className="bg-google-redDark text-white text-center py-2.5 px-4 text-[12px] font-medium flex flex-wrap items-center justify-center gap-2 w-full shadow-md">
                                 <Icon name="wifi_off" className="text-[16px]" /> Koneksi terputus. Anda masuk ke mode offline.
                             </div>
                         )}
 
-                        <header className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl text-slate-800 dark:text-slate-100 py-2.5 px-3 sm:py-3.5 sm:px-6 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl mx-auto mt-3 sm:mt-5 rounded-2xl sm:rounded-3xl border border-red-500/20 dark:border-red-900/40 shadow-lg shadow-red-500/10 dark:shadow-black/30 relative z-20 overflow-hidden">
+                        <header className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl text-slate-800 dark:text-slate-100 py-2.5 px-3.5 sm:py-3.5 sm:px-6 w-full max-w-7xl mx-auto rounded-2xl sm:rounded-3xl border border-red-500/20 dark:border-red-900/40 shadow-lg shadow-red-500/10 dark:shadow-black/30 relative z-20 overflow-hidden">
                             {/* Strip Gradasi Aksen Merah-Emas di paling atas header */}
                             <div className="h-1 w-full absolute top-0 left-0 bg-gradient-to-r from-red-600 via-amber-500 to-red-600"></div>
 
@@ -657,7 +657,7 @@ function ModuleLoadingFallback() {
                     </div>
 
                     <main className="flex-1 w-full pt-5 md:pt-8 pb-40 print:pb-0 print:pt-0">
-                        <div key={activeTab} className="max-w-7xl mx-auto px-4 sm:px-6 tab-fade-in pb-10">
+                        <div key={activeTab} className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 tab-fade-in pb-10">
                             <Suspense fallback={<ModuleLoadingFallback />}>
                                 {renderContent()}
                             </Suspense>
@@ -668,7 +668,7 @@ function ModuleLoadingFallback() {
                         {/* Strip Aksen Merah - Emas */}
                         <div className="h-1 w-full absolute top-0 left-0 bg-gradient-to-r from-red-600 via-amber-500 to-red-600 opacity-80"></div>
 
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
+                        <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
                             {/* Identitas RT & Copyright */}
                             <div className="space-y-1 flex flex-col items-center md:items-start">
                                 <div className="flex items-center gap-2">
@@ -782,8 +782,8 @@ function ModuleLoadingFallback() {
                                 <h3 className="text-2xl font-medium text-google-text dark:text-white mb-2">Keluar Sesi?</h3>
                                 <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-google-text dark:text-slate-200 py-3.5 px-6 rounded-full font-medium text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all shadow-sm">Batal</button>
-                                    <button onClick={executeLogout} className="flex-1 bg-google-red text-white py-3.5 px-6 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-redDark border border-google-redDark active:scale-95 transition-all">Ya, Keluar</button>
+                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 min-h-[44px] py-2.5 px-6 rounded-2xl font-bold text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200/80 dark:border-slate-700 active:scale-95 transition-all shadow-sm cursor-pointer">Batal</button>
+                                    <button onClick={executeLogout} className="flex-1 bg-gradient-to-r from-red-600 to-rose-600 text-white min-h-[44px] py-2.5 px-6 rounded-2xl font-bold text-[13px] shadow-md shadow-red-500/20 hover:from-red-700 hover:to-rose-700 border border-red-500/30 active:scale-95 transition-all cursor-pointer">Ya, Keluar</button>
                                 </div>
                             </div>
                         </div>

@@ -137,7 +137,7 @@ import { showToast } from '../common/Toast.jsx';
 
                                     <button 
                                         type="submit" 
-                                        className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-full font-medium text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
+                                        className="btn-native-primary w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-500/20 mt-4"
                                     >
                                         <Icon name="send" />
                                         <span>Ajukan Gabung Grup</span>
@@ -168,7 +168,7 @@ import { showToast } from '../common/Toast.jsx';
                                     <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-3">
                                         <button 
                                             onClick={handleCancelRequest} 
-                                            className="flex-1 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 py-3.5 rounded-full font-medium text-[12.5px] hover:bg-slate-50 active:scale-95 transition-all shadow-sm"
+                                            className="btn-native-secondary flex-1"
                                         >
                                             Batalkan Pengajuan
                                         </button>

@@ -76,17 +76,17 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
             };
 
             const KondisiInput = ({ label, field, color, icon }) => (
-                <div className={`flex items-center justify-between bg-slate-50 border ${color} rounded-xl px-4 py-3`}>
-                    <div className="flex flex-wrap items-center gap-2">
-                        <Icon name={icon} className="text-[16px]" />
-                        <span className="text-[12px] font-medium text-google-text">{label}</span>
+                <div className={`flex items-center justify-between bg-slate-50 dark:bg-slate-800/80 border ${color} rounded-2xl px-4 py-3`}>
+                    <div className="flex items-center gap-2.5">
+                        <Icon name={icon} className="text-[18px] text-slate-500 dark:text-slate-400" />
+                        <span className="text-[12.5px] font-semibold text-slate-700 dark:text-slate-200">{label}</span>
                     </div>
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex items-center gap-2">
                         <button type="button" onClick={() => setFormData(p => ({...p, kondisi: {...p.kondisi, [field]: Math.max(0, (p.kondisi[field]||0)-1)}}))}
-                            className="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center font-medium text-[16px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">G</button>
-                        <span className="w-8 text-center font-medium text-[14px] text-google-text">{formData.kondisi[field] || 0}</span>
+                            className="w-9 h-9 sm:w-10 sm:h-10 bg-white dark:bg-slate-700 border border-slate-200/80 dark:border-slate-600 rounded-xl flex items-center justify-center font-black text-[18px] text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 active:scale-95 transition-all shadow-xs">−</button>
+                        <span className="w-8 text-center font-black text-[15px] text-slate-800 dark:text-white">{formData.kondisi[field] || 0}</span>
                         <button type="button" onClick={() => setFormData(p => ({...p, kondisi: {...p.kondisi, [field]: (p.kondisi[field]||0)+1}}))}
-                            className="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center font-medium text-[16px] text-google-text hover:bg-slate-100 active:scale-95 transition-all">+</button>
+                            className="w-9 h-9 sm:w-10 sm:h-10 bg-white dark:bg-slate-700 border border-slate-200/80 dark:border-slate-600 rounded-xl flex items-center justify-center font-black text-[18px] text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-600 active:scale-95 transition-all shadow-xs">+</button>
                     </div>
                 </div>
             );
@@ -94,20 +94,25 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
             return (
                 <div className="space-y-8">
                     {/* Header */}
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 no-print">
+                    <div className="bento-header-card flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 no-print">
                         <div>
-                            <h2 className="text-2xl font-medium text-google-text tracking-tight">Aset &amp; Inventaris</h2>
-                            <p className="text-[13px] font-medium text-google-textVariant mt-1.5">Daftar barang fasilitas RT beserta kondisi dan stok pinjam.</p>
+                            <div className="flex items-center gap-2 mb-1">
+                                <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
+                                <span className="text-[11px] font-bold uppercase tracking-wider text-red-600 dark:text-red-400">Logistik & Fasilitas RT</span>
+                            </div>
+                            <h2 className="text-xl sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight">Aset &amp; Inventaris</h2>
+                            <p className="text-[12.5px] sm:text-[13px] font-medium text-slate-500 dark:text-slate-400 mt-1">Daftar barang fasilitas RT beserta kondisi dan ketersediaan stok pinjam warga.</p>
                         </div>
                         {userRole === 'admin' && (
-                            <button onClick={() => { setFormData({ name: '', kondisi: { baru: 0, bekas: 0, rusak: 0 }, imageUrl: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="flex flex-wrap items-center gap-2 bg-google-yellow text-white px-6 py-3 rounded-full font-medium text-[13px] border border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all shrink-0">
-                                <Icon name="add" className="text-[17px]" />Tambah Barang
+                            <button onClick={() => { setFormData({ name: '', kondisi: { baru: 0, bekas: 0, rusak: 0 }, imageUrl: '' }); setEditingId(null); setIsFormOpen(true); setErrorMsg(''); setIsUploading(false); }} className="btn-native-primary shrink-0 flex items-center justify-center gap-2">
+                                <Icon name="add" className="text-[18px]" />
+                                <span>Tambah Barang</span>
                             </button>
                         )}
                     </div>
 
                     {/* Grid kartu barang */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
                         {data.map(item => {
                             const kondisi = item.kondisi || { baru: item.qty || 1, bekas: 0, rusak: 0 };
                             const totalStok   = getTotalStok({kondisi});
@@ -115,7 +120,7 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
                             const sedangDipinjam = pinjamData ? pinjamData.filter(p => p.itemId === item.id && p.status === 'approved').length : 0;
                             const tersedia    = Math.max(0, stokPinjam - sedangDipinjam);
                             return (
-                                <div key={item.id} className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-yellow/40 transition-all duration-300 flex flex-col group relative">
+                                <div key={item.id} className="bento-island-card overflow-hidden hover:shadow-lg hover:-translate-y-1 hover:border-red-500/30 transition-all duration-300 flex flex-col group relative p-0">
                                     {/* Foto */}
                                     <div className="w-full relative shrink-0 border-b border-slate-200 overflow-hidden" style={{height:'200px'}}>
                                         {item.imageUrl
@@ -164,8 +169,8 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
                                         {/* Tombol admin */}
                                         {userRole === 'admin' && (
                                             <div className="flex gap-2 mt-auto pt-3 border-t border-slate-100">
-                                                <button onClick={() => openEditForm(item)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-full py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
-                                                <button onClick={() => setDeleteConfirmId(item.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-full py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                                <button onClick={() => openEditForm(item)} className="flex-1 min-h-[40px] flex items-center justify-center gap-1.5 bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-600 dark:hover:bg-blue-600 text-blue-600 dark:text-blue-400 hover:text-white dark:hover:text-white border border-blue-500/25 rounded-xl py-2 px-3 text-[12px] font-bold transition-all active:scale-95 cursor-pointer"><Icon name="edit" className="text-[15px]" /> Edit</button>
+                                                <button onClick={() => setDeleteConfirmId(item.id)} className="flex-1 min-h-[40px] flex items-center justify-center gap-1.5 bg-red-50 dark:bg-red-950/40 hover:bg-red-600 dark:hover:bg-red-600 text-red-600 dark:text-red-400 hover:text-white dark:hover:text-white border border-red-500/25 rounded-xl py-2 px-3 text-[12px] font-bold transition-all active:scale-95 cursor-pointer"><Icon name="delete" className="text-[15px]" /> Hapus</button>
                                             </div>
                                         )}
                                     </div>
@@ -198,9 +203,9 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
                                     <div>
                                         <label className="text-[10px] font-medium text-google-textVariant block mb-2 uppercase tracking-widest">Jumlah per Kondisi</label>
                                         <div className="space-y-2.5">
-                                            <KondisiInput label="= Kondisi Baru" field="baru" color="border-google-green/40 focus-within:border-google-green" icon="verified" />
-                                            <KondisiInput label="= Kondisi Bekas" field="bekas" color="border-google-yellow/40 focus-within:border-google-yellow" icon="refresh" />
-                                            <KondisiInput label="= Kondisi Rusak" field="rusak" color="border-google-red/40 focus-within:border-google-red" icon="report" />
+                                            <KondisiInput label="Kondisi Baru" field="baru" color="border-google-green/40 focus-within:border-google-green" icon="verified" />
+                                            <KondisiInput label="Kondisi Bekas" field="bekas" color="border-google-yellow/40 focus-within:border-google-yellow" icon="refresh" />
+                                            <KondisiInput label="Kondisi Rusak" field="rusak" color="border-google-red/40 focus-within:border-google-red" icon="report" />
                                         </div>
                                         {/* Ringkasan */}
                                         {((formData.kondisi.baru||0)+(formData.kondisi.bekas||0)+(formData.kondisi.rusak||0)) > 0 && (
@@ -221,8 +226,8 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
                                                 {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div> : formData.imageUrl ? <img src={formData.imageUrl} className="w-12 h-12 rounded-xl object-cover" alt="preview" /> : <Icon name="cloud_upload" className="text-[20px]" />}
                                             </div>
                                             <div className="relative z-0 flex-1 min-w-0">
-                                                <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan G' : 'Pilih Gambar'}</p>
-                                                <p className="text-[11px] text-google-textVariant">{formData.imageUrl ? 'Klik untuk ganti foto' : 'Maks. 2MB G JPG, PNG, WEBP'}</p>
+                                                <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : formData.imageUrl ? 'Foto Tersimpan ✓' : 'Pilih Gambar'}</p>
+                                                <p className="text-[11px] text-google-textVariant">{formData.imageUrl ? 'Klik untuk ganti foto' : 'Maks. 2MB • JPG, PNG, WEBP'}</p>
                                             </div>
                                             {formData.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setFormData(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
                                         </div>
@@ -232,8 +237,8 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
                                 </div>
 
                                 <div className="flex flex-wrap gap-3 mt-6">
-                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-google-yellow text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-yellowDark shadow-md hover:bg-google-yellowDark active:scale-95 transition-all disabled:opacity-50">Simpan</button>
+                                    <button onClick={() => { setIsFormOpen(false); setErrorMsg(''); }} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                    <button onClick={handleSave} disabled={isUploading} className="btn-native-primary flex-1 disabled:opacity-50">Simpan Barang</button>
                                 </div>
                             </div>
                         </div>
@@ -247,8 +252,8 @@ import { uploadToGoogleDrive } from '../../utils/helpers.js';
                                 <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Hapus Barang?</h3>
                                 <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Barang ini akan dihapus permanen dari daftar inventaris RT.</p>
                                 <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm">Batal</button>
-                                    <button onClick={() => { const idToDelete = deleteConfirmId; setData(prev => prev.filter(item => item.id !== idToDelete)); setDeleteConfirmId(null); showToast('Barang berhasil dihapus.'); }} className="flex-1 bg-google-red text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-redDark shadow-md hover:bg-google-redDark active:scale-95 transition-all duration-300">Hapus</button>
+                                    <button onClick={() => setDeleteConfirmId(null)} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                                    <button onClick={() => { const idToDelete = deleteConfirmId; setData(prev => prev.filter(item => item.id !== idToDelete)); setDeleteConfirmId(null); showToast('Barang berhasil dihapus.'); }} className="btn-native-primary flex-1">Ya, Hapus</button>
                                 </div>
                             </div>
                         </div>

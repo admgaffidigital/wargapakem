@@ -142,12 +142,12 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                     </div>
 
                     {/* Grid program */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
                         {infaqData.map(item => {
                             const p = pct(item);
                             return (
                                 <div key={item.id} onClick={() => { setSelected(item); setView('detail'); setNominalInput(''); setNamaInfaq(''); setTipeNama('nama'); setSelectedRek(0); }}
-                                    className="bg-white rounded-3xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-google-green/50 transition-all duration-300 cursor-pointer group flex flex-col">
+                                    className="bento-island-card overflow-hidden hover:shadow-lg hover:-translate-y-1 hover:border-emerald-500/30 transition-all duration-300 cursor-pointer group flex flex-col p-0">
                                     {/* Foto */}
                                     <div className="w-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0 aspect-[4/3] sm:aspect-video">
                                         {item.imageUrl
@@ -240,7 +240,7 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                         )}
 
                         {/* Judul & dana */}
-                        <div className="bg-white rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 md:p-6">
+                        <div className="bento-island-card p-5 sm:p-7">
                             <h2 className="text-[18px] font-medium text-google-text mb-2 tracking-tight">{prog.judul}</h2>
                             <p className="text-[13px] text-google-textVariant font-medium leading-relaxed mb-4">{prog.deskripsi}</p>
                             {/* Progress dana */}
@@ -355,7 +355,7 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                             </div>
                         )}
 
-                        {/* Riwayat Donasi G Tampil untuk SEMUA user (Warga & Admin) */}
+                        {/* Riwayat Donasi • Tampil untuk SEMUA user (Warga & Admin) */}
                         {(prog.donasi || []).length > 0 && userRole !== 'admin' && (
                             <div className="bg-white rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 md:p-6">
                                 <h3 className="text-[15px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2">
@@ -590,7 +590,7 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                         <Icon name="arrow_back" className="text-[17px]" />Kembali
                     </button>
 
-                    <div className="bg-white p-6 sm:p-8 lg:p-8 rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm">
+                    <div className="bento-island-card p-5 sm:p-7">
                         <h3 className="text-[17px] font-medium text-google-text mb-6 tracking-tight">
                             {editingId ? ' Edit Program Infaq' : '+ Buat Program Infaq Baru'}
                         </h3>
@@ -607,7 +607,7 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                                             : <Icon name="cloud_upload" className="text-[20px] text-google-textVariant" />}
                                     </div>
                                     <div className="flex-1 z-0">
-                                        <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : form.imageUrl ? 'Foto Tersimpan G' : 'Pilih Foto Program'}</p>
+                                        <p className="font-medium text-[13px] text-google-text">{isUploading ? 'Mengunggah...' : form.imageUrl ? 'Foto Tersimpan ✓' : 'Pilih Foto Program'}</p>
                                         <p className="text-[11px] text-google-textVariant">Maks. 2MB</p>
                                     </div>
                                     {form.imageUrl && <button type="button" onClick={e => { e.stopPropagation(); setForm(p=>({...p,imageUrl:''})); }} className="relative z-20 text-google-red bg-white border border-slate-200 rounded-full w-7 h-7 flex items-center justify-center text-[14px] hover:bg-google-redLight active:scale-95 shrink-0">+</button>}
@@ -698,8 +698,8 @@ import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive
                         </div>
 
                         <div className="flex flex-wrap gap-3 mt-6">
-                            <button onClick={() => { setView('list'); setErrorMsg(''); }} className="w-full sm:w-auto bg-white text-google-text px-6 py-3.5 rounded-full font-medium text-[13px] border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all">Batal</button>
-                            <button onClick={handleSaveProgram} disabled={isUploading} className="flex-1 bg-google-green text-white px-6 py-3.5 rounded-full font-medium text-[13px] border border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all disabled:opacity-50">
+                            <button onClick={() => { setView('list'); setErrorMsg(''); }} className="btn-native-secondary w-full sm:w-auto">Batal</button>
+                            <button onClick={handleSaveProgram} disabled={isUploading} className="btn-native-primary flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-500/20 border-emerald-500/30 disabled:opacity-50">
                                 {editingId ? 'Simpan Perubahan' : 'Buat Program'}
                             </button>
                         </div>

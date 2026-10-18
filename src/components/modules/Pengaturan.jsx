@@ -211,7 +211,7 @@ import { safeNumber, getLocalDate, uploadToGoogleDrive } from '../../utils/helpe
                                 </div>
                                 <div>
                                 <p className="font-medium text-[12px] text-google-text dark:text-white">{previewUrl ? 'Ganti Gambar Logo' : 'Pilih File Logo (Maks 2MB)'}</p>
-                                <p className="text-[10px] text-google-textVariant dark:text-slate-400 font-medium">PNG, JPG, SVG, WEBP G upload ke Google Drive</p>
+                                <p className="text-[10px] text-google-textVariant dark:text-slate-400 font-medium">PNG, JPG, SVG, WEBP • upload ke Google Drive</p>
                                 </div>
                             </div>
                             )}
@@ -357,7 +357,7 @@ import { safeNumber, getLocalDate, uploadToGoogleDrive } from '../../utils/helpe
                 }
             };
 
-            // Upload Banner: Canvas compress G base64 G Firestore (tanpa GAS)
+            // Upload Banner: Canvas compress → base64 → Firestore (tanpa GAS)
             const handleLogoUpload = async (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -394,7 +394,7 @@ import { safeNumber, getLocalDate, uploadToGoogleDrive } from '../../utils/helpe
             const renderGridMenu = () => (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {pengaturanMenus.map(menu => (
-                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-md hover:shadow-lg hover:-translate-y-1.5 cursor-pointer transition-all duration-300 group flex flex-col items-center text-center gap-4`}>
+                        <div key={menu.id} onClick={() => setActiveMenu(menu.id)} className={`bento-island-card p-5 sm:p-7 hover:border-red-500/30 cursor-pointer transition-all duration-300 group flex flex-col items-center text-center gap-3.5`}>
                             <div className={`w-14 h-14 ${menu.bg} ${menu.text} rounded-2xl flex items-center justify-center border ${menu.border} group-hover:scale-110 ${menu.groupHoverBg} group-hover:text-white transition-all duration-300`}>
                                 <Icon name={menu.icon} className="text-[24px]" fill="true" />
                             </div>
@@ -412,7 +412,7 @@ import { safeNumber, getLocalDate, uploadToGoogleDrive } from '../../utils/helpe
                 if (!menu) return null;
                 return (
                     <div className="flex flex-wrap items-center gap-4 mb-6">
-                        <button onClick={() => setActiveMenu(null)} className="w-12 h-12 bg-white border border-slate-200 rounded-full flex items-center justify-center hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all text-google-textVariant shrink-0 shadow-sm hover:shadow-md">
+                        <button onClick={() => setActiveMenu(null)} className="w-11 h-11 bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 rounded-2xl flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-95 transition-all text-slate-700 dark:text-slate-200 shrink-0 shadow-sm cursor-pointer">
                             <Icon name="arrow_back" className="text-[20px]" />
                         </button>
                         <div className={`w-12 h-12 ${menu.bg} ${menu.text} rounded-full flex items-center justify-center border ${menu.border} shrink-0`}>

@@ -800,7 +800,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                         /* ================== VIEW WARGA ================== */
                         <div className="space-y-8">
                             {/* Banner Header */}
-                            <div className="bg-google-blue rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+                            <div className="bento-header-card bg-gradient-to-br from-red-600 via-rose-600 to-red-700 rounded-2xl sm:rounded-3xl p-5 sm:p-7 text-white shadow-lg relative overflow-hidden border border-red-500/30">
                                 <div className="absolute inset-0 bg-black/10"></div>
                                 <div className="relative z-10">
                                     <span className="bg-white/25  px-3 py-1 rounded-full text-[10px] font-medium tracking-widest uppercase border border-white/20">EVENT RT PAKEM</span>
@@ -812,7 +812,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                             </div>
 
                             {/* Warga Sub Tabs */}
-                            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2 rounded-3xl shadow-sm flex gap-2 overflow-x-auto scrollbar-none whitespace-nowrap items-center">
+                            <div className="slide-list-scroller bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800 p-2 rounded-2xl shadow-sm flex gap-2 overflow-x-auto scrollbar-none whitespace-nowrap items-center">
                                 <button onClick={() => setActiveSubTab('shop')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="shopping_bag" className="text-[15px]" />
                                     <span>Beli Tiket</span>

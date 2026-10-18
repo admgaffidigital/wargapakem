@@ -127,7 +127,7 @@ import { getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/h
                 return (
                     <div className="space-y-8 tab-fade-in relative z-10 w-full animate-slide-up no-print">
                         <button onClick={() => { setViewArticleId(null); const url = new URL(window.location.href); url.searchParams.delete('page'); url.searchParams.delete('article'); window.history.replaceState({}, document.title, url.pathname + url.hash); }} className="bg-white border border-slate-200 text-google-text px-4 py-2 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm w-fit active:scale-95"><Icon name="arrow_back" /> Kembali</button>
-                        <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200">
+                        <div className="bento-island-card bg-white/95 dark:bg-slate-900/95 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-slate-200/80 dark:border-slate-800">
                             {article.imageUrl && <img src={article.imageUrl} alt={article.title} className="w-full h-64 sm:h-80 object-cover" />}
                             <div className="p-6 sm:p-8">
                                 <h2 className="text-2xl sm:text-3xl font-medium text-google-text mb-4 tracking-tight leading-tight">{article.title}</h2>
@@ -146,7 +146,7 @@ import { getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/h
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+                        <div className="bento-island-card bg-white/95 dark:bg-slate-900/95 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-sm border border-slate-200/80 dark:border-slate-800">
                             <h3 className="text-xl font-medium text-google-text mb-6">Komentar Warga ({article.comments?.length || 0})</h3>
                             
                             <div className="mb-8 p-5 bg-slate-50 rounded-2xl border border-slate-200">
@@ -154,7 +154,7 @@ import { getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/h
                                 <input type="text" value={commentName} onChange={e => setCommentName(e.target.value)} placeholder="Nama Anda (Misal: Budi RT 01)" className="w-full bg-white border border-slate-200 p-3 rounded-xl text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all" />
                                 <textarea value={commentText} onChange={e => setCommentText(e.target.value)} placeholder="Tulis pendapat atau pertanyaan Anda..." className="w-full bg-white border border-slate-200 p-3 rounded-xl text-[13px] mb-3 outline-none focus:border-google-blue focus:ring-2 focus:ring-google-blue/20 transition-all resize-none h-24"></textarea>
                                 {errorMsg && <p className="text-red-500 text-[12px] font-medium mb-3">{errorMsg}</p>}
-                                <button onClick={() => handleComment(article.id)} className="bg-google-blue text-white px-5 py-2.5 rounded-full font-medium text-[13px] hover:bg-google-blueDark transition-colors active:scale-95 flex items-center gap-2"><Icon name="send" /> Kirim Komentar</button>
+                                <button onClick={() => handleComment(article.id)} className="btn-native-primary min-h-[44px] px-5 py-2.5 rounded-xl font-bold text-[13px] flex items-center gap-2 shadow-sm"><Icon name="send" /> Kirim Komentar</button>
                             </div>
 
                             <div className="space-y-7">
@@ -201,7 +201,7 @@ import { getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/h
             return (
                 <>
                 <div className="space-y-8 tab-fade-in relative z-10 w-full animate-slide-up no-print">
-                    <div className="bg-google-yellow text-white p-8 sm:p-10 rounded-3xl border border-amber-600/20 shadow-lg relative overflow-hidden">
+                    <div className="bento-header-card bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-amber-600/30 shadow-lg relative overflow-hidden">
                         <div className="relative z-10">
                             <div className="inline-flex items-center gap-2 bg-white/20  px-3.5 py-1.5 rounded-full mb-4 border border-white/30 shadow-sm">
                                 <Icon name="article" className="text-[14px] sm:text-[16px]" fill="true"/>
@@ -215,13 +215,13 @@ import { getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/h
 
                     {userRole === 'admin' && (
                         <div className="flex justify-end">
-                            <button onClick={() => { setIsFormOpen(true); setEditingId(null); setFormData({ title: '', content: '', imageUrl: '', date: getLocalDate() }); }} className="bg-google-blue text-white px-5 py-3 rounded-full font-medium text-[13px] hover:bg-google-blueDark transition-colors active:scale-95 flex items-center gap-2 shadow-md"><Icon name="add" className="text-[18px]"/> Tulis Artikel Baru</button>
+                            <button onClick={() => { setIsFormOpen(true); setEditingId(null); setFormData({ title: '', content: '', imageUrl: '', date: getLocalDate() }); }} className="btn-native-primary min-h-[44px] px-5 py-2.5 rounded-xl font-bold text-[13px] flex items-center gap-2 shadow-md"><Icon name="add" className="text-[18px]"/> Tulis Artikel Baru</button>
                         </div>
                     )}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {blogData.map(article => (
-                            <a href={`/?page=blog&article=${article.id}`} key={article.id} className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-google-yellow/40 transition-all duration-300 group flex flex-col cursor-pointer" onClick={(e) => { e.preventDefault(); setViewArticleId(article.id); }}>
+                            <a href={`/?page=blog&article=${article.id}`} key={article.id} className="bento-island-card bg-white/95 dark:bg-slate-900/95 rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col cursor-pointer" onClick={(e) => { e.preventDefault(); setViewArticleId(article.id); }}>
                                 {article.imageUrl ? (
                                     <div className="w-full h-48 bg-slate-100 overflow-hidden relative">
                                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
