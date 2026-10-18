@@ -651,15 +651,15 @@ function ModuleLoadingFallback() {
                         </header>
                     </div>
 
-                    <main className="flex-1 w-full pt-5 md:pt-8 pb-40 print:pb-0 print:pt-0">
-                        <div key={activeTab} className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 tab-fade-in pb-10">
+                    <main className="flex-1 w-full pt-5 md:pt-8 pb-16 print:pb-0 print:pt-0">
+                        <div key={activeTab} className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 tab-fade-in pb-6">
                             <Suspense fallback={<ModuleLoadingFallback />}>
                                 {renderContent()}
                             </Suspense>
                         </div>
                     </main>
 
-                    <footer className="w-full no-print mt-auto border-t border-red-500/20 dark:border-red-900/40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-[12px] font-medium text-slate-600 dark:text-slate-400 pt-8 pb-32 sm:pb-36 relative overflow-hidden">
+                    <footer className="w-full no-print mt-auto border-t border-red-500/20 dark:border-red-900/40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-[12px] font-medium text-slate-600 dark:text-slate-400 py-8 relative overflow-hidden">
                         {/* Strip Aksen Merah - Emas */}
                         <div className="h-1 w-full absolute top-0 left-0 bg-gradient-to-r from-red-600 via-amber-500 to-red-600 opacity-80"></div>
 
@@ -764,97 +764,6 @@ function ModuleLoadingFallback() {
                             </div>
                         </div>
                     )}
-
-                    {/* FLOATING NATIVE APP DOCK (1-TAP BOTTOM NAVIGATION) */}
-                    <div className="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-40 no-print max-w-[95vw] sm:max-w-md w-full px-2 sm:px-0">
-                        <nav className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl border border-red-500/25 dark:border-red-900/40 shadow-2xl shadow-red-500/10 dark:shadow-black/60 rounded-3xl p-1.5 flex items-center justify-around gap-1">
-                            <button
-                                type="button"
-                                onClick={() => changeTab('menu')}
-                                className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
-                                    activeTab === 'menu'
-                                        ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
-                                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
-                                }`}
-                                title="Menu Utama"
-                            >
-                                <Icon name="grid_view" className="text-[20px]" fill={activeTab === 'menu' ? "true" : "false"} />
-                                <span className="text-[10px] tracking-tight truncate max-w-full">Beranda</span>
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => changeTab('kas')}
-                                className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
-                                    activeTab === 'kas'
-                                        ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
-                                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
-                                }`}
-                                title="Buku Kas RT"
-                            >
-                                <Icon name="account_balance_wallet" className="text-[20px]" fill={activeTab === 'kas' ? "true" : "false"} />
-                                <span className="text-[10px] tracking-tight truncate max-w-full">Buku Kas</span>
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => changeTab('warga')}
-                                className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
-                                    activeTab === 'warga'
-                                        ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
-                                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
-                                }`}
-                                title="Data Warga RT"
-                            >
-                                <Icon name="groups" className="text-[20px]" fill={activeTab === 'warga' ? "true" : "false"} />
-                                <span className="text-[10px] tracking-tight truncate max-w-full">Warga</span>
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => changeTab('toko')}
-                                className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
-                                    activeTab === 'toko'
-                                        ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
-                                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
-                                }`}
-                                title="Toko Warga"
-                            >
-                                <Icon name="storefront" className="text-[20px]" fill={activeTab === 'toko' ? "true" : "false"} />
-                                <span className="text-[10px] tracking-tight truncate max-w-full">Toko</span>
-                            </button>
-
-                            {userRole === 'admin' ? (
-                                <button
-                                    type="button"
-                                    onClick={() => changeTab('pengaturan')}
-                                    className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
-                                        activeTab === 'pengaturan'
-                                            ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
-                                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
-                                    }`}
-                                    title="Setelan Portal Admin"
-                                >
-                                    <Icon name="settings" className="text-[20px]" fill={activeTab === 'pengaturan' ? "true" : "false"} />
-                                    <span className="text-[10px] tracking-tight truncate max-w-full">Setelan</span>
-                                </button>
-                            ) : (
-                                <button
-                                    type="button"
-                                    onClick={() => changeTab('informasi')}
-                                    className={`flex-1 py-2 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all duration-200 active:scale-90 cursor-pointer ${
-                                        activeTab === 'informasi'
-                                            ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 font-extrabold shadow-xs'
-                                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
-                                    }`}
-                                    title="Kabar & Pengumuman RT"
-                                >
-                                    <Icon name="campaign" className="text-[20px]" fill={activeTab === 'informasi' ? "true" : "false"} />
-                                    <span className="text-[10px] tracking-tight truncate max-w-full">Info</span>
-                                </button>
-                            )}
-                        </nav>
-                    </div>
                     <ToastContainer />
                     {/* Floating Music Player - hanya untuk warga */}
                     {userRole === 'warga' && musicData?.url && musicData?.enabled && <Suspense fallback={null}><FloatingMusicPlayer musicData={musicData} /></Suspense>}
