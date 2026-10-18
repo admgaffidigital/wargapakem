@@ -1,8 +1,4 @@
 /* ============================================================
-   GOOGLE FONTS & MATERIAL SYMBOLS — Di-load dari index.html untuk performa
-   ============================================================ */
-
-/* ============================================================
    TAILWIND CSS DIRECTIVES
    ============================================================ */
 @tailwind base;
@@ -20,10 +16,19 @@
 @tailwind utilities;
 
 /* ============================================================
-   MATERIAL SYMBOLS — Prevent flash of raw text
+   MATERIAL SYMBOLS — Instant Local & Fallback Font Engine
    ============================================================ */
+@font-face {
+    font-family: 'Material Symbols Rounded';
+    font-style: normal;
+    font-weight: 100 700;
+    font-display: swap;
+    src: url('/fonts/material-symbols-rounded.woff2') format('woff2'),
+         url('https://fonts.gstatic.com/s/materialsymbolsrounded/v378/syl7-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjpZIvLgyidOK7BDB_Qb9vUdV6_gjDK-P3JuF_Zs-obHph2-jOcZTKPqw.woff2') format('woff2');
+}
+
 .material-symbols-rounded {
-    font-family: 'Material Symbols Rounded' !important;
+    font-family: 'Material Symbols Rounded', sans-serif !important;
     font-weight: normal !important;
     font-style: normal !important;
     line-height: 1;
@@ -39,16 +44,9 @@
     -webkit-font-feature-settings: 'liga' 1 !important;
     font-feature-settings: 'liga' 1 !important;
     -webkit-font-smoothing: antialiased;
-    
-    /* Cegah Flash of Raw Text (FOUT) */
-    visibility: hidden;
-    color: transparent !important;
-}
-
-/* Tampilkan ikon ketika font telah termuat sempurna */
-.icons-loaded .material-symbols-rounded {
-    visibility: visible;
-    color: inherit !important;
+    font-display: swap;
+    visibility: visible !important;
+    color: inherit;
 }
 
 /* ============================================================

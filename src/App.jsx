@@ -359,14 +359,9 @@ function ModuleLoadingFallback() {
                 </div>
             );
 
-            if (isCheckingAuth) {
-                return SpinnerComponent;
-            }
-
+            // PERFORMA KILAT: Langsung render antarmuka tanpa memblokir dengan spinner!
+            // Pengunjung / warga langsung disajikan gerbang portal dalam waktu < 100ms.
             if (!isLoggedIn) {
-                if (!firebaseUnavailable && (!l12 || !l_legal)) {
-                    return SpinnerComponent;
-                }
                 return (
                     <>
                         <LoginScreen 

@@ -4,7 +4,7 @@ Developer: NOVAN RESTU UTOMO
 Build: Vite + React + Tailwind CSS
 -->
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="icons-loaded">
 <head>
   <meta charset='UTF-8'/>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover' name='viewport'/>
@@ -57,69 +57,17 @@ Build: Vite + React + Tailwind CSS
   <meta content="#dc2626" name="theme-color" />
 
   <!-- ================================================
-       CRITICAL RESOURCE HINTS
-       Preconnect percepat handshake ke server eksternal
+       CRITICAL PRELOADS — Instant Local Font & Logo
        ================================================ -->
+  <link rel="preload" href="/fonts/material-symbols-rounded.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/National_emblem_of_Indonesia_Garuda_Pancasila.svg" as="image" type="image/svg+xml" fetchpriority="high" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-
-  <!-- Firebase — percepat koneksi data real-time -->
-  <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin="anonymous" />
-  <link rel="preconnect" href="https://firebase.googleapis.com" crossorigin="anonymous" />
-  <link rel="preconnect" href="https://identitytoolkit.googleapis.com" crossorigin="anonymous" />
-
-  <!-- DNS Prefetch sebagai fallback -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-  <link rel="dns-prefetch" href="https://www.gstatic.com" />
-  <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
-
-  <!-- ================================================
-       FONTS — Non-blocking async load
-       ================================================ -->
-
-
-  <!-- Stylesheet links -->
+  <!-- Google Fonts — Outfit (Swap display for zero-delay text) -->
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
-    media="print" onload="this.media='all'" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
-    media="print" onload="this.media='all'" />
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" />
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" />
   </noscript>
-
-  <!-- Font Loading Detector - Cegah FOUT (Flash of Unstyled Text) -->
-  <script>
-    (function() {
-      var isLoaded = false;
-      function setLoaded() {
-        if (isLoaded) return;
-        isLoaded = true;
-        document.documentElement.classList.add('icons-loaded');
-      }
-
-      if ('fonts' in document) {
-        // Tunggu semua stylesheet terurai dan muat font
-        document.fonts.ready.then(function() {
-          if (document.fonts.check('1em "Material Symbols Rounded"')) {
-            setLoaded();
-          } else {
-            document.fonts.load('1em "Material Symbols Rounded"').then(setLoaded).catch(setLoaded);
-          }
-        }).catch(setLoaded);
-
-        // Fallback maksimal 2.5 detik agar ikon tetap muncul jika koneksi lambat
-        setTimeout(setLoaded, 2500);
-      } else {
-        setLoaded();
-      }
-    })();
-  </script>
 
   <!-- ================================================
        LOADING SCREEN — Inline CSS, zero external request
