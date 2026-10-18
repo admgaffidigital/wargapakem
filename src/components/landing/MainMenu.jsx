@@ -20,30 +20,6 @@ function MainMenu({ userRole, NavItems = [], changeTab, identity = {}, bannerIma
 
     return (
         <div className="space-y-6 sm:space-y-8 max-w-7xl mx-auto mt-2">
-            {/* --- AREA BANNER UTAMA --- */}
-            <div className={`relative rounded-3xl p-6 sm:p-10 text-white border border-red-400/20 shadow-xl shadow-red-500/20 dark:border-red-900/30 overflow-hidden group min-h-[200px] sm:min-h-[260px] flex items-end ${!bannerImage ? 'bg-red-600' : 'bg-slate-900'}`}>
-                {bannerImage && (
-                    <>
-                        <img src={bannerImage} alt="Banner Lingkungan" className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000" />
-                        <div className="absolute inset-0 bg-slate-950/65 z-0"></div>
-                    </>
-                )}
-
-                <div className="relative z-10 w-full text-left pb-1">
-                    <div className="inline-flex items-center gap-1.5 bg-red-800/90 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-2.5 border border-white/20 shadow-sm w-fit">
-                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
-                        <span className="text-[9px] font-bold uppercase tracking-widest text-white/95">Sistem Aktif</span>
-                    </div>
-                    
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-1.5 tracking-tight text-white uppercase [text-shadow:_0_4px_12px_rgba(0,0,0,0.4)]">
-                        Halo, {userRole === 'admin' ? 'Pengurus RT!' : 'Warga!'}
-                    </h2>
-                    <p className="text-[12.5px] sm:text-[13.5px] font-medium text-white/95 leading-relaxed max-w-2xl [text-shadow:_0_1px_4px_rgba(0,0,0,0.5)]">
-                        {identity?.subtitle || 'Sistem Informasi Manajemen Kerukunan Lingkungan'}
-                    </p>
-                </div>
-            </div>
-
             {/* --- AREA RUNNING TEXT AGENDA --- */}
             {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
                 <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/40 text-red-800 dark:text-red-300 rounded-2xl px-4 py-2.5 flex items-center gap-3 overflow-hidden shadow-sm">
