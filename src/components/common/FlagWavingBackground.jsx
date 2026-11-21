@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-        function FlagWavingBackground({ theme }) {
+        function FlagWavingBackground({ theme, opacity = 1 }) {
             const canvasRef = useRef(null);
             const themeRef = useRef(theme);
 
@@ -124,7 +124,7 @@ import React, { useEffect, useRef } from 'react';
                                 <canvas
                     ref={canvasRef}
                     className="fixed inset-0 pointer-events-none no-print"
-                    style={{ zIndex: -1, width: '100%', height: '100%' }}
+                    style={{ zIndex: -1, width: '100%', height: '100%', opacity }}
                 />
             );
         }

@@ -52,7 +52,7 @@ export function BottomNavBar({ activeTab, changeTab, userRole = 'warga' }) {
     };
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-40 no-print select-none">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 no-print select-none">
             {/* Soft Ambient Diffuse Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/80 to-transparent dark:from-slate-950/95 dark:via-slate-950/80 pointer-events-none -top-4"></div>
 

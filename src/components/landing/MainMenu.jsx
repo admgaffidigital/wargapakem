@@ -156,25 +156,30 @@ export function MainMenu({
                     </div>
 
                     {/* 4 QUICK ACTION SHORTCUTS (Aksi Tercepat Warga) */}
-                    <div className="grid grid-cols-4 gap-2 sm:gap-3 pt-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 pt-2">
                         {[
-                            { label: 'Kas RT', icon: 'account_balance_wallet', tab: 'kas', bg: 'bg-red-500/20 text-red-400 border-red-500/30' },
-                            { label: 'Iuran RT', icon: 'volunteer_activism', tab: 'iuran', bg: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' },
-                            { label: 'Pinjam Alat', icon: 'handshake', tab: 'pinjam', bg: 'bg-amber-500/20 text-amber-300 border-amber-500/30' },
-                            { label: 'Lapor RT', icon: 'report_problem', tab: 'pengaduan', bg: 'bg-sky-500/20 text-sky-400 border-sky-500/30' }
+                            { label: 'Kas RT', desc: 'Arus Kas', icon: 'account_balance_wallet', tab: 'kas', bg: 'bg-red-500/20 text-red-300 border-red-500/30' },
+                            { label: 'Iuran RT', desc: 'Bayar Iuran', icon: 'volunteer_activism', tab: 'iuran', bg: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' },
+                            { label: 'Pinjam Alat', desc: 'Tenda & Kursi', icon: 'handshake', tab: 'pinjam', bg: 'bg-amber-500/20 text-amber-300 border-amber-500/30' },
+                            { label: 'Lapor RT', desc: 'Pengaduan', icon: 'report_problem', tab: 'pengaduan', bg: 'bg-sky-500/20 text-sky-300 border-sky-500/30' }
                         ].map((action) => (
                             <button
                                 key={action.tab}
                                 type="button"
                                 onClick={() => { triggerHaptic(12); changeTab(action.tab); }}
-                                className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition-all duration-200 active:scale-95 group cursor-pointer"
+                                className="flex items-center sm:flex-col sm:justify-center gap-3 sm:gap-1.5 p-3 sm:p-3.5 rounded-2xl bg-white/10 hover:bg-white/18 border border-white/15 backdrop-blur-md transition-all duration-200 active:scale-95 group cursor-pointer shadow-xs"
                             >
-                                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-1.5 border shadow-xs transition-transform group-hover:scale-105 ${action.bg}`}>
+                                <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center border shadow-xs transition-transform group-hover:scale-105 shrink-0 ${action.bg}`}>
                                     <Icon name={action.icon} className="text-[20px] sm:text-[22px]" fill="true" />
                                 </div>
-                                <span className="text-[11px] sm:text-[12px] font-bold text-slate-200 group-hover:text-white truncate">
-                                    {action.label}
-                                </span>
+                                <div className="min-w-0 text-left sm:text-center">
+                                    <span className="text-[12.5px] sm:text-[13px] font-bold text-white block truncate">
+                                        {action.label}
+                                    </span>
+                                    <span className="text-[10px] text-slate-300 block truncate">
+                                        {action.desc}
+                                    </span>
+                                </div>
                             </button>
                         ))}
                     </div>
@@ -398,23 +403,23 @@ export function MainMenu({
                                 type="button"
                                 onClick={() => { triggerHaptic(10); changeTab(item.id); }}
                                 style={{ animationDelay: `${idx * 0.025}s` }}
-                                className="menu-item-in relative overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-5 sm:p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-xl hover:border-red-500/30 dark:hover:border-red-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group cursor-pointer"
+                                className="menu-item-in relative overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-2xs hover:shadow-lg hover:border-red-500/40 dark:hover:border-red-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center text-center gap-2.5 active:scale-95 group cursor-pointer"
                             >
                                 {item.adminOnly && (
-                                    <span className="absolute top-3.5 right-3.5 text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/20">
+                                    <span className="absolute top-3 right-3 text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/20">
                                         Admin
                                     </span>
                                 )}
 
-                                <div className={`w-13 h-13 sm:w-15 sm:h-15 rounded-2xl flex items-center justify-center transition-all duration-400 group-hover:scale-110 group-hover:-rotate-3 shadow-xs group-hover:shadow-md ${item.bg} ${item.color}`}>
-                                    <Icon name={item.icon} className="text-[26px] sm:text-[28px]" fill="true" />
+                                <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 shadow-xs group-hover:shadow-md ${item.bg} ${item.color}`}>
+                                    <Icon name={item.icon} className="text-[24px] sm:text-[26px]" fill="true" />
                                 </div>
 
-                                <div className="space-y-1 w-full px-1">
-                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-800 dark:text-slate-100 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors tracking-tight block truncate">
+                                <div className="space-y-0.5 w-full px-1">
+                                    <span className="text-[13.5px] sm:text-[14px] font-bold text-slate-800 dark:text-slate-100 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors tracking-tight block truncate">
                                         {item.label}
                                     </span>
-                                    <span className="text-[10.5px] sm:text-[11px] font-medium text-slate-400 dark:text-slate-500 line-clamp-1 block">
+                                    <span className="text-[11px] font-medium text-slate-400 dark:text-slate-500 line-clamp-1 block">
                                         {item.desc || 'Layanan warga'}
                                     </span>
                                 </div>

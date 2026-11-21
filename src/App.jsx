@@ -592,7 +592,7 @@ function ModuleLoadingFallback() {
 
             return (
                 <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
-                    <FlagWavingBackground theme={theme} />
+                    <FlagWavingBackground theme={theme} opacity={theme === 'dark' ? 0.12 : 0.07} />
                     <div className="fixed inset-0 z-[-2] bg-batik opacity-30 dark:opacity-20 pointer-events-none no-print"></div>
 
                     {/* ANIMASI WAYANG KULIT HALUS & MINIMALIS */}
