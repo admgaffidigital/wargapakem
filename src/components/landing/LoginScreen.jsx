@@ -7,7 +7,11 @@ export function LoginScreen({
     onLogin,
     identity = {},
     theme,
-    setTheme
+    setTheme,
+    legalData,
+    setShowLegalModal,
+    setShowLicenseModal,
+    setShowPwaGuide
 }) {
     const [loginRole, setLoginRole] = useState('warga'); // 'warga' | 'admin'
     const [email, setEmail] = useState('');
@@ -225,6 +229,51 @@ export function LoginScreen({
                         </p>
                     </form>
                 )}
+                {/* FOOTER SHORTCUTS: PWA GUIDE & LEGAL */}
+                <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-center gap-3 text-[11px] font-semibold text-slate-400 dark:text-slate-500">
+                    {setShowPwaGuide && (
+                        <button
+                            type="button"
+                            onClick={() => setShowPwaGuide(true)}
+                            className="hover:text-red-600 dark:hover:text-red-400 flex items-center gap-1 transition-colors cursor-pointer"
+                        >
+                            <Icon name="install_mobile" className="text-[13px]" />
+                            <span>Pasang Aplikasi (PWA)</span>
+                        </button>
+                    )}
+                    {setShowLegalModal && legalData?.enabled && (
+                        <>
+                            <span>&bull;</span>
+                            <button
+                                type="button"
+                                onClick={() => setShowLegalModal('terms')}
+                                className="hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer"
+                            >
+                                Ketentuan
+                            </button>
+                            <span>&bull;</span>
+                            <button
+                                type="button"
+                                onClick={() => setShowLegalModal('privacy')}
+                                className="hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer"
+                            >
+                                Privasi
+                            </button>
+                        </>
+                    )}
+                    {setShowLicenseModal && (
+                        <>
+                            <span>&bull;</span>
+                            <button
+                                type="button"
+                                onClick={() => setShowLicenseModal(true)}
+                                className="hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer"
+                            >
+                                Keamanan
+                            </button>
+                        </>
+                    )}
+                </div>
             </div>
         </div>
     );

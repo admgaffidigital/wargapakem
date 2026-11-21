@@ -1,7 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Icon from '../common/Icon.jsx';
+import { formatRp, triggerHaptic, formatBulanTahun } from '../../utils/helpers.js';
 
-function MainMenu({ userRole, NavItems = [], changeTab, identity = {}, bannerImage, setShowPwaGuide, sponsorsData, nextMeeting }) {
+export function MainMenu({
+    userRole,
+    NavItems = [],
+    changeTab,
+    identity = {},
+    bannerImage,
+    setShowPwaGuide,
+    sponsorsData,
+    nextMeeting,
+    kasRtBalance = 0,
+    jimpitanBalance = 0,
+    members = [],
+    currentRound = 1,
+    cycleNumber = 1,
+    arisanPeriod = ''
+}) {
+    // State untuk menyembunyikan/menampilkan saldo (Fitur Privasi Native App)
+    const [showBalance, setShowBalance] = useState(() => {
+        try {
+            return localStorage.getItem('warga_show_balance') !== 'false';
+        } catch (e) {
+            return true;
+        }
+    });
+
+    const toggleBalance = () => {
+        triggerHaptic(10);
+        setShowBalance(prev => {
+            const next = !prev;
+            try { localStorage.setItem('warga_show_balance', String(next)); } catch (e) {}
+            return next;
+        });
+    };
+
+    // Filter Kategori Layanan
+    const [selectedCategory, setSelectedCategory] = useState('semua');
+    const [searchFilter, setSearchFilter] = useState('');
+
     // Mode tampilan menu: 'auto' (HP = list, Desktop = grid), 'list', atau 'grid'
     const [viewMode, setViewMode] = useState(() => {
         try {
@@ -12,184 +50,431 @@ function MainMenu({ userRole, NavItems = [], changeTab, identity = {}, bannerIma
     });
 
     const handleSetViewMode = (mode) => {
+        triggerHaptic(8);
         setViewMode(mode);
         try {
             localStorage.setItem('warga_menu_view_mode', mode);
         } catch (e) {}
     };
 
+    // Total dana kelolaan
+    const totalDana = Number(kasRtBalance || 0) + Number(jimpitanBalance || 0);
+
+    // Kategori Map
+    const categoryMap = {
+        keuangan: ['kas', 'iuran', 'infaq', 'laporan', 'dashboard'],
+        warga: ['warga', 'pemenang', 'pertemuan'],
+        fasilitas: ['inventaris', 'pinjam', 'toko', 'tiket'],
+        informasi: ['informasi', 'blog', 'galery', 'pengaduan', 'kegiatan', 'kalender', 'peta', 'wagroup', 'qna', 'musik', 'pengaturan']
+    };
+
+    const categories = [
+        { id: 'semua', label: 'Semua Fitur', icon: 'apps' },
+        { id: 'keuangan', label: '💰 Keuangan', icon: 'account_balance_wallet' },
+        { id: 'warga', label: '👥 Warga & Arisan', icon: 'group' },
+        { id: 'fasilitas', label: '🏪 Fasilitas & UMKM', icon: 'storefront' },
+        { id: 'informasi', label: '📢 Informasi & Lapor', icon: 'campaign' },
+    ];
+
+    const filteredItems = useMemo(() => {
+        return NavItems.filter(item => {
+            const matchesCategory = selectedCategory === 'semua' || (categoryMap[selectedCategory] && categoryMap[selectedCategory].includes(item.id));
+            const matchesSearch = searchFilter.trim() === '' || 
+                item.label.toLowerCase().includes(searchFilter.toLowerCase()) || 
+                (item.desc && item.desc.toLowerCase().includes(searchFilter.toLowerCase()));
+            return matchesCategory && matchesSearch;
+        });
+    }, [NavItems, selectedCategory, searchFilter]);
+
     return (
-        <div className="space-y-6 sm:space-y-8 max-w-7xl mx-auto mt-2">
-            {/* --- AREA RUNNING TEXT AGENDA --- */}
-            {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
-                <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/40 text-red-800 dark:text-red-300 rounded-2xl px-4 py-2.5 flex items-center gap-3 overflow-hidden shadow-sm">
-                    <Icon name="campaign" className="text-red-600 dark:text-red-400 shrink-0 animate-pulse text-[18px]" />
-                    <marquee className="text-[12px] font-semibold tracking-wide whitespace-nowrap uppercase">
-                        Info Agenda Mendatang: <span className="font-bold text-red-700 dark:text-red-300">{nextMeeting.date}</span> pukul <span className="font-bold text-red-700 dark:text-red-300">{nextMeeting.time}</span> di <span className="font-bold text-red-700 dark:text-red-300">{nextMeeting.location}</span>. Agenda: {nextMeeting.notes}
-                    </marquee>
-                </div>
-            )}
+        <div className="space-y-6 sm:space-y-8 max-w-7xl mx-auto pb-12">
+            
+            {/* ========================================================
+                1. BENTO HERO CARD — STATUS KEUANGAN & ARISAN NATIVE APP
+               ======================================================== */}
+            <div className="relative overflow-hidden rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white p-5 sm:p-8 border border-slate-800 shadow-xl shadow-slate-950/20">
+                {/* Aksen Latar Belakang Gradien Bersih */}
+                <div className="absolute top-0 right-0 w-72 h-72 bg-red-600/15 rounded-full blur-3xl pointer-events-none -mr-16 -mt-16"></div>
+                <div className="absolute bottom-0 left-0 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none -ml-12 -mb-12"></div>
 
-            {/* --- HEADER SEKSI MENU & VIEW SWITCHER TOGGLE --- */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
-                <div className="flex items-center gap-2.5">
-                    <div className="w-2.5 h-6 bg-red-600 rounded-full"></div>
-                    <div>
-                        <h3 className="text-[15px] sm:text-[17px] font-black text-slate-800 dark:text-white uppercase tracking-tight flex items-center gap-2">
-                            <span>Layanan & Fitur Lingkungan</span>
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
-                                {NavItems.length}
+                <div className="relative z-10 flex flex-col gap-6">
+                    {/* Header Bento: Sapaan & Status Lingkungan */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+                        <div className="flex items-center gap-2.5">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-white/10 text-white border border-white/15">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                RT 02 / RW 01 PAKEM
                             </span>
-                        </h3>
-                        <p className="text-[11px] sm:text-[12px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">
-                            Pilih modul layanan warga atau pengelolaan administrasi RT
-                        </p>
+                            <span className="text-[11px] font-medium text-slate-400 hidden sm:inline">
+                                {formatBulanTahun(arisanPeriod) || 'Periode Berjalan'}
+                            </span>
+                        </div>
+
+                        {/* Indikator Siklus Arisan */}
+                        <div className="flex items-center gap-2 text-[11px] font-bold text-amber-300 bg-amber-500/15 px-3 py-1 rounded-full border border-amber-500/30">
+                            <Icon name="event_repeat" className="text-[14px]" />
+                            <span>Siklus {cycleNumber} • Putaran {currentRound}</span>
+                        </div>
                     </div>
-                </div>
 
-                {/* View Switcher: Auto, List, Grid */}
-                <div className="inline-flex items-center self-start sm:self-auto p-1 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 text-[11px] font-bold">
-                    <button
-                        type="button"
-                        onClick={() => handleSetViewMode('auto')}
-                        className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
-                            viewMode === 'auto'
-                                ? 'bg-white dark:bg-slate-900 text-red-600 dark:text-red-400 shadow-sm'
-                                : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-                        }`}
-                        title="Otomatis: Mode Baris (HP) dan Kotak (Tablet/Desktop)"
-                    >
-                        <Icon name="tune" className="text-[14px]" />
-                        <span>Otomatis</span>
-                    </button>
+                    {/* Nominal Kas Global & Intip Saldo */}
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                        <div>
+                            <div className="flex items-center gap-2 mb-1.5">
+                                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                    Total Dana Kas & Jimpitan
+                                </span>
+                                <button
+                                    type="button"
+                                    onClick={toggleBalance}
+                                    className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                                    title={showBalance ? "Sembunyikan Saldo" : "Tampilkan Saldo"}
+                                >
+                                    <Icon name={showBalance ? "visibility" : "visibility_off"} className="text-[16px]" />
+                                </button>
+                            </div>
+                            <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight drop-shadow-sm font-sans">
+                                {showBalance ? formatRp(totalDana) : "Rp ••••••••"}
+                            </div>
+                        </div>
 
-                    <button
-                        type="button"
-                        onClick={() => handleSetViewMode('list')}
-                        className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
-                            viewMode === 'list'
-                                ? 'bg-white dark:bg-slate-900 text-red-600 dark:text-red-400 shadow-sm'
-                                : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-                        }`}
-                        title="Tampilan Baris (List View)"
-                    >
-                        <Icon name="view_list" className="text-[15px]" />
-                        <span>List</span>
-                    </button>
+                        {/* Sub Saldo Badges */}
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                            <div className="bg-white/5 hover:bg-white/10 transition-colors px-3.5 py-2 rounded-2xl border border-white/10">
+                                <span className="text-[9.5px] uppercase font-bold text-slate-400 block">Kas Utama RT</span>
+                                <span className="text-[13px] font-black text-emerald-400">
+                                    {showBalance ? formatRp(kasRtBalance) : "••••••"}
+                                </span>
+                            </div>
+                            <div className="bg-white/5 hover:bg-white/10 transition-colors px-3.5 py-2 rounded-2xl border border-white/10">
+                                <span className="text-[9.5px] uppercase font-bold text-slate-400 block">Kas Jimpitan</span>
+                                <span className="text-[13px] font-black text-amber-300">
+                                    {showBalance ? formatRp(jimpitanBalance) : "••••••"}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
 
-                    <button
-                        type="button"
-                        onClick={() => handleSetViewMode('grid')}
-                        className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
-                            viewMode === 'grid'
-                                ? 'bg-white dark:bg-slate-900 text-red-600 dark:text-red-400 shadow-sm'
-                                : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
-                        }`}
-                        title="Tampilan Kotak (Grid View)"
-                    >
-                        <Icon name="grid_view" className="text-[15px]" />
-                        <span>Grid</span>
-                    </button>
+                    {/* 4 QUICK ACTION SHORTCUTS (Aksi Tercepat Warga) */}
+                    <div className="grid grid-cols-4 gap-2 sm:gap-3 pt-2">
+                        {[
+                            { label: 'Kas RT', icon: 'account_balance_wallet', tab: 'kas', bg: 'bg-red-500/20 text-red-400 border-red-500/30' },
+                            { label: 'Iuran RT', icon: 'volunteer_activism', tab: 'iuran', bg: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' },
+                            { label: 'Pinjam Alat', icon: 'handshake', tab: 'pinjam', bg: 'bg-amber-500/20 text-amber-300 border-amber-500/30' },
+                            { label: 'Lapor RT', icon: 'report_problem', tab: 'pengaduan', bg: 'bg-sky-500/20 text-sky-400 border-sky-500/30' }
+                        ].map((action) => (
+                            <button
+                                key={action.tab}
+                                type="button"
+                                onClick={() => { triggerHaptic(12); changeTab(action.tab); }}
+                                className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition-all duration-200 active:scale-95 group cursor-pointer"
+                            >
+                                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-1.5 border shadow-xs transition-transform group-hover:scale-105 ${action.bg}`}>
+                                    <Icon name={action.icon} className="text-[20px] sm:text-[22px]" fill="true" />
+                                </div>
+                                <span className="text-[11px] sm:text-[12px] font-bold text-slate-200 group-hover:text-white truncate">
+                                    {action.label}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            {/* --- TAMPILAN 1: LIST VIEW (ERGONOMIS UNTUK HP / TOUCHSCREEN) --- */}
-            <div
-                className={`flex-col gap-2.5 ${
-                    viewMode === 'list'
-                        ? 'flex'
-                        : viewMode === 'grid'
-                        ? 'hidden'
-                        : 'flex sm:hidden'
-                }`}
-            >
-                {NavItems.map((item, idx) => (
-                    <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => changeTab(item.id)}
-                        style={{ animationDelay: `${idx * 0.025}s` }}
-                        className="menu-item-in w-full flex items-center justify-between p-3 sm:p-3.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-red-500/30 dark:hover:border-red-500/30 active:scale-[0.985] transition-all text-left group cursor-pointer"
-                    >
-                        <div className="flex items-center gap-3.5 min-w-0 pr-2">
-                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm transition-transform group-hover:scale-105 group-hover:-rotate-3 ${item.bg} ${item.color}`}>
-                                <Icon name={item.icon} className="text-[22px]" fill="true" />
+            {/* ========================================================
+                2. LIVE AGENDA & PENGUMUMAN BERJALAN
+               ======================================================== */}
+            {nextMeeting && nextMeeting.date && nextMeeting.date !== 'Belum dijadwalkan' && (
+                <div 
+                    onClick={() => { triggerHaptic(8); changeTab('kegiatan'); }}
+                    className="cursor-pointer bg-gradient-to-r from-red-50 via-rose-50/50 to-red-50 dark:from-red-950/40 dark:via-slate-900 dark:to-red-950/40 border border-red-200/80 dark:border-red-900/40 rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 flex items-center justify-between gap-3 shadow-xs hover:border-red-500/40 transition-all active:scale-[0.99]"
+                >
+                    <div className="flex items-center gap-3 min-w-0">
+                        <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-sm animate-pulse">
+                            <Icon name="campaign" className="text-[20px]" fill="true" />
+                        </div>
+                        <div className="min-w-0">
+                            <div className="flex items-center gap-2">
+                                <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-red-600 text-white">
+                                    Agenda Mendatang
+                                </span>
+                                <span className="text-[12px] font-bold text-slate-900 dark:text-white truncate">
+                                    {nextMeeting.date} ({nextMeeting.time})
+                                </span>
                             </div>
-                            <div className="min-w-0">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-[13.5px] font-bold text-slate-800 dark:text-slate-100 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors tracking-tight truncate">
+                            <p className="text-[11px] font-medium text-slate-600 dark:text-slate-300 truncate mt-0.5">
+                                Lokasi: {nextMeeting.location} • {nextMeeting.notes}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-slate-400 shrink-0">
+                        <Icon name="chevron_right" className="text-[18px]" />
+                    </div>
+                </div>
+            )}
+
+            {/* ========================================================
+                3. HUB LAYANAN WARGA — HEADER, FILTER, & SEARCH
+               ======================================================== */}
+            <div className="space-y-4 pt-1">
+                {/* Search & Header Section */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3.5">
+                    <div className="flex items-center gap-2.5">
+                        <div className="w-2.5 h-6 bg-red-600 rounded-full"></div>
+                        <div>
+                            <h3 className="text-[16px] sm:text-[18px] font-black text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
+                                <span>Katalog Layanan Digital</span>
+                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 border border-red-500/20">
+                                    {filteredItems.length}
+                                </span>
+                            </h3>
+                            <p className="text-[11px] sm:text-[12px] font-medium text-slate-500 dark:text-slate-400">
+                                Akses lengkap seluruh modul administrasi & fasilitas warga RT Pakem
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* View Switcher: Auto, List, Grid */}
+                    <div className="flex items-center gap-2">
+                        <div className="inline-flex items-center p-1 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 text-[11px] font-bold">
+                            <button
+                                type="button"
+                                onClick={() => handleSetViewMode('auto')}
+                                className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
+                                    viewMode === 'auto'
+                                        ? 'bg-white dark:bg-slate-900 text-red-600 dark:text-red-400 shadow-xs'
+                                        : 'text-slate-500 dark:text-slate-400'
+                                }`}
+                                title="Otomatis: Mode Baris di HP & Grid di Layar Lebar"
+                            >
+                                <Icon name="tune" className="text-[14px]" />
+                                <span className="hidden sm:inline">Auto</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => handleSetViewMode('list')}
+                                className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
+                                    viewMode === 'list'
+                                        ? 'bg-white dark:bg-slate-900 text-red-600 dark:text-red-400 shadow-xs'
+                                        : 'text-slate-500 dark:text-slate-400'
+                                }`}
+                                title="Tampilan Baris"
+                            >
+                                <Icon name="view_list" className="text-[15px]" />
+                                <span>List</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => handleSetViewMode('grid')}
+                                className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
+                                    viewMode === 'grid'
+                                        ? 'bg-white dark:bg-slate-900 text-red-600 dark:text-red-400 shadow-xs'
+                                        : 'text-slate-500 dark:text-slate-400'
+                                }`}
+                                title="Tampilan Kotak"
+                            >
+                                <Icon name="grid_view" className="text-[15px]" />
+                                <span>Grid</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Inline Search Bar */}
+                <div className="relative">
+                    <Icon name="search" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]" />
+                    <input
+                        type="text"
+                        value={searchFilter}
+                        onChange={e => setSearchFilter(e.target.value)}
+                        placeholder="Ketik untuk memfilter layanan (misal: kas, buku warga, toko, arisan)..."
+                        className="w-full pl-10 pr-10 py-2.5 sm:py-3 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl text-[13px] font-medium text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-red-500 dark:focus:border-red-500 shadow-2xs"
+                    />
+                    {searchFilter && (
+                        <button
+                            type="button"
+                            onClick={() => setSearchFilter('')}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center"
+                        >
+                            <Icon name="close" className="text-[13px]" />
+                        </button>
+                    )}
+                </div>
+
+                {/* Category Pills Slider */}
+                <div className="flex items-center gap-1.5 overflow-x-auto hide-scrollbar pb-1 text-[12px] font-bold">
+                    {categories.map((cat) => {
+                        const active = selectedCategory === cat.id;
+                        return (
+                            <button
+                                key={cat.id}
+                                type="button"
+                                onClick={() => { triggerHaptic(8); setSelectedCategory(cat.id); }}
+                                className={`px-3.5 py-2 rounded-xl shrink-0 transition-all cursor-pointer border ${
+                                    active
+                                        ? 'bg-red-600 text-white border-red-600 shadow-xs'
+                                        : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300'
+                                }`}
+                            >
+                                <span>{cat.label}</span>
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
+
+            {/* ========================================================
+                4. DAFTAR MODUL — LIST VIEW ATAU GRID VIEW
+               ======================================================== */}
+            {filteredItems.length === 0 ? (
+                <div className="bg-white/80 dark:bg-slate-900/80 rounded-3xl p-12 text-center border border-slate-200 dark:border-slate-800 space-y-2">
+                    <Icon name="search_off" className="text-[40px] text-slate-300 dark:text-slate-600 mx-auto" />
+                    <h4 className="text-[15px] font-bold text-slate-800 dark:text-white">Tidak Ada Layanan yang Cocok</h4>
+                    <p className="text-[12px] text-slate-400">Silakan bersihkan kolom pencarian atau ganti kategori di atas.</p>
+                </div>
+            ) : (
+                <>
+                    {/* TAMPILAN 1: LIST VIEW (ERGONOMIS SATU JEMPOL UNTUK HP) */}
+                    <div
+                        className={`flex-col gap-2.5 ${
+                            viewMode === 'list'
+                                ? 'flex'
+                                : viewMode === 'grid'
+                                ? 'hidden'
+                                : 'flex sm:hidden'
+                        }`}
+                    >
+                        {filteredItems.map((item, idx) => (
+                            <button
+                                key={item.id}
+                                type="button"
+                                onClick={() => { triggerHaptic(10); changeTab(item.id); }}
+                                style={{ animationDelay: `${idx * 0.02}s` }}
+                                className="menu-item-in w-full flex items-center justify-between p-3 sm:p-3.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-md hover:border-red-500/30 dark:hover:border-red-500/30 active:scale-[0.985] transition-all text-left group cursor-pointer"
+                            >
+                                <div className="flex items-center gap-3.5 min-w-0 pr-2">
+                                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105 group-hover:-rotate-2 ${item.bg} ${item.color}`}>
+                                        <Icon name={item.icon} className="text-[22px]" fill="true" />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-[13.5px] font-bold text-slate-900 dark:text-slate-100 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors tracking-tight truncate">
+                                                {item.label}
+                                            </span>
+                                            {item.adminOnly && (
+                                                <span className="text-[8.5px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/20 shrink-0">
+                                                    Admin
+                                                </span>
+                                            )}
+                                        </div>
+                                        <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                                            {item.desc || 'Layanan digital lingkungan'}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200/70 dark:border-slate-700/70 flex items-center justify-center text-slate-400 dark:text-slate-500 group-hover:text-red-600 dark:group-hover:text-red-400 group-hover:border-red-500/30 group-hover:translate-x-0.5 transition-all shrink-0">
+                                    <Icon name="chevron_right" className="text-[18px]" />
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* TAMPILAN 2: GRID VIEW (BENTO LAPANG UNTUK TABLET & DESKTOP) */}
+                    <div
+                        className={`gap-3.5 sm:gap-5 ${
+                            viewMode === 'grid'
+                                ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4'
+                                : viewMode === 'list'
+                                ? 'hidden'
+                                : 'hidden sm:grid sm:grid-cols-3 md:grid-cols-4'
+                        }`}
+                    >
+                        {filteredItems.map((item, idx) => (
+                            <button
+                                key={item.id}
+                                type="button"
+                                onClick={() => { triggerHaptic(10); changeTab(item.id); }}
+                                style={{ animationDelay: `${idx * 0.025}s` }}
+                                className="menu-item-in relative overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-5 sm:p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-xl hover:border-red-500/30 dark:hover:border-red-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group cursor-pointer"
+                            >
+                                {item.adminOnly && (
+                                    <span className="absolute top-3.5 right-3.5 text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/20">
+                                        Admin
+                                    </span>
+                                )}
+
+                                <div className={`w-13 h-13 sm:w-15 sm:h-15 rounded-2xl flex items-center justify-center transition-all duration-400 group-hover:scale-110 group-hover:-rotate-3 shadow-xs group-hover:shadow-md ${item.bg} ${item.color}`}>
+                                    <Icon name={item.icon} className="text-[26px] sm:text-[28px]" fill="true" />
+                                </div>
+
+                                <div className="space-y-1 w-full px-1">
+                                    <span className="text-[13px] sm:text-[14px] font-bold text-slate-800 dark:text-slate-100 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors tracking-tight block truncate">
                                         {item.label}
                                     </span>
-                                    {item.adminOnly && (
-                                        <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/20 shrink-0">
-                                            Admin
-                                        </span>
-                                    )}
+                                    <span className="text-[10.5px] sm:text-[11px] font-medium text-slate-400 dark:text-slate-500 line-clamp-1 block">
+                                        {item.desc || 'Layanan warga'}
+                                    </span>
                                 </div>
-                                <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 truncate mt-0.5">
-                                    {item.desc || 'Layanan portal warga'}
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200/70 dark:border-slate-700/70 flex items-center justify-center text-slate-400 dark:text-slate-500 group-hover:text-red-600 dark:group-hover:text-red-400 group-hover:border-red-500/30 group-hover:translate-x-0.5 transition-all shrink-0">
-                            <Icon name="chevron_right" className="text-[18px]" />
-                        </div>
-                    </button>
-                ))}
-            </div>
-
-            {/* --- TAMPILAN 2: GRID VIEW (LAPANG UNTUK TABLET & DESKTOP) --- */}
-            <div
-                className={`gap-4 sm:gap-6 ${
-                    viewMode === 'grid'
-                        ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4'
-                        : viewMode === 'list'
-                        ? 'hidden'
-                        : 'hidden sm:grid sm:grid-cols-3 md:grid-cols-4'
-                }`}
-            >
-                {NavItems.map((item, idx) => (
-                    <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => changeTab(item.id)}
-                        style={{ animationDelay: `${idx * 0.035}s` }}
-                        className="menu-item-in relative overflow-hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-6 sm:p-7 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-red-500/30 dark:hover:border-red-500/30 hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 active:scale-95 group cursor-pointer"
-                    >
-                        {item.adminOnly && (
-                            <span className="absolute top-3.5 right-3.5 text-[8.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/20">
-                                Admin
-                            </span>
-                        )}
-
-                        <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm group-hover:shadow-md ${item.bg} ${item.color}`}>
-                            <Icon name={item.icon} className="relative z-10 text-[26px] sm:text-[30px] drop-shadow-sm" fill="true" />
-                        </div>
-
-                        <div className="space-y-1 w-full px-1">
-                            <span className="text-[13px] sm:text-[14px] font-bold text-slate-800 dark:text-slate-100 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors tracking-tight block truncate">
-                                {item.label}
-                            </span>
-                            <span className="text-[10.5px] sm:text-[11px] font-medium text-slate-400 dark:text-slate-500 line-clamp-1 block">
-                                {item.desc || 'Layanan warga'}
-                            </span>
-                        </div>
-                    </button>
-                ))}
-            </div>
-
-            {/* Indikator Mode Hak Akses */}
-            {userRole !== 'admin' && (
-                <div className="flex justify-center mt-12 mb-4">
-                    <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md py-2 px-4 rounded-full text-center border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-center">
-                        <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 flex flex-wrap items-center justify-center gap-1.5">
-                            <Icon name="verified_user" className="text-[14px] text-green-500" />
-                            <span>Portal Warga RT Pakem — Akses Terverifikasi</span>
-                        </p>
+                            </button>
+                        ))}
                     </div>
-                </div>
+                </>
             )}
+
+            {/* ========================================================
+                5. KONTAK DARURAT & STATUS LINGKUNGAN DESA
+               ======================================================== */}
+            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-3xl p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800 space-y-3">
+                <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                        <Icon name="local_police" className="text-[16px] text-red-500" />
+                        Kontak Darurat & Siaga Desa
+                    </span>
+                    <button
+                        type="button"
+                        onClick={() => changeTab('peta')}
+                        className="text-[11px] font-bold text-red-600 dark:text-red-400 hover:underline cursor-pointer"
+                    >
+                        Lihat Peta Lengkap →
+                    </button>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                    {[
+                        { title: 'Ambulans Siaga', phone: '0812-3456-7890', icon: 'local_hospital', color: 'text-red-600 bg-red-50 dark:bg-red-950/40' },
+                        { title: 'Balai Desa Gurah', phone: '(0354) 689123', icon: 'account_balance', color: 'text-blue-600 bg-blue-50 dark:bg-blue-950/40' },
+                        { title: 'Babinsa Desa', phone: '0857-8899-0011', icon: 'security', color: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40' },
+                        { title: 'Bhabinkamtibmas', phone: '0821-4455-6677', icon: 'shield', color: 'text-amber-600 bg-amber-50 dark:bg-amber-950/40' },
+                    ].map((c) => (
+                        <a
+                            key={c.title}
+                            href={`tel:${c.phone.replace(/[^0-9]/g, '')}`}
+                            className="p-3 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-red-500/40 transition-all shadow-2xs"
+                        >
+                            <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${c.color}`}>
+                                <Icon name={c.icon} className="text-[16px]" fill="true" />
+                            </div>
+                            <div className="min-w-0">
+                                <span className="text-[11px] font-bold text-slate-800 dark:text-white block truncate">{c.title}</span>
+                                <span className="text-[10px] text-slate-400 font-medium block truncate">{c.phone}</span>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+
+            {/* Verifikasi Keaslian & Lisensi Lingkungan */}
+            <div className="flex justify-center pt-2">
+                <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md py-2 px-5 rounded-full text-center border border-slate-200/80 dark:border-slate-800 shadow-2xs flex items-center justify-center gap-2">
+                    <Icon name="verified" className="text-[15px] text-emerald-500" fill="true" />
+                    <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">
+                        Portal Warga RT Pakem • Sistem Terverifikasi Digital
+                    </span>
+                </div>
+            </div>
         </div>
     );
 }

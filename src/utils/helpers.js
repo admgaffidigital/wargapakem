@@ -43,6 +43,14 @@ export const parseLocalDate = (dateStr) => {
 export const isNonaktif = (member) =>
     Boolean(member && (member.status === 'Meninggal' || member.status === 'Nonaktif'));
 
+export const triggerHaptic = (duration = 10) => {
+    try {
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            navigator.vibrate(duration);
+        }
+    } catch (e) {}
+};
+
 export const uploadToGoogleDrive = async (file, maxSize = 1200, quality = 0.82) => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();

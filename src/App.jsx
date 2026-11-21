@@ -18,6 +18,9 @@ import { useFirebaseSync, useFirebaseArticlesSync } from './hooks/useFirebaseSyn
 // Landing Page & Navigation
 import LoginScreen from './components/landing/LoginScreen.jsx';
 import MainMenu from './components/landing/MainMenu.jsx';
+import TopNavBar from './components/navigation/TopNavBar.jsx';
+import BottomNavBar from './components/navigation/BottomNavBar.jsx';
+import SpotlightSearchModal from './components/navigation/SpotlightSearchModal.jsx';
 
 // Modules (Lazy-loaded for optimal initial load & code splitting)
 const Dashboard = React.lazy(() => import('./components/modules/Dashboard.jsx'));
@@ -112,6 +115,7 @@ function ModuleLoadingFallback() {
             const [showLogoutModal, setShowLogoutModal] = useState(false);
             const [showLicenseModal, setShowLicenseModal] = useState(false);
             const [isOffline, setIsOffline] = useState(!navigator.onLine); 
+            const [isSearchOpen, setIsSearchOpen] = useState(false); 
             
             // Core Database States
             const [members, setMembers, l1] = useFirebaseSync('members', []);
@@ -490,7 +494,26 @@ function ModuleLoadingFallback() {
 
             const renderContent = () => {
                 switch(activeTab) {
-                    case 'menu': return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} bannerImage={bannerImage} setShowPwaGuide={setShowPwaGuide} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
+                    case 'menu':
+                    case 'layanan':
+                        return (
+                            <MainMenu 
+                                userRole={userRole} 
+                                NavItems={NavItems} 
+                                changeTab={changeTab} 
+                                identity={identity} 
+                                bannerImage={bannerImage} 
+                                setShowPwaGuide={setShowPwaGuide} 
+                                sponsorsData={sponsorsData} 
+                                nextMeeting={nextMeeting}
+                                kasRtBalance={kasRtBalance}
+                                jimpitanBalance={jimpitanBalance}
+                                members={members}
+                                currentRound={currentRound}
+                                cycleNumber={cycleNumber}
+                                arisanPeriod={arisanPeriod}
+                            />
+                        );
                     case 'dashboard': return <Dashboard members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} currentRound={currentRound} setCurrentRound={setCurrentRound} userRole={userRole} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} changeTab={changeTab} arisanPeriod={arisanPeriod} />;
                     case 'informasi': return <Informasi data={informasi} setData={setInformasi} userRole={userRole} />;
                     case 'blog': return <Blog blogData={blogData} setBlogData={setBlogData} userRole={userRole} identity={identity} initialArticleId={new URLSearchParams(window.location.search).get('article')} />;
@@ -545,7 +568,23 @@ function ModuleLoadingFallback() {
                             />
                         </React.Suspense>
                     );
-                    default: return <MainMenu userRole={userRole} NavItems={NavItems} changeTab={changeTab} identity={identity} sponsorsData={sponsorsData} nextMeeting={nextMeeting} />;
+                    default: 
+                        return (
+                            <MainMenu 
+                                userRole={userRole} 
+                                NavItems={NavItems} 
+                                changeTab={changeTab} 
+                                identity={identity} 
+                                sponsorsData={sponsorsData} 
+                                nextMeeting={nextMeeting}
+                                kasRtBalance={kasRtBalance}
+                                jimpitanBalance={jimpitanBalance}
+                                members={members}
+                                currentRound={currentRound}
+                                cycleNumber={cycleNumber}
+                                arisanPeriod={arisanPeriod}
+                            />
+                        );
                 }
             };
 
@@ -554,110 +593,56 @@ function ModuleLoadingFallback() {
             return (
                 <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
                     <FlagWavingBackground theme={theme} />
-                    <div className="fixed inset-0 z-[-2] bg-batik opacity-50 dark:opacity-30 pointer-events-none no-print"></div>
+                    <div className="fixed inset-0 z-[-2] bg-batik opacity-30 dark:opacity-20 pointer-events-none no-print"></div>
 
-                    {/* ANIMASI WAYANG KULIT GLOBAL (DASHBOARD) */}
-                    <div className="fixed top-[12vh] md:top-[15vh] left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-10 dark:opacity-5 transition-all duration-1000 no-print">
-                        <img src="./gunungan_transparent.png?v=4" alt="Gunungan" className="w-[85vw] md:w-[60vw] lg:w-[45vw] xl:w-[600px] max-w-[800px] h-auto object-contain dark:invert" />
+                    {/* ANIMASI WAYANG KULIT HALUS & MINIMALIS */}
+                    <div className="fixed top-[12vh] md:top-[15vh] left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-5 dark:opacity-5 transition-all duration-1000 no-print">
+                        <img src="./gunungan_transparent.png?v=4" alt="Gunungan" className="w-[85vw] md:w-[50vw] lg:w-[35vw] max-w-[500px] h-auto object-contain dark:invert" />
                     </div>
-                    <div className="fixed bottom-0 -left-4 sm:left-0 md:left-4 xl:left-8 z-0 pointer-events-none opacity-15 dark:opacity-10 transition-all duration-1000 no-print scale-x-[-1]">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-[45vw] md:w-[35vw] lg:w-[30vw] xl:w-[450px] h-auto max-h-[45vh] md:max-h-[60vh] xl:max-h-[75vh] object-contain object-bottom animate-wayang dark:invert" />
+                    <div className="fixed bottom-0 -left-4 sm:left-0 md:left-4 xl:left-8 z-0 pointer-events-none opacity-5 dark:opacity-5 transition-all duration-1000 no-print scale-x-[-1]">
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-[35vw] md:w-[25vw] max-w-[320px] h-auto max-h-[40vh] object-contain object-bottom animate-wayang dark:invert" />
                     </div>
-                    <div className="fixed bottom-0 -right-4 sm:right-0 md:right-4 xl:right-8 z-0 pointer-events-none opacity-15 dark:opacity-10 transition-all duration-1000 no-print">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-[45vw] md:w-[35vw] lg:w-[30vw] xl:w-[450px] h-auto max-h-[45vh] md:max-h-[60vh] xl:max-h-[75vh] object-contain object-bottom animate-wayang dark:invert" style={{ animationDelay: '1.5s' }} />
-                    </div>
-
-                    <div className="sticky top-0 z-40 no-print w-full pt-2.5 sm:pt-4 px-3.5 sm:px-6 lg:px-8">
-                        {isOffline && (
-                            <div className="bg-google-redDark text-white text-center py-2.5 px-4 text-[12px] font-medium flex flex-wrap items-center justify-center gap-2 w-full shadow-md">
-                                <Icon name="wifi_off" className="text-[16px]" /> Koneksi terputus. Anda masuk ke mode offline.
-                            </div>
-                        )}
-
-                        <header className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl text-slate-800 dark:text-slate-100 py-2.5 px-3.5 sm:py-3.5 sm:px-6 w-full max-w-7xl mx-auto rounded-2xl sm:rounded-3xl border border-red-500/20 dark:border-red-900/40 shadow-lg shadow-red-500/10 dark:shadow-black/30 relative z-20 overflow-hidden">
-                            {/* Strip Gradasi Aksen Merah-Emas di paling atas header */}
-                            <div className="h-1 w-full absolute top-0 left-0 bg-gradient-to-r from-red-600 via-amber-500 to-red-600"></div>
-
-                            {/* ORNAMEN JOGLO - watermark di bawah tengah header */}
-                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 sm:w-32 pointer-events-none opacity-15 dark:opacity-5">
-                                <img src="./joglo_transparent.png?v=2" alt="Ornamen Joglo" className="w-full h-auto dark:invert" />
-                            </div>
-
-                            <div className="max-w-7xl mx-auto flex items-center justify-between relative z-10">
-                                {/* Kiri: Identitas / Tombol Kembali */}
-                                <div className="flex items-center gap-2.5 sm:gap-3.5 overflow-hidden">
-                                    {activeTab === 'menu' ? (
-                                        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-red-50 to-amber-50/60 dark:from-red-950/50 dark:to-slate-800 border border-red-500/25 dark:border-red-900/40 p-1 flex items-center justify-center shrink-0 shadow-sm">
-                                            <img
-                                                src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"}
-                                                alt="Logo"
-                                                className={identity?.logoApp ? "w-full h-full object-cover rounded-xl" : "w-7 h-7 sm:w-8 sm:h-8 object-contain"}
-                                            />
-                                        </div>
-                                    ) : (
-                                        <button
-                                            onClick={() => changeTab('menu')}
-                                            className="w-10 h-10 sm:w-11 sm:h-11 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 hover:text-red-600 dark:hover:text-red-400 hover:border-red-500/40 rounded-2xl shrink-0 flex items-center justify-center transition-all duration-200 active:scale-95 shadow-sm cursor-pointer"
-                                            title="Kembali ke Menu Utama"
-                                        >
-                                            <Icon name="arrow_back" className="text-[18px] sm:text-[20px]" />
-                                        </button>
-                                    )}
-
-                                    <div className="min-w-0">
-                                        <div className="flex items-center gap-1.5 sm:gap-2">
-                                            <h1 className="text-[13.5px] sm:text-[16px] font-black uppercase tracking-tight text-slate-800 dark:text-white truncate">
-                                                {activeTab === 'menu' ? (identity?.name || 'WARGA PAKEM') : activeTabTitle}
-                                            </h1>
-                                            {activeTab === 'menu' && (
-                                                <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shrink-0" title="Portal Online"></span>
-                                            )}
-                                        </div>
-                                        <p className="text-[10.5px] sm:text-[11.5px] font-medium text-slate-500 dark:text-slate-400 truncate">
-                                            {activeTab === 'menu' ? (identity?.subtitle || 'RT Pakem, Banyuanyar, Gurah') : (identity?.name || 'Portal RT')}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Kanan: Badge Peran, Toggle Tema, & Keluar */}
-                                <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0 pl-1.5">
-                                    <span className={`text-[8.5px] sm:text-[9.5px] font-black px-2.5 py-1 rounded-xl uppercase tracking-wider border shadow-xs ${
-                                        userRole === 'admin'
-                                            ? 'bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-500/30'
-                                            : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
-                                    }`}>
-                                        {userRole === 'admin' ? 'Pengurus' : 'Warga'}
-                                    </span>
-
-                                    <button
-                                        type="button"
-                                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                                        className="w-9 h-9 sm:w-10 sm:h-10 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-xl flex items-center justify-center transition-all active:scale-95 border border-slate-200/80 dark:border-slate-700 shadow-sm cursor-pointer"
-                                        title={theme === 'dark' ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap'}
-                                    >
-                                        <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-[17px] sm:text-[18px]" />
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowLogoutModal(true)}
-                                        className="w-9 h-9 sm:w-10 sm:h-10 bg-red-50 dark:bg-red-950/40 hover:bg-red-600 dark:hover:bg-red-600 text-red-600 dark:text-red-400 hover:text-white dark:hover:text-white rounded-xl flex items-center justify-center transition-all active:scale-95 border border-red-500/30 shadow-sm cursor-pointer group"
-                                        title="Keluar Sesi"
-                                    >
-                                        <Icon name="logout" className="text-[17px] sm:text-[18px] group-hover:translate-x-0.5 transition-transform" />
-                                    </button>
-                                </div>
-                            </div>
-                        </header>
+                    <div className="fixed bottom-0 -right-4 sm:right-0 md:right-4 xl:right-8 z-0 pointer-events-none opacity-5 dark:opacity-5 transition-all duration-1000 no-print">
+                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-[35vw] md:w-[25vw] max-w-[320px] h-auto max-h-[40vh] object-contain object-bottom animate-wayang dark:invert" style={{ animationDelay: '1.5s' }} />
                     </div>
 
-                    <main className="flex-1 w-full pt-5 md:pt-8 pb-16 print:pb-0 print:pt-0">
+                    {/* Modern Native App Top Bar */}
+                    <TopNavBar
+                        activeTab={activeTab}
+                        changeTab={changeTab}
+                        identity={identity}
+                        userRole={userRole}
+                        theme={theme}
+                        setTheme={setTheme}
+                        onOpenSearch={() => setIsSearchOpen(true)}
+                        onOpenLogout={() => setShowLogoutModal(true)}
+                        activeTabTitle={activeTabTitle}
+                        isOffline={isOffline}
+                    />
+
+                    {/* Kontainer Utama dengan Padding Bawah Cukup untuk Bottom Nav */}
+                    <main className="flex-1 w-full pt-3 md:pt-6 pb-28 sm:pb-16 print:pb-0 print:pt-0">
                         <div key={activeTab} className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 tab-fade-in pb-6">
                             <Suspense fallback={<ModuleLoadingFallback />}>
                                 {renderContent()}
                             </Suspense>
                         </div>
                     </main>
+
+                    {/* Native Floating/Docked Bottom Navigation Bar */}
+                    <BottomNavBar
+                        activeTab={activeTab}
+                        changeTab={changeTab}
+                        userRole={userRole}
+                    />
+
+                    {/* Spotlight Instant Search Modal (Ctrl+K) */}
+                    <SpotlightSearchModal
+                        isOpen={isSearchOpen}
+                        onClose={() => setIsSearchOpen(false)}
+                        NavItems={NavItems}
+                        changeTab={changeTab}
+                    />
 
                     <footer className="w-full no-print mt-auto border-t border-red-500/20 dark:border-red-900/40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-[12px] font-medium text-slate-600 dark:text-slate-400 py-8 relative overflow-hidden">
                         {/* Strip Aksen Merah - Emas */}

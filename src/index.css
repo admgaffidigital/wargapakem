@@ -973,3 +973,29 @@ textarea {
 /* Force Cache Bust for Vercel CSS MIME Issue */
 
 .force-cache-bust-123 { display: none; }
+
+/* ============================================================
+   NATIVE APP PWA POLISH & ERGONOMICS
+   ============================================================ */
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+}
+
+/* Touch feedback for native mobile app feel */
+@media (hover: none) and (pointer: coarse) {
+  button:active, a:active {
+    transform: scale(0.97);
+    transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/* iOS Vibrancy & Frosted Glass Classes */
+.glass-surface {
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.dark .glass-surface {
+  background-color: rgba(15, 23, 42, 0.88);
+}
+
