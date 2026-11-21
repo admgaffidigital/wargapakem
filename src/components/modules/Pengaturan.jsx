@@ -776,8 +776,8 @@ function Pengaturan(props) {
 
             {/* MODAL PESAN NOTIFIKASI */}
             {modalConfig && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                    <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-3xl p-6 sm:p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in shadow-2xl">
+                <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print modal-backdrop animate-backdrop-in">
+                    <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 w-full max-w-sm shadow-2xl text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in shadow-2xl">
                         <div className="mb-5 bg-emerald-50 dark:bg-emerald-950/40 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto border border-emerald-500/20 text-emerald-600 dark:text-emerald-400">
                             <Icon name="check_circle" className="text-[40px]" fill="true" />
                         </div>
@@ -793,8 +793,8 @@ function Pengaturan(props) {
 
             {/* MODAL KONFIRMASI RESET TOTAL */}
             {confirmResetModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                    <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-3xl p-6 sm:p-8 w-full max-w-sm text-left border border-red-500/30 modal-card animate-modal-in shadow-2xl space-y-4">
+                <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print modal-backdrop animate-backdrop-in">
+                    <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 w-full max-w-sm shadow-2xl text-left border border-red-500/30 modal-card animate-modal-in shadow-2xl space-y-4">
                         <div className="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-950/40 text-red-600 flex items-center justify-center border border-red-500/20">
                             <Icon name="warning" className="text-[26px]" fill="true" />
                         </div>

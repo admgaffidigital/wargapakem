@@ -92,12 +92,12 @@ function normalizeAudioUrl(url) {
                     {/* Header */}
                     <div className="bento-header-card no-print">
                         <div className="flex flex-wrap items-center gap-4">
-                            <div className="w-14 h-14 rounded-2xl bg-google-yellowLight flex items-center justify-center border border-google-yellow/40 shrink-0">
-                                <Icon name="music_note" className="text-[32px] text-google-yellowDark" fill="true" />
+                            <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/40 flex items-center justify-center border border-amber-500/30 shrink-0">
+                                <Icon name="music_note" className="text-[32px] text-amber-700 dark:text-amber-300" fill="true" />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-medium text-google-text tracking-tight">Musik Warga</h2>
-                                <p className="text-[12px] font-medium text-google-textVariant mt-0.5">Musik otomatis memutar untuk semua pengunjung Warga.</p>
+                                <h2 className="text-2xl font-medium text-slate-800 dark:text-white tracking-tight">Musik Warga</h2>
+                                <p className="text-[12px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">Musik otomatis memutar untuk semua pengunjung Warga.</p>
                             </div>
                         </div>
                     </div>
@@ -107,29 +107,29 @@ function normalizeAudioUrl(url) {
                         <div className={`bento-island-card p-5 sm:p-6 ${isEnabled ? 'border-emerald-500/40 bg-emerald-50/20 dark:bg-emerald-950/20' : ''}`}>
                             <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
                                 <div className="flex flex-wrap items-center gap-3 flex-1 min-w-0">
-                                    <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border ${isEnabled ? 'bg-google-green border-google-greenDark' : 'bg-slate-300 border-slate-400'}`}>
+                                    <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border ${isEnabled ? 'bg-emerald-600 border-emerald-700' : 'bg-slate-300 border-slate-400'}`}>
                                         <Icon name={isEnabled ? 'graphic_eq' : 'music_off'} className="text-white text-[17px]" fill="true" />
                                     </div>
                                     <div className="min-w-0">
-                                        <p className="text-[9px] font-medium uppercase tracking-widest text-google-textVariant">{isEnabled ? 'Aktif' : 'Nonaktif'}</p>
-                                        <p className="font-medium text-[13px] text-google-text truncate">{currentName || 'Musik RT'}</p>
+                                        <p className="text-[9px] font-medium uppercase tracking-widest text-slate-500 dark:text-slate-400">{isEnabled ? 'Aktif' : 'Nonaktif'}</p>
+                                        <p className="font-medium text-[13px] text-slate-800 dark:text-white truncate">{currentName || 'Musik RT'}</p>
                                     </div>
                                 </div>
                                 <div className="flex flex-wrap gap-2 shrink-0">
                                     <button onClick={handleToggleEnabled}
-                                            className={`px-3 py-2 rounded-full font-medium text-[11px] border transition-all active:scale-95 ${isEnabled ? 'bg-white text-google-greenDark border-google-green/40 hover:bg-google-greenLight' : 'bg-google-green text-white border-google-greenDark'}`}>
+                                            className={`px-3 py-2 rounded-full font-medium text-[11px] border transition-all active:scale-95 ${isEnabled ? 'bg-white text-emerald-700 dark:text-emerald-300 border-emerald-500/30 hover:bg-emerald-50 dark:bg-emerald-950/40' : 'bg-emerald-600 text-white border-emerald-700'}`}>
                                         {isEnabled ? 'Nonaktifkan' : 'Aktifkan'}
                                     </button>
                                     <button onClick={handleDeleteMusic}
-                                            className="px-3 py-2 rounded-full font-medium text-[11px] bg-google-redLight text-google-redDark border border-google-red/30 hover:bg-google-red hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1">
+                                            className="px-3 py-2 rounded-full font-medium text-[11px] bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 border border-red-500/25 hover:bg-red-600 hover:text-white active:scale-95 transition-all flex flex-wrap items-center gap-1">
                                         <Icon name="delete" className="text-[12px]" /> Hapus
                                     </button>
                                 </div>
                             </div>
                             {/* Preview player native browser */}
                             {isEnabled && (
-                                <div className="bg-white/80 rounded-xl p-3 border border-google-green/30">
-                                    <p className="text-[9px] font-medium text-google-greenDark mb-2 uppercase tracking-widest">Preview</p>
+                                <div className="bg-white/80 rounded-xl p-3 border border-emerald-500/25">
+                                    <p className="text-[9px] font-medium text-emerald-700 dark:text-emerald-300 mb-2 uppercase tracking-widest">Preview</p>
                                     <audio controls src={currentUrl} className="w-full" style={{ height: '36px' }}>
                                         Browser Anda tidak mendukung audio.
                                     </audio>
@@ -163,7 +163,7 @@ function normalizeAudioUrl(url) {
                                 ].map(item => (
                                     <li key={item.step} className="flex flex-wrap items-start gap-3">
                                         <div className="w-6 h-6 rounded-full bg-blue-600 text-white text-[10px] font-medium flex items-center justify-center shrink-0 mt-0.5">{item.step}</div>
-                                        <p className="text-[12px] font-medium text-google-textVariant leading-snug">{item.text}</p>
+                                        <p className="text-[12px] font-medium text-slate-500 dark:text-slate-400 leading-snug">{item.text}</p>
                                     </li>
                                 ))}
                             </ol>
@@ -171,21 +171,21 @@ function normalizeAudioUrl(url) {
                             {/* Form Input */}
                             <div className="space-y-5">
                                 <div>
-                                    <label className="text-[10px] font-medium text-google-textVariant block mb-1.5 ml-1 uppercase tracking-widest">Nama Lagu</label>
+                                    <label className="text-[10px] font-medium text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-widest">Nama Lagu</label>
                                     <input type="text" value={nameInput} onChange={e => setNameInput(e.target.value)}
                                            placeholder="Contoh: Indonesia Raya Instrumental"
-                                           className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white text-google-text rounded-xl px-4 py-3 text-[13px] font-medium outline-none transition-all placeholder:text-slate-400" />
+                                           className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white text-slate-800 dark:text-white rounded-xl px-4 py-3 text-[13px] font-medium outline-none transition-all placeholder:text-slate-400" />
                                 </div>
                                 <div>
-                                    <label className="text-[10px] font-medium text-google-textVariant block mb-1.5 ml-1 uppercase tracking-widest">URL Dropbox / Link Audio Langsung</label>
+                                    <label className="text-[10px] font-medium text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-widest">URL Dropbox / Link Audio Langsung</label>
                                     <input type="url" value={urlInput} onChange={e => { setUrlInput(e.target.value); setTestStatus('idle'); setErrorMsg(''); }}
                                            placeholder="https://www.dropbox.com/s/xxxxx/lagu.mp3?dl=0"
-                                           className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white text-google-text rounded-xl px-4 py-3 text-[12px] font-medium outline-none transition-all placeholder:text-slate-400" />
+                                           className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white text-slate-800 dark:text-white rounded-xl px-4 py-3 text-[12px] font-medium outline-none transition-all placeholder:text-slate-400" />
                                 </div>
 
                                 {/* Test button */}
                                 <button onClick={handlePreviewTest}
-                                        className="w-full bg-slate-100 text-google-textVariant py-2.5 rounded-full font-medium text-[11px] border border-slate-200 hover:bg-slate-200 active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
+                                        className="w-full bg-slate-100 text-slate-500 dark:text-slate-400 py-2.5 rounded-full font-medium text-[11px] border border-slate-200 hover:bg-slate-200 active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
                                     <Icon name="play_circle" className="text-[14px]" /> Test Apakah URL Bisa Diputar
                                 </button>
 
@@ -197,28 +197,28 @@ function normalizeAudioUrl(url) {
                                     </div>
                                 )}
                                 {testStatus === 'ok' && (
-                                    <div className="bg-google-greenLight border border-google-green/40 rounded-xl p-3">
-                                        <p className="text-[11px] font-medium text-google-greenDark mb-2 flex flex-wrap items-center gap-1.5">
+                                    <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-500/30 rounded-xl p-3">
+                                        <p className="text-[11px] font-medium text-emerald-700 dark:text-emerald-300 mb-2 flex flex-wrap items-center gap-1.5">
                                             <Icon name="check_circle" className="text-[13px]" fill="true" /> URL Valid Preview:
                                         </p>
                                         <audio controls src={previewUrl} className="w-full" style={{ height: '34px' }} />
                                     </div>
                                 )}
                                 {testStatus === 'fail' && (
-                                    <div className="flex flex-wrap items-center gap-2 bg-google-redLight text-google-redDark px-4 py-2.5 rounded-xl text-[11px] font-medium border border-google-red/30">
+                                    <div className="flex flex-wrap items-center gap-2 bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 px-4 py-2.5 rounded-xl text-[11px] font-medium border border-red-500/25">
                                         <Icon name="error" className="text-[13px]" fill="true" />
                                         URL gagal dimuat. Pastikan link Dropbox sudah benar dan file publik (tidak private).
                                     </div>
                                 )}
 
                                 {errorMsg && (
-                                    <div className="flex flex-wrap items-center gap-2 bg-google-redLight text-google-redDark px-4 py-2.5 rounded-xl font-medium text-[11px] border border-google-red/30">
+                                    <div className="flex flex-wrap items-center gap-2 bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 px-4 py-2.5 rounded-xl font-medium text-[11px] border border-red-500/25">
                                         <Icon name="error" className="text-[13px]" fill="true" /> {errorMsg}
                                     </div>
                                 )}
 
                                 <button onClick={handleSaveUrl}
-                                        className="w-full bg-google-green text-white py-3.5 rounded-full font-medium text-[13px] border border-google-greenDark shadow-md hover:bg-google-greenDark active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
+                                        className="w-full bg-emerald-600 text-white py-3.5 rounded-full font-medium text-[13px] border border-emerald-700 shadow-md hover:bg-emerald-800 active:scale-95 transition-all flex flex-wrap items-center justify-center gap-2">
                                     <Icon name="save" className="text-[17px]" /> Simpan & Aktifkan Musik
                                 </button>
                             </div>
@@ -226,9 +226,9 @@ function normalizeAudioUrl(url) {
                     </div>
 
                     {/* Info */}
-                    <div className="bg-google-yellowLight rounded-3xl p-6 sm:p-8 md:p-8 border border-google-yellow/40 flex flex-wrap items-start gap-3">
-                        <Icon name="info" className="text-[17px] text-google-yellowDark shrink-0 mt-0.5" fill="true" />
-                        <ul className="text-[11px] font-medium text-google-yellowDark/90 space-y-1 list-disc list-inside">
+                    <div className="bg-amber-50 dark:bg-amber-950/40 rounded-3xl p-6 sm:p-8 md:p-8 border border-amber-500/30 flex flex-wrap items-start gap-3">
+                        <Icon name="info" className="text-[17px] text-amber-700 dark:text-amber-300 shrink-0 mt-0.5" fill="true" />
+                        <ul className="text-[11px] font-medium text-amber-700 dark:text-amber-300/90 space-y-1 list-disc list-inside">
                             <li>Musik <span className="underline decoration-dotted">hanya memutar</span> untuk pengguna login sebagai <span className="underline decoration-dotted">Warga</span>.</li>
                             <li>Admin tidak mendengar musik saat login sebagai Admin.</li>
                             <li>Browser mobile kadang memblokir autoplay • warga cukup tap layar sekali.</li>

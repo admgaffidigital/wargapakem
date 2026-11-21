@@ -146,11 +146,11 @@ import Icon from '../common/Icon.jsx';
                     {/* Header */}
                     <div className="bento-header-card flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                         <div className="text-center md:text-left">
-                            <h2 className="text-2xl font-medium text-google-text tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
+                            <h2 className="text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex flex-wrap items-center gap-2 justify-center md:justify-start">
                                 <Icon name="calendar_month" className="text-[24px] text-red-600"/>
                                 Kalender Tiga Dimensi Waktu
                             </h2>
-                            <p className="text-[13px] font-medium text-google-textVariant mt-1.5">Penanggalan Nasional (Masehi), Jawa (Pasaran), dan Hijriah (Islam).</p>
+                            <p className="text-[13px] font-medium text-slate-500 dark:text-slate-400 mt-1.5">Penanggalan Nasional (Masehi), Jawa (Pasaran), dan Hijriah (Islam).</p>
                         </div>
                         <div className="flex flex-wrap items-center gap-2.5 bg-red-50 border border-red-500/30 px-4 py-2.5 rounded-2xl shadow-sm">
                             <Icon name="today" className="text-[17px] text-red-600 animate-pulse" fill="true"/>
@@ -166,14 +166,14 @@ import Icon from '../common/Icon.jsx';
                             {/* Hari Ini / Selected Day Info */}
                             <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm relative overflow-hidden group">
                                 
-                                <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
+                                <h3 className="text-[14px] font-medium text-slate-800 dark:text-white mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                     <Icon name="info" className="text-[16px] text-red-600" />
                                     Detail Tanggal
                                 </h3>
                                 <div className="space-y-6 relative z-10">
                                     <div className="bg-slate-50 border border-slate-200/60 p-6 sm:p-8 md:p-6 rounded-2xl shadow-sm">
-                                        <p className="text-[9px] uppercase tracking-widest font-medium text-google-textVariant mb-1">Masehi / Nasional</p>
-                                        <p className="font-medium text-[14px] text-google-text">
+                                        <p className="text-[9px] uppercase tracking-widest font-medium text-slate-500 dark:text-slate-400 mb-1">Masehi / Nasional</p>
+                                        <p className="font-medium text-[14px] text-slate-800 dark:text-white">
                                             {selectedDate.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
                                         </p>
                                     </div>
@@ -187,8 +187,8 @@ import Icon from '../common/Icon.jsx';
                                         </p>
                                     </div>
                                     <div className="bg-slate-50 border border-slate-200/60 p-6 sm:p-8 md:p-6 rounded-2xl shadow-sm">
-                                        <p className="text-[9px] uppercase tracking-widest font-medium text-google-textVariant mb-1">Hijriah / Kalender Islam</p>
-                                        <p className="font-medium text-[14px] text-google-text">
+                                        <p className="text-[9px] uppercase tracking-widest font-medium text-slate-500 dark:text-slate-400 mb-1">Hijriah / Kalender Islam</p>
+                                        <p className="font-medium text-[14px] text-slate-800 dark:text-white">
                                             {selectedDetails.hijri}
                                         </p>
                                     </div>
@@ -197,14 +197,14 @@ import Icon from '../common/Icon.jsx';
 
                             {/* Weton Checker Tool */}
                             <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm">
-                                <h3 className="text-[14px] font-medium text-google-text mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
+                                <h3 className="text-[14px] font-medium text-slate-800 dark:text-white mb-4 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
                                     <Icon name="search" className="text-[16px] text-red-600" />
                                     Cek Weton & Pasaran Lahir
                                 </h3>
                                 <form onSubmit={handleCheckWeton} className="space-y-6">
                                     <div className="bg-slate-50 rounded-2xl px-4 py-3 border border-slate-200 focus-within:border-red-500 focus-within:bg-white transition-all shadow-sm">
-                                        <label className="text-[10px] font-medium text-google-textVariant block mb-1 uppercase tracking-widest">Pilih Tanggal</label>
-                                        <input type="date" value={checkDateStr} onChange={e => { setCheckDateStr(e.target.value); setCheckResult(null); }} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-google-text cursor-pointer animate-none" />
+                                        <label className="text-[10px] font-medium text-slate-500 dark:text-slate-400 block mb-1 uppercase tracking-widest">Pilih Tanggal</label>
+                                        <input type="date" value={checkDateStr} onChange={e => { setCheckDateStr(e.target.value); setCheckResult(null); }} className="w-full bg-transparent border-none text-[13px] font-medium outline-none p-0 text-slate-800 dark:text-white cursor-pointer animate-none" />
                                     </div>
                                     <button type="submit" className="w-full bg-red-600 text-white py-3.5 rounded-full font-medium text-[12px] border border-red-700 hover:bg-red-700 active:scale-95 transition-all duration-300 shadow-md flex flex-wrap justify-center items-center gap-1.5">
                                         <Icon name="explore" className="text-[14px]"/>
@@ -233,19 +233,19 @@ import Icon from '../common/Icon.jsx';
                         <div className="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 md:p-6 border border-slate-200 shadow-sm flex flex-col">
                             {/* Navigation */}
                             <div className="flex justify-between items-center mb-6">
-                                <button onClick={handlePrevMonth} className="w-10 h-10 bg-slate-50 border border-slate-200 text-google-text hover:bg-slate-100 hover:border-slate-400 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
+                                <button onClick={handlePrevMonth} className="w-10 h-10 bg-slate-50 border border-slate-200 text-slate-800 dark:text-white hover:bg-slate-100 hover:border-slate-400 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
                                     <Icon name="chevron_left" className="text-[17px]" />
                                 </button>
-                                <h3 className="text-xl font-medium text-google-text tracking-tight uppercase">
+                                <h3 className="text-xl font-medium text-slate-800 dark:text-white tracking-tight uppercase">
                                     {monthNames[month]} {year}
                                 </h3>
-                                <button onClick={handleNextMonth} className="w-10 h-10 bg-slate-50 border border-slate-200 text-google-text hover:bg-slate-100 hover:border-slate-400 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
+                                <button onClick={handleNextMonth} className="w-10 h-10 bg-slate-50 border border-slate-200 text-slate-800 dark:text-white hover:bg-slate-100 hover:border-slate-400 rounded-full flex justify-center items-center active:scale-95 transition-all shadow-sm">
                                     <Icon name="chevron_right" className="text-[17px]" />
                                 </button>
                             </div>
 
                             {/* Day names of the week */}
-                            <div className="grid grid-cols-7 gap-1 text-center font-medium text-[10px] uppercase tracking-wider text-google-textVariant mb-2 pb-2 border-b border-slate-200">
+                            <div className="grid grid-cols-7 gap-1 text-center font-medium text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2 pb-2 border-b border-slate-200">
                                 <div className="text-red-600">Ahad</div>
                                 <div>Senin</div>
                                 <div>Selasa</div>
@@ -279,7 +279,7 @@ import Icon from '../common/Icon.jsx';
                                                     ? 'bg-red-600 text-white border-red-700 shadow-md scale-105 z-10' 
                                                     : isToday 
                                                         ? 'bg-red-50 border-red-500 text-red-700 shadow-sm font-medium' 
-                                                        : 'bg-slate-50/50 border-slate-200/70 hover:border-red-500/40 hover:bg-white text-google-text'
+                                                        : 'bg-slate-50/50 border-slate-200/70 hover:border-red-500/40 hover:bg-white text-slate-800 dark:text-white'
                                             }`}
                                         >
                                             <div className="flex justify-between items-center">

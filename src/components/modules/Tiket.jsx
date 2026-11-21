@@ -449,14 +449,14 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
             return (
                 <div className="animate-fade-in pb-24 w-full">
                     {modalConfig && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="rounded-3xl p-8 max-w-sm w-full text-center modal-card animate-modal-in">
+                        <div className="fixed inset-0 z-[120] flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop animate-backdrop-in">
+                            <div className="rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Icon name="check_circle" className="text-4xl text-green-500" />
                                 </div>
                                 <h3 className="text-xl font-medium text-slate-800 mb-2">Berhasil</h3>
                                 <p className="text-slate-650 font-medium mb-8 text-[13px]">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-google-blue hover:bg-google-blueDark text-white font-medium py-3.5 rounded-full transition-all">Tutup</button>
+                                <button onClick={() => setModalConfig(null)} className="w-full bg-blue-600 hover:bg-blue-800 text-white font-medium py-3.5 rounded-full transition-all">Tutup</button>
                             </div>
                         </div>
                     )}
@@ -467,7 +467,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                             {/* Stats */}
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-google-blueLight border border-google-blue/30 text-google-blueDark flex items-center justify-center shrink-0"><Icon name="trending_up" className="text-[24px]" /></div>
+                                    <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-500/25 text-blue-700 dark:text-blue-300 flex items-center justify-center shrink-0"><Icon name="trending_up" className="text-[24px]" /></div>
                                     <div>
                                         <p className="text-[10px] uppercase tracking-wider font-medium text-slate-400">Total Tiket Terjual</p>
                                         <h4 className="text-xl font-medium text-slate-800">{stats.totalSold} <span className="text-[11px] font-medium text-slate-500">Tiket</span></h4>
@@ -496,7 +496,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                     <button onClick={() => setActiveSubTab('products')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-2 ${activeSubTab === 'products' ? 'bg-slate-850 text-white shadow-sm' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}`}><Icon name="inventory_2" /> Kelola Produk</button>
                                 </div>
                                 {activeSubTab === 'products' && (
-                                    <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-google-blue hover:bg-google-blueDark text-white px-4 py-2.5 rounded-full font-medium text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
+                                    <button onClick={() => { setEditingProduct(null); setProductForm({ name: '', price: '', stock: '', description: '', imageUrl: '', pickupLocationName: '', pickupGeoUrl: '' }); setProductError(''); setIsProductModalOpen(true); }} className="bg-blue-600 hover:bg-blue-800 text-white px-4 py-2.5 rounded-full font-medium text-[12px] shadow-md hover:shadow-lg transition-all flex items-center gap-2"><Icon name="add" /> Tambah Produk Tiket</button>
                                 )}
                             </div>
 
@@ -505,11 +505,11 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                 <div className="space-y-7">
                                     <div className="flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
-                                            <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white border border-slate-200 pr-5 py-3 rounded-2xl text-[13px] font-medium outline-none focus:border-google-blue/40" />
+                                            <input type="text" placeholder="Cari nama pembeli atau tiket..." value={adminSearchQuery} onChange={e => setAdminSearchQuery(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white border border-slate-200 pr-5 py-3 rounded-2xl text-[13px] font-medium outline-none focus:border-blue-500/30" />
                                         </div>
                                         <div className="flex gap-1.5 overflow-x-auto pb-1.5 sm:pb-0 shrink-0">
                                             {['all', 'pending', 'processed', 'completed', 'cancelled'].map(status => (
-                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-full text-[11px] font-medium border transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-google-blueLight text-google-blueDark border-google-blue/30' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
+                                                <button key={status} onClick={() => setAdminOrderFilter(status)} className={`px-4 py-2.5 rounded-full text-[11px] font-medium border transition-all capitalize whitespace-nowrap ${adminOrderFilter === status ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border-blue-500/25' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}>{status === 'all' ? 'Semua' : getStatusLabel(status)}</button>
                                             ))}
                                         </div>
                                     </div>
@@ -660,23 +660,23 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                             <div className="p-5 flex-1 flex flex-col justify-between space-y-6">
                                                 <div>
                                                     <h4 className="font-medium text-[15px] text-slate-800 line-clamp-1">{prod.name}</h4>
-                                                    <p className="text-[12px] font-medium text-google-blue mt-1">{formatRp(prod.price)}</p>
+                                                    <p className="text-[12px] font-medium text-blue-600 dark:text-blue-400 mt-1">{formatRp(prod.price)}</p>
                                                     <p className={`text-[11.5px] font-medium text-slate-500 mt-2 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-3'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
                                                     {(prod.description || '').length > 80 && (
-                                                        <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-medium text-google-blue hover:underline">
+                                                        <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-medium text-blue-600 dark:text-blue-400 hover:underline">
                                                             {expandedDescId === prod.id ? '↑ Tutup' : '↓ Selengkapnya'}
                                                         </button>
                                                     )}
                                                     
                                                     <div className="mt-3 space-y-1.5">
                                                         <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-400 bg-slate-50 px-2.5 py-1.5 rounded-lg w-fit border border-slate-200"><Icon name="shopping_bag" className="text-[13px]" /> Terjual: {prod.sold || 0} Pcs</div>
-                                                        <div className="flex items-center gap-1 text-[10px] font-medium text-slate-500"><Icon name="location_on" className="text-[13px] text-google-blue" /> {prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</div>
+                                                        <div className="flex items-center gap-1 text-[10px] font-medium text-slate-500"><Icon name="location_on" className="text-[13px] text-blue-600 dark:text-blue-400" /> {prod.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</div>
                                                     </div>
                                                 </div>
                                                 <div className="flex gap-2 pt-3 border-t border-slate-100 mt-1">
-                                                    <button onClick={() => handleEditProduct(prod)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-blue text-white hover:bg-google-blueDark rounded-full py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
+                                                    <button onClick={() => handleEditProduct(prod)} className="flex-1 flex items-center justify-center gap-1.5 bg-blue-600 text-white hover:bg-blue-800 rounded-full py-2 px-3 text-[12px] font-medium transition-all shadow-sm active:scale-95"><Icon name="edit" className="text-[14px]" /> Edit</button>
                                                     <button onClick={() => setSharingProduct(prod)} className="flex items-center justify-center px-4 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-full py-2 transition-all active:scale-95 shadow-sm" title="Bagikan"><Icon name="share" className="text-[14px]" /></button>
-                                                    <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-google-red/10 text-google-red hover:bg-google-red hover:text-white rounded-full py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
+                                                    <button onClick={() => handleDeleteProduct(prod.id)} className="flex-1 flex items-center justify-center gap-1.5 bg-red-600/10 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white rounded-full py-2 px-3 text-[12px] font-medium transition-all active:scale-95"><Icon name="delete" className="text-[14px]" /> Hapus</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -686,39 +686,39 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
 
                             {/* Modal Kelola Produk */}
                             {isProductModalOpen && (
-                                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                                    <div className="rounded-3xl p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
+                                <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop animate-backdrop-in">
+                                    <div className="rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto hide-scrollbar shadow-2xl border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                         <h3 className="text-xl font-medium text-slate-800 mb-6 tracking-tight">{editingProduct ? 'Edit Produk Tiket' : 'Tambah Produk Tiket Baru'}</h3>
                                         <div className="space-y-6">
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Tiket / Produk</label>
-                                                <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Tiket Jalan Santai RT Pakem" />
+                                                <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-blue-500/30/50 focus:shadow-md transition-all" placeholder="Cth: Tiket Jalan Santai RT Pakem" />
                                             </div>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Harga (Rp)</label>
-                                                    <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 5000" />
+                                                    <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-blue-500/30/50 focus:shadow-md transition-all" placeholder="Cth: 5000" />
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Stok Tiket</label>
-                                                    <input type="number" value={productForm.stock} onChange={e => setProductForm({...productForm, stock: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: 100" />
+                                                    <input type="number" value={productForm.stock} onChange={e => setProductForm({...productForm, stock: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-blue-500/30/50 focus:shadow-md transition-all" placeholder="Cth: 100" />
                                                 </div>
                                             </div>
                                             
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lokasi Pengambilan</label>
-                                                    <input type="text" value={productForm.pickupLocationName} onChange={e => setProductForm({...productForm, pickupLocationName: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Rumah Mas Novan / Rumah Pak RT" />
+                                                    <input type="text" value={productForm.pickupLocationName} onChange={e => setProductForm({...productForm, pickupLocationName: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-blue-500/30/50 focus:shadow-md transition-all" placeholder="Cth: Rumah Mas Novan / Rumah Pak RT" />
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Link Google Maps Lokasi</label>
-                                                    <input type="text" value={productForm.pickupGeoUrl} onChange={e => setProductForm({...productForm, pickupGeoUrl: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: https://maps.google.com/..." />
+                                                    <input type="text" value={productForm.pickupGeoUrl} onChange={e => setProductForm({...productForm, pickupGeoUrl: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-blue-500/30/50 focus:shadow-md transition-all" placeholder="Cth: https://maps.google.com/..." />
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Deskripsi Tiket</label>
-                                                <textarea value={productForm.description} onChange={e => setProductForm({...productForm, description: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all h-24 resize-none" placeholder="Tuliskan info doorprize, aturan, jadwal, dll..."></textarea>
+                                                <textarea value={productForm.description} onChange={e => setProductForm({...productForm, description: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-blue-500/30/50 focus:shadow-md transition-all h-24 resize-none" placeholder="Tuliskan info doorprize, aturan, jadwal, dll..."></textarea>
                                             </div>
                                             <div className="bg-rose-50 border border-rose-200 rounded-2xl p-4 space-y-2">
                                                 <label className="text-[10px] font-medium text-rose-500 uppercase tracking-wider flex items-center gap-1.5">
@@ -736,14 +736,14 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                             </div>
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Upload Foto Cover (Opsional)</label>
-                                                <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-blue shadow-md' : 'border-slate-200'} p-3 rounded-2xl relative overflow-hidden focus-within:border-google-blue transition-all`}>
+                                                <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-blue-500/30 shadow-md' : 'border-slate-200'} p-3 rounded-2xl relative overflow-hidden focus-within:border-blue-500/30 transition-all`}>
                                                     <input type="file" accept="image/*" onChange={handleProductImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
-                                                    <div className="bg-white w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
-                                                        {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin"></div> : <Icon name="image" className="text-[20px]" />}
+                                                    <div className="bg-white w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-slate-500 dark:text-slate-400 relative z-0">
+                                                        {isUploading ? <div className="w-5 h-5 border border-blue-500/30 border-t-transparent rounded-full animate-spin"></div> : <Icon name="image" className="text-[20px]" />}
                                                     </div>
                                                     <div className="relative z-0 flex-1 min-w-0">
-                                                        <p className="font-medium text-[13px] text-google-text truncate">{isUploading ? "Mengunggah..." : (productForm.imageUrl ? "Gambar Siap" : "Pilih Gambar")}</p>
-                                                        <p className="text-[11px] text-google-textVariant truncate">{productForm.imageUrl ? "Klik untuk mengganti" : "Maksimal 10MB"}</p>
+                                                        <p className="font-medium text-[13px] text-slate-800 dark:text-white truncate">{isUploading ? "Mengunggah..." : (productForm.imageUrl ? "Gambar Siap" : "Pilih Gambar")}</p>
+                                                        <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{productForm.imageUrl ? "Klik untuk mengganti" : "Maksimal 10MB"}</p>
                                                     </div>
                                                     {productForm.imageUrl && !isUploading && (
                                                         <div className="relative z-20 shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-slate-200"><img src={productForm.imageUrl} alt="Preview" className="w-full h-full object-cover" /></div>
@@ -758,7 +758,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                                         type="checkbox"
                                                         checked={!!productForm.archived}
                                                         onChange={e => setProductForm({...productForm, archived: e.target.checked})}
-                                                        className="w-4.5 h-4.5 text-google-blue rounded border-slate-200 focus:ring-google-blue"
+                                                        className="w-4.5 h-4.5 text-blue-600 dark:text-blue-400 rounded border-slate-200 focus:ring-blue-500"
                                                     />
                                                     <div className="flex-1">
                                                         <span className="text-[12.5px] font-medium text-slate-800">Arsipkan Event ini</span>
@@ -789,7 +789,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-100">
                                             <button onClick={() => setIsProductModalOpen(false)} className="w-1/3 bg-white text-slate-700 border border-slate-200 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
-                                            <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
+                                            <button onClick={handleSaveProduct} disabled={isUploading} className="w-2/3 bg-blue-600 text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-blue-800 transition-all flex items-center justify-center gap-2"><Icon name="save" className="text-[16px]"/> Simpan Produk</button>
                                         </div>
 
                                     </div>
@@ -813,21 +813,21 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
 
                             {/* Warga Sub Tabs */}
                             <div className="slide-list-scroller bg-white/95 dark:bg-slate-900/95 border border-slate-200/80 dark:border-slate-800 p-2 rounded-2xl shadow-sm flex gap-2 overflow-x-auto scrollbar-none whitespace-nowrap items-center">
-                                <button onClick={() => setActiveSubTab('shop')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'shop' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('shop')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'shop' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="shopping_bag" className="text-[15px]" />
                                     <span>Beli Tiket</span>
                                 </button>
-                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'my_tickets' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('my_tickets')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'my_tickets' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="confirmation_number" className="text-[15px]" />
                                     <span>Tiket Saya</span>
                                     {myTicketsFiltered.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-medium px-1.5 py-0.5 rounded-full shrink-0 ml-1 leading-none">{myTicketsFiltered.length}</span>}
                                 </button>
-                                <button onClick={() => setActiveSubTab('buyers_list')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'buyers_list' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('buyers_list')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 relative whitespace-nowrap shrink-0 ${activeSubTab === 'buyers_list' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="groups" className="text-[15px]" />
                                     <span>Daftar Pembeli</span>
                                     {buyersList.length > 0 && <span className="bg-rose-500 text-white text-[8.5px] font-medium px-1.5 py-0.5 rounded-full shrink-0 ml-1 leading-none">{buyersList.length}</span>}
                                 </button>
-                                <button onClick={() => setActiveSubTab('archive')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'archive' ? 'bg-google-blue text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                                <button onClick={() => setActiveSubTab('archive')} className={`px-4 py-2.5 rounded-full font-medium text-[12px] transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${activeSubTab === 'archive' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                                     <Icon name="archive" className="text-[15px]" />
                                     <span>Arsip Event</span>
                                 </button>
@@ -858,14 +858,14 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                                         <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
                                                     ) : (
                                                         <div className="w-full h-full bg-slate-100 flex flex-col items-center justify-center p-6 text-center">
-                                                            <div className="w-14 h-14 rounded-2xl bg-google-blue text-white flex items-center justify-center shadow-md mb-2">
+                                                            <div className="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-md mb-2">
                                                                 <Icon name="local_activity" className="text-[26px]" />
                                                             </div>
-                                                            <span className="text-[10px] font-medium uppercase tracking-widest text-google-blue dark:text-google-blueLight">Tiket Jalan Santai</span>
+                                                            <span className="text-[10px] font-medium uppercase tracking-widest text-blue-600 dark:text-blue-400 dark:text-blue-600 dark:text-blue-400Light">Tiket Jalan Santai</span>
                                                         </div>
                                                     )}
                                                     {/* Official Store Badge - top left */}
-                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-google-yellow text-white text-[9px] font-medium px-2.5 py-1 rounded-lg shadow-md shadow-amber-500/20  border border-white/20 tracking-wide">
+                                                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1 bg-amber-500 text-white text-[9px] font-medium px-2.5 py-1 rounded-lg shadow-md shadow-amber-500/20  border border-white/20 tracking-wide">
                                                         <Icon name="verified" className="text-[12px]" fill="true" />
                                                         OFFICIAL
                                                     </div>
@@ -884,7 +884,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                                 {/* Details */}
                                                 <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
                                                     <div className="space-y-5">
-                                                        <p className="text-[10.5px] font-medium text-google-blue mb-[-4px] uppercase tracking-wider">SKU: {prod.sku || ('TKT-' + String(prod.id).substring(8))}</p>
+                                                        <p className="text-[10.5px] font-medium text-blue-600 dark:text-blue-400 mb-[-4px] uppercase tracking-wider">SKU: {prod.sku || ('TKT-' + String(prod.id).substring(8))}</p>
                                                         <h4 className="font-medium text-[15px] text-slate-800 dark:text-slate-100 tracking-tight leading-snug line-clamp-1">{prod.name}</h4>
                                                         
                                                         {/* Price and Sold Row */}
@@ -911,7 +911,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
 
                                                         <p className={`text-[12px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed ${expandedDescId === prod.id ? '' : 'line-clamp-2'}`}>{prod.description || 'Tidak ada deskripsi.'}</p>
                                                         {(prod.description || '').length > 80 && (
-                                                            <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-medium text-google-blue dark:text-blue-400 hover:underline flex items-center gap-0.5">
+                                                            <button onClick={() => setExpandedDescId(expandedDescId === prod.id ? null : prod.id)} className="mt-1 text-[10.5px] font-medium text-blue-600 dark:text-blue-400 dark:text-blue-400 hover:underline flex items-center gap-0.5">
                                                                 <Icon name={expandedDescId === prod.id ? 'expand_less' : 'expand_more'} className="text-[14px]" />
                                                                 {expandedDescId === prod.id ? 'Tutup' : 'Selengkapnya'}
                                                             </button>
@@ -929,7 +929,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                                                 </div>
                                                             </div>
                                                             {prod.pickupGeoUrl && (
-                                                                <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-google-blueLight hover:bg-google-blueLight/85 text-google-blueDark dark:bg-blue-950/40 dark:text-blue-400 flex items-center justify-center shrink-0 border border-google-blue/20 dark:border-blue-900/30 transition-all hover:scale-105" title="Buka Google Maps">
+                                                                <a href={prod.pickupGeoUrl} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-50 dark:bg-blue-950/40/85 text-blue-700 dark:text-blue-300 dark:bg-blue-950/40 dark:text-blue-400 flex items-center justify-center shrink-0 border border-blue-500/20 dark:border-blue-900/30 transition-all hover:scale-105" title="Buka Google Maps">
                                                                     <Icon name="map" className="text-[14px]" />
                                                                 </a>
                                                             )}
@@ -945,7 +945,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                                                 <button
                                                                     onClick={() => handleOpenBuyModal(prod)}
                                                                     disabled={!canBuy}
-                                                                    className={`flex-1 py-3 rounded-full font-medium text-[12.5px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-md ${canBuy ? 'bg-google-blue hover:bg-google-blueDark text-white shadow-google-blue/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
+                                                                    className={`flex-1 py-3 rounded-full font-medium text-[12.5px] transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-md ${canBuy ? 'bg-blue-600 hover:bg-blue-800 text-white shadow-blue-500/15' : 'bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'}`}
                                                                 >
                                                                     <Icon name={isDeadlinePassed ? 'timer_off' : 'add_shopping_cart'} className="text-[16px]" />
                                                                     {isDeadlinePassed ? 'Pembelian Ditutup' : prod.stock > 0 ? 'Beli Tiket Sekarang' : 'Stok Habis'}
@@ -1044,7 +1044,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                 <div className="space-y-7">
                                     <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row gap-3">
                                         <div className="flex-1 relative">
-                                            <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white border border-slate-200 pr-5 py-3 rounded-2xl text-[13px] font-medium outline-none focus:border-google-blue/40" />
+                                            <input type="text" placeholder="Cari pesanan berdasarkan nama pembeli..." value={myTicketsSearch} onChange={e => setMyTicketsSearch(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white border border-slate-200 pr-5 py-3 rounded-2xl text-[13px] font-medium outline-none focus:border-blue-500/30" />
                                         </div>
                                         {myTicketsSearch && (
                                             <button onClick={() => setMyTicketsSearch('')} className="bg-white border border-slate-200 text-slate-650 hover:bg-slate-100 px-4 py-3 rounded-full text-[11px] font-medium transition-all">Reset</button>
@@ -1164,7 +1164,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                 <div className="space-y-7">
                                     {/* Info Banner */}
                                     <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 rounded-2xl p-4 flex items-start gap-3">
-                                        <Icon name="info" className="text-[18px] text-google-blue shrink-0 mt-0.5" />
+                                        <Icon name="info" className="text-[18px] text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
                                         <p className="text-[12px] font-medium text-blue-800 dark:text-blue-300 leading-relaxed">
                                             Daftar ini menampilkan semua warga yang telah memesan tiket (tidak termasuk yang dibatalkan). Total <span className="font-medium">{buyersList.length} pembeli</span> dengan <span className="font-medium">{buyersTotalTickets} tiket</span> telah dipesan.
                                         </p>
@@ -1172,7 +1172,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
 
                                     {/* Search */}
                                     <div className="relative">
-                                        <input type="text" placeholder="Cari nama pembeli..." value={buyersSearch} onChange={e => setBuyersSearch(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 pr-5 py-3 rounded-2xl text-[13px] font-medium outline-none focus:border-google-blue/40 dark:text-slate-200" />
+                                        <input type="text" placeholder="Cari nama pembeli..." value={buyersSearch} onChange={e => setBuyersSearch(e.target.value)} style={{ paddingLeft: '1.25rem' }} className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 pr-5 py-3 rounded-2xl text-[13px] font-medium outline-none focus:border-blue-500/30 dark:text-slate-200" />
                                         {buyersSearch && (
                                             <button onClick={() => setBuyersSearch('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"><Icon name="close" className="text-[16px]" /></button>
                                         )}
@@ -1205,7 +1205,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                                             <p className="text-[10px] font-medium text-slate-400 dark:text-slate-500 truncate mt-0.5">{order.productName}</p>
                                                         </div>
                                                         <div className="col-span-3 text-center">
-                                                            <span className="inline-flex items-center gap-1 bg-google-blueLight dark:bg-blue-950/40 text-google-blueDark dark:text-blue-400 border border-google-blue/20 dark:border-blue-900/40 text-[11px] font-medium px-2.5 py-1 rounded-full">
+                                                            <span className="inline-flex items-center gap-1 bg-blue-50 dark:bg-blue-950/40 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 dark:text-blue-400 border border-blue-500/20 dark:border-blue-900/40 text-[11px] font-medium px-2.5 py-1 rounded-full">
                                                                 <Icon name="confirmation_number" className="text-[11px]" />
                                                                 {order.quantity}
                                                             </span>
@@ -1219,7 +1219,7 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                             {/* Footer Ringkasan */}
                                             <div className="px-5 py-3.5 bg-slate-50 dark:bg-slate-850 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
                                                 <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">Total {buyersListFiltered.length} pembeli</span>
-                                                <span className="inline-flex items-center gap-1.5 bg-google-blue text-white text-[11px] font-medium px-3 py-1.5 rounded-full">
+                                                <span className="inline-flex items-center gap-1.5 bg-blue-600 text-white text-[11px] font-medium px-3 py-1.5 rounded-full">
                                                     <Icon name="confirmation_number" className="text-[12px]" />
                                                     {buyersListFiltered.reduce((sum, o) => sum + (o.quantity || 0), 0)} Tiket Dipesan
                                                 </span>
@@ -1231,14 +1231,14 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
 
                             {/* Modal Beli Tiket (Warga) */}
                             {isBuyModalOpen && selectedProduct && (
-                                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                                    <div className="rounded-3xl p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
+                                <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop animate-backdrop-in">
+                                    <div className="rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 w-full max-w-lg max-h-[90vh] overflow-y-auto hide-scrollbar shadow-2xl border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                         <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
                                             <h3 className="text-lg font-medium text-slate-800">Formulir Beli Tiket</h3>
                                             <button onClick={() => setIsBuyModalOpen(false)} className="w-8 h-8 rounded-full border border-slate-200 text-slate-400 hover:bg-slate-100 flex items-center justify-center"><Icon name="close" /></button>
                                         </div>
                                         <div className="space-y-6">
-                                            <div className="bg-google-blueLight border border-google-blue/20 rounded-2xl p-4 text-[12px] text-google-blueDark">
+                                            <div className="bg-blue-50 dark:bg-blue-950/40 border border-blue-500/20 rounded-2xl p-4 text-[12px] text-blue-700 dark:text-blue-300">
                                                 <p className="font-medium">{selectedProduct.name}</p>
                                                 <p className="font-medium text-slate-500 mt-0.5">Harga: {formatRp(selectedProduct.price)} / tiket</p>
                                                 <p className="font-medium text-slate-500">Tersedia: {selectedProduct.stock} tiket</p>
@@ -1248,11 +1248,11 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Metode Penerimaan Tiket</label>
                                                 <div className="grid grid-cols-2 gap-3">
-                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'pickup' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'pickup' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'pickup' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'pickup' ? 'border-blue-500/30 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
                                                         <Icon name="store" className="text-[20px]" />
                                                         <span>Ambil Sendiri (COD)</span>
                                                     </button>
-                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-google-blue bg-google-blueLight text-google-blueDark shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
+                                                    <button type="button" onClick={() => setBuyForm({ ...buyForm, deliveryMethod: 'delivery' })} className={`p-4 rounded-full border font-medium text-[12px] text-center flex flex-col items-center justify-center gap-2 transition-all ${buyForm.deliveryMethod === 'delivery' ? 'border-blue-500/30 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
                                                         <Icon name="local_shipping" className="text-[20px]" />
                                                         <span>Antar ke Rumah (COD)</span>
                                                     </button>
@@ -1265,14 +1265,14 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                                     <div className="grid grid-cols-2 gap-3">
                                                         <div>
                                                             <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Hari Pengantaran</label>
-                                                            <input type="text" value={buyForm.deliveryDay} onChange={e => setBuyForm({...buyForm, deliveryDay: e.target.value})} className="w-full bg-white border border-slate-200 p-3.5 text-[13px] font-medium outline-none rounded-xl focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Sabtu / Hari ini" />
+                                                            <input type="text" value={buyForm.deliveryDay} onChange={e => setBuyForm({...buyForm, deliveryDay: e.target.value})} className="w-full bg-white border border-slate-200 p-3.5 text-[13px] font-medium outline-none rounded-xl focus:border-blue-500/30/50 focus:shadow-sm transition-all" placeholder="Cth: Sabtu / Hari ini" />
                                                         </div>
                                                         <div>
                                                             <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-1.5 ml-1">Jam Pengantaran</label>
-                                                            <input type="text" value={buyForm.deliveryTime} onChange={e => setBuyForm({...buyForm, deliveryTime: e.target.value})} className="w-full bg-white border border-slate-200 p-3.5 text-[13px] font-medium outline-none rounded-xl focus:border-google-blue/50 focus:shadow-sm transition-all" placeholder="Cth: Jam 4 Sore / Malam" />
+                                                            <input type="text" value={buyForm.deliveryTime} onChange={e => setBuyForm({...buyForm, deliveryTime: e.target.value})} className="w-full bg-white border border-slate-200 p-3.5 text-[13px] font-medium outline-none rounded-xl focus:border-blue-500/30/50 focus:shadow-sm transition-all" placeholder="Cth: Jam 4 Sore / Malam" />
                                                         </div>
                                                     </div>
-                                                    <p className="text-[11px] text-slate-500 leading-normal flex items-start gap-1"><Icon name="info" className="text-[13px] text-google-blue shrink-0 mt-0.5" /> Karena lingkungan RT sama, alamat tidak diperlukan. Cukup atur waktu agar pengurus RT bisa mengantarkan tiket ke rumah Anda.</p>
+                                                    <p className="text-[11px] text-slate-500 leading-normal flex items-start gap-1"><Icon name="info" className="text-[13px] text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" /> Karena lingkungan RT sama, alamat tidak diperlukan. Cukup atur waktu agar pengurus RT bisa mengantarkan tiket ke rumah Anda.</p>
                                                 </div>
                                             ) : (
                                                 <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 p-4 rounded-2xl text-[12px] text-emerald-800 dark:text-emerald-400 animate-fade-in">
@@ -1294,13 +1294,13 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
 
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Nama Lengkap Pembeli</label>
-                                                <input type="text" value={buyForm.name} onChange={e => setBuyForm({...buyForm, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Budi RT 02" />
+                                                <input type="text" value={buyForm.name} onChange={e => setBuyForm({...buyForm, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-blue-500/30/50 focus:shadow-md transition-all" placeholder="Cth: Budi RT 02" />
                                             </div>
 
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Jumlah Tiket</label>
-                                                    <div className="flex items-center gap-0 bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden focus-within:border-google-blue/50 focus-within:shadow-md transition-all">
+                                                    <div className="flex items-center gap-0 bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden focus-within:border-blue-500/30/50 focus-within:shadow-md transition-all">
                                                         <button
                                                             type="button"
                                                             onClick={() => setBuyForm(f => ({ ...f, quantity: Math.max(1, (f.quantity || 1) - 1) }))}
@@ -1313,14 +1313,14 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                                                             type="button"
                                                             onClick={() => setBuyForm(f => ({ ...f, quantity: Math.min(selectedProduct.stock, (f.quantity || 1) + 1) }))}
                                                             disabled={(buyForm.quantity || 1) >= selectedProduct.stock}
-                                                            className="w-14 h-14 flex items-center justify-center text-slate-500 hover:bg-green-50 hover:text-google-green active:scale-90 transition-all text-xl font-medium flex-shrink-0 select-none disabled:opacity-30 disabled:cursor-not-allowed"
+                                                            className="w-14 h-14 flex items-center justify-center text-slate-500 hover:bg-green-50 hover:text-emerald-600 dark:text-emerald-400 active:scale-90 transition-all text-xl font-medium flex-shrink-0 select-none disabled:opacity-30 disabled:cursor-not-allowed"
                                                         >+</button>
                                                     </div>
-                                                    <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">Stok tersedia: <span className="text-google-blue font-medium">{selectedProduct.stock}</span> tiket</p>
+                                                    <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">Stok tersedia: <span className="text-blue-600 dark:text-blue-400 font-medium">{selectedProduct.stock}</span> tiket</p>
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Total Pembayaran</label>
-                                                    <div className="w-full bg-google-blueLight border border-google-blue/20 p-4 text-[15px] font-medium text-google-blue rounded-2xl flex items-center justify-center h-14">
+                                                    <div className="w-full bg-blue-50 dark:bg-blue-950/40 border border-blue-500/20 p-4 text-[15px] font-medium text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center h-14">
                                                         {formatRp(Number(buyForm.quantity || 1) * selectedProduct.price)}
                                                     </div>
                                                     <p className="text-[10px] text-slate-400 font-medium mt-1.5 ml-1">{formatRp(selectedProduct.price)} × {buyForm.quantity || 1} tiket</p>
@@ -1329,14 +1329,14 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
 
                                             <div>
                                                 <label className="text-[10px] font-medium text-slate-400 uppercase tracking-wider block mb-2 ml-1">Catatan Tambahan (Opsional)</label>
-                                                <input type="text" value={buyForm.notes} onChange={e => setBuyForm({...buyForm, notes: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-google-blue/50 focus:shadow-md transition-all" placeholder="Cth: Kaos Ukuran L / Minta diantar sore hari" />
+                                                <input type="text" value={buyForm.notes} onChange={e => setBuyForm({...buyForm, notes: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl focus:bg-white focus:border-blue-500/30/50 focus:shadow-md transition-all" placeholder="Cth: Kaos Ukuran L / Minta diantar sore hari" />
                                             </div>
 
                                             {wargaError && <div className="bg-red-50 text-red-600 p-4 rounded-xl text-[12px] font-medium border border-red-200 flex items-center gap-2"><Icon name="error" /> {wargaError}</div>}
                                         </div>
                                         <div className="flex gap-3 mt-8 pt-6 border-t border-slate-100">
                                             <button onClick={() => setIsBuyModalOpen(false)} className="w-1/3 bg-white text-slate-700 border border-slate-200 px-4 py-3.5 rounded-full font-medium text-[13px] hover:bg-slate-50 transition-all shadow-sm">Batal</button>
-                                            <button onClick={handlePlaceOrder} className="w-2/3 bg-google-blue text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-google-blueDark transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
+                                            <button onClick={handlePlaceOrder} className="w-2/3 bg-blue-600 text-white px-4 py-3.5 rounded-full font-medium text-[13px] shadow-md hover:shadow-lg hover:bg-blue-800 transition-all flex items-center justify-center gap-2"><Icon name="shopping_cart_checkout" className="text-[16px]"/> Pesan Tiket (COD)</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1345,8 +1345,8 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                     )}
 
                     {confirmModal && (
-                        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="rounded-3xl p-6 sm:p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
+                        <div className="fixed inset-0 z-[150] flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop animate-backdrop-in">
+                            <div className="rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 w-full max-w-sm text-center shadow-2xl border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-100 text-red-500">
                                     <Icon name="delete_forever" className="text-[40px]" fill="true" />
                                 </div>
@@ -1361,17 +1361,17 @@ import { formatRp, getLocalDate, uploadToGoogleDrive } from '../../utils/helpers
                     )}
 
                     {sharingProduct && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
-                            <div className="rounded-3xl p-6 sm:p-8 max-w-sm w-full border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
+                        <div className="fixed inset-0 z-[120] flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in modal-backdrop animate-backdrop-in">
+                            <div className="rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 max-w-sm w-full shadow-2xl border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
                                 <div className="flex justify-between items-center mb-6 pb-3 border-b border-slate-100 dark:border-slate-800">
-                                    <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 flex items-center gap-2"><Icon name="share" className="text-google-blue" /> Bagikan Tiket</h3>
+                                    <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 flex items-center gap-2"><Icon name="share" className="text-blue-600 dark:text-blue-400" /> Bagikan Tiket</h3>
                                     <button onClick={() => setSharingProduct(null)} className="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"><Icon name="close" /></button>
                                 </div>
 
                                 <div className="mb-6 bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
                                     <h4 className="font-medium text-[14px] text-slate-800 dark:text-slate-200 line-clamp-1">{sharingProduct.name}</h4>
-                                    <p className="text-[12px] font-medium text-google-blue mt-0.5">{formatRp(sharingProduct.price)}</p>
-                                    <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-1.5 flex items-center gap-1"><Icon name="location_on" className="text-[13px] text-google-blue" /> {sharingProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
+                                    <p className="text-[12px] font-medium text-blue-600 dark:text-blue-400 mt-0.5">{formatRp(sharingProduct.price)}</p>
+                                    <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-1.5 flex items-center gap-1"><Icon name="location_on" className="text-[13px] text-blue-600 dark:text-blue-400" /> {sharingProduct.pickupLocationName || 'Rumah Mas Novan / Rumah Pak RT'}</p>
                                 </div>
 
                                 <div className="space-y-2.5">

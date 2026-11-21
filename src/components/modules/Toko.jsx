@@ -181,7 +181,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 <div className="bg-white dark:bg-slate-900 p-10 sm:p-16 rounded-3xl border border-slate-200 dark:border-slate-800 text-center shadow-sm">
                     <Icon name="shopping_cart" className="text-[56px] text-slate-300 dark:text-slate-700 mb-3" />
                     <p className="font-medium text-slate-500 dark:text-slate-400 text-sm">Keranjang masih kosong.</p>
-                    <button onClick={() => setView('list')} className="mt-4 px-5 py-2 bg-google-blue hover:bg-google-blueDark dark:bg-blue-600 dark:hover:bg-blue-750 text-white rounded-full font-medium text-xs transition-all">Lihat Produk</button>
+                    <button onClick={() => setView('list')} className="mt-4 px-5 py-2 bg-blue-600 hover:bg-blue-600Dark dark:bg-blue-600 dark:hover:bg-blue-750 text-white rounded-full font-medium text-xs transition-all">Lihat Produk</button>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -199,21 +199,21 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                         </div>
                                     </div>
                                     <div className="text-right shrink-0">
-                                        <p className="text-xs sm:text-sm font-medium text-google-green dark:text-google-greenLight">{formatRp(item.price * item.qty)}</p>
+                                        <p className="text-xs sm:text-sm font-medium text-emerald-600 dark:text-emerald-400 dark:text-emerald-300 dark:text-emerald-400">{formatRp(item.price * item.qty)}</p>
                                         <button onClick={() => { const nc = {...cart}; delete nc[key]; setCart(nc); }} className="text-[10px] sm:text-[11px] text-red-500 font-medium hover:underline mt-0.5">Hapus</button>
                                     </div>
                                 </div>
                             ))}
                             <div className="bg-slate-50 dark:bg-slate-850 px-5 py-4 rounded-xl flex justify-between items-center border border-slate-200 dark:border-slate-800">
                                 <span className="font-medium text-slate-600 dark:text-slate-300 text-sm">Total Belanja</span>
-                                <span className="text-base sm:text-lg font-medium text-google-green dark:text-google-greenLight">{formatRp(cartTotal)}</span>
+                                <span className="text-base sm:text-lg font-medium text-emerald-600 dark:text-emerald-400 dark:text-emerald-300 dark:text-emerald-400">{formatRp(cartTotal)}</span>
                             </div>
                         </div>
-                        <div className="bg-google-greenLight/20 dark:bg-google-greenDark/10 border border-google-green/30 p-5 rounded-2xl flex gap-4 items-start">
-                            <Icon name="local_shipping" className="text-google-green text-[20px] shrink-0 mt-0.5" />
+                        <div className="bg-emerald-50 dark:bg-emerald-950/40/20 dark:bg-emerald-900/40/10 border border-emerald-500/30 p-5 rounded-2xl flex gap-4 items-start">
+                            <Icon name="local_shipping" className="text-emerald-600 dark:text-emerald-400 text-[20px] shrink-0 mt-0.5" />
                             <div>
-                                <p className="font-medium text-google-greenDark dark:text-google-greenLight text-sm">Gratis Ongkir & COD</p>
-                                <p className="text-xs text-google-greenDark/80 dark:text-google-greenLight/80 mt-0.5 leading-relaxed">Pesanan diantar langsung ke rumah Anda. Pembayaran tunai saat barang tiba.</p>
+                                <p className="font-medium text-emerald-700 dark:text-emerald-300 dark:text-emerald-300 dark:text-emerald-400 text-sm">Gratis Ongkir & COD</p>
+                                <p className="text-xs text-emerald-700 dark:text-emerald-300/80 dark:text-emerald-300 dark:text-emerald-400/80 mt-0.5 leading-relaxed">Pesanan diantar langsung ke rumah Anda. Pembayaran tunai saat barang tiba.</p>
                             </div>
                         </div>
                     </div>
@@ -226,7 +226,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         ].map(f => (
                             <div key={f.key}>
                                 <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2 block">{f.label}</label>
-                                <input type={f.type} value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-google-green dark:focus:border-green-500 text-slate-800 dark:text-white rounded-xl px-5 py-3.5 text-sm font-medium outline-none transition-colors" placeholder={f.placeholder} />
+                                <input type={f.type} value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-emerald-500/30 dark:focus:border-green-500 text-slate-800 dark:text-white rounded-xl px-5 py-3.5 text-sm font-medium outline-none transition-colors" placeholder={f.placeholder} />
                             </div>
                         ))}
                         {[
@@ -235,10 +235,10 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         ].map(f => (
                             <div key={f.key}>
                                 <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2 block">{f.label}</label>
-                                <textarea rows="2" value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-google-green dark:focus:border-green-500 text-slate-800 dark:text-white rounded-xl px-5 py-3.5 text-sm font-medium outline-none transition-colors resize-none" placeholder={f.placeholder} />
+                                <textarea rows="2" value={checkoutForm[f.key]} onChange={e => setCheckoutForm({...checkoutForm, [f.key]: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-emerald-500/30 dark:focus:border-green-500 text-slate-800 dark:text-white rounded-xl px-5 py-3.5 text-sm font-medium outline-none transition-colors resize-none" placeholder={f.placeholder} />
                             </div>
                         ))}
-                        <button onClick={processCheckout} className="w-full bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-700 text-white font-medium py-3.5 sm:py-4 rounded-full shadow-md shadow-green-500/30 active:scale-95 transition-all text-sm">
+                        <button onClick={processCheckout} className="w-full bg-emerald-600 hover:bg-emerald-900/40 dark:bg-green-600 dark:hover:bg-green-700 text-white font-medium py-3.5 sm:py-4 rounded-full shadow-md shadow-green-500/30 active:scale-95 transition-all text-sm">
                             ✓ Buat Pesanan & Bayar COD
                         </button>
                     </div>
@@ -269,7 +269,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             cleanUrl.searchParams.set('product', selectedProduct.sku || selectedProduct.id);
                             navigator.clipboard.writeText(cleanUrl.toString());
                             showToast('Tautan produk berhasil disalin!');
-                        }} className="absolute top-3 right-3 w-8 h-8 bg-white/95 dark:bg-slate-900/95 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-google-blue hover:bg-white dark:hover:bg-slate-850 transition-colors shadow-sm" title="Bagikan Produk">
+                        }} className="absolute top-3 right-3 w-8 h-8 bg-white/95 dark:bg-slate-900/95 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:text-blue-400 hover:bg-white dark:hover:bg-slate-850 transition-colors shadow-sm" title="Bagikan Produk">
                             <Icon name="share" className="text-[14px]" />
                         </button>
                     </div>
@@ -285,7 +285,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 )}
                             </div>
                             {selectedProduct.kategori && (
-                                <span className="inline-block bg-google-blue/10 text-google-blue dark:bg-blue-900/30 dark:text-blue-400 px-2.5 py-1 rounded-md text-[10px] font-medium mb-3 uppercase tracking-wider border border-google-blue/20">
+                                <span className="inline-block bg-blue-600/10 text-blue-600 dark:text-blue-400 dark:bg-blue-900/30 dark:text-blue-400 px-2.5 py-1 rounded-md text-[10px] font-medium mb-3 uppercase tracking-wider border border-blue-500/30/20">
                                     {selectedProduct.kategori}
                                 </span>
                             )}
@@ -303,7 +303,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <div className="flex flex-wrap gap-2">
                                 {selectedProduct.variants.map(v => (
                                     <button key={v.id} onClick={() => setSelectedVariant(v)}
-                                        className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full sm:rounded-full font-medium text-xs sm:text-sm border transition-all active:scale-95 ${selectedVariant?.id === v.id ? 'bg-google-blue text-white border-google-blueDark shadow-md' : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-750 hover:border-google-blue/50'}`}>
+                                        className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full sm:rounded-full font-medium text-xs sm:text-sm border transition-all active:scale-95 ${selectedVariant?.id === v.id ? 'bg-blue-600 text-white border-blue-700 shadow-md' : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-750 hover:border-blue-500/30/50'}`}>
                                         {v.name} &bull; {formatRp(v.price)}
                                     </button>
                                 ))}
@@ -313,13 +313,13 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         <div>
                             <label className="text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 block">Jumlah Beli (Qty)</label>
                             <div className="flex items-center gap-3">
-                                <input type="number" step="0.1" min="0.1" value={orderQty} onChange={e => setOrderQty(e.target.value)} className="w-20 sm:w-24 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white rounded-xl px-2 sm:px-3 py-2 sm:py-2.5 text-center font-medium text-sm outline-none" />
+                                <input type="number" step="0.1" min="0.1" value={orderQty} onChange={e => setOrderQty(e.target.value)} className="w-20 sm:w-24 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-blue-500/30 dark:focus:border-blue-500 text-slate-800 dark:text-white rounded-xl px-2 sm:px-3 py-2 sm:py-2.5 text-center font-medium text-sm outline-none" />
                                 <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Bisa desimal (cth: 1.5)</span>
                             </div>
                             {selectedProduct.grosirMinQty > 0 && selectedProduct.grosirPrice > 0 && (
-                                <div className="bg-google-yellowLight/20 border border-google-yellow/40 p-3 rounded-xl flex gap-2 items-start mt-3">
-                                    <Icon name="sell" className="text-google-yellowDark text-[16px] shrink-0 mt-0.5" />
-                                    <p className="text-[11px] text-google-yellowDark dark:text-google-yellowLight font-medium leading-relaxed">
+                                <div className="bg-amber-50 dark:bg-amber-950/40/20 border border-amber-500/30/40 p-3 rounded-xl flex gap-2 items-start mt-3">
+                                    <Icon name="sell" className="text-amber-700 dark:text-amber-300 text-[16px] shrink-0 mt-0.5" />
+                                    <p className="text-[11px] text-amber-700 dark:text-amber-300  font-medium leading-relaxed">
                                         Beli <span className="underline underline-offset-1">{selectedProduct.grosirMinQty}</span>+ dapat harga grosir: <span className="underline underline-offset-1">{formatRp(selectedProduct.grosirPrice)}</span>/varian
                                         {safeNumber(orderQty) >= safeNumber(selectedProduct.grosirMinQty) && <span className="ml-2 bg-green-500 text-white px-2 py-0.5 rounded-full text-[10px] font-medium">✓ Aktif!</span>}
                                     </p>
@@ -330,7 +330,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
                             <div className="flex justify-between items-center mb-3">
                                 <span className="font-medium text-slate-600 dark:text-slate-300 text-sm">Subtotal</span>
-                                <span className="text-lg sm:text-xl font-medium text-google-green dark:text-google-greenLight">{formatRp(effPrice * safeNumber(orderQty))}</span>
+                                <span className="text-lg sm:text-xl font-medium text-emerald-600 dark:text-emerald-400 dark:text-emerald-300 dark:text-emerald-400">{formatRp(effPrice * safeNumber(orderQty))}</span>
                             </div>
                             <button onClick={addToCart} className="btn-native-primary w-full bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-500/20 border-emerald-500/30 flex justify-center items-center gap-2">
                                 <Icon name="add_shopping_cart" className="text-[18px]" /> Tambah ke Keranjang
@@ -347,24 +347,24 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
         <>
         <div className="space-y-7">
             <PageHeader title="Kelola Katalog Produk" subtitle="Tambah, edit, dan hapus produk toko" onBack={() => setView('list')}>
-                <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', donasiKas: 0, variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-google-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium text-xs sm:text-[13px] hover:bg-google-blueDark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
+                <button onClick={() => { setProductForm({ judul: '', kategori: '', deskripsi: '', imageUrl: '', isPublished: true, grosirMinQty: '', grosirPrice: '', donasiKas: 0, variants: [{ id: Date.now(), name: 'Reguler', price: 0 }] }); setEditingProduct(null); setIsFormOpen(true); }} className="bg-blue-600 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium text-xs sm:text-[13px] hover:bg-blue-600Dark shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
                     <Icon name="add" className="text-[16px] sm:text-[18px]" /> <span className="hidden sm:inline">Produk</span> Baru
                 </button>
             </PageHeader>
 
             {isFormOpen && (
-                <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-google-blue dark:border-blue-600 shadow-lg space-y-7">
+                <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-blue-500/30 dark:border-blue-600 shadow-lg space-y-7">
                     <h3 className="font-medium text-slate-800 dark:text-white text-base sm:text-lg border-b border-slate-200 dark:border-slate-800 pb-3">{editingProduct ? ' Edit Produk' : '+ Produk Baru'}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         {/* Kolom Kiri */}
                         <div className="space-y-6">
                             <div>
                                 <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Nama / Judul Produk *</label>
-                                <input type="text" value={productForm.judul} onChange={e => setProductForm({...productForm, judul: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Beras Premium 5Kg..." />
+                                <input type="text" value={productForm.judul} onChange={e => setProductForm({...productForm, judul: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-blue-500/30 dark:focus:border-blue-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Beras Premium 5Kg..." />
                             </div>
                             <div>
                                 <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Kategori Produk</label>
-                                <input list="kategori-options" type="text" value={productForm.kategori || ''} onChange={e => setProductForm({...productForm, kategori: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Pilih atau Ketik Kategori Baru..." />
+                                <input list="kategori-options" type="text" value={productForm.kategori || ''} onChange={e => setProductForm({...productForm, kategori: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-blue-500/30 dark:focus:border-blue-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Pilih atau Ketik Kategori Baru..." />
                                 <datalist id="kategori-options">
                                     <option value="Sembako & Kebutuhan Harian" />
                                     <option value="Makanan & Minuman" />
@@ -384,19 +384,19 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             )}
                             <div>
                                 <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Deskripsi Produk</label>
-                                <textarea rows="3" value={productForm.deskripsi} onChange={e => setProductForm({...productForm, deskripsi: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-xl px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none text-slate-800 dark:text-white" placeholder="Deskripsi produk..." />
+                                <textarea rows="3" value={productForm.deskripsi} onChange={e => setProductForm({...productForm, deskripsi: e.target.value})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-blue-500/30 dark:focus:border-blue-500 rounded-xl px-4 py-2.5 text-sm font-medium outline-none transition-colors resize-none text-slate-800 dark:text-white" placeholder="Deskripsi produk..." />
                             </div>
                             <div>
                                 <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Donasi Kas RT per Unit (Rp)</label>
-                                <input type="number" value={productForm.donasiKas || 0} onChange={e => setProductForm({...productForm, donasiKas: safeNumber(e.target.value)})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-google-blue dark:focus:border-blue-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Cth: 1000" />
+                                <input type="number" value={productForm.donasiKas || 0} onChange={e => setProductForm({...productForm, donasiKas: safeNumber(e.target.value)})} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 focus:border-blue-500/30 dark:focus:border-blue-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm font-medium outline-none transition-colors text-slate-800 dark:text-white" placeholder="Cth: 1000" />
                             </div>
                             {/* Upload Gambar */}
                             <div>
                                 <label className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5 block">Gambar Produk (Auto GDrive)</label>
-                                <div className={`flex items-center gap-3 bg-slate-50 dark:bg-slate-800 border ${isUploading ? 'border-google-blue' : productForm.imageUrl ? 'border-google-green' : 'border-slate-200 dark:border-slate-750'} p-3 rounded-2xl relative overflow-hidden transition-all`}>
+                                <div className={`flex items-center gap-3 bg-slate-50 dark:bg-slate-800 border ${isUploading ? 'border-blue-500/30' : productForm.imageUrl ? 'border-emerald-500/30' : 'border-slate-200 dark:border-slate-750'} p-3 rounded-2xl relative overflow-hidden transition-all`}>
                                     <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                                     <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0 shadow-sm border border-slate-200 dark:border-slate-700 z-0 overflow-hidden">
-                                        {isUploading ? <div className="w-5 h-5 border border-google-blue border-t-transparent rounded-full animate-spin" />
+                                        {isUploading ? <div className="w-5 h-5 border border-blue-500/30 border-t-transparent rounded-full animate-spin" />
                                             : productForm.imageUrl ? <img src={productForm.imageUrl} className="w-full h-full object-cover" />
                                             : <Icon name="cloud_upload" className="text-[22px] text-slate-400" />}
                                     </div>
@@ -406,8 +406,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     </div>
                                 </div>
                             </div>
-                            <label className="flex items-center gap-3 cursor-pointer p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 rounded-xl hover:border-google-blue transition-colors">
-                                <input type="checkbox" checked={productForm.isPublished} onChange={e => setProductForm({...productForm, isPublished: e.target.checked})} className="w-5 h-5 accent-google-blue rounded" />
+                            <label className="flex items-center gap-3 cursor-pointer p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-750 rounded-xl hover:border-blue-500/30 transition-colors">
+                                <input type="checkbox" checked={productForm.isPublished} onChange={e => setProductForm({...productForm, isPublished: e.target.checked})} className="w-5 h-5 accent-red-600 rounded" />
                                 <div>
                                     <p className="font-medium text-sm text-slate-700 dark:text-slate-300">Publikasikan ke Warga</p>
                                     <p className="text-[10px] text-slate-400 font-medium">Produk akan tampil di halaman warga & landing page</p>
@@ -420,13 +420,13 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                             <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-750 space-y-5">
                                 <div className="flex justify-between items-center">
                                     <h4 className="font-medium text-slate-700 dark:text-slate-300 text-sm">Varian & Harga</h4>
-                                    <button onClick={() => setProductForm({...productForm, variants: [...productForm.variants, { id: Date.now(), name: '', price: 0 }]})} className="text-xs font-medium text-google-blue flex items-center gap-0.5 hover:underline"><Icon name="add" className="text-[14px]" />Tambah</button>
+                                    <button onClick={() => setProductForm({...productForm, variants: [...productForm.variants, { id: Date.now(), name: '', price: 0 }]})} className="text-xs font-medium text-blue-600 dark:text-blue-400 flex items-center gap-0.5 hover:underline"><Icon name="add" className="text-[14px]" />Tambah</button>
                                 </div>
                                 {productForm.variants.map((v, i) => (
                                     <div key={v.id} className="flex flex-col sm:flex-row gap-2 sm:items-center">
-                                        <input type="text" value={v.name} onChange={e => { const nv = [...productForm.variants]; nv[i].name = e.target.value; setProductForm({...productForm, variants: nv}); }} placeholder="Nama Varian" className="w-full sm:flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white" />
+                                        <input type="text" value={v.name} onChange={e => { const nv = [...productForm.variants]; nv[i].name = e.target.value; setProductForm({...productForm, variants: nv}); }} placeholder="Nama Varian" className="w-full sm:flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-blue-500/30 dark:focus:border-blue-500 text-slate-800 dark:text-white" />
                                         <div className="flex gap-2 w-full sm:w-auto sm:flex-1 items-center">
-                                            <input type="number" value={v.price} onChange={e => { const nv = [...productForm.variants]; nv[i].price = safeNumber(e.target.value); setProductForm({...productForm, variants: nv}); }} placeholder="Harga" className="w-full flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-google-blue dark:focus:border-blue-500 text-slate-800 dark:text-white" />
+                                            <input type="number" value={v.price} onChange={e => { const nv = [...productForm.variants]; nv[i].price = safeNumber(e.target.value); setProductForm({...productForm, variants: nv}); }} placeholder="Harga" className="w-full flex-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-blue-500/30 dark:focus:border-blue-500 text-slate-800 dark:text-white" />
                                             {productForm.variants.length > 1 && <button onClick={() => setProductForm({...productForm, variants: productForm.variants.filter(va => va.id !== v.id)})} className="w-7 h-7 shrink-0 bg-red-100 dark:bg-red-950/30 text-red-600 rounded-full flex items-center justify-center hover:bg-red-200"><Icon name="close" className="text-[14px]" /></button>}
                                         </div>
                                     </div>
@@ -451,7 +451,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                     </div>
                     <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-800 justify-end">
                         <button onClick={() => { setIsFormOpen(false); setEditingProduct(null); }} className="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all border border-slate-300 dark:border-slate-750 text-sm">Batal</button>
-                        <button onClick={saveProduct} className="px-5 py-2.5 bg-google-blue text-white font-medium rounded-full hover:bg-google-blueDark active:scale-95 transition-all shadow-md text-sm">Simpan Produk</button>
+                        <button onClick={saveProduct} className="px-5 py-2.5 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-600Dark active:scale-95 transition-all shadow-md text-sm">Simpan Produk</button>
                     </div>
                 </div>
             )}
@@ -538,8 +538,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
         {/* Modern Confirm Modal */}
         {tokoConfirm && (
-            <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                <div className="w-full max-w-xs text-center modal-card animate-modal-in p-7">
+            <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop animate-backdrop-in">
+                <div className="w-full max-w-sm text-center modal-card animate-modal-in rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-7 shadow-2xl">
                     <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Icon name="warning" className="text-[32px] text-red-500" fill="true" />
                     </div>
@@ -583,7 +583,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                     <p className="text-[12px] font-medium text-slate-700 dark:text-slate-300">#TK-{String(order.id).slice(-6)}</p>
                                 </div>
                             </div>
-                            <span className={`px-3 py-1 rounded-lg text-[9px] font-medium uppercase shrink-0 border ${order.status === 'Menunggu' ? 'bg-amber-50 border-amber-200 text-amber-700' : order.status === 'Diproses' ? 'bg-google-blueLight border-google-blue/30 text-google-blueDark' : order.status === 'Diantar' ? 'bg-slate-100 border-slate-300 text-slate-600' : order.status === 'Selesai' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-red-50 border-red-200 text-red-700'}`}>{order.status}</span>
+                            <span className={`px-3 py-1 rounded-lg text-[9px] font-medium uppercase shrink-0 border ${order.status === 'Menunggu' ? 'bg-amber-50 border-amber-200 text-amber-700' : order.status === 'Diproses' ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-500/30/30 text-blue-700 dark:text-blue-300' : order.status === 'Diantar' ? 'bg-slate-100 border-slate-300 text-slate-600' : order.status === 'Selesai' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-red-50 border-red-200 text-red-700'}`}>{order.status}</span>
                         </div>
                         
                         <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-4 border border-slate-100 dark:border-slate-800 space-y-5">
@@ -680,8 +680,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
         {/* Modern Confirm Modal */}
         {tokoConfirm && (
-            <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                <div className="w-full max-w-xs text-center modal-card animate-modal-in p-7">
+            <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop animate-backdrop-in">
+                <div className="w-full max-w-sm text-center modal-card animate-modal-in rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-7 shadow-2xl">
                     <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Icon name="warning" className="text-[32px] text-red-500" fill="true" />
                     </div>
@@ -706,22 +706,22 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                         <h2 className="text-xl sm:text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
-                            <Icon name="storefront" className="text-google-green text-[26px] sm:text-3xl" fill="true" /> Official Store
+                            <Icon name="storefront" className="text-emerald-600 dark:text-emerald-400 text-[26px] sm:text-3xl" fill="true" /> Official Store
                         </h2>
                         <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 mt-1">Layanan belanja hemat, gratis ongkir, bayar di tempat (COD).</p>
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
                         {userRole === 'admin' && (<>
-                            <button onClick={() => setView('admin-products')} className="px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-google-blue dark:text-google-blueLight border border-google-blue dark:border-google-blue/40 rounded-full font-medium text-xs hover:bg-google-blue hover:text-white dark:hover:bg-google-blue transition-all">Kelola Katalog</button>
+                            <button onClick={() => setView('admin-products')} className="px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 dark:text-blue-600 dark:text-blue-400Light border border-blue-500/30 dark:border-blue-500/30/40 rounded-full font-medium text-xs hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 transition-all">Kelola Katalog</button>
                             <button onClick={() => setView('admin-orders')} className="relative px-3 sm:px-4 py-2 bg-white dark:bg-slate-800 text-yellow-700 dark:text-yellow-500 border border-yellow-400 dark:border-yellow-600/50 rounded-full font-medium text-xs hover:bg-yellow-400 hover:text-white dark:hover:bg-yellow-500 transition-all">
                                 Pesanan
                                 {tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length > 0 && <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center text-[9px] font-medium animate-bounce">{tokoOrders.filter(o => o.status === 'Menunggu' || o.status === 'Diproses').length}</span>}
                             </button>
                         </>)}
-                        <button onClick={() => setView('cart')} className="px-3 sm:px-5 py-2 sm:py-2.5 bg-google-green hover:bg-google-greenDark dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-full font-medium text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5 active:scale-95">
+                        <button onClick={() => setView('cart')} className="px-3 sm:px-5 py-2 sm:py-2.5 bg-emerald-600 hover:bg-emerald-900/40 dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-full font-medium text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5 active:scale-95">
                             <Icon name="shopping_cart" className="text-[16px] sm:text-[18px]" />
                             <span>Keranjang</span>
-                            {cartItemCount > 0 && <span className="bg-white text-google-green min-w-[20px] h-[20px] flex items-center justify-center rounded-full text-[10px] sm:text-[11px] font-bold px-1">{cartItemCount}</span>}
+                            {cartItemCount > 0 && <span className="bg-white text-emerald-600 dark:text-emerald-400 min-w-[20px] h-[20px] flex items-center justify-center rounded-full text-[10px] sm:text-[11px] font-bold px-1">{cartItemCount}</span>}
                         </button>
                     </div>
                 </div>
@@ -731,12 +731,12 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
             {Array.from(new Set(tokoProducts.filter(p => p.isPublished).map(p => p.kategori).filter(Boolean))).length > 0 && (
                 <div className="slide-list-scroller flex gap-2 pb-2 -mx-3.5 px-3.5 sm:mx-0 sm:px-0">
                     <button onClick={() => setSelectedCategory('Semua')}
-                        className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all border ${selectedCategory === 'Semua' ? 'bg-google-blue text-white border-google-blueDark shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-google-blue/40'}`}>
+                        className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all border ${selectedCategory === 'Semua' ? 'bg-blue-600 text-white border-blue-700 shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-blue-500/30/40'}`}>
                         Semua
                     </button>
                     {Array.from(new Set(tokoProducts.filter(p => p.isPublished).map(p => p.kategori).filter(Boolean))).map(kat => (
                         <button key={kat} onClick={() => setSelectedCategory(kat)}
-                            className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all border ${selectedCategory === kat ? 'bg-google-blue text-white border-google-blueDark shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-google-blue/40'}`}>
+                            className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all border ${selectedCategory === kat ? 'bg-blue-600 text-white border-blue-700 shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-blue-500/30/40'}`}>
                             {kat}
                         </button>
                     ))}
@@ -765,13 +765,13 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                                 cleanUrl.searchParams.set('product', item.sku || item.id);
                                 navigator.clipboard.writeText(cleanUrl.toString());
                                 showToast('Tautan produk berhasil disalin!');
-                            }} className="absolute top-2 right-2 w-7 h-7 bg-white/95 dark:bg-slate-900/95 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-google-blue hover:bg-white dark:hover:bg-slate-850 transition-colors shadow-sm" title="Bagikan Produk">
+                            }} className="absolute top-2 right-2 w-7 h-7 bg-white/95 dark:bg-slate-900/95 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:text-blue-400 hover:bg-white dark:hover:bg-slate-850 transition-colors shadow-sm" title="Bagikan Produk">
                                 <Icon name="share" className="text-[13px]" />
                             </button>
                         </div>
                         {/* Info */}
                         <div className="p-3 sm:p-4 space-y-1 flex-1 flex flex-col">
-                            <h4 className="font-medium text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-google-green transition-colors">{item.judul}</h4>
+                            <h4 className="font-medium text-[13px] sm:text-[15px] text-slate-800 dark:text-white tracking-tight leading-tight line-clamp-2 group-hover:text-emerald-600 dark:text-emerald-400 transition-colors">{item.judul}</h4>
                             <div className="flex flex-wrap items-center gap-1">
                                 {item.sku && <span className="text-[9px] font-medium text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-850 px-1 py-0.5 rounded">{item.sku}</span>}
                             </div>
@@ -785,7 +785,7 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
                         <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-2 border-t border-slate-100 dark:border-slate-850 flex justify-between items-center gap-2">
                             <div>
                                 <p className="text-[9px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-widest">Mulai dari</p>
-                                <p className="text-[13px] sm:text-[14px] font-medium text-google-green dark:text-google-greenLight">{formatRp(Math.min(...item.variants.map(v => v.price)))}</p>
+                                <p className="text-[13px] sm:text-[14px] font-medium text-emerald-600 dark:text-emerald-400 dark:text-emerald-300 dark:text-emerald-400">{formatRp(Math.min(...item.variants.map(v => v.price)))}</p>
                             </div>
                             <div onClick={(e) => {
                                 e.stopPropagation();
@@ -808,8 +808,8 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 
         {/* Modern Confirm Modal */}
         {tokoConfirm && (
-            <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                <div className="w-full max-w-xs text-center modal-card animate-modal-in p-7">
+            <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop animate-backdrop-in">
+                <div className="w-full max-w-sm text-center modal-card animate-modal-in rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-7 shadow-2xl">
                     <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Icon name="warning" className="text-[32px] text-red-500" fill="true" />
                     </div>
@@ -828,3 +828,5 @@ function Toko({ tokoProducts, setTokoProducts, tokoOrders, setTokoOrders, userRo
 // =====================================================
 
 export default Toko;
+
+

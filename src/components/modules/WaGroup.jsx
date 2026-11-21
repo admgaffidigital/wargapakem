@@ -99,7 +99,7 @@ import { showToast } from '../common/Toast.jsx';
                         <div className="max-w-xl mx-auto px-4 py-8 animate-fade-in">
                             <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-md space-y-8">
                                 <div className="text-center space-y-5">
-                                    <div className="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950/20 text-google-green flex items-center justify-center mx-auto border border-green-100 dark:border-green-900/40">
+                                    <div className="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto border border-green-100 dark:border-green-900/40">
                                         <Icon name="forum" className="text-[32px]" fill="true" />
                                     </div>
                                     <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-slate-800 dark:text-slate-100">Gabung Grup WhatsApp Warga</h2>
@@ -109,7 +109,7 @@ import { showToast } from '../common/Toast.jsx';
                                 </div>
 
                                 <form onSubmit={handleRequestSubmit} className="space-y-6 pt-2">
-                                    <div className="bg-slate-50 dark:bg-slate-800/40 rounded-2xl px-4 py-3 border border-slate-200 dark:border-slate-700/60 focus-within:border-google-blue focus-within:ring-1 focus-within:ring-google-blue transition-all">
+                                    <div className="bg-slate-50 dark:bg-slate-800/40 rounded-2xl px-4 py-3 border border-slate-200 dark:border-slate-700/60 focus-within:border-blue-500/30 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
                                         <label className="text-[10px] font-medium text-slate-400 dark:text-slate-500 block mb-1 uppercase tracking-widest">Nama Lengkap Sesuai KTP</label>
                                         <input 
                                             type="text" 
@@ -120,7 +120,7 @@ import { showToast } from '../common/Toast.jsx';
                                         />
                                     </div>
 
-                                    <div className="bg-slate-50 dark:bg-slate-800/40 rounded-2xl px-4 py-3 border border-slate-200 dark:border-slate-700/60 focus-within:border-google-blue focus-within:ring-1 focus-within:ring-google-blue transition-all">
+                                    <div className="bg-slate-50 dark:bg-slate-800/40 rounded-2xl px-4 py-3 border border-slate-200 dark:border-slate-700/60 focus-within:border-blue-500/30 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
                                         <label className="text-[10px] font-medium text-slate-400 dark:text-slate-500 block mb-1 uppercase tracking-widest">Nomor WhatsApp Aktif</label>
                                         <input 
                                             type="text" 
@@ -132,7 +132,7 @@ import { showToast } from '../common/Toast.jsx';
                                     </div>
 
                                     {errorMsg && (
-                                        <p className="text-[11px] text-google-red font-medium flex items-center gap-1"><Icon name="error" className="text-[14px]" /> {errorMsg}</p>
+                                        <p className="text-[11px] text-red-600 dark:text-red-400 font-medium flex items-center gap-1"><Icon name="error" className="text-[14px]" /> {errorMsg}</p>
                                     )}
 
                                     <button 
@@ -178,7 +178,7 @@ import { showToast } from '../common/Toast.jsx';
 
                             {myRequest.status === 'approved' && (
                                 <>
-                                    <div className="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950/20 text-google-green flex items-center justify-center mx-auto border border-green-100 dark:border-green-900/40">
+                                    <div className="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto border border-green-100 dark:border-green-900/40">
                                         <Icon name="verified" className="text-[32px]" fill="true" />
                                     </div>
                                     <div className="space-y-2">
@@ -193,13 +193,13 @@ import { showToast } from '../common/Toast.jsx';
                                             href={inviteLink} 
                                             target="_blank" 
                                             rel="noopener noreferrer"
-                                            className="w-full bg-google-green hover:bg-green-600 text-white py-4 rounded-2xl font-medium text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
+                                            className="w-full bg-emerald-600 hover:bg-green-600 text-white py-4 rounded-2xl font-medium text-[13px] flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all mt-4"
                                         >
                                             <Icon name="forum" />
                                             <span>Gabung Grup WhatsApp Sekarang</span>
                                         </a>
                                     ) : (
-                                        <div className="bg-red-50 dark:bg-red-950/30 text-google-red p-4 rounded-xl border border-red-200 text-[11.5px] font-medium">
+                                        <div className="bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400 p-4 rounded-xl border border-red-200 text-[11.5px] font-medium">
                                             Link grup belum diatur oleh Admin. Silakan hubungi pengurus RT Anda.
                                         </div>
                                     )}
@@ -217,7 +217,7 @@ import { showToast } from '../common/Toast.jsx';
 
                             {myRequest.status === 'rejected' && (
                                 <>
-                                    <div className="w-16 h-16 rounded-full bg-red-50 dark:bg-red-950/20 text-google-red flex items-center justify-center mx-auto border border-red-100 dark:border-red-900/40">
+                                    <div className="w-16 h-16 rounded-full bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 flex items-center justify-center mx-auto border border-red-100 dark:border-red-900/40">
                                         <Icon name="cancel" className="text-[32px]" fill="true" />
                                     </div>
                                     <div className="space-y-2">
@@ -230,7 +230,7 @@ import { showToast } from '../common/Toast.jsx';
                                     <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-3">
                                         <button 
                                             onClick={handleResetRequest} 
-                                            className="flex-1 bg-google-blue hover:bg-blue-600 text-white py-3.5 rounded-full font-medium text-[12.5px] active:scale-95 transition-all shadow-sm"
+                                            className="flex-1 bg-blue-600 hover:bg-blue-600 text-white py-3.5 rounded-full font-medium text-[12.5px] active:scale-95 transition-all shadow-sm"
                                         >
                                             Ajukan Ulang / Koreksi Data
                                         </button>
@@ -256,12 +256,12 @@ import { showToast } from '../common/Toast.jsx';
                             </p>
                         </div>
                         {inviteLink ? (
-                            <div className="bg-green-50 dark:bg-green-950/20 text-google-green text-[11px] font-medium py-2.5 px-4 rounded-xl border border-green-100 dark:border-green-900/40 flex items-center gap-1.5 shrink-0">
+                            <div className="bg-green-50 dark:bg-green-950/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-medium py-2.5 px-4 rounded-xl border border-green-100 dark:border-green-900/40 flex items-center gap-1.5 shrink-0">
                                 <Icon name="check_circle" className="text-[14px]" />
                                 Link Grup Aktif: <a href={inviteLink} target="_blank" rel="noopener noreferrer" className="underline hover:text-green-700">{inviteLink.substring(0, 30)}...</a>
                             </div>
                         ) : (
-                            <div className="bg-red-50 dark:bg-red-950/20 text-google-red text-[11px] font-medium py-2.5 px-4 rounded-xl border border-red-100 dark:border-red-900/40 flex items-center gap-1.5 shrink-0">
+                            <div className="bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 text-[11px] font-medium py-2.5 px-4 rounded-xl border border-red-100 dark:border-red-900/40 flex items-center gap-1.5 shrink-0">
                                 <Icon name="warning" className="text-[14px]" />
                                 Link grup belum diset di Setelan Admin!
                             </div>
@@ -271,17 +271,17 @@ import { showToast } from '../common/Toast.jsx';
                     <div className="flex border-b border-slate-200 dark:border-slate-800 gap-6">
                         <button 
                             onClick={() => setActiveSubTab('active')} 
-                            className={`pb-3 font-medium text-[13px] relative transition-colors ${activeSubTab === 'active' ? 'text-google-blue' : 'text-slate-400 hover:text-slate-600'}`}
+                            className={`pb-3 font-medium text-[13px] relative transition-colors ${activeSubTab === 'active' ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400 hover:text-slate-600'}`}
                         >
                             <span>Permintaan Aktif ({pendingRequests.length})</span>
-                            {activeSubTab === 'active' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-google-blue rounded-full"></div>}
+                            {activeSubTab === 'active' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full"></div>}
                         </button>
                         <button 
                             onClick={() => setActiveSubTab('history')} 
-                            className={`pb-3 font-medium text-[13px] relative transition-colors ${activeSubTab === 'history' ? 'text-google-blue' : 'text-slate-400 hover:text-slate-600'}`}
+                            className={`pb-3 font-medium text-[13px] relative transition-colors ${activeSubTab === 'history' ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400 hover:text-slate-600'}`}
                         >
                             <span>Riwayat Proses ({processedRequests.length})</span>
-                            {activeSubTab === 'history' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-google-blue rounded-full"></div>}
+                            {activeSubTab === 'history' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full"></div>}
                         </button>
                     </div>
 
@@ -297,7 +297,7 @@ import { showToast } from '../common/Toast.jsx';
                                     <div key={r.id} className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-md space-y-6 hover:shadow-md transition-shadow">
                                         <div className="space-y-1.5">
                                             <h3 className="font-medium text-slate-800 dark:text-slate-100 text-[14.5px] truncate">{r.name}</h3>
-                                            <p className="text-[12px] font-medium text-google-blue flex items-center gap-1">
+                                            <p className="text-[12px] font-medium text-blue-600 dark:text-blue-400 flex items-center gap-1">
                                                 <Icon name="call" className="text-[13px]" /> {r.whatsapp}
                                             </p>
                                             <p className="text-[10px] font-medium text-slate-400 flex items-center gap-1">
@@ -308,13 +308,13 @@ import { showToast } from '../common/Toast.jsx';
                                         <div className="flex gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
                                             <button 
                                                 onClick={() => handleReject(r.id)} 
-                                                className="flex-1 bg-red-50 hover:bg-red-100 text-google-red py-2.5 rounded-full text-[11px] font-medium border border-red-200/50 transition-colors active:scale-95"
+                                                className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 dark:text-red-400 py-2.5 rounded-full text-[11px] font-medium border border-red-200/50 transition-colors active:scale-95"
                                             >
                                                 Tolak
                                             </button>
                                             <button 
                                                 onClick={() => handleApprove(r.id)} 
-                                                className="flex-1 bg-google-green hover:bg-green-600 text-white py-2.5 rounded-full text-[11px] font-medium transition-colors active:scale-95 shadow-md shadow-green-500/20"
+                                                className="flex-1 bg-emerald-600 hover:bg-green-600 text-white py-2.5 rounded-full text-[11px] font-medium transition-colors active:scale-95 shadow-md shadow-green-500/20"
                                             >
                                                 Setujui
                                             </button>
@@ -346,15 +346,15 @@ import { showToast } from '../common/Toast.jsx';
                                             {processedRequests.map(r => (
                                                 <tr key={r.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-850/50 transition-colors">
                                                     <td className="px-6 sm:px-8 py-5 font-medium text-slate-800 dark:text-slate-100">{r.name}</td>
-                                                    <td className="px-6 sm:px-8 py-5 text-google-blue font-medium">{r.whatsapp}</td>
+                                                    <td className="px-6 sm:px-8 py-5 text-blue-600 dark:text-blue-400 font-medium">{r.whatsapp}</td>
                                                     <td className="px-6 sm:px-8 py-5 text-slate-400">{formatDate(r.timestamp)}</td>
                                                     <td className="px-6 sm:px-8 py-5">
                                                         {r.status === 'approved' ? (
-                                                            <span className="inline-flex items-center gap-1 bg-green-50 dark:bg-green-950/20 text-google-green text-[10px] font-medium px-2.5 py-1 rounded-full border border-green-200 dark:border-green-900/40">
+                                                            <span className="inline-flex items-center gap-1 bg-green-50 dark:bg-green-950/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-medium px-2.5 py-1 rounded-full border border-green-200 dark:border-green-900/40">
                                                                 <Icon name="check" className="text-[12px]" /> Disetujui
                                                             </span>
                                                         ) : (
-                                                            <span className="inline-flex items-center gap-1 bg-red-50 dark:bg-red-950/20 text-google-red text-[10px] font-medium px-2.5 py-1 rounded-full border border-red-200 dark:border-red-900/40">
+                                                            <span className="inline-flex items-center gap-1 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 text-[10px] font-medium px-2.5 py-1 rounded-full border border-red-200 dark:border-red-900/40">
                                                                 <Icon name="close" className="text-[12px]" /> Ditolak
                                                             </span>
                                                         )}
@@ -370,7 +370,7 @@ import { showToast } from '../common/Toast.jsx';
                                                             </button>
                                                             <button 
                                                                 onClick={() => handleDeleteRequest(r.id)} 
-                                                                className="p-1.5 hover:bg-red-50/10 rounded-full text-slate-400 hover:text-google-red transition-colors"
+                                                                className="p-1.5 hover:bg-red-50/10 rounded-full text-slate-400 hover:text-red-600 dark:text-red-400 transition-colors"
                                                                 title="Hapus permanen"
                                                             >
                                                                 <Icon name="delete" className="text-[16px]" />

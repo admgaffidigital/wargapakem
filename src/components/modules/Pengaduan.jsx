@@ -1,236 +1,373 @@
 import React, { useState } from 'react';
 import Icon from '../common/Icon.jsx';
-import { uploadToGoogleDrive } from '../../utils/helpers.js';
+import { uploadToGoogleDrive, triggerHaptic } from '../../utils/helpers.js';
+import { showToast } from '../common/Toast.jsx';
 
-        function Pengaduan({ laporanData, setLaporanData, userRole }) {
-            const [isFormOpen, setIsFormOpen] = useState(false);
-            const [formData, setFormData] = useState({ title: '', category: 'Infrastruktur', description: '', reporter: '', imageUrl: '', status: 'Menunggu' });
-            const [errorMsg, setErrorMsg] = useState('');
-            const [isUploading, setIsUploading] = useState(false);
-            const [deleteConfirmId, setDeleteConfirmId] = useState(null);
-            const [filterStatus, setFilterStatus] = useState('Semua');
-            // Deklarasi di atas agar dapat diakses oleh semua handler
-            const [modalConfig, setModalConfig] = useState(null);
+function Pengaduan({ laporanData, setLaporanData, userRole }) {
+    const [isFormOpen, setIsFormOpen] = useState(false);
+    const [formData, setFormData] = useState({ title: '', category: 'Infrastruktur', description: '', reporter: '', imageUrl: '', status: 'Menunggu' });
+    const [errorMsg, setErrorMsg] = useState('');
+    const [isUploading, setIsUploading] = useState(false);
+    const [deleteConfirmId, setDeleteConfirmId] = useState(null);
+    const [filterStatus, setFilterStatus] = useState('Semua');
 
-            const categories = ['Infrastruktur', 'Keamanan', 'Kebersihan', 'Sosial', 'Lainnya'];
-            const statuses = ['Menunggu', 'Diproses', 'Selesai'];
+    const categories = ['Infrastruktur', 'Keamanan', 'Kebersihan', 'Sosial', 'Lainnya'];
+    const statuses = ['Menunggu', 'Diproses', 'Selesai'];
 
-            const handleSave = () => {
-                if (!formData.title || !formData.description) return setErrorMsg("Judul dan Deskripsi wajib diisi!");
-                const newLaporan = { id: Date.now(), date: new Date().toISOString(), ...formData };
-                setLaporanData([newLaporan, ...(laporanData || [])]);
-                setIsFormOpen(false);
-                setFormData({ title: '', category: 'Infrastruktur', description: '', reporter: '', imageUrl: '', status: 'Menunggu' });
-                setModalConfig && setModalConfig({ message: 'Laporan berhasil dikirim.' });
-            };
+    const handleSave = () => {
+        triggerHaptic();
+        if (!formData.title || !formData.description) return setErrorMsg("Judul dan Deskripsi laporan wajib diisi!");
+        const newLaporan = { id: Date.now(), date: new Date().toISOString(), ...formData };
+        setLaporanData([newLaporan, ...(laporanData || [])]);
+        setIsFormOpen(false);
+        setFormData({ title: '', category: 'Infrastruktur', description: '', reporter: '', imageUrl: '', status: 'Menunggu' });
+        showToast('Laporan berhasil dikirim dan tersimpan.');
+    };
 
-            const handleImageUpload = async (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
-                if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran maksimal 10MB!');
-                setIsUploading(true); setErrorMsg('');
-                try {
-                    const url = await uploadToGoogleDrive(file, 800, 0.6);
-                    setFormData({ ...formData, imageUrl: url });
-                } catch(error) {
-                    setErrorMsg(error);
-                } finally {
-                    setIsUploading(false);
-                }
-            };
-
-            const changeStatus = (id, newStatus) => {
-                setLaporanData((laporanData || []).map(item => item.id === id ? { ...item, status: newStatus } : item));
-            };
-
-            const filteredData = (laporanData || []).filter(item => filterStatus === 'Semua' || item.status === filterStatus);
-
-            const getStatusColor = (status) => {
-                switch(status) {
-                    case 'Menunggu': return 'bg-red-100 text-red-700 border-red-200';
-                    case 'Diproses': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
-                    case 'Selesai': return 'bg-green-100 text-green-700 border-green-200';
-                    default: return 'bg-slate-100 text-slate-700 border-slate-200';
-                }
-            };
-
-            const formatDate = (isoString) => {
-                const date = new Date(isoString);
-                return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-            };
-
-            return (
-                <div className="animate-fade-in pb-24 w-full">
-                    {modalConfig && (
-                        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="rounded-2xl p-8 max-w-sm w-full text-center modal-card animate-modal-in">
-                                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                    <Icon name="check_circle" className="text-4xl text-green-500" />
-                                </div>
-                                <h3 className="text-xl font-medium text-slate-800 mb-2">Berhasil</h3>
-                                <p className="text-slate-600 mb-8">{modalConfig.message}</p>
-                                <button onClick={() => setModalConfig(null)} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-4 rounded-full transition-all">Tutup</button>
-                            </div>
-                        </div>
-                    )}
-
-                    <div className="bento-header-card mb-8 no-print">
-                        
-                        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                            <div>
-                                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-xl mb-4 shadow-lg">
-                                    <Icon name="campaign" />
-                                </div>
-                                <h1 className="text-3xl sm:text-4xl font-medium text-slate-800 tracking-tight mb-2">Lapor</h1>
-                                <p className="text-slate-600 text-[13px] sm:text-[14px] max-w-xl font-medium leading-relaxed">Sistem Pengaduan dan Aspirasi Warga. Laporkan keluhan atau berikan saran untuk lingkungan kita.</p>
-                            </div>
-                            <button onClick={() => setIsFormOpen(true)} className="btn-native-primary w-full md:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 shadow-blue-500/20">
-                                <Icon name="add_circle" className="group-hover:rotate-90 transition-transform duration-300" /> Buat Laporan
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="slide-list-scroller mb-6 flex gap-2 pb-2">
-                        {['Semua', ...statuses].map(status => (
-                            <button key={status} onClick={() => setFilterStatus(status)} className={`px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-all ${filterStatus === status ? 'bg-slate-800 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>
-                                {status}
-                            </button>
-                        ))}
-                    </div>
-
-                    {filteredData.length === 0 ? (
-                        <div className="bg-white/80  rounded-3xl p-12 text-center border border-dashed border-slate-200 shadow-sm">
-                            <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <Icon name="task_alt" className="text-[48px] text-slate-300" />
-                            </div>
-                            <h3 className="text-xl font-medium text-slate-700 mb-2">Belum Ada Laporan</h3>
-                            <p className="text-slate-500 font-medium">Lingkungan aman terkendali. Belum ada pengaduan warga.</p>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {filteredData.map(item => (
-                                <div key={item.id} className="bento-island-card p-5 sm:p-6 flex flex-col hover:border-blue-500/30 transition-all duration-300">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className="flex items-center gap-2">
-                                            <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-lg text-xs font-medium">{item.category}</span>
-                                            <span className={`px-3 py-1 rounded-lg text-xs font-medium border ${getStatusColor(item.status)}`}>{item.status}</span>
-                                        </div>
-                                        {userRole === 'admin' && (
-                                            <button onClick={() => setDeleteConfirmId(item.id)} className="w-8 h-8 rounded-full bg-red-50 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors">
-                                                <Icon name="delete" className="text-[14px]" />
-                                            </button>
-                                        )}
-                                    </div>
-                                    <h3 className="text-xl font-medium text-slate-800 mb-2">{item.title}</h3>
-                                    <p className="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-4">{item.description}</p>
-                                    
-                                    {item.imageUrl && (
-                                        <div className="mb-4 rounded-lg overflow-hidden bg-slate-100 h-48 border border-slate-200">
-                                            <img src={item.imageUrl} alt="Lampiran Laporan" loading="lazy" className="w-full h-full object-cover" />
-                                        </div>
-                                    )}
-
-                                    <div className="mt-auto pt-4 border-t border-slate-200 flex items-center justify-between text-xs font-medium text-slate-500">
-                                        <div className="flex items-center gap-1.5"><Icon name="person" className="text-[14px]" /> {item.reporter || 'Warga'}</div>
-                                        <div className="flex items-center gap-1.5"><Icon name="schedule" className="text-[14px]" /> {formatDate(item.date)}</div>
-                                    </div>
-
-                                    {userRole === 'admin' && (
-                                        <div className="mt-4 flex gap-2">
-                                            {statuses.map(st => (
-                                                item.status !== st && (
-                                                    <button key={st} onClick={() => changeStatus(item.id, st)} className={`flex-1 py-2 rounded-full text-xs font-medium border transition-colors ${st === 'Menunggu' ? 'border-red-200 text-red-600 hover:bg-red-50' : st === 'Diproses' ? 'border-yellow-200 text-yellow-600 hover:bg-yellow-50' : 'border-green-200 text-green-600 hover:bg-green-50'}`}>
-                                                        Set {st}
-                                                    </button>
-                                                )
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
-                    {isFormOpen && (
-                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="w-full max-w-lg rounded-3xl flex flex-col max-h-[90vh] modal-card animate-modal-in">
-                                <div className="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0 bg-blue-50 dark:bg-slate-900 rounded-t-[32px]">
-                                    <h2 className="text-2xl font-medium text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
-                                        <Icon name="campaign" className="text-blue-600" /> Buat Laporan
-                                    </h2>
-                                    <button onClick={() => setIsFormOpen(false)} className="w-10 h-10 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 border border-slate-200 dark:border-slate-700 transition-all"><Icon name="close" /></button>
-                                </div>
-                                <div className="p-6 sm:p-8 overflow-y-auto space-y-7">
-                                    {errorMsg && <div className="bg-red-50 text-red-600 p-4 rounded-xl text-[13px] font-medium border border-red-100 flex items-center gap-2"><Icon name="error" /> {errorMsg}</div>}
-                                    
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Judul Laporan</label>
-                                        <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Cth: Lampu jalan mati di Blok A" />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white appearance-none bg-white dark:bg-slate-800">
-                                            {categories.map(c => <option key={c} value={c}>{c}</option>)}
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Isi Laporan / Detail</label>
-                                        <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} rows="4" className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white resize-none" placeholder="Ceritakan detail masalah..."></textarea>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Pelapor (Opsional)</label>
-                                        <input type="text" value={formData.reporter} onChange={e => setFormData({...formData, reporter: e.target.value})} className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-3.5 focus:border-blue-500 outline-none transition-all font-medium text-slate-700 dark:text-white" placeholder="Kosongkan jika ingin anonim" />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Lampiran Foto (Opsional)</label>
-                                        <div className="border border-dashed border-slate-400 dark:border-slate-650 rounded-xl p-6 text-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative bg-white dark:bg-slate-800/40">
-                                            <input type="file" accept="image/*" onChange={handleImageUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                                            {isUploading ? (
-                                                <div className="flex flex-col items-center justify-center text-slate-500 py-4"><Icon name="sync" className="animate-spin text-[32px] mb-2 text-blue-500" /><span className="font-medium">Memproses gambar...</span></div>
-                                            ) : formData.imageUrl ? (
-                                                <div className="relative inline-block">
-                                                    <img src={formData.imageUrl} alt="Preview" className="h-32 object-contain rounded-lg shadow-sm" />
-                                                    <div className="absolute top-2 right-2 bg-slate-900/60 text-white text-[10px] px-2 py-1 rounded-md font-medium">Ganti</div>
-                                                </div>
-                                            ) : (
-                                                <div className="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 py-4"><Icon name="add_a_photo" className="text-[36px] mb-3 text-slate-400 dark:text-slate-500" /><span className="font-medium text-sm">Upload foto bukti</span></div>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="p-6 sm:p-8 border-t border-slate-200 dark:border-slate-800 flex gap-3 shrink-0 bg-slate-50 dark:bg-slate-950 rounded-b-[32px]">
-                                    <button onClick={() => setIsFormOpen(false)} className="flex-1 bg-white dark:bg-slate-850 text-slate-700 dark:text-slate-200 font-medium py-4 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className="flex-1 bg-blue-600 text-white font-medium py-4 rounded-full shadow-lg shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">Kirim Laporan</button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {deleteConfirmId && (
-                        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 modal-backdrop animate-backdrop-in">
-                            <div className="max-w-sm w-full rounded-3xl p-8 text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
-                                <div className="w-20 h-20 bg-red-100 dark:bg-red-950/40 rounded-full flex items-center justify-center mx-auto mb-5"><Icon name="warning" className="text-[40px] text-red-500" /></div>
-                                <h3 className="text-xl font-medium text-slate-800 dark:text-white mb-2">Hapus Laporan?</h3>
-                                <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Laporan yang dihapus tidak dapat dikembalikan. Yakin?</p>
-                                <div className="flex gap-3">
-                                    <button onClick={() => setDeleteConfirmId(null)} className="flex-1 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-full font-medium hover:bg-slate-200 dark:hover:bg-slate-700">Batal</button>
-                                    <button onClick={() => {
-                                        setLaporanData((laporanData || []).filter(item => item.id !== deleteConfirmId));
-                                        setModalConfig && setModalConfig({ message: 'Laporan dihapus.' });
-                                        setDeleteConfirmId(null);
-                                    }} className="flex-1 py-3.5 bg-red-500 text-white rounded-full font-medium shadow-md hover:bg-red-600 active:scale-95">Ya, Hapus</button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            );
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
+        if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran maksimal 10MB!');
+        setIsUploading(true);
+        setErrorMsg('');
+        try {
+            const url = await uploadToGoogleDrive(file, 800, 0.6);
+            setFormData({ ...formData, imageUrl: url });
+        } catch (error) {
+            setErrorMsg(error);
+        } finally {
+            setIsUploading(false);
         }
+    };
 
+    const changeStatus = (id, newStatus) => {
+        triggerHaptic();
+        setLaporanData((laporanData || []).map(item => item.id === id ? { ...item, status: newStatus } : item));
+        showToast(`Status laporan diubah ke ${newStatus}.`);
+    };
+
+    const filteredData = (laporanData || []).filter(item => filterStatus === 'Semua' || item.status === filterStatus);
+
+    const getStatusBadge = (status) => {
+        switch (status) {
+            case 'Menunggu':
+                return 'bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border-amber-500/25';
+            case 'Diproses':
+                return 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400 border-blue-500/25';
+            case 'Selesai':
+                return 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-500/25';
+            default:
+                return 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200';
+        }
+    };
+
+    const formatDate = (isoString) => {
+        const date = new Date(isoString);
+        return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    };
+
+    return (
+        <div className="space-y-6">
+            {/* BENTO HEADER CARD */}
+            <div className="bento-header-card flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 no-print">
+                <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 border border-blue-500/25 flex items-center justify-center shrink-0 shadow-xs">
+                        <Icon name="campaign" className="text-[26px]" fill="true" />
+                    </div>
+                    <div>
+                        <h2 className="text-xl sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight">
+                            Lapor &amp; Aspirasi Warga
+                        </h2>
+                        <p className="text-[12px] sm:text-[13px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">
+                            Pusat penyampaian keluhan fasilitas, masukan dan aspirasi lingkungan.
+                        </p>
+                    </div>
+                </div>
+
+                <button
+                    onClick={() => {
+                        triggerHaptic();
+                        setIsFormOpen(true);
+                        setErrorMsg('');
+                    }}
+                    className="btn-native-primary shrink-0 w-full sm:w-auto"
+                >
+                    <Icon name="add" className="text-[18px]" />
+                    <span>Buat Laporan</span>
+                </button>
+            </div>
+
+            {/* FILTER STATUS PILLS */}
+            <div className="slide-list-scroller flex items-center gap-2 pb-1">
+                {['Semua', ...statuses].map(status => (
+                    <button
+                        key={status}
+                        onClick={() => { triggerHaptic(); setFilterStatus(status); }}
+                        className={`px-3.5 py-1.5 rounded-xl font-bold text-[12px] whitespace-nowrap transition-all active:scale-95 cursor-pointer ${
+                            filterStatus === status
+                                ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900 shadow-xs'
+                                : 'bg-white dark:bg-slate-850 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 hover:border-slate-300'
+                        }`}
+                    >
+                        {status}
+                    </button>
+                ))}
+            </div>
+
+            {/* LIST REPORTS */}
+            {filteredData.length === 0 ? (
+                <div className="bento-island-card p-12 text-center">
+                    <div className="bg-slate-100 dark:bg-slate-800 w-20 h-20 flex items-center justify-center rounded-2xl mb-4 mx-auto border border-slate-200 dark:border-slate-700 text-slate-400">
+                        <Icon name="task_alt" className="text-[40px]" />
+                    </div>
+                    <p className="text-slate-800 dark:text-white font-bold text-[16px] tracking-tight">Lingkungan Aman Terkendali</p>
+                    <p className="text-[13px] font-medium text-slate-400 dark:text-slate-500 mt-1">Belum ada pengaduan atau aspirasi aktif di kategori ini.</p>
+                </div>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                    {filteredData.map(item => (
+                        <div
+                            key={item.id}
+                            className="bento-island-card flex flex-col justify-between hover:border-blue-500/30 transition-all duration-300"
+                        >
+                            <div>
+                                <div className="flex justify-between items-start gap-2 mb-3">
+                                    <div className="flex flex-wrap items-center gap-1.5">
+                                        <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-0.5 rounded-lg text-[11px] font-bold border border-slate-200/80 dark:border-slate-700">
+                                            {item.category}
+                                        </span>
+                                        <span className={`px-2.5 py-0.5 rounded-lg text-[11px] font-bold border ${getStatusBadge(item.status)}`}>
+                                            {item.status}
+                                        </span>
+                                    </div>
+                                    {userRole === 'admin' && (
+                                        <button
+                                            onClick={() => { triggerHaptic(); setDeleteConfirmId(item.id); }}
+                                            className="w-8 h-8 rounded-lg bg-red-50 hover:bg-red-600 text-red-600 hover:text-white dark:bg-red-950/40 dark:hover:bg-red-600 dark:text-red-400 dark:hover:text-white border border-red-500/20 flex items-center justify-center transition-colors"
+                                            title="Hapus Laporan"
+                                        >
+                                            <Icon name="delete" className="text-[14px]" />
+                                        </button>
+                                    )}
+                                </div>
+
+                                <h3 className="text-lg font-black text-slate-800 dark:text-white tracking-tight mb-2">
+                                    {item.title}
+                                </h3>
+                                <p className="text-slate-600 dark:text-slate-300 text-[13px] leading-relaxed mb-4 whitespace-pre-line line-clamp-4">
+                                    {item.description}
+                                </p>
+
+                                {item.imageUrl && (
+                                    <div className="mb-4 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 h-44 border border-slate-200/80 dark:border-slate-700">
+                                        <img src={item.imageUrl} alt="Lampiran Laporan" loading="lazy" className="w-full h-full object-cover" />
+                                    </div>
+                                )}
+                            </div>
+
+                            <div>
+                                <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-semibold text-slate-400">
+                                    <div className="flex items-center gap-1">
+                                        <Icon name="person" className="text-[13px]" />
+                                        <span>{item.reporter || 'Warga Anonim'}</span>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <Icon name="schedule" className="text-[13px]" />
+                                        <span>{formatDate(item.date)}</span>
+                                    </div>
+                                </div>
+
+                                {userRole === 'admin' && (
+                                    <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 flex gap-1.5">
+                                        {statuses.map(st => (
+                                            item.status !== st && (
+                                                <button
+                                                    key={st}
+                                                    onClick={() => changeStatus(item.id, st)}
+                                                    className="btn-native-action flex-1 py-1.5 px-2 text-[11px] font-bold rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700"
+                                                >
+                                                    Set {st}
+                                                </button>
+                                            )
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {/* MODAL FORM BUAT LAPORAN (Native Bottom Sheet) */}
+            {isFormOpen && (
+                <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print modal-backdrop animate-backdrop-in">
+                    <div className="max-h-[90vh] overflow-y-auto hide-scrollbar rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 w-full max-w-lg border-t sm:border border-slate-200/80 dark:border-slate-800 modal-card animate-modal-in shadow-2xl">
+                        {/* Mobile Pull Bar */}
+                        <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mb-4 sm:hidden"></div>
+
+                        <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-5">
+                            <h3 className="text-xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-2">
+                                <Icon name="campaign" className="text-blue-600" />
+                                <span>Buat Laporan Warga</span>
+                            </h3>
+                            <button
+                                type="button"
+                                onClick={() => { triggerHaptic(); setIsFormOpen(false); }}
+                                className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white flex items-center justify-center active:scale-95 transition-all"
+                            >
+                                <Icon name="close" className="text-[17px]" />
+                            </button>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-widest">
+                                    Judul Laporan *
+                                </label>
+                                <input
+                                    type="text"
+                                    value={formData.title}
+                                    onChange={e => setFormData({ ...formData, title: e.target.value })}
+                                    className="w-full bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-700 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 rounded-xl px-4 py-2.5 text-[15px] sm:text-[13.5px] font-medium outline-none transition-all text-slate-800 dark:text-white placeholder:text-slate-400"
+                                    placeholder="Cth: Lampu jalan mati di Gang Mawar..."
+                                />
+                            </div>
+
+                            <div>
+                                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-widest">
+                                    Kategori
+                                </label>
+                                <select
+                                    value={formData.category}
+                                    onChange={e => setFormData({ ...formData, category: e.target.value })}
+                                    className="w-full bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-700 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 rounded-xl px-4 py-2.5 text-[15px] sm:text-[13.5px] font-medium outline-none transition-all text-slate-800 dark:text-white cursor-pointer"
+                                >
+                                    {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                                </select>
+                            </div>
+
+                            <div>
+                                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-widest">
+                                    Detail / Deskripsi Masalah *
+                                </label>
+                                <textarea
+                                    value={formData.description}
+                                    onChange={e => setFormData({ ...formData, description: e.target.value })}
+                                    rows="3"
+                                    className="w-full bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-700 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 rounded-xl px-4 py-2.5 text-[15px] sm:text-[13.5px] font-medium outline-none transition-all text-slate-800 dark:text-white resize-none placeholder:text-slate-400"
+                                    placeholder="Ceritakan detail masalah atau aspirasi Anda..."
+                                ></textarea>
+                            </div>
+
+                            <div>
+                                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-widest">
+                                    Nama Pelapor <span className="text-slate-400 font-normal lowercase">(opsional / kosongkan jika anonim)</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    value={formData.reporter}
+                                    onChange={e => setFormData({ ...formData, reporter: e.target.value })}
+                                    className="w-full bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-700 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 rounded-xl px-4 py-2.5 text-[15px] sm:text-[13.5px] font-medium outline-none transition-all text-slate-800 dark:text-white placeholder:text-slate-400"
+                                    placeholder="Kosongkan jika ingin anonim"
+                                />
+                            </div>
+
+                            {/* Lampiran Foto */}
+                            <div>
+                                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 block mb-1.5 ml-1 uppercase tracking-widest">
+                                    Foto Bukti <span className="text-slate-400 font-normal lowercase">(opsional)</span>
+                                </label>
+                                <div className="border border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-4 text-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative bg-white dark:bg-slate-850">
+                                    <input type="file" accept="image/*" onChange={handleImageUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                                    {isUploading ? (
+                                        <div className="flex flex-col items-center justify-center py-2 text-slate-500">
+                                            <Icon name="sync" className="animate-spin text-[26px] mb-1 text-blue-500" />
+                                            <span className="text-[12px] font-semibold">Memproses foto...</span>
+                                        </div>
+                                    ) : formData.imageUrl ? (
+                                        <div className="relative inline-block">
+                                            <img src={formData.imageUrl} alt="Preview" className="h-28 object-contain rounded-lg shadow-xs" />
+                                            <span className="block mt-1 text-[10px] font-semibold text-blue-600">Ketuk untuk mengganti</span>
+                                        </div>
+                                    ) : (
+                                        <div className="flex flex-col items-center justify-center py-2 text-slate-400">
+                                            <Icon name="add_a_photo" className="text-[28px] mb-1" />
+                                            <span className="text-[12px] font-semibold">Upload foto bukti kondisi</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        {errorMsg && (
+                            <div className="bg-red-50 dark:bg-red-950/40 border border-red-500/30 text-red-600 dark:text-red-400 font-semibold text-[11.5px] px-3.5 py-2 rounded-xl mt-4 flex items-center gap-1.5">
+                                <Icon name="error" className="text-[15px] shrink-0" />
+                                <span>{errorMsg}</span>
+                            </div>
+                        )}
+
+                        <div className="flex gap-2.5 mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <button
+                                type="button"
+                                onClick={() => { triggerHaptic(); setIsFormOpen(false); }}
+                                className="btn-native-secondary flex-1"
+                            >
+                                Batal
+                            </button>
+                            <button
+                                type="button"
+                                onClick={handleSave}
+                                disabled={isUploading}
+                                className="btn-native-primary flex-1 !bg-blue-600 hover:!bg-blue-700 disabled:opacity-50"
+                            >
+                                Kirim Laporan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* MODAL KONFIRMASI HAPUS (Native Bottom Sheet) */}
+            {deleteConfirmId && (
+                <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print modal-backdrop animate-backdrop-in">
+                    <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-7 w-full max-w-sm text-center border-t sm:border border-slate-200/80 dark:border-slate-800 modal-card animate-modal-in shadow-2xl">
+                        {/* Mobile Pull Bar */}
+                        <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mb-4 sm:hidden"></div>
+
+                        <div className="mb-4 bg-red-50 dark:bg-red-950/40 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto border border-red-500/25 text-red-600">
+                            <Icon name="delete" className="text-[34px]" />
+                        </div>
+                        <h3 className="text-xl font-black text-slate-800 dark:text-white mb-1 tracking-tight">Hapus Laporan?</h3>
+                        <p className="text-[12.5px] font-medium text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                            Laporan ini akan dihapus permanen dari sistem pengaduan warga.
+                        </p>
+                        <div className="flex gap-2.5">
+                            <button
+                                type="button"
+                                onClick={() => { triggerHaptic(); setDeleteConfirmId(null); }}
+                                className="btn-native-secondary flex-1"
+                            >
+                                Batal
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    triggerHaptic();
+                                    setLaporanData((laporanData || []).filter(item => item.id !== deleteConfirmId));
+                                    setDeleteConfirmId(null);
+                                    showToast('Laporan berhasil dihapus.');
+                                }}
+                                className="btn-native-primary !bg-red-600 hover:!bg-red-700 flex-1"
+                            >
+                                Ya, Hapus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
 
 export default Pengaduan;

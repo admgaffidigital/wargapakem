@@ -481,8 +481,11 @@ function WargaList({ members, setMembers, userRole, identity, cycleNumber, curre
 
             {/* MODAL FORM TAMBAH / EDIT WARGA */}
             {isFormOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                    <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-3xl p-6 sm:p-8 w-full max-w-md border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
+                <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print modal-backdrop animate-backdrop-in">
+                    <div className="max-h-[90vh] overflow-y-auto hide-scrollbar rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 w-full max-w-md border-t sm:border border-slate-200/80 dark:border-slate-800 modal-card animate-modal-in shadow-2xl">
+                        {/* Mobile Pull Bar */}
+                        <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mb-4 sm:hidden"></div>
+
                         <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 mb-5">
                             <h3 className="text-xl sm:text-2xl font-black text-slate-800 dark:text-white tracking-tight">
                                 {editingId ? 'Edit Data Warga' : 'Tambah Warga Baru'}
@@ -622,8 +625,11 @@ function WargaList({ members, setMembers, userRole, identity, cycleNumber, curre
 
             {/* MODAL KONFIRMASI HAPUS */}
             {deleteConfirmId && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                    <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-3xl p-6 sm:p-7 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
+                <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print modal-backdrop animate-backdrop-in">
+                    <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-7 w-full max-w-sm text-center border-t sm:border border-slate-200/80 dark:border-slate-800 modal-card animate-modal-in shadow-2xl">
+                        {/* Mobile Pull Bar */}
+                        <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mb-4 sm:hidden"></div>
+
                         <div className="mb-4 bg-red-50 dark:bg-red-950/40 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto border border-red-500/25 text-red-600">
                             <Icon name="person_remove" className="text-[34px]" />
                         </div>
@@ -653,8 +659,11 @@ function WargaList({ members, setMembers, userRole, identity, cycleNumber, curre
             
             {/* MODAL PREVIEW BARCODE RESMI */}
             {previewMember && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in" onClick={() => setPreviewMember(null)}>
-                    <div className="max-h-[90vh] overflow-y-auto hide-scrollbar rounded-3xl p-6 sm:p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 relative modal-card animate-modal-in" onClick={e => e.stopPropagation()}>
+                <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print modal-backdrop animate-backdrop-in" onClick={() => setPreviewMember(null)}>
+                    <div className="max-h-[90vh] overflow-y-auto hide-scrollbar rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 w-full max-w-sm text-center border-t sm:border border-slate-200/80 dark:border-slate-800 relative modal-card animate-modal-in shadow-2xl" onClick={e => e.stopPropagation()}>
+                        {/* Mobile Pull Bar */}
+                        <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mb-4 sm:hidden"></div>
+
                         <button
                             type="button"
                             onClick={() => setPreviewMember(null)}
