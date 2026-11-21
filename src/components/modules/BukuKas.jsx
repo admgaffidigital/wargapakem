@@ -14,6 +14,31 @@ export function BukuKas({ balance, setBalance, transactions, setTransactions, us
     const [isUploading, setIsUploading] = useState(false);
     const [editingId, setEditingId] = useState(null);
     const [showSaldo, setShowSaldo] = useState(true);
+    const [txTypeFilter, setTxTypeFilter] = useState('Semua');
+    const [expandedMonths, setExpandedMonths] = useState(() => {
+        const sorted = [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
+        if (sorted.length === 0) return [];
+        const dateObj = parseLocalDate(sorted[0].date);
+        const latestMonth = dateObj.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+        return [latestMonth];
+    });
+
+    const toggleMonth = (m) => {
+        triggerHaptic(8);
+        setExpandedMonths(prev => 
+            prev.includes(m) ? prev.filter(item => item !== m) : [...prev, m]
+        );
+    };
+
+    const toggleAllMonths = (expandAll) => {
+        triggerHaptic(10);
+        if (expandAll) {
+            setExpandedMonths(Object.keys(groupedTransactions));
+        } else {
+            setExpandedMonths([]);
+        }
+    };
+
 
     const groupedTransactions = useMemo(() => {
         const sorted = [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -28,6 +53,16 @@ export function BukuKas({ balance, setBalance, transactions, setTransactions, us
     }, [transactions]);
 
     const availableMonths = Object.keys(groupedTransactions);
+    
+    const totals = useMemo(() => {
+        let inTotal = 0, outTotal = 0;
+        transactions.forEach(t => {
+            if (t.type === 'Pemasukan') inTotal += Number(t.amount || 0);
+            else outTotal += Number(t.amount || 0);
+        });
+        return { inTotal, outTotal, count: transactions.length };
+    }, [transactions]);
+
     const displayedTransactions = useMemo(() => {
         if (filterMonth === 'Semua') return transactions;
         return groupedTransactions[filterMonth] || [];
@@ -293,31 +328,127 @@ export function BukuKas({ balance, setBalance, transactions, setTransactions, us
             )}
 
             {/* ========================================================
-                4. FEED RIWAYAT TRANSAKSI (NATIVE LIST VIEW)
+                4. FEED RIWAYAT TRANSAKSI (NATIVE ACCORDION LIST)
                ======================================================== */}
-            <div className="space-y-6 no-print">
-                <div className="flex items-center justify-between px-1">
+            <div className="space-y-4 no-print">
+                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2.5 px-1">
                     <h3 className="text-[15px] font-black text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
                         <span>Riwayat Mutasi Transaksi</span>
                         <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
                             {displayedTransactions.length}
                         </span>
                     </h3>
+
+                    <div className="flex items-center gap-2 text-[11px] self-end sm:self-auto">
+                        <button
+                            type="button"
+                            onClick={() => toggleAllMonths(true)}
+                            className="font-bold text-red-600 dark:text-red-400 hover:underline cursor-pointer"
+                        >
+                            Buka Semua
+                        </button>
+                        <span className="text-slate-300 dark:text-slate-700">•</span>
+                        <button
+                            type="button"
+                            onClick={() => toggleAllMonths(false)}
+                            className="font-bold text-slate-500 hover:underline cursor-pointer"
+                        >
+                            Tutup Semua
+                        </button>
+                    </div>
+                </div>
+
+                {/* FILTER TIPE TRANSAKSI (HORIZONTAL CHIPS) */}
+                <div className="flex items-center gap-2 overflow-x-auto pb-1 hide-scrollbar">
+                    {[
+                        { id: 'Semua', label: 'Semua Mutasi', count: transactions.length },
+                        { id: 'Pemasukan', label: '🟢 Pemasukan (+)', count: transactions.filter(t => t.type === 'Pemasukan').length, color: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40' },
+                        { id: 'Pengeluaran', label: '🔴 Pengeluaran (-)', count: transactions.filter(t => t.type === 'Pengeluaran').length, color: 'text-rose-600 bg-rose-50 dark:bg-rose-950/40' },
+                    ].map(tab => {
+                        const active = txTypeFilter === tab.id;
+                        return (
+                            <button
+                                key={tab.id}
+                                type="button"
+                                onClick={() => { triggerHaptic(8); setTxTypeFilter(tab.id); }}
+                                className={`px-3.5 py-1.5 rounded-xl text-[12px] font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 border ${
+                                    active
+                                        ? 'bg-red-600 text-white border-red-600 shadow-xs'
+                                        : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800 hover:border-slate-300'
+                                }`}
+                            >
+                                <span>{tab.label}</span>
+                                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-black ${
+                                    active ? 'bg-white/20 text-white' : (tab.color || 'bg-slate-100 dark:bg-slate-800 text-slate-500')
+                                }`}>
+                                    {tab.count}
+                                </span>
+                            </button>
+                        );
+                    })}
                 </div>
 
                 {Object.keys(groupedTransactions).map((monthYear) => {
-                    const list = filterMonth === 'Semua' ? groupedTransactions[monthYear] : (filterMonth === monthYear ? groupedTransactions[monthYear] : []);
-                    if (!list || list.length === 0) return null;
+                    let list = filterMonth === 'Semua' ? groupedTransactions[monthYear] : (filterMonth === monthYear ? groupedTransactions[monthYear] : []);
+                    if (!list) list = [];
+                    // Apply txTypeFilter
+                    if (txTypeFilter !== 'Semua') {
+                        list = list.filter(t => t.type === txTypeFilter);
+                    }
+                    if (list.length === 0 && txTypeFilter !== 'Semua') return null;
+
+                    const isExpanded = expandedMonths.includes(monthYear);
+                    let monthIn = 0, monthOut = 0;
+                    groupedTransactions[monthYear].forEach(t => {
+                        if (t.type === 'Pemasukan') monthIn += Number(t.amount || 0);
+                        else monthOut += Number(t.amount || 0);
+                    });
 
                     return (
-                        <div key={monthYear} className="space-y-2.5">
-                            {/* Sticky Month Pill Header */}
-                            <div className="sticky top-16 z-10 py-1 flex items-center gap-2">
-                                <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-600 dark:text-slate-300 border border-slate-200/90 dark:border-slate-800 shadow-2xs">
-                                    {monthYear}
-                                </span>
-                                <div className="h-px bg-slate-200/80 dark:border-slate-800 flex-1"></div>
-                            </div>
+                        <div key={monthYear} className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-2xs overflow-hidden transition-all">
+                            {/* Collapsible Month Header (Tap to toggle) */}
+                            <button
+                                type="button"
+                                onClick={() => toggleMonth(monthYear)}
+                                className="w-full p-3.5 sm:p-4 flex items-center justify-between text-left transition-colors hover:bg-slate-50/70 dark:hover:bg-slate-800/40 cursor-pointer select-none"
+                            >
+                                <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                                    <span className="w-8 h-8 rounded-xl bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/20 flex items-center justify-center font-bold text-[13px] shrink-0">
+                                        <Icon name="calendar_month" className="text-[17px]" />
+                                    </span>
+                                    <div className="min-w-0">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-[13.5px] font-bold text-slate-900 dark:text-white tracking-tight truncate">
+                                                {monthYear}
+                                            </span>
+                                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 shrink-0">
+                                                {list.length} trx
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-[10.5px] font-bold mt-0.5">
+                                            {monthIn > 0 && (
+                                                <span className="text-emerald-600 dark:text-emerald-400">
+                                                    +{formatRp(monthIn)}
+                                                </span>
+                                            )}
+                                            {monthIn > 0 && monthOut > 0 && <span className="text-slate-300 dark:text-slate-700">•</span>}
+                                            {monthOut > 0 && (
+                                                <span className="text-rose-600 dark:text-rose-400">
+                                                    -{formatRp(monthOut)}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 shrink-0">
+                                    <Icon name={isExpanded ? 'expand_less' : 'expand_more'} className="text-[18px]" />
+                                </div>
+                            </button>
+
+                            {/* Collapsible Month Body */}
+                            {isExpanded && (
+                                <div className="p-3 sm:p-4 pt-1 space-y-2 border-t border-slate-100 dark:border-slate-800/80 animate-fade-in bg-slate-50/40 dark:bg-slate-850/30">
 
                             {list.map((t) => (
                                 <div 
@@ -395,6 +526,8 @@ export function BukuKas({ balance, setBalance, transactions, setTransactions, us
                                     </div>
                                 </div>
                             ))}
+                                </div>
+                            )}
                         </div>
                     );
                 })}

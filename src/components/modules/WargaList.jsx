@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Icon from '../common/Icon.jsx';
 import { showToast } from '../common/Toast.jsx';
-import { formatRp, safeNumber, formatBulanTahun, isNonaktif } from '../../utils/helpers.js';
+import { formatRp, safeNumber, formatBulanTahun, isNonaktif, triggerHaptic } from '../../utils/helpers.js';
 
 function WargaList({ members, setMembers, userRole, identity, cycleNumber, currentRound, arisanPeriod }) {
     const [isFormOpen, setIsFormOpen] = useState(false);
@@ -12,6 +12,10 @@ function WargaList({ members, setMembers, userRole, identity, cycleNumber, curre
     const [printMode, setPrintMode] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [previewMember, setPreviewMember] = useState(null);
+    const [statusFilter, setStatusFilter] = useState('Semua');
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 12;
+
 
     // Mode tampilan menu warga: 'auto' (HP = list, Desktop = grid), 'list', atau 'grid'
     const [viewMode, setViewMode] = useState(() => {
@@ -84,10 +88,41 @@ function WargaList({ members, setMembers, userRole, identity, cycleNumber, curre
         showToast('Data warga berhasil dihapus.'); 
     };
 
-    const filteredMembers = members.filter(m => 
-        (m.name || '').toLowerCase().includes((searchQuery || '').toLowerCase()) ||
-        String(m.id || '').includes(searchQuery.trim())
-    );
+    const filteredMembers = React.useMemo(() => {
+        return members.filter(m => {
+            const matchSearch = (m.name || '').toLowerCase().includes((searchQuery || '').toLowerCase()) ||
+                String(m.id || '').includes(searchQuery.trim());
+            if (!matchSearch) return false;
+
+            if (statusFilter === 'Semua') return true;
+            if (statusFilter === 'Lunas') return (m.debt || 0) <= 0 && !isNonaktif(m);
+            if (statusFilter === 'Tunggakan') return (m.debt || 0) > 0;
+            if (statusFilter === 'Pemenang') return m.hasWon;
+            if (statusFilter === 'Belum Menang') return !m.hasWon && !isNonaktif(m) && m.program !== 'IuranOnly';
+            if (statusFilter === 'Nonaktif') return isNonaktif(m);
+            return true;
+        });
+    }, [members, searchQuery, statusFilter]);
+
+    // Reset pagination saat pencarian atau filter status berubah
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, statusFilter]);
+
+    const totalPages = Math.ceil(filteredMembers.length / pageSize) || 1;
+    const paginatedMembers = React.useMemo(() => {
+        const start = (currentPage - 1) * pageSize;
+        return filteredMembers.slice(start, start + pageSize);
+    }, [filteredMembers, currentPage, pageSize]);
+
+    const statusCounts = React.useMemo(() => ({
+        semua: members.length,
+        lunas: members.filter(m => (m.debt || 0) <= 0 && !isNonaktif(m)).length,
+        tunggakan: members.filter(m => (m.debt || 0) > 0).length,
+        pemenang: members.filter(m => m.hasWon).length,
+        belum: members.filter(m => !m.hasWon && !isNonaktif(m) && m.program !== 'IuranOnly').length,
+        nonaktif: members.filter(m => isNonaktif(m)).length,
+    }), [members]);
 
     return (
         <div className="space-y-5 sm:space-y-6">
@@ -141,6 +176,39 @@ function WargaList({ members, setMembers, userRole, identity, cycleNumber, curre
                         </button>
                     )}
                 </div>
+            </div>
+
+            {/* STATUS FILTER HORIZONTAL CHIPS */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 hide-scrollbar no-print">
+                {[
+                    { id: 'Semua', label: 'Semua', count: statusCounts.semua },
+                    { id: 'Lunas', label: 'Lunas / Aman', count: statusCounts.lunas },
+                    { id: 'Tunggakan', label: 'Ada Tunggakan', count: statusCounts.tunggakan, badgeColor: 'text-red-600 bg-red-50 dark:bg-red-950/40' },
+                    { id: 'Pemenang', label: 'Pemenang Arisan', count: statusCounts.pemenang, badgeColor: 'text-amber-600 bg-amber-50 dark:bg-amber-950/40' },
+                    { id: 'Belum Menang', label: 'Belum Menang', count: statusCounts.belum },
+                    { id: 'Nonaktif', label: 'Nonaktif / Wafat', count: statusCounts.nonaktif },
+                ].map(tab => {
+                    const active = statusFilter === tab.id;
+                    return (
+                        <button
+                            key={tab.id}
+                            type="button"
+                            onClick={() => { triggerHaptic(8); setStatusFilter(tab.id); }}
+                            className={`px-3.5 py-1.5 rounded-xl text-[12px] font-bold shrink-0 transition-all cursor-pointer flex items-center gap-1.5 border ${
+                                active
+                                    ? 'bg-red-600 text-white border-red-600 shadow-xs'
+                                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800 hover:border-slate-300'
+                            }`}
+                        >
+                            <span>{tab.label}</span>
+                            <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-black ${
+                                active ? 'bg-white/20 text-white' : (tab.badgeColor || 'bg-slate-100 dark:bg-slate-800 text-slate-500')
+                            }`}>
+                                {tab.count}
+                            </span>
+                        </button>
+                    );
+                })}
             </div>
 
             {/* SEARCH TOOLBAR & VIEW MODE SWITCHER */}
@@ -270,7 +338,7 @@ function WargaList({ members, setMembers, userRole, identity, cycleNumber, curre
                         : 'block sm:hidden'
                 }`}
             >
-                {filteredMembers.map((member) => (
+                {paginatedMembers.map((member) => (
                     <div
                         key={member.id}
                         onClick={(e) => { if (!e.target.closest('button')) setPreviewMember(member); }}
@@ -369,7 +437,7 @@ function WargaList({ members, setMembers, userRole, identity, cycleNumber, curre
                         : 'hidden sm:grid sm:grid-cols-2 lg:grid-cols-3'
                 }`}
             >
-                {filteredMembers.map((member) => (
+                {paginatedMembers.map((member) => (
                     <div
                         key={member.id}
                         onClick={(e) => { if (!e.target.closest('button')) setPreviewMember(member); }}
@@ -468,6 +536,37 @@ function WargaList({ members, setMembers, userRole, identity, cycleNumber, curre
                     </div>
                 ))}
             </div>
+
+            
+            {/* PAGINATION TOOLBAR */}
+            {totalPages > 1 && (
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 pb-1 no-print border-t border-slate-200/80 dark:border-slate-800 text-[12px] font-bold text-slate-500">
+                    <div>
+                        Menampilkan <span className="text-slate-900 dark:text-white font-black">{(currentPage - 1) * pageSize + 1} - {Math.min(currentPage * pageSize, filteredMembers.length)}</span> dari <span className="text-slate-900 dark:text-white font-black">{filteredMembers.length}</span> warga
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <button
+                            type="button"
+                            disabled={currentPage === 1}
+                            onClick={() => { triggerHaptic(8); setCurrentPage(p => Math.max(1, p - 1)); }}
+                            className="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:border-red-500 transition-all cursor-pointer shadow-2xs"
+                        >
+                            ← Sebelumnya
+                        </button>
+                        <span className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-black">
+                            {currentPage} / {totalPages}
+                        </span>
+                        <button
+                            type="button"
+                            disabled={currentPage >= totalPages}
+                            onClick={() => { triggerHaptic(8); setCurrentPage(p => Math.min(totalPages, p + 1)); }}
+                            className="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed hover:border-red-500 transition-all cursor-pointer shadow-2xs"
+                        >
+                            Berikutnya →
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {filteredMembers.length === 0 && (
                 <div className="bento-island-card p-12 text-center">
