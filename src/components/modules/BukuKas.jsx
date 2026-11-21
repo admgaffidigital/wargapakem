@@ -1,295 +1,647 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import Icon from '../common/Icon.jsx';
 import { showToast } from '../common/Toast.jsx';
-import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive } from '../../utils/helpers.js';
+import { formatRp, safeNumber, getLocalDate, parseLocalDate, uploadToGoogleDrive, triggerHaptic } from '../../utils/helpers.js';
 
-        function BukuKas({ balance, setBalance, transactions, setTransactions, userRole, identity, jimpitanBalance, setJimpitanBalance }) {
-            // Komponen BukuKas untuk pencatatan transaksi Kas RT Utama
-            const [filterMonth, setFilterMonth] = useState('Semua');
-            const [isModalOpen, setIsModalOpen] = useState(false);
-            const [selectedImage, setSelectedImage] = useState(null);
-            const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
-            const [transferAmount, setTransferAmount] = useState('');
-            const [formData, setFormData] = useState({ type: 'Pengeluaran', category: 'Pembelian Barang', description: '', amount: '', date: getLocalDate(), receiptUrl: null });
-            const [errorMsg, setErrorMsg] = useState('');
-            const [isUploading, setIsUploading] = useState(false);
-            const [editingId, setEditingId] = useState(null);
+export function BukuKas({ balance, setBalance, transactions, setTransactions, userRole, identity, jimpitanBalance, setJimpitanBalance }) {
+    const [filterMonth, setFilterMonth] = useState('Semua');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
+    const [transferAmount, setTransferAmount] = useState('');
+    const [formData, setFormData] = useState({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null });
+    const [errorMsg, setErrorMsg] = useState('');
+    const [isUploading, setIsUploading] = useState(false);
+    const [editingId, setEditingId] = useState(null);
+    const [showSaldo, setShowSaldo] = useState(true);
 
-            const groupedTransactions = useMemo(() => {
-                const sorted = [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
-                const groups = {};
-                sorted.forEach(t => {
-                    const dateObj = parseLocalDate(t.date);
-                    const monthYear = dateObj.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
-                    if (!groups[monthYear]) groups[monthYear] = [];
-                    groups[monthYear].push(t);
-                });
-                return groups;
-            }, [transactions]);
+    const groupedTransactions = useMemo(() => {
+        const sorted = [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
+        const groups = {};
+        sorted.forEach(t => {
+            const dateObj = parseLocalDate(t.date);
+            const monthYear = dateObj.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+            if (!groups[monthYear]) groups[monthYear] = [];
+            groups[monthYear].push(t);
+        });
+        return groups;
+    }, [transactions]);
 
-            const availableMonths = Object.keys(groupedTransactions);
-            const displayedTransactions = useMemo(() => {
-                if (filterMonth === 'Semua') return transactions;
-                return groupedTransactions[filterMonth] || [];
-            }, [filterMonth, transactions, groupedTransactions]);
+    const availableMonths = Object.keys(groupedTransactions);
+    const displayedTransactions = useMemo(() => {
+        if (filterMonth === 'Semua') return transactions;
+        return groupedTransactions[filterMonth] || [];
+    }, [filterMonth, transactions, groupedTransactions]);
 
-            // Upload Nota Kas RT: Canvas compress → base64 → Firestore (tanpa GAS)
-            const handleImageUpload = async (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
-                if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
-                setIsUploading(true); setErrorMsg('');
-                try {
-                    const url = await uploadToGoogleDrive(file, 1200, 0.82);
-                    setFormData(prev => ({ ...prev, receiptUrl: url }));
-                } catch(error) {
-                    setErrorMsg(error);
-                } finally {
-                    setIsUploading(false);
-                }
-            };
+    // Upload Nota Kas RT
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (!file.type.match('image.*')) return setErrorMsg('File harus berupa gambar!');
+        if (file.size > 10 * 1024 * 1024) return setErrorMsg('Ukuran file maksimal 10MB!');
+        setIsUploading(true); setErrorMsg('');
+        try {
+            const url = await uploadToGoogleDrive(file, 1200, 0.82);
+            setFormData(prev => ({ ...prev, receiptUrl: url }));
+        } catch(error) {
+            setErrorMsg(error);
+        } finally {
+            setIsUploading(false);
+        }
+    };
 
-            const handleSave = () => {
-                if (!formData.description) return setErrorMsg("Keterangan wajib diisi!");
-                const nominal = safeNumber(formData.amount);
-                if (nominal <= 0) return setErrorMsg("Nominal harus lebih dari Rp 0!");
-                
-                if (editingId) {
-                    const oldTx = transactions.find(t => t.id === editingId);
-                    let tempBalance = balance;
-                    if (oldTx.type === 'Pemasukan') tempBalance -= oldTx.amount;
-                    else tempBalance += oldTx.amount;
-                    
-                    if (formData.type === 'Pengeluaran' && nominal > tempBalance) return setErrorMsg(`Saldo tidak cukup! Saldo saat ini ${formatRp(tempBalance)}`);
-                    
-                    if (formData.type === 'Pemasukan') tempBalance += nominal;
-                    else tempBalance -= nominal;
-                    
-                    // Koreksi kas jimpitan jika ini transaksi Mutasi Jimpitan
-                    if (oldTx.category === 'Mutasi Jimpitan') {
-                        const diffJimpitan = oldTx.amount - nominal;
-                        setJimpitanBalance(prev => prev + diffJimpitan);
-                    }
-                    
-                    setBalance(tempBalance);
-                    setTransactions(transactions.map(t => t.id === editingId ? { ...formData, amount: nominal } : t));
-                    setEditingId(null);
-                    showToast(`Transaksi berhasil diperbarui.`);
-                } else {
-                    if (formData.type === 'Pengeluaran' && nominal > balance) return setErrorMsg(`Saldo tidak cukup! Saldo saat ini ${formatRp(balance)}`);
-                    if (formData.type === 'Pemasukan') setBalance(prev => prev + nominal); else setBalance(prev => prev - nominal);
-                    setTransactions([{ id: Date.now(), ...formData, amount: nominal }, ...transactions]);
-                    showToast(`Transaksi ${formData.type.toLowerCase()} berhasil dicatat.`);
-                }
-                
-                setIsModalOpen(false); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null });
-                setIsUploading(false);
-            };
+    const handleSave = () => {
+        triggerHaptic(12);
+        if (!formData.description) return setErrorMsg("Keterangan wajib diisi!");
+        const nominal = safeNumber(formData.amount);
+        if (nominal <= 0) return setErrorMsg("Nominal harus lebih dari Rp 0!");
+        
+        if (editingId) {
+            const oldTx = transactions.find(t => t.id === editingId);
+            let tempBalance = balance;
+            if (oldTx.type === 'Pemasukan') tempBalance -= oldTx.amount;
+            else tempBalance += oldTx.amount;
+            
+            if (formData.type === 'Pengeluaran' && nominal > tempBalance) return setErrorMsg(`Saldo tidak cukup! Saldo saat ini ${formatRp(tempBalance)}`);
+            
+            if (formData.type === 'Pemasukan') tempBalance += nominal;
+            else tempBalance -= nominal;
+            
+            if (oldTx.category === 'Mutasi Jimpitan') {
+                const diffJimpitan = oldTx.amount - nominal;
+                setJimpitanBalance(prev => prev + diffJimpitan);
+            }
+            
+            setBalance(tempBalance);
+            setTransactions(transactions.map(t => t.id === editingId ? { ...formData, amount: nominal } : t));
+            setEditingId(null);
+            showToast(`Transaksi berhasil diperbarui.`);
+        } else {
+            if (formData.type === 'Pengeluaran' && nominal > balance) return setErrorMsg(`Saldo tidak cukup! Saldo saat ini ${formatRp(balance)}`);
+            if (formData.type === 'Pemasukan') setBalance(prev => prev + nominal); else setBalance(prev => prev - nominal);
+            setTransactions([{ id: Date.now(), ...formData, amount: nominal }, ...transactions]);
+            showToast(`Transaksi ${formData.type.toLowerCase()} berhasil dicatat.`);
+        }
+        
+        setIsModalOpen(false); 
+        setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null });
+        setIsUploading(false);
+    };
 
-            const handleTransferJimpitan = () => {
-                const nominal = safeNumber(transferAmount);
-                if (nominal <= 0 || nominal > jimpitanBalance) return setErrorMsg(`Penarikan tidak valid! Maksimal ${formatRp(jimpitanBalance)}`);
-                setJimpitanBalance(prev => prev - nominal); setBalance(prev => prev + nominal);
-                setTransactions([{ id: Date.now(), type: 'Pemasukan', category: 'Mutasi Jimpitan', description: 'Pencairan Kas Jimpitan', amount: nominal, date: getLocalDate() }, ...transactions]);
-                setIsTransferModalOpen(false); setTransferAmount('');
-                showToast(`Berhasil mencairkan ${formatRp(nominal)} dari Kas Jimpitan.`);
-            };
+    const handleTransferJimpitan = () => {
+        triggerHaptic(12);
+        const nominal = safeNumber(transferAmount);
+        if (nominal <= 0 || nominal > jimpitanBalance) return setErrorMsg(`Penarikan tidak valid! Maksimal ${formatRp(jimpitanBalance)}`);
+        setJimpitanBalance(prev => prev - nominal); setBalance(prev => prev + nominal);
+        setTransactions([{ id: Date.now(), type: 'Pemasukan', category: 'Mutasi Jimpitan', description: 'Pencairan Kas Jimpitan', amount: nominal, date: getLocalDate() }, ...transactions]);
+        setIsTransferModalOpen(false); setTransferAmount('');
+        showToast(`Berhasil mencairkan ${formatRp(nominal)} dari Kas Jimpitan.`);
+    };
 
-            return (
-                <div className="space-y-8 print:p-0">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 bg-white p-6 sm:p-8 lg:p-8 rounded-3xl sm:rounded-3xl border border-slate-200 shadow-sm no-print">
-                        <div><h2 className="text-2xl font-medium text-google-text tracking-tight">Buku Kas Utama</h2><p className="text-[13px] font-medium text-google-textVariant mt-1.5">Catatan riwayat transaksi operasional RT.</p></div>
-                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
-                            <select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="bg-slate-50 border border-slate-200 text-google-text text-[13px] font-medium rounded-xl px-4 py-3.5 outline-none focus:border-google-blue w-full sm:w-auto cursor-pointer">
-                                <option value="Semua">Semua Bulan</option>
-                                {availableMonths.map((m, i) => <option key={i} value={m}>{m}</option>)}
-                            </select>
-                            <button onClick={() => window.print()} className="bg-white text-google-text px-6 py-3.5 rounded-full font-medium flex flex-wrap items-center gap-2 text-[13px] border border-slate-200 shadow-sm hover:shadow-md hover:bg-slate-50 hover:border-slate-400 active:scale-95 transition-all duration-300 w-full sm:w-auto"><Icon name="print" className="text-[16px]" /> <span>Cetak Laporan</span></button>
+    return (
+        <div className="space-y-6 sm:space-y-7 max-w-5xl mx-auto pb-8 print:p-0">
+            
+            {/* ========================================================
+                1. HEADER & FILTER KONTROL NATIVE
+               ======================================================== */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/95 dark:bg-slate-900/95 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-2xs no-print">
+                <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-2xl bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/25 flex items-center justify-center shrink-0 shadow-xs">
+                        <Icon name="account_balance_wallet" className="text-[24px]" fill="true" />
+                    </div>
+                    <div>
+                        <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight uppercase">Buku Kas Utama RT</h2>
+                        <p className="text-[11.5px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">
+                            Laporan arus kas operasional lingkungan secara akuntabel
+                        </p>
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <select 
+                        value={filterMonth} 
+                        onChange={(e) => { triggerHaptic(8); setFilterMonth(e.target.value); }} 
+                        className="flex-1 sm:flex-none bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-white text-[12px] font-bold rounded-xl px-3.5 py-2.5 outline-none cursor-pointer"
+                    >
+                        <option value="Semua">Semua Periode Bulan</option>
+                        {availableMonths.map((m, i) => <option key={i} value={m}>{m}</option>)}
+                    </select>
+
+                    <button 
+                        onClick={() => { triggerHaptic(10); window.print(); }} 
+                        className="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl text-[12px] font-bold border border-slate-200/80 dark:border-slate-700 flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer shrink-0"
+                        title="Cetak Buku Kas Formal (A4)"
+                    >
+                        <Icon name="print" className="text-[16px]" />
+                        <span className="hidden sm:inline">Cetak</span>
+                    </button>
+                </div>
+            </div>
+
+            {/* ========================================================
+                PRINT LAYOUT FORMAL (A4)
+               ======================================================== */}
+            <div className="hidden print-only">
+                <div className="kop-surat">
+                    <div className="kop-surat-logo"><img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" /></div>
+                    <div className="kop-surat-text"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1>{identity?.subtitle && <p>{identity.subtitle}</p>}</div>
+                    <div className="kop-surat-logo-right"></div>
+                </div>
+                <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Buku Kas Umum</h2><p className="text-[11pt]">{filterMonth !== 'Semua' ? `Periode: ${filterMonth}` : `Per Tanggal: ${new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'})}`}</p></div>
+                <table className="print-table">
+                    <thead><tr><th width="5%">No</th><th width="15%">Tanggal</th><th width="40%">Uraian Transaksi</th><th width="20%">Pemasukan</th><th width="20%">Pengeluaran</th></tr></thead>
+                    <tbody>
+                        {displayedTransactions.length === 0 ? <tr><td colSpan="5" className="text-center font-medium">Nihil / Belum ada transaksi</td></tr> : displayedTransactions.map((t, idx) => (
+                            <tr key={t.id}><td className="text-center font-medium">{idx + 1}</td><td className="text-center font-medium">{parseLocalDate(t.date).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year:'numeric'})}</td><td className="font-medium">{t.description} {t.category ? `(${t.category})` : ''}</td><td className="text-right font-medium">{t.type === 'Pemasukan' ? formatRp(t.amount) : '-'}</td><td className="text-right font-medium">{t.type === 'Pengeluaran' ? formatRp(t.amount) : '-'}</td></tr>
+                        ))}
+                    </tbody>
+                    <tfoot><tr><th colSpan="3" className="text-right">SALDO TOTAL KAS WARGA SAAT INI</th><th colSpan="2" className="text-center" style={{fontSize: '12pt'}}>{formatRp(balance)}</th></tr></tfoot>
+                </table>
+                <div className="ttd-container">
+                    <div className="ttd-box"><p>Mengetahui,</p><p>Ketua RT</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
+                    <div className="ttd-box"><p>Dibuat Oleh,</p><p>Bendahara / Admin</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
+                </div>
+            </div>
+
+            {/* ========================================================
+                2. MODERN NATIVE FINANCIAL CARD (Apple Card / Banking Style)
+               ======================================================== */}
+            <div className="relative overflow-hidden rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white p-6 sm:p-8 border border-slate-800 shadow-xl no-print">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/15 rounded-full blur-3xl pointer-events-none -mr-16 -mt-16"></div>
+                <div className="absolute bottom-0 left-0 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -ml-16 -mb-16"></div>
+
+                <div className="relative z-10 flex flex-col justify-between gap-6">
+                    <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                        <div className="flex items-center gap-2">
+                            <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 text-white border border-white/15">
+                                KAS OPERASIONAL RT
+                            </span>
+                            <span className="text-[11px] font-bold text-emerald-400 flex items-center gap-1">
+                                <Icon name="check_circle" className="text-[14px]" fill="true" />
+                                <span>Terverifikasi Real-Time</span>
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-white/50">
+                            <Icon name="contactless" className="text-[24px]" />
                         </div>
                     </div>
 
-                    <div className="hidden print-only">
-                        <div className="kop-surat">
-                            <div className="kop-surat-logo"><img src={identity?.logoApp || "./National_emblem_of_Indonesia_Garuda_Pancasila.svg"} alt="Logo" /></div>
-                            <div className="kop-surat-text"><h1>PENGURUS RUKUN TETANGGA (RT)</h1><h1>{identity?.name || 'Aplikasi Arisan'}</h1>{identity?.subtitle && <p>{identity.subtitle}</p>}</div>
-                            <div className="kop-surat-logo-right"></div>
-                        </div>
-                        <div className="text-center mb-6"><h2 className="text-[14pt] font-medium underline uppercase mb-1">Buku Kas Umum</h2><p className="text-[11pt]">{filterMonth !== 'Semua' ? `Periode: ${filterMonth}` : `Per Tanggal: ${new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year:'numeric'})}`}</p></div>
-                        <table className="print-table">
-                            <thead><tr><th width="5%">No</th><th width="15%">Tanggal</th><th width="40%">Uraian Transaksi</th><th width="20%">Pemasukan</th><th width="20%">Pengeluaran</th></tr></thead>
-                            <tbody>
-                                {displayedTransactions.length === 0 ? <tr><td colSpan="5" className="text-center font-medium">Nihil / Belum ada transaksi</td></tr> : displayedTransactions.map((t, idx) => (
-                                    <tr key={t.id}><td className="text-center font-medium">{idx + 1}</td><td className="text-center font-medium">{parseLocalDate(t.date).toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year:'numeric'})}</td><td className="font-medium">{t.description} {t.category ? `(${t.category})` : ''}</td><td className="text-right font-medium">{t.type === 'Pemasukan' ? formatRp(t.amount) : '-'}</td><td className="text-right font-medium">{t.type === 'Pengeluaran' ? formatRp(t.amount) : '-'}</td></tr>
-                                ))}
-                            </tbody>
-                            <tfoot><tr><th colSpan="3" className="text-right">SALDO TOTAL KAS WARGA SAAT INI</th><th colSpan="2" className="text-center" style={{fontSize: '12pt'}}>{formatRp(balance)}</th></tr></tfoot>
-                        </table>
-                        <div className="ttd-container">
-                            <div className="ttd-box"><p>Mengetahui,</p><p>Ketua RT</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
-                            <div className="ttd-box"><p>Dibuat Oleh,</p><p>Bendahara / Admin</p><div className="ttd-space"></div><p className="ttd-name">( ................................... )</p></div>
-                        </div>
-                    </div>
-
-                    <div className="bg-google-blue text-white p-8 sm:p-12 rounded-3xl border border-google-blueDark shadow-xl relative overflow-hidden no-print group cursor-default">
-                        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                            <div>
-                                <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-2 rounded-2xl mb-5 shadow-sm">
-                                    <Icon name="account_balance_wallet" className="text-[16px]"/>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue-50">Total Saldo Aktif</span>
-                                </div>
-                                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight drop-shadow-md">{formatRp(balance)}</h2>
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                        <div>
+                            <div className="flex items-center gap-2 mb-1.5">
+                                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                    Total Saldo Kas Aktif
+                                </span>
+                                <button
+                                    type="button"
+                                    onClick={() => { triggerHaptic(8); setShowSaldo(!showSaldo); }}
+                                    className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                                    title={showSaldo ? "Sembunyikan Saldo" : "Tampilkan Saldo"}
+                                >
+                                    <Icon name={showSaldo ? "visibility" : "visibility_off"} className="text-[16px]" />
+                                </button>
                             </div>
-                            <div className="hidden lg:flex items-center justify-center w-24 h-24 bg-white/10 rounded-full border border-white/20 shadow-inner">
-                                <Icon name="savings" className="text-5xl text-white/90 drop-shadow-md" />
-                            </div>
+                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight drop-shadow-sm font-sans">
+                                {showSaldo ? formatRp(balance) : "Rp ••••••••"}
+                            </h2>
+                        </div>
+
+                        <div className="bg-white/5 hover:bg-white/10 transition-colors px-4 py-2.5 rounded-2xl border border-white/10">
+                            <span className="text-[9.5px] uppercase font-bold text-slate-400 block">Cadangan Kas Jimpitan</span>
+                            <span className="text-[14px] font-black text-amber-300">
+                                {showSaldo ? formatRp(jimpitanBalance) : "••••••"}
+                            </span>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    {userRole === 'admin' && (
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 no-print">
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bento-island-card p-4 sm:p-5 flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-emerald-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 active:scale-95 group text-left sm:text-center relative overflow-hidden cursor-pointer">
-                                <div className="absolute top-0 right-0 w-20 h-20 bg-google-green/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
-                                <div className="bg-google-greenLight text-google-greenDark w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center group-hover:bg-google-green group-hover:text-white transition-colors duration-300 shadow-sm border border-google-green/30"><Icon name="add" className="text-[24px] group-hover:scale-110 group-hover:rotate-90 transition-all duration-300" /></div>
-                                <span className="text-[13px] font-medium text-google-text">Catat Pemasukan</span>
-                            </button>
-                            <button onClick={() => { setEditingId(null); setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); setIsModalOpen(true); setErrorMsg(''); setIsUploading(false); }} className="bento-island-card p-4 sm:p-5 flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-red-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 active:scale-95 group text-left sm:text-center relative overflow-hidden cursor-pointer">
-                                <div className="absolute top-0 right-0 w-20 h-20 bg-google-red/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
-                                <div className="bg-google-redLight text-google-redDark w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center group-hover:bg-google-red group-hover:text-white transition-colors duration-300 shadow-sm border border-google-red/30"><Icon name="remove" className="text-[24px] group-hover:scale-110 group-hover:-rotate-90 transition-all duration-300" /></div>
-                                <span className="text-[13px] font-medium text-google-text">Catat Pengeluaran</span>
-                            </button>
-                            <button onClick={() => { setIsTransferModalOpen(true); setErrorMsg(''); }} className="bento-island-card p-4 sm:p-5 flex flex-row sm:flex-col items-center sm:justify-center gap-3 sm:gap-4 hover:border-amber-500/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 active:scale-95 group text-left sm:text-center relative overflow-hidden cursor-pointer">
-                                <div className="absolute top-0 right-0 w-20 h-20 bg-google-yellow/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-110"></div>
-                                <div className="bg-google-yellowLight text-google-yellowDark w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center group-hover:bg-google-yellow group-hover:text-white transition-colors duration-300 shadow-sm border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[24px] group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300" /></div>
-                                <span className="text-[13px] font-medium text-google-text leading-tight">Cairkan Kas Jimpitan</span>
-                            </button>
+            {/* ========================================================
+                3. ACTION PILLS (HANYA PENGURUS/ADMIN)
+               ======================================================== */}
+            {userRole === 'admin' && (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 no-print">
+                    <button 
+                        onClick={() => { 
+                            triggerHaptic(10);
+                            setEditingId(null); 
+                            setFormData({ type: 'Pemasukan', category: 'Iuran Opsional', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); 
+                            setIsModalOpen(true); 
+                            setErrorMsg(''); 
+                            setIsUploading(false); 
+                        }} 
+                        className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xs hover:border-emerald-500/40 hover:shadow-md transition-all active:scale-[0.98] flex items-center gap-3 cursor-pointer group"
+                    >
+                        <div className="w-11 h-11 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                            <Icon name="arrow_downward" className="text-[20px]" fill="true" />
                         </div>
-                    )}
+                        <div className="text-left min-w-0">
+                            <span className="text-[13px] font-bold text-slate-900 dark:text-white block group-hover:text-emerald-600 transition-colors">
+                                Catat Pemasukan
+                            </span>
+                            <span className="text-[11px] text-slate-400 block truncate">
+                                Iuran, donasi & kas masuk
+                            </span>
+                        </div>
+                    </button>
 
-                    <div className="space-y-8 no-print">
-                        <h3 className="text-xl font-medium text-google-text mb-3 px-2 tracking-tight">Riwayat Transaksi Terkini</h3>
-                        {Object.keys(groupedTransactions).map((monthYear) => (
-                            <div key={monthYear} className="space-y-6">
-                                <div className="flex items-center gap-3 mb-2 px-2 pt-2">
-                                    <h4 className="text-[12px] font-medium text-slate-800 uppercase tracking-widest">{monthYear}</h4>
-                                    <div className="h-px bg-slate-300 flex-1"></div>
-                                </div>
-                                {groupedTransactions[monthYear].map((t) => (
-                                    <div key={t.id} className="bento-island-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-500/30 transition-all duration-300 gap-4 group">
-                                        <div className="flex items-center gap-5 flex-1 overflow-hidden">
-                                            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border transition-colors duration-300 ${t.type === 'Pemasukan' ? 'bg-google-greenLight text-google-greenDark border-google-green/30 group-hover:bg-google-green group-hover:text-white' : 'bg-google-redLight text-google-redDark border-google-red/30 group-hover:bg-google-red group-hover:text-white'}`}><Icon name={t.type === 'Pemasukan' ? "arrow_downward" : "arrow_upward"} className="text-[24px]" fill="true" /></div>
-                                            <div className="flex-1 min-w-0">
-                                                <p className="font-medium text-[14px] text-google-text truncate mb-1.5">{t.description}</p>
-                                                <div className="flex flex-wrap items-center gap-2">
-                                                    <p className="text-[11px] font-medium text-google-textVariant bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md inline-flex items-center gap-1.5"><Icon name="label" className="text-[13px]" /> {t.category} &bull; {parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</p>
-                                                    {t.receiptUrl && <button onClick={() => setSelectedImage(t.receiptUrl)} className="text-[11px] font-medium text-google-blue bg-google-blueLight border border-google-blue/30 px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 hover:bg-google-blue hover:text-white transition-colors duration-300"><Icon name="receipt" className="text-[13px]" /> Lihat Bukti</button>}
-                                                </div>
+                    <button 
+                        onClick={() => { 
+                            triggerHaptic(10);
+                            setEditingId(null); 
+                            setFormData({ type: 'Pengeluaran', category: 'Belanja Barang/Alat', description: '', amount: '', date: getLocalDate(), receiptUrl: null }); 
+                            setIsModalOpen(true); 
+                            setErrorMsg(''); 
+                            setIsUploading(false); 
+                        }} 
+                        className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xs hover:border-rose-500/40 hover:shadow-md transition-all active:scale-[0.98] flex items-center gap-3 cursor-pointer group"
+                    >
+                        <div className="w-11 h-11 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-500/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                            <Icon name="arrow_upward" className="text-[20px]" fill="true" />
+                        </div>
+                        <div className="text-left min-w-0">
+                            <span className="text-[13px] font-bold text-slate-900 dark:text-white block group-hover:text-rose-600 transition-colors">
+                                Catat Pengeluaran
+                            </span>
+                            <span className="text-[11px] text-slate-400 block truncate">
+                                Belanja alat, konsumsi & biaya
+                            </span>
+                        </div>
+                    </button>
+
+                    <button 
+                        onClick={() => { 
+                            triggerHaptic(10);
+                            setIsTransferModalOpen(true); 
+                            setErrorMsg(''); 
+                        }} 
+                        className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xs hover:border-amber-500/40 hover:shadow-md transition-all active:scale-[0.98] flex items-center gap-3 cursor-pointer group"
+                    >
+                        <div className="w-11 h-11 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-500/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                            <Icon name="sync_alt" className="text-[20px]" fill="true" />
+                        </div>
+                        <div className="text-left min-w-0">
+                            <span className="text-[13px] font-bold text-slate-900 dark:text-white block group-hover:text-amber-600 transition-colors">
+                                Cairkan Kas Jimpitan
+                            </span>
+                            <span className="text-[11px] text-slate-400 block truncate">
+                                Mutasi jimpitan tunai ke kas utama
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            )}
+
+            {/* ========================================================
+                4. FEED RIWAYAT TRANSAKSI (NATIVE LIST VIEW)
+               ======================================================== */}
+            <div className="space-y-6 no-print">
+                <div className="flex items-center justify-between px-1">
+                    <h3 className="text-[15px] font-black text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
+                        <span>Riwayat Mutasi Transaksi</span>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                            {displayedTransactions.length}
+                        </span>
+                    </h3>
+                </div>
+
+                {Object.keys(groupedTransactions).map((monthYear) => {
+                    const list = filterMonth === 'Semua' ? groupedTransactions[monthYear] : (filterMonth === monthYear ? groupedTransactions[monthYear] : []);
+                    if (!list || list.length === 0) return null;
+
+                    return (
+                        <div key={monthYear} className="space-y-2.5">
+                            {/* Sticky Month Pill Header */}
+                            <div className="sticky top-16 z-10 py-1 flex items-center gap-2">
+                                <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-600 dark:text-slate-300 border border-slate-200/90 dark:border-slate-800 shadow-2xs">
+                                    {monthYear}
+                                </span>
+                                <div className="h-px bg-slate-200/80 dark:border-slate-800 flex-1"></div>
+                            </div>
+
+                            {list.map((t) => (
+                                <div 
+                                    key={t.id} 
+                                    className="p-3.5 sm:p-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
+                                >
+                                    <div className="flex items-center gap-3.5 min-w-0 pr-2">
+                                        <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border shadow-2xs ${
+                                            t.type === 'Pemasukan'
+                                                ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
+                                                : 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border-rose-500/20'
+                                        }`}>
+                                            <Icon name={t.type === 'Pemasukan' ? "arrow_downward" : "arrow_upward"} className="text-[20px]" fill="true" />
+                                        </div>
+
+                                        <div className="min-w-0 flex-1">
+                                            <p className="font-bold text-[13.5px] text-slate-900 dark:text-white truncate">
+                                                {t.description}
+                                            </p>
+                                            <div className="flex flex-wrap items-center gap-1.5 mt-0.5 text-[11px] font-medium text-slate-400">
+                                                <span className="text-slate-500 dark:text-slate-400">{t.category}</span>
+                                                <span>&bull;</span>
+                                                <span>{parseLocalDate(t.date).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})}</span>
+                                                {t.receiptUrl && (
+                                                    <button 
+                                                        onClick={() => { triggerHaptic(8); setSelectedImage(t.receiptUrl); }} 
+                                                        className="ml-1 text-[10px] font-bold text-red-600 dark:text-red-400 hover:underline flex items-center gap-0.5 cursor-pointer"
+                                                    >
+                                                        <Icon name="receipt" className="text-[12px]" />
+                                                        <span>Bukti Nota</span>
+                                                    </button>
+                                                )}
                                             </div>
                                         </div>
-                                        <div className="text-left sm:text-right flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center border-t sm:border-t-0 border-slate-200 pt-4 sm:pt-0 w-full sm:w-auto">
-                                            <span className={`font-medium text-[17px] ${t.type === 'Pemasukan' ? 'text-google-greenDark' : 'text-google-redDark'} tracking-tight`}>{t.type === 'Pemasukan' ? '+' : '-'}{formatRp(t.amount)}</span>
-                                            {userRole === 'admin' && t.category !== 'Saldo Awal' && (
-                                                <div className="flex flex-wrap gap-2 mt-0 sm:mt-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                    <button onClick={() => {
+                                    </div>
+
+                                    <div className="flex items-center justify-between sm:justify-end gap-3 border-t sm:border-t-0 border-slate-100 dark:border-slate-800/80 pt-2.5 sm:pt-0">
+                                        <span className={`text-[15px] sm:text-[16px] font-black tracking-tight ${
+                                            t.type === 'Pemasukan' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                                        }`}>
+                                            {t.type === 'Pemasukan' ? '+' : '-'}{formatRp(t.amount)}
+                                        </span>
+
+                                        {userRole === 'admin' && t.category !== 'Saldo Awal' && (
+                                            <div className="flex items-center gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button 
+                                                    onClick={() => {
+                                                        triggerHaptic(8);
                                                         setEditingId(t.id);
                                                         setFormData(t);
                                                         setIsModalOpen(true);
                                                         setErrorMsg('');
-                                                    }} className="text-google-blue bg-white hover:bg-google-blueLight border border-slate-200 hover:border-google-blue/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="edit" className="text-[14px]" /><span className="hidden sm:inline">Edit</span></button>
-                                                    <button onClick={() => { 
+                                                    }} 
+                                                    className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors"
+                                                    title="Edit Transaksi"
+                                                >
+                                                    <Icon name="edit" className="text-[13px]" />
+                                                </button>
+                                                <button 
+                                                    onClick={() => {
+                                                        triggerHaptic(10);
                                                         if (t.type === 'Pemasukan') setBalance(prev => prev - t.amount); 
                                                         else setBalance(prev => prev + t.amount);
                                                         if (t.category === 'Mutasi Jimpitan') setJimpitanBalance(prev => prev + t.amount);
-                                                        setTransactions(transactions.filter(x => x.id !== t.id)); 
-                                                    }} className="text-google-red bg-white hover:bg-google-redLight border border-slate-200 hover:border-google-red/40 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-300 active:scale-95 flex flex-wrap items-center gap-1 uppercase tracking-widest"><Icon name="delete" className="text-[14px]" /><span className="hidden sm:inline">Hapus</span></button>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                        {transactions.length === 0 && <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center shadow-sm"><div className="bg-slate-50 w-24 h-24 flex items-center justify-center rounded-full mb-6 mx-auto border border-slate-200"><Icon name="receipt_long" className="text-[48px] text-slate-400" /></div><h3 className="font-medium text-[18px] text-google-text mb-2 tracking-tight">Belum Ada Transaksi</h3><p className="text-google-textVariant font-medium text-[13px]">Buku kas masih dalam keadaan kosong.</p></div>}
-                    </div>
-
-                    {isModalOpen && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-3xl p-6 sm:p-8 w-full max-w-sm text-left border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
-                                <div className={`mb-6 w-20 h-20 rounded-full flex items-center justify-center border ${formData.type === 'Pemasukan' ? 'bg-google-greenLight text-google-green border-google-green/30' : 'bg-google-redLight text-google-red border-google-red/30'}`}><Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[36px]" fill="true" /></div>
-                                <h3 className="text-2xl font-medium text-google-text mb-6 tracking-tight">{editingId ? 'Edit' : 'Catat'} {formData.type}</h3>
-                                <div className="space-y-7">
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Tanggal Transaksi</label><input type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} className={`w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} /></div>
-                                    <div>
-                                        <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Kategori</label>
-                                        <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className={`w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md cursor-pointer ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`}>
-                                            {formData.type === 'Pengeluaran' ? <><option>Belanja Barang/Alat</option><option>Honor Jasa</option><option>Konsumsi</option><option>Bantuan Sosial</option><option>Lain-lain</option></> : <><option>Iuran Opsional</option><option>Donasi</option><option>Pemasukan Jasa</option><option>Lain-lain</option></>}
-                                        </select>
-                                    </div>
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Keterangan / Uraian</label><input type="text" value={formData.description} onChange={e => {setFormData({...formData, description: e.target.value}); setErrorMsg('');}} className={`w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md placeholder:text-slate-400 ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} placeholder="Misal: Beli Sapu Lidi" /></div>
-                                    <div><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal (Rp)</label><input type="number" min="0" value={formData.amount} onChange={e => {setFormData({...formData, amount: safeNumber(e.target.value)}); setErrorMsg('');}} className={`w-full bg-slate-50 border border-slate-200 p-4 text-[13px] font-medium outline-none rounded-2xl transition-colors duration-300 text-google-text focus:bg-white focus:shadow-md placeholder:text-slate-400 ${formData.type === 'Pemasukan' ? 'focus:border-google-green' : 'focus:border-google-red'}`} placeholder="0" /></div>
-                                    
-                                    {formData.type === 'Pengeluaran' && (
-                                        <div>
-                                            <label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Upload Bukti / Nota (Opsional)</label>
-                                            <div className={`flex items-center gap-4 bg-slate-50 border ${isUploading ? 'border-google-red shadow-md' : 'border-slate-200'} p-3 rounded-2xl relative overflow-hidden focus-within:border-google-red transition-all`}>
-                                                <input type="file" accept="image/*" onChange={handleImageUpload} disabled={isUploading} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" />
-                                                <div className="bg-white w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm border border-slate-200 text-google-textVariant relative z-0">
-                                                    {isUploading ? <div className="w-5 h-5 border border-google-red border-t-transparent rounded-full animate-spin"></div> : <Icon name="receipt" className="text-[20px]" />}
-                                                </div>
-                                                <div className="relative z-0 flex-1 min-w-0">
-                                                    <p className="font-medium text-[13px] text-google-text truncate">{isUploading ? "Mengunggah..." : (formData.receiptUrl ? "Nota Siap" : "Pilih File Nota")}</p>
-                                                    <p className="text-[10px] text-google-textVariant truncate">{formData.receiptUrl ? "Klik untuk mengganti nota" : "Maksimal 2MB"}</p>
-                                                </div>
-                                                {formData.receiptUrl && !isUploading && (
-                                                    <div className="relative z-20 shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-slate-200 group">
-                                                        <img src={formData.receiptUrl} alt="Nota Preview" className="w-full h-full object-cover" />
-                                                    </div>
-                                                )}
+                                                        setTransactions(transactions.filter(x => x.id !== t.id));
+                                                        showToast('Transaksi dihapus.');
+                                                    }} 
+                                                    className="w-7 h-7 rounded-lg bg-red-50 dark:bg-red-950/40 hover:bg-red-100 text-red-600 dark:text-red-400 flex items-center justify-center transition-colors"
+                                                    title="Hapus Transaksi"
+                                                >
+                                                    <Icon name="delete" className="text-[13px]" />
+                                                </button>
                                             </div>
-                                        </div>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    );
+                })}
+
+                {displayedTransactions.length === 0 && (
+                    <div className="bg-white/80 dark:bg-slate-900/80 rounded-3xl p-12 text-center border border-slate-200/90 dark:border-slate-800 space-y-2">
+                        <Icon name="receipt_long" className="text-[40px] text-slate-300 dark:text-slate-600 mx-auto" />
+                        <h4 className="text-[15px] font-bold text-slate-800 dark:text-white">Belum Ada Transaksi</h4>
+                        <p className="text-[12px] text-slate-400">Belum ada catatan mutasi kas pada periode yang dipilih.</p>
+                    </div>
+                )}
+            </div>
+
+            {/* ========================================================
+                5. MODAL BOTTOM SHEET INPUT TRANSAKSI (NATIVE SHEET)
+               ======================================================== */}
+            {isModalOpen && (
+                <div className="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-950/65 dark:bg-black/80 backdrop-blur-md animate-fade-in no-print">
+                    <div className="w-full sm:max-w-md bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-7 shadow-2xl animate-modal-in max-h-[90vh] overflow-y-auto">
+                        {/* Mobile Pull Handle */}
+                        <div className="w-12 h-1 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mb-4 sm:hidden"></div>
+
+                        <div className="flex items-center justify-between mb-5">
+                            <div className="flex items-center gap-2.5">
+                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                                    formData.type === 'Pemasukan' 
+                                        ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400' 
+                                        : 'bg-rose-50 text-rose-600 dark:bg-rose-950/40 dark:text-rose-400'
+                                }`}>
+                                    <Icon name={formData.type === 'Pemasukan' ? 'arrow_downward' : 'arrow_upward'} className="text-[20px]" fill="true" />
+                                </div>
+                                <h3 className="text-lg font-black text-slate-900 dark:text-white tracking-tight">
+                                    {editingId ? 'Edit' : 'Catat'} {formData.type}
+                                </h3>
+                            </div>
+                            <button 
+                                onClick={() => setIsModalOpen(false)} 
+                                className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center justify-center hover:bg-slate-200 transition-colors"
+                            >
+                                <Icon name="close" className="text-[16px]" />
+                            </button>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 block mb-1.5 ml-1">Tanggal Transaksi</label>
+                                <input 
+                                    type="date" 
+                                    value={formData.date} 
+                                    onChange={e => setFormData({...formData, date: e.target.value})} 
+                                    className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-4 py-3 text-[13px] font-medium outline-none rounded-xl text-slate-900 dark:text-white focus:border-red-500" 
+                                />
+                            </div>
+
+                            <div>
+                                <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 block mb-1.5 ml-1">Kategori Transaksi</label>
+                                <select 
+                                    value={formData.category} 
+                                    onChange={e => setFormData({...formData, category: e.target.value})} 
+                                    className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-4 py-3 text-[13px] font-medium outline-none rounded-xl text-slate-900 dark:text-white focus:border-red-500 cursor-pointer"
+                                >
+                                    {formData.type === 'Pengeluaran' ? (
+                                        <>
+                                            <option>Belanja Barang/Alat</option>
+                                            <option>Honor Jasa</option>
+                                            <option>Konsumsi</option>
+                                            <option>Bantuan Sosial</option>
+                                            <option>Lain-lain</option>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <option>Iuran Opsional</option>
+                                            <option>Donasi</option>
+                                            <option>Pemasukan Jasa</option>
+                                            <option>Lain-lain</option>
+                                        </>
                                     )}
-                                </div>
-                                {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-2xl mt-6 flex flex-wrap items-center gap-2"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
-                                <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-slate-200">
-                                    <button onClick={() => { setIsModalOpen(false); setErrorMsg(''); setIsUploading(false); setEditingId(null); }} className="btn-native-secondary w-full sm:w-auto">Batal</button>
-                                    <button onClick={handleSave} disabled={isUploading} className={`btn-native-primary flex-1 disabled:opacity-50 flex items-center justify-center gap-2 ${formData.type === 'Pemasukan' ? 'bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-500/20 border-emerald-500/30' : 'bg-gradient-to-r from-red-600 to-rose-600 shadow-red-500/20 border-red-500/30'}`}>Simpan Data</button>
-                                </div>
+                                </select>
                             </div>
-                        </div>
-                    )}
 
-                    {isTransferModalOpen && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar rounded-3xl p-8 w-full max-w-sm text-center border border-slate-200 dark:border-slate-800 modal-card animate-modal-in">
-                                <div className="mb-6 bg-google-yellowLight w-24 h-24 rounded-full flex items-center justify-center mx-auto border border-google-yellow/30"><Icon name="move_to_inbox" className="text-[48px] text-google-yellowDark" fill="true" /></div>
-                                <h3 className="text-2xl font-medium text-google-text mb-2 tracking-tight">Pencairan Jimpitan</h3>
-                                <p className="text-[13px] font-medium text-google-textVariant mb-8 leading-relaxed">Tarik dana dari kas Jimpitan Fisik ke Kas Utama RT.</p>
-                                
-                                <div className="bg-slate-50 p-6 sm:p-8 md:p-6 rounded-3xl mb-8 border border-slate-200 shadow-sm"><p className="text-[10px] font-medium text-google-textVariant uppercase tracking-widest mb-2">Saldo Jimpitan Saat Ini</p><p className="text-[24px] font-medium text-google-text tracking-tight">{formatRp(jimpitanBalance)}</p></div>
-                                
-                                <div className="text-left mb-8"><label className="text-[10px] font-medium text-google-textVariant block mb-2 ml-1 uppercase tracking-widest">Nominal Disetor (Rp)</label><input type="number" min="0" value={transferAmount} onChange={e => {setTransferAmount(safeNumber(e.target.value)); setErrorMsg('');}} className="w-full bg-slate-50 border border-slate-200 focus:border-google-blue focus:bg-white focus:shadow-md px-5 py-3.5 text-[16px] font-medium outline-none rounded-2xl transition-all duration-300 text-google-text placeholder:text-slate-400" placeholder="0" /></div>
-                                
-                                {errorMsg && <div className="bg-google-redLight border border-google-red/40 text-google-redDark font-medium text-[12px] px-4 py-3.5 rounded-2xl mb-8 flex flex-wrap items-center gap-2 text-left"><Icon name="error" className="text-[16px] shrink-0"/><span>{errorMsg}</span></div>}
-                                
-                                <div className="flex flex-wrap gap-3 pt-2">
-                                    <button onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} className="btn-native-secondary w-full sm:w-auto">Batal</button>
-                                    <button onClick={handleTransferJimpitan} className="btn-native-primary flex-1 bg-gradient-to-r from-amber-500 to-yellow-600 shadow-amber-500/20 border-amber-500/30">Mutasi Dana</button>
-                                </div>
+                            <div>
+                                <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 block mb-1.5 ml-1">Keterangan / Uraian</label>
+                                <input 
+                                    type="text" 
+                                    value={formData.description} 
+                                    onChange={e => { setFormData({...formData, description: e.target.value}); setErrorMsg(''); }} 
+                                    placeholder="Contoh: Beli sapu lidi & plastik sampah" 
+                                    className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-4 py-3 text-[13px] font-medium outline-none rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-red-500" 
+                                />
                             </div>
-                        </div>
-                    )}
 
-                    {/* IMAGE VIEWER MODAL */}
-                    {selectedImage && (
-                        <div className="fixed inset-0 z-[100] flex justify-center items-center p-4 transition-opacity modal-backdrop animate-backdrop-in" onClick={() => setSelectedImage(null)}>
-                            <div className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center justify-center animate-fadeIn modal-card animate-modal-in" onClick={e => e.stopPropagation()}>
-                                <button onClick={() => setSelectedImage(null)} className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors border border-white/20"><Icon name="close" className="text-[24px]" /></button>
-                                <img src={selectedImage} alt="Bukti Transaksi" className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl" />
+                            <div>
+                                <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 block mb-1.5 ml-1">Nominal (Rp)</label>
+                                <input 
+                                    type="number" 
+                                    min="0" 
+                                    value={formData.amount} 
+                                    onChange={e => { setFormData({...formData, amount: safeNumber(e.target.value)}); setErrorMsg(''); }} 
+                                    placeholder="0" 
+                                    className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-4 py-3 text-[15px] font-black outline-none rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-red-500" 
+                                />
+                            </div>
+
+                            {/* Upload Nota Bukti */}
+                            {formData.type === 'Pengeluaran' && (
+                                <div>
+                                    <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 block mb-1.5 ml-1">Bukti Nota Transaksi (Opsional)</label>
+                                    <div className="relative flex items-center gap-3 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 p-3 rounded-xl overflow-hidden">
+                                        <input 
+                                            type="file" 
+                                            accept="image/*" 
+                                            onChange={handleImageUpload} 
+                                            disabled={isUploading} 
+                                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" 
+                                        />
+                                        <div className="w-10 h-10 rounded-lg bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 flex items-center justify-center shrink-0 text-slate-500">
+                                            {isUploading ? <div className="w-4 h-4 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div> : <Icon name="receipt" className="text-[18px]" />}
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <p className="text-[12px] font-bold text-slate-800 dark:text-white truncate">
+                                                {isUploading ? "Mengunggah..." : (formData.receiptUrl ? "Nota Terpasang" : "Pilih Foto Bukti")}
+                                            </p>
+                                            <p className="text-[10px] text-slate-400">Format gambar maks 10MB</p>
+                                        </div>
+                                        {formData.receiptUrl && !isUploading && (
+                                            <div className="w-10 h-10 rounded-lg overflow-hidden border border-slate-200 shrink-0">
+                                                <img src={formData.receiptUrl} alt="Nota" className="w-full h-full object-cover" />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+
+                            {errorMsg && (
+                                <div className="p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/40 rounded-xl text-red-600 dark:text-red-400 text-[12px] font-bold flex items-center gap-2">
+                                    <Icon name="error" className="text-[16px] shrink-0" fill="true" />
+                                    <span>{errorMsg}</span>
+                                </div>
+                            )}
+
+                            <div className="flex gap-2.5 pt-2">
+                                <button 
+                                    type="button" 
+                                    onClick={() => setIsModalOpen(false)} 
+                                    className="w-1/3 min-h-[46px] rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-[13px] hover:bg-slate-200 transition-all cursor-pointer"
+                                >
+                                    Batal
+                                </button>
+                                <button 
+                                    type="button" 
+                                    onClick={handleSave} 
+                                    disabled={isUploading} 
+                                    className="flex-1 min-h-[46px] rounded-2xl bg-red-600 hover:bg-red-700 text-white font-bold text-[13px] shadow-lg shadow-red-500/25 active:scale-95 transition-all cursor-pointer disabled:opacity-50"
+                                >
+                                    Simpan Transaksi
+                                </button>
                             </div>
                         </div>
-                    )}
+                    </div>
                 </div>
-            );
-        }
+            )}
+
+            {/* ========================================================
+                6. MODAL CAIRKAN JIMPITAN
+               ======================================================== */}
+            {isTransferModalOpen && (
+                <div className="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-950/65 dark:bg-black/80 backdrop-blur-md animate-fade-in no-print">
+                    <div className="w-full sm:max-w-md bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-7 shadow-2xl animate-modal-in">
+                        <div className="w-12 h-1 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mb-4 sm:hidden"></div>
+
+                        <div className="text-center mb-5">
+                            <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-500/25 flex items-center justify-center mx-auto mb-3 shadow-xs">
+                                <Icon name="sync_alt" className="text-[28px]" fill="true" />
+                            </div>
+                            <h3 className="text-lg font-black text-slate-900 dark:text-white tracking-tight">Pencairan Kas Jimpitan</h3>
+                            <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-0.5">
+                                Setorkan fisik dana Jimpitan ke Kas Utama RT
+                            </p>
+                        </div>
+
+                        <div className="bg-slate-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 text-center mb-4">
+                            <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">Saldo Jimpitan Tersedia</span>
+                            <span className="text-2xl font-black text-amber-600 dark:text-amber-400 font-sans">{formatRp(jimpitanBalance)}</span>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div>
+                                <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 block mb-1.5 ml-1">Nominal Disetor (Rp)</label>
+                                <input 
+                                    type="number" 
+                                    min="0" 
+                                    value={transferAmount} 
+                                    onChange={e => { setTransferAmount(safeNumber(e.target.value)); setErrorMsg(''); }} 
+                                    placeholder="0" 
+                                    className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-4 py-3 text-[16px] font-black outline-none rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-red-500" 
+                                />
+                            </div>
+
+                            {errorMsg && (
+                                <div className="p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/40 rounded-xl text-red-600 dark:text-red-400 text-[12px] font-bold flex items-center gap-2">
+                                    <Icon name="error" className="text-[16px] shrink-0" fill="true" />
+                                    <span>{errorMsg}</span>
+                                </div>
+                            )}
+
+                            <div className="flex gap-2.5 pt-2">
+                                <button 
+                                    type="button" 
+                                    onClick={() => { setIsTransferModalOpen(false); setErrorMsg(''); }} 
+                                    className="w-1/3 min-h-[46px] rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-[13px] hover:bg-slate-200 transition-all cursor-pointer"
+                                >
+                                    Batal
+                                </button>
+                                <button 
+                                    type="button" 
+                                    onClick={handleTransferJimpitan} 
+                                    className="flex-1 min-h-[46px] rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-[13px] shadow-lg shadow-amber-500/25 active:scale-95 transition-all cursor-pointer"
+                                >
+                                    Mutasi Dana
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* ========================================================
+                7. IMAGE VIEWER FULLSCREEN
+               ======================================================== */}
+            {selectedImage && (
+                <div 
+                    className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fade-in no-print" 
+                    onClick={() => setSelectedImage(null)}
+                >
+                    <div className="relative max-w-2xl w-full max-h-[90vh] flex flex-col items-center justify-center" onClick={e => e.stopPropagation()}>
+                        <button 
+                            onClick={() => setSelectedImage(null)} 
+                            className="absolute -top-12 right-0 w-9 h-9 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-colors border border-white/20"
+                        >
+                            <Icon name="close" className="text-[20px]" />
+                        </button>
+                        <img src={selectedImage} alt="Bukti Transaksi" className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-white/10" />
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
 
 export default BukuKas;

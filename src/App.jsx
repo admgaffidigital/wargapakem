@@ -591,20 +591,12 @@ function ModuleLoadingFallback() {
             const activeTabTitle = NavItems.find(i => i.id === activeTab)?.label || identity.name;
 
             return (
-                <div className="min-h-screen bg-transparent print:bg-white font-sans text-google-text flex flex-col relative">
-                    <FlagWavingBackground theme={theme} opacity={theme === 'dark' ? 0.12 : 0.07} />
-                    <div className="fixed inset-0 z-[-2] bg-batik opacity-30 dark:opacity-20 pointer-events-none no-print"></div>
+                <div className="min-h-screen bg-slate-50/70 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 flex flex-col relative antialiased selection:bg-red-500 selection:text-white">
+                    <FlagWavingBackground theme={theme} opacity={theme === 'dark' ? 0.05 : 0.03} />
 
-                    {/* ANIMASI WAYANG KULIT HALUS & MINIMALIS */}
-                    <div className="fixed top-[12vh] md:top-[15vh] left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-5 dark:opacity-5 transition-all duration-1000 no-print">
-                        <img src="./gunungan_transparent.png?v=4" alt="Gunungan" className="w-[85vw] md:w-[50vw] lg:w-[35vw] max-w-[500px] h-auto object-contain dark:invert" />
-                    </div>
-                    <div className="fixed bottom-0 -left-4 sm:left-0 md:left-4 xl:left-8 z-0 pointer-events-none opacity-5 dark:opacity-5 transition-all duration-1000 no-print scale-x-[-1]">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kiri" className="w-[35vw] md:w-[25vw] max-w-[320px] h-auto max-h-[40vh] object-contain object-bottom animate-wayang dark:invert" />
-                    </div>
-                    <div className="fixed bottom-0 -right-4 sm:right-0 md:right-4 xl:right-8 z-0 pointer-events-none opacity-5 dark:opacity-5 transition-all duration-1000 no-print">
-                        <img src="./wayang_transparent.png?v=3" alt="Wayang Kulit Kanan" className="w-[35vw] md:w-[25vw] max-w-[320px] h-auto max-h-[40vh] object-contain object-bottom animate-wayang dark:invert" style={{ animationDelay: '1.5s' }} />
-                    </div>
+                    {/* Ambient Radial Highlights untuk Kedalaman Native App */}
+                    <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-red-600/5 dark:bg-red-600/10 rounded-full blur-[140px] pointer-events-none -mr-48 -mt-48 -z-10"></div>
+                    <div className="fixed bottom-0 left-0 w-[450px] h-[450px] bg-amber-500/5 dark:bg-amber-500/5 rounded-full blur-[120px] pointer-events-none -ml-40 -mb-40 -z-10"></div>
 
                     {/* Modern Native App Top Bar */}
                     <TopNavBar
@@ -702,37 +694,41 @@ function ModuleLoadingFallback() {
 
                     <PWAInstallBanner />
                     {showLicenseModal && (
-                        <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
-                            <div className="rounded-2xl w-full max-w-lg overflow-hidden border border-red-500/30 dark:border-red-950/40 flex flex-col max-h-[85vh] modal-card animate-modal-in">
-                                <div className="bg-red-50 dark:bg-red-950/20 px-6 py-5 border-b border-red-500/20 dark:border-red-900/30 flex items-center justify-between shrink-0">
-                                    <h3 className="text-[14px] font-medium text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" /> KEAMANAN DATA & LISENSI</h3>
-                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-100 dark:hover:bg-red-950/40 text-red-500 dark:text-red-400 transition-colors"><Icon name="close" /></button>
+                        <div className="fixed inset-0 bg-slate-950/65 dark:bg-black/80 z-[110] flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in no-print">
+                            <div className="w-full sm:max-w-lg bg-white dark:bg-slate-900 rounded-t-[32px] sm:rounded-[28px] overflow-hidden border border-slate-200/90 dark:border-slate-800 shadow-2xl flex flex-col max-h-[85vh] animate-modal-in">
+                                {/* Mobile pull handle */}
+                                <div className="w-12 h-1 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-3 mb-1 sm:hidden"></div>
+                                <div className="bg-red-50 dark:bg-red-950/30 px-6 py-4 border-b border-red-500/20 flex items-center justify-between shrink-0">
+                                    <h3 className="text-[14px] font-bold text-red-700 dark:text-red-400 flex items-center gap-2"><Icon name="verified_user" className="text-[17px]" /> KEAMANAN DATA & LISENSI</h3>
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-100 dark:hover:bg-red-950/50 text-red-500 transition-colors"><Icon name="close" /></button>
                                 </div>
                                 <div className="p-6 md:p-8 overflow-y-auto hide-scrollbar">
                                     <div className="prose prose-sm text-slate-600 dark:text-slate-300 text-justify leading-relaxed max-w-none">
-                                        <p className="font-medium text-slate-800 dark:text-slate-200 text-[13px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
+                                        <p className="font-bold text-slate-800 dark:text-slate-200 text-[13px] mb-3">Website ini <span className="text-red-600 uppercase underline decoration-red-300 underline-offset-4">tidak diperjualbelikan</span>.</p>
                                         <p className="mb-3">Seluruh data di dalam sistem ini dilindungi secara ketat dan dikelola secara eksklusif oleh Admin Lingkungan.</p>
-                                        <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3 rounded-lg border border-red-100 dark:border-red-900/30-100">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <span className="underline underline-offset-2 decoration-red-400">dilaporkan kepada pihak yang berwajib</span> sesuai perundang-undangan yang berlaku.</p>
+                                        <p className="mb-4 text-red-600 font-medium bg-red-50 dark:bg-red-950/20 p-3.5 rounded-xl border border-red-100 dark:border-red-900/30">Segala bentuk pencurian data, penyalahgunaan akses, atau tindak kriminal digital lainnya akan ditelusuri dan <span className="underline underline-offset-2 decoration-red-400">dilaporkan kepada pihak yang berwajib</span> sesuai perundang-undangan yang berlaku.</p>
                                         <p className="mb-6">Sistem ini diperuntukkan khusus untuk keperluan digitalisasi guna menunjang tata kelola lingkungan desa yang transparan dan akuntabel.</p>
                                         
                                         <div className="border-t border-dashed border-slate-200 dark:border-slate-700 pt-4 text-center">
                                             <p className="text-[11px] font-medium text-slate-400 mb-1">COPYRIGHT &copy; 2026</p>
                                             <p className="text-[10px] text-slate-400 mb-2">Sistem & lisensi ditandatangani secara digital oleh pengembang resmi:</p>
-                                            <p className="text-[16px] font-medium tracking-widest text-google-red uppercase">Novan Restu Utomo</p>
+                                            <p className="text-[16px] font-black tracking-widest text-red-600 uppercase">Novan Restu Utomo</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-4 md:px-8 md:pb-8 pt-0 shrink-0">
-                                    <button onClick={() => setShowLicenseModal(false)} className="btn-native-action w-full min-h-[46px] bg-red-600 hover:bg-red-700 text-white rounded-2xl font-bold text-[14px] shadow-lg shadow-red-500/25 border border-red-500/30 active:scale-[0.98] transition-all cursor-pointer">Saya Mengerti</button>
+                                <div className="p-4 sm:px-6 sm:pb-6 pt-0 shrink-0">
+                                    <button onClick={() => setShowLicenseModal(false)} className="w-full min-h-[48px] bg-red-600 hover:bg-red-700 text-white rounded-2xl font-bold text-[14px] shadow-lg shadow-red-500/25 active:scale-[0.98] transition-all cursor-pointer">Saya Mengerti</button>
                                 </div>
                             </div>
                         </div>
                     )}
                     {showLegalModal && (
-                        <div className="fixed inset-0 bg-black/60 z-[100] flex justify-center items-center p-4 animate-fade-in modal-backdrop animate-backdrop-in">
-                            <div className="rounded-2xl w-full max-w-lg overflow-hidden flex flex-col border border-slate-200/50 dark:border-slate-850 max-h-[85vh] modal-card animate-modal-in">
-                                <div className="bg-slate-50 dark:bg-slate-950 px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
-                                    <h3 className="text-[14px] font-medium text-slate-800 dark:text-white flex items-center gap-2">
+                        <div className="fixed inset-0 bg-slate-950/65 dark:bg-black/80 z-[110] flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in no-print">
+                            <div className="w-full sm:max-w-lg bg-white dark:bg-slate-900 rounded-t-[32px] sm:rounded-[28px] overflow-hidden flex flex-col border border-slate-200/90 dark:border-slate-800 max-h-[85vh] shadow-2xl animate-modal-in">
+                                {/* Mobile pull handle */}
+                                <div className="w-12 h-1 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-3 mb-1 sm:hidden"></div>
+                                <div className="bg-slate-50 dark:bg-slate-850 px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
+                                    <h3 className="text-[14px] font-bold text-slate-900 dark:text-white flex items-center gap-2">
                                         <Icon name={showLegalModal === 'terms' ? 'gavel' : 'privacy_tip'} className="text-red-500" /> 
                                         {showLegalModal === 'terms' ? 'Syarat & Ketentuan' : 'Kebijakan Privasi'}
                                     </h3>
@@ -743,8 +739,8 @@ function ModuleLoadingFallback() {
                                         {showLegalModal === 'terms' ? legalData?.terms : legalData?.privacy}
                                     </div>
                                 </div>
-                                <div className="p-4 border-t border-slate-200 dark:border-slate-800 shrink-0">
-                                    <button onClick={() => setShowLegalModal(null)} className="btn-native-action w-full min-h-[46px] bg-red-600 hover:bg-red-700 text-white rounded-2xl font-bold text-[14px] shadow-lg shadow-red-500/25 border border-red-500/30 active:scale-[0.98] transition-all cursor-pointer">Tutup & Lanjutkan</button>
+                                <div className="p-4 sm:px-6 sm:pb-6 border-t border-slate-200 dark:border-slate-800 shrink-0">
+                                    <button onClick={() => setShowLegalModal(null)} className="w-full min-h-[48px] bg-red-600 hover:bg-red-700 text-white rounded-2xl font-bold text-[14px] shadow-lg shadow-red-500/25 active:scale-[0.98] transition-all cursor-pointer">Tutup & Lanjutkan</button>
                                 </div>
                             </div>
                         </div>
@@ -756,14 +752,19 @@ function ModuleLoadingFallback() {
                     {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
 
                     {showLogoutModal && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 no-print transition-opacity modal-backdrop animate-backdrop-in">
-                            <div className="max-h-[85vh] overflow-y-auto hide-scrollbar bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-8 w-full max-w-sm text-center modal-card animate-modal-in">
-                                <div className="mb-5 bg-google-redLight dark:bg-red-950/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto border border-google-red/30 dark:border-red-900/20"><Icon name="logout" className="text-[40px] text-google-red" fill="true" /></div>
-                                <h3 className="text-2xl font-medium text-google-text dark:text-white mb-2">Keluar Sesi?</h3>
-                                <p className="text-[13px] text-google-textVariant dark:text-slate-300 mb-8 leading-relaxed font-medium">Sesi portal akan diakhiri. Anda akan kembali ke layar otorisasi.</p>
-                                <div className="flex flex-wrap gap-3">
-                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-auto bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 min-h-[44px] py-2.5 px-6 rounded-2xl font-bold text-[13px] hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200/80 dark:border-slate-700 active:scale-95 transition-all shadow-sm cursor-pointer">Batal</button>
-                                    <button onClick={executeLogout} className="flex-1 bg-gradient-to-r from-red-600 to-rose-600 text-white min-h-[44px] py-2.5 px-6 rounded-2xl font-bold text-[13px] shadow-md shadow-red-500/20 hover:from-red-700 hover:to-rose-700 border border-red-500/30 active:scale-95 transition-all cursor-pointer">Ya, Keluar</button>
+                        <div className="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-0 sm:p-4 no-print bg-slate-950/65 dark:bg-black/80 backdrop-blur-md animate-fade-in">
+                            <div className="w-full sm:max-w-md bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-t-[32px] sm:rounded-[28px] p-6 sm:p-8 text-center shadow-2xl animate-modal-in">
+                                {/* Mobile pull handle */}
+                                <div className="w-12 h-1 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mb-4 sm:hidden"></div>
+
+                                <div className="mb-4 bg-red-50 dark:bg-red-950/40 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto border border-red-500/20 text-red-600 dark:text-red-400">
+                                    <Icon name="logout" className="text-[28px]" fill="true" />
+                                </div>
+                                <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1.5 tracking-tight">Keluar Sesi Portal?</h3>
+                                <p className="text-[12.5px] text-slate-500 dark:text-slate-400 mb-6 leading-relaxed font-medium">Sesi Anda akan diakhiri secara aman dan kembali ke gerbang masuk warga.</p>
+                                <div className="flex flex-col sm:flex-row gap-2.5">
+                                    <button onClick={() => setShowLogoutModal(false)} className="w-full sm:w-1/2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 min-h-[46px] py-3 px-5 rounded-2xl font-bold text-[13px] hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 transition-all cursor-pointer">Batal</button>
+                                    <button onClick={executeLogout} className="w-full sm:w-1/2 bg-red-600 hover:bg-red-700 text-white min-h-[46px] py-3 px-5 rounded-2xl font-bold text-[13px] shadow-lg shadow-red-500/25 active:scale-95 transition-all cursor-pointer">Ya, Keluar</button>
                                 </div>
                             </div>
                         </div>
