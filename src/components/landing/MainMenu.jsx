@@ -65,7 +65,7 @@ export function MainMenu({
         keuangan: ['kas', 'iuran', 'infaq', 'laporan', 'dashboard'],
         warga: ['warga', 'pemenang', 'pertemuan'],
         fasilitas: ['inventaris', 'pinjam', 'toko', 'tiket'],
-        informasi: ['informasi', 'blog', 'galery', 'pengaduan', 'kegiatan', 'kalender', 'peta', 'wagroup', 'qna', 'musik', 'pengaturan']
+        informasi: ['informasi', 'pengaduan', 'kegiatan', 'kalender', 'wagroup', 'qna', 'pengaturan']
     };
 
     const categories = [
@@ -429,47 +429,6 @@ export function MainMenu({
                 </>
             )}
 
-            {/* ========================================================
-                5. KONTAK DARURAT & STATUS LINGKUNGAN DESA
-               ======================================================== */}
-            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-3xl p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800 space-y-3">
-                <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                        <Icon name="local_police" className="text-[16px] text-red-500" />
-                        Kontak Darurat & Siaga Desa
-                    </span>
-                    <button
-                        type="button"
-                        onClick={() => changeTab('peta')}
-                        className="text-[11px] font-bold text-red-600 dark:text-red-400 hover:underline cursor-pointer"
-                    >
-                        Lihat Peta Lengkap →
-                    </button>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                    {[
-                        { title: 'Ambulans Siaga', phone: '0812-3456-7890', icon: 'local_hospital', color: 'text-red-600 bg-red-50 dark:bg-red-950/40' },
-                        { title: 'Balai Desa Gurah', phone: '(0354) 689123', icon: 'account_balance', color: 'text-blue-600 bg-blue-50 dark:bg-blue-950/40' },
-                        { title: 'Babinsa Desa', phone: '0857-8899-0011', icon: 'security', color: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40' },
-                        { title: 'Bhabinkamtibmas', phone: '0821-4455-6677', icon: 'shield', color: 'text-amber-600 bg-amber-50 dark:bg-amber-950/40' },
-                    ].map((c) => (
-                        <a
-                            key={c.title}
-                            href={`tel:${c.phone.replace(/[^0-9]/g, '')}`}
-                            className="p-3 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5 hover:border-red-500/40 transition-all shadow-2xs"
-                        >
-                            <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${c.color}`}>
-                                <Icon name={c.icon} className="text-[16px]" fill="true" />
-                            </div>
-                            <div className="min-w-0">
-                                <span className="text-[11px] font-bold text-slate-800 dark:text-white block truncate">{c.title}</span>
-                                <span className="text-[10px] text-slate-400 font-medium block truncate">{c.phone}</span>
-                            </div>
-                        </a>
-                    ))}
-                </div>
-            </div>
 
             {/* Verifikasi Keaslian & Lisensi Lingkungan */}
             <div className="flex justify-center pt-2">

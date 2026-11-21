@@ -239,18 +239,6 @@ Saat ini RT memiliki ${inventarisData?.length || 0} barang terdaftar.`
 2. Pilih event aktif, tentukan jumlah tiket yang ingin dibeli, lalu kirim pemesanan.
 3. Setelah dikonfirmasi oleh panitia, tiket digital beserta **QR Code** unik akan muncul di menu "Tiket Saya".
 4. Anda cukup menunjukkan kode QR tersebut di HP Anda kepada petugas lapangan saat acara berlangsung untuk dipindai.`
-        },
-        {
-            category: 'Blog Warga',
-            icon: 'article',
-            q: 'Bagaimana cara berkontribusi di Blog Warga?',
-            a: `Menu **Blog Warga** adalah wadah sosial kreatif milik kita bersama. Semua warga dapat menulis artikel, resep masakan, opini, pengumuman kehilangan hewan peliharaan, berita duka, kabar pernikahan, atau cerita inspiratif lainnya. Warga lainnya dapat saling berinteraksi dengan membaca, memberikan apresiasi tombol *Like*, dan memberikan komentar-komentar positif untuk merajut kebersamaan.`
-        },
-        {
-            category: 'Peta Lokasi',
-            icon: 'map',
-            q: 'Apa kegunaan menu Peta Lokasi?',
-            a: `Menu **Peta Lokasi** menyajikan peta pemukiman wilayah RT kita secara digital yang interaktif. Dengan mendaftarkan koordinat GPS rumah masing-masing, kurir ekspedisi pengantar barang belanjaan online, ojek online, kerabat, atau tamu dari luar kota dapat dengan mudah menemukan alamat rumah Anda secara presisi tanpa harus tersesat di gang-gang RT.`
         }
     ], [nominalArisan, nominalJimpitan, cycleNumber, currentRound, jimpitanBalance, inventarisData]);
 
@@ -337,14 +325,6 @@ Jika terpaksa harus mencatat pengeluaran besar, pastikan Anda melakukan penarika
 Sistem akan otomatis menghitung ulang seluruh saldo kas jimpitan, talangan, saldo akhir, serta tunggakan warga di periode tersebut secara otomatis.`
         },
         {
-            category: 'Musik Warga',
-            icon: 'music_note',
-            q: 'Apa fungsi dari menu Musik Warga?',
-            a: `Menu **Musik Warga** adalah fitur khusus Admin untuk mengiringi jalannya pertemuan arisan RT.
-
-Admin dapat memutar musik, mencari lagu, atau menyetel daftar putar audio secara terpusat agar suasana berkumpul terasa lebih hangat, santai, dan ceria.`
-        },
-        {
             category: 'Setelan Admin',
             icon: 'settings',
             q: 'Bagaimana cara melakukan Koreksi Saldo Manual?',
@@ -358,7 +338,7 @@ Admin dapat memutar musik, mencari lagu, atau menyetel daftar putar audio secara
             category: 'Setelan Admin',
             icon: 'settings',
             q: 'Bagaimana melakukan Factory Reset jika ingin memulai dari awal?',
-            a: `Fasilitas Factory Reset berada di menu **Setelan Admin**. Tindakan ini akan menghapus seluruh data (warga, kas, riwayat arisan, galeri, dll).
+            a: `Fasilitas Factory Reset berada di menu **Setelan Admin**. Tindakan ini akan menghapus seluruh data (warga, kas, riwayat arisan, dll).
 
 Untuk konfirmasi, Anda harus memasukkan kata kunci "RESET". Tindakan ini **tidak bisa dibatalkan**. PIN login admin Anda akan tetap dipertahankan agar Anda tidak terkunci dari aplikasi.`
         }

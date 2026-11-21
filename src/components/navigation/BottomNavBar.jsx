@@ -31,14 +31,14 @@ export function BottomNavBar({ activeTab, changeTab, userRole = 'warga' }) {
             target: 'kegiatan',
             label: 'Agenda',
             icon: 'calendar_month',
-            matches: ['kegiatan', 'kalender', 'galery', 'blog', 'informasi']
+            matches: ['kegiatan', 'kalender', 'informasi']
         },
         {
             key: 'warga',
             target: 'warga',
             label: userRole === 'admin' ? 'Kelola' : 'Warga',
             icon: userRole === 'admin' ? 'admin_panel_settings' : 'group',
-            matches: ['warga', 'pemenang', 'peta', 'wagroup', 'qna', 'pertemuan', 'musik', 'pengaturan']
+            matches: ['warga', 'pemenang', 'wagroup', 'qna', 'pertemuan', 'pengaturan']
         }
     ];
 

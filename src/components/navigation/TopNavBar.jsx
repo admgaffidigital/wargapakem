@@ -22,8 +22,8 @@ export function TopNavBar({
         { key: 'menu', target: 'menu', label: 'Beranda', icon: 'home', matches: ['menu', 'dashboard'] },
         { key: 'kas', target: 'kas', label: 'Keuangan', icon: 'account_balance_wallet', matches: ['kas', 'iuran', 'infaq', 'laporan'] },
         { key: 'layanan', target: 'layanan', label: 'Layanan', icon: 'grid_view', matches: ['layanan', 'inventaris', 'pinjam', 'toko', 'tiket', 'pengaduan'] },
-        { key: 'agenda', target: 'kegiatan', label: 'Agenda', icon: 'calendar_month', matches: ['kegiatan', 'kalender', 'galery', 'blog', 'informasi'] },
-        { key: 'warga', target: 'warga', label: userRole === 'admin' ? 'Pengurus' : 'Buku Warga', icon: 'group', matches: ['warga', 'pemenang', 'peta', 'wagroup', 'qna', 'pertemuan', 'musik', 'pengaturan'] }
+        { key: 'agenda', target: 'kegiatan', label: 'Agenda', icon: 'calendar_month', matches: ['kegiatan', 'kalender', 'informasi'] },
+        { key: 'warga', target: 'warga', label: userRole === 'admin' ? 'Pengurus' : 'Buku Warga', icon: 'group', matches: ['warga', 'pemenang', 'wagroup', 'qna', 'pertemuan', 'pengaturan'] }
     ];
 
     const handleBack = () => {

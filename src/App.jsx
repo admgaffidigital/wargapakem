@@ -13,7 +13,7 @@ import ToastContainer, { showToast } from './components/common/Toast.jsx';
 import PWAInstallBanner from './components/common/PWAInstallBanner.jsx';
 import PwaGuideModal from './components/common/PwaGuideModal.jsx';
 import FlagWavingBackground from './components/common/FlagWavingBackground.jsx';
-import { useFirebaseSync, useFirebaseArticlesSync } from './hooks/useFirebaseSync.js';
+import { useFirebaseSync } from './hooks/useFirebaseSync.js';
 
 // Landing Page & Navigation
 import LoginScreen from './components/landing/LoginScreen.jsx';
@@ -25,9 +25,7 @@ import SpotlightSearchModal from './components/navigation/SpotlightSearchModal.j
 // Modules (Lazy-loaded for optimal initial load & code splitting)
 const Dashboard = React.lazy(() => import('./components/modules/Dashboard.jsx'));
 const Informasi = React.lazy(() => import('./components/modules/Informasi.jsx'));
-const Blog = React.lazy(() => import('./components/modules/Blog.jsx'));
 const WargaList = React.lazy(() => import('./components/modules/WargaList.jsx'));
-const Galeri = React.lazy(() => import('./components/modules/Galeri.jsx'));
 const Inventaris = React.lazy(() => import('./components/modules/Inventaris.jsx'));
 const Toko = React.lazy(() => import('./components/modules/Toko.jsx'));
 const Pengaduan = React.lazy(() => import('./components/modules/Pengaduan.jsx'));
@@ -42,9 +40,6 @@ const Infaq = React.lazy(() => import('./components/modules/Infaq.jsx'));
 const Pemenang = React.lazy(() => import('./components/modules/Pemenang.jsx'));
 const Kegiatan = React.lazy(() => import('./components/modules/Kegiatan.jsx'));
 const Kalender = React.lazy(() => import('./components/modules/Kalender.jsx'));
-const PetaDesa = React.lazy(() => import('./components/modules/PetaDesa.jsx'));
-const MusicAdmin = React.lazy(() => import('./components/modules/MusicAdmin.jsx'));
-const FloatingMusicPlayer = React.lazy(() => import('./components/modules/FloatingMusicPlayer.jsx'));
 const WaGroup = React.lazy(() => import('./components/modules/WaGroup.jsx'));
 const Qna = React.lazy(() => import('./Qna.jsx'));
 
@@ -71,18 +66,14 @@ function ModuleLoadingFallback() {
             
 
             
-            // Inisialisasi langsung dari URL - link produk tiket / artikel blog bypass landing page
+            // Inisialisasi langsung dari URL - link produk tiket bypass landing page
             const [isLoggedIn, setIsLoggedIn] = useState(() => {
                 const p = new URLSearchParams(window.location.search);
-                const isTicket = p.get('page') === 'tiket' && p.has('product');
-                const isBlog = p.get('page') === 'blog' && p.has('article');
-                return isTicket || isBlog;
+                return p.get('page') === 'tiket' && p.has('product');
             });
             const [userRoleInit] = useState(() => {
                 const p = new URLSearchParams(window.location.search);
-                const isTicket = p.get('page') === 'tiket' && p.has('product');
-                const isBlog = p.get('page') === 'blog' && p.has('article');
-                return (isTicket || isBlog) ? 'warga' : null;
+                return (p.get('page') === 'tiket' && p.has('product')) ? 'warga' : null;
             });
             const [isCheckingAuth, setIsCheckingAuth] = useState(true);
             const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
@@ -100,16 +91,11 @@ function ModuleLoadingFallback() {
             }, [theme]);
             const [userRole, setUserRole] = useState(() => {
                 const p = new URLSearchParams(window.location.search);
-                const isTicket = p.get('page') === 'tiket' && p.has('product');
-                const isBlog = p.get('page') === 'blog' && p.has('article');
-                return (isTicket || isBlog) ? 'warga' : null;
+                return (p.get('page') === 'tiket' && p.has('product')) ? 'warga' : null;
             }); 
             const [activeTab, setActiveTab] = useState(() => {
                 const p = new URLSearchParams(window.location.search);
-                const isTicket = p.get('page') === 'tiket' && p.has('product');
-                const isBlog = p.get('page') === 'blog' && p.has('article');
-                if (isTicket) return 'tiket';
-                if (isBlog) return 'blog';
+                if (p.get('page') === 'tiket' && p.has('product')) return 'tiket';
                 return 'menu';
             }); 
             const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -144,7 +130,6 @@ function ModuleLoadingFallback() {
             }, [identity?.logoApp]);
             const [nextMeeting, setNextMeeting, l13] = useFirebaseSync('next_meeting', { date: 'Belum dijadwalkan', time: '-', location: '-', notes: '-' });
             const [informasi, setInformasi, l14] = useFirebaseSync('informasi', []);
-            const [blogData, setBlogData] = useFirebaseArticlesSync(userRole === 'admin');
             const defaultLegal = {
                 enabled: true,
                 terms: "1. Akses Portal: Portal ini hanya diperuntukkan bagi warga lingkungan yang terdaftar sah. Dilarang membagikan akses login kepada pihak luar.\n2. Penggunaan Fitur: Warga dilarang menyalahgunakan fitur portal untuk menyebarkan hoaks, ujaran kebencian, atau pelanggaran hukum.\n3. Hak Admin: Admin (Pengurus Lingkungan) berhak memblokir akun warga yang terbukti melanggar aturan atau memalsukan data.\n4. Validitas Data: Warga bertanggung jawab penuh atas kebenaran data yang diunggah.",
@@ -153,13 +138,11 @@ function ModuleLoadingFallback() {
             const [legalData, setLegalData, l_legal] = useFirebaseSync('legal', defaultLegal);
             const [showLegalModal, setShowLegalModal] = useState(null); // 'terms' | 'privacy' | null
             const [iuranData, setIuranData, l15] = useFirebaseSync('iuran_umum', []);
-            const [galeriData, setGaleriData, l17] = useFirebaseSync('galeri_warga', []);
             const [laporanData, setLaporanData, l19] = useFirebaseSync('laporan', []);
             const [inventarisData, setInventarisData, l18] = useFirebaseSync('inventaris_rt', []);
             const [bannerImage, setBannerImage, l19_banner] = useFirebaseSync('banner_image', '');
             const [pinjamData, setPinjamData, l21] = useFirebaseSync('pinjam_inventaris', []);
             const [infaqData, setInfaqData, l22] = useFirebaseSync('infaq_data', []);
-            const [musicData, setMusicData, l23] = useFirebaseSync('music_config', { url: '', name: '', enabled: true });
             const [tokoProducts, setTokoProducts, l_tokoProd] = useFirebaseSync('toko_products', []);
             const [tokoOrders, setTokoOrders, l_tokoOrd] = useFirebaseSync('toko_orders', []);
             
@@ -169,10 +152,6 @@ function ModuleLoadingFallback() {
                 newsTitle: 'KABAR WARGA & PENGUMUMAN',
                 newsEmptyTitle: 'Belum Ada Pengumuman',
                 newsEmptyDesc: 'Pengumuman penting dan kabar warga RT akan muncul di halaman ini.',
-                blogSubtitle: 'Artikel & Konten Warga',
-                blogTitle: 'BLOG WARGA RT',
-                mapSubtitle: 'Cakupan Wilayah & Kontak Darurat',
-                mapTitle: 'PETA DESA & LAYANAN',
                 sponsorSubtitle: 'Didukung Oleh',
                 footerInfoTitle: 'Informasi Layanan Digital Terverifikasi',
                 footerInfoDesc: 'Layanan Resmi RT Pakem, Banyuanyar, Gurah, Kediri.',
@@ -182,16 +161,6 @@ function ModuleLoadingFallback() {
             };
             const [landingConfig, setLandingConfig, l_landing] = useFirebaseSync('landing_config', defaultLandingConfig);
             const [sponsorsData, setSponsorsData, l24] = useFirebaseSync('sponsors_data', { enabled: false, sponsors: [] });
-            const [infoDesa, setInfoDesa, l25] = useFirebaseSync('info_desa', {
-                enabled: true,
-                batas: { utara: 'Desa Adan-adan', selatan: 'Desa Gurah', timur: 'Desa Tumpang', barat: 'Desa Sukorejo' },
-                kontak: [
-                    { id: 1, nama: 'Ambulans Siaga Desa', telepon: '0812-3456-7890', icon: 'local_hospital', color: 'red' },
-                    { id: 2, nama: 'Kantor Balai Desa', telepon: '(0354) 689123', icon: 'business', color: 'slate' },
-                    { id: 3, nama: 'Bhabinkamtibmas', telepon: '0821-4455-6677', icon: 'security', color: 'blue' },
-                    { id: 4, nama: 'Babinsa Desa', telepon: '0857-8899-0011', icon: 'military_tech', color: 'green' }
-                ]
-            });
             const [ticketProducts, setTicketProducts, lTicketProducts] = useFirebaseSync('ticket_products', []);
             const [ticketOrders, setTicketOrders, lTicketOrders] = useFirebaseSync('ticket_orders', []);
             const [waRequests, setWaRequests, l_waRequests] = useFirebaseSync('wa_group_requests', []);
@@ -468,11 +437,9 @@ function ModuleLoadingFallback() {
                 { id: 'dashboard', icon: 'dashboard', label: 'Ringkasan', desc: 'Kas, arisan & kondisi RT terkini', bg: 'bg-blue-50 dark:bg-blue-950/40', color: 'text-blue-600 dark:text-blue-400 border border-blue-500/20' },
                 { id: 'informasi', icon: 'campaign', label: 'Info Warga', desc: 'Pengumuman resmi & kabar lingkungan', bg: 'bg-amber-50 dark:bg-amber-950/40', color: 'text-amber-600 dark:text-amber-400 border border-amber-500/20' },
                 { id: 'warga', icon: 'group', label: 'Buku Warga', desc: 'Daftar kepala keluarga & anggota', bg: 'bg-emerald-50 dark:bg-emerald-950/40', color: 'text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' },
-                { id: 'galery', icon: 'photo_library', label: 'Galeri', desc: 'Album dokumentasi foto kegiatan', bg: 'bg-purple-50 dark:bg-purple-950/40', color: 'text-purple-600 dark:text-purple-400 border border-purple-500/20' },
                 { id: 'inventaris', icon: 'inventory_2', label: 'Inventaris', desc: 'Daftar aset, tenda & alat milik RT', bg: 'bg-amber-50 dark:bg-amber-950/40', color: 'text-amber-600 dark:text-amber-400 border border-amber-500/20' },
                 { id: 'toko', icon: 'local_mall', label: 'Official Store', desc: 'Lapak produk & UMKM warga sekitar', bg: 'bg-emerald-50 dark:bg-emerald-950/40', color: 'text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' },
                 { id: 'pengaduan', icon: 'report_problem', label: 'Lapor Warga', desc: 'Pusat aspirasi & laporan keluhan', bg: 'bg-rose-50 dark:bg-rose-950/40', color: 'text-rose-600 dark:text-rose-400 border border-rose-500/20' },
-                { id: 'blog', icon: 'article', label: 'Blog Warga', desc: 'Artikel, kabar terkini & wawasan', bg: 'bg-sky-50 dark:bg-sky-950/40', color: 'text-sky-600 dark:text-sky-400 border border-sky-500/20' },
                 { id: 'pinjam', icon: 'handshake', label: 'Pinjam Inventaris', desc: 'Ajukan sewa & pinjam peralatan RT', bg: 'bg-teal-50 dark:bg-teal-950/40', color: 'text-teal-600 dark:text-teal-400 border border-teal-500/20' },
                 { id: 'iuran', icon: 'volunteer_activism', label: 'Iuran Umum', desc: 'Iuran sampah, keamanan & lingkungan', bg: 'bg-red-50 dark:bg-red-950/40', color: 'text-red-600 dark:text-red-400 border border-red-500/20' },
                 { id: 'kas', icon: 'account_balance_wallet', label: 'Kas Warga', desc: 'Buku kas umum & laporan transparansi', bg: 'bg-indigo-50 dark:bg-indigo-950/40', color: 'text-indigo-600 dark:text-indigo-400 border border-indigo-500/20' },
@@ -482,12 +449,10 @@ function ModuleLoadingFallback() {
                 { id: 'pemenang', icon: 'emoji_events', label: 'Pemenang', desc: 'Daftar pemenang undian arisan & lomba', bg: 'bg-amber-50 dark:bg-amber-950/40', color: 'text-amber-600 dark:text-amber-400 border border-amber-500/20' },
                 { id: 'kegiatan', icon: 'event', label: 'Jadwal Agenda', desc: 'Jadwal ronda, kerja bakti & rapat', bg: 'bg-blue-50 dark:bg-blue-950/40', color: 'text-blue-600 dark:text-blue-400 border border-blue-500/20' },
                 { id: 'kalender', icon: 'calendar_month', label: 'Kalender', desc: 'Kalender agenda bulanan lingkungan', bg: 'bg-rose-50 dark:bg-rose-950/40', color: 'text-rose-600 dark:text-rose-400 border border-rose-500/20' },
-                { id: 'peta', icon: 'map', label: 'Peta Lokasi', desc: 'Denah desa & kontak darurat siaga', bg: 'bg-slate-100 dark:bg-slate-800', color: 'text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700' },
                 { id: 'wagroup', icon: 'forum', label: 'Grup WA', desc: 'Gabung grup WhatsApp resmi warga', bg: 'bg-emerald-50 dark:bg-emerald-950/40', color: 'text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' },
                 { id: 'qna', icon: 'quiz', label: 'Tanya Jawab', desc: 'Panduan lengkap & FAQ fitur portal', bg: 'bg-sky-50 dark:bg-sky-950/40', color: 'text-sky-600 dark:text-sky-400 border border-sky-500/20' },
                 ...(userRole === 'admin' ? [
                     { id: 'pertemuan', icon: 'checklist', label: 'Absen Arisan', desc: 'Presensi kehadiran & kocokan pemenang', bg: 'bg-emerald-50 dark:bg-emerald-950/40', color: 'text-emerald-600 dark:text-emerald-400 border border-emerald-500/20', adminOnly: true },
-                    { id: 'musik', icon: 'music_note', label: 'Musik Warga', desc: 'Atur pemutar audio & lagu latar portal', bg: 'bg-amber-50 dark:bg-amber-950/40', color: 'text-amber-600 dark:text-amber-400 border border-amber-500/20', adminOnly: true },
                     { id: 'pengaturan', icon: 'settings', label: 'Setelan Admin', desc: 'Konfigurasi akun, backup data & RT', bg: 'bg-red-50 dark:bg-red-950/40', color: 'text-red-600 dark:text-red-400 border border-red-500/20', adminOnly: true }
                 ] : [])
             ];
@@ -516,9 +481,7 @@ function ModuleLoadingFallback() {
                         );
                     case 'dashboard': return <Dashboard members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} kasRtBalance={kasRtBalance} currentRound={currentRound} setCurrentRound={setCurrentRound} userRole={userRole} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} changeTab={changeTab} arisanPeriod={arisanPeriod} />;
                     case 'informasi': return <Informasi data={informasi} setData={setInformasi} userRole={userRole} />;
-                    case 'blog': return <Blog blogData={blogData} setBlogData={setBlogData} userRole={userRole} identity={identity} initialArticleId={new URLSearchParams(window.location.search).get('article')} />;
                     case 'warga': return <WargaList members={members} setMembers={setMembers} userRole={userRole} identity={identity} cycleNumber={cycleNumber} currentRound={currentRound} arisanPeriod={arisanPeriod} />;
-                    case 'galery': return <Galeri data={galeriData} setData={setGaleriData} userRole={userRole} />;
                     case 'inventaris': return <Inventaris data={inventarisData} setData={setInventarisData} userRole={userRole} pinjamData={pinjamData} />;
                     case 'toko': return <Toko 
                         tokoProducts={tokoProducts} 
@@ -540,13 +503,11 @@ function ModuleLoadingFallback() {
                     case 'tiket': return <Tiket products={ticketProducts} setProducts={setTicketProducts} orders={ticketOrders} setOrders={setTicketOrders} userRole={userRole} identity={identity} isProductsLoaded={lTicketProducts} />;
                     case 'laporan': return <Laporan history={meetingHistory} setMeetingHistory={setMeetingHistory} members={members} setMembers={setMembers} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} cycleNumber={cycleNumber} identity={identity} userRole={userRole} />;
                     case 'pertemuan': return userRole === 'admin' ? <Pertemuan members={members} setMembers={setMembers} currentRound={currentRound} setCurrentRound={setCurrentRound} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} setMeetingHistory={setMeetingHistory} onFinish={() => changeTab('menu')} nominalArisan={nominalArisan} nominalJimpitan={nominalJimpitan} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} identity={identity} cycleNumber={cycleNumber} /> : null;
-                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setGaleriData={setGaleriData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} infoDesa={infoDesa} setInfoDesa={setInfoDesa} legalData={legalData} setLegalData={setLegalData} landingConfig={landingConfig} setLandingConfig={setLandingConfig} /> : null;
+                    case 'pengaturan': return userRole === 'admin' ? <Pengaturan nominalArisan={nominalArisan} setNominalArisan={setNominalArisan} nominalJimpitan={nominalJimpitan} setNominalJimpitan={setNominalJimpitan} identity={identity} setIdentity={setIdentity} setMembers={setMembers} setMeetingHistory={setMeetingHistory} currentRound={currentRound} setCurrentRound={setCurrentRound} cycleNumber={cycleNumber} setCycleNumber={setCycleNumber} jimpitanBalance={jimpitanBalance} setJimpitanBalance={setJimpitanBalance} kasRtBalance={kasRtBalance} setKasRtBalance={setKasRtBalance} kasRtTransactions={kasRtTransactions} setKasRtTransactions={setKasRtTransactions} arisanPeriod={arisanPeriod} setArisanPeriod={setArisanPeriod} bannerImage={bannerImage} setBannerImage={setBannerImage} setIuranData={setIuranData} setInventarisData={setInventarisData} setInformasi={setInformasi} setNextMeeting={setNextMeeting} sponsorsData={sponsorsData} setSponsorsData={setSponsorsData} legalData={legalData} setLegalData={setLegalData} landingConfig={landingConfig} setLandingConfig={setLandingConfig} /> : null;
                     case 'infaq': return <Infaq infaqData={infaqData} setInfaqData={setInfaqData} userRole={userRole} identity={identity} />;
                     case 'pemenang': return <Pemenang members={members} />;
                     case 'kegiatan': return <Kegiatan nextMeeting={nextMeeting} setNextMeeting={setNextMeeting} userRole={userRole} />;
                     case 'kalender': return <Kalender />;
-                    case 'peta': return <PetaDesa infoDesa={infoDesa} />;
-                    case 'musik': return userRole === 'admin' ? <MusicAdmin musicData={musicData} setMusicData={setMusicData} /> : null;
                     case 'wagroup': return <WaGroup requests={waRequests} setRequests={setWaRequests} userRole={userRole} inviteLink={landingConfig.whatsappGroupLink || ''} />;
                     case 'qna': return (
                         <React.Suspense fallback={<div className="flex justify-center items-center h-64 text-slate-500 font-medium text-xs">Memuat Tanya Jawab...</div>}>
@@ -746,9 +707,7 @@ function ModuleLoadingFallback() {
                         </div>
                     )}
                     <ToastContainer />
-                    {/* Floating Music Player - hanya untuk warga */}
-                    {userRole === 'warga' && musicData?.url && musicData?.enabled && <Suspense fallback={null}><FloatingMusicPlayer musicData={musicData} /></Suspense>}
-
+                    
                     {showPwaGuide && <PwaGuideModal onClose={() => setShowPwaGuide(false)} />}
 
                     {showLogoutModal && (
